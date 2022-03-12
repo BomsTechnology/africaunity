@@ -12,10 +12,10 @@
                     v-model="lang"
                     class="form-select px-3 py-2 w-full mt-2  border-gray-300 focus:ring-primary-blue focus:border-primary-blue block"
                 >
-                    <option value="fr">{{ $t("lang-fr") }}</option>
-                    <option value="en">{{ $t("lang-en") }}</option>
-                    <option value="es">{{ $t("lang-es") }}</option>
-                    <option value="pt">{{ $t("lang-pt") }}</option>
+                    <option value="fr">{{ $t("fr") }}</option>
+                    <option value="en">{{ $t("en") }}</option>
+                    <option value="es">{{ $t("es") }}</option>
+                    <option value="pt">{{ $t("pt") }}</option>
                 </select>
             </div>
             <div>

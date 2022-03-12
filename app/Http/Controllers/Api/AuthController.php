@@ -11,13 +11,17 @@ class AuthController extends Controller
 {
     public function register(Request $request){
         $fields = $request->validate([
-            'name' =>'required|string',
+            'firstname' =>'required|string',
+            'lastname'=>'nullable|string',
+            'type' =>'required|string',
             'email'=>'required|string|email|unique:users,email',
             'password' =>'required|confirmed'
         ]);
 
         $user = User::create([
-            'name'=>$fields['name'],
+            'firstname'=>$fields['firstname'],
+            'lastname'=>$fields['lastname'],
+            'type'=>$fields['type'],
             'email'=>$fields['email'],
             'password'=>Hash::make($fields['password']),
         ]);
@@ -71,4 +75,5 @@ class AuthController extends Controller
         ];
         return response($response,201);
     }
+
 }

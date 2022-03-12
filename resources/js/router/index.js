@@ -1,20 +1,18 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Home from "../views/Home.vue";
-import Article from "../views/Article.vue";
-import Contact from "../views/Contact.vue";
-import Establishment from "../views/Establishment.vue";
-import Job from "../views/Job.vue";
-import Login from "../views/Login.vue";
-import Pack from "../views/Pack.vue";
-import Particular from "../views/Particular.vue";
-import PoliticalInstitution from "../views/PoliticalInstitution.vue";
-import PropAu from "../views/PropAu.vue";
-import Universities from "../views/Universities.vue";
-import RegisterParticular from "../views/RegisterParticular.vue";
-import RegisterFreeBusiness from "../views/RegisterFreeBusiness.vue";
-import RegisterPayBusiness from "../views/RegisterPayBusiness.vue";
-import RegisterIP from "../views/RegisterIP.vue";
-import NotFound from "../views/NotFound.vue";
+import Home from "../views/front/Home.vue";
+import Article from "../views/front/Article.vue";
+import Contact from "../views/front/Contact.vue";
+import Establishment from "../views/front/Establishment.vue";
+import Job from "../views/front/Job.vue";
+import Login from "../views/front/Login.vue";
+import Pack from "../views/front/Pack.vue";
+import Particular from "../views/front/Particular.vue";
+import PoliticalInstitution from "../views/front/PoliticalInstitution.vue";
+import PropAu from "../views/front/PropAu.vue";
+import Universities from "../views/front/Universities.vue";
+import Register from "../views/front/Register.vue";
+import NotFound from "../views/front/NotFound.vue";
+import Profile from "../views/front/Profile.vue";
 
 const siteName = "AfricaUnity";
 
@@ -108,35 +106,21 @@ const routes = [
         }
     },
     {
-        path: '/register/particular',
-        name: 'register.p',
-        component: RegisterParticular,
+        path: '/register/:type',
+        name: 'register',
+        props: true,
+        component: Register,
         meta:{
             title: siteName + ' - S\'inscrire'
         }
     },
     {
-        path: '/register/business/1',
-        name: 'register.fb',
-        component: RegisterFreeBusiness,
+        path: '/compte/:id',
+        name: 'compte',
+        props: true,
+        component: Profile,
         meta:{
-            title: siteName + ' - S\'inscrire'
-        }
-    },
-    {
-        path: '/register/business/2',
-        name: 'register.pb',
-        component: RegisterPayBusiness,
-        meta:{
-            title: siteName + ' - S\'inscrire'
-        }
-    },
-    {
-        path: '/register/political-institution',
-        name: 'register.ip',
-        component: RegisterIP,
-        meta:{
-            title: siteName + ' - S\'inscrire'
+            title: siteName + ' - Compte'
         }
     },
     {

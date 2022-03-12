@@ -6,75 +6,92 @@
             </router-link>
 
             <router-link :to="{name:'articles'}" class="text-white transition-colors duration-200 hover:bg-primary-blue px-3 py-2 uppercase">
-                {{ $t('menu-articles') }}
+                {{ $t('articles') }}
             </router-link>
 
-            <div @mouseleave="hoverProfile = false" class="text-white transition-colors duration-200 hover:bg-primary-blue px-3 py-2 uppercase relative">
-                <label @mouseover="hoverProfile = true" class="flex items-center justify-center cursor-pointer">
-                    {{ $t('menu-profile') }}
+            <div @mouseleave="open.profile = false" class="text-white transition-colors duration-200 hover:bg-primary-blue px-3 py-2 uppercase relative">
+                <label @mouseover="open.profile = true" class="flex items-center justify-center cursor-pointer">
+                    {{ $t('profile') }}
                     <ChevronDownIcon class="h-5 w-5 ml-2"/>
                 </label>
-                <div v-show="hoverProfile" class="absolute left-0 w-60 flex flex-col py-2 mt-2 bg-menu z-40">
+                <div v-show="open.profile" class="absolute left-0 w-60 flex flex-col py-2 mt-2 bg-menu z-40">
                     <router-link :to="{name:'particular'}" class="text-white transition-colors duration-200 text-sm hover:bg-primary-blue px-3 py-2 uppercase">
-                        {{ $t('menu-particular') }}
+                        {{ $t('particular') }}
                     </router-link>
                     <router-link :to="{name:'establishment'}" class="text-white transition-colors duration-200 text-sm hover:bg-primary-blue px-3 py-2 uppercase">
-                        {{ $t('menu-establishment') }}
+                        {{ $t('establishment') }}
                     </router-link>
                     <router-link :to="{name:'ip'}" class="text-white transition-colors duration-200 text-sm hover:bg-primary-blue px-3 py-2 uppercase">
-                        {{ $t('menu-ip') }}
+                        {{ $t('ip') }}
                     </router-link>
                 </div>
             </div>
 
             <router-link :to="{name:'propau'}" class="text-white transition-colors duration-200 hover:bg-primary-blue px-3 py-2 uppercase">
-                {{ $t('menu-propau') }}
+                {{ $t('propau') }}
             </router-link>
 
             <router-link :to="{name:'universities'}" class="text-white transition-colors duration-200 hover:bg-primary-blue px-3 py-2 uppercase">
-                {{ $t('menu-univerities') }}
+                {{ $t('univerities') }}
             </router-link>
 
             <router-link :to="{name:'jobs'}" class="text-white transition-colors duration-200 hover:bg-primary-blue px-3 py-2 uppercase">
-                {{ $t('menu-jobs') }}
+                {{ $t('jobs') }}
             </router-link>
 
             <router-link :to="{name:'contact'}" class="text-white transition-colors duration-200 hover:bg-primary-blue px-3 py-2 uppercase">
-                {{ $t('menu-contact') }}
+                {{ $t('contact') }}
             </router-link>
 
-            <router-link :to="{name:'login'}" class="text-white transition-colors duration-200 bg-primary-blue px-3 py-2 mx-2 uppercase">
-                {{ $t('login') }} / {{ $t('register') }}
+            <router-link @mouseleave="open.logout = false"  v-if="token != ''" :to="{name:'compte',  params: { id : 'particular' }}" class="text-white relative transition-colors duration-200 bg-primary-blue px-3 py-2 mx-2 uppercase">
+                <div @mouseover="open.logout = true" class="flex space-x-2">
+                    <span v-if="user.value.avatar">
+                        <img :src="path + '/img_user/' + user.avatar" alt="">
+                    </span>
+                    <span v-else class="border border-white p-1 rounded-full flex justify-center items-center">
+                        <UserIcon class="h-5 w-5"/>
+                    </span>
+                    <span>{{ user.value.firstname }} {{ user.value.lastname }}</span>
+                    <span><ChevronDownIcon class="h-5 w-5"/></span>
+                </div>
+                <div v-show="open.logout" class="absolute left-0 w-48 flex flex-col py-2 mt-2 bg-menu z-40">
+                    <a href="#"  @click.prevent="logout()" class="text-white transition-colors duration-200 text-sm hover:bg-primary-blue px-3 py-2 uppercase">
+                            {{ $t('logout') }}
+                    </a>
+                </div>           
+            </router-link>
+            <router-link v-else  :to="{name:'login'}" class="text-white flex transition-colors duration-200 bg-primary-blue px-3 py-2 mx-2 uppercase">
+                    {{ $t('login') }} / {{ $t('register') }}
             </router-link>
 
-            <div @mouseleave="hoverLang = false" class="text-white transition-colors duration-200 hover:bg-primary-blue px-3 py-2 uppercase relative">
-                <label @mouseover="hoverLang = true" class="flex items-center justify-center cursor-pointer">
+            <div @mouseleave="open.lang = false" class="text-white transition-colors duration-200 hover:bg-primary-blue px-3 py-2 uppercase relative">
+                <label @mouseover="open.lang = true" class="flex items-center justify-center cursor-pointer">
                     <span v-if="$i18n.locale == 'fr'">
-                            {{  $t('lang-fr') }}
+                            {{  $t('fr') }}
                         </span>
                         <span v-else-if="$i18n.locale == 'en'">
-                            {{ $t('lang-en') }}
+                            {{ $t('en') }}
                         </span>
                         <span v-else-if="$i18n.locale == 'es'">
-                            {{ $t('lang-es') }}
+                            {{ $t('es') }}
                         </span>
                         <span v-else>
-                            {{ $t('lang-pt') }}
+                            {{ $t('pt') }}
                         </span>
                     <ChevronDownIcon class="h-5 w-5 ml-2"/>
                 </label>
-                <div v-show="hoverLang" class="absolute left-0 w-48 flex flex-col py-2 mt-2 bg-menu z-40">
+                <div v-show="open.lang" class="absolute left-0 w-48 flex flex-col py-2 mt-2 bg-menu z-40">
                     <a href="#" v-if="$i18n.locale != 'fr' " @click.prevent="changeLocale('fr')" class="text-white transition-colors duration-200 text-sm hover:bg-primary-blue px-3 py-2 uppercase">
-                            {{ $t('lang-fr') }}
+                            {{ $t('fr') }}
                         </a>
                         <a href="#" v-if="$i18n.locale != 'en' " @click.prevent="changeLocale('en')" class="text-white transition-colors duration-200 text-sm hover:bg-primary-blue px-3 py-2 uppercase">
-                            {{ $t('lang-en') }}
+                            {{ $t('en') }}
                         </a>
                         <a href="#" v-if="$i18n.locale != 'es' " @click.prevent="changeLocale('es')"  class="text-white transition-colors duration-200 text-sm hover:bg-primary-blue px-3 py-2 uppercase">
-                            {{ $t('lang-es') }}
+                            {{ $t('es') }}
                         </a>
                         <a href="#" v-if="$i18n.locale != 'pt' " @click.prevent="changeLocale('pt')"  class="text-white transition-colors duration-200 text-sm hover:bg-primary-blue px-3 py-2 uppercase">
-                            {{ $t('lang-pt') }}
+                            {{ $t('pt') }}
                         </a>
                 </div>
             </div>              
@@ -84,80 +101,96 @@
             <router-link :to="{name:'home'}" class="text-white transition-colors duration-200 hover:bg-primary-blue px-3 py-2 flex items-center justify-center">
                 <HomeIcon class="h-6 w-6"/>
             </router-link>
-            <button type="button" @click="openMenu = !openMenu" class="text-white transition-colors duration-200 hover:bg-primary-blue px-3 py-2 flex items-center justify-center">
+            <button type="button" @click="open.menu = !open.menu" class="text-white transition-colors duration-200 hover:bg-primary-blue px-3 py-2 flex items-center justify-center">
                 <MenuIcon class="h-6 w-6"/>
             </button>
-            <div v-show="openMenu" class="bg-white absolute mt-12 w-[90%] mx-auto border border-menu shadow-md flex flex-col justify-center">
+            <div v-show="open.menu" class="bg-white absolute mt-12 w-[90%] mx-auto border border-menu shadow-md flex flex-col justify-center">
                 <router-link :to="{name:'articles'}" class="text-menu hover:text-white transition-colors duration-200 hover:bg-primary-blue px-3 py-2 uppercase">
-                    {{ $t('menu-articles') }}
+                    {{ $t('articles') }}
                 </router-link>
 
                 <div class="text-menu pl-6 py-2 uppercase relative">
                     <label class="flex items-center cursor-pointer">
-                        {{ $t('menu-profile') }}
+                        {{ $t('profile') }}
                         <ChevronDownIcon class="h-5 w-5 ml-2"/>
                     </label>
                     <div  class="flex flex-col py-2 mt-2">
                         <router-link :to="{name:'particular'}" class="text-menu transition-colors duration-200 hover:text-white text-sm hover:bg-primary-blue px-3 py-2 uppercase">
-                            {{ $t('menu-particular') }}
+                            {{ $t('particular') }}
                         </router-link>
                         <router-link :to="{name:'establishment'}" class="text-menu transition-colors duration-200 hover:text-white text-sm hover:bg-primary-blue px-3 py-2 uppercase">
-                            {{ $t('menu-establishment') }}
+                            {{ $t('establishment') }}
                         </router-link>
                         <router-link :to="{name:'ip'}" class="text-menu transition-colors duration-200 hover:text-white text-sm hover:bg-primary-blue px-3 py-2 uppercase">
-                            {{ $t('menu-ip') }}
+                            {{ $t('ip') }}
                         </router-link>
                     </div>
                 </div>
 
                 <router-link :to="{name:'propau'}" class="text-menu transition-colors duration-200 hover:text-white hover:bg-primary-blue px-3 py-2 uppercase">
-                    {{ $t('menu-propau') }}
+                    {{ $t('propau') }}
                 </router-link>
 
                 <router-link :to="{name:'universities'}" class="text-menu transition-colors duration-200 hover:text-white hover:bg-primary-blue px-3 py-2 uppercase">
-                    {{ $t('menu-univerities') }}
+                    {{ $t('univerities') }}
                 </router-link>
 
                 <router-link :to="{name:'jobs'}" class="text-menu transition-colors duration-200 hover:text-white hover:bg-primary-blue px-3 py-2 uppercase">
-                    {{ $t('menu-jobs') }}
+                    {{ $t('jobs') }}
                 </router-link>
 
                 <router-link :to="{name:'contact'}" class="text-menu transition-colors duration-200  hover:text-white hover:bg-primary-blue px-3 py-2 uppercase">
-                    {{ $t('menu-contact') }}
+                    {{ $t('contact') }}
                 </router-link>
 
-                <router-link :to="{name:'contact'}" class="text-white transition-colors duration-200 bg-primary-blue px-3 py-2 uppercase">
+                <router-link  v-if="token != ''" :to="{name:'compte',  params: { id : 'particular' }}">
+                <div class="flex space-x-2 items-center text-white transition-colors duration-200 text-sm bg-primary-blue px-3 py-2 uppercase">
+                    <span v-if="user.value.avatar">
+                        <img :src="path + '/img_user/' + user.avatar" alt="">
+                    </span>
+                    <span v-else class="border border-white p-1 rounded-full flex justify-center items-center">
+                        <UserIcon class="h-5 w-5"/>
+                    </span>
+                    <span>{{ user.value.firstname }} {{ user.value.lastname }}</span>
+                </div>
+                <div  class="flex flex-col py-2">
+                    <a href="#"  @click.prevent="logout()" class="text-menu transition-colors duration-200 text-sm hover:text-white hover:bg-primary-blue px-3 py-2 uppercase">
+                            {{ $t('logout') }}
+                    </a>
+                </div>           
+            </router-link>
+            <router-link v-else  :to="{name:'login'}" class="text-white transition-colors duration-200 bg-primary-blue px-3 py-2 uppercase">
                     {{ $t('login') }} / {{ $t('register') }}
-                </router-link>
+            </router-link>
 
                 <div class="text-menu pl-6 py-2 uppercase relative">
                     <label class="flex items-center  cursor-pointer">
                         <span v-if="$i18n.locale == 'fr'">
-                            {{ $t('lang-fr') }}
+                            {{ $t('fr') }}
                         </span>
                         <span v-else-if="$i18n.locale == 'en'">
-                            {{ $t('lang-en') }}
+                            {{ $t('en') }}
                         </span>
                         <span v-else-if="$i18n.locale == 'es'">
-                            {{ $t('lang-es') }}
+                            {{ $t('es') }}
                         </span>
                         <span v-else>
-                            {{ $t('lang-pt') }}
+                            {{ $t('pt') }}
                         </span>
                         <ChevronDownIcon class="h-5 w-5 ml-2"/>
                     </label>
                     <div class="flex flex-col py-2 mt-2">
                         <a href="#" v-if="$i18n.locale != 'fr' " @click.prevent="changeLocale('fr')" class="text-menu transition-colors duration-200 hover:text-white text-sm hover:bg-primary-blue px-3 py-2 uppercase">
-                            {{ $t('lang-fr') }}
+                            {{ $t('fr') }}
                         </a>
                         <a href="#" v-if="$i18n.locale != 'en' " @click.prevent="changeLocale('en')" class="text-menu transition-colors duration-200 hover:text-white text-sm hover:bg-primary-blue px-3 py-2 uppercase">
-                            {{ $t('lang-en') }}
+                            {{ $t('en') }}
                         </a>
                         <a href="#" v-if="$i18n.locale != 'es' " @click.prevent="changeLocale('es')"  class="text-menu transition-colors duration-200 hover:text-white text-sm hover:bg-primary-blue px-3 py-2 uppercase">
-                            {{ $t('lang-es') }}
+                            {{ $t('es') }}
                         </a>
                         <a href="#" v-if="$i18n.locale != 'pt' " @click.prevent="changeLocale('pt')"  class="text-menu  transition-colors duration-200hover:text-white text-sm hover:bg-primary-blue px-3 py-2 uppercase">
-                            {{ $t('lang-pt') }}
+                            {{ $t('pt') }}
                         </a>
                     </div>
                 </div> 
@@ -165,10 +198,10 @@
         </nav>
 
         <div class="relative">
-            <button type="button" @click="openSearch = !openSearch" class="text-white hover:bg-primary-blue px-3 py-2 flex items-center justify-center">
+            <button type="button" @click="open.search = !open.search" class="text-white hover:bg-primary-blue px-3 py-2 flex items-center justify-center">
                 <SearchIcon class="h-6 w-6"/>
             </button>
-            <div v-show="openSearch" class="absolute right-0 w-48 flex flex-col p-2 mt-2 bg-white lg:bg-menu lg:border-0 border border-menu shadow-md lg:shadow-none z-40">
+            <div v-show="open.search" class="absolute right-0 w-48 flex flex-col p-2 mt-2 bg-white lg:bg-menu lg:border-0 border border-menu shadow-md lg:shadow-none z-40">
                 <form>
                     <div class="flex">
                         <input type="search" class="px-3 py-2 w-32" placeholder="Recherche">
@@ -182,28 +215,61 @@
 
 <script>
 import { HomeIcon, ChevronDownIcon, SearchIcon, MenuIcon } from '@heroicons/vue/solid';
+import { UserIcon } from "@heroicons/vue/solid";
+import { reactive, ref, onMounted} from "vue";
+import axios from "axios";
 export default {
     components: { 
         HomeIcon,
         ChevronDownIcon,
         SearchIcon,
+        UserIcon,
         MenuIcon,
     },
-    data(){
-        return{
-            hoverLang : false ,
-            hoverProfile : false ,
-            openSearch : false,
-            openMenu: false,
-        }
-    },
     setup() {
-        
+        const user = reactive({});
+        const token = ref('');
+        const errors = ref('');
+        onMounted(()=>{if(localStorage.token){user.value = JSON.parse(localStorage.user); token.value = localStorage.token}}, );
+        const open = reactive({
+            lang: false,
+            profile: false,
+            search: false,
+            menu: false,
+            logout: false
+        });
+
+        const path = window.location.origin;
+
+        const logout = async () => {
+            try {
+                let response = await axios.post('/api/logout', {}, {
+                    headers:{
+                        'Authorization': `Bearer ${localStorage.token}`
+                    }
+                });
+                localStorage.token = '';
+                localStorage.user = '';
+                location.replace('/');
+            } catch (e) {
+                if (e.response.status == 422) {
+                    for (const key in e.response.data.errors)
+                        errors.value += e.response.data.errors[key][0] + "\n";
+                }
+                console.log(errors.value);
+            }
+        };
+
+        return{
+            open,
+            user,
+            token,
+            logout,
+            path,
+        }
     },
     computed:{
-        currentLang(){
-            return $i18n.locale == 'fr' ? this.$t('lang-fr') : $i18n.locale == 'en' ? this.this.$t('lang-en'): $i18n.locale == 'es' ? this.this.$t('lang-es') : this.this.$t('lang-pt');
-        }
+
     },
     methods: {
         changeLocale(lang){
@@ -214,7 +280,7 @@ export default {
     mounted(){
         if(localStorage.lang){
             this.$i18n.locale = localStorage.lang;
-        }
+        };
     }
 }
 </script>

@@ -10,7 +10,7 @@
                         <div class="flex space-x-1"><ChatIcon class="h-4 w-4"/> <a href="#" class="hover:text-primary-blue">0</a></div>
                     </div>
             </div>
-            <img :src="path + '/img/img-2.jpg'" alt="" class="object-cover w-full h-full">
+            <img src="/img/img-2.jpg" alt="" class="object-cover w-full h-full">
         </div>
         <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-4 lg:col-start-6 lg:col-end-10">
             <div class="relative">
@@ -21,7 +21,7 @@
                         <div class="flex space-x-1"><ChatIcon class="h-4 w-4"/> <a href="#" class="hover:text-primary-blue">0</a></div>
                     </div>
                 </div>
-                <img :src="path + '/img/img-1.jpg'" alt="" class="object-cover md:h-full h-60 w-full">
+                <img src="/img/img-1.jpg" alt="" class="object-cover md:h-full h-60 w-full">
             </div>
             <div class="relative">
                 <div class="object-cover absolute w-full h-full text-white space-y-1 p-4 flex flex-col justify-end bg-black/25">
@@ -31,7 +31,7 @@
                         <div class="flex space-x-1"><ChatIcon class="h-4 w-4"/> <a href="#" class="hover:text-primary-blue">0</a></div>
                     </div>
             </div>
-                <img :src="path + '/img/img-3.jpg'" alt="" class="object-cover md:h-full h-60 w-full">
+                <img src="/img/img-3.jpg" alt="" class="object-cover md:h-full h-60 w-full">
             </div>
             <div class="relative">
                 <div class="object-cover absolute w-full h-full text-white space-y-1 p-4 flex flex-col justify-end bg-black/25">
@@ -41,7 +41,7 @@
                         <div class="flex space-x-1"><ChatIcon class="h-4 w-4"/> <a href="#" class="hover:text-primary-blue">0</a></div>
                     </div>
             </div>
-                <img :src="path + '/img/img-4.jpg'" alt="" class="object-cover md:h-full h-60 w-full">
+                <img src="/img/img-4.jpg" alt="" class="object-cover md:h-full h-60 w-full">
             </div>
             <div class="relative">
                 <div class="object-cover absolute w-full h-full text-white space-y-1 p-4 flex flex-col justify-end bg-black/25">
@@ -51,7 +51,7 @@
                         <div class="flex space-x-1"><ChatIcon class="h-4 w-4"/> <a href="#" class="hover:text-primary-blue">0</a></div>
                     </div>
             </div>
-                <img :src="path + '/img/img-5.jpg'" alt="" class="object-cover md:h-full h-60 w-full">
+                <img src="/img/img-5.jpg" alt="" class="object-cover md:h-full h-60 w-full">
             </div>
         </div>
     </div>
@@ -65,16 +65,12 @@ export default {
         UserIcon,
         ChatIcon
     },
-    data(){
+
+    setup() {
+
         return{
-            path : window.location.origin ,
+            
         }
     },
-    setup() {
-        
-    },
-    mounted(){
-        console.log(this.$t('menu'))
-    }
 }
 </script>

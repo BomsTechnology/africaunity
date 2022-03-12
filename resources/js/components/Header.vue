@@ -7,7 +7,7 @@
         </h1>
     </div>
     <div class="p-4 flex md:justify-end justify-center">
-        <img :src="path + '/img/barniere-africa.png'" alt="">
+        <img src="/img/barniere-africa.png" alt="">
     </div>
     <Navigation />
 </template>
@@ -20,7 +20,7 @@ export default {
     },
     data(){
         return{
-            path : window.location.origin ,
+
             now : ((new Date()).toUTCString()).substr(0, 16)
         }
     },

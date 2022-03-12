@@ -10,7 +10,3 @@ Route::post("/login",[AuthController::class,'login']);
 Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::post("/logout",[AuthController::class,'logout']);
 });
-
-Route::middleware(['auth:sanctum'])->group(function () {
-    
-});
