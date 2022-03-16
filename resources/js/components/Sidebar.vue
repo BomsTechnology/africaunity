@@ -35,12 +35,13 @@
         <div
             class="mt-6 flex flex-col justify-start items-center pl-4 w-full border-gray-600 border-b space-y-3 pb-5"
         >
-            <button
+            <router-link
+                :to="{name:'admin.dash'}"
                 class="flex jusitfy-start items-center space-x-6 w-full focus:outline-none focus:text-primary-blue text-white rounded"
             >
                 <HomeIcon class="w-6 h-6" />
                 <p class="text-base leading-4">Dashboard</p>
-            </button>
+            </router-link>
             <button
                 class="flex jusitfy-start items-center w-full space-x-6 focus:outline-none text-white focus:text-primary-blue rounded"
             >
@@ -75,12 +76,13 @@
                 v-if="open.article"
                 class="flex justify-start flex-col w-full md:w-auto items-start pb-1"
             >
-                <button
+                <router-link
+                    :to="{name:'admin.post.index',  params: { type : 'article' }}"
                     class="flex justify-start items-center space-x-6 hover:text-white focus:bg-gray-700 focus:text-white hover:bg-gray-700 text-gray-400 rounded px-3 py-2 w-full md:w-52"
                 >
                     <TableIcon class="w-6 h-6" />
                     <p class="text-base leading-4">All Articles</p>
-                </button>
+                </router-link>
                 <button
                     class="flex justify-start items-center space-x-6 hover:text-white focus:bg-gray-700 focus:text-white hover:bg-gray-700 text-gray-400 rounded px-3 py-2 w-full md:w-52"
                 >
@@ -128,12 +130,13 @@
                 v-if="open.propau"
                 class="flex justify-start flex-col w-full md:w-auto items-start pb-1"
             >
-                <button
+                <router-link
+                    :to="{name:'admin.post.index',  params: { type : 'propau' }}"
                     class="flex justify-start items-center space-x-6 hover:text-white focus:bg-gray-700 focus:text-white hover:bg-gray-700 text-gray-400 rounded px-3 py-2 w-full md:w-52"
                 >
                     <TableIcon class="w-6 h-6" />
                     <p class="text-base leading-4">All PropAU</p>
-                </button>
+                </router-link>
                 <button
                     class="flex justify-start items-center space-x-6 hover:text-white focus:bg-gray-700 focus:text-white hover:bg-gray-700 text-gray-400 rounded px-3 py-2 w-full md:w-52"
                 >
@@ -376,6 +379,7 @@ import {
     BriefcaseIcon,
     ColorSwatchIcon,
 } from "@heroicons/vue/solid";
+import axios from "axios";
 import { reactive, ref, onMounted } from "vue";
 export default {
     components: {
@@ -402,6 +406,20 @@ export default {
         ColorSwatchIcon,
     },
     setup() {
+        const verifAdmin = async () =>{
+            if(localStorage.token && localStorage.token != ''){
+                var u = JSON.parse(localStorage.user);
+
+                try {
+                  let response = await axios.post('/api/verif-admin', {id:u.id});
+                } catch (e) {
+                        location.href = '/admin';
+                }
+            }else{
+                location.href = '/admin';
+            }        
+        }
+        onMounted(verifAdmin());
         const open = reactive({
             menu: true,
             article: false,
@@ -410,6 +428,9 @@ export default {
             university: false,
             job: false,
         });
+
+
+        
 
         return {
             open,

@@ -45,6 +45,8 @@
 import { reactive, ref, onMounted} from "vue";
 import Error from "../../components/Error.vue";
 import useAuth from "../../services/authServices.js"
+import router from "../../router";
+import axios from "axios";
 export default {
     components: {
         Error,
@@ -60,12 +62,18 @@ export default {
                 await loginAdmin({...user});
         };
 
-        onMounted(()=>{
-            if(localStorage.token){
+        const verifAdmin = async () =>{
+            if(localStorage.token && localStorage.token != ''){
                 var u = JSON.parse(localStorage.user);
-                user.email = u.email;
-            }
-        })
+
+                try {
+                  let response = await axios.post('/api/verif-admin', {id:u.id});
+                  router.push({ name: "admin.dash" });
+                } catch (e) {
+                        errors = "Your not a admin";
+                }       
+        }}
+        onMounted(verifAdmin());
         
 
         return {

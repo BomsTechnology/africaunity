@@ -2,6 +2,3 @@
 @tailwind components;
 @tailwind utilities;
 
-.router-link-active{
-    @apply bg-primary-blue;
-}

@@ -92,6 +92,28 @@ class AuthController extends Controller
         return response($response,201);
     }
 
+    public function verif_admin(Request $request){
+        $fields = $request->validate([
+            'id' =>'required'
+        ]);
+        //check id
+        $admin = User::where('id',$fields['id'])->first();
+        //check type
+        if(!$admin || $admin->type != 'admin'){
+            return response(['status'=>false,'message'=>'is not a admin'],401);
+        }
+
+
+        $response = [
+            'status'=>true,
+            'message'=>'Is Admin!',
+            'data' =>[
+                'user'=>$admin,
+            ]
+        ];
+        return response($response,201);
+    }
+
     public function logout(Request $request){
         $request->user()->currentAccessToken()->delete();
 

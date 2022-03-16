@@ -44,9 +44,9 @@
             </router-link>
 
             <router-link @mouseleave="open.logout = false"  v-if="token != ''" :to="{name:'compte',  params: { id : 'particular' }}" class="text-white relative transition-colors duration-200 bg-primary-blue px-3 py-2 mx-2 uppercase">
-                <div @mouseover="open.logout = true" class="flex items-center space-x-2">
+                <div @mouseover="open.logout = true" class="flex items-start space-x-2">
                     <span v-if="user.value.avatar">
-                        <img :src="path + '/img_user/' + user.avatar" alt="">
+                        <img :src="'/img_user/' + user.avatar" alt="">
                     </span>
                     <UserCircleIcon v-else class="h-8 w-8 text-white"/>
                     <span>{{ user.value.firstname }} {{ user.value.lastname }}</span>
@@ -243,8 +243,6 @@ export default {
             logout: false
         });
 
-        const path = window.location.origin;
-
         const logout = async () => {
             try {
                 loading.value = 1;
@@ -272,7 +270,6 @@ export default {
             user,
             token,
             logout,
-            path,
             loading
         }
     },
@@ -292,3 +289,9 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+.router-link-active{
+    background: #289dcc;
+}
+</style>

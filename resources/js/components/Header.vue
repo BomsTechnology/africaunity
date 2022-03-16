@@ -30,7 +30,6 @@ export default {
     },
     data(){
         return{
-
             now : ((new Date()).toUTCString()).substr(0, 16)
         }
     },

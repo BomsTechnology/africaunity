@@ -15,6 +15,9 @@ import NotFound from "../views/front/NotFound.vue";
 import Profile from "../views/front/Profile.vue";
 import LoginAdmin from "../views/back/Login.vue";
 import Dashboard from "../views/back/Dashboard.vue";
+import PostIndex from "../views/back/posts/PostIndex.vue";
+import PostCreate from "../views/back/posts/PostCreate.vue";
+import PostEdit from "../views/back/posts/PostEdit.vue";
 
 const siteName = "AfricaUnity";
 
@@ -150,6 +153,7 @@ const routes = [
                     title: siteName + ' - Admin Panel'
                 }
             },
+            
             {
                 path: 'dashboard',
                 component: Dashboard,
@@ -159,12 +163,30 @@ const routes = [
                 }
             },
             {
-                path: 'post/:type/:id',
-                component: Dashboard,
+                path: 'post/:type',
+                component: PostIndex,
                 props: true,
-                name: 'admin.post',
+                name: 'admin.post.index',
                 meta:{
                     title: siteName + ' - Posts'
+                }
+            },
+            {
+                path: 'post/create/:type',
+                component: PostCreate,
+                props: true,
+                name: 'admin.post.create',
+                meta:{
+                    title: siteName + ' - Create Post'
+                }
+            },
+            {
+                path: 'post/edit/:type/:id',
+                component: PostEdit,
+                props: true,
+                name: 'admin.post.edit',
+                meta:{
+                    title: siteName + ' - Edit Post'
                 }
             },
         ],
