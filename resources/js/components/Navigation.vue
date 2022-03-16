@@ -44,19 +44,21 @@
             </router-link>
 
             <router-link @mouseleave="open.logout = false"  v-if="token != ''" :to="{name:'compte',  params: { id : 'particular' }}" class="text-white relative transition-colors duration-200 bg-primary-blue px-3 py-2 mx-2 uppercase">
-                <div @mouseover="open.logout = true" class="flex space-x-2">
+                <div @mouseover="open.logout = true" class="flex items-center space-x-2">
                     <span v-if="user.value.avatar">
                         <img :src="path + '/img_user/' + user.avatar" alt="">
                     </span>
-                    <span v-else class="border border-white p-1 rounded-full flex justify-center items-center">
-                        <UserIcon class="h-5 w-5"/>
-                    </span>
+                    <UserCircleIcon v-else class="h-8 w-8 text-white"/>
                     <span>{{ user.value.firstname }} {{ user.value.lastname }}</span>
                     <span><ChevronDownIcon class="h-5 w-5"/></span>
                 </div>
                 <div v-show="open.logout" class="absolute left-0 w-48 flex flex-col py-2 mt-2 bg-menu z-40">
-                    <a href="#"  @click.prevent="logout()" class="text-white transition-colors duration-200 text-sm hover:bg-primary-blue px-3 py-2 uppercase">
+                    <a href="#"  @click.prevent="logout()" class="text-white flex items-center transition-colors duration-200 text-sm hover:bg-primary-blue px-3 py-2 uppercase">
                             {{ $t('logout') }}
+                            <svg v-if="loading == 1" class="animate-spin ml-3  h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
                     </a>
                 </div>           
             </router-link>
@@ -146,16 +148,18 @@
                 <router-link  v-if="token != ''" :to="{name:'compte',  params: { id : 'particular' }}">
                 <div class="flex space-x-2 items-center text-white transition-colors duration-200 text-sm bg-primary-blue px-3 py-2 uppercase">
                     <span v-if="user.value.avatar">
-                        <img :src="path + '/img_user/' + user.avatar" alt="">
+                        <img :src="'/img_user/' + user.avatar" alt="">
                     </span>
-                    <span v-else class="border border-white p-1 rounded-full flex justify-center items-center">
-                        <UserIcon class="h-5 w-5"/>
-                    </span>
+                    <UserCircleIcon v-else class="h-8 w-8 text-white"/>
                     <span>{{ user.value.firstname }} {{ user.value.lastname }}</span>
                 </div>
                 <div  class="flex flex-col py-2">
-                    <a href="#"  @click.prevent="logout()" class="text-menu transition-colors duration-200 text-sm hover:text-white hover:bg-primary-blue px-3 py-2 uppercase">
+                    <a href="#"  @click.prevent="logout()" class="hover:text-white text-menu flex items-center transition-colors duration-200 text-sm hover:bg-primary-blue px-3 py-2 uppercase">
                             {{ $t('logout') }}
+                            <svg v-if="loading == 1" class="animate-spin ml-3  h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
                     </a>
                 </div>           
             </router-link>
@@ -214,8 +218,7 @@
 </template>
 
 <script>
-import { HomeIcon, ChevronDownIcon, SearchIcon, MenuIcon } from '@heroicons/vue/solid';
-import { UserIcon } from "@heroicons/vue/solid";
+import { HomeIcon, ChevronDownIcon, SearchIcon, MenuIcon, UserCircleIcon } from '@heroicons/vue/solid';
 import { reactive, ref, onMounted} from "vue";
 import axios from "axios";
 export default {
@@ -223,13 +226,14 @@ export default {
         HomeIcon,
         ChevronDownIcon,
         SearchIcon,
-        UserIcon,
+        UserCircleIcon,
         MenuIcon,
     },
     setup() {
         const user = reactive({});
         const token = ref('');
         const errors = ref('');
+        const loading = ref(0);
         onMounted(()=>{if(localStorage.token){user.value = JSON.parse(localStorage.user); token.value = localStorage.token}}, );
         const open = reactive({
             lang: false,
@@ -243,6 +247,7 @@ export default {
 
         const logout = async () => {
             try {
+                loading.value = 1;
                 let response = await axios.post('/api/logout', {}, {
                     headers:{
                         'Authorization': `Bearer ${localStorage.token}`
@@ -250,8 +255,10 @@ export default {
                 });
                 localStorage.token = '';
                 localStorage.user = '';
+                loading.value = 2;
                 location.replace('/');
             } catch (e) {
+                loading.value = 0;
                 if (e.response.status == 422) {
                     for (const key in e.response.data.errors)
                         errors.value += e.response.data.errors[key][0] + "\n";
@@ -266,6 +273,7 @@ export default {
             token,
             logout,
             path,
+            loading
         }
     },
     computed:{

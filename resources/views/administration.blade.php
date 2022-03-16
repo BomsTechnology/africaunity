@@ -7,9 +7,11 @@
         <title>AfricaUnity</title>
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     </head>
-    <body class="bg-white py-3" style="background-image:url('/img/random-shapes.svg')">
-        <div id="app" class="bg-white xl:w-[80%] lg:w-[95%] w-full mx-auto min-h-screen">
-            <router-view></router-view>
+    <body class="">
+        <div id="app" class="bg-white w-full min-h-screen" style="background-image:url('/img/random-shapes2.svg')">
+            <router-view>
+                <router-view></router-view>
+            </router-view>
         </div>
 
         <script src="{{ asset('js/app.js') }}"></script>

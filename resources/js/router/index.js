@@ -13,10 +13,13 @@ import Universities from "../views/front/Universities.vue";
 import Register from "../views/front/Register.vue";
 import NotFound from "../views/front/NotFound.vue";
 import Profile from "../views/front/Profile.vue";
+import LoginAdmin from "../views/back/Login.vue";
+import Dashboard from "../views/back/Dashboard.vue";
 
 const siteName = "AfricaUnity";
 
 const routes = [
+    // front routes
     {
         path: '/',
         name: 'home',
@@ -131,11 +134,58 @@ const routes = [
             title: siteName + ' - Page Introuvable'
         }
     },
+
+    // Admin routes
+    {
+        path: '/admin',
+        name: 'admin',
+        component: LoginAdmin,
+        name: 'admin',
+        children: [
+            {
+                path: '',
+                component: LoginAdmin,
+                name: 'admin.login',
+                meta:{
+                    title: siteName + ' - Admin Panel'
+                }
+            },
+            {
+                path: 'dashboard',
+                component: Dashboard,
+                name: 'admin.dash',
+                meta:{
+                    title: siteName + ' - Dashboard'
+                }
+            },
+            {
+                path: 'post/:type/:id',
+                component: Dashboard,
+                props: true,
+                name: 'admin.post',
+                meta:{
+                    title: siteName + ' - Posts'
+                }
+            },
+        ],
+    },
 ];
 
 const router = createRouter({
     history: createWebHistory(),
-    routes
+    routes,
+    scrollBehavior (to, from, savedPosition) {
+        if (to.hash) {
+            return {
+                el: to.hash,
+                behavior: 'smooth',
+            }
+        } else  if (savedPosition) {
+            return savedPosition
+          } else {
+            return { top: 0 }
+          }
+    }
 });
 
 router.afterEach((to) => {

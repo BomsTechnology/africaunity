@@ -15,6 +15,7 @@ export default function useAuth() {
             loading.value = 2;
             router.push({ name: "login" });
         } catch (e) {
+            loading.value = 0;
             if (e.response.status == 422) {
                 for (const key in e.response.data.errors)
                     errors.value += e.response.data.errors[key][0] + "\n";
@@ -34,6 +35,25 @@ export default function useAuth() {
             loading.value = 2;
             router.push({ name: "home" });
         } catch (e) {
+                    loading.value = 0;
+                    errors.value = "invalid email or password";
+
+        }
+    };
+
+    const loginAdmin = async (data) => {
+        errors.value = ''; 
+        try {
+            loading.value = 1;
+            let response = await axios.post('/api/login-admin', data);
+            user.value = response.data.data;
+            console.log(user.value);
+            localStorage.user = JSON.stringify(response.data.data.user);
+            localStorage.token = response.data.data.token;
+            loading.value = 2;
+            router.push({ name: "admin.dash" });
+        } catch (e) {
+                    loading.value = 0;
                     errors.value = "invalid email or password";
 
         }
@@ -45,6 +65,7 @@ export default function useAuth() {
         loading,
         user,
         loginUser,
+        loginAdmin,
         
     }
 }

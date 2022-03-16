@@ -66,6 +66,32 @@ class AuthController extends Controller
         return response($response,201);
     }
 
+    public function login_admin(Request $request){
+        $fields = $request->validate([
+            'email'=>'required|string|email',
+            'password' =>'required'
+        ]);
+        //check email
+        $admin = User::where([['email' , '=', $fields['email']], ['type', '=', 'admin']])->first();
+        //check password
+        if(!$admin || !Hash::check($fields['password'],$admin->password)){
+            return response(['status'=>false,'message'=>'invalid email or password'],401);
+        }
+
+        //create token
+        $token = $admin->createToken('myapptoken')->plainTextToken;
+
+        $response = [
+            'status'=>true,
+            'message'=>'Login successful!',
+            'data' =>[
+                'user'=>$admin,
+                'token'=>$token
+            ]
+        ];
+        return response($response,201);
+    }
+
     public function logout(Request $request){
         $request->user()->currentAccessToken()->delete();
 
