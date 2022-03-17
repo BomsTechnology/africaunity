@@ -70,7 +70,7 @@ export default {
                   let response = await axios.post('/api/verif-admin', {id:u.id});
                   router.push({ name: "admin.dash" });
                 } catch (e) {
-                        errors = "Your not a admin";
+                        errors.value = "Your not a admin";
                 }       
         }}
         onMounted(verifAdmin());

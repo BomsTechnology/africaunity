@@ -49,7 +49,7 @@
                         <img :src="'/img_user/' + user.avatar" alt="">
                     </span>
                     <UserCircleIcon v-else class="h-8 w-8 text-white"/>
-                    <span>{{ user.value.firstname }} {{ user.value.lastname }}</span>
+                    <span>{{ user.value.firstname }}</span>
                     <span><ChevronDownIcon class="h-5 w-5"/></span>
                 </div>
                 <div v-show="open.logout" class="absolute left-0 w-48 flex flex-col py-2 mt-2 bg-menu z-40">

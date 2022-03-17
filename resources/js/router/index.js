@@ -18,7 +18,18 @@ import Dashboard from "../views/back/Dashboard.vue";
 import PostIndex from "../views/back/posts/PostIndex.vue";
 import PostCreate from "../views/back/posts/PostCreate.vue";
 import PostEdit from "../views/back/posts/PostEdit.vue";
-
+import ContinentIndex from "../views/back/continent/ContinentIndex.vue";
+import ContinentCreate from "../views/back/continent/ContinentCreate.vue";
+import ContinentEdit from "../views/back/continent/ContinentEdit.vue";
+import ZoneIndex from "../views/back/zone/ZoneIndex.vue";
+import ZoneCreate from "../views/back/zone/ZoneCreate.vue";
+import ZoneEdit from "../views/back/zone/ZoneEdit.vue";
+import CountryIndex from "../views/back/country/CountryIndex.vue";
+import CountryCreate from "../views/back/country/CountryCreate.vue";
+import CountryEdit from "../views/back/country/CountryEdit.vue";
+import MinistryIndex from "../views/back/ministry/MinistryIndex.vue";
+import MinistryCreate from "../views/back/ministry/MinistryCreate.vue";
+import MinistryEdit from "../views/back/ministry/MinistryEdit.vue";
 const siteName = "AfricaUnity";
 
 const routes = [
@@ -187,6 +198,106 @@ const routes = [
                 name: 'admin.post.edit',
                 meta:{
                     title: siteName + ' - Edit Post'
+                }
+            },
+            {
+                path: 'continent',
+                component: ContinentIndex,
+                name: 'admin.continent.index',
+                meta:{
+                    title: siteName + ' - Continent'
+                }
+            },
+            {
+                path: 'continent/create',
+                component: ContinentCreate,
+                name: 'admin.continent.create',
+                meta:{
+                    title: siteName + ' - Create Continent'
+                }
+            },
+            {
+                path: 'continent/edit/:id',
+                component: ContinentEdit,
+                props: true,
+                name: 'admin.continent.edit',
+                meta:{
+                    title: siteName + ' - Edit Continent'
+                }
+            },
+            {
+                path: 'zone',
+                component: ZoneIndex,
+                name: 'admin.zone.index',
+                meta:{
+                    title: siteName + ' - Zone'
+                }
+            },
+            {
+                path: 'zone/create',
+                component: ZoneCreate,
+                name: 'admin.zone.create',
+                meta:{
+                    title: siteName + ' - Create Zone'
+                }
+            },
+            {
+                path: 'zone/edit/:id',
+                component: ZoneEdit,
+                props: true,
+                name: 'admin.zone.edit',
+                meta:{
+                    title: siteName + ' - Edit Zone'
+                }
+            },
+            {
+                path: 'country',
+                component: CountryIndex,
+                name: 'admin.country.index',
+                meta:{
+                    title: siteName + ' - Country'
+                }
+            },
+            {
+                path: 'country/create',
+                component: CountryCreate,
+                name: 'admin.country.create',
+                meta:{
+                    title: siteName + ' - Create Country'
+                }
+            },
+            {
+                path: 'country/edit/:id',
+                component: CountryEdit,
+                props: true,
+                name: 'admin.country.edit',
+                meta:{
+                    title: siteName + ' - Edit Country'
+                }
+            },
+            {
+                path: 'ministry',
+                component: MinistryIndex,
+                name: 'admin.ministry.index',
+                meta:{
+                    title: siteName + ' - Ministry'
+                }
+            },
+            {
+                path: 'ministry/create',
+                component: MinistryCreate,
+                name: 'admin.ministry.create',
+                meta:{
+                    title: siteName + ' - Create Ministry'
+                }
+            },
+            {
+                path: 'ministry/edit/:id',
+                component: MinistryEdit,
+                props: true,
+                name: 'admin.ministry.edit',
+                meta:{
+                    title: siteName + ' - Edit Ministry'
                 }
             },
         ],

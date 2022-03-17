@@ -16,20 +16,7 @@ export default {
         Sidebar
     },
     setup() {
-        // const verifAdmin = async () =>{
-        //     if(localStorage.token){
-        //         var u = JSON.parse(localStorage.user);
 
-        //         try {
-        //           let response = await axios.post('/api/verif-admin', {id:u.id});
-        //         } catch (e) {
-        //                 location.href('/admin');
-        //         }
-        //     }else{
-        //         location.href = '/admin';
-        //     }        
-        // }
-        // onMounted(verifAdmin());
     },
 }
 </script>
