@@ -21,7 +21,7 @@
                 <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
             </svg>
         </div> -->
-        <form  @submit.prevent="storePost()" enctype="multipart/form-data">
+        <form  @submit.prevent="storePost()" id="postform" enctype="multipart/form-data">
             <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
                 <div class="col-span-2">
                     <label class="text-gray-700 dark:text-gray-200">Title</label>
@@ -102,6 +102,7 @@ import useContinents from "../../../services/continentServices.js";
 import useZones from "../../../services/zoneServices.js";
 import useCountries from "../../../services/countryServices.js";
 import useMinistries from "../../../services/ministryServices.js";
+import router from "../../../router/index.js"
 export default {
     props: {
           type : {
@@ -147,7 +148,24 @@ export default {
         const { createPost , errors, loading } = usePosts();
 
         const storePost = async () => {
-            await createPost({...post});
+            let  formData = new FormData();
+            formData.append('image', post.image);
+            formData.append('title', post.title);
+            formData.append('type', post.type);
+            formData.append('user_id', post.user_id);
+            formData.append('language', post.language);
+            formData.append('content', post.content);
+            formData.append('continent_id', post.continent_id);
+            formData.append('zone_id', post.zone_id);
+            formData.append('country_id', post.country_id);
+            formData.append('ministry_id', post.ministry_id);
+ 
+            await createPost(formData);
+            if(props.type == 'article'){
+                router.push({ name: 'admin.post.index',  params: { type : 'article' } });
+            }else{
+                router.push({ name: 'admin.post.index',  params: { type : 'propau' } });
+            }
         }
         return{
             post,

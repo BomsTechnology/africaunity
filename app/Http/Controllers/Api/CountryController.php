@@ -51,7 +51,7 @@ class CountryController extends Controller
      * @param  \App\Models\Country  $country
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Country $country)
+    public function update(CountryRequest $request, Country $country)
     {
         $country->update($request->validated());
 

@@ -31,7 +31,7 @@ export default function useMinistries() {
                 'Authorization': `Bearer ${localStorage.token}`
             }
         });
-        loading.value = 2;
+        loading.value = 0;
         ministry.value = response.data.data;
     };
 

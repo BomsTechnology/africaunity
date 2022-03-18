@@ -26,13 +26,18 @@ export default function useZones() {
     const getZone = async (id) => {
         errors.value = '';
         loading.value = 1;
-        let response = await axios.get('/api/zones/' + id, {
-            headers:{
-                'Authorization': `Bearer ${localStorage.token}`
-            }
-        });
-        loading.value = 2;
-        zone.value = response.data.data;
+        try{
+            let response = await axios.get('/api/zones/' + id, {
+                headers:{
+                    'Authorization': `Bearer ${localStorage.token}`
+                }
+            });
+            loading.value = 0;
+            zone.value = response.data.data;
+        }catch(e){
+            return false;
+        }
+        
     };
 
     const createZone = async (data) => {
@@ -86,10 +91,11 @@ export default function useZones() {
                 }
             });
             loading.value = 2;
+            return true;
     } catch (e) {
         loading.value = 0;
         if (e.response.status == '500') {
-            errors.value = 'Impossible de supprimer ce zone';
+            errors.value = 'Impossible de supprimer cette zone';
         }
     }
     };

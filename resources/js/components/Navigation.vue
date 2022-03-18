@@ -251,10 +251,10 @@ export default {
                         'Authorization': `Bearer ${localStorage.token}`
                     }
                 });
-                localStorage.token = '';
-                localStorage.user = '';
+                window.localStorage.removeItem("token");
+                window.localStorage.removeItem("user");
                 loading.value = 2;
-                location.replace('/');
+                location.href = '/';
             } catch (e) {
                 loading.value = 0;
                 if (e.response.status == 422) {

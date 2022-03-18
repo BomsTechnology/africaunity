@@ -46,11 +46,6 @@ export default function usePosts() {
                 }
             });
             loading.value = 2;
-            if(data.type == 'article'){
-                router.push({ name: 'admin.post.index',  params: { type : 'article' } });
-            }else{
-                router.push({ name: 'admin.post.index',  params: { type : 'propau' } });
-            }
         } catch (e) {
             if(e.response.status == 422){
             loading.value = 0;

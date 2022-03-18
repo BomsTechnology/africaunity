@@ -53,6 +53,7 @@
                                     />
                                 </div>
                             </div>
+                            <Error v-if="errors != ''">{{ errors }}</Error>
                             <div class="overflow-hidden">
                                 <table
                                     class="min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-700"
@@ -122,12 +123,13 @@
                                             <td
                                                 class="py-4 px-6 text-sm font-medium text-right whitespace-nowrap"
                                             >
-                                                <a
+                                                <router-link :to="{name:'admin.zone.edit', params: { id: zone.id }}"
                                                     href="#"
                                                     class="text-primary-blue dark:text-blue-500 hover:underline"
-                                                    >Edit</a
+                                                    >Edit</router-link
                                                 >
                                                 <a
+                                                    @click="deleteZone(zone.id)"
                                                     href="#"
                                                     class="text-red-600 ml-3 dark:text-blue-500 hover:underline"
                                                     >Delete</a
@@ -185,10 +187,12 @@ import { onMounted, ref } from "vue";
 import Sidebar from "../../../components/Sidebar.vue";
 import { PlusCircleIcon } from "@heroicons/vue/solid";
 import useZones from "../../../services/zoneServices.js";
+import Error from "../../../components/Error.vue";
 export default {
     components: {
         PlusCircleIcon,
         Sidebar,
+        Error
     },
     setup() {
         const { zones, getZones, destroyZone, loading, errors } =
@@ -198,8 +202,10 @@ export default {
         onMounted(getZones());
 
         const deleteZone = async (id) => {
-            await destroyZone(id);
-            await getZones();
+            if(confirm("I you Sure ?")){
+                if(await destroyZone(id))
+                    await getZones();
+            }
         };
 
         return {

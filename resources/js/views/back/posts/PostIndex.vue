@@ -10,7 +10,10 @@
                         {{ type }}
                     </h1>
                     <router-link
-                        :to="{ name: 'admin.post.create',  params: { type : type } }"
+                        :to="{
+                            name: 'admin.post.create',
+                            params: { type: type },
+                        }"
                         class="flex justify-start items-center space-x-3 text-white bg-primary-blue rounded px-3 py-2"
                     >
                         <PlusCircleIcon class="w-6 h-6" />
@@ -58,37 +61,54 @@
                                 >
                                     <thead class="bg-gray-100 dark:bg-gray-700">
                                         <tr>
-                                            <th scope="col" class="p-4">
-                                                <div class="flex items-center">
-                                                    <input
-                                                        id="checkbox-search-all"
-                                                        type="checkbox"
-                                                        class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                                                    />
-                                                    <label
-                                                        for="checkbox-search-all"
-                                                        class="sr-only"
-                                                        >checkbox</label
-                                                    >
-                                                </div>
+                                            <th
+                                                v-if="type == 'article'"
+                                                scope="col"
+                                                class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
+                                            >
+                                                Image
                                             </th>
                                             <th
                                                 scope="col"
                                                 class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
                                             >
-                                                Product Name
+                                                Title
                                             </th>
                                             <th
                                                 scope="col"
                                                 class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
                                             >
-                                                Category
+                                                Author
                                             </th>
                                             <th
                                                 scope="col"
                                                 class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
                                             >
-                                                Price
+                                                Language
+                                            </th>
+                                            <th
+                                                scope="col"
+                                                class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
+                                            >
+                                                Continent
+                                            </th>
+                                            <th
+                                                scope="col"
+                                                class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
+                                            >
+                                                Zone
+                                            </th>
+                                            <th
+                                                scope="col"
+                                                class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
+                                            >
+                                                Country
+                                            </th>
+                                            <th
+                                                scope="col"
+                                                class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
+                                            >
+                                                Ministry
                                             </th>
                                             <th scope="col" class="p-4">
                                                 <span class="sr-only"
@@ -99,47 +119,152 @@
                                     </thead>
                                     <tbody
                                         class="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700"
+                                        v-if="filteredPost.length != 0"
+                                    >
+                                        <tr
+                                            v-for="post in filteredPost"
+                                            :key="post.id"
+                                            class="hover:bg-gray-100 dark:hover:bg-gray-700"
+                                        >
+                                            <td
+                                                v-if="type == 'article'"
+                                                class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                                            >
+                                                {{ post.image }}
+                                            </td>
+                                            <td
+                                                class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                                            >
+                                                {{ post.title }}
+                                            </td>
+                                            <td
+                                                class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                                            >
+                                                {{ post.user.firstname }}
+                                            </td>
+                                            <td
+                                                class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                                            >
+                                                {{ post.language }}
+                                            </td>
+                                            <td
+                                                class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                                            >
+                                                {{ post.continent.name_en }}
+                                            </td>
+                                            <td
+                                                class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                                            >
+                                                {{ post.zone.name_en }}
+                                            </td>
+                                            <td
+                                                class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                                            >
+                                                {{ post.country.name_en }}
+                                            </td>
+                                            <td
+                                                class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                                            >
+                                                {{ post.ministry.name_en }}
+                                            </td>
+                                           <td
+                                                class="py-4 px-6 text-sm font-medium text-right whitespace-nowrap"
+                                            >
+                                                <router-link :to="{name:'admin.post.edit', params: {type:type, id: post.id }}"
+                                                    href="#"
+                                                    class="text-primary-blue dark:text-blue-500 hover:underline"
+                                                    >Edit</router-link
+                                                >
+                                                <a
+                                                    @click="deletePost(post.id)"
+                                                    href="#"
+                                                    class="text-red-600 ml-3 dark:text-blue-500 hover:underline"
+                                                    >Delete</a
+                                                >
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tbody
+                                        class="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700"
+                                        v-else-if="loading == 1"
                                     >
                                         <tr
                                             class="hover:bg-gray-100 dark:hover:bg-gray-700"
                                         >
-                                            <td class="p-4 w-4">
-                                                <div class="flex items-center">
-                                                    <input
-                                                        id="checkbox-search-1"
-                                                        type="checkbox"
-                                                        class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                                                    />
-                                                    <label
-                                                        for="checkbox-search-1"
-                                                        class="sr-only"
-                                                        >checkbox</label
-                                                    >
-                                                </div>
-                                            </td>
                                             <td
-                                                class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                                                v-if="type == 'article'"
+                                                colspan="9"
+                                                class="text-sm w-full font-medium border text-gray-900 whitespace-nowrap p-16"
                                             >
-                                                Apple Imac 27"
-                                            </td>
-                                            <td
-                                                class="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white"
-                                            >
-                                                Desktop PC
-                                            </td>
-                                            <td
-                                                class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                                            >
-                                                $1999
-                                            </td>
-                                            <td
-                                                class="py-4 px-6 text-sm font-medium text-right whitespace-nowrap"
-                                            >
-                                                <a
-                                                    href="#"
-                                                    class="text-blue-600 dark:text-blue-500 hover:underline"
-                                                    >Edit</a
+                                                <svg
+                                                    class="animate-spin h-16 w-16 mx-auto"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    fill="none"
+                                                    viewBox="0 0 24 24"
                                                 >
+                                                    <circle
+                                                        class="opacity-25"
+                                                        cx="12"
+                                                        cy="12"
+                                                        r="10"
+                                                        stroke="currentColor"
+                                                        stroke-width="4"
+                                                    ></circle>
+                                                    <path
+                                                        class="opacity-75"
+                                                        fill="currentColor"
+                                                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                                                    ></path>
+                                                </svg>
+                                            </td>
+                                            <td
+                                                v-else
+                                                colspan="8"
+                                                class="text-sm w-full font-medium border text-gray-900 whitespace-nowrap p-16"
+                                            >
+                                                <svg
+                                                    class="animate-spin h-16 w-16 mx-auto"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    fill="none"
+                                                    viewBox="0 0 24 24"
+                                                >
+                                                    <circle
+                                                        class="opacity-25"
+                                                        cx="12"
+                                                        cy="12"
+                                                        r="10"
+                                                        stroke="currentColor"
+                                                        stroke-width="4"
+                                                    ></circle>
+                                                    <path
+                                                        class="opacity-75"
+                                                        fill="currentColor"
+                                                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                                                    ></path>
+                                                </svg>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tbody
+                                        class="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700"
+                                        v-else
+                                    >
+                                        <tr
+                                            class="hover:bg-gray-100 dark:hover:bg-gray-700"
+                                        >
+                                            <td
+                                                v-if="type == 'article'"
+                                                colspan="9"
+                                                class="py-4 px-6 text-xl font-medium text-gray-900 text-center whitespace-nowrap"
+                                            >
+                                                NO {{ type }}
+                                            </td>
+                                            <td
+                                                v-else
+                                                colspan="8"
+                                                class="py-4 px-6 text-xl font-medium text-gray-900 text-center whitespace-nowrap"
+                                            >
+                                                NO {{ type }}
                                             </td>
                                         </tr>
                                     </tbody>
@@ -156,39 +281,39 @@
 <script>
 import Sidebar from "../../../components/Sidebar.vue";
 import { PlusCircleIcon } from "@heroicons/vue/solid";
-import { reactive, ref, onMounted} from "vue";
+import { reactive, ref, onMounted } from "vue";
 import router from "../../../router";
 import usePosts from "../../../services/postServices.js";
+import Error from "../../../components/Error.vue";
 export default {
     props: {
-          type : {
-              required: true,
-              type: String
-          }
-      },
+        type: {
+            required: true,
+            type: String,
+        },
+    },
     components: {
         PlusCircleIcon,
         Sidebar,
+        Error,
     },
     setup(props) {
-        const types = ['article', 'propau'];
-        const { posts, getPosts, destroyPost, loading, errors } =
-            usePosts();
+        const { posts, getPosts, destroyPost, loading, errors } = usePosts();
 
         const searchKey = ref("");
-        
-        onMounted(
-            () => {
-                if (!types.includes(props.type)) {
-                    router.push({ name: "admin.dash" });
-                }
-            },
-            getPosts(props.type)
-        );
+
+        const types = ["article", "propau"];
+        onMounted(() => {
+            if (!types.includes(props.type)) {
+                router.push({ name: "admin.dash" });
+            }
+        }, getPosts(props.type));
 
         const deletePost = async (id) => {
-            await destroyPost(id);
-            await getPosts();
+            if(confirm("I you Sure ?")){
+                if(await destroyPost(id))
+                    await getPosts();
+            }
         };
 
         return {
@@ -196,8 +321,8 @@ export default {
             loading,
             errors,
             posts,
-            deletePost
-        }
+            deletePost,
+        };
     },
 
     computed: {

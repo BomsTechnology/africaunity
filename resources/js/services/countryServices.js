@@ -31,7 +31,7 @@ export default function useCountries() {
                 'Authorization': `Bearer ${localStorage.token}`
             }
         });
-        loading.value = 2;
+        loading.value = 0;
         country.value = response.data.data;
     };
 
@@ -89,7 +89,7 @@ export default function useCountries() {
     } catch (e) {
         loading.value = 0;
         if (e.response.status == '500') {
-            errors.value = 'Impossible de supprimer ce countries';
+            errors.value = 'Impossible de supprimer ce pays';
         }
     }
     };

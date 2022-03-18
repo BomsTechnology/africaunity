@@ -53,6 +53,7 @@
                                     />
                                 </div>
                             </div>
+                            <Error v-if="errors != ''">{{ errors }}</Error>
                             <div class="overflow-hidden">
                                 <table
                                     class="min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-700"
@@ -133,12 +134,13 @@
                                             <td
                                                 class="py-4 px-6 text-sm font-medium text-right whitespace-nowrap"
                                             >
-                                                <a
+                                                <router-link :to="{name:'admin.ministry.edit', params: { id: ministry.id }}"
                                                     href="#"
                                                     class="text-primary-blue dark:text-blue-500 hover:underline"
-                                                    >Edit</a
+                                                    >Edit</router-link
                                                 >
                                                 <a
+                                                    @click="deleteMinistry(ministry.id)"
                                                     href="#"
                                                     class="text-red-600 ml-3 dark:text-blue-500 hover:underline"
                                                     >Delete</a
@@ -196,10 +198,12 @@ import { onMounted, ref } from "vue";
 import Sidebar from "../../../components/Sidebar.vue";
 import { PlusCircleIcon } from "@heroicons/vue/solid";
 import useMinistries from "../../../services/ministryServices.js";
+import Error from "../../../components/Error.vue";
 export default {
     components: {
         PlusCircleIcon,
         Sidebar,
+        Error
     },
     setup() {
         const { ministries, getMinistries, destroyMinistry, loading, errors } =
@@ -209,8 +213,10 @@ export default {
         onMounted(getMinistries());
 
         const deleteMinistry = async (id) => {
-            await destroyMinistry(id);
-            await getMinistries();
+            if(confirm("I you Sure ?")){
+                if(await destroyMinistry(id))
+                    await getMinistries();
+            }
         };
 
         return {

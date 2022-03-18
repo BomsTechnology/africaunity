@@ -31,7 +31,7 @@ export default function useContinents() {
                 'Authorization': `Bearer ${localStorage.token}`
             }
         });
-        loading.value = 2;
+        loading.value = 0;
         continent.value = response.data.data;
     };
 
@@ -86,11 +86,10 @@ export default function useContinents() {
                 }
             });
             loading.value = 2;
+            return true;
     } catch (e) {
         loading.value = 0;
-        if (e.response.status == '500') {
             errors.value = 'Impossible de supprimer ce continent';
-        }
     }
     };
 

@@ -57,7 +57,19 @@ class PostController extends Controller
                 'ministry_id' => $fileds['ministry_id'],
                 'image' => ''
         ];
-       
+
+        if($request->file('image')->isValid()){
+            $request->validate([
+                'image' => 'required|mimes:png,jpg,jpeng,gif|dimensions:max_width=1000,max_height=1000'
+            ]);
+            $filename = time().'.'. $request->file('image')->extension();
+            $request->file('image')->storeAs(
+                'uploads',
+                $filename,
+                'public'
+            );
+            $data['image'] = 'uploads/'.$filename;
+        }
 
         $post = Post::create($data);
 

@@ -76,13 +76,12 @@
                 v-if="open.article"
                 class="flex justify-start flex-col w-full md:w-auto items-start pb-1"
             >
-                <router-link
-                    :to="{name:'admin.post.index',  params: { type : 'article' }}"
+                <a href="/admin/post/article"
                     class="flex justify-start items-center space-x-6 hover:text-white focus:bg-gray-700 focus:text-white hover:bg-gray-700 text-gray-400 rounded px-3 py-2 w-full md:w-52"
                 >
                     <TableIcon class="w-6 h-6" />
                     <p class="text-base leading-4">All Articles</p>
-                </router-link>
+                </a>
                 <router-link
                     :to="{name:'admin.continent.index'}"
                     class="flex justify-start items-center space-x-6 hover:text-white focus:bg-gray-700 focus:text-white hover:bg-gray-700 text-gray-400 rounded px-3 py-2 w-full md:w-52"
@@ -134,13 +133,12 @@
                 v-if="open.propau"
                 class="flex justify-start flex-col w-full md:w-auto items-start pb-1"
             >
-                <router-link
-                    :to="{name:'admin.post.index',  params: { type : 'propau' }}"
+                <a href="/admin/post/propau"
                     class="flex justify-start items-center space-x-6 hover:text-white focus:bg-gray-700 focus:text-white hover:bg-gray-700 text-gray-400 rounded px-3 py-2 w-full md:w-52"
                 >
                     <TableIcon class="w-6 h-6" />
                     <p class="text-base leading-4">All PropAU</p>
-                </router-link>
+                </a>
                 <router-link
                     :to="{name:'admin.continent.index'}"
                     class="flex justify-start items-center space-x-6 hover:text-white focus:bg-gray-700 focus:text-white hover:bg-gray-700 text-gray-400 rounded px-3 py-2 w-full md:w-52"
@@ -462,15 +460,15 @@ export default {
         const logout = async () => {
             try {
                 loading.value = 1;
-                let response = await axios.post('/api/logout', {}, {
+                await axios.post('/api/logout', {}, {
                     headers:{
                         'Authorization': `Bearer ${localStorage.token}`
                     }
                 });
-                localStorage.token = '';
-                localStorage.user = '';
+                window.localStorage.removeItem("token");
+                window.localStorage.removeItem("user");
                 loading.value = 2;
-                location.replace('/');
+                location.href = '/';
             } catch (e) {
                 loading.value = 0;
                 if (e.response.status == 422) {
