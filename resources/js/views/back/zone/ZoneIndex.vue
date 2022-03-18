@@ -45,9 +45,10 @@
                                         </svg>
                                     </div>
                                     <input
+                                        v-model="searchKey"
                                         type="text"
                                         id="table-search"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-blue focus:border-primary-blue block w-80 pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         placeholder="Search for items"
                                     />
                                 </div>
@@ -58,37 +59,29 @@
                                 >
                                     <thead class="bg-gray-100 dark:bg-gray-700">
                                         <tr>
-                                            <th scope="col" class="p-4">
-                                                <div class="flex items-center">
-                                                    <input
-                                                        id="checkbox-search-all"
-                                                        type="checkbox"
-                                                        class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                                                    />
-                                                    <label
-                                                        for="checkbox-search-all"
-                                                        class="sr-only"
-                                                        >checkbox</label
-                                                    >
-                                                </div>
+                                            <th
+                                                scope="col"
+                                                class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
+                                            >
+                                                French Name
                                             </th>
                                             <th
                                                 scope="col"
                                                 class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
                                             >
-                                                Product Name
+                                                English Name
                                             </th>
                                             <th
                                                 scope="col"
                                                 class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
                                             >
-                                                Category
+                                                Espanol Name
                                             </th>
                                             <th
                                                 scope="col"
                                                 class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
                                             >
-                                                Price
+                                                Portugues Name
                                             </th>
                                             <th scope="col" class="p-4">
                                                 <span class="sr-only"
@@ -99,48 +92,82 @@
                                     </thead>
                                     <tbody
                                         class="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700"
+                                        v-if="filteredZone.length != 0"
                                     >
                                         <tr
+                                            v-for="zone in filteredZone"
+                                            :key="zone.id"
                                             class="hover:bg-gray-100 dark:hover:bg-gray-700"
                                         >
-                                            <td class="p-4 w-4">
-                                                <div class="flex items-center">
-                                                    <input
-                                                        id="checkbox-search-1"
-                                                        type="checkbox"
-                                                        class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                                                    />
-                                                    <label
-                                                        for="checkbox-search-1"
-                                                        class="sr-only"
-                                                        >checkbox</label
-                                                    >
-                                                </div>
+                                            <td
+                                                class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                                            >
+                                                {{ zone.name_fr }}
                                             </td>
                                             <td
                                                 class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
                                             >
-                                                Apple Imac 27"
-                                            </td>
-                                            <td
-                                                class="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white"
-                                            >
-                                                Desktop PC
+                                                {{ zone.name_en }}
                                             </td>
                                             <td
                                                 class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
                                             >
-                                                $1999
+                                                {{ zone.name_es }}
+                                            </td>
+                                            <td
+                                                class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                                            >
+                                                {{ zone.name_pt }}
                                             </td>
                                             <td
                                                 class="py-4 px-6 text-sm font-medium text-right whitespace-nowrap"
                                             >
                                                 <a
                                                     href="#"
-                                                    class="text-blue-600 dark:text-blue-500 hover:underline"
+                                                    class="text-primary-blue dark:text-blue-500 hover:underline"
                                                     >Edit</a
                                                 >
+                                                <a
+                                                    href="#"
+                                                    class="text-red-600 ml-3 dark:text-blue-500 hover:underline"
+                                                    >Delete</a
+                                                >
                                             </td>
+                                        </tr>
+                                    </tbody>
+                                    <tbody
+                                        class="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700"
+                                        v-else-if="loading == 1"
+                                    >
+                                        <tr
+                                            
+                                            class="hover:bg-gray-100 dark:hover:bg-gray-700 "
+                                        >
+                                            <td
+                                                colspan="5"
+                                                class=" text-sm w-full font-medium border text-gray-900 whitespace-nowrap  p-16"
+                                            >
+                                                <svg class="animate-spin h-16 w-16 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                                </svg>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tbody
+                                        class="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700"
+                                        v-else
+                                    >
+                                        <tr
+                                            
+                                            class="hover:bg-gray-100 dark:hover:bg-gray-700"
+                                        >
+                                            <td
+                                                colspan="5"
+                                                class="py-4 px-6 text-xl font-medium text-gray-900 text-center whitespace-nowrap"
+                                            >
+                                                NO ZONE
+                                                </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -154,13 +181,44 @@
 </template>
 
 <script>
+import { onMounted, ref } from "vue";
 import Sidebar from "../../../components/Sidebar.vue";
 import { PlusCircleIcon } from "@heroicons/vue/solid";
+import useZones from "../../../services/zoneServices.js";
 export default {
     components: {
         PlusCircleIcon,
         Sidebar,
     },
-    setup() {},
+    setup() {
+        const { zones, getZones, destroyZone, loading, errors } =
+            useZones();
+        const searchKey = ref("");
+
+        onMounted(getZones());
+
+        const deleteZone = async (id) => {
+            await destroyZone(id);
+            await getZones();
+        };
+
+        return {
+            zones,
+            deleteZone,
+            loading,
+            errors,
+            searchKey,
+        };
+    },
+
+    computed: {
+        filteredZone() {
+            return this.zones.filter((zone) => {
+                return zone.name_fr
+                    .toLowerCase()
+                    .includes(this.searchKey.toLowerCase());
+            });
+        },
+    },
 };
 </script>

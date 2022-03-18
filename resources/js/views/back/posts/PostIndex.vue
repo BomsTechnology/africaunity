@@ -6,15 +6,15 @@
                 class="fixed xl:right-6 xl:top-4 top-20 xl:w-[80%] w-full z-0 h-full p-4"
             >
                 <div class="px-8 py-5 bg-white shadow-lg flex justify-between">
-                    <h1 class="text-4xl text-primary-blue font-bold">
-                        Post
+                    <h1 class="text-4xl text-primary-blue font-bold capitalize">
+                        {{ type }}
                     </h1>
                     <router-link
-                        :to="{ name: 'admin.post.create' }"
+                        :to="{ name: 'admin.post.create',  params: { type : type } }"
                         class="flex justify-start items-center space-x-3 text-white bg-primary-blue rounded px-3 py-2"
                     >
                         <PlusCircleIcon class="w-6 h-6" />
-                        <p class="text-base leading-4">Add Post</p>
+                        <p class="text-base leading-4">Add {{ type }}</p>
                     </router-link>
                 </div>
 
@@ -156,11 +156,58 @@
 <script>
 import Sidebar from "../../../components/Sidebar.vue";
 import { PlusCircleIcon } from "@heroicons/vue/solid";
+import { reactive, ref, onMounted} from "vue";
+import router from "../../../router";
+import usePosts from "../../../services/postServices.js";
 export default {
+    props: {
+          type : {
+              required: true,
+              type: String
+          }
+      },
     components: {
         PlusCircleIcon,
         Sidebar,
     },
-    setup() {},
+    setup(props) {
+        const types = ['article', 'propau'];
+        const { posts, getPosts, destroyPost, loading, errors } =
+            usePosts();
+
+        const searchKey = ref("");
+        
+        onMounted(
+            () => {
+                if (!types.includes(props.type)) {
+                    router.push({ name: "admin.dash" });
+                }
+            },
+            getPosts(props.type)
+        );
+
+        const deletePost = async (id) => {
+            await destroyPost(id);
+            await getPosts();
+        };
+
+        return {
+            searchKey,
+            loading,
+            errors,
+            posts,
+            deletePost
+        }
+    },
+
+    computed: {
+        filteredPost() {
+            return this.posts.filter((post) => {
+                return post.title
+                    .toLowerCase()
+                    .includes(this.searchKey.toLowerCase());
+            });
+        },
+    },
 };
 </script>

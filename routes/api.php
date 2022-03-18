@@ -15,10 +15,11 @@ Route::post("/login-admin",[AuthController::class,'login_admin']);
 Route::post("/verif-admin",[AuthController::class,'verif_admin']);
 
 Route::group(['middleware' => ['auth:sanctum']], function(){
+    Route::get("/posts-type/{type}",[PostController::class,'post_type']);
     Route::apiResource('posts', PostController::class);
     Route::apiResource('continents', ContinentController::class);
     Route::apiResource('zones', ZoneController::class);
-    Route::apiResource('country', CountryController::class);
-    Route::apiResource('ministry', MinistryController::class);
+    Route::apiResource('countries', CountryController::class);
+    Route::apiResource('ministries', MinistryController::class);
     Route::post("/logout",[AuthController::class,'logout']);
 });

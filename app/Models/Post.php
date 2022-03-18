@@ -16,6 +16,11 @@ class Post extends Model
         'status',
         'type',
         'language',
+        'user_id',
+        'continent_id',
+        'zone_id',
+        'country_id',
+        'ministry_id'
     ];
 
     public function user(){

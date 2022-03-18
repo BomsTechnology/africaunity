@@ -24,7 +24,15 @@ class PostRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|string'
+            'title' => 'required|string|between:10,50',
+            'content' => 'required|string',
+            'type' => 'required|string',
+            'language' => 'required|string',
+            'user_id' => 'integer|required',
+            'continent_id' => 'integer|required',
+            'zone_id' => 'integer|required',
+            'country_id' => 'integer|required',
+            'ministry_id' => 'integer|required',
         ];
     }
 }

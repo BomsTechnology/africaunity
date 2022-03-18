@@ -26,9 +26,9 @@ class CountryRequest extends FormRequest
         return [
             'code_iso' => 'required|string',
             'name_fr' => 'required|string',
-            'name_en' => 'string',
-            'name_es' => 'string',
-            'name_pt' => 'string',
+            'name_en' => 'required|string',
+            'name_es' => 'required|string',
+            'name_pt' => 'required|string',
         ];
     }
 }

@@ -17,7 +17,7 @@ class CreatePostsTable extends Migration
             $table->id();
             $table->string('title');
             $table->longText('content');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->integer('status')->default(1);
             $table->enum('type', ['article', 'propau']);
             $table->enum('language', ['fr', 'en', 'es', 'pt']);

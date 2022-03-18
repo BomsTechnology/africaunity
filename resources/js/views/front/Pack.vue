@@ -58,7 +58,6 @@
                                 <span class="mx-4 text-gray-700 ">{{ $t("plan-desc6") }}</span>
                             </div>
                         </div>
-                        <br>
                         <router-link :to="{name:'register', params: { type : 'particular' }}" class="w-full block text-center px-4 py-2 mt-10 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-primary-blue rounded-md hover:bg-primary-blue focus:outline-none focus:bg-primary-blue">
                             {{ $t("register") }} 
                         </router-link>
