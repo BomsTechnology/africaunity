@@ -31,7 +31,7 @@ export default function usePosts() {
                 'Authorization': `Bearer ${localStorage.token}`
             }
         });
-        loading.value = 2;
+        loading.value = 0;
         post.value = response.data.data;
     };
 
@@ -55,17 +55,17 @@ export default function usePosts() {
         }
     };
 
-    const updatePost = async (id) => {
+    const updatePost = async (data) => {
         errors.value = '';
         try {
             loading.value = 1;
-            await axios.put('/api/posts/' + id, post.value, {
+            await axios.post('/api/posts/' + post.value.id, data, {
                 headers:{
-                    'Authorization': `Bearer ${localStorage.token}`
+                    'Authorization': `Bearer ${localStorage.token}`,
+                    'Content-Type' : 'multipart/form-data',
                 }
             });
             loading.value = 2;
-            router.push({ name: 'posts' });
         } catch (e) {
             loading.value = 0;
             if(e.response.status == 422){

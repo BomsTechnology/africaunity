@@ -300,6 +300,7 @@ const routes = [
                     title: siteName + ' - Edit Ministry'
                 }
             },
+            
         ],
     },
 ];

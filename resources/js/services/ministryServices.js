@@ -20,7 +20,7 @@ export default function useMinistries() {
         ministries.value = response.data.data;
 
         loading.value = 2;
-        console.log(ministries.value);
+        // console.log(ministries.value);
     };
 
     const getMinistry = async (id) => {

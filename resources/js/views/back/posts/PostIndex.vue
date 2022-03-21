@@ -50,6 +50,7 @@
                                     <input
                                         type="text"
                                         id="table-search"
+                                        v-model="searchKey"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         placeholder="Search for items"
                                     />
@@ -130,7 +131,7 @@
                                                 v-if="type == 'article'"
                                                 class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
                                             >
-                                                {{ post.image }}
+                                                <img :src="post.image" alt="" class="w-16 rounded-full h-16 object-cover">
                                             </td>
                                             <td
                                                 class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
@@ -255,14 +256,14 @@
                                             <td
                                                 v-if="type == 'article'"
                                                 colspan="9"
-                                                class="py-4 px-6 text-xl font-medium text-gray-900 text-center whitespace-nowrap"
+                                                class="py-4 px-6 text-xl font-medium text-gray-900 text-center whitespace-nowrap uppercase"
                                             >
                                                 NO {{ type }}
                                             </td>
                                             <td
                                                 v-else
                                                 colspan="8"
-                                                class="py-4 px-6 text-xl font-medium text-gray-900 text-center whitespace-nowrap"
+                                                class="py-4 px-6 text-xl font-medium text-gray-900 text-center whitespace-nowrap uppercase"
                                             >
                                                 NO {{ type }}
                                             </td>
@@ -311,8 +312,8 @@ export default {
 
         const deletePost = async (id) => {
             if(confirm("I you Sure ?")){
-                if(await destroyPost(id))
-                    await getPosts();
+                await destroyPost(id)
+                await getPosts(props.type);
             }
         };
 

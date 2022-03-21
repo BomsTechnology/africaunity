@@ -20,7 +20,7 @@ export default function useContinents() {
         continents.value = response.data.data;
 
         loading.value = 2;
-        console.log(continents.value);
+        // console.log(continents.value);
     };
 
     const getContinent = async (id) => {

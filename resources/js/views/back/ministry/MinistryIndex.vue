@@ -64,7 +64,7 @@
                                                 scope="col"
                                                 class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
                                             >
-                                                Color Code
+                                                Color
                                             </th>
                                             <th
                                                 scope="col"
@@ -109,7 +109,7 @@
                                             <td
                                                 class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
                                             >
-                                                {{ ministry.color }}
+                                                <span class="h-1 w-full p-2 border rounded-full" :style="'background:'+ministry.color"></span>
                                             </td>
                                             <td
                                                 class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
