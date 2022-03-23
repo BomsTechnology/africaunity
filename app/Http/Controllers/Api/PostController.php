@@ -18,12 +18,20 @@ class PostController extends Controller
      */
     public function index()
     {
-        return PostResource::collection(Post::all());
+        return PostResource::collection(Post::latest()->get());
     }
 
     public function post_type($type)
     {
-        return PostResource::collection(Post::where('type',$type)->get());
+        return PostResource::collection(Post::where('type',$type)->orderBy('id', 'desc')->get());
+    }
+
+    public function post_caroussel($lang)
+    {
+        return PostResource::collection(Post::where([
+            ['type','article'],
+            ['language',$lang]
+            ])->orderBy('id', 'desc')->limit(4)->get());
     }
 
     /**

@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     </head>
     <body class="bg-white py-3" style="background-image:url('/img/random-shapes.svg')">
-        <div id="app" class="bg-white xl:w-[80%] lg:w-[95%] w-full mx-auto min-h-screen">
+        <div id="app" class="bg-white  xl:w-[90%]  w-full mx-auto min-h-screen">
             <router-view></router-view>
         </div>
 

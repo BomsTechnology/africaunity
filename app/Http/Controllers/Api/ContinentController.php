@@ -17,7 +17,7 @@ class ContinentController extends Controller
      */
     public function index()
     {
-        return ContinentResource::collection(Continent::all());
+        return ContinentResource::collection(Continent::latest()->get());
     }
 
     /**

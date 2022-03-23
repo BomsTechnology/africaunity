@@ -214,8 +214,10 @@ export default {
 
         const deleteMinistry = async (id) => {
             if(confirm("I you Sure ?")){
-                if(await destroyMinistry(id))
+                await destroyMinistry(id);            
+                if(errors.value == ''){
                     await getMinistries();
+                }
             }
         };
 

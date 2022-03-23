@@ -203,8 +203,10 @@ export default {
 
         const deleteZone = async (id) => {
             if(confirm("I you Sure ?")){
-                if(await destroyZone(id))
+                await destroyZone(id)
+                if(errors.value == ''){
                     await getZones();
+                }
             }
         };
 

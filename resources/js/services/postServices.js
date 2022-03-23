@@ -5,6 +5,7 @@ import router from "../router/index.js"
 export default function usePosts() {
 
     const posts = ref([]);
+    const postCaroussel = ref([]);
     const post = ref([]);
     const errors = ref('');
     const loading = ref(0);
@@ -21,6 +22,20 @@ export default function usePosts() {
 
         loading.value = 2;
         console.log(posts.value);
+    };
+
+    const getPostCarousssel = async (lang) => {
+        errors.value = '';
+        loading.value = 1;
+        let response = await axios.get('/api/posts-caroussel/' + lang,  {
+            headers:{
+                'Authorization': `Bearer ${localStorage.token}`
+            }
+        });
+        postCaroussel.value = response.data.data;
+
+        loading.value = 2;
+        console.log(postCaroussel.value);
     };
 
     const getPost = async (id) => {
@@ -103,6 +118,8 @@ export default function usePosts() {
         getPost,
         createPost,
         updatePost,
-        destroyPost
+        destroyPost,
+        getPostCarousssel,
+        postCaroussel
     };
 } 

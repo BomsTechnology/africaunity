@@ -313,7 +313,9 @@ export default {
         const deletePost = async (id) => {
             if(confirm("I you Sure ?")){
                 await destroyPost(id)
-                await getPosts(props.type);
+                if(errors.value == ''){
+                    await getPosts(props.type);
+                }
             }
         };
 

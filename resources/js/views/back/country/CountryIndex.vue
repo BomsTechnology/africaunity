@@ -214,8 +214,10 @@ export default {
 
         const deleteCountry = async (id) => {
             if(confirm("I you Sure ?")){
-                if(await destroyCountry(id))
+                await destroyCountry(id)
+                if(errors.value == ''){
                     await getCountries();
+                }
             }
         };
 

@@ -1,6 +1,6 @@
 <template>
-    <Header />
-    <Caroussel />
+    <Header :posts="postCaroussel" />
+    <Caroussel :posts="postCaroussel" />
     <div class="lg:flex p-4 lg:space-x-2 space-y-4 md:space-y-0 text-lg">
         <div class="lg:w-[70%]">
             <div>
@@ -219,7 +219,9 @@ import Header from "../../components/Header.vue";
 import FilterArticle from "../../components/FilterArticle.vue";
 import Footer from "../../components/Footer.vue";
 import Caroussel from "../../components/Caroussel.vue";
+// import usePosts from "../../services/postServices.js";
 import { CalendarIcon, UserIcon, ChatIcon} from '@heroicons/vue/solid';
+import { reactive, ref, onMounted } from "vue";
 export default {
     components:{
         Header,
@@ -231,7 +233,28 @@ export default {
         FilterArticle
     },
     setup(props) {
+        const postCaroussel = ref([]);
+        const errors = ref('');
+        const loading = ref(0);
 
+        onMounted(
+            async () =>{
+                errors.value = '';
+                loading.value = 1;
+                let response = await axios.get('/api/posts-caroussel/' + localStorage.lang);
+                postCaroussel.value = response.data.data;
+
+                loading.value = 2;
+                console.log(postCaroussel.value);
+                    
+            });
+
+        return {
+            loading,
+            errors,
+            postCaroussel,
+        };
+        
     },
 }
 </script>

@@ -136,7 +136,7 @@ export default {
         
         const savePost = async () => {
             let  formData = new FormData();
-            // formData.append('image', post.value.image);
+            formData.append('image', post.value.image);
             formData.append('title', post.value.title);
             formData.append('type', post.value.type);
             formData.append('user_id', post.value.user_id);

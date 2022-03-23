@@ -203,8 +203,10 @@ export default {
 
         const deleteContinent = async (id) => {
             if(confirm("I you Sure ?")){
-                if(await destroyContinent(id))
+                await destroyContinent(id)
+                if(errors.value == ''){
                     await getContinents();
+                }
             }
         };
 

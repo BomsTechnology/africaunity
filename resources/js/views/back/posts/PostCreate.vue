@@ -121,7 +121,6 @@ export default {
         const { zones, getZones } = useZones();
         const { countries, getCountries} = useCountries();
         const { ministries, getMinistries } = useMinistries();
-        console.log(user.id);
         onMounted(
             () => {
                 if (!types.includes(props.type)) {

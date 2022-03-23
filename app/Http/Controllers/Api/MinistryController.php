@@ -17,7 +17,7 @@ class MinistryController extends Controller
      */
     public function index()
     {
-        return MinistryResource::collection(Ministry::all());
+        return MinistryResource::collection(Ministry::latest()->get());
     }
 
     /**

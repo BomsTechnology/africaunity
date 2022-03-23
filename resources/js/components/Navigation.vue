@@ -280,11 +280,14 @@ export default {
         changeLocale(lang){
             this.$i18n.locale = lang;
             localStorage.lang = this.$i18n.locale;
+            location.reload();
         },
     },
     mounted(){
         if(localStorage.lang){
             this.$i18n.locale = localStorage.lang;
+        }else{
+            localStorage.lang = this.$i18n.locale;
         };
     }
 }

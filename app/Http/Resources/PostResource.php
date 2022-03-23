@@ -34,6 +34,7 @@ class PostResource extends JsonResource
             'zone' => new ZoneResource(Zone::find($this->zone_id)),
             'country' => new MinistryResource(Country::find($this->country_id)),
             'ministry' => new MinistryResource(Ministry::find($this->ministry_id)),
+            'date' => $this->created_at->format('Y-m-d'),
         ];
     }
 }

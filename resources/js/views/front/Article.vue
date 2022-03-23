@@ -3,6 +3,9 @@
         <div class="flex lg:flex-row flex-col-reverse  p-4 lg:space-x-2 md:space-y-2 text-lg">
         <div class="lg:w-[70%]">
                 <h1 class="text-5xl text-primary-blue text-center capitalize font-bold">{{ $t('articles') }}</h1>
+                <div>
+                    
+                </div>
         </div>
         <div class="lg:w-[30%] bg-white">
             <FilterArticle/>

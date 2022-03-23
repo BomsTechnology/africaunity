@@ -3,8 +3,12 @@
         <!-- <div> -->
             <h1> {{ now }} </h1>
             <h1>
-                <span class="font-semibold ml-4">{{ $t('lastest') }} :</span>
-                <span class="text-primary-blue"> Mon Super Article </span>
+                <span class="font-semibold mx-4">{{ $t('lastest') }} :</span>
+                <Swiper class="w-96 h-5 inline-flex" :space-between="0" :slides-per-view="1" :direction="'vertical'" :autoplay="{delay: 3500, disableOnInteraction: false,}" :modules="modules">
+                <SwiperSlide class="relative" v-for="post in posts" :key="post.id"> 
+                        <span class="text-primary-blue"> {{ post.title }} </span>
+                </SwiperSlide>
+                </Swiper>
             </h1>
         <!-- </div> -->
         <!-- <div>
@@ -24,9 +28,16 @@
 
 <script>
 import Navigation from "../components/Navigation.vue";
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import { EffectFade, Autoplay } from 'swiper';
+import 'swiper/css';
+import 'swiper/css/effect-fade';
 export default {
+    props: ['posts'],
     components:{
         Navigation,
+        Swiper,
+        SwiperSlide,
     },
     data(){
         return{
@@ -34,7 +45,9 @@ export default {
         }
     },
     setup() {
-        
+        return{
+            modules: [Autoplay, ],
+        }
     },
 }
 </script>
