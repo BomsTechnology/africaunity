@@ -6,6 +6,9 @@ import Establishment from "../views/front/Establishment.vue";
 import Job from "../views/front/Job.vue";
 import Login from "../views/front/Login.vue";
 import Pack from "../views/front/Pack.vue";
+import AddPost from "../views/front/AddPost.vue";
+import SinglePost from "../views/front/SinglePost.vue";
+import EditPost from "../views/front/EditPost.vue";
 import Particular from "../views/front/Particular.vue";
 import PoliticalInstitution from "../views/front/PoliticalInstitution.vue";
 import PropAu from "../views/front/PropAu.vue";
@@ -56,6 +59,33 @@ const routes = [
         component: PropAu,
         meta:{
             title: siteName + ' - PropAU'
+        }
+    },
+    {
+        path: '/add/:type',
+        name: 'add.post',
+        props: true,
+        component: AddPost,
+        meta:{
+            title: siteName + ' - Ajouter'
+        }
+    },
+    {
+        path: '/post/:id',
+        name: 'show.post',
+        props: true,
+        component: SinglePost,
+        meta:{
+            title: siteName
+        }
+    },
+    {
+        path: '/:type/:id/edit',
+        name: 'edit.post',
+        props: true,
+        component: EditPost,
+        meta:{
+            title: siteName
         }
     },
     {

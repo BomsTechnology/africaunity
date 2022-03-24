@@ -93,6 +93,11 @@ class PostController extends Controller
         return new PostResource2($post);
     }
 
+    public function show2(Post $post)
+    {
+        return new PostResource($post);
+    }
+
     /**
      * Update the specified resource in storage.
      *

@@ -50,6 +50,18 @@ export default function usePosts() {
         post.value = response.data.data;
     };
 
+    const getPost2 = async (id) => {
+        errors.value = '';
+        loading.value = 1;
+        let response = await axios.get('/api/posts2/' + id, {
+            headers:{
+                'Authorization': `Bearer ${localStorage.token}`
+            }
+        });
+        loading.value = 0;
+        post.value = response.data.data;
+    };
+
     const createPost = async (data) => {
         errors.value = '';
         try {
@@ -120,6 +132,7 @@ export default function usePosts() {
         updatePost,
         destroyPost,
         getPostCarousssel,
-        postCaroussel
+        postCaroussel,
+        getPost2
     };
 } 

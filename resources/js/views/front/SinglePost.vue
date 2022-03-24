@@ -1,46 +1,18 @@
 <template>
     <Header />
     <div
-        class="flex lg:flex-row flex-col-reverse p-4 lg:space-x-2 md:space-y-2 text-lg"
+        class="flex lg:flex-row flex-col p-4 lg:space-x-2 md:space-y-2 text-lg"
     >
         <div class="lg:w-[70%]">
-            <h1
-                class="text-5xl text-primary-blue text-center capitalize font-bold"
-            >
-                {{ $t("articles") }}
-            </h1>
-            <div class="flex justify-end px-6">
-                <router-link
-                    :to="{
-                        name: 'add.post',
-                        params: { type: 'article' },
-                    }"
-                    class="flex justify-start items-center space-x-3 text-white bg-primary-blue rounded px-3 py-2"
-                >
-                    <PlusCircleIcon class="w-6 h-6" />
-                    <p class="text-base leading-4">Add Article</p>
-                </router-link>
-            </div>
-            <div
-                class="grid lg:grid-cols-2 gap-8 px-10 py-8"
-                v-if="posts.length != 0"
-            >
+            <div class="py-6 px-4" v-if="post.length != 0">
                 <div
                     class="overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800"
-                    v-for="post in posts"
-                    :key="post.id"
                 >
-                    <router-link
-                                :to="{
-                                    name: 'show.post',
-                                    params: { id: post.id },
-                                }">
                     <img
-                        class="object-cover w-full h-44"
+                        class="object-cover w-full h-96"
                         :src="post.image"
                         alt=""
                     />
-                    </router-link>
                     <div class="p-6">
                         <div>
                             <a
@@ -59,37 +31,20 @@
                                 }}</span>
                                 <span v-else>{{ post.country.name_pt }}</span>
                             </a>
-                            <router-link
-                                :to="{
-                                    name: 'show.post',
-                                    params: { id: post.id },
-                                }"
-                                href="#"
-                                class="block mt-2 text-2xl font-semibold text-gray-800 transition-colors duration-200 transform dark:text-white hover:text-gray-600 hover:underline"
-                                >{{ post.title }}</router-link
+                            <h1
+                                class="block mt-2 text-3xl font-semibold text-gray-800 transition-colors duration-200 transform dark:text-white hover:text-gray-600"
                             >
-                            <p
-                                class="mt-2 text-sm text-gray-600 dark:text-gray-400"
-                            >
-                                {{ post.content.substring(0, 19) + "..." }}
-                            </p>
-                        </div>
-
-                        <div
-                            class="flex items-center justify-between mt-4 text-sm"
-                        >
-                            <router-link
-                                :to="{
-                                    name: 'show.post',
-                                    params: { id: post.id },
-                                }"
-                                class="text-blue-600 dark:text-blue-400 hover:underline"
-                                >Read more</router-link
-                            >
-
-                            <div
-                                class="flex items-center text-xs space-x-2 text-gray-500"
-                            >
+                                {{ post.title }}
+                            </h1>
+                            <div class="flex text-xs space-x-2 mt-2 text-gray-500">
+                                <div class="flex space-x-1">
+                                    <CalendarIcon class="h-4 w-4" />
+                                    <a
+                                        href="#"
+                                        class="hover:text-primary-blue"
+                                        >{{ post.date }}</a
+                                    >
+                                </div>
                                 <div class="flex space-x-1">
                                     <UserIcon class="h-4 w-4" />
                                     <a
@@ -99,12 +54,57 @@
                                     >
                                 </div>
                                 <div class="flex space-x-1">
-                                    <CalendarIcon class="h-4 w-4" />
+                                    <ChatIcon class="h-4 w-4" />
+                                    <a href="#" class="hover:text-primary-blue"
+                                        >0</a
+                                    >
+                                </div>
+                            </div>
+                            <p
+                                class="mt-2 py-4 my-4 text-gray-600 dark:text-gray-400"
+                            >
+                                {{ post.content }}
+                            </p>
+                        </div>
+
+                        <div class="mt-4">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <img
+                                        v-if="post.user.avatar"
+                                        class="object-cover h-10 rounded-full"
+                                        :src="post.user.avatar"
+                                    />
+                                    <UserCircleIcon
+                                        v-else
+                                        class="h-10 w-10 text-gray-700"
+                                    />
                                     <a
                                         href="#"
-                                        class="hover:text-primary-blue"
-                                        >{{ post.date }}</a
+                                        class="mx-2 font-semibold text-gray-700 dark:text-gray-200"
+                                        >{{ post.user.firstname }}</a
                                     >
+                                </div>
+                                <div class="flex items-center">
+                                    <div>
+                                        <ExclamationCircleIcon
+                                            class="h-5 w-5 text-gray-400 cursor-pointer hover:text-red-300"
+                                        />
+                                    </div>
+                                    <div
+                                        class="ml-3"
+                                        v-if="user.id == post.user.id"
+                                    >
+                                        <router-link
+                                :to="{
+                                    name: 'edit.post',
+                                    params: { id: post.id, type: post.type},
+                                }">
+                                        <PencilAltIcon
+                                            class="h-5 w-5 text-gray-400 cursor-pointer hover:text-primary-blue"
+                                        />
+                                        </router-link>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -157,34 +157,51 @@ import FilterArticle from "../../components/FilterArticle.vue";
 import {
     PlusCircleIcon,
     CalendarIcon,
-    UserIcon,
+    UserCircleIcon,
     EmojiSadIcon,
+    ExclamationCircleIcon,
+    PencilAltIcon,
+    UserIcon,
+    ChatIcon,
 } from "@heroicons/vue/solid";
 import usePosts from "../../services/postServices.js";
 export default {
+    props: {
+        id: {
+            required: true,
+            type: String,
+        },
+    },
     components: {
-        PlusCircleIcon,
+        ChatIcon,
         UserIcon,
+        PlusCircleIcon,
+        UserCircleIcon,
         CalendarIcon,
         EmojiSadIcon,
+        ExclamationCircleIcon,
+        PencilAltIcon,
         Header,
         Footer,
         FilterArticle,
     },
     setup(props) {
-        const { posts, getPosts, loading, errors } = usePosts();
+        const { post, getPost2, loading, errors } = usePosts();
         onMounted(() => {
             if (!localStorage.token) {
                 router.push({ name: "login" });
             }
-        }, getPosts("article"));
+        },  
+        getPost2(props.id),  
+        );
 
-        console.log(posts.value);
+        const user = JSON.parse(localStorage.user);
 
         return {
             loading,
             errors,
-            posts,
+            post,
+            user,
         };
     },
 };

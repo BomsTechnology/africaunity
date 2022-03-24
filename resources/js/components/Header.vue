@@ -4,7 +4,7 @@
             <h1> {{ now }} </h1>
             <h1>
                 <span class="font-semibold mx-4">{{ $t('lastest') }} :</span>
-                <Swiper class="w-96 h-5 inline-flex" :space-between="0" :slides-per-view="1" :direction="'vertical'" :autoplay="{delay: 3500, disableOnInteraction: false,}" :modules="modules">
+                <Swiper class=" h-5 inline-flex" :space-between="0" :slides-per-view="1" :direction="'vertical'" :autoplay="{delay: 3500, disableOnInteraction: false,}" :modules="modules">
                 <SwiperSlide class="relative" v-for="post in posts" :key="post.id"> 
                         <span class="text-primary-blue"> {{ post.title }} </span>
                 </SwiperSlide>
@@ -30,10 +30,10 @@
 import Navigation from "../components/Navigation.vue";
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { EffectFade, Autoplay } from 'swiper';
+import { reactive, ref, onMounted} from "vue";
 import 'swiper/css';
 import 'swiper/css/effect-fade';
 export default {
-    props: ['posts'],
     components:{
         Navigation,
         Swiper,
@@ -45,8 +45,15 @@ export default {
         }
     },
     setup() {
+        const posts = ref([]);
+        onMounted(
+            async () =>{
+                let response = await axios.get('/api/posts-caroussel/' + localStorage.lang);
+                posts.value = response.data.data;
+            });
         return{
             modules: [Autoplay, ],
+            posts
         }
     },
 }

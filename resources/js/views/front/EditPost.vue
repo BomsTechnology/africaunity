@@ -3,7 +3,7 @@
     <div class=" w-full lg:px-20 py-4">
         <div class=" py-5 text-center w-full space-y-4">
             <h1 class="text-4xl  text-primary-blue font-bold capitalize">
-                Add {{ type }}
+                Edit {{ type }}
             </h1>
             <h2 class="text-md  text-gray-700">Votre {{ type }} sera publié dans la langue actuelle du site</h2>
             <div class="flex lg:flex-row flex-col justify-center items-center lg:space-x-3">
@@ -20,9 +20,9 @@
                 
     <section class=" p-6 bg-white shadow-xl rounded-md mx-auto  w-full">
         <Error v-if="errors != ''">{{ errors }}</Error>
-        <h1 class="text-xl font-semibold">Créer un {{ type }}</h1>
+        <h1 class="text-xl font-semibold">Modifier un {{ type }}</h1>
         <h2 class="text-md font-light text-gray-700">Merci de garder à l'esprit que la courtoisie est le maitre mot de la communauté ! </h2>
-        <form  @submit.prevent="storePost()" id="postform" enctype="multipart/form-data">
+        <form  @submit.prevent="savePost()" id="postform" enctype="multipart/form-data">
             <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
                 <div class="col-span-2">
                     <label class="text-gray-700 dark:text-gray-200">Title <span class="text-red-500">*</span></label>
@@ -96,10 +96,14 @@ import useMinistries from "../../services/ministryServices.js";
 import router from "../../router/index.js";
 export default {
     props: {
-        type: {
-            required: true,
-            type: String,
-        },
+          type : {
+              required: true,
+              type: String
+          },
+          id : {
+              required: true,
+              type: String
+          }
     },
     components:{
         Header,
@@ -108,68 +112,56 @@ export default {
     },
     setup(props) {
         const types = ["article", "propau"];
-        const user = JSON.parse(localStorage.user);
+        const { updatePost ,getPost, post, errors, loading } = usePosts();
         const { continents, getContinents } = useContinents();
         const { zones, getZones } = useZones();
-        const { countries, getCountries } = useCountries();
+        const { countries, getCountries} = useCountries();
         const { ministries, getMinistries } = useMinistries();
-        
-        onMounted(
+
+        ;onMounted(
             () => {
                 if (!types.includes(props.type)) {
                     router.push({ name: "admin.dash" });
                 }
             },
+            getPost(props.id),   
             getContinents(),
             getZones(),
             getCountries(),
-            getMinistries()
+            getMinistries(), 
         );
 
-        const post = reactive({
-            title: "",
-            type: props.type,
-            user_id: user.id,
-            language: "fr",
-            content: "",
-            image: "",
-            continent_id: 1,
-            zone_id: 1,
-            country_id: 1,
-            ministry_id: 1,
-        });
 
-        const { createPost, errors, loading } = usePosts();
 
-        const storePost = async () => {
-            let formData = new FormData();
-            formData.append("image", post.image);
-            formData.append("title", post.title);
-            formData.append("type", post.type);
-            formData.append("user_id", post.user_id);
-            formData.append("language", localStorage.lang);
-            formData.append("content", post.content);
-            formData.append("continent_id", post.continent_id);
-            formData.append("zone_id", post.zone_id);
-            formData.append("country_id", post.country_id);
-            formData.append("ministry_id", post.ministry_id);
 
-            await createPost(formData);
+        const savePost = async () => {
+            let  formData = new FormData();
+            formData.append('image', post.value.image);
+            formData.append('title', post.value.title);
+            formData.append('type', post.value.type);
+            formData.append('user_id', post.value.user_id);
+            formData.append('language', post.value.language);
+            formData.append('content', post.value.content);
+            formData.append('continent_id', post.value.continent_id);
+            formData.append('zone_id', post.value.zone_id);
+            formData.append('country_id', post.value.country_id);
+            formData.append('ministry_id', post.value.ministry_id);
+            formData.append('_method', 'PUT');
 
+            await updatePost(formData, props.id);
                 router.push({
                     name: "home",
                 });
-
         };
         return {
             post,
-            loading,
-            errors,
-            storePost,
             continents,
             zones,
             countries,
             ministries,
+            savePost,
+            errors,
+            loading
         };
     },
     methods: {

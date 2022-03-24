@@ -23,6 +23,7 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::get("/posts-type/{type}",[PostController::class,'post_type']);
     
     Route::apiResource('posts', PostController::class);
+    Route::get("/posts2/{post}", [PostController::class,'show2']);
 
     Route::post("/continents", [ContinentController::class,'store']);
     Route::get("/continents/{continent}", [ContinentController::class,'show']);

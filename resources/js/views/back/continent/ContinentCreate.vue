@@ -3,7 +3,7 @@
   <Sidebar/>
   <div class="w-full xl:mt-0 mt-[74px] relative h-auto xl:p-4">
       <div
-                class="fixed xl:right-6 xl:top-4 top-20 xl:w-[80%] w-full z-0 h-full p-4"
+                class=" w-full z-0 h-full p-4"
             >
                 <div class="px-8 py-5 bg-white shadow-lg flex justify-between">
                     <h1 class="text-4xl text-primary-blue font-bold">

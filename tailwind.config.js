@@ -16,6 +16,10 @@ module.exports = {
       }
     },
   },
+  variants: {
+    opacity: ['disabled'],
+    cursor: ['disabled'],
+  },
   plugins: [
     require("@tailwindcss/forms")({
       strategy: 'base',
