@@ -32,7 +32,15 @@
                                 class="overflow-hidden shadow bg-white"
                                 v-if="index === 0"
                             >
-                                <router-link
+                            <router-link  v-if="!token"
+                                :to="{
+                                    name: 'login',
+                                }"> <img
+                                        :src="article.image"
+                                        alt=""
+                                        class="object-cover w-full h-64"
+                                />  </router-link>
+                                <router-link v-else
                                     :to="{
                                         name: 'show.post',
                                         params: { id: article.id },
@@ -82,7 +90,11 @@
                                             </a>
                                         </div>
                                         <div>
-                                            <router-link
+                                            <router-link  v-if="!token"
+                                :to="{
+                                    name: 'login',
+                                }"> {{ article.title }} </router-link>
+                                            <router-link v-else
                                                 :to="{
                                                     name: 'show.post',
                                                     params: { id: article.id },
@@ -141,7 +153,16 @@
                                 class="overflow-hidden h-32 flex space-x-2 shadow bg-white"
                                 v-if="index !== 0"
                             >
-                                <router-link
+                            <router-link  v-if="!token"
+                                :to="{
+                                    name: 'login',
+                                }" class=" w-36"> <img
+                                        :src="article.image"
+                                        alt=""
+                                        class="object-cover w-full h-64"
+                                />  </router-link>
+                                
+                                <router-link v-else
                                     :to="{
                                         name: 'show.post',
                                         params: { id: article.id },
@@ -155,7 +176,11 @@
                                 /></router-link>
                                 <div class="space-y-2 p-2">
                                     <div>
-                                        <router-link
+                                        <router-link  v-if="!token"
+                                :to="{
+                                    name: 'login',
+                                }"> {{ article.title }} </router-link>
+                                            <router-link v-else
                                                 :to="{
                                                     name: 'show.post',
                                                     params: { id: article.id },
@@ -221,7 +246,15 @@
                                     class="overflow-hidden shadow bg-white"
                                     v-if="index === 0"
                                 >
-                                    <router-link
+                                    <router-link  v-if="!token"
+                                :to="{
+                                    name: 'login',
+                                }"> <img
+                                        :src="article.image"
+                                        alt=""
+                                        class="object-cover w-full h-64"
+                                />  </router-link>
+                                <router-link v-else
                                     :to="{
                                         name: 'show.post',
                                         params: { id: article.id },
@@ -273,7 +306,11 @@
                                                 </a>
                                             </div>
                                             <div>
-                                                <router-link
+                                                <router-link  v-if="!token"
+                                :to="{
+                                    name: 'login',
+                                }"> {{ article.title }} </router-link>
+                                            <router-link v-else
                                                 :to="{
                                                     name: 'show.post',
                                                     params: { id: article.id },
@@ -338,7 +375,16 @@
                                         class="overflow-hidden h-32 flex space-x-2 shadow bg-white w-full"
                                         v-if="index !== 0"
                                     >
-                                        <router-link
+                                    <router-link  v-if="!token"
+                                :to="{
+                                    name: 'login',
+                                }" class=" w-36"> <img
+                                        :src="article.image"
+                                        alt=""
+                                        class="object-cover w-full h-64"
+                                />  </router-link>
+                                
+                                        <router-link v-else
                                     :to="{
                                         name: 'show.post',
                                         params: { id: article.id },
@@ -352,7 +398,11 @@
                                 /></router-link>
                                         <div class="space-y-2 p-2">
                                             <div>
-                                                <router-link
+                                                <router-link  v-if="!token"
+                                :to="{
+                                    name: 'login',
+                                }"> {{ article.title }} </router-link>
+                                            <router-link v-else
                                                 :to="{
                                                     name: 'show.post',
                                                     params: { id: article.id },
@@ -419,7 +469,15 @@
                                     class="overflow-hidden shadow bg-white"
                                     v-if="index === 0"
                                 >
-                                   <router-link
+                                   <router-link  v-if="!token"
+                                :to="{
+                                    name: 'login',
+                                }"> <img
+                                        :src="article.image"
+                                        alt=""
+                                        class="object-cover w-full h-64"
+                                />  </router-link>
+                                <router-link v-else
                                     :to="{
                                         name: 'show.post',
                                         params: { id: article.id },
@@ -471,7 +529,11 @@
                                                 </a>
                                             </div>
                                             <div>
-                                                <router-link
+                                                <router-link  v-if="!token"
+                                :to="{
+                                    name: 'login',
+                                }"> {{ article.title }} </router-link>
+                                            <router-link v-else
                                                 :to="{
                                                     name: 'show.post',
                                                     params: { id: article.id },
@@ -536,7 +598,15 @@
                                         class="overflow-hidden h-32 flex space-x-2 shadow bg-white w-full"
                                         v-if="index !== 0"
                                     >
-                                        <router-link
+                                    <router-link  v-if="!token"
+                                :to="{
+                                    name: 'login',
+                                }" class=" w-36"> <img
+                                        :src="article.image"
+                                        alt=""
+                                        class="object-cover w-full h-64"
+                                />  </router-link>
+                                        <router-link v-else
                                     :to="{
                                         name: 'show.post',
                                         params: { id: article.id },
@@ -550,7 +620,11 @@
                                 /></router-link>
                                         <div class="space-y-2 p-2">
                                             <div>
-                                                <router-link
+                                                <router-link  v-if="!token"
+                                :to="{
+                                    name: 'login',
+                                }"> {{ article.title }} </router-link>
+                                            <router-link v-else
                                                 :to="{
                                                     name: 'show.post',
                                                     params: { id: article.id },
@@ -619,7 +693,15 @@
                                 class="overflow-hidden shadow bg-white w-full"
                                 v-if="index === 0"
                             >
-                                <router-link
+                                <router-link  v-if="!token"
+                                :to="{
+                                    name: 'login',
+                                }"> <img
+                                        :src="article.image"
+                                        alt=""
+                                        class="object-cover w-full h-64"
+                                />  </router-link>
+                                <router-link v-else
                                     :to="{
                                         name: 'show.post',
                                         params: { id: article.id },
@@ -669,7 +751,11 @@
                                             </a>
                                         </div>
                                         <div>
-                                            <router-link
+                                            <router-link  v-if="!token"
+                                :to="{
+                                    name: 'login',
+                                }"> {{ article.title }} </router-link>
+                                            <router-link v-else
                                                 :to="{
                                                     name: 'show.post',
                                                     params: { id: article.id },
@@ -728,7 +814,17 @@
                                 class="overflow-hidden h-32 flex space-x-2 shadow bg-white"
                                 v-if="index !== 0"
                             >
-                                <router-link
+                            <router-link  v-if="!token"
+                                :to="{
+                                    name: 'login',
+                                    
+                                }" class=" w-36"> <img
+                                        :src="article.image"
+                                        alt=""
+                                        class="object-cover w-full h-64"
+                                />  </router-link>
+                                
+                                <router-link v-else
                                     :to="{
                                         name: 'show.post',
                                         params: { id: article.id },
@@ -849,6 +945,7 @@ export default {
         FilterArticle,
     },
     setup(props) {
+        const token = localStorage.token;
         const ministries = ref([]);
         const errors = ref("");
         const loading = ref(0);
@@ -916,6 +1013,7 @@ export default {
             ministry2,
             ministry3,
             ministry4,
+            token
         };
     },
 };
