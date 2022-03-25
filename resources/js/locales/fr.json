@@ -70,6 +70,13 @@
     "year" : "An",
     "unlimited" : "Illimité",
     "essential-features": "Essential Features",
-    "advanced-features": "Advanced Features"
+    "advanced-features": "Advanced Features",
+    "add": "Ajouter un",
+    "edit": "Editer un",
+    "your": "Votre",
+    "add-desc-1": "sera publié dans la langue actuelle du site",
+    "select-lang" : "",
+    "read-more": "Lire la suite",
+    "no-content": "Pas de contenu"
     
 }

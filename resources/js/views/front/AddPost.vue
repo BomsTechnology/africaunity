@@ -3,7 +3,7 @@
     <div class=" w-full lg:px-20 py-4">
         <div class=" py-5 text-center w-full space-y-4">
             <h1 class="text-4xl  text-primary-blue font-bold capitalize">
-                Add {{ type }}
+                {{ $t('add') }} {{ type }}
             </h1>
             <h2 class="text-md  text-gray-700">Votre {{ type }} sera publié dans la langue actuelle du site</h2>
             <div class="flex lg:flex-row flex-col justify-center items-center lg:space-x-3">
@@ -32,27 +32,71 @@
                 <div class="lg:col-span-1 col-span-2">
                     <label class="text-gray-700 dark:text-gray-200" for="es">Continent <span class="text-red-500">*</span></label>
                     <select required v-model="post.continent_id" class="form-select block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue">
-                        <option v-for="continent in continents" :key="continent.id" :value="continent.id">{{ continent.name_en }}</option>
+                        <option v-for="continent in continents" :key="continent.id" :value="continent.id">
+                            <span v-if="$i18n.locale == 'en'">{{
+                                continent.name_en
+                            }}</span>
+                            <span v-else-if="$i18n.locale == 'fr'">{{
+                                continent.name_fr
+                            }}</span>
+                            <span v-else-if="$i18n.locale == 'es'">{{
+                                continent.name_es
+                            }}</span>
+                            <span v-else>{{ continent.name_pt }}</span>
+                        </option>
                     </select>
                 </div>
 
                 <div class="lg:col-span-1 col-span-2">
                     <label class="text-gray-700 dark:text-gray-200" for="pt">Zone <span class="text-red-500">*</span></label>
                     <select required v-model="post.zone_id" name="" id="" class="form-select block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue">
-                        <option v-for="zone in zones" :key="zone.id" :value="zone.id">{{ zone.name_en }}</option>
+                        <option v-for="zone in zones" :key="zone.id" :value="zone.id">
+                            <span v-if="$i18n.locale == 'en'">{{
+                                zone.name_en
+                            }}</span>
+                            <span v-else-if="$i18n.locale == 'fr'">{{
+                                zone.name_fr
+                            }}</span>
+                            <span v-else-if="$i18n.locale == 'es'">{{
+                                zone.name_es
+                            }}</span>
+                            <span v-else>{{ zone.name_pt }}</span>
+                        </option>
                     </select>
                 </div>
                 <div class="lg:col-span-1 col-span-2">
                     <label class="text-gray-700 dark:text-gray-200" for="es">Country <span class="text-red-500">*</span></label>
                     <select required v-model="post.country_id" class="form-select block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue">
-                        <option v-for="country in countries" :key="country.id" :value="country.id">{{ country.name_en }}</option>
+                        <option v-for="country in countries" :key="country.id" :value="country.id">
+                            <span v-if="$i18n.locale == 'en'">{{
+                                country.name_en
+                            }}</span>
+                            <span v-else-if="$i18n.locale == 'fr'">{{
+                                country.name_fr
+                            }}</span>
+                            <span v-else-if="$i18n.locale == 'es'">{{
+                                country.name_es
+                            }}</span>
+                            <span v-else>{{ country.name_pt }}</span>
+                        </option>
                     </select>
                 </div>
 
                 <div class="lg:col-span-1 col-span-2">
                     <label class="text-gray-700 dark:text-gray-200" for="pt">Ministry <span class="text-red-500">*</span></label>
                     <select required v-model="post.ministry_id" class="form-select block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue">
-                        <option v-for="ministry in ministries" :key="ministry.id" :value="ministry.id">{{ ministry.name_en }}</option>
+                        <option v-for="ministry in ministries" :key="ministry.id" :value="ministry.id">
+                            <span v-if="$i18n.locale == 'en'">{{
+                                ministry.name_en
+                            }}</span>
+                            <span v-else-if="$i18n.locale == 'fr'">{{
+                                ministry.name_fr
+                            }}</span>
+                            <span v-else-if="$i18n.locale == 'es'">{{
+                                ministry.name_es
+                            }}</span>
+                            <span v-else>{{ ministry.name_pt }}</span>
+                        </option>
                     </select>
                 </div>
 

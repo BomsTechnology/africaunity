@@ -70,5 +70,12 @@
     "year" : "año",
     "unlimited" : "Ilimitado",
     "essential-features": "Características esenciales",
-    "advanced-features": "Características avanzadas"
+    "advanced-features": "Características avanzadas",
+    "add": "Agregar",
+    "edit": "Editar",
+    "your": "Tu",
+    "add-desc-1": "se publicará en el idioma actual del sitio",
+    "select-lang" : "",
+    "read-more": "Leer más",
+    "no-content": "Sin contenido"
 }

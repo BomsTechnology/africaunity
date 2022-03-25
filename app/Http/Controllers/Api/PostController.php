@@ -42,6 +42,15 @@ class PostController extends Controller
             ])->orderBy('id', 'desc')->limit(4)->get());
     }
 
+    public function post_home($lang, $ministry)
+    {
+        return PostResource::collection(Post::where([
+            ['type','article'],
+            ['language',$lang],
+            ['ministry_id',$ministry],
+            ])->orderBy('id', 'desc')->limit(5)->get());
+    }
+
     /**
      * Store a newly created resource in storage.
      *

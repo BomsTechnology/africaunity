@@ -18,7 +18,7 @@
                     class="flex justify-start items-center space-x-3 text-white bg-primary-blue rounded px-3 py-2"
                 >
                     <PlusCircleIcon class="w-6 h-6" />
-                    <p class="text-base leading-4">Add PropAU</p>
+                    <p class="text-base leading-4">{{ $t('add') }} PropAU</p>
                 </router-link>
             </div>
             <div
@@ -73,7 +73,7 @@
                                     params: { id: post.id },
                                 }"
                                 class="text-blue-600 dark:text-blue-400 hover:underline"
-                                >Read more</router-link
+                                >{{ $t('read-more') }}</router-link
                             >
 
                             <div
@@ -123,7 +123,7 @@
                 </svg>
             </div>
             <div v-else class="p-28 flex justify-center text-gray-500 flex-col items-center animate-pulse">
-                <EmojiSadIcon class="h-16 w-16" /> <span class="text-2xl mt-2">NO CONTENT </span>
+                <EmojiSadIcon class="h-16 w-16" /> <span class="text-2xl mt-2">{{ $t('no-content') }} </span>
             </div>
         </div>
         <div class="lg:w-[30%] bg-white">

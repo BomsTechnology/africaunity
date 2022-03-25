@@ -14,10 +14,12 @@ Route::post("/login",[AuthController::class,'login']);
 Route::post("/login-admin",[AuthController::class,'login_admin']);
 Route::post("/verif-admin",[AuthController::class,'verif_admin']);
 Route::get("/posts-caroussel/{lang}",[PostController::class,'post_caroussel']);
+Route::get("/posts-home/{lang}/{ministry}",[PostController::class,'post_home']);
 Route::get("/continents", [ContinentController::class,'index']);
 Route::get("/zones", [ZoneController::class,'index']);
 Route::get("/countries", [CountryController::class,'index']);
 Route::get("/ministries", [MinistryController::class,'index']);
+Route::get("/ministries-home", [MinistryController::class,'ministry_home']);
 
 Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::get("/posts-all/{type}", [PostController::class,'index']);

@@ -105,11 +105,12 @@
                 </svg>
             </div>
             <div v-else class="p-28 flex justify-center text-gray-500 flex-col items-center animate-pulse">
-                <EmojiSadIcon class="h-16 w-16" /> <span class="text-2xl mt-2">NO CONTENT </span>
+                <EmojiSadIcon class="h-16 w-16" /> <span class="text-2xl mt-2">{{ $t('no-content') }} </span>
             </div> 
 </template>
 
 <script>
+import { reactive, ref, onMounted } from "vue";
 import { CalendarIcon, UserIcon, ChatIcon, EmojiSadIcon} from '@heroicons/vue/solid';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { EffectFade, Autoplay } from 'swiper';
@@ -128,9 +129,22 @@ export default {
 
     setup() {
         const token = localStorage.token;
+        const posts = ref([]);
+        const errors = ref('');
+        const loading = ref(0);
+        onMounted(
+            async () =>{
+                errors.value = '';
+                loading.value = 1;
+                let response = await axios.get('/api/posts-caroussel/' + localStorage.lang);
+                posts.value = response.data.data;
+                loading.value = 2;
+            });
         return{
             modules: [Autoplay, ],
-            token
+            token,
+            posts,
+            loading
         }
     },
 }

@@ -70,5 +70,12 @@
     "year" : "year",
     "unlimited" : "Unlimited",
     "essential-features": "Essential Features",
-    "advanced-features": "Advanced Features"
+    "advanced-features": "Advanced Features",
+    "add": "Add",
+    "your": "Your",
+    "add-desc-1": "will be published in the current language of the site",
+    "edit": "Edit",
+    "select-lang" : "",
+    "read-more": "Read More",
+    "no-content": "No Content"
 }

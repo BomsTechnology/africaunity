@@ -22594,14 +22594,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @heroicons/vue/solid */ "./node_modules/@heroicons/vue/solid/esm/CalendarIcon.js");
-/* harmony import */ var _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @heroicons/vue/solid */ "./node_modules/@heroicons/vue/solid/esm/UserIcon.js");
-/* harmony import */ var _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @heroicons/vue/solid */ "./node_modules/@heroicons/vue/solid/esm/ChatIcon.js");
-/* harmony import */ var _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @heroicons/vue/solid */ "./node_modules/@heroicons/vue/solid/esm/EmojiSadIcon.js");
-/* harmony import */ var swiper_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! swiper/vue */ "./node_modules/swiper/vue/swiper-vue.js");
-/* harmony import */ var swiper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! swiper */ "./node_modules/swiper/swiper.esm.js");
-/* harmony import */ var swiper_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! swiper/css */ "./node_modules/swiper/swiper.min.css");
-/* harmony import */ var swiper_css_effect_fade__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! swiper/css/effect-fade */ "./node_modules/swiper/modules/effect-fade/effect-fade.min.css");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @heroicons/vue/solid */ "./node_modules/@heroicons/vue/solid/esm/CalendarIcon.js");
+/* harmony import */ var _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @heroicons/vue/solid */ "./node_modules/@heroicons/vue/solid/esm/UserIcon.js");
+/* harmony import */ var _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @heroicons/vue/solid */ "./node_modules/@heroicons/vue/solid/esm/ChatIcon.js");
+/* harmony import */ var _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @heroicons/vue/solid */ "./node_modules/@heroicons/vue/solid/esm/EmojiSadIcon.js");
+/* harmony import */ var swiper_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! swiper/vue */ "./node_modules/swiper/vue/swiper-vue.js");
+/* harmony import */ var swiper__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! swiper */ "./node_modules/swiper/swiper.esm.js");
+/* harmony import */ var swiper_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! swiper/css */ "./node_modules/swiper/swiper.min.css");
+/* harmony import */ var swiper_css_effect_fade__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! swiper/css/effect-fade */ "./node_modules/swiper/modules/effect-fade/effect-fade.min.css");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
 
 
 
@@ -22610,18 +22620,46 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['posts', 'loading'],
   components: {
-    CalendarIcon: _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_4__["default"],
-    UserIcon: _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_5__["default"],
-    ChatIcon: _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_6__["default"],
-    EmojiSadIcon: _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_7__["default"],
-    Swiper: swiper_vue__WEBPACK_IMPORTED_MODULE_0__.Swiper,
-    SwiperSlide: swiper_vue__WEBPACK_IMPORTED_MODULE_0__.SwiperSlide
+    CalendarIcon: _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_6__["default"],
+    UserIcon: _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_7__["default"],
+    ChatIcon: _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_8__["default"],
+    EmojiSadIcon: _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_9__["default"],
+    Swiper: swiper_vue__WEBPACK_IMPORTED_MODULE_2__.Swiper,
+    SwiperSlide: swiper_vue__WEBPACK_IMPORTED_MODULE_2__.SwiperSlide
   },
   setup: function setup() {
     var token = localStorage.token;
+    var posts = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)([]);
+    var errors = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)('');
+    var loading = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(0);
+    (0,vue__WEBPACK_IMPORTED_MODULE_1__.onMounted)( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+      var response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              errors.value = '';
+              loading.value = 1;
+              _context.next = 4;
+              return axios.get('/api/posts-caroussel/' + localStorage.lang);
+
+            case 4:
+              response = _context.sent;
+              posts.value = response.data.data;
+              loading.value = 2;
+
+            case 7:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    })));
     return {
-      modules: [swiper__WEBPACK_IMPORTED_MODULE_1__.Autoplay],
-      token: token
+      modules: [swiper__WEBPACK_IMPORTED_MODULE_3__.Autoplay],
+      token: token,
+      posts: posts,
+      loading: loading
     };
   }
 });
@@ -23205,26 +23243,61 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     FilterArticle: _components_FilterArticle_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   setup: function setup(props) {
-    var postCaroussel = (0,vue__WEBPACK_IMPORTED_MODULE_5__.ref)([]);
-    var errors = (0,vue__WEBPACK_IMPORTED_MODULE_5__.ref)('');
+    var ministries = (0,vue__WEBPACK_IMPORTED_MODULE_5__.ref)([]);
+    var errors = (0,vue__WEBPACK_IMPORTED_MODULE_5__.ref)("");
     var loading = (0,vue__WEBPACK_IMPORTED_MODULE_5__.ref)(0);
+    var articles1 = (0,vue__WEBPACK_IMPORTED_MODULE_5__.ref)([]);
+    var articles2 = (0,vue__WEBPACK_IMPORTED_MODULE_5__.ref)([]);
+    var articles3 = (0,vue__WEBPACK_IMPORTED_MODULE_5__.ref)([]);
+    var articles4 = (0,vue__WEBPACK_IMPORTED_MODULE_5__.ref)([]);
+    var ministry1 = (0,vue__WEBPACK_IMPORTED_MODULE_5__.ref)("");
+    var ministry2 = (0,vue__WEBPACK_IMPORTED_MODULE_5__.ref)("");
+    var ministry3 = (0,vue__WEBPACK_IMPORTED_MODULE_5__.ref)("");
+    var ministry4 = (0,vue__WEBPACK_IMPORTED_MODULE_5__.ref)("");
     (0,vue__WEBPACK_IMPORTED_MODULE_5__.onMounted)( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
       var response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              errors.value = '';
               loading.value = 1;
-              _context.next = 4;
-              return axios.get('/api/posts-caroussel/' + localStorage.lang);
+              _context.next = 3;
+              return axios.get("/api/ministries-home");
 
-            case 4:
+            case 3:
               response = _context.sent;
-              postCaroussel.value = response.data.data;
+              ministries.value = response.data.data;
+              ministry1.value = ministries.value[0];
+              ministry2.value = ministries.value[1];
+              ministry3.value = ministries.value[2];
+              ministry4.value = ministries.value[3];
+              _context.next = 11;
+              return axios.get("/api/posts-home/" + localStorage.lang + "/" + ministry1.value.id);
+
+            case 11:
+              response = _context.sent;
+              articles1.value = response.data.data;
+              _context.next = 15;
+              return axios.get("/api/posts-home/" + localStorage.lang + "/" + ministry2.value.id);
+
+            case 15:
+              response = _context.sent;
+              articles2.value = response.data.data;
+              _context.next = 19;
+              return axios.get("/api/posts-home/" + localStorage.lang + "/" + ministry3.value.id);
+
+            case 19:
+              response = _context.sent;
+              articles3.value = response.data.data;
+              _context.next = 23;
+              return axios.get("/api/posts-home/" + localStorage.lang + "/" + ministry4.value.id);
+
+            case 23:
+              response = _context.sent;
+              articles4.value = response.data.data;
               loading.value = 2;
 
-            case 7:
+            case 26:
             case "end":
               return _context.stop();
           }
@@ -23234,7 +23307,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     return {
       loading: loading,
       errors: errors,
-      postCaroussel: postCaroussel
+      articles4: articles4,
+      articles2: articles2,
+      articles3: articles3,
+      articles1: articles1,
+      ministry1: ministry1,
+      ministry2: ministry2,
+      ministry3: ministry3,
+      ministry4: ministry4
     };
   }
 });
@@ -23474,12 +23554,9 @@ var _hoisted_60 = {
 
 var _hoisted_61 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)();
 
-var _hoisted_62 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+var _hoisted_62 = {
   "class": "text-2xl mt-2"
-}, "NO CONTENT ", -1
-/* HOISTED */
-);
-
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_CalendarIcon = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("CalendarIcon");
 
@@ -23495,7 +23572,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   var _component_EmojiSadIcon = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("EmojiSadIcon");
 
-  return $props.posts.length != 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Swiper, {
+  return $setup.posts.length != 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Swiper, {
     "class": "w-full h-[480px]",
     centeredSlides: true,
     autoplay: {
@@ -23505,7 +23582,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     modules: $setup.modules
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.posts, function (post) {
+      return [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.posts, function (post) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_SwiperSlide, {
           "class": "relative",
           key: post.id
@@ -23623,7 +23700,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   }, 8
   /* PROPS */
-  , ["modules"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_36, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.posts, function (post) {
+  , ["modules"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_36, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.posts, function (post) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       "class": "relative h-[230px]",
       key: post.id
@@ -23689,9 +23766,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     , ["to"]))]);
   }), 128
   /* KEYED_FRAGMENT */
-  ))])])) : $props.loading == 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_57, _hoisted_59)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_60, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_EmojiSadIcon, {
+  ))])])) : $setup.loading == 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_57, _hoisted_59)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_60, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_EmojiSadIcon, {
     "class": "h-16 w-16"
-  }), _hoisted_61, _hoisted_62]));
+  }), _hoisted_61, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_62, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('no-content')), 1
+  /* TEXT */
+  )]));
 }
 
 /***/ }),
@@ -25671,646 +25750,448 @@ var _hoisted_1 = {
 var _hoisted_2 = {
   "class": "lg:w-[70%]"
 };
-
-var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
-  "class": "text-white px-2 py-1 bg-[#006d62] inline-block"
-}, " Intégration Africaine ", -1
-/* HOISTED */
-);
-
+var _hoisted_3 = {
+  key: 0
+};
 var _hoisted_4 = {
-  "class": "border-t-2 border-[#006d62] text-justify py-4"
+  key: 1
 };
 var _hoisted_5 = {
-  "class": "grid grid-cols-1 lg:grid-cols-2 gap-4"
+  key: 2
 };
 var _hoisted_6 = {
+  key: 3
+};
+var _hoisted_7 = {
+  key: 0,
+  "class": "lg:flex lg:items-start lg:space-x-4"
+};
+var _hoisted_8 = {
+  key: 0,
   "class": "overflow-hidden shadow bg-white"
 };
-
-var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-  src: "/img/img-4.jpg",
-  alt: "",
-  "class": "object-cover w-full h-64"
-}, null, -1
-/* HOISTED */
-);
-
-var _hoisted_8 = {
+var _hoisted_9 = ["src"];
+var _hoisted_10 = {
   "class": "p-6"
 };
-var _hoisted_9 = {
+var _hoisted_11 = {
   "class": "space-y-2"
 };
-
-var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-  href: "#",
-  "class": "text-xs py-1 px-2 rounded text-white bg-[#006d62]"
-}, " Art, Culture et Antiquité ")], -1
-/* HOISTED */
-);
-
-var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-  href: "#",
-  "class": "text-xl font-semibold text-gray-600 hover:text-primary-blue"
-}, " Article Art UA 5 ")], -1
-/* HOISTED */
-);
-
 var _hoisted_12 = {
-  "class": "flex text-xs space-x-2 text-gray-400"
+  key: 0
 };
 var _hoisted_13 = {
-  "class": "flex space-x-1"
+  key: 1
 };
-
-var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)();
-
-var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-  href: "#",
-  "class": "hover:text-primary-blue"
-}, "8 février 2022", -1
-/* HOISTED */
-);
-
+var _hoisted_14 = {
+  key: 2
+};
+var _hoisted_15 = {
+  key: 3
+};
 var _hoisted_16 = {
+  "class": "flex text-xs space-x-2 text-gray-400"
+};
+var _hoisted_17 = {
   "class": "flex space-x-1"
 };
-
-var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)();
-
-var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+var _hoisted_18 = {
   href: "#",
   "class": "hover:text-primary-blue"
-}, "Union Africaine", -1
-/* HOISTED */
-);
-
+};
 var _hoisted_19 = {
   "class": "flex space-x-1"
 };
+var _hoisted_20 = {
+  href: "#",
+  "class": "hover:text-primary-blue"
+};
+var _hoisted_21 = {
+  "class": "flex space-x-1"
+};
 
-var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)();
-
-var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
   href: "#",
   "class": "hover:text-primary-blue"
 }, "0", -1
 /* HOISTED */
 );
 
-var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
-  "class": "mt-2 text-sm text-gray-600 dark:text-gray-400"
-}, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Molestie parturient et sem ipsum volutpat vel. Natoque sem et aliquam mauris egestas quam volutpat viverra. In pretium nec senectus erat. Et malesuada lobortis.", -1
-/* HOISTED */
-);
-
 var _hoisted_23 = {
-  "class": "space-y-2"
+  "class": "mt-2 text-sm text-gray-600 dark:text-gray-400"
 };
 var _hoisted_24 = {
+  "class": "space-y-2 w-full"
+};
+var _hoisted_25 = {
+  key: 0,
   "class": "overflow-hidden h-32 flex space-x-2 shadow bg-white"
 };
-
-var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-  src: "/img/img-4.jpg",
-  alt: "",
-  "class": "object-cover w-32 min-h-full"
-}, null, -1
-/* HOISTED */
-);
-
-var _hoisted_26 = {
+var _hoisted_26 = ["src"];
+var _hoisted_27 = {
   "class": "space-y-2 p-2"
 };
-
-var _hoisted_27 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-  href: "#",
-  "class": "text-xl font-semibold text-gray-600 hover:text-primary-blue"
-}, " Article Art UA 5 ")], -1
-/* HOISTED */
-);
-
 var _hoisted_28 = {
   "class": "flex text-xs space-x-2 text-gray-400"
 };
 var _hoisted_29 = {
   "class": "flex space-x-1"
 };
-
-var _hoisted_30 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)();
-
-var _hoisted_31 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+var _hoisted_30 = {
   href: "#",
   "class": "hover:text-primary-blue"
-}, "8 février 2022", -1
-/* HOISTED */
-);
-
-var _hoisted_32 = {
+};
+var _hoisted_31 = {
   "class": "flex space-x-1"
 };
 
-var _hoisted_33 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)();
-
-var _hoisted_34 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+var _hoisted_32 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
   href: "#",
   "class": "hover:text-primary-blue"
 }, "0", -1
 /* HOISTED */
 );
 
-var _hoisted_35 = {
-  "class": "overflow-hidden h-32 flex space-x-2 shadow bg-white"
-};
-
-var _hoisted_36 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-  src: "/img/img-4.jpg",
-  alt: "",
-  "class": "object-cover w-32 min-h-full"
-}, null, -1
-/* HOISTED */
-);
-
-var _hoisted_37 = {
-  "class": "space-y-2 p-2"
-};
-
-var _hoisted_38 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-  href: "#",
-  "class": "text-xl font-semibold text-gray-600 hover:text-primary-blue leading-none"
-}, " Article Art UA 5 ")], -1
-/* HOISTED */
-);
-
-var _hoisted_39 = {
-  "class": "flex text-xs space-x-2 text-gray-400"
-};
-var _hoisted_40 = {
-  "class": "flex space-x-1"
-};
-
-var _hoisted_41 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)();
-
-var _hoisted_42 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-  href: "#",
-  "class": "hover:text-primary-blue"
-}, "8 février 2022", -1
-/* HOISTED */
-);
-
-var _hoisted_43 = {
-  "class": "flex space-x-1"
-};
-
-var _hoisted_44 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)();
-
-var _hoisted_45 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-  href: "#",
-  "class": "hover:text-primary-blue"
-}, "0", -1
-/* HOISTED */
-);
-
-var _hoisted_46 = {
+var _hoisted_33 = {
   "class": "md:flex md:space-x-3"
 };
-var _hoisted_47 = {
+var _hoisted_34 = {
   "class": "w-full"
 };
-
-var _hoisted_48 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
-  "class": "text-white px-2 py-1 bg-primary-blue inline-block"
-}, " Other ", -1
-/* HOISTED */
-);
-
-var _hoisted_49 = {
-  "class": "border-t-2 w-full border-primary-blue text-justify py-4"
+var _hoisted_35 = {
+  key: 0
 };
-var _hoisted_50 = {
+var _hoisted_36 = {
+  key: 1
+};
+var _hoisted_37 = {
+  key: 2
+};
+var _hoisted_38 = {
+  key: 3
+};
+var _hoisted_39 = {
+  key: 0,
   "class": "space-y-2"
 };
-var _hoisted_51 = {
+var _hoisted_40 = {
+  key: 0,
   "class": "overflow-hidden shadow bg-white"
 };
-
-var _hoisted_52 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-  src: "/img/img-4.jpg",
-  alt: "",
-  "class": "object-cover w-full h-64"
-}, null, -1
-/* HOISTED */
-);
-
-var _hoisted_53 = {
+var _hoisted_41 = ["src"];
+var _hoisted_42 = {
   "class": "p-6"
 };
-var _hoisted_54 = {
+var _hoisted_43 = {
   "class": "space-y-2"
 };
-
-var _hoisted_55 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-  href: "#",
-  "class": "text-xs py-1 px-2 rounded text-white bg-[#006d62]"
-}, " Art, Culture et Antiquité ")], -1
-/* HOISTED */
-);
-
-var _hoisted_56 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-  href: "#",
-  "class": "text-xl font-semibold text-gray-600 hover:text-primary-blue"
-}, " Article Art UA 5 ")], -1
-/* HOISTED */
-);
-
-var _hoisted_57 = {
+var _hoisted_44 = {
+  key: 0
+};
+var _hoisted_45 = {
+  key: 1
+};
+var _hoisted_46 = {
+  key: 2
+};
+var _hoisted_47 = {
+  key: 3
+};
+var _hoisted_48 = {
   "class": "flex text-xs space-x-2 text-gray-400"
 };
-var _hoisted_58 = {
+var _hoisted_49 = {
+  "class": "flex space-x-1"
+};
+var _hoisted_50 = {
+  href: "#",
+  "class": "hover:text-primary-blue"
+};
+var _hoisted_51 = {
+  "class": "flex space-x-1"
+};
+var _hoisted_52 = {
+  href: "#",
+  "class": "hover:text-primary-blue"
+};
+var _hoisted_53 = {
   "class": "flex space-x-1"
 };
 
-var _hoisted_59 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)();
-
-var _hoisted_60 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+var _hoisted_54 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
   href: "#",
   "class": "hover:text-primary-blue"
-}, "8 février 2022", -1
+}, "0", -1
 /* HOISTED */
 );
 
+var _hoisted_55 = {
+  "class": "mt-2 text-sm text-gray-600 dark:text-gray-400"
+};
+var _hoisted_56 = {
+  "class": "space-y-2"
+};
+var _hoisted_57 = {
+  key: 0,
+  "class": "overflow-hidden h-32 flex space-x-2 shadow bg-white w-full"
+};
+var _hoisted_58 = ["src"];
+var _hoisted_59 = {
+  "class": "space-y-2 p-2"
+};
+var _hoisted_60 = {
+  "class": "flex text-xs space-x-2 text-gray-400"
+};
 var _hoisted_61 = {
   "class": "flex space-x-1"
 };
-
-var _hoisted_62 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)();
-
-var _hoisted_63 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+var _hoisted_62 = {
   href: "#",
   "class": "hover:text-primary-blue"
-}, "Union Africaine", -1
-/* HOISTED */
-);
-
-var _hoisted_64 = {
+};
+var _hoisted_63 = {
   "class": "flex space-x-1"
 };
 
-var _hoisted_65 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)();
-
-var _hoisted_66 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+var _hoisted_64 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
   href: "#",
   "class": "hover:text-primary-blue"
 }, "0", -1
 /* HOISTED */
 );
 
-var _hoisted_67 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
-  "class": "mt-2 text-sm text-gray-600 dark:text-gray-400"
-}, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Molestie parturient et sem ipsum volutpat vel. Natoque sem et aliquam mauris egestas quam volutpat viverra. In pretium nec senectus erat. Et malesuada lobortis.", -1
-/* HOISTED */
-);
-
+var _hoisted_65 = {
+  "class": "w-full"
+};
+var _hoisted_66 = {
+  key: 0
+};
+var _hoisted_67 = {
+  key: 1
+};
 var _hoisted_68 = {
-  "class": "space-y-2"
+  key: 2
 };
 var _hoisted_69 = {
-  "class": "overflow-hidden h-32 flex space-x-2 shadow bg-white"
+  key: 3
 };
-
-var _hoisted_70 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-  src: "/img/img-4.jpg",
-  alt: "",
-  "class": "object-cover w-32 min-h-full"
-}, null, -1
-/* HOISTED */
-);
-
+var _hoisted_70 = {
+  key: 0,
+  "class": "space-y-2"
+};
 var _hoisted_71 = {
-  "class": "space-y-2 p-2"
+  key: 0,
+  "class": "overflow-hidden shadow bg-white"
 };
-
-var _hoisted_72 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-  href: "#",
-  "class": "text-xl font-semibold text-gray-600 hover:text-primary-blue"
-}, " Article Art UA 5 ")], -1
-/* HOISTED */
-);
-
+var _hoisted_72 = ["src"];
 var _hoisted_73 = {
-  "class": "flex text-xs space-x-2 text-gray-400"
+  "class": "p-6"
 };
 var _hoisted_74 = {
-  "class": "flex space-x-1"
+  "class": "space-y-2"
 };
-
-var _hoisted_75 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)();
-
-var _hoisted_76 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-  href: "#",
-  "class": "hover:text-primary-blue"
-}, "8 février 2022", -1
-/* HOISTED */
-);
-
+var _hoisted_75 = {
+  key: 0
+};
+var _hoisted_76 = {
+  key: 1
+};
 var _hoisted_77 = {
-  "class": "flex space-x-1"
+  key: 2
 };
-
-var _hoisted_78 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)();
-
-var _hoisted_79 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-  href: "#",
-  "class": "hover:text-primary-blue"
-}, "0", -1
-/* HOISTED */
-);
-
-var _hoisted_80 = {
-  "class": "overflow-hidden h-32 flex space-x-2 shadow bg-white"
+var _hoisted_78 = {
+  key: 3
 };
-
-var _hoisted_81 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-  src: "/img/img-4.jpg",
-  alt: "",
-  "class": "object-cover w-32 min-h-full"
-}, null, -1
-/* HOISTED */
-);
-
-var _hoisted_82 = {
-  "class": "space-y-2 p-2"
-};
-
-var _hoisted_83 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-  href: "#",
-  "class": "text-xl font-semibold text-gray-600 hover:text-primary-blue leading-none"
-}, " Article Art UA 5 ")], -1
-/* HOISTED */
-);
-
-var _hoisted_84 = {
+var _hoisted_79 = {
   "class": "flex text-xs space-x-2 text-gray-400"
 };
-var _hoisted_85 = {
+var _hoisted_80 = {
   "class": "flex space-x-1"
 };
-
-var _hoisted_86 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)();
-
-var _hoisted_87 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+var _hoisted_81 = {
   href: "#",
   "class": "hover:text-primary-blue"
-}, "8 février 2022", -1
-/* HOISTED */
-);
-
-var _hoisted_88 = {
+};
+var _hoisted_82 = {
+  "class": "flex space-x-1"
+};
+var _hoisted_83 = {
+  href: "#",
+  "class": "hover:text-primary-blue"
+};
+var _hoisted_84 = {
   "class": "flex space-x-1"
 };
 
-var _hoisted_89 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)();
-
-var _hoisted_90 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+var _hoisted_85 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
   href: "#",
   "class": "hover:text-primary-blue"
 }, "0", -1
 /* HOISTED */
 );
 
-var _hoisted_91 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "w-full"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
-  "class": "text-white px-2 py-1 bg-primary-blue inline-block"
-}, " Other "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "border-t-2 w-full border-primary-blue text-justify py-4"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p")])], -1
+var _hoisted_86 = {
+  "class": "mt-2 text-sm text-gray-600 dark:text-gray-400"
+};
+var _hoisted_87 = {
+  "class": "space-y-2"
+};
+var _hoisted_88 = {
+  key: 0,
+  "class": "overflow-hidden h-32 flex space-x-2 shadow bg-white w-full"
+};
+var _hoisted_89 = ["src"];
+var _hoisted_90 = {
+  "class": "space-y-2 p-2"
+};
+var _hoisted_91 = {
+  "class": "flex text-xs space-x-2 text-gray-400"
+};
+var _hoisted_92 = {
+  "class": "flex space-x-1"
+};
+var _hoisted_93 = {
+  href: "#",
+  "class": "hover:text-primary-blue"
+};
+var _hoisted_94 = {
+  "class": "flex space-x-1"
+};
+
+var _hoisted_95 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+  href: "#",
+  "class": "hover:text-primary-blue"
+}, "0", -1
 /* HOISTED */
 );
 
-var _hoisted_92 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_96 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "my-8 flex justify-center"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "inline-block shadow p-2"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-  src: "/img/barniere-africa.png'",
+  src: "/img/barniere-africa.png",
   alt: ""
 })])], -1
 /* HOISTED */
 );
 
-var _hoisted_93 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
-  "class": "text-white px-3 py-2 mb-3 bg-primary-blue block"
-}, " Other ", -1
-/* HOISTED */
-);
-
-var _hoisted_94 = {
-  "class": "grid grid-cols-1 lg:grid-cols-2 gap-4"
-};
-var _hoisted_95 = {
-  "class": "overflow-hidden shadow bg-white"
-};
-
-var _hoisted_96 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-  src: "/img/img-4.jpg",
-  alt: "",
-  "class": "object-cover w-full h-64"
-}, null, -1
-/* HOISTED */
-);
-
 var _hoisted_97 = {
-  "class": "p-6"
+  key: 0
 };
 var _hoisted_98 = {
-  "class": "space-y-2"
+  key: 1
 };
-
-var _hoisted_99 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-  href: "#",
-  "class": "text-xs py-1 px-2 rounded text-white bg-[#006d62]"
-}, " Art, Culture et Antiquité ")], -1
-/* HOISTED */
-);
-
-var _hoisted_100 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-  href: "#",
-  "class": "text-xl font-semibold text-gray-600 hover:text-primary-blue"
-}, " Article Art UA 5 ")], -1
-/* HOISTED */
-);
-
+var _hoisted_99 = {
+  key: 2
+};
+var _hoisted_100 = {
+  key: 3
+};
 var _hoisted_101 = {
-  "class": "flex text-xs space-x-2 text-gray-400"
+  key: 0,
+  "class": "lg:flex lg:justify-between"
 };
 var _hoisted_102 = {
-  "class": "flex space-x-1"
+  key: 0,
+  "class": "overflow-hidden shadow bg-white w-full"
 };
-
-var _hoisted_103 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)();
-
-var _hoisted_104 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-  href: "#",
-  "class": "hover:text-primary-blue"
-}, "8 février 2022", -1
-/* HOISTED */
-);
-
+var _hoisted_103 = ["src"];
+var _hoisted_104 = {
+  "class": "p-6"
+};
 var _hoisted_105 = {
+  "class": "space-y-2"
+};
+var _hoisted_106 = {
+  key: 0
+};
+var _hoisted_107 = {
+  key: 1
+};
+var _hoisted_108 = {
+  key: 2
+};
+var _hoisted_109 = {
+  key: 3
+};
+var _hoisted_110 = {
+  "class": "flex text-xs space-x-2 text-gray-400"
+};
+var _hoisted_111 = {
   "class": "flex space-x-1"
 };
-
-var _hoisted_106 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)();
-
-var _hoisted_107 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+var _hoisted_112 = {
   href: "#",
   "class": "hover:text-primary-blue"
-}, "Union Africaine", -1
-/* HOISTED */
-);
-
-var _hoisted_108 = {
+};
+var _hoisted_113 = {
+  "class": "flex space-x-1"
+};
+var _hoisted_114 = {
+  href: "#",
+  "class": "hover:text-primary-blue"
+};
+var _hoisted_115 = {
   "class": "flex space-x-1"
 };
 
-var _hoisted_109 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)();
-
-var _hoisted_110 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+var _hoisted_116 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
   href: "#",
   "class": "hover:text-primary-blue"
 }, "0", -1
-/* HOISTED */
-);
-
-var _hoisted_111 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
-  "class": "mt-2 text-sm text-gray-600 dark:text-gray-400"
-}, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Molestie parturient et sem ipsum volutpat vel. Natoque sem et aliquam mauris egestas quam volutpat viverra. In pretium nec senectus erat. Et malesuada lobortis.", -1
-/* HOISTED */
-);
-
-var _hoisted_112 = {
-  "class": "space-y-2"
-};
-var _hoisted_113 = {
-  "class": "overflow-hidden h-32 flex space-x-2 shadow bg-white"
-};
-
-var _hoisted_114 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-  src: "/img/img-4.jpg",
-  alt: "",
-  "class": "object-cover w-32 min-h-full"
-}, null, -1
-/* HOISTED */
-);
-
-var _hoisted_115 = {
-  "class": "space-y-2 p-2"
-};
-
-var _hoisted_116 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-  href: "#",
-  "class": "text-xl font-semibold text-gray-600 hover:text-primary-blue"
-}, " Article Art UA 5 ")], -1
 /* HOISTED */
 );
 
 var _hoisted_117 = {
-  "class": "flex text-xs space-x-2 text-gray-400"
+  "class": "mt-2 text-sm text-gray-600 dark:text-gray-400"
 };
 var _hoisted_118 = {
-  "class": "flex space-x-1"
+  "class": "space-y-2 w-1/2"
 };
-
-var _hoisted_119 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)();
-
-var _hoisted_120 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-  href: "#",
-  "class": "hover:text-primary-blue"
-}, "8 février 2022", -1
-/* HOISTED */
-);
-
-var _hoisted_121 = {
-  "class": "flex space-x-1"
-};
-
-var _hoisted_122 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)();
-
-var _hoisted_123 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-  href: "#",
-  "class": "hover:text-primary-blue"
-}, "0", -1
-/* HOISTED */
-);
-
-var _hoisted_124 = {
+var _hoisted_119 = {
+  key: 0,
   "class": "overflow-hidden h-32 flex space-x-2 shadow bg-white"
 };
-
-var _hoisted_125 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-  src: "/img/img-4.jpg",
-  alt: "",
-  "class": "object-cover w-32 min-h-full"
-}, null, -1
-/* HOISTED */
-);
-
-var _hoisted_126 = {
+var _hoisted_120 = ["src"];
+var _hoisted_121 = {
   "class": "space-y-2 p-2"
 };
-
-var _hoisted_127 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-  href: "#",
-  "class": "text-xl font-semibold text-gray-600 hover:text-primary-blue leading-none"
-}, " Article Art UA 5 ")], -1
-/* HOISTED */
-);
-
-var _hoisted_128 = {
+var _hoisted_122 = {
   "class": "flex text-xs space-x-2 text-gray-400"
 };
-var _hoisted_129 = {
+var _hoisted_123 = {
   "class": "flex space-x-1"
 };
-
-var _hoisted_130 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)();
-
-var _hoisted_131 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+var _hoisted_124 = {
   href: "#",
   "class": "hover:text-primary-blue"
-}, "8 février 2022", -1
-/* HOISTED */
-);
-
-var _hoisted_132 = {
+};
+var _hoisted_125 = {
   "class": "flex space-x-1"
 };
 
-var _hoisted_133 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)();
-
-var _hoisted_134 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+var _hoisted_126 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
   href: "#",
   "class": "hover:text-primary-blue"
 }, "0", -1
 /* HOISTED */
 );
 
-var _hoisted_135 = {
+var _hoisted_127 = {
   "class": "lg:w-[30%]"
 };
-var _hoisted_136 = {
+var _hoisted_128 = {
   "class": "w-full"
 };
-var _hoisted_137 = {
+var _hoisted_129 = {
   "class": "text-white px-2 py-1 bg-primary-blue inline-block"
 };
-var _hoisted_138 = {
+var _hoisted_130 = {
   "class": "border-t-2 w-full border-primary-blue text-justify py-4"
 };
 
-var _hoisted_139 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+var _hoisted_131 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
   src: "/img/barre-laterale-africa.jpg'",
   alt: "",
   "class": "object-cover mx-auto"
@@ -26318,40 +26199,40 @@ var _hoisted_139 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElemen
 /* HOISTED */
 );
 
-var _hoisted_140 = {
+var _hoisted_132 = {
   "class": "w-full"
 };
-var _hoisted_141 = {
+var _hoisted_133 = {
   "class": "text-white px-2 py-1 bg-primary-blue inline-block"
 };
 
-var _hoisted_142 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_134 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "border-t-2 w-full border-primary-blue text-justify py-4"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p")], -1
 /* HOISTED */
 );
 
-var _hoisted_143 = {
+var _hoisted_135 = {
   "class": "w-full"
 };
-var _hoisted_144 = {
+var _hoisted_136 = {
   "class": "text-white px-2 py-1 bg-primary-blue inline-block"
 };
 
-var _hoisted_145 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_137 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "border-t-2 w-full border-primary-blue text-justify py-4"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p")], -1
 /* HOISTED */
 );
 
-var _hoisted_146 = {
+var _hoisted_138 = {
   "class": "w-full"
 };
-var _hoisted_147 = {
+var _hoisted_139 = {
   "class": "text-white px-2 py-1 bg-primary-blue inline-block"
 };
 
-var _hoisted_148 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_140 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "border-t-2 w-full border-primary-blue text-justify py-4"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p")], -1
 /* HOISTED */
@@ -26362,6 +26243,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   var _component_Caroussel = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Caroussel");
 
+  var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
+
   var _component_CalendarIcon = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("CalendarIcon");
 
   var _component_UserIcon = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("UserIcon");
@@ -26370,77 +26253,603 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   var _component_FilterArticle = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("FilterArticle");
 
-  var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
-
   var _component_Footer = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Footer");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Header), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Caroussel, {
-    posts: $setup.postCaroussel,
-    loading: $setup.loading
-  }, null, 8
-  /* PROPS */
-  , ["posts", "loading"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [_hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [_hoisted_10, _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CalendarIcon, {
-    "class": "h-4 w-4"
-  }), _hoisted_14, _hoisted_15]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_UserIcon, {
-    "class": "h-4 w-4"
-  }), _hoisted_17, _hoisted_18]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ChatIcon, {
-    "class": "h-4 w-4"
-  }), _hoisted_20, _hoisted_21])]), _hoisted_22])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [_hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_26, [_hoisted_27, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_29, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CalendarIcon, {
-    "class": "h-4 w-4"
-  }), _hoisted_30, _hoisted_31]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_32, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ChatIcon, {
-    "class": "h-4 w-4"
-  }), _hoisted_33, _hoisted_34])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_35, [_hoisted_36, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_37, [_hoisted_38, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_39, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_40, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CalendarIcon, {
-    "class": "h-4 w-4"
-  }), _hoisted_41, _hoisted_42]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_43, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ChatIcon, {
-    "class": "h-4 w-4"
-  }), _hoisted_44, _hoisted_45])])])])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_46, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_47, [_hoisted_48, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_49, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_50, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_51, [_hoisted_52, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_53, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_54, [_hoisted_55, _hoisted_56, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_57, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_58, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CalendarIcon, {
-    "class": "h-4 w-4"
-  }), _hoisted_59, _hoisted_60]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_61, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_UserIcon, {
-    "class": "h-4 w-4"
-  }), _hoisted_62, _hoisted_63]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_64, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ChatIcon, {
-    "class": "h-4 w-4"
-  }), _hoisted_65, _hoisted_66])]), _hoisted_67])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_68, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_69, [_hoisted_70, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_71, [_hoisted_72, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_73, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_74, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CalendarIcon, {
-    "class": "h-4 w-4"
-  }), _hoisted_75, _hoisted_76]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_77, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ChatIcon, {
-    "class": "h-4 w-4"
-  }), _hoisted_78, _hoisted_79])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_80, [_hoisted_81, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_82, [_hoisted_83, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_84, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_85, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CalendarIcon, {
-    "class": "h-4 w-4"
-  }), _hoisted_86, _hoisted_87]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_88, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ChatIcon, {
-    "class": "h-4 w-4"
-  }), _hoisted_89, _hoisted_90])])])])])])])]), _hoisted_91]), _hoisted_92, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_hoisted_93, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_94, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_95, [_hoisted_96, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_97, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_98, [_hoisted_99, _hoisted_100, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_101, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_102, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CalendarIcon, {
-    "class": "h-4 w-4"
-  }), _hoisted_103, _hoisted_104]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_105, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_UserIcon, {
-    "class": "h-4 w-4"
-  }), _hoisted_106, _hoisted_107]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_108, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ChatIcon, {
-    "class": "h-4 w-4"
-  }), _hoisted_109, _hoisted_110])]), _hoisted_111])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_112, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_113, [_hoisted_114, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_115, [_hoisted_116, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_117, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_118, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CalendarIcon, {
-    "class": "h-4 w-4"
-  }), _hoisted_119, _hoisted_120]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_121, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ChatIcon, {
-    "class": "h-4 w-4"
-  }), _hoisted_122, _hoisted_123])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_124, [_hoisted_125, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_126, [_hoisted_127, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_128, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_129, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CalendarIcon, {
-    "class": "h-4 w-4"
-  }), _hoisted_130, _hoisted_131]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_132, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ChatIcon, {
-    "class": "h-4 w-4"
-  }), _hoisted_133, _hoisted_134])])])])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_135, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FilterArticle), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_136, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_137, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('register')), 1
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Header), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Caroussel), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
+    "class": "text-white px-2 py-1 inline-block",
+    style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)('background:' + $setup.ministry1.color)
+  }, [_ctx.$i18n.locale == 'en' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.ministry1.name_en), 1
   /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_138, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+  )) : _ctx.$i18n.locale == 'fr' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.ministry1.name_fr), 1
+  /* TEXT */
+  )) : _ctx.$i18n.locale == 'es' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.ministry1.name_es), 1
+  /* TEXT */
+  )) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.ministry1.name_pt), 1
+  /* TEXT */
+  ))], 4
+  /* STYLE */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": "border-t-2 text-justify py-4",
+    style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)('border-color:' + $setup.ministry1.color)
+  }, [$setup.articles1.length != 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_7, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.articles1, function (article, index) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+      key: index
+    }, [index === 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+      to: {
+        name: 'show.post',
+        params: {
+          id: article.id
+        }
+      }
+    }, {
+      "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+        return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+          src: article.image,
+          alt: "",
+          "class": "object-cover w-full h-64"
+        }, null, 8
+        /* PROPS */
+        , _hoisted_9)];
+      }),
+      _: 2
+      /* DYNAMIC */
+
+    }, 1032
+    /* PROPS, DYNAMIC_SLOTS */
+    , ["to"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+      href: "#",
+      "class": "text-xs py-1 px-2 rounded text-white",
+      style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)('background:' + $setup.ministry4.color)
+    }, [_ctx.$i18n.locale == 'en' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.ministry4.name_en), 1
+    /* TEXT */
+    )) : _ctx.$i18n.locale == 'fr' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.ministry4.name_fr), 1
+    /* TEXT */
+    )) : _ctx.$i18n.locale == 'es' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.ministry4.name_es), 1
+    /* TEXT */
+    )) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.ministry4.name_pt), 1
+    /* TEXT */
+    ))], 4
+    /* STYLE */
+    )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+      to: {
+        name: 'show.post',
+        params: {
+          id: article.id
+        }
+      },
+      "class": "text-xl font-semibold text-gray-600 hover:text-primary-blue"
+    }, {
+      "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+        return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(article.title), 1
+        /* TEXT */
+        )];
+      }),
+      _: 2
+      /* DYNAMIC */
+
+    }, 1032
+    /* PROPS, DYNAMIC_SLOTS */
+    , ["to"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CalendarIcon, {
+      "class": "h-4 w-4"
+    }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(article.date), 1
+    /* TEXT */
+    )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_UserIcon, {
+      "class": "h-4 w-4"
+    }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(article.user.firstname), 1
+    /* TEXT */
+    )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ChatIcon, {
+      "class": "h-4 w-4"
+    }), _hoisted_22])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_23, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(article.content.substring(0, 19) + "..."), 1
+    /* TEXT */
+    )])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
+  }), 128
+  /* KEYED_FRAGMENT */
+  )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.articles1, function (article, index) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+      key: index
+    }, [index !== 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+      to: {
+        name: 'show.post',
+        params: {
+          id: article.id
+        }
+      },
+      "class": "w-36"
+    }, {
+      "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+        return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+          src: article.image,
+          alt: "",
+          "class": "object-cover w-full h-64"
+        }, null, 8
+        /* PROPS */
+        , _hoisted_26)];
+      }),
+      _: 2
+      /* DYNAMIC */
+
+    }, 1032
+    /* PROPS, DYNAMIC_SLOTS */
+    , ["to"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+      to: {
+        name: 'show.post',
+        params: {
+          id: article.id
+        }
+      },
+      "class": "text-xl font-semibold text-gray-600 hover:text-primary-blue"
+    }, {
+      "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+        return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(article.title), 1
+        /* TEXT */
+        )];
+      }),
+      _: 2
+      /* DYNAMIC */
+
+    }, 1032
+    /* PROPS, DYNAMIC_SLOTS */
+    , ["to"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_29, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CalendarIcon, {
+      "class": "h-4 w-4"
+    }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_30, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(article.date), 1
+    /* TEXT */
+    )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_31, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ChatIcon, {
+      "class": "h-4 w-4"
+    }), _hoisted_32])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
+  }), 128
+  /* KEYED_FRAGMENT */
+  ))])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 4
+  /* STYLE */
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_33, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_34, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
+    "class": "text-white px-2 py-1 inline-block",
+    style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)('background:' + $setup.ministry2.color)
+  }, [_ctx.$i18n.locale == 'en' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_35, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.ministry2.name_en), 1
+  /* TEXT */
+  )) : _ctx.$i18n.locale == 'fr' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_36, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.ministry2.name_fr), 1
+  /* TEXT */
+  )) : _ctx.$i18n.locale == 'es' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_37, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.ministry2.name_es), 1
+  /* TEXT */
+  )) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_38, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.ministry2.name_pt), 1
+  /* TEXT */
+  ))], 4
+  /* STYLE */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": "border-t-2 w-full text-justify py-4",
+    style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)('border-color:' + $setup.ministry2.color)
+  }, [$setup.articles2.length != 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_39, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.articles2, function (article, index) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+      key: index
+    }, [index === 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_40, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+      to: {
+        name: 'show.post',
+        params: {
+          id: article.id
+        }
+      }
+    }, {
+      "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+        return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+          src: article.image,
+          alt: "",
+          "class": "object-cover w-full h-64"
+        }, null, 8
+        /* PROPS */
+        , _hoisted_41)];
+      }),
+      _: 2
+      /* DYNAMIC */
+
+    }, 1032
+    /* PROPS, DYNAMIC_SLOTS */
+    , ["to"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_42, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_43, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+      href: "#",
+      "class": "text-xs py-1 px-2 rounded text-white",
+      style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)('background:' + $setup.ministry2.color)
+    }, [_ctx.$i18n.locale == 'en' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_44, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.ministry2.name_en), 1
+    /* TEXT */
+    )) : _ctx.$i18n.locale == 'fr' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_45, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.ministry2.name_fr), 1
+    /* TEXT */
+    )) : _ctx.$i18n.locale == 'es' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_46, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.ministry2.name_es), 1
+    /* TEXT */
+    )) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_47, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.ministry2.name_pt), 1
+    /* TEXT */
+    ))], 4
+    /* STYLE */
+    )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+      to: {
+        name: 'show.post',
+        params: {
+          id: article.id
+        }
+      },
+      "class": "text-xl font-semibold text-gray-600 hover:text-primary-blue"
+    }, {
+      "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+        return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(article.title), 1
+        /* TEXT */
+        )];
+      }),
+      _: 2
+      /* DYNAMIC */
+
+    }, 1032
+    /* PROPS, DYNAMIC_SLOTS */
+    , ["to"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_48, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_49, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CalendarIcon, {
+      "class": "h-4 w-4"
+    }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_50, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(article.date), 1
+    /* TEXT */
+    )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_51, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_UserIcon, {
+      "class": "h-4 w-4"
+    }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_52, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(article.user.firstname), 1
+    /* TEXT */
+    )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_53, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ChatIcon, {
+      "class": "h-4 w-4"
+    }), _hoisted_54])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_55, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(article.content.substring(0, 19) + "..."), 1
+    /* TEXT */
+    )])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
+  }), 128
+  /* KEYED_FRAGMENT */
+  )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_56, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.articles2, function (article, index) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+      key: index
+    }, [index !== 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_57, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+      to: {
+        name: 'show.post',
+        params: {
+          id: article.id
+        }
+      },
+      "class": "w-36"
+    }, {
+      "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+        return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+          src: article.image,
+          alt: "",
+          "class": "object-cover w-full h-64"
+        }, null, 8
+        /* PROPS */
+        , _hoisted_58)];
+      }),
+      _: 2
+      /* DYNAMIC */
+
+    }, 1032
+    /* PROPS, DYNAMIC_SLOTS */
+    , ["to"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_59, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+      to: {
+        name: 'show.post',
+        params: {
+          id: article.id
+        }
+      },
+      "class": "text-xl font-semibold text-gray-600 hover:text-primary-blue"
+    }, {
+      "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+        return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(article.title), 1
+        /* TEXT */
+        )];
+      }),
+      _: 2
+      /* DYNAMIC */
+
+    }, 1032
+    /* PROPS, DYNAMIC_SLOTS */
+    , ["to"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_60, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_61, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CalendarIcon, {
+      "class": "h-4 w-4"
+    }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_62, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(article.date), 1
+    /* TEXT */
+    )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_63, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ChatIcon, {
+      "class": "h-4 w-4"
+    }), _hoisted_64])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
+  }), 128
+  /* KEYED_FRAGMENT */
+  ))])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 4
+  /* STYLE */
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_65, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
+    "class": "text-white px-2 py-1 inline-block",
+    style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)('background:' + $setup.ministry3.color)
+  }, [_ctx.$i18n.locale == 'en' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_66, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.ministry3.name_en), 1
+  /* TEXT */
+  )) : _ctx.$i18n.locale == 'fr' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_67, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.ministry3.name_fr), 1
+  /* TEXT */
+  )) : _ctx.$i18n.locale == 'es' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_68, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.ministry3.name_es), 1
+  /* TEXT */
+  )) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_69, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.ministry3.name_pt), 1
+  /* TEXT */
+  ))], 4
+  /* STYLE */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": "border-t-2 w-full text-justify py-4",
+    style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)('border-color:' + $setup.ministry3.color)
+  }, [$setup.articles3.length != 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_70, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.articles3, function (article, index) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+      key: index
+    }, [index === 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_71, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+      to: {
+        name: 'show.post',
+        params: {
+          id: article.id
+        }
+      }
+    }, {
+      "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+        return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+          src: article.image,
+          alt: "",
+          "class": "object-cover w-full h-64"
+        }, null, 8
+        /* PROPS */
+        , _hoisted_72)];
+      }),
+      _: 2
+      /* DYNAMIC */
+
+    }, 1032
+    /* PROPS, DYNAMIC_SLOTS */
+    , ["to"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_73, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_74, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+      href: "#",
+      "class": "text-xs py-1 px-2 rounded text-white",
+      style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)('background:' + $setup.ministry3.color)
+    }, [_ctx.$i18n.locale == 'en' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_75, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.ministry3.name_en), 1
+    /* TEXT */
+    )) : _ctx.$i18n.locale == 'fr' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_76, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.ministry3.name_fr), 1
+    /* TEXT */
+    )) : _ctx.$i18n.locale == 'es' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_77, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.ministry3.name_es), 1
+    /* TEXT */
+    )) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_78, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.ministry3.name_pt), 1
+    /* TEXT */
+    ))], 4
+    /* STYLE */
+    )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+      to: {
+        name: 'show.post',
+        params: {
+          id: article.id
+        }
+      },
+      "class": "text-xl font-semibold text-gray-600 hover:text-primary-blue"
+    }, {
+      "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+        return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(article.title), 1
+        /* TEXT */
+        )];
+      }),
+      _: 2
+      /* DYNAMIC */
+
+    }, 1032
+    /* PROPS, DYNAMIC_SLOTS */
+    , ["to"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_79, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_80, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CalendarIcon, {
+      "class": "h-4 w-4"
+    }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_81, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(article.date), 1
+    /* TEXT */
+    )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_82, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_UserIcon, {
+      "class": "h-4 w-4"
+    }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_83, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(article.user.firstname), 1
+    /* TEXT */
+    )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_84, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ChatIcon, {
+      "class": "h-4 w-4"
+    }), _hoisted_85])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_86, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(article.content.substring(0, 19) + "..."), 1
+    /* TEXT */
+    )])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
+  }), 128
+  /* KEYED_FRAGMENT */
+  )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_87, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.articles3, function (article, index) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+      key: index
+    }, [index !== 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_88, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+      to: {
+        name: 'show.post',
+        params: {
+          id: article.id
+        }
+      },
+      "class": "w-36"
+    }, {
+      "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+        return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+          src: article.image,
+          alt: "",
+          "class": "object-cover h-64"
+        }, null, 8
+        /* PROPS */
+        , _hoisted_89)];
+      }),
+      _: 2
+      /* DYNAMIC */
+
+    }, 1032
+    /* PROPS, DYNAMIC_SLOTS */
+    , ["to"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_90, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+      to: {
+        name: 'show.post',
+        params: {
+          id: article.id
+        }
+      },
+      "class": "text-xl font-semibold text-gray-600 hover:text-primary-blue"
+    }, {
+      "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+        return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(article.title), 1
+        /* TEXT */
+        )];
+      }),
+      _: 2
+      /* DYNAMIC */
+
+    }, 1032
+    /* PROPS, DYNAMIC_SLOTS */
+    , ["to"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_91, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_92, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CalendarIcon, {
+      "class": "h-4 w-4"
+    }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_93, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(article.date), 1
+    /* TEXT */
+    )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_94, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ChatIcon, {
+      "class": "h-4 w-4"
+    }), _hoisted_95])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
+  }), 128
+  /* KEYED_FRAGMENT */
+  ))])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 4
+  /* STYLE */
+  )])]), _hoisted_96, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
+    "class": "text-white px-3 py-2 mb-3 block",
+    style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)('background:' + $setup.ministry4.color)
+  }, [_ctx.$i18n.locale == 'en' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_97, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.ministry4.name_en), 1
+  /* TEXT */
+  )) : _ctx.$i18n.locale == 'fr' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_98, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.ministry4.name_fr), 1
+  /* TEXT */
+  )) : _ctx.$i18n.locale == 'es' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_99, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.ministry4.name_es), 1
+  /* TEXT */
+  )) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_100, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.ministry4.name_pt), 1
+  /* TEXT */
+  ))], 4
+  /* STYLE */
+  ), $setup.articles4.length != 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_101, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.articles4, function (article, index) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+      key: index
+    }, [index === 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_102, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+      to: {
+        name: 'show.post',
+        params: {
+          id: article.id
+        }
+      }
+    }, {
+      "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+        return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+          src: article.image,
+          alt: "",
+          "class": "object-cover w-full h-64"
+        }, null, 8
+        /* PROPS */
+        , _hoisted_103)];
+      }),
+      _: 2
+      /* DYNAMIC */
+
+    }, 1032
+    /* PROPS, DYNAMIC_SLOTS */
+    , ["to"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_104, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_105, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+      href: "#",
+      "class": "text-xs py-1 px-2 rounded text-white",
+      style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)('background:' + $setup.ministry4.color)
+    }, [_ctx.$i18n.locale == 'en' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_106, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.ministry4.name_en), 1
+    /* TEXT */
+    )) : _ctx.$i18n.locale == 'fr' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_107, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.ministry4.name_fr), 1
+    /* TEXT */
+    )) : _ctx.$i18n.locale == 'es' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_108, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.ministry4.name_es), 1
+    /* TEXT */
+    )) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_109, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.ministry4.name_pt), 1
+    /* TEXT */
+    ))], 4
+    /* STYLE */
+    )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+      to: {
+        name: 'show.post',
+        params: {
+          id: article.id
+        }
+      },
+      "class": "text-xl font-semibold text-gray-600 hover:text-primary-blue"
+    }, {
+      "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+        return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(article.title), 1
+        /* TEXT */
+        )];
+      }),
+      _: 2
+      /* DYNAMIC */
+
+    }, 1032
+    /* PROPS, DYNAMIC_SLOTS */
+    , ["to"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_110, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_111, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CalendarIcon, {
+      "class": "h-4 w-4"
+    }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_112, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(article.date), 1
+    /* TEXT */
+    )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_113, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_UserIcon, {
+      "class": "h-4 w-4"
+    }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_114, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(article.user.firstname), 1
+    /* TEXT */
+    )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_115, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ChatIcon, {
+      "class": "h-4 w-4"
+    }), _hoisted_116])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_117, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(article.content.substring(0, 19) + "..."), 1
+    /* TEXT */
+    )])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
+  }), 128
+  /* KEYED_FRAGMENT */
+  )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_118, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.articles4, function (article, index) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+      key: index
+    }, [index !== 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_119, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+      to: {
+        name: 'show.post',
+        params: {
+          id: article.id
+        }
+      },
+      "class": "w-36"
+    }, {
+      "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+        return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+          src: article.image,
+          alt: "",
+          "class": "object-cover w-full h-64"
+        }, null, 8
+        /* PROPS */
+        , _hoisted_120)];
+      }),
+      _: 2
+      /* DYNAMIC */
+
+    }, 1032
+    /* PROPS, DYNAMIC_SLOTS */
+    , ["to"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_121, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+      to: {
+        name: 'show.post',
+        params: {
+          id: article.id
+        }
+      },
+      "class": "text-xl font-semibold text-gray-600 hover:text-primary-blue"
+    }, {
+      "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+        return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(article.title), 1
+        /* TEXT */
+        )];
+      }),
+      _: 2
+      /* DYNAMIC */
+
+    }, 1032
+    /* PROPS, DYNAMIC_SLOTS */
+    , ["to"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_122, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_123, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CalendarIcon, {
+      "class": "h-4 w-4"
+    }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_124, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(article.date), 1
+    /* TEXT */
+    )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_125, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ChatIcon, {
+      "class": "h-4 w-4"
+    }), _hoisted_126])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
+  }), 128
+  /* KEYED_FRAGMENT */
+  ))])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_127, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FilterArticle), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_128, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_129, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t("register")), 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_130, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     to: {
       name: 'pack'
     }
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_139];
+      return [_hoisted_131];
     }),
     _: 1
     /* STABLE */
 
-  })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_140, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_141, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('recent-posts')), 1
+  })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_132, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_133, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t("recent-posts")), 1
   /* TEXT */
-  ), _hoisted_142]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_143, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_144, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('video')), 1
+  ), _hoisted_134]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_135, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_136, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t("video")), 1
   /* TEXT */
-  ), _hoisted_145]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_146, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_147, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('presentation')), 1
+  ), _hoisted_137]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_138, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_139, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t("presentation")), 1
   /* TEXT */
-  ), _hoisted_148])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Footer)], 64
+  ), _hoisted_140])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Footer)], 64
   /* STABLE_FRAGMENT */
   );
 }
@@ -67350,7 +67759,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"lastest":"Lastest","fr":"Français","en":"English","es":"Español","pt":"Português","articles":"Articles","profile":"Profile","propau":"PropAU","univerities":"Universities","contact":"Contact","jobs":"Jobs","particular":"Particular","establishment":"Establishment","ip":"Political Institutions ","login":"Login","about-title":"About","about-text":"AfricaUnity is a professional social network and digital think tank for the development of Africa and Latin America. Through written articles offered to ministries, institutions and organizations, AfricaUnity contributors participate in the improvement of the various States. Participants have the opportunity to interact on any subject in an ethical and courteous manner. It is a platform on which you will find many CVs and presentations of public and private organizations.","filter-article":"Articles Filter","filter-propau":"PropAU Filter","filter":"Filter","key-words":"Keys Words","continent":"Continent","zoned":"Zoned","country":"Country","ministry":"Ministry","search":"Search","register":"Register","recent-posts":"Recent Posts","video":"Video","presentation":"Presentation","language":"Language","all":"","firstname":"Name","lastname":"First name","adresse":"Adress","login-welcome-msg":"Welcome to Africaunity","login-desc":"Log in to your account and interact in the spirit of courtesy of the community. Do not hesitate to contact us at any time if you encounter any difficulties.Log in to your account and interact in the spirit of courtesy of the community. Do not hesitate to contact us at any time if you encounter any difficulties.","no-signup":"Do not have an account yet ?","already-signup":"Already have an account ?","email":"E-mail","password":"Password","confirm-password":"Confirm password","password-forgot":"Forgot your password","show-confidentail-politic":"View Privacy Policy","confirm-confidentail-politic":"Confirm that you accept our privacy policy","create-account":"Create an account","pack":"Pack","account":"My account","create-other-account":"Do you want to create an account instead?","business":"Business","politic":"Politics","register-free-desc":"We are happy to have you in this community dedicated to the emergence of Africa and Latin America. Fill in the fields to create your free account and access special member benefits.","register-desc":"Please create an account that suits your status and benefit from the many advantages","register-pay-desc":"We are happy to have you in this community dedicated to the emergence of Africa and Latin America. Fill in the fields to create your account and access special member benefits.","social-reason":"Social reason","denomination":"Denomination","plan-desc1":"Presentation page","plan-desc2":"Write articles","plan-desc3":"Write PropAU","plan-desc4":"Comment on posts","plan-desc5":"Search jobs","plan-desc6":"Post ads","plan-desc7":"Increase your visibility","plan-desc8":"Post jobs","logout":"Logout","corporation":"Corporation","physical-person":"Physical Person","free":"Free","year":"year","unlimited":"Unlimited","essential-features":"Essential Features","advanced-features":"Advanced Features"}');
+module.exports = JSON.parse('{"lastest":"Lastest","fr":"Français","en":"English","es":"Español","pt":"Português","articles":"Articles","profile":"Profile","propau":"PropAU","univerities":"Universities","contact":"Contact","jobs":"Jobs","particular":"Particular","establishment":"Establishment","ip":"Political Institutions ","login":"Login","about-title":"About","about-text":"AfricaUnity is a professional social network and digital think tank for the development of Africa and Latin America. Through written articles offered to ministries, institutions and organizations, AfricaUnity contributors participate in the improvement of the various States. Participants have the opportunity to interact on any subject in an ethical and courteous manner. It is a platform on which you will find many CVs and presentations of public and private organizations.","filter-article":"Articles Filter","filter-propau":"PropAU Filter","filter":"Filter","key-words":"Keys Words","continent":"Continent","zoned":"Zoned","country":"Country","ministry":"Ministry","search":"Search","register":"Register","recent-posts":"Recent Posts","video":"Video","presentation":"Presentation","language":"Language","all":"","firstname":"Name","lastname":"First name","adresse":"Adress","login-welcome-msg":"Welcome to Africaunity","login-desc":"Log in to your account and interact in the spirit of courtesy of the community. Do not hesitate to contact us at any time if you encounter any difficulties.Log in to your account and interact in the spirit of courtesy of the community. Do not hesitate to contact us at any time if you encounter any difficulties.","no-signup":"Do not have an account yet ?","already-signup":"Already have an account ?","email":"E-mail","password":"Password","confirm-password":"Confirm password","password-forgot":"Forgot your password","show-confidentail-politic":"View Privacy Policy","confirm-confidentail-politic":"Confirm that you accept our privacy policy","create-account":"Create an account","pack":"Pack","account":"My account","create-other-account":"Do you want to create an account instead?","business":"Business","politic":"Politics","register-free-desc":"We are happy to have you in this community dedicated to the emergence of Africa and Latin America. Fill in the fields to create your free account and access special member benefits.","register-desc":"Please create an account that suits your status and benefit from the many advantages","register-pay-desc":"We are happy to have you in this community dedicated to the emergence of Africa and Latin America. Fill in the fields to create your account and access special member benefits.","social-reason":"Social reason","denomination":"Denomination","plan-desc1":"Presentation page","plan-desc2":"Write articles","plan-desc3":"Write PropAU","plan-desc4":"Comment on posts","plan-desc5":"Search jobs","plan-desc6":"Post ads","plan-desc7":"Increase your visibility","plan-desc8":"Post jobs","logout":"Logout","corporation":"Corporation","physical-person":"Physical Person","free":"Free","year":"year","unlimited":"Unlimited","essential-features":"Essential Features","advanced-features":"Advanced Features","add":"Add","your":"Your","add-desc-1":"will be published in the current language of the site","edit":"Edit","select-lang":"","read-more":"Read More","no-content":"No Content"}');
 
 /***/ }),
 
@@ -67361,7 +67770,7 @@ module.exports = JSON.parse('{"lastest":"Lastest","fr":"Français","en":"English
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"lastest":"Reciente","fr":"Français","en":"English","es":"Español","pt":"Português","articles":"Articulos","profile":"Perfil","propau":"PropAU","univerities":"Universidades","contact":"Contactos","jobs":"Jobs","particular":"Especial","establishment":"Establecimiento","ip":"Instituciones politicas","login":"Iniciar sesión","about-title":"A proposito","about-text":"AfricaUnity es una red social profesional y un think tank digital para el desarrollo de África y América Latina. A través de artículos escritos ofrecidos a ministerios, instituciones y organizaciones, los contribuyentes de AfricaUnity participan en la mejora de los distintos Estados. Los participantes tienen la oportunidad de interactuar sobre cualquier tema de manera ética y cortés. Es una plataforma en la que encontrarás muchos CV y ​​presentaciones de organizaciones públicas y privadas.","filter-article":"Filtro de Articulos","filter-propau":"Filtro de PropAU","filter":"Filtrar","key-words":"Palabra Clave","continent":"Continente","zoned":"Zonificado","country":"Pais","ministry":"Ministro","search":"Buscar","register":"Registrarse","recent-posts":"Mensajes Recientes","video":"Video","presentation":"Presentacion","language":"Lengua","all":"","firstname":"Apellido","lastname":"Primer nombre","adresse":"Habla a","login-welcome-msg":"Bienvenido a AfricaUnity","login-desc":"Inicie sesión en su cuenta e interactúe con el espíritu de cortesía de la comunidad. No dude en ponerse en contacto con nosotros en cualquier momento si encuentra alguna dificultad.","no-signup":"Aun no tiene una cuenta ?","already-signup":"Ya tienes una cuenta ?","email":"E-mail","password":"Contraseña","confirm-password":"Confirmar la contraseña","password-forgot":"Contraseña olvidada","show-confidentail-politic":"Ver política de privacidad","confirm-confidentail-politic":"Confirma que aceptas nuestra política de privacidad","create-account":"Crear una cuenta","pack":"Paquete","account":"Mi cuenta","create-other-account":"¿Quieres crear una cuenta en su lugar","business":"Negocio","politic":"Política","register-free-desc":"Estamos felices de tenerte en esta comunidad dedicada al surgimiento de África y América Latina. Complete los campos para crear su cuenta gratuita y acceder a los beneficios especiales para miembros.","register-desc":"Cree una cuenta que se adapte a su estado y benefíciese de las numerosas ventajas","register-pay-desc":"Estamos felices de tenerte en esta comunidad dedicada al surgimiento de África y América Latina. Complete los campos para crear su cuenta y acceder a beneficios especiales para miembros.","social-reason":"Razón social","denomination":"Denominación","plan-desc1":"Página de presentación","plan-desc2":"Escribe artículos","plan-desc3":"Escritura de PropAU","plan-desc4":"Comentar en las publicaciones","plan-desc5":"Buscar empleos","plan-desc6":"Publicar anuncios","plan-desc7":"Aumenta tu visibilidad","plan-desc8":"Publicar trabajos","logout":"Cerrar sesión","corporation":"Corporación","physical-person":"Persona física","free":"Gratis","year":"año","unlimited":"Ilimitado","essential-features":"Características esenciales","advanced-features":"Características avanzadas"}');
+module.exports = JSON.parse('{"lastest":"Reciente","fr":"Français","en":"English","es":"Español","pt":"Português","articles":"Articulos","profile":"Perfil","propau":"PropAU","univerities":"Universidades","contact":"Contactos","jobs":"Jobs","particular":"Especial","establishment":"Establecimiento","ip":"Instituciones politicas","login":"Iniciar sesión","about-title":"A proposito","about-text":"AfricaUnity es una red social profesional y un think tank digital para el desarrollo de África y América Latina. A través de artículos escritos ofrecidos a ministerios, instituciones y organizaciones, los contribuyentes de AfricaUnity participan en la mejora de los distintos Estados. Los participantes tienen la oportunidad de interactuar sobre cualquier tema de manera ética y cortés. Es una plataforma en la que encontrarás muchos CV y ​​presentaciones de organizaciones públicas y privadas.","filter-article":"Filtro de Articulos","filter-propau":"Filtro de PropAU","filter":"Filtrar","key-words":"Palabra Clave","continent":"Continente","zoned":"Zonificado","country":"Pais","ministry":"Ministro","search":"Buscar","register":"Registrarse","recent-posts":"Mensajes Recientes","video":"Video","presentation":"Presentacion","language":"Lengua","all":"","firstname":"Apellido","lastname":"Primer nombre","adresse":"Habla a","login-welcome-msg":"Bienvenido a AfricaUnity","login-desc":"Inicie sesión en su cuenta e interactúe con el espíritu de cortesía de la comunidad. No dude en ponerse en contacto con nosotros en cualquier momento si encuentra alguna dificultad.","no-signup":"Aun no tiene una cuenta ?","already-signup":"Ya tienes una cuenta ?","email":"E-mail","password":"Contraseña","confirm-password":"Confirmar la contraseña","password-forgot":"Contraseña olvidada","show-confidentail-politic":"Ver política de privacidad","confirm-confidentail-politic":"Confirma que aceptas nuestra política de privacidad","create-account":"Crear una cuenta","pack":"Paquete","account":"Mi cuenta","create-other-account":"¿Quieres crear una cuenta en su lugar","business":"Negocio","politic":"Política","register-free-desc":"Estamos felices de tenerte en esta comunidad dedicada al surgimiento de África y América Latina. Complete los campos para crear su cuenta gratuita y acceder a los beneficios especiales para miembros.","register-desc":"Cree una cuenta que se adapte a su estado y benefíciese de las numerosas ventajas","register-pay-desc":"Estamos felices de tenerte en esta comunidad dedicada al surgimiento de África y América Latina. Complete los campos para crear su cuenta y acceder a beneficios especiales para miembros.","social-reason":"Razón social","denomination":"Denominación","plan-desc1":"Página de presentación","plan-desc2":"Escribe artículos","plan-desc3":"Escritura de PropAU","plan-desc4":"Comentar en las publicaciones","plan-desc5":"Buscar empleos","plan-desc6":"Publicar anuncios","plan-desc7":"Aumenta tu visibilidad","plan-desc8":"Publicar trabajos","logout":"Cerrar sesión","corporation":"Corporación","physical-person":"Persona física","free":"Gratis","year":"año","unlimited":"Ilimitado","essential-features":"Características esenciales","advanced-features":"Características avanzadas","add":"Agregar","edit":"Editar","your":"Tu","add-desc-1":"se publicará en el idioma actual del sitio","select-lang":"","read-more":"Leer más","no-content":"Sin contenido"}');
 
 /***/ }),
 
@@ -67372,7 +67781,7 @@ module.exports = JSON.parse('{"lastest":"Reciente","fr":"Français","en":"Englis
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"lastest":"Récents","fr":"Français","en":"English","es":"Español","pt":"Português","articles":"Articles","profile":"Profil","propau":"PropAU","univerities":"Universités","contact":"Contact","jobs":"Jobs","particular":"Particulier","establishment":"Etablissement","ip":"Institutions Politique","login":"Se Connecter","register":"S\'inscrire","about-title":"A Propos","about-text":"AfricaUnity est un réseau social professionnel et un groupe de réflexion numérique pour le développement de l\'Afrique et de l\'Amérique latine. A travers des articles écrits proposés aux ministères, institutions et organisations, les contributeurs d\'AfricaUnity participent à l\'amélioration des différents Etats. Les participants ont la possibilité d\'interagir sur n\'importe quel sujet de manière éthique et courtoise. C\'est une plateforme sur laquelle vous trouverez de nombreux CV et présentations d\'organismes publics et privés.","filter-article":"Filtre Articles","filter-propau":"Filtre PropAU","filter":"Filtrer","key-words":"Mot Clés","continent":"Continent","zoned":"Zone","country":"Pays","ministry":"Ministère","search":"Recherche","recent-posts":"Postes Récents","video":"Vidéo","presentation":"Présentation","language":"Langue","all":"","firstname":"Nom","lastname":"Prénom","adresse":"Adresse","login-welcome-msg":"Bienvenue sur AfricaUnity","login-desc":"Connectez-vous à votre compte et interagissez dans l’esprit de courtoisie de la communauté. N’hésitez pas à nous contacter à tout moment si vous rencontrez des difficultés quelconques.","no-signup":"Vous n\'avez pas encore de compte ?","already-signup":"Vous avez déja un compte ?","email":"E-mail","password":"Mot de passe","confirm-password":"Confirmer le Mot de passe","password-forgot":"Mot de passe oublié","show-confidentail-politic":"Afficher la politique de confidentialité","confirm-confidentail-politic":"Confirmer que vous acceptez notre politique de confidentialité","create-account":"Créer un compte","pack":"Pack","account":"Mon Compte","create-other-account":"Vous voulez plutot créer un compte","business":"Business","politic":"Politique","register-free-desc":"Nous sommes heureux de vous avoir dans cette communauté dédiée à l’émergence de l’Afrique et de l’Amérique Latine. Remplissez les champs pour créer votre compte gratuitement et accédez aux avantages spéciaux des membres.","register-desc":"Merci de créer un compte qui sied à votre statut et bénéficiez des nombreux avantages","register-pay-desc":"Nous sommes heureux de vous avoir dans cette communauté dédiée à l’émergence de l’Afrique et de l’Amérique Latine. Remplissez les champs pour créer votre compte et accédez aux avantages spéciaux des membres.","social-reason":"Raison Social","denomination":"Dénomination","plan-desc1":"Page de présentation","plan-desc2":"Rédiger des articles","plan-desc3":"Rédiger des PropAU","plan-desc4":"Commenter les publications","plan-desc5":"Rechercher des jobs","plan-desc6":"Poster des annonces","plan-desc7":"Augmenter votre visibilité","plan-desc8":"Poster des jobs","logout":"Déconnexion","corporation":"Personne Morale","physical-person":"Personne physique","free":"Gratuit","year":"An","unlimited":"Illimité","essential-features":"Essential Features","advanced-features":"Advanced Features"}');
+module.exports = JSON.parse('{"lastest":"Récents","fr":"Français","en":"English","es":"Español","pt":"Português","articles":"Articles","profile":"Profil","propau":"PropAU","univerities":"Universités","contact":"Contact","jobs":"Jobs","particular":"Particulier","establishment":"Etablissement","ip":"Institutions Politique","login":"Se Connecter","register":"S\'inscrire","about-title":"A Propos","about-text":"AfricaUnity est un réseau social professionnel et un groupe de réflexion numérique pour le développement de l\'Afrique et de l\'Amérique latine. A travers des articles écrits proposés aux ministères, institutions et organisations, les contributeurs d\'AfricaUnity participent à l\'amélioration des différents Etats. Les participants ont la possibilité d\'interagir sur n\'importe quel sujet de manière éthique et courtoise. C\'est une plateforme sur laquelle vous trouverez de nombreux CV et présentations d\'organismes publics et privés.","filter-article":"Filtre Articles","filter-propau":"Filtre PropAU","filter":"Filtrer","key-words":"Mot Clés","continent":"Continent","zoned":"Zone","country":"Pays","ministry":"Ministère","search":"Recherche","recent-posts":"Postes Récents","video":"Vidéo","presentation":"Présentation","language":"Langue","all":"","firstname":"Nom","lastname":"Prénom","adresse":"Adresse","login-welcome-msg":"Bienvenue sur AfricaUnity","login-desc":"Connectez-vous à votre compte et interagissez dans l’esprit de courtoisie de la communauté. N’hésitez pas à nous contacter à tout moment si vous rencontrez des difficultés quelconques.","no-signup":"Vous n\'avez pas encore de compte ?","already-signup":"Vous avez déja un compte ?","email":"E-mail","password":"Mot de passe","confirm-password":"Confirmer le Mot de passe","password-forgot":"Mot de passe oublié","show-confidentail-politic":"Afficher la politique de confidentialité","confirm-confidentail-politic":"Confirmer que vous acceptez notre politique de confidentialité","create-account":"Créer un compte","pack":"Pack","account":"Mon Compte","create-other-account":"Vous voulez plutot créer un compte","business":"Business","politic":"Politique","register-free-desc":"Nous sommes heureux de vous avoir dans cette communauté dédiée à l’émergence de l’Afrique et de l’Amérique Latine. Remplissez les champs pour créer votre compte gratuitement et accédez aux avantages spéciaux des membres.","register-desc":"Merci de créer un compte qui sied à votre statut et bénéficiez des nombreux avantages","register-pay-desc":"Nous sommes heureux de vous avoir dans cette communauté dédiée à l’émergence de l’Afrique et de l’Amérique Latine. Remplissez les champs pour créer votre compte et accédez aux avantages spéciaux des membres.","social-reason":"Raison Social","denomination":"Dénomination","plan-desc1":"Page de présentation","plan-desc2":"Rédiger des articles","plan-desc3":"Rédiger des PropAU","plan-desc4":"Commenter les publications","plan-desc5":"Rechercher des jobs","plan-desc6":"Poster des annonces","plan-desc7":"Augmenter votre visibilité","plan-desc8":"Poster des jobs","logout":"Déconnexion","corporation":"Personne Morale","physical-person":"Personne physique","free":"Gratuit","year":"An","unlimited":"Illimité","essential-features":"Essential Features","advanced-features":"Advanced Features","add":"Ajouter un","edit":"Editer un","your":"Votre","add-desc-1":"sera publié dans la langue actuelle du site","select-lang":"","read-more":"Lire la suite","no-content":"Pas de contenu"}');
 
 /***/ }),
 
@@ -67383,7 +67792,7 @@ module.exports = JSON.parse('{"lastest":"Récents","fr":"Français","en":"Englis
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"lastest":"Recente","fr":"Français","en":"English","es":"Español","pt":"Português","articles":"Artigos","profile":"Perfil","propau":"PropAU","univerities":"Universidades","contact":"Contactos","jobs":"Jobs","particular":"Especial","establishment":"Establecimiento","ip":"Instituciones politicas","login":"Login","about-title":"A propósito","about-text":"AfricaUnity é uma rede social profissional e um think tank digital para o desenvolvimento da África e da América Latina. Através de artigos escritos oferecidos a ministérios, instituições e organizações, os contribuintes da AfricaUnity participam na melhoria dos vários Estados. Os participantes têm a oportunidade de interagir sobre qualquer assunto de forma ética e cortês. É uma plataforma na qual você encontrará muitos currículos e apresentações de organizações públicas e privadas.","filter-article":"Filtro de Artigos","filter-propau":"Filtro de PropAU","filter":"Filtro","key-words":"Palavra Chave","continent":"Continente","zoned":"Zoneado","country":"Pais","ministry":"Ministério","search":"Pesquisa","register":"Registro","recent-posts":"Postagens Recentes","video":"Video","presentation":"Apresentaçéão","language":"Lingua","all":"","firstname":"Nome","lastname":"Primeiro nome","adresse":"Endereço","login-welcome-msg":"Bem-vindo à AfricaUnity","login-desc":"Faça login na sua conta e interaja no espírito de cortesia da comunidade. Não hesite em nos contatar a qualquer momento se encontrar alguma dificuldade.","no-signup":"Não tem uma conta ainda ?","already-signup":"Já tem uma conta ?","email":"E-mail","password":"Senha","confirm-password":"Confirme a Senha","password-forgot":"Esqueceu sua senha","show-confidentail-politic":"Ver Política de Privacidade","confirm-confidentail-politic":"Confirme que você aceita nossa política de privacidade","create-account":"Crie a sua conta aqui","pack":"Pacote","account":"Minha conta","create-other-account":"Deseja criar uma conta em vez disso?","business":"O negócio","politic":"Política","register-free-desc":"Estamos felizes em tê-lo nesta comunidade dedicada ao surgimento da África e da América Latina. Preencha os campos para criar sua conta gratuita e acessar benefícios especiais para membros.","register-desc":"Por favor, crie uma conta que se adapte ao seu status e beneficie-se das muitas vantagens","register-pay-desc":"Estamos felizes em tê-lo nesta comunidade dedicada ao surgimento da África e da América Latina. Preencha os campos para criar sua conta e acessar benefícios especiais para membros.","social-reason":"Razão social","denomination":"Denominação","plan-desc1":"Página de apresentação","plan-desc2":"Escrever artigos","plan-desc3":"Escrever PropAU","plan-desc4":"Comentar nas postagens","plan-desc5":"Procurar empregos","plan-desc6":"Publicar anúncios","plan-desc7":"Aumente sua visibilidade","plan-desc8":"Postar vagas","logout":"Sair","corporation":"Corporation","physical-person":"Pessoa física","free":"Livre","year":"ano","unlimited":"Ilimitado","essential-features":"Caracteristicas essenciais","advanced-features":"Características avançadas"}');
+module.exports = JSON.parse('{"lastest":"Recente","fr":"Français","en":"English","es":"Español","pt":"Português","articles":"Artigos","profile":"Perfil","propau":"PropAU","univerities":"Universidades","contact":"Contactos","jobs":"Jobs","particular":"Especial","establishment":"Establecimiento","ip":"Instituciones politicas","login":"Login","about-title":"A propósito","about-text":"AfricaUnity é uma rede social profissional e um think tank digital para o desenvolvimento da África e da América Latina. Através de artigos escritos oferecidos a ministérios, instituições e organizações, os contribuintes da AfricaUnity participam na melhoria dos vários Estados. Os participantes têm a oportunidade de interagir sobre qualquer assunto de forma ética e cortês. É uma plataforma na qual você encontrará muitos currículos e apresentações de organizações públicas e privadas.","filter-article":"Filtro de Artigos","filter-propau":"Filtro de PropAU","filter":"Filtro","key-words":"Palavra Chave","continent":"Continente","zoned":"Zoneado","country":"Pais","ministry":"Ministério","search":"Pesquisa","register":"Registro","recent-posts":"Postagens Recentes","video":"Video","presentation":"Apresentaçéão","language":"Lingua","all":"","firstname":"Nome","lastname":"Primeiro nome","adresse":"Endereço","login-welcome-msg":"Bem-vindo à AfricaUnity","login-desc":"Faça login na sua conta e interaja no espírito de cortesia da comunidade. Não hesite em nos contatar a qualquer momento se encontrar alguma dificuldade.","no-signup":"Não tem uma conta ainda ?","already-signup":"Já tem uma conta ?","email":"E-mail","password":"Senha","confirm-password":"Confirme a Senha","password-forgot":"Esqueceu sua senha","show-confidentail-politic":"Ver Política de Privacidade","confirm-confidentail-politic":"Confirme que você aceita nossa política de privacidade","create-account":"Crie a sua conta aqui","pack":"Pacote","account":"Minha conta","create-other-account":"Deseja criar uma conta em vez disso?","business":"O negócio","politic":"Política","register-free-desc":"Estamos felizes em tê-lo nesta comunidade dedicada ao surgimento da África e da América Latina. Preencha os campos para criar sua conta gratuita e acessar benefícios especiais para membros.","register-desc":"Por favor, crie uma conta que se adapte ao seu status e beneficie-se das muitas vantagens","register-pay-desc":"Estamos felizes em tê-lo nesta comunidade dedicada ao surgimento da África e da América Latina. Preencha os campos para criar sua conta e acessar benefícios especiais para membros.","social-reason":"Razão social","denomination":"Denominação","plan-desc1":"Página de apresentação","plan-desc2":"Escrever artigos","plan-desc3":"Escrever PropAU","plan-desc4":"Comentar nas postagens","plan-desc5":"Procurar empregos","plan-desc6":"Publicar anúncios","plan-desc7":"Aumente sua visibilidade","plan-desc8":"Postar vagas","logout":"Sair","corporation":"Corporation","physical-person":"Pessoa física","free":"Livre","year":"ano","unlimited":"Ilimitado","essential-features":"Caracteristicas essenciais","advanced-features":"Características avançadas","add":"Adicionar","edit":"Editar","your":"Seu","add-desc-1":"será publicado no idioma atual do site","select-lang":"","read-more":"consulte Mais informação","no-content":"Sem conteúdo"}');
 
 /***/ })
 

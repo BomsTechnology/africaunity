@@ -20,6 +20,12 @@ class MinistryController extends Controller
         return MinistryResource::collection(Ministry::latest()->get());
     }
 
+
+    public function ministry_home()
+    {
+        return MinistryResource::collection(Ministry::latest()->limit(4)->get());
+    }
+
     /**
      * Store a newly created resource in storage.
      *
