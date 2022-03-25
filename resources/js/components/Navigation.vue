@@ -1,7 +1,7 @@
 <template>
     <div class="bg-menu border-t-4 text-md font-semibold border-primary-blue px-4 pb-2 flex justify-between relative w-full z-40">
         <nav class="hidden lg:flex">
-            <router-link :to="{name:'home'}" class="text-white transition-colors duration-200 hover:bg-primary-blue px-3 py-2 flex items-center justify-center">
+            <router-link :to="{name:'home'}" class="text-white transition-colors duration-200 hover:bg-primary-blue px-3 py-2 flex justify-center items-start">
                 <HomeIcon class="h-6 w-6"/>
             </router-link>
 
@@ -43,13 +43,13 @@
                 {{ $t('contact') }}
             </router-link>
 
-            <router-link @mouseleave="open.logout = false"  v-if="token != ''" :to="{name:'compte',  params: { id : 'particular' }}" class="text-white relative transition-colors duration-200 bg-primary-blue px-3 py-2 mx-2 uppercase">
+            <router-link @mouseleave="open.logout = false"  v-if="token != ''" :to="{name:'compte',  params: {name: user.firstname+'-'+user.lastname, id : user.id }}" class="text-white relative transition-colors duration-200 bg-primary-blue px-3 py-2 mx-2 uppercase">
                 <div @mouseover="open.logout = true" class="flex items-start space-x-2">
-                    <span v-if="user.value.avatar">
+                    <span v-if="user.avatar">
                         <img :src="'/img_user/' + user.avatar" alt="">
                     </span>
                     <UserCircleIcon v-else class="h-8 w-8 text-white"/>
-                    <span>{{ user.value.firstname }}</span>
+                    <span>{{ user.firstname }}</span>
                     <span><ChevronDownIcon class="h-5 w-5"/></span>
                 </div>
                 <div v-show="open.logout" class="absolute left-0 w-48 flex flex-col py-2 mt-2 bg-menu z-40">
@@ -137,7 +137,7 @@
                     {{ $t('univerities') }}
                 </router-link>
 
-                <router-link :to="{name:'jobs'}" class="text-menu transition-colors duration-200 hover:text-white hover:bg-primary-blue px-3 py-2 uppercase">
+                <router-link  :to="{name:'jobs'}" class="text-menu transition-colors duration-200 hover:text-white hover:bg-primary-blue px-3 py-2 uppercase">
                     {{ $t('jobs') }}
                 </router-link>
 
@@ -145,13 +145,13 @@
                     {{ $t('contact') }}
                 </router-link>
 
-                <router-link  v-if="token != ''" :to="{name:'compte',  params: { id : 'particular' }}">
+                <router-link  v-if="token != ''" :to="{name:'compte',  params: { name: user.firstname+'-'+user.lastname, id : user.id }}">
                 <div class="flex space-x-2 items-center text-white transition-colors duration-200 text-sm bg-primary-blue px-3 py-2 uppercase">
-                    <span v-if="user.value.avatar">
+                    <span v-if="user.avatar">
                         <img :src="'/img_user/' + user.avatar" alt="">
                     </span>
                     <UserCircleIcon v-else class="h-8 w-8 text-white"/>
-                    <span>{{ user.value.firstname }} {{ user.value.lastname }}</span>
+                    <span>{{ user.firstname }} {{ user.lastname }}</span>
                 </div>
                 <div  class="flex flex-col py-2">
                     <a href="#"  @click.prevent="logout()" class="hover:text-white text-menu flex items-center transition-colors duration-200 text-sm hover:bg-primary-blue px-3 py-2 uppercase">
@@ -230,7 +230,7 @@ export default {
         MenuIcon,
     },
     setup() {
-        const user = reactive({});
+        const user = ref('');
         const token = ref('');
         const errors = ref('');
         const loading = ref(0);

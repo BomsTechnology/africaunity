@@ -150,6 +150,7 @@
 
 <script>
 import router from "../../router";
+
 import { reactive, ref, onMounted } from "vue";
 import Header from "../../components/Header.vue";
 import Footer from "../../components/Footer.vue";
@@ -160,6 +161,7 @@ import {
     UserIcon,
     EmojiSadIcon,
 } from "@heroicons/vue/solid";
+
 import usePosts from "../../services/postServices.js";
 export default {
     components: {
@@ -171,15 +173,16 @@ export default {
         Footer,
         FilterArticle,
     },
+    created(){
+        if (!localStorage.token) {
+                router.push({ name: "login" });
+        }
+    },
     setup(props) {
         const { posts, getPosts, loading, errors } = usePosts();
-        onMounted(() => {
-            if (!localStorage.token) {
-                router.push({ name: "login" });
-            }
-        }, getPosts("article"));
-
-        console.log(posts.value);
+        onMounted(
+            getPosts("article", localStorage.lang)
+        );
 
         return {
             loading,
@@ -188,4 +191,5 @@ export default {
         };
     },
 };
+
 </script>

@@ -16,14 +16,22 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        return PostResource::collection(Post::latest()->get());
-    }
-
-    public function post_type($type)
+    public function index($type)
     {
         return PostResource::collection(Post::where('type',$type)->orderBy('id', 'desc')->get());
+    }
+
+    public function post_type($type, $lang)
+    {
+        return PostResource::collection(Post::where([
+            ['type',$type],
+            ['language',$lang]
+            ])->orderBy('id', 'desc')->get());
+    }
+
+    public function post_user($user)
+    {
+        return PostResource::collection(Post::where('user_id',$user)->orderBy('id', 'desc')->get());
     }
 
     public function post_caroussel($lang)
@@ -42,43 +50,61 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $fileds = $request->validate([
-            'title' => 'required|string|between:1,50',
-            'content' => 'required|string',
-            'type' => 'required|string',
-            'language' => 'required|string',
-            'user_id' => 'integer|required',
-            'continent_id' => 'integer|required',
-            'zone_id' => 'integer|required',
-            'country_id' => 'integer|required',
-            'ministry_id' => 'integer|required',
-        ]);
+        if($request->type == 'propau'){
+            $fileds = $request->validate([
+                'title' => 'required|string|between:1,50',
+                'content' => 'required|string',
+                'type' => 'required|string',
+                'language' => 'required|string',
+                'user_id' => 'integer|required',
+                'continent_id' => 'integer|required',
+                'zone_id' => 'integer|required',
+                'country_id' => 'integer|required',
+                'ministry_id' => 'integer|required',
+            ]);
 
-        $data = [
-            'title' => $fileds['title'],
-                'content' => $fileds['content'],
-                'type' => $fileds['type'],
-                'language' => $fileds['language'],
-                'user_id' => $fileds['user_id'],
-                'continent_id' => $fileds['continent_id'],
-                'zone_id' => $fileds['zone_id'],
-                'country_id' => $fileds['country_id'],
-                'ministry_id' => $fileds['ministry_id'],
-                'image' => ''
-        ];
-
-        if($request->file('image')){
-            $request->validate([
+            $data = [
+                'title' => $fileds['title'],
+                    'content' => $fileds['content'],
+                    'type' => $fileds['type'],
+                    'language' => $fileds['language'],
+                    'user_id' => $fileds['user_id'],
+                    'continent_id' => $fileds['continent_id'],
+                    'zone_id' => $fileds['zone_id'],
+                    'country_id' => $fileds['country_id'],
+                    'ministry_id' => $fileds['ministry_id'],
+                    'image' => ''
+            ];
+        }else{
+            $fileds = $request->validate([
+                'title' => 'required|string|between:1,50',
+                'content' => 'required|string',
+                'type' => 'required|string',
+                'language' => 'required|string',
+                'user_id' => 'integer|required',
+                'continent_id' => 'integer|required',
+                'zone_id' => 'integer|required',
+                'country_id' => 'integer|required',
+                'ministry_id' => 'integer|required',
                 'image' => 'required|mimes:png,jpg,jpeng,gif|dimensions:max_width=2048,max_height=2048'
             ]);
             $filename = '/uploads/'.time().'.'. $request->file('image')->extension();
             $request->file('image')->storePubliclyAs('public', $filename);
-            $data['image'] = $filename;
-        }
-
+            $data = [
+                'title' => $fileds['title'],
+                    'content' => $fileds['content'],
+                    'type' => $fileds['type'],
+                    'language' => $fileds['language'],
+                    'user_id' => $fileds['user_id'],
+                    'continent_id' => $fileds['continent_id'],
+                    'zone_id' => $fileds['zone_id'],
+                    'country_id' => $fileds['country_id'],
+                    'ministry_id' => $fileds['ministry_id'],
+                    'image' => $filename
+            ];
+        }      
         $post = Post::create($data);
-
-        
+       
         return new PostResource($post);
     }
 
@@ -129,7 +155,6 @@ class PostController extends Controller
                 'zone_id' => $fileds['zone_id'],
                 'country_id' => $fileds['country_id'],
                 'ministry_id' => $fileds['ministry_id'],
-                'image' => ''
         ];
 
         if($request->file('image')){

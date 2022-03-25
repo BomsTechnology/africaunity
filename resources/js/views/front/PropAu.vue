@@ -30,17 +30,6 @@
                     v-for="post in posts"
                     :key="post.id"
                 >
-                    <router-link
-                                :to="{
-                                    name: 'show.post',
-                                    params: { id: post.id },
-                                }">
-                    <img
-                        class="object-cover w-full h-44"
-                        :src="post.image"
-                        alt=""
-                    />
-                    </router-link>
                     <div class="p-6">
                         <div>
                             <a
@@ -162,13 +151,18 @@ export default {
         Footer,
         FilterPropAu,
     },
+    created(){
+        if (!localStorage.token) {
+                router.push({ name: "login" });
+        }
+    },
     setup(props) {
         const { posts, getPosts, loading, errors } = usePosts();
         onMounted(() => {
             if (!localStorage.token) {
                 router.push({ name: "login" });
             }
-        }, getPosts("propau"));
+        }, getPosts("propau", localStorage.lang));
 
         console.log(posts.value);
 

@@ -1,38 +1,38 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Home from "../views/front/Home.vue";
-import Article from "../views/front/Article.vue";
-import Contact from "../views/front/Contact.vue";
-import Establishment from "../views/front/Establishment.vue";
-import Job from "../views/front/Job.vue";
-import Login from "../views/front/Login.vue";
-import Pack from "../views/front/Pack.vue";
-import AddPost from "../views/front/AddPost.vue";
-import SinglePost from "../views/front/SinglePost.vue";
-import EditPost from "../views/front/EditPost.vue";
-import Particular from "../views/front/Particular.vue";
-import PoliticalInstitution from "../views/front/PoliticalInstitution.vue";
-import PropAu from "../views/front/PropAu.vue";
-import Universities from "../views/front/Universities.vue";
-import Register from "../views/front/Register.vue";
-import NotFound from "../views/front/NotFound.vue";
-import Profile from "../views/front/Profile.vue";
-import LoginAdmin from "../views/back/Login.vue";
-import Dashboard from "../views/back/Dashboard.vue";
-import PostIndex from "../views/back/posts/PostIndex.vue";
-import PostCreate from "../views/back/posts/PostCreate.vue";
-import PostEdit from "../views/back/posts/PostEdit.vue";
-import ContinentIndex from "../views/back/continent/ContinentIndex.vue";
-import ContinentCreate from "../views/back/continent/ContinentCreate.vue";
-import ContinentEdit from "../views/back/continent/ContinentEdit.vue";
-import ZoneIndex from "../views/back/zone/ZoneIndex.vue";
-import ZoneCreate from "../views/back/zone/ZoneCreate.vue";
-import ZoneEdit from "../views/back/zone/ZoneEdit.vue";
-import CountryIndex from "../views/back/country/CountryIndex.vue";
-import CountryCreate from "../views/back/country/CountryCreate.vue";
-import CountryEdit from "../views/back/country/CountryEdit.vue";
-import MinistryIndex from "../views/back/ministry/MinistryIndex.vue";
-import MinistryCreate from "../views/back/ministry/MinistryCreate.vue";
-import MinistryEdit from "../views/back/ministry/MinistryEdit.vue";
+const Home = () => import ("../views/front/Home.vue");
+const Article = () => import ("../views/front/Article.vue");
+const Contact = () => import ("../views/front/Contact.vue");
+const Establishment = () => import ("../views/front/Establishment.vue");
+const Job = () => import ("../views/front/Job.vue");
+const Login = () => import ("../views/front/Login.vue");
+const Pack = () => import ("../views/front/Pack.vue");
+const AddPost = () => import ("../views/front/AddPost.vue");
+const SinglePost = () => import ("../views/front/SinglePost.vue");
+const EditPost = () => import ("../views/front/EditPost.vue");
+const Particular = () => import ("../views/front/Particular.vue");
+const PoliticalInstitution = () => import ("../views/front/PoliticalInstitution.vue");
+const PropAu = () => import ("../views/front/PropAu.vue");
+const Universities = () => import ("../views/front/Universities.vue");
+const Register = () => import ("../views/front/Register.vue");
+const NotFound = () => import  ("../views/front/NotFound.vue");
+const Profile = () => import  ("../views/front/Profile.vue");
+const LoginAdmin = () => import  ("../views/back/Login.vue");
+const Dashboard = () => import  ("../views/back/Dashboard.vue");
+const PostIndex = () => import  ("../views/back/posts/PostIndex.vue");
+const PostCreate = () => import  ("../views/back/posts/PostCreate.vue");
+const PostEdit = () => import ("../views/back/posts/PostEdit.vue");
+const ContinentIndex = () => import ("../views/back/continent/ContinentIndex.vue");
+const ContinentCreate = () => import  ("../views/back/continent/ContinentCreate.vue");
+const ContinentEdit = () => import ("../views/back/continent/ContinentEdit.vue");
+const ZoneIndex = () => import  ("../views/back/zone/ZoneIndex.vue");
+const ZoneCreate = () => import  ("../views/back/zone/ZoneCreate.vue");
+const ZoneEdit = () => import  ("../views/back/zone/ZoneEdit.vue");
+const CountryIndex = () => import  ("../views/back/country/CountryIndex.vue");
+const CountryCreate = () => import  ("../views/back/country/CountryCreate.vue");
+const CountryEdit = () => import  ("../views/back/country/CountryEdit.vue");
+const MinistryIndex = () => import  ("../views/back/ministry/MinistryIndex.vue");
+const MinistryCreate = () => import  ("../views/back/ministry/MinistryCreate.vue");
+const MinistryEdit = () => import  ("../views/back/ministry/MinistryEdit.vue");
 const siteName = "AfricaUnity";
 
 const routes = [
@@ -162,7 +162,7 @@ const routes = [
         }
     },
     {
-        path: '/compte/:id',
+        path: '/account/:name/:id',
         name: 'compte',
         props: true,
         component: Profile,

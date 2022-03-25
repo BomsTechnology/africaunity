@@ -9,11 +9,13 @@ export default function usePosts() {
     const post = ref([]);
     const errors = ref('');
     const loading = ref(0);
+    const articles = ref([]);
+    const propau = ref([]);
 
-    const getPosts = async (type) => {
+    const getPostsAll = async (type) => {
         errors.value = '';
         loading.value = 1;
-        let response = await axios.get('/api/posts-type/' + type,  {
+        let response = await axios.get('/api/posts-all/' + type,  {
             headers:{
                 'Authorization': `Bearer ${localStorage.token}`
             }
@@ -21,7 +23,41 @@ export default function usePosts() {
         posts.value = response.data.data;
 
         loading.value = 2;
-        console.log(posts.value);
+    };
+
+    const getPostsUser = async (id) => {
+        errors.value = '';
+        loading.value = 1;
+        let response = await axios.get('/api/posts-user/' + id,  {
+            headers:{
+                'Authorization': `Bearer ${localStorage.token}`
+            }
+        });
+        posts.value = response.data.data;
+
+        articles.value = posts.value.filter((post) => {
+            return post.type == 'article';
+        });
+
+        propau.value = posts.value.filter((post) => {
+            return post.type == 'propau';
+        });
+
+        loading.value = 2;
+        
+    };
+
+    const getPosts = async (type, lang) => {
+        errors.value = '';
+        loading.value = 1;
+        let response = await axios.get('/api/posts-type/' + type + '/' + lang,  {
+            headers:{
+                'Authorization': `Bearer ${localStorage.token}`
+            }
+        });
+        posts.value = response.data.data;
+
+        loading.value = 2;
     };
 
     const getPostCarousssel = async (lang) => {
@@ -35,7 +71,6 @@ export default function usePosts() {
         postCaroussel.value = response.data.data;
 
         loading.value = 2;
-        console.log(postCaroussel.value);
     };
 
     const getPost = async (id) => {
@@ -133,6 +168,10 @@ export default function usePosts() {
         destroyPost,
         getPostCarousssel,
         postCaroussel,
-        getPost2
+        getPost2,
+        getPostsAll,
+        getPostsUser,
+        articles,
+        propau
     };
 } 

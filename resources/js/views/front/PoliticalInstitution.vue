@@ -14,12 +14,12 @@ export default {
         Header,
         Footer,
     },
-    setup(props) {
-        onMounted(()=>{
-            if(!localStorage.token){
+    created(){
+        if (!localStorage.token) {
                 router.push({ name: "login" });
-            }
-        })
+        }
+    },
+    setup(props) {
     },
 }
 </script>

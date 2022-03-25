@@ -1,6 +1,9 @@
 <template>
     <Header />
     <h1 class="text-5xl text-primary-blue text-center capitalize font-bold">{{ $t('job') }}</h1>
+    <div class=" py-8 px-16">
+                <h1 class="text-center text-2xl text-gray-500 font-bold italic">Comming Soon</h1>
+    </div>
     <Footer/>
 </template>
 
@@ -14,17 +17,13 @@ export default {
         Header,
         Footer,
     },
-    data(){
-        return{
-
+    created(){
+        if (!localStorage.token) {
+                router.push({ name: "login" });
         }
     },
     setup(props) {
-        onMounted(()=>{
-            if(!localStorage.token){
-                router.push({ name: "login" });
-            }
-        })
+        
     },
 }
 </script>

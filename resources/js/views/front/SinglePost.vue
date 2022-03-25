@@ -5,12 +5,13 @@
     >
         <div class="lg:w-[70%]">
             <div class="py-6 px-4" v-if="post.length != 0">
-                <div
+                <div 
                     class="overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800"
                 >
                     <img
                         class="object-cover w-full h-96"
                         :src="post.image"
+                        v-if="post.type == 'article'"
                         alt=""
                     />
                     <div class="p-6">
@@ -165,6 +166,7 @@ import {
     ChatIcon,
 } from "@heroicons/vue/solid";
 import usePosts from "../../services/postServices.js";
+
 export default {
     props: {
         id: {
@@ -185,13 +187,14 @@ export default {
         Footer,
         FilterArticle,
     },
+    created(){
+        if (!localStorage.token) {
+                router.push({ name: "login" });
+        }
+    },
     setup(props) {
         const { post, getPost2, loading, errors } = usePosts();
-        onMounted(() => {
-            if (!localStorage.token) {
-                router.push({ name: "login" });
-            }
-        },  
+        onMounted( 
         getPost2(props.id),  
         );
 

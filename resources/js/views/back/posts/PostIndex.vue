@@ -299,7 +299,7 @@ export default {
         Error,
     },
     setup(props) {
-        const { posts, getPosts, destroyPost, loading, errors } = usePosts();
+        const { posts, getPostsAll, destroyPost, loading, errors } = usePosts();
 
         const searchKey = ref("");
 
@@ -308,7 +308,7 @@ export default {
             if (!types.includes(props.type)) {
                 router.push({ name: "admin.dash" });
             }
-        }, getPosts(props.type));
+        }, getPostsAll(props.type));
 
         const deletePost = async (id) => {
             if(confirm("I you Sure ?")){

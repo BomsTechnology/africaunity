@@ -14,17 +14,12 @@ export default {
         Header,
         Footer,
     },
-    data(){
-        return{
-
+    created(){
+        if (!localStorage.token) {
+                router.push({ name: "login" });
         }
     },
     setup(props) {
-        onMounted(()=>{
-            if(!localStorage.token){
-                router.push({ name: "login" });
-            }
-        })
     },
 }
 </script>
