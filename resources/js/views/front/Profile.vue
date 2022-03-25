@@ -15,8 +15,8 @@
                         <div>
                             <h1 class="lg:text-3xl text-2xl lg:text-left text-center font-semibold capitalize text-gray-700">{{ user.firstname + ' ' + user.lastname }}</h1>
                             <div class="flex items-center space-x-2 text-sm mt-2">
-                                <h2 class="text-primary-blue">marcsigha@gmail.com</h2> 
-                                <h2 class="text-gray-400">° 658401181</h2>
+                                <h2 class="text-primary-blue">email@example.com</h2> 
+                                <h2 class="text-gray-400">° 9999999</h2>
                             </div>
                         </div>
                         <div class="space-x-2 flex items-center lg:py-0 py-1">
@@ -26,11 +26,11 @@
                         params: { type: 'article' },
                     }" class="py-2 lg:px-4 px-2 shadow-md flex items-center text-sm space-x-2 text-white rounded-xl bg-primary-blue">
                                 <PlusCircleIcon class="w-5 h-5"/>
-                                <span class="lg:block hidden">Ajouter un article</span>                        
+                                <span class="lg:block hidden">{{ $t('add') }} {{ $t('articles') }}</span>                        
                             </router-link>
                             <a href="#" class="py-2 lg:px-4 px-2 shadow-md flex items-center text-sm space-x-2 text-white rounded-xl bg-primary-blue">
                                 <PencilIcon class="w-5 h-5"/>
-                                <span class="lg:block hidden">Modifier mon profil</span> 
+                                <span class="lg:block hidden">{{ $t('edit') }} {{ $t('profile') }}</span> 
                             </a>
                             <a href="#">
                                 <CogIcon class="h-8 w-8 text-gray-600  hover:text-primary-blue" />
@@ -46,27 +46,27 @@
         <div class="px-5 py-3 space-x-2 bg-menu flex items-center lg:mt-0 mt-20">
             <button @click="changeTab('profil')" :class="[ open.profil ? 'text-white bg-primary-blue flex items-center space-x-2 px-2 py-1 text-md rounded-md': 'text-white flex items-center space-x-2 hover:bg-white/25 px-2 py-1 text-md rounded-md']">
                 <IdentificationIcon class="w-5 h-5"/>
-                <span class="lg:block hidden">Profil</span>
+                <span class="lg:block hidden">{{ $t('profile') }}</span>
             </button>
             <button @click="changeTab('article')" :class="[ open.article ? 'text-white bg-primary-blue flex items-center space-x-2 px-2 py-1 text-md rounded-md': 'text-white flex items-center space-x-2 hover:bg-white/25 px-2 py-1 text-md rounded-md']">
                 <NewspaperIcon class="w-5 h-5"/>
-                <span class="lg:block hidden">Articles</span>                
+                <span class="lg:block hidden">{{ $t('articles') }}</span>                
             </button>
             <button @click="changeTab('propau')" :class="[ open.propau ? 'text-white bg-primary-blue flex items-center space-x-2 px-2 py-1 text-md rounded-md': 'text-white flex items-center space-x-2 hover:bg-white/25 px-2 py-1 text-md rounded-md']">
                 <BookOpenIcon class="w-5 h-5"/>
-                <span class="lg:block hidden">PropAU</span>               
+                <span class="lg:block hidden">{{ $t('propau') }}</span>               
             </button>
             <button @click="changeTab('comment')" :class="[ open.comment ? 'text-white bg-primary-blue flex items-center space-x-2 px-2 py-1 text-md rounded-md': 'text-white flex items-center space-x-2 hover:bg-white/25 px-2 py-1 text-md rounded-md']">
                 <ChatIcon class="w-5 h-5"/>
-                <span class="lg:block hidden">Commentaires</span>               
+                <span class="lg:block hidden">{{ $t('comments') }}</span>               
             </button>
             <button @click="changeTab('job')" :class="[ open.job ? 'text-white bg-primary-blue flex items-center space-x-2 px-2 py-1 text-md rounded-md': 'text-white flex items-center space-x-2 hover:bg-white/25 px-2 py-1 text-md rounded-md']">
                 <ChatAltIcon class="w-5 h-5"/>
-                <span class="lg:block hidden">Mes Offres d'emploi</span>               
+                <span class="lg:block hidden">{{ $t('my-jobs') }}</span>               
             </button>
             <button @click="changeTab('ads')" :class="[ open.ads ? 'text-white bg-primary-blue flex items-center space-x-2 px-2 py-1 text-md rounded-md': 'text-white flex items-center space-x-2 hover:bg-white/25 px-2 py-1 text-md rounded-md']">
                 <SpeakerphoneIcon class="w-5 h-5"/>
-                <span class="lg:block hidden">Mes Annonces</span>               
+                <span class="lg:block hidden">{{ $t('my-ads') }}</span>               
             </button>
         </div>
         <div class=" py-8 px-16" v-if="open.profil">

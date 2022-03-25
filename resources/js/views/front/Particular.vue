@@ -1,6 +1,7 @@
 <template>
     <Header />
     <h1 class="text-5xl text-primary-blue text-center capitalize font-bold">{{ $t('particular') }}</h1>
+    <h1 class="text-center text-2xl text-gray-500 font-bold italic">Comment Comming Soon</h1>
     <Footer/>
 </template>
 

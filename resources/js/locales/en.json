@@ -47,6 +47,9 @@
     "create-account": "Create an account",
     "pack": "Pack",
     "account": "My account",
+    "comments": "Comments",
+    "my-ads": "My Ads",
+    "my-jobs": "My Jobs Offers",
     "create-other-account":"Do you want to create an account instead?",
     "business" : "Business",
     "politic" : "Politics",
@@ -75,7 +78,12 @@
     "your": "Your",
     "add-desc-1": "will be published in the current language of the site",
     "edit": "Edit",
-    "select-lang" : "",
+    "content": "Content",
+    "thumbnails": "Featured image",
+    "title" : "Title",
+    "save": "Save",
+    "select-lang" : "Please select the language of publication",
+    "good-msg-post" : "Please keep in mind that courtesy is the key word of the community",
     "read-more": "Read More",
     "no-content": "No Content"
 }

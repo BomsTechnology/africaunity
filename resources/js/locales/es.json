@@ -74,8 +74,16 @@
     "add": "Agregar",
     "edit": "Editar",
     "your": "Tu",
+    "content": "Contenido",
+    "thumbnails": "Foto principal",
+    "title" : "Título",
+    "save": "Salvar",
+    "comments": "Comentarios",
+    "my-ads": "Mis anuncios",
+    "my-jobs": "Mis ofertas de trabajo",
     "add-desc-1": "se publicará en el idioma actual del sitio",
-    "select-lang" : "",
+    "select-lang" : "Por favor seleccione el idioma de publicación",
+    "good-msg-post" : "Tenga en cuenta que la cortesía es la palabra clave de la comunidad.",
     "read-more": "Leer más",
     "no-content": "Sin contenido"
 }

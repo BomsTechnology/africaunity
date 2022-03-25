@@ -74,8 +74,16 @@
     "add": "Ajouter un",
     "edit": "Editer un",
     "your": "Votre",
+    "content": "Contenu",
+    "thumbnails": "Image mise en avant",
+    "title" : "Titre",
+    "save": "Enregistrer",
+    "comments": "Commentaires",
+    "my-ads": "Mes Annonces",
+    "my-jobs": "Mes offres d'emploi",
     "add-desc-1": "sera publié dans la langue actuelle du site",
-    "select-lang" : "",
+    "select-lang" : "Veuillez sélectionner la langue de publication",
+    "good-msg-post" : "Merci de garder à l'esprit que la courtoisie est le maitre mot de la communauté",
     "read-more": "Lire la suite",
     "no-content": "Pas de contenu"
     
