@@ -42,4 +42,8 @@ class Post extends Model
     public function ministry(){
         return $this->belongsTo(Ministry::class);
     }
+
+    public function comments(){
+        return $this->hasMany(Comment::class);
+    }
 }

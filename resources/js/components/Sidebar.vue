@@ -48,12 +48,13 @@
                 <UserGroupIcon class="w-6 h-6" />
                 <p class="text-base leading-4">Users</p>
             </button>
-            <button
+            <router-link
+                    :to="{name:'admin.comment.index'}"
                 class="flex jusitfy-start items-center w-full space-x-6 focus:outline-none text-white focus:text-primary-blue rounded"
             >
                 <ChatIcon class="w-6 h-6" />
                 <p class="text-base leading-4">Comments</p>
-            </button>
+            </router-link>
         </div>
         <div
             class="flex flex-col justify-start items-center px-4 border-b border-gray-600 w-full"

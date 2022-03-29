@@ -8,6 +8,7 @@
                 <div 
                     class="overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800"
                 >
+                    <!-- Post -->
                     <img
                         class="object-cover w-full h-96"
                         :src="post.image"
@@ -48,10 +49,10 @@
                                 </div>
                                 <div class="flex space-x-1">
                                     <UserIcon class="h-4 w-4" />
-                                    <a
+                                    <router-link :to="{name:'compte',  params: { name: post.user.firstname, id : post.user.id }}"
                                         href="#"
                                         class="hover:text-primary-blue"
-                                        >{{ post.user.firstname }}</a
+                                        >{{ post.user.firstname }}</router-link 
                                     >
                                 </div>
                                 <div class="flex space-x-1">
@@ -70,22 +71,23 @@
 
                         <div class="mt-4">
                             <div class="flex items-center justify-between">
-                                <div class="flex items-center">
-                                    <img
-                                        v-if="post.user.avatar"
-                                        class="object-cover h-10 rounded-full"
-                                        :src="post.user.avatar"
-                                    />
+                                <router-link  :to="{name:'compte',  params: { name: post.user.firstname, id : post.user.id }}" class="flex items-center">
+                                        <img   
+                                            v-if="post.user.avatar"                       
+                                            class="object-cover h-10 rounded-full"
+                                            :src="post.user.avatar"
+                                        />
+                                    
                                     <UserCircleIcon
                                         v-else
                                         class="h-10 w-10 text-gray-700"
                                     />
-                                    <a
-                                        href="#"
+                                    <span
                                         class="mx-2 font-semibold text-gray-700 dark:text-gray-200"
-                                        >{{ post.user.firstname }}</a
+                                        >{{ post.user.firstname }}</span
                                     >
-                                </div>
+                                    </router-link>
+                                
                                 <div class="flex items-center">
                                     <div>
                                         <ExclamationCircleIcon
@@ -110,7 +112,47 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Comments -->
+                    <div class="mt-4 px-8 py-4" v-if="comments.length != 0">
+                        <div class="flex border-b py-4" v-for="comment in comments" :key="comment.id">
+                            <div>
+                                <router-link  v-if="token != ''" :to="{name:'compte',  params: { name: comment.user.firstname, id : comment.user.id }}">
+                                <div class="md:w-20 md:h-20 w-12 h-12 rounded-full shadow overflow-hidden">
+                                    <img :src="user.avatar" class="w-full h-full bg-cover object-cover" alt="" v-if="user.avatar">
+                                    <UserCircleIcon v-else class="w-full h-full text-gray-500"/>
+                                </div>
+                                <h1 class="mt-2 text-center font-bold hover:underline">{{ comment.user.firstname }}</h1>
+                                </router-link>
+                                <h3 class="font-light text-center text-sm">{{ comment.date }}</h3>
+                            </div>
+                            
+                            <div class="ml-2 w-full p-2">
+                                {{ comment.content }}
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Add Comment -->
+                    <Error v-if="errors != ''">{{ errors }}</Error>
+                    <form @submit.prevent="storeComment()">
+                        <div class="mt-4 px-8 py-4">
+                            <label class="text-gray-700 dark:text-gray-200" for="pt">Laisser un Commentaire <span class="text-red-500">*</span></label>
+                            <textarea v-model="comment.content" required type="text"  id="pt" class="block w-full px-4 py-2 mt-2 text-gray-700 h-60 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:ring-primary-blue focus:border-primary-blue focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+                            </textarea>
+                            <div class="mt-6">
+                                <input type="hidden" v-model="comment.post_id">
+                                <button v-if="loadingC == 0" type="submit" class="px-6 py-4 text-md leading-5 w-full text-white rounded bg-primary-blue focus:outline-none">{{ $t('save') }}</button>
+                                <button v-if="loadingC == 1" type="submit" disabled class="px-6 py-4 text-md leading-5 flex justify-center items-center w-full text-white rounded bg-blue-300 focus:outline-none">
+                                    {{ $t('save') }}...
+                                    <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                        </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
+                
             </div>
             <div v-else-if="loading == 1" class="p-28">
                 <svg
@@ -166,7 +208,8 @@ import {
     ChatIcon,
 } from "@heroicons/vue/solid";
 import usePosts from "../../services/postServices.js";
-
+import useComments from "../../services/commentServices.js";
+import Error from "../../components/Error.vue";
 export default {
     props: {
         id: {
@@ -186,6 +229,7 @@ export default {
         Header,
         Footer,
         FilterArticle,
+        Error
     },
     created(){
         if (!localStorage.token) {
@@ -193,17 +237,40 @@ export default {
         }
     },
     setup(props) {
-        const { post, getPost2, loading, errors } = usePosts();
-        onMounted( 
-        getPost2(props.id),  
+        const { post, getPost2, loading } = usePosts();
+        const { createComment, errors, comments, getCommentsPost } = useComments();
+        const user = JSON.parse(localStorage.user);
+        const comment = reactive({
+            user_id: user.id,
+            post_id: '',
+            content: '',
+        });
+        onMounted(
+            async () => {
+                await getPost2(props.id);
+                await getCommentsPost(props.id);
+                comment.post_id = post.value.id;
+            },  
         );
 
-        const user = JSON.parse(localStorage.user);
-
+        
+        
+        const loadingC = ref(0);
+        const storeComment = async () => {
+            loadingC.value = 1;
+            await createComment({...comment});
+            loadingC.value = 0;
+            comment.content = "";
+            await getCommentsPost(props.id);
+        }
         return {
             loading,
+            loadingC,
+            storeComment,
+            comments,
             errors,
             post,
+            comment,
             user,
         };
     },

@@ -116,12 +116,12 @@
                                             </div>
                                             <div class="flex space-x-1">
                                                 <UserIcon class="h-4 w-4" />
-                                                <a
+                                                <router-link   :to="{name:'compte',  params: { name: article.user.firstname, id : article.user.id }}"
                                                     href="#"
                                                     class="hover:text-primary-blue"
                                                     >{{
                                                         article.user.firstname
-                                                    }}</a
+                                                    }}</router-link 
                                                 >
                                             </div>
                                             <div class="flex space-x-1">
@@ -334,13 +334,13 @@
                                                 </div>
                                                 <div class="flex space-x-1">
                                                     <UserIcon class="h-4 w-4" />
-                                                    <a
+                                                    <router-link   :to="{name:'compte',  params: { name: article.user.firstname, id : article.user.id }}"
                                                         href="#"
                                                         class="hover:text-primary-blue"
                                                         >{{
                                                             article.user
                                                                 .firstname
-                                                        }}</a
+                                                        }}</router-link
                                                     >
                                                 </div>
                                                 <div class="flex space-x-1">
@@ -557,13 +557,13 @@
                                                 </div>
                                                 <div class="flex space-x-1">
                                                     <UserIcon class="h-4 w-4" />
-                                                    <a
+                                                    <router-link   :to="{name:'compte',  params: { name: article.user.firstname, id : article.user.id }}"
                                                         href="#"
                                                         class="hover:text-primary-blue"
                                                         >{{
                                                             article.user
                                                                 .firstname
-                                                        }}</a
+                                                        }}</router-link 
                                                     >
                                                 </div>
                                                 <div class="flex space-x-1">
@@ -777,12 +777,12 @@
                                             </div>
                                             <div class="flex space-x-1">
                                                 <UserIcon class="h-4 w-4" />
-                                                <a
+                                                <router-link   :to="{name:'compte',  params: { name: article.user.firstname, id : article.user.id }}"
                                                     href="#"
                                                     class="hover:text-primary-blue"
                                                     >{{
                                                         article.user.firstname
-                                                    }}</a
+                                                    }}</router-link 
                                                 >
                                             </div>
                                             <div class="flex space-x-1">

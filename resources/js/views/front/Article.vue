@@ -92,10 +92,10 @@
                             >
                                 <div class="flex space-x-1">
                                     <UserIcon class="h-4 w-4" />
-                                    <a
+                                    <router-link   :to="{name:'compte',  params: { name: post.user.firstname, id : post.user.id }}"
                                         href="#"
                                         class="hover:text-primary-blue"
-                                        >{{ post.user.firstname }}</a
+                                        >{{ post.user.firstname }}</router-link
                                     >
                                 </div>
                                 <div class="flex space-x-1">

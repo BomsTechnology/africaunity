@@ -6,7 +6,14 @@
                 <span class="font-semibold mx-4">{{ $t('lastest') }} :</span>
                 <Swiper class=" h-5 inline-flex" :space-between="0" :slides-per-view="1" :direction="'vertical'" :autoplay="{delay: 3500, disableOnInteraction: false,}" :modules="modules">
                 <SwiperSlide class="relative" v-for="post in posts" :key="post.id"> 
-                        <span class="text-primary-blue"> {{ post.title }} </span>
+                   <router-link  v-if="!token"
+                                :to="{
+                                    name: 'login',
+                                }" class="text-primary-blue">
+                                {{ post.title }}
+                                </router-link>
+                        <a v-else :href="'/post/ '+ post.id"
+                                 class="text-primary-blue"> {{ post.title }} </a>
                 </SwiperSlide>
                 </Swiper>
             </h1>
@@ -45,6 +52,7 @@ export default {
         }
     },
     setup() {
+        const token = localStorage.token;
         const posts = ref([]);
         onMounted(
             async () =>{
@@ -53,7 +61,8 @@ export default {
             });
         return{
             modules: [Autoplay, ],
-            posts
+            posts,
+            token
         }
     },
 }

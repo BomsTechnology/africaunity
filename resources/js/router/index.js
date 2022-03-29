@@ -24,6 +24,8 @@ const PostEdit = () => import ("../views/back/posts/PostEdit.vue");
 const ContinentIndex = () => import ("../views/back/continent/ContinentIndex.vue");
 const ContinentCreate = () => import  ("../views/back/continent/ContinentCreate.vue");
 const ContinentEdit = () => import ("../views/back/continent/ContinentEdit.vue");
+const CommentIndex = () => import ("../views/back/comment/CommentIndex.vue");
+const CommentCreate = () => import  ("../views/back/comment/CommentCreate.vue");
 const ZoneIndex = () => import  ("../views/back/zone/ZoneIndex.vue");
 const ZoneCreate = () => import  ("../views/back/zone/ZoneCreate.vue");
 const ZoneEdit = () => import  ("../views/back/zone/ZoneEdit.vue");
@@ -253,6 +255,22 @@ const routes = [
                 name: 'admin.continent.edit',
                 meta:{
                     title: siteName + ' - Edit Continent'
+                }
+            },
+            {
+                path: 'comment',
+                component: CommentIndex,
+                name: 'admin.comment.index',
+                meta:{
+                    title: siteName + ' - Comment'
+                }
+            },
+            {
+                path: 'comment/create',
+                component: CommentCreate,
+                name: 'admin.comment.create',
+                meta:{
+                    title: siteName + ' - Create Comment'
                 }
             },
             {

@@ -3,10 +3,12 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\CommentController;
 use App\Http\Controllers\Api\ContinentController;
 use App\Http\Controllers\Api\CountryController;
 use App\Http\Controllers\Api\MinistryController;
 use App\Http\Controllers\Api\PostController;
+use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\ZoneController;
 
 Route::post("/register",[AuthController::class,'register']);
@@ -28,6 +30,12 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     
     Route::apiResource('posts', PostController::class);
     Route::get("/posts2/{post}", [PostController::class,'show2']);
+
+    Route::apiResource('users', UserController::class);
+
+    Route::apiResource('comments', CommentController::class);
+    Route::get('comments-post/{id}', [CommentController::class, 'comment_post']);
+    Route::get('comments-user/{id}', [CommentController::class, 'comment_user']);
 
     Route::post("/continents", [ContinentController::class,'store']);
     Route::get("/continents/{continent}", [ContinentController::class,'show']);
