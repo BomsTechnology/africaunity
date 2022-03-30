@@ -2,7 +2,6 @@ require('./bootstrap');
 
 import { createApp } from 'vue';
 import Home from "./views/front/Home.vue";
-import Dashboard from "./views/back/Dashboard.vue"
 import router from "./router";
 import i18n from './locales/i18n';
 
