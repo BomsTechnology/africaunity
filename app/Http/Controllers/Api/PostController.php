@@ -24,6 +24,7 @@ class PostController extends Controller
     public function post_type($type, $lang)
     {
         return PostResource::collection(Post::where([
+            ['status', 1],
             ['type',$type],
             ['language',$lang]
             ])->orderBy('id', 'desc')->get());
@@ -37,6 +38,7 @@ class PostController extends Controller
     public function post_caroussel($lang)
     {
         return PostResource::collection(Post::where([
+            ['status', 1],
             ['type','article'],
             ['language',$lang]
             ])->orderBy('id', 'desc')->limit(4)->get());
@@ -45,6 +47,7 @@ class PostController extends Controller
     public function post_home($lang, $ministry)
     {
         return PostResource::collection(Post::where([
+            ['status', 1],
             ['type','article'],
             ['language',$lang],
             ['ministry_id',$ministry],

@@ -19,4 +19,8 @@ class Continent extends Model
     public function posts(){
         return $this->hasMany(Post::class);
     }
+
+    public function universities(){
+        return $this->hasMany(University::class);
+    }
 }

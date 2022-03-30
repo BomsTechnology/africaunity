@@ -8,6 +8,7 @@ const Login = () => import ("../views/front/Login.vue");
 const Pack = () => import ("../views/front/Pack.vue");
 const AddPost = () => import ("../views/front/AddPost.vue");
 const SinglePost = () => import ("../views/front/SinglePost.vue");
+const SingleUniversity = () => import ("../views/front/SingleUniversity.vue");
 const EditPost = () => import ("../views/front/EditPost.vue");
 const Particular = () => import ("../views/front/Particular.vue");
 const PoliticalInstitution = () => import ("../views/front/PoliticalInstitution.vue");
@@ -32,6 +33,12 @@ const ZoneEdit = () => import  ("../views/back/zone/ZoneEdit.vue");
 const CountryIndex = () => import  ("../views/back/country/CountryIndex.vue");
 const CountryCreate = () => import  ("../views/back/country/CountryCreate.vue");
 const CountryEdit = () => import  ("../views/back/country/CountryEdit.vue");
+const CityIndex = () => import  ("../views/back/city/CityIndex.vue");
+const CityCreate = () => import  ("../views/back/city/CityCreate.vue");
+const CityEdit = () => import  ("../views/back/city/CityEdit.vue");
+const UniversityIndex = () => import  ("../views/back/university/UniversityIndex.vue");
+const UniversityCreate = () => import  ("../views/back/university/UniversityCreate.vue");
+const UniversityEdit = () => import  ("../views/back/university/UniversityEdit.vue");
 const MinistryIndex = () => import  ("../views/back/ministry/MinistryIndex.vue");
 const MinistryCreate = () => import  ("../views/back/ministry/MinistryCreate.vue");
 const MinistryEdit = () => import  ("../views/back/ministry/MinistryEdit.vue");
@@ -128,6 +135,15 @@ const routes = [
         component: Universities,
         meta:{
             title: siteName + ' - Universités'
+        }
+    },
+    {
+        path: '/university/:id',
+        name: 'show.university',
+        props: true,
+        component: SingleUniversity,
+        meta:{
+            title: siteName
         }
     },
     {
@@ -321,6 +337,56 @@ const routes = [
                 name: 'admin.country.edit',
                 meta:{
                     title: siteName + ' - Edit Country'
+                }
+            },
+            {
+                path: 'city',
+                component: CityIndex,
+                name: 'admin.city.index',
+                meta:{
+                    title: siteName + ' - City'
+                }
+            },
+            {
+                path: 'city/create',
+                component: CityCreate,
+                name: 'admin.city.create',
+                meta:{
+                    title: siteName + ' - Create City'
+                }
+            },
+            {
+                path: 'city/edit/:id',
+                component: CityEdit,
+                props: true,
+                name: 'admin.city.edit',
+                meta:{
+                    title: siteName + ' - Edit City'
+                }
+            },
+            {
+                path: 'university',
+                component: UniversityIndex,
+                name: 'admin.university.index',
+                meta:{
+                    title: siteName + ' - University'
+                }
+            },
+            {
+                path: 'university/create',
+                component: UniversityCreate,
+                name: 'admin.university.create',
+                meta:{
+                    title: siteName + ' - Create University'
+                }
+            },
+            {
+                path: 'university/edit/:id',
+                component: UniversityEdit,
+                props: true,
+                name: 'admin.university.edit',
+                meta:{
+                    title: siteName + ' - Edit University'
                 }
             },
             {

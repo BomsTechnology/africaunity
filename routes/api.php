@@ -3,11 +3,13 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\CityController;
 use App\Http\Controllers\Api\CommentController;
 use App\Http\Controllers\Api\ContinentController;
 use App\Http\Controllers\Api\CountryController;
 use App\Http\Controllers\Api\MinistryController;
 use App\Http\Controllers\Api\PostController;
+use App\Http\Controllers\Api\UniversityController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\ZoneController;
 
@@ -32,6 +34,9 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::get("/posts2/{post}", [PostController::class,'show2']);
 
     Route::apiResource('users', UserController::class);
+
+    Route::apiResource('cities', CityController::class);
+    Route::apiResource('universities', UniversityController::class);
 
     Route::apiResource('comments', CommentController::class);
     Route::get('comments-post/{id}', [CommentController::class, 'comment_post']);
