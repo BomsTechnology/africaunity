@@ -74,7 +74,7 @@ var _hoisted_2 = {
 };
 var _hoisted_3 = {
   key: 0,
-  "class": "grid lg:grid-cols-2 gap-8 px-10 py-8"
+  "class": "grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-8 px-10 py-8"
 };
 var _hoisted_4 = ["src"];
 var _hoisted_5 = {
@@ -191,7 +191,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       "class": "block mt-2 text-2xl font-semibold text-gray-800 transition-colors duration-200 transform dark:text-white hover:text-gray-600 hover:underline"
     }, {
       "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-        return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(university.title), 1
+        return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(university.name), 1
         /* TEXT */
         )];
       }),
@@ -334,17 +334,51 @@ function useUniversities() {
     };
   }();
 
-  var createUniversity = /*#__PURE__*/function () {
-    var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(data) {
-      var key;
+  var getUniversity2 = /*#__PURE__*/function () {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(id) {
+      var response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
               errors.value = '';
-              _context3.prev = 1;
               loading.value = 1;
-              _context3.next = 5;
+              _context3.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/universities2/' + id, {
+                headers: {
+                  'Authorization': "Bearer ".concat(localStorage.token)
+                }
+              });
+
+            case 4:
+              response = _context3.sent;
+              loading.value = 0;
+              university.value = response.data.data;
+
+            case 7:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3);
+    }));
+
+    return function getUniversity2(_x2) {
+      return _ref3.apply(this, arguments);
+    };
+  }();
+
+  var createUniversity = /*#__PURE__*/function () {
+    var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4(data) {
+      var key;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              errors.value = '';
+              _context4.prev = 1;
+              loading.value = 1;
+              _context4.next = 5;
               return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/universities', data, {
                 headers: {
                   'Authorization': "Bearer ".concat(localStorage.token)
@@ -356,45 +390,45 @@ function useUniversities() {
               _router_index_js__WEBPACK_IMPORTED_MODULE_3__["default"].push({
                 name: 'admin.university.index'
               });
-              _context3.next = 12;
+              _context4.next = 12;
               break;
 
             case 9:
-              _context3.prev = 9;
-              _context3.t0 = _context3["catch"](1);
+              _context4.prev = 9;
+              _context4.t0 = _context4["catch"](1);
 
-              if (_context3.t0.response.status == 422) {
+              if (_context4.t0.response.status == 422) {
                 loading.value = 0;
 
-                for (key in _context3.t0.response.data.errors) {
-                  errors.value += _context3.t0.response.data.errors[key][0] + "\n";
+                for (key in _context4.t0.response.data.errors) {
+                  errors.value += _context4.t0.response.data.errors[key][0] + "\n";
                 }
               }
 
             case 12:
             case "end":
-              return _context3.stop();
+              return _context4.stop();
           }
         }
-      }, _callee3, null, [[1, 9]]);
+      }, _callee4, null, [[1, 9]]);
     }));
 
-    return function createUniversity(_x2) {
-      return _ref3.apply(this, arguments);
+    return function createUniversity(_x3) {
+      return _ref4.apply(this, arguments);
     };
   }();
 
   var updateUniversity = /*#__PURE__*/function () {
-    var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4(data, id) {
+    var _ref5 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5(data, id) {
       var key;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
         while (1) {
-          switch (_context4.prev = _context4.next) {
+          switch (_context5.prev = _context5.next) {
             case 0:
               errors.value = '';
-              _context4.prev = 1;
+              _context5.prev = 1;
               loading.value = 1;
-              _context4.next = 5;
+              _context5.next = 5;
               return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/universities/' + id, data, {
                 headers: {
                   'Authorization': "Bearer ".concat(localStorage.token)
@@ -406,43 +440,43 @@ function useUniversities() {
               _router_index_js__WEBPACK_IMPORTED_MODULE_3__["default"].push({
                 name: 'admin.university.index'
               });
-              _context4.next = 13;
+              _context5.next = 13;
               break;
 
             case 9:
-              _context4.prev = 9;
-              _context4.t0 = _context4["catch"](1);
+              _context5.prev = 9;
+              _context5.t0 = _context5["catch"](1);
               loading.value = 0;
 
-              if (_context4.t0.response.status == 422) {
-                for (key in _context4.t0.response.data.errors) {
-                  errors.value += _context4.t0.response.data.errors[key][0] + '\t\n';
+              if (_context5.t0.response.status == 422) {
+                for (key in _context5.t0.response.data.errors) {
+                  errors.value += _context5.t0.response.data.errors[key][0] + '\t\n';
                 }
               }
 
             case 13:
             case "end":
-              return _context4.stop();
+              return _context5.stop();
           }
         }
-      }, _callee4, null, [[1, 9]]);
+      }, _callee5, null, [[1, 9]]);
     }));
 
-    return function updateUniversity(_x3, _x4) {
-      return _ref4.apply(this, arguments);
+    return function updateUniversity(_x4, _x5) {
+      return _ref5.apply(this, arguments);
     };
   }();
 
   var destroyUniversity = /*#__PURE__*/function () {
-    var _ref5 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5(id) {
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
+    var _ref6 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee6(id) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee6$(_context6) {
         while (1) {
-          switch (_context5.prev = _context5.next) {
+          switch (_context6.prev = _context6.next) {
             case 0:
               errors.value = '';
-              _context5.prev = 1;
+              _context6.prev = 1;
               loading.value = 1;
-              _context5.next = 5;
+              _context6.next = 5;
               return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]('/api/universities/' + id, {
                 headers: {
                   'Authorization': "Bearer ".concat(localStorage.token)
@@ -451,28 +485,28 @@ function useUniversities() {
 
             case 5:
               loading.value = 2;
-              _context5.next = 12;
+              _context6.next = 12;
               break;
 
             case 8:
-              _context5.prev = 8;
-              _context5.t0 = _context5["catch"](1);
+              _context6.prev = 8;
+              _context6.t0 = _context6["catch"](1);
               loading.value = 0;
 
-              if (_context5.t0.response.status == '500') {
+              if (_context6.t0.response.status == '500') {
                 errors.value = 'Impossible de supprimer ce pays';
               }
 
             case 12:
             case "end":
-              return _context5.stop();
+              return _context6.stop();
           }
         }
-      }, _callee5, null, [[1, 8]]);
+      }, _callee6, null, [[1, 8]]);
     }));
 
-    return function destroyUniversity(_x5) {
-      return _ref5.apply(this, arguments);
+    return function destroyUniversity(_x6) {
+      return _ref6.apply(this, arguments);
     };
   }();
 
@@ -485,7 +519,8 @@ function useUniversities() {
     getUniversity: getUniversity,
     createUniversity: createUniversity,
     updateUniversity: updateUniversity,
-    destroyUniversity: destroyUniversity
+    destroyUniversity: destroyUniversity,
+    getUniversity2: getUniversity2
   };
 }
 

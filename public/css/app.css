@@ -1274,6 +1274,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-top: 1.75rem;
   padding-bottom: 1.75rem;
 }
+.px-20 {
+  padding-left: 5rem;
+  padding-right: 5rem;
+}
 .pt-8 {
   padding-top: 2rem;
 }
@@ -1921,6 +1925,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .lg\:grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .lg\:grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
   .lg\:flex-row {

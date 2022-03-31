@@ -35,6 +35,18 @@ export default function useUniversities() {
         university.value = response.data.data;
     };
 
+    const getUniversity2 = async (id) => {
+        errors.value = '';
+        loading.value = 1;
+        let response = await axios.get('/api/universities2/' + id, {
+            headers:{
+                'Authorization': `Bearer ${localStorage.token}`
+            }
+        });
+        loading.value = 0;
+        university.value = response.data.data;
+    };
+
     const createUniversity = async (data) => {
         errors.value = '';
         try {
@@ -103,6 +115,7 @@ export default function useUniversities() {
         getUniversity,
         createUniversity,
         updateUniversity,
-        destroyUniversity
+        destroyUniversity,
+        getUniversity2
     };
 } 

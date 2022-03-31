@@ -3,7 +3,7 @@
    <h1 class="text-5xl text-primary-blue text-center py-2 capitalize font-bold">{{ $t('univerities') }}</h1>
    <div class=" py-8 px-16">
                 <div
-                class="grid lg:grid-cols-2 gap-8 px-10 py-8"
+                class="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-8 px-10 py-8"
                 v-if="universities.length != 0"
             >
                 <div
@@ -46,7 +46,7 @@
                                 }"
                                 href="#"
                                 class="block mt-2 text-2xl font-semibold text-gray-800 transition-colors duration-200 transform dark:text-white hover:text-gray-600 hover:underline"
-                                >{{ university.title }}</router-link
+                                >{{ university.name }}</router-link
                             >
                             <p
                                 class="mt-2 text-sm text-gray-600 dark:text-gray-400"

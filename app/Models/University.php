@@ -29,4 +29,8 @@ class University extends Model
     public function city(){
         return $this->belongsTo(Ministry::class);
     }
+
+    public function announcements(){
+        return $this->hasMany(Announcement::class);
+    }
 }

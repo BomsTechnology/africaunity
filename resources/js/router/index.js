@@ -33,6 +33,12 @@ const ZoneEdit = () => import  ("../views/back/zone/ZoneEdit.vue");
 const CountryIndex = () => import  ("../views/back/country/CountryIndex.vue");
 const CountryCreate = () => import  ("../views/back/country/CountryCreate.vue");
 const CountryEdit = () => import  ("../views/back/country/CountryEdit.vue");
+const CurrencyIndex = () => import  ("../views/back/currency/CurrencyIndex.vue");
+const CurrencyCreate = () => import  ("../views/back/currency/CurrencyCreate.vue");
+const CurrencyEdit = () => import  ("../views/back/currency/CurrencyEdit.vue");
+const CategoryAnnouncementIndex = () => import  ("../views/back/category_announcement/CategoryAnnouncementIndex.vue");
+const CategoryAnnouncementCreate = () => import  ("../views/back/category_announcement/CategoryAnnouncementCreate.vue");
+const CategoryAnnouncementEdit = () => import  ("../views/back/category_announcement/CategoryAnnouncementEdit.vue");
 const CityIndex = () => import  ("../views/back/city/CityIndex.vue");
 const CityCreate = () => import  ("../views/back/city/CityCreate.vue");
 const CityEdit = () => import  ("../views/back/city/CityEdit.vue");
@@ -337,6 +343,56 @@ const routes = [
                 name: 'admin.country.edit',
                 meta:{
                     title: siteName + ' - Edit Country'
+                }
+            },
+            {
+                path: 'currency',
+                component: CurrencyIndex,
+                name: 'admin.currency.index',
+                meta:{
+                    title: siteName + ' - Currency'
+                }
+            },
+            {
+                path: 'currency/create',
+                component: CurrencyCreate,
+                name: 'admin.currency.create',
+                meta:{
+                    title: siteName + ' - Create Currency'
+                }
+            },
+            {
+                path: 'currency/edit/:id',
+                component: CurrencyEdit,
+                props: true,
+                name: 'admin.currency.edit',
+                meta:{
+                    title: siteName + ' - Edit Currency'
+                }
+            },
+            {
+                path: 'category',
+                component: CategoryAnnouncementIndex,
+                name: 'admin.category.index',
+                meta:{
+                    title: siteName + ' - Category'
+                }
+            },
+            {
+                path: 'category/create',
+                component: CategoryAnnouncementCreate,
+                name: 'admin.category.create',
+                meta:{
+                    title: siteName + ' - Create Category'
+                }
+            },
+            {
+                path: 'category/edit/:id',
+                component: CategoryAnnouncementEdit,
+                props: true,
+                name: 'admin.category.edit',
+                meta:{
+                    title: siteName + ' - Edit Category'
                 }
             },
             {

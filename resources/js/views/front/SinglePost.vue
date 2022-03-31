@@ -181,7 +181,7 @@
                 class="p-28 flex justify-center text-gray-500 flex-col items-center animate-pulse"
             >
                 <EmojiSadIcon class="h-16 w-16" />
-                <span class="text-2xl mt-2">NO CONTENT </span>
+                <span class="text-2xl mt-2">{{ $t('no-content') }}</span>
             </div>
         </div>
         <div class="lg:w-[30%] bg-white">

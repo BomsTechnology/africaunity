@@ -64,6 +64,11 @@ class UniversityController extends Controller
         return new UniversityResource2($university);
     }
 
+    public function show2(University $university)
+    {
+        return new UniversityResource($university);
+    }
+
     /**
      * Update the specified resource in storage.
      *

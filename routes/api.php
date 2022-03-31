@@ -1,12 +1,15 @@
 <?php
 
+use App\Http\Controllers\Api\AnnouncementController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\CategoryAnnouncementController;
 use App\Http\Controllers\Api\CityController;
 use App\Http\Controllers\Api\CommentController;
 use App\Http\Controllers\Api\ContinentController;
 use App\Http\Controllers\Api\CountryController;
+use App\Http\Controllers\Api\CurrencyController;
 use App\Http\Controllers\Api\MinistryController;
 use App\Http\Controllers\Api\PostController;
 use App\Http\Controllers\Api\UniversityController;
@@ -36,11 +39,21 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::apiResource('users', UserController::class);
 
     Route::apiResource('cities', CityController::class);
+
     Route::apiResource('universities', UniversityController::class);
+    Route::get("/universities2/{university}", [UniversityController::class,'show2']);
+
+    Route::apiResource('currencies', CurrencyController::class);
+
+    Route::apiResource('categoryAnnouncements', CategoryAnnouncementController::class);
 
     Route::apiResource('comments', CommentController::class);
     Route::get('comments-post/{id}', [CommentController::class, 'comment_post']);
     Route::get('comments-user/{id}', [CommentController::class, 'comment_user']);
+
+    Route::apiResource('announcements', AnnouncementController::class);
+    Route::get('announcements-university/{id}', [AnnouncementController::class, 'announcements_university']);
+    Route::get('announcements-user/{id}', [AnnouncementController::class, 'announcements_user']);
 
     Route::post("/continents", [ContinentController::class,'store']);
     Route::get("/continents/{continent}", [ContinentController::class,'show']);

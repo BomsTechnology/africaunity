@@ -269,18 +269,20 @@
                     <FlagIcon class="w-6 h-6" />
                     <p class="text-base leading-4">Country</p>
                 </router-link>
-                <button
+                <router-link
+                        :to="{name:'admin.city.index'}"
                     class="flex justify-start items-center space-x-6 hover:text-white focus:bg-gray-700 focus:text-white hover:bg-gray-700 text-gray-400 rounded px-3 py-2 w-full md:w-52"
                 >
                     <TemplateIcon class="w-6 h-6" />
                     <p class="text-base leading-4">City</p>
-                </button>
-                <button
+                </router-link>
+                <router-link
+                        :to="{name:'admin.currency.index'}"
                     class="flex justify-start items-center space-x-6 hover:text-white focus:bg-gray-700 focus:text-white hover:bg-gray-700 text-gray-400 rounded px-3 py-2 w-full md:w-52"
                 >
                     <CurrencyDollarIcon class="w-6 h-6" />
                     <p class="text-base leading-4">Currency</p>
-                </button>
+                </router-link>
                 <button
                     class="flex justify-start items-center space-x-6 hover:text-white focus:bg-gray-700 focus:text-white hover:bg-gray-700 text-gray-400 rounded px-3 py-2 w-full md:w-52"
                 >
@@ -322,24 +324,27 @@
                         <TableIcon class="w-6 h-6" />
                         <p class="text-base leading-4">All Announcement</p>
                     </button>
-                    <button
+                    <router-link
+                        :to="{name:'admin.university.index'}"
                         class="flex justify-start items-center space-x-6 hover:text-white focus:bg-gray-700 focus:text-white hover:bg-gray-700 text-gray-400 rounded px-3 py-2 w-full md:w-52"
                     >
                         <LibraryIcon class="w-6 h-6" />
                         <p class="text-base leading-4">University</p>
-                    </button>
-                    <button
+                    </router-link>
+                    <router-link
+                        :to="{name:'admin.category.index'}"
                         class="flex justify-start items-center space-x-6 hover:text-white focus:bg-gray-700 focus:text-white hover:bg-gray-700 text-gray-400 rounded px-3 py-2 w-full md:w-52"
                     >
                         <ChartPieIcon class="w-6 h-6" />
                         <p class="text-base leading-4">Category</p>
-                    </button>
-                    <button
+                    </router-link>
+                    <router-link
+                        :to="{name:'admin.currency.index'}"
                         class="flex justify-start items-center space-x-6 hover:text-white focus:bg-gray-700 focus:text-white hover:bg-gray-700 text-gray-400 rounded px-3 py-2 w-full md:w-52"
                     >
                         <CurrencyDollarIcon class="w-6 h-6" />
                         <p class="text-base leading-4">Currency</p>
-                    </button>
+                    </router-link>
                 </div>
             </div>
             <div class="flex justify-between px-6 items-center w-full">
