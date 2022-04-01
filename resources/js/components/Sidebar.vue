@@ -318,12 +318,13 @@
                     v-if="open.announcement"
                     class="flex justify-start flex-col w-full md:w-auto items-start pb-1"
                 >
-                    <button
+                    <router-link
+                        :to="{name:'admin.announcement.index'}"
                         class="flex justify-start items-center space-x-6 hover:text-white focus:bg-gray-700 focus:text-white hover:bg-gray-700 text-gray-400 rounded px-3 py-2 w-full md:w-52"
                     >
                         <TableIcon class="w-6 h-6" />
                         <p class="text-base leading-4">All Announcement</p>
-                    </button>
+                    </router-link>
                     <router-link
                         :to="{name:'admin.university.index'}"
                         class="flex justify-start items-center space-x-6 hover:text-white focus:bg-gray-700 focus:text-white hover:bg-gray-700 text-gray-400 rounded px-3 py-2 w-full md:w-52"

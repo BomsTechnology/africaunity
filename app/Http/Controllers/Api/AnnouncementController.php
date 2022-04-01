@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\AnnouncementResource;
+use App\Http\Resources\AnnouncementResource2;
 use App\Models\Announcement;
 use Illuminate\Http\Request;
 
@@ -15,7 +17,17 @@ class AnnouncementController extends Controller
      */
     public function index()
     {
-        //
+        return AnnouncementResource::collection(Announcement::latest()->get());
+    }
+
+    public function announcements_user($user)
+    {
+        return AnnouncementResource::collection(Announcement::where('user_id',$user)->orderBy('id', 'desc')->get());
+    }
+
+    public function announcements_university($university)
+    {
+        return AnnouncementResource::collection(Announcement::where('university_id',$university)->orderBy('id', 'desc')->get());
     }
 
     /**
@@ -26,7 +38,40 @@ class AnnouncementController extends Controller
      */
     public function store(Request $request)
     {
-        //
+            $fileds = $request->validate([
+                'title' => 'required|string|between:1,50',
+                'description' => 'required|string',
+                'adress' => '',
+                'phone' => 'required|string',
+                'email' => 'required|string',
+                'website' => '',
+                'price' => 'required|string',
+                'user_id' => 'integer|required',
+                'currency_id' => 'integer|required',
+                'category_announcement_id' => 'integer|required',
+                'university_id' => 'integer|required',
+                'image' => 'required|mimes:png,jpg,jpeng,gif|dimensions:max_width=2048,max_height=2048'
+            ]);
+            $filename = '/uploads/'.time().'.'. $request->file('image')->extension();
+            $request->file('image')->storePubliclyAs('public', $filename);
+            $data = [
+                'title' => $fileds['title'],
+                'description' => $fileds['description'],
+                'adress' => $fileds['adress'],
+                'phone' => $fileds['phone'],
+                'website' => $fileds['website'],
+                'price' => $fileds['price'],
+                'user_id' => $fileds['user_id'],
+                'currency_id' => $fileds['currency_id'],
+                'category_announcement_id' => $fileds['category_announcement_id'],
+                'university_id' => $fileds['university_id'],
+                'email' => $fileds['email'],
+                'image' => $filename
+            ];
+        
+        $announcement = Announcement::create($data);
+    
+        return new AnnouncementResource($announcement);
     }
 
     /**
@@ -37,9 +82,13 @@ class AnnouncementController extends Controller
      */
     public function show(Announcement $announcement)
     {
-        //
+        return new AnnouncementResource2($announcement);
     }
 
+    public function show2(Announcement $announcement)
+    {
+        return new AnnouncementResource($announcement);
+    }
     /**
      * Update the specified resource in storage.
      *
@@ -49,7 +98,45 @@ class AnnouncementController extends Controller
      */
     public function update(Request $request, Announcement $announcement)
     {
-        //
+        $fileds = $request->validate([
+            'title' => 'required|string|between:1,50',
+            'description' => 'required|string',
+            'adress' => '',
+            'phone' => 'required|string',
+            'email' => 'required|string',
+            'website' => '',
+            'price' => 'required|string',
+            'user_id' => 'integer|required',
+            'currency_id' => 'integer|required',
+            'category_announcement_id' => 'integer|required',
+            'university_id' => 'integer|required',
+        ]);
+        $data = [
+            'title' => $fileds['title'],
+            'description' => $fileds['description'],
+            'adress' => $fileds['adress'],
+            'phone' => $fileds['phone'],
+            'website' => $fileds['website'],
+            'price' => $fileds['price'],
+            'user_id' => $fileds['user_id'],
+            'currency_id' => $fileds['currency_id'],
+            'category_announcement_id' => $fileds['category_announcement_id'],
+            'university_id' => $fileds['university_id'],
+            'email' => $fileds['email'],
+        ];
+
+        if($request->file('image')){
+            $request->validate([
+                'image' => 'required|mimes:png,jpg,jpeng,gif|dimensions:max_width=2048,max_height=2048'
+            ]);
+            $filename = '/uploads/'.time().'.'. $request->file('image')->extension();
+            $request->file('image')->storePubliclyAs('public', $filename);
+            $data['image'] = $filename;
+        }
+
+        $announcement->update($data);
+        
+        return new AnnouncementResource($announcement);
     }
 
     /**
@@ -60,6 +147,8 @@ class AnnouncementController extends Controller
      */
     public function destroy(Announcement $announcement)
     {
-        //
+        $announcement->delete();
+
+        return response()->noContent();
     }
 }

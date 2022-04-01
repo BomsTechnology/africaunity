@@ -9,7 +9,10 @@ const Pack = () => import ("../views/front/Pack.vue");
 const AddPost = () => import ("../views/front/AddPost.vue");
 const SinglePost = () => import ("../views/front/SinglePost.vue");
 const SingleUniversity = () => import ("../views/front/SingleUniversity.vue");
+const SingleAnnouncement = () => import ("../views/front/SingleAnnouncement.vue");
 const EditPost = () => import ("../views/front/EditPost.vue");
+const EditAnnouncement = () => import ("../views/front/EditAnnouncement.vue");
+const AddAnnouncement = () => import ("../views/front/AddAnnouncement.vue");
 const Particular = () => import ("../views/front/Particular.vue");
 const PoliticalInstitution = () => import ("../views/front/PoliticalInstitution.vue");
 const PropAu = () => import ("../views/front/PropAu.vue");
@@ -39,6 +42,9 @@ const CurrencyEdit = () => import  ("../views/back/currency/CurrencyEdit.vue");
 const CategoryAnnouncementIndex = () => import  ("../views/back/category_announcement/CategoryAnnouncementIndex.vue");
 const CategoryAnnouncementCreate = () => import  ("../views/back/category_announcement/CategoryAnnouncementCreate.vue");
 const CategoryAnnouncementEdit = () => import  ("../views/back/category_announcement/CategoryAnnouncementEdit.vue");
+const AnnouncementIndex = () => import  ("../views/back/announcement/AnnouncementIndex.vue");
+const AnnouncementCreate = () => import  ("../views/back/announcement/AnnouncementCreate.vue");
+const AnnouncementEdit = () => import  ("../views/back/announcement/AnnouncementEdit.vue");
 const CityIndex = () => import  ("../views/back/city/CityIndex.vue");
 const CityCreate = () => import  ("../views/back/city/CityCreate.vue");
 const CityEdit = () => import  ("../views/back/city/CityEdit.vue");
@@ -90,6 +96,33 @@ const routes = [
         name: 'show.post',
         props: true,
         component: SinglePost,
+        meta:{
+            title: siteName
+        }
+    },
+    {
+        path: '/ads/:id',
+        name: 'show.ads',
+        props: true,
+        component: SingleAnnouncement,
+        meta:{
+            title: siteName
+        }
+    },
+    {
+        path: '/ads/:id',
+        name: 'edit.ads',
+        props: true,
+        component: EditAnnouncement,
+        meta:{
+            title: siteName
+        }
+    },
+    {
+        path: '/add/ads',
+        name: 'add.ads',
+        props: true,
+        component: AddAnnouncement,
         meta:{
             title: siteName
         }
@@ -343,6 +376,31 @@ const routes = [
                 name: 'admin.country.edit',
                 meta:{
                     title: siteName + ' - Edit Country'
+                }
+            },
+            {
+                path: 'ads',
+                component: AnnouncementIndex,
+                name: 'admin.announcement.index',
+                meta:{
+                    title: siteName + ' - Ads'
+                }
+            },
+            {
+                path: 'ads/create',
+                component: AnnouncementCreate,
+                name: 'admin.announcement.create',
+                meta:{
+                    title: siteName + ' - Create Ads'
+                }
+            },
+            {
+                path: 'ads/edit/:id',
+                component: AnnouncementEdit,
+                props: true,
+                name: 'admin.announcement.edit',
+                meta:{
+                    title: siteName + ' - Edit Ads'
                 }
             },
             {

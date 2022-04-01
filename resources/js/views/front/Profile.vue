@@ -291,7 +291,103 @@
                 <h1 class="text-center text-2xl text-gray-500 font-bold italic">Job Comming Soon</h1>
         </div>
          <div class=" py-8 px-16" v-else>
-               <h1 class="text-center text-2xl text-gray-500 font-bold italic">Ads Comming Soon</h1>
+             <div class="flex justify-end px-6">
+                <router-link
+                    :to="{
+                        name: 'add.ads',
+                    }"
+                    class="flex justify-start items-center space-x-3 text-white bg-primary-blue rounded px-3 py-2"
+                >
+                    <PlusCircleIcon class="w-6 h-6" />
+                    <p class="text-base leading-4">{{ $t('add') }} Annonce</p>
+                </router-link>
+            </div>
+                <div class="overflow-hidden">
+                    <table
+                        class="min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-700"
+                    >
+                        <thead class="bg-gray-100 dark:bg-gray-700">
+                            <tr>
+                                <th
+                                    scope="col"
+                                    class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
+                                >
+                                    Ads
+                                </th>
+                                <th scope="col" class="p-4">
+                                    <span class="sr-only"
+                                        >Edit</span
+                                    >
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody
+                            class="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700"
+                            v-if="announcements.length != 0"
+                        >
+                            <tr
+                                v-for="announcement in announcements"
+                                :key="announcement.id"
+                                class="hover:bg-gray-100 dark:hover:bg-gray-700"
+                            >
+                                <td
+                                    class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                                >
+                                    <router-link 
+                                    :to="{
+                                        name: 'show.ads',
+                                        params: { id: announcement.id },
+                                    }"
+                                    class="hover:underline"
+                                    >{{ announcement.title }}</router-link> 
+                                </td>
+                                <td
+                                    class="py-4 px-6 text-sm font-medium text-right whitespace-nowrap"
+                                >
+                                    <div class="flex">
+                                        <router-link
+                                :to="{
+                                    name: 'edit.ads',
+                                    params: { id: announcement.id},
+                                }"
+                                            class="text-primary-blue dark:text-blue-500 hover:underline"
+                                            >
+                                            <PencilAltIcon
+                                                    class="h-5 w-5 hover:text-blue-700 cursor-pointer text-blue-400"
+                                                />
+                                            </router-link
+                                        >
+                                        <button
+                                            @click="deleteAnnouncement(announcement.id)"
+                                            class="text-red-600 ml-3 dark:text-blue-500 hover:underline"
+                                            >
+                                                <TrashIcon
+                                                    class="h-5 w-5 hover:text-red-700 cursor-pointer text-red-400"
+                                                />
+                                            </button
+                                        >
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tbody
+                            class="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700"
+                            v-else
+                        >
+                            <tr
+                                
+                                class="hover:bg-gray-100 dark:hover:bg-gray-700"
+                            >
+                                <td
+                                    colspan="5"
+                                    class="py-4 px-6 text-xl font-medium text-gray-900 text-center whitespace-nowrap dark:text-white"
+                                >
+                                    NO ADS
+                                    </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
         </div>
 
     </section>
@@ -306,6 +402,7 @@ import router from "../../router";
 import usePosts from "../../services/postServices.js";
 import useUsers from "../../services/userServices.js";
 import useComments from "../../services/commentServices.js";
+import useAnnouncements from "../../services/announcementServices.js";
 import { CogIcon, TrashIcon, PlusCircleIcon, SpeakerphoneIcon, PencilIcon, PencilAltIcon, NewspaperIcon, ChatIcon, ChatAltIcon, BookOpenIcon, IdentificationIcon, UserCircleIcon } from "@heroicons/vue/solid";
 export default {
     props: {
@@ -339,11 +436,13 @@ export default {
         const { articles, getPostsUser, propau, loading, errors } = usePosts();
         const { user, getUser, } = useUsers();
         const { comments, getCommentsUser, destroyComment, updateComment} = useComments();
+        const { announcements, getAnnouncementsUser, destroyAnnouncement} = useAnnouncements();
         onMounted(                
             async () => {
                 await getUser(props.id);
                 await getPostsUser(props.id);
                 await getCommentsUser(props.id);
+                await getAnnouncementsUser(props.id);
             }
             
         );      
@@ -352,6 +451,13 @@ export default {
             if(confirm("I you Sure ?")){
                 await destroyComment(id)
                 await getCommentsUser(props.id);
+            }
+        };
+
+        const deleteAnnouncement = async (id) => {
+            if(confirm("I you Sure ?")){
+                await destroyAnnouncement(id)
+                await getAnnouncementsUser(props.id);
             }
         };
 
@@ -442,8 +548,10 @@ export default {
 
         return{
             open,
+            deleteAnnouncement,
             changeTab,
             deleteComment,
+            announcements,
             user,
             loginUser,
             propau,

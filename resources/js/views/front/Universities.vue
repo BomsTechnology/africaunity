@@ -101,6 +101,86 @@
                 <span class="text-2xl mt-2">{{ $t('no-content') }} </span>
             </div>
     </div>
+    <h1 class="text-5xl text-primary-blue text-center py-2 capitalize font-bold">Annonces</h1>
+    <div class="flex justify-end px-6">
+                <router-link
+                    :to="{
+                        name: 'add.ads',
+                    }"
+                    class="flex justify-start items-center space-x-3 text-white bg-primary-blue rounded px-3 py-2"
+                >
+                    <PlusCircleIcon class="w-6 h-6" />
+                    <p class="text-base leading-4">{{ $t('add') }} Annonce</p>
+                </router-link>
+            </div>
+    <div class=" py-8 px-16">
+        <div
+                class="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-8 px-10 py-8"
+                v-if="announcements.length != 0"
+            >           
+            <div class="max-w-lg mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800" v-for="announcement in announcements"
+                                            :key="announcement.id">
+                <router-link
+                                :to="{
+                                    name: 'show.ads',
+                                    params: { id: announcement.id },
+                                }">
+                <img class="object-cover w-full h-48 mt-2 rounded-t-lg" :src="announcement.image" :alt="announcement.title">
+                </router-link>
+                <div class="px-4 py-2 space-y-2">
+                    <a
+                        href="#"
+                        class="text-xs py-1 px-2 mt-2 rounded capitalize text-white bg-primary-blue"
+                    >
+                        {{ announcement.category.name }}
+                            </a>
+                            <router-link
+                                :to="{
+                                    name: 'show.ads',
+                                    params: { id: announcement.id },
+                                }">
+                    <h1 class="text-2xl font-bold text-gray-800 capitalize hover:underline">{{ announcement.title }}</h1>
+                    </router-link>
+                    
+                    <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+                        {{ announcement.description.substring(0, 19) + "..." }}
+                    </p>
+                </div>
+                <div class="flex items-center justify-between px-4 py-2 bg-gray-900">
+                    <h1 class="text-lg font-bold text-white">
+                        {{ announcement.price }} {{ announcement.currency.symbol }}
+                    </h1>
+                    <div
+                                class="flex items-center text-xs space-x-2 text-white"
+                            >
+                                <div class="flex space-x-1">
+                                    <UserIcon class="h-4 w-4" />
+                                    <router-link   :to="{name:'compte',  params: { name: announcement.user.firstname, id : announcement.user.id }}"
+                                        href="#"
+                                        class="hover:text-primary-blue"
+                                        >{{ announcement.user.firstname }}</router-link
+                                    >
+                                </div>
+                                <div class="flex space-x-1">
+                                    <CalendarIcon class="h-4 w-4" />
+                                    <a
+                                        href="#"
+                                        class="hover:text-primary-blue"
+                                        >{{ announcement.date }}</a
+                                    >
+                                </div>
+                            </div>
+                </div>
+            </div>
+        </div>
+        <div
+                v-else
+                class="p-28 flex justify-center text-gray-500 flex-col items-center animate-pulse"
+            >
+                <EmojiSadIcon class="h-16 w-16" />
+                <span class="text-2xl mt-2">{{ $t('no-content') }} </span>
+        </div>
+    </div>
     <Footer/>
 </template>
 
@@ -109,15 +189,19 @@ import Header from "../../components/Header.vue";
 import Footer from "../../components/Footer.vue";
 import { reactive, ref, onMounted} from "vue";
 import {
-    EmojiSadIcon,
+    EmojiSadIcon, UserIcon, CalendarIcon, PlusCircleIcon
 } from "@heroicons/vue/solid";
 import useUniversities from "../../services/universityServices.js";
+import useAnnouncements from "../../services/announcementServices.js";
 import router from "../../router";
 export default {
     components:{
         Header,
         Footer,
-        EmojiSadIcon
+        EmojiSadIcon,
+        UserIcon,
+        CalendarIcon,
+        PlusCircleIcon
     },
     created(){
         if (!localStorage.token) {
@@ -127,11 +211,15 @@ export default {
     setup(props) {
         const { universities, getUniversities, loading, errors } =
             useUniversities();
-
-            onMounted(getUniversities());
+        const { announcements, getAnnouncements } = useAnnouncements();
+            onMounted(
+                getUniversities(),
+                getAnnouncements()
+                );
 
             return {
             universities,
+            announcements,
             loading,
             errors,
         };

@@ -32,7 +32,7 @@ class PostResource extends JsonResource
             'user' => User::find($this->user_id),
             'continent' => new ContinentResource(Continent::find($this->continent_id)),
             'zone' => new ZoneResource(Zone::find($this->zone_id)),
-            'country' => new MinistryResource(Country::find($this->country_id)),
+            'country' => new CountryResource(Country::find($this->country_id)),
             'ministry' => new MinistryResource(Ministry::find($this->ministry_id)),
             'date' => $this->created_at->format('Y-m-d'),
         ];

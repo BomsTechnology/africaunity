@@ -19,10 +19,10 @@ class CreateAnnouncementsTable extends Migration
             $table->longText('description');
             $table->string('image')->nullable();
             $table->integer('status')->default(1);
-            $table->string('adress');
+            $table->string('adress')->nullable();
             $table->string('phone');
             $table->string('email');
-            $table->string('website');
+            $table->string('website')->nullable();
             $table->string('price');
             $table->foreignId('user_id')->constrained();
             $table->foreignId('currency_id')->constrained();

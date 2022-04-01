@@ -26335,8 +26335,20 @@ var SingleUniversity = function SingleUniversity() {
   return __webpack_require__.e(/*! import() */ "resources_js_views_front_SingleUniversity_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../views/front/SingleUniversity.vue */ "./resources/js/views/front/SingleUniversity.vue"));
 };
 
+var SingleAnnouncement = function SingleAnnouncement() {
+  return __webpack_require__.e(/*! import() */ "resources_js_views_front_SingleAnnouncement_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../views/front/SingleAnnouncement.vue */ "./resources/js/views/front/SingleAnnouncement.vue"));
+};
+
 var EditPost = function EditPost() {
   return __webpack_require__.e(/*! import() */ "resources_js_views_front_EditPost_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../views/front/EditPost.vue */ "./resources/js/views/front/EditPost.vue"));
+};
+
+var EditAnnouncement = function EditAnnouncement() {
+  return __webpack_require__.e(/*! import() */ "resources_js_views_front_EditAnnouncement_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../views/front/EditAnnouncement.vue */ "./resources/js/views/front/EditAnnouncement.vue"));
+};
+
+var AddAnnouncement = function AddAnnouncement() {
+  return __webpack_require__.e(/*! import() */ "resources_js_views_front_AddAnnouncement_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../views/front/AddAnnouncement.vue */ "./resources/js/views/front/AddAnnouncement.vue"));
 };
 
 var Particular = function Particular() {
@@ -26455,6 +26467,18 @@ var CategoryAnnouncementEdit = function CategoryAnnouncementEdit() {
   return __webpack_require__.e(/*! import() */ "resources_js_views_back_category_announcement_CategoryAnnouncementEdit_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../views/back/category_announcement/CategoryAnnouncementEdit.vue */ "./resources/js/views/back/category_announcement/CategoryAnnouncementEdit.vue"));
 };
 
+var AnnouncementIndex = function AnnouncementIndex() {
+  return __webpack_require__.e(/*! import() */ "resources_js_views_back_announcement_AnnouncementIndex_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../views/back/announcement/AnnouncementIndex.vue */ "./resources/js/views/back/announcement/AnnouncementIndex.vue"));
+};
+
+var AnnouncementCreate = function AnnouncementCreate() {
+  return __webpack_require__.e(/*! import() */ "resources_js_views_back_announcement_AnnouncementCreate_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../views/back/announcement/AnnouncementCreate.vue */ "./resources/js/views/back/announcement/AnnouncementCreate.vue"));
+};
+
+var AnnouncementEdit = function AnnouncementEdit() {
+  return __webpack_require__.e(/*! import() */ "resources_js_views_back_announcement_AnnouncementEdit_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../views/back/announcement/AnnouncementEdit.vue */ "./resources/js/views/back/announcement/AnnouncementEdit.vue"));
+};
+
 var CityIndex = function CityIndex() {
   return __webpack_require__.e(/*! import() */ "resources_js_views_back_city_CityIndex_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../views/back/city/CityIndex.vue */ "./resources/js/views/back/city/CityIndex.vue"));
 };
@@ -26527,6 +26551,30 @@ var routes = [// front routes
   name: 'show.post',
   props: true,
   component: SinglePost,
+  meta: {
+    title: siteName
+  }
+}, {
+  path: '/ads/:id',
+  name: 'show.ads',
+  props: true,
+  component: SingleAnnouncement,
+  meta: {
+    title: siteName
+  }
+}, {
+  path: '/ads/:id',
+  name: 'edit.ads',
+  props: true,
+  component: EditAnnouncement,
+  meta: {
+    title: siteName
+  }
+}, {
+  path: '/add/ads',
+  name: 'add.ads',
+  props: true,
+  component: AddAnnouncement,
   meta: {
     title: siteName
   }
@@ -26746,6 +26794,28 @@ var routes = [// front routes
   name: 'admin.country.edit',
   meta: {
     title: siteName + ' - Edit Country'
+  }
+}, {
+  path: 'ads',
+  component: AnnouncementIndex,
+  name: 'admin.announcement.index',
+  meta: {
+    title: siteName + ' - Ads'
+  }
+}, {
+  path: 'ads/create',
+  component: AnnouncementCreate,
+  name: 'admin.announcement.create',
+  meta: {
+    title: siteName + ' - Create Ads'
+  }
+}, {
+  path: 'ads/edit/:id',
+  component: AnnouncementEdit,
+  props: true,
+  name: 'admin.announcement.edit',
+  meta: {
+    title: siteName + ' - Edit Ads'
   }
 }, {
   path: 'currency',
@@ -66731,7 +66801,7 @@ module.exports = JSON.parse('{"lastest":"Recente","fr":"Français","en":"English
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_views_front_Article_vue":1,"resources_js_views_front_Contact_vue":1,"resources_js_views_front_Establishment_vue":1,"resources_js_views_front_Job_vue":1,"resources_js_views_front_Login_vue":1,"resources_js_views_front_Pack_vue":1,"resources_js_views_front_AddPost_vue":1,"resources_js_views_front_SinglePost_vue":1,"resources_js_views_front_SingleUniversity_vue":1,"resources_js_views_front_EditPost_vue":1,"resources_js_views_front_Particular_vue":1,"resources_js_views_front_PoliticalInstitution_vue":1,"resources_js_views_front_PropAu_vue":1,"resources_js_views_front_Universities_vue":1,"resources_js_views_front_Register_vue":1,"resources_js_views_front_NotFound_vue":1,"resources_js_views_front_Profile_vue":1,"resources_js_views_back_Login_vue":1,"resources_js_views_back_Dashboard_vue":1,"resources_js_views_back_posts_PostIndex_vue":1,"resources_js_views_back_posts_PostCreate_vue":1,"resources_js_views_back_posts_PostEdit_vue":1,"resources_js_views_back_continent_ContinentIndex_vue":1,"resources_js_views_back_continent_ContinentCreate_vue":1,"resources_js_views_back_continent_ContinentEdit_vue":1,"resources_js_views_back_comment_CommentIndex_vue":1,"resources_js_views_back_comment_CommentCreate_vue":1,"resources_js_views_back_zone_ZoneIndex_vue":1,"resources_js_views_back_zone_ZoneCreate_vue":1,"resources_js_views_back_zone_ZoneEdit_vue":1,"resources_js_views_back_country_CountryIndex_vue":1,"resources_js_views_back_country_CountryCreate_vue":1,"resources_js_views_back_country_CountryEdit_vue":1,"resources_js_views_back_currency_CurrencyIndex_vue":1,"resources_js_views_back_currency_CurrencyCreate_vue":1,"resources_js_views_back_currency_CurrencyEdit_vue":1,"resources_js_views_back_category_announcement_CategoryAnnouncementIndex_vue":1,"resources_js_views_back_category_announcement_CategoryAnnouncementCreate_vue":1,"resources_js_views_back_category_announcement_CategoryAnnouncementEdit_vue":1,"resources_js_views_back_city_CityIndex_vue":1,"resources_js_views_back_city_CityCreate_vue":1,"resources_js_views_back_city_CityEdit_vue":1,"resources_js_views_back_university_UniversityIndex_vue":1,"resources_js_views_back_university_UniversityCreate_vue":1,"resources_js_views_back_university_UniversityEdit_vue":1,"resources_js_views_back_ministry_MinistryIndex_vue":1,"resources_js_views_back_ministry_MinistryCreate_vue":1,"resources_js_views_back_ministry_MinistryEdit_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_views_front_Article_vue":1,"resources_js_views_front_Contact_vue":1,"resources_js_views_front_Establishment_vue":1,"resources_js_views_front_Job_vue":1,"resources_js_views_front_Login_vue":1,"resources_js_views_front_Pack_vue":1,"resources_js_views_front_AddPost_vue":1,"resources_js_views_front_SinglePost_vue":1,"resources_js_views_front_SingleUniversity_vue":1,"resources_js_views_front_SingleAnnouncement_vue":1,"resources_js_views_front_EditPost_vue":1,"resources_js_views_front_EditAnnouncement_vue":1,"resources_js_views_front_AddAnnouncement_vue":1,"resources_js_views_front_Particular_vue":1,"resources_js_views_front_PoliticalInstitution_vue":1,"resources_js_views_front_PropAu_vue":1,"resources_js_views_front_Universities_vue":1,"resources_js_views_front_Register_vue":1,"resources_js_views_front_NotFound_vue":1,"resources_js_views_front_Profile_vue":1,"resources_js_views_back_Login_vue":1,"resources_js_views_back_Dashboard_vue":1,"resources_js_views_back_posts_PostIndex_vue":1,"resources_js_views_back_posts_PostCreate_vue":1,"resources_js_views_back_posts_PostEdit_vue":1,"resources_js_views_back_continent_ContinentIndex_vue":1,"resources_js_views_back_continent_ContinentCreate_vue":1,"resources_js_views_back_continent_ContinentEdit_vue":1,"resources_js_views_back_comment_CommentIndex_vue":1,"resources_js_views_back_comment_CommentCreate_vue":1,"resources_js_views_back_zone_ZoneIndex_vue":1,"resources_js_views_back_zone_ZoneCreate_vue":1,"resources_js_views_back_zone_ZoneEdit_vue":1,"resources_js_views_back_country_CountryIndex_vue":1,"resources_js_views_back_country_CountryCreate_vue":1,"resources_js_views_back_country_CountryEdit_vue":1,"resources_js_views_back_currency_CurrencyIndex_vue":1,"resources_js_views_back_currency_CurrencyCreate_vue":1,"resources_js_views_back_currency_CurrencyEdit_vue":1,"resources_js_views_back_category_announcement_CategoryAnnouncementIndex_vue":1,"resources_js_views_back_category_announcement_CategoryAnnouncementCreate_vue":1,"resources_js_views_back_category_announcement_CategoryAnnouncementEdit_vue":1,"resources_js_views_back_announcement_AnnouncementIndex_vue":1,"resources_js_views_back_announcement_AnnouncementCreate_vue":1,"resources_js_views_back_announcement_AnnouncementEdit_vue":1,"resources_js_views_back_city_CityIndex_vue":1,"resources_js_views_back_city_CityCreate_vue":1,"resources_js_views_back_city_CityEdit_vue":1,"resources_js_views_back_university_UniversityIndex_vue":1,"resources_js_views_back_university_UniversityCreate_vue":1,"resources_js_views_back_university_UniversityEdit_vue":1,"resources_js_views_back_ministry_MinistryIndex_vue":1,"resources_js_views_back_ministry_MinistryCreate_vue":1,"resources_js_views_back_ministry_MinistryEdit_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

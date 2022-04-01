@@ -54,6 +54,7 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::apiResource('announcements', AnnouncementController::class);
     Route::get('announcements-university/{id}', [AnnouncementController::class, 'announcements_university']);
     Route::get('announcements-user/{id}', [AnnouncementController::class, 'announcements_user']);
+    Route::get("/announcements2/{announcement}", [AnnouncementController::class,'show2']);
 
     Route::post("/continents", [ContinentController::class,'store']);
     Route::get("/continents/{continent}", [ContinentController::class,'show']);
