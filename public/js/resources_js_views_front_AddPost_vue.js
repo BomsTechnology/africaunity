@@ -70,7 +70,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   created: function created() {
     if (!localStorage.token) {
       _router_index_js__WEBPACK_IMPORTED_MODULE_10__["default"].push({
-        name: "login"
+        name: "login",
+        params: {
+          redirect: 'not-login'
+        }
       });
     }
   },

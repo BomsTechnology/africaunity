@@ -71,6 +71,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     Footer: _components_Footer_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
     Error: _components_Error_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
   },
+  created: function created() {
+    if (!localStorage.token) {
+      _router_index_js__WEBPACK_IMPORTED_MODULE_10__["default"].push({
+        name: "login",
+        params: {
+          redirect: 'not-login'
+        }
+      });
+    }
+  },
   setup: function setup(props) {
     var types = ["article", "propau"];
 

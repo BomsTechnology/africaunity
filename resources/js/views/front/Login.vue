@@ -1,5 +1,7 @@
 <template>
     <Header />
+    <NotLogin :open="openNotLogin" :toogleModal="toogleModal" />
+    <VerifyOK :open="openVerifyOK" :toogleModal="toogleModal" />
     <div class="lg:flex justify-center items-center md:space-x-6 md:px-12 px-2 py-8">
         <div class="space-y-6 lg:w-[60%] lg:text-left text-center">
             <h1
@@ -42,7 +44,7 @@
                         {{ $t("login") }}
                     </h1>
                     <Error v-if="errors != ''">{{ errors }}</Error>
-                    <form @submit.prevent="login" class="py-7">
+                    <form  @submit.prevent="login" class="py-7">
                         <div class="relative">
                             <span
                                 ><MailIcon
@@ -102,32 +104,71 @@ import Footer from "../../components/Footer.vue";
 import { reactive, ref, onMounted} from "vue";
 import Error from "../../components/Error.vue";
 import useAuth from "../../services/authServices.js"
+import router from "../../router";
 import { MailIcon, LockClosedIcon } from '@heroicons/vue/solid';
+import NotLogin from "../../components/NotLogin.vue"
+import VerifyOK from "../../components/VerifyOK.vue"
 export default {
     components: {
         Header,
         Footer,
         MailIcon,
         Error,
-        LockClosedIcon
+        LockClosedIcon,
+        NotLogin,
+        VerifyOK
+    },
+    props: {
+        redirect: {
+            required: false,
+            type: String,
+        },
     },
     setup(props) {
-        
+        const cuser = localStorage.user ? JSON.parse(localStorage.user) : '';
+        const openNotLogin = ref(false);
+        const openVerifyOK = ref(false);
+
         const user = reactive({
             email: "",
             password: "",
         });
+
+        const toogleModal = () => {
+            openNotLogin.value = false;
+            openVerifyOK.value = false;
+        };
+
         const { loginUser , errors, loading } = useAuth();
+
+        onMounted( 
+            () => {
+            if(props.redirect == 'not-login'){
+                openNotLogin.value = true;
+            }else if(props.redirect == 'verif-ok'){
+                openVerifyOK.value = true;
+            }
+
+            if (localStorage.token) {
+                router.push({name:'compte',  params: {name: cuser.firstname, id : cuser.id }});
+            }
+        });
 
         const login = async () => {
                 await loginUser({...user});
+                if(errors.value == ''){
+                    router.push({ name: "home" });
+                }               
         };
 
         return {
             user,
             errors,
             login,
-            loading
+            loading,
+            openNotLogin,
+            openVerifyOK,
+            toogleModal
         };
     },
 };

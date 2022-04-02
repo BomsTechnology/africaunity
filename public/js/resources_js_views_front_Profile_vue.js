@@ -75,6 +75,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     PlusCircleIcon: _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_19__["default"],
     UserCircleIcon: _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_20__["default"]
   },
+  created: function created() {
+    if (!localStorage.token) {
+      _router__WEBPACK_IMPORTED_MODULE_4__["default"].push({
+        name: "login",
+        params: {
+          redirect: 'not-login'
+        }
+      });
+    }
+  },
   setup: function setup(props) {
     var loginUser = JSON.parse(localStorage.user);
 

@@ -431,6 +431,11 @@ export default {
         PlusCircleIcon,
         UserCircleIcon
     },
+    created(){
+        if (!localStorage.token) {
+                router.push({ name: "login", params: { redirect: 'not-login' }, });
+        }
+    },
     setup(props) {
         const loginUser = JSON.parse(localStorage.user);
         const { articles, getPostsUser, propau, loading, errors } = usePosts();

@@ -24341,7 +24341,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         }),
         "class": "flex items-start space-x-2"
       }, [$setup.user.avatar ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-        src: '/img_user/' + $setup.user.avatar,
+        src: $setup.user.avatar,
         alt: ""
       }, null, 8
       /* PROPS */
@@ -26637,8 +26637,9 @@ var routes = [// front routes
     title: siteName + ' - Contact'
   }
 }, {
-  path: '/login',
+  path: '/login/:redirect?',
   name: 'login',
+  props: true,
   component: Login,
   meta: {
     title: siteName + ' - Se Connecter'

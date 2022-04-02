@@ -40,7 +40,10 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     if (!localStorage.token) {
       _router__WEBPACK_IMPORTED_MODULE_5__["default"].push({
-        name: "login"
+        name: "login",
+        params: {
+          redirect: 'not-login'
+        }
       });
     }
   },

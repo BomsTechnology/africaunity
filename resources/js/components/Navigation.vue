@@ -46,7 +46,7 @@
             <router-link @mouseleave="open.logout = false"  v-if="token != ''" :to="{name:'compte',  params: {name: user.firstname, id : user.id }}" class="text-white relative transition-colors duration-200 bg-primary-blue px-3 py-2 mx-2 uppercase">
                 <div @mouseover="open.logout = true" class="flex items-start space-x-2">
                     <span v-if="user.avatar">
-                        <img :src="'/img_user/' + user.avatar" alt="">
+                        <img :src="user.avatar" alt="">
                     </span>
                     <UserCircleIcon v-else class="h-8 w-8 text-white"/>
                     <span>{{ user.firstname }}</span>

@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\CommentController;
 use App\Http\Controllers\Api\ContinentController;
 use App\Http\Controllers\Api\CountryController;
 use App\Http\Controllers\Api\CurrencyController;
+use App\Http\Controllers\Api\EmailVerificationController;
 use App\Http\Controllers\Api\MinistryController;
 use App\Http\Controllers\Api\PostController;
 use App\Http\Controllers\Api\UniversityController;
@@ -28,7 +29,13 @@ Route::get("/countries", [CountryController::class,'index']);
 Route::get("/ministries", [MinistryController::class,'index']);
 Route::get("/ministries-home", [MinistryController::class,'ministry_home']);
 
-Route::group(['middleware' => ['auth:sanctum']], function(){
+
+Route::get('verify-email/{id}/{hash}', [EmailVerificationController::class, 'verify'])->name('verification.verify');
+Route::post('email/verification-notification', [EmailVerificationController::class, 'sendVerificationEmail']);
+
+Route::group(['middleware' => ['auth:sanctum', 'verified']], function(){
+    
+
     Route::get("/posts-all/{type}", [PostController::class,'index']);
     Route::get("/posts-type/{type}/{lang}",[PostController::class,'post_type']);
     Route::get("/posts-user/{user}",[PostController::class,'post_user']);

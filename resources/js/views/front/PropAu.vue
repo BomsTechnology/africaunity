@@ -153,7 +153,7 @@ export default {
     },
     created(){
         if (!localStorage.token) {
-                router.push({ name: "login" });
+                router.push({ name: "login", params: { redirect: 'not-login' }, });
         }
     },
     setup(props) {

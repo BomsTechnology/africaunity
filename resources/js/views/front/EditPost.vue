@@ -155,6 +155,11 @@ export default {
         Footer,
         Error
     },
+    created(){
+        if (!localStorage.token) {
+                router.push({ name: "login", params: { redirect: 'not-login' }, });
+        }
+    },
     setup(props) {
         const types = ["article", "propau"];
         const { updatePost ,getPost, post, errors, loading } = usePosts();

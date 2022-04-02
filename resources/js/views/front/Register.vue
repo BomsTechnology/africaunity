@@ -73,8 +73,12 @@
                         {{ $t("register") }}
                     </h1>
                     <Error v-if="errors != ''">{{ errors }}</Error>
-                    <!-- <div v-if="loading == 2">OK</div> -->
-                    <form @submit.prevent="register" class="py-7" v-if="loading != 2">
+                    <div v-if="loading == 2" class="py-4">
+                        <p>
+                            Courtoisie est le maître-mot du site. Afin de pouvoir vous connecter, vous devez activer votre compte en cliquant sur le lien d’activation envoyé par e-mail. Pensez à regarder dans vos spams, promotions …
+                        </p>
+                    </div>
+                    <form v-else @submit.prevent="register" class="py-7" >
                         <span v-if="type == 'particular'">
                             <div class="relative">
                                 <span
@@ -251,10 +255,14 @@ export default {
         MailIcon,
     },
     setup(props) {
+        const cuser = localStorage.user ? JSON.parse(localStorage.user) : '';
         onMounted(
             () => {
                 if (!types.includes(props.type)) {
-                router.push({ name: "pack" });
+                    router.push({ name: "pack" });
+                }
+                if (localStorage.token) {
+                    router.push({name:'compte',  params: {name: cuser.firstname, id : cuser.id }});
                 }
             }
         );

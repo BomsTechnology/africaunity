@@ -194,8 +194,9 @@ const routes = [
         }
     },
     {
-        path: '/login',
+        path: '/login/:redirect?',
         name: 'login',
+        props: true,
         component: Login,
         meta:{
             title: siteName + ' - Se Connecter'

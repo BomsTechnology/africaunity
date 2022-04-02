@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -25,6 +26,8 @@ class AuthController extends Controller
             'email'=>$fields['email'],
             'password'=>Hash::make($fields['password']),
         ]);
+
+        event(new Registered($user));
 
         //create token
         $token = $user->createToken('myapptoken')->plainTextToken;
@@ -50,6 +53,10 @@ class AuthController extends Controller
         //check password
         if(!$user || !Hash::check($fields['password'],$user->password)){
             return response(['status'=>false,'message'=>'invalid email or password'],401);
+        }
+        //verify activation email
+        if(!$user->email_verified_at){
+            return response(['status'=>false, 'message'=>'Your email address is not verified.'] ,403);
         }
 
         //create token

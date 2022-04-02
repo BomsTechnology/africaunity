@@ -384,30 +384,27 @@ function useAuth() {
               return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/register', data);
 
             case 5:
-              loading.value = 2;
-              _router__WEBPACK_IMPORTED_MODULE_3__["default"].push({
-                name: "login"
-              });
-              _context.next = 13;
+              loading.value = 2; //router.push({ name: "login" });
+
+              _context.next = 12;
               break;
 
-            case 9:
-              _context.prev = 9;
+            case 8:
+              _context.prev = 8;
               _context.t0 = _context["catch"](1);
-              loading.value = 0;
+              loading.value = 0; // if (e.response.status == 422) {
 
-              if (_context.t0.response.status == 422) {
-                for (key in _context.t0.response.data.errors) {
-                  errors.value += _context.t0.response.data.errors[key][0] + "\n";
-                }
-              }
+              for (key in _context.t0.response.data.errors) {
+                errors.value += _context.t0.response.data.errors[key][0] + "\n";
+              } // }
 
-            case 13:
+
+            case 12:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[1, 9]]);
+      }, _callee, null, [[1, 8]]);
     }));
 
     return function createUser(_x) {
@@ -434,25 +431,24 @@ function useAuth() {
               console.log(user.value);
               localStorage.user = JSON.stringify(response.data.data.user);
               localStorage.token = response.data.data.token;
-              loading.value = 2;
-              _router__WEBPACK_IMPORTED_MODULE_3__["default"].push({
-                name: "home"
-              });
-              _context2.next = 18;
+              loading.value = 2; //router.push({ name: "home" });
+
+              _context2.next = 17;
               break;
 
-            case 14:
-              _context2.prev = 14;
+            case 13:
+              _context2.prev = 13;
               _context2.t0 = _context2["catch"](1);
-              loading.value = 0;
-              errors.value = "invalid email or password";
+              loading.value = 0; // errors.value = "invalid email or password";
 
-            case 18:
+              errors.value = _context2.t0.response.data.message;
+
+            case 17:
             case "end":
               return _context2.stop();
           }
         }
-      }, _callee2, null, [[1, 14]]);
+      }, _callee2, null, [[1, 13]]);
     }));
 
     return function loginUser(_x2) {

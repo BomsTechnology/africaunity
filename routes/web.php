@@ -1,5 +1,7 @@
 <?php
 
+use App\Mail\TestMail;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,6 +14,17 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+// Route::get('/', function(){
+//     $details = [
+//         "title" => "Test Mail Laravel Gmail",
+//         "body" => "This is a test Mail Laravel Gmail"
+//     ];
+
+//     Mail::to("marcsigha@gmail.com")->send(new TestMail($details));
+
+//     return "email send";
+// });
 
 Route::get('/', function () {
     return view('welcome');

@@ -13,13 +13,13 @@ export default function useAuth() {
             loading.value = 1;
             await axios.post('/api/register', data);
             loading.value = 2;
-            router.push({ name: "login" });
+            //router.push({ name: "login" });
         } catch (e) {
             loading.value = 0;
-            if (e.response.status == 422) {
+            // if (e.response.status == 422) {
                 for (const key in e.response.data.errors)
                     errors.value += e.response.data.errors[key][0] + "\n";
-            }
+            // }
         }
     };
 
@@ -33,11 +33,11 @@ export default function useAuth() {
             localStorage.user = JSON.stringify(response.data.data.user);
             localStorage.token = response.data.data.token;
             loading.value = 2;
-            router.push({ name: "home" });
+            //router.push({ name: "home" });
         } catch (e) {
                     loading.value = 0;
-                    errors.value = "invalid email or password";
-
+                    // errors.value = "invalid email or password";
+                    errors.value = e.response.data.message
         }
     };
 
