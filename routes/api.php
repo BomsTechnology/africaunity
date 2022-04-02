@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\Api\ActivityAreaController;
 use App\Http\Controllers\Api\AnnouncementController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\BusinessSizeController;
+use App\Http\Controllers\Api\BusinessTypeController;
 use App\Http\Controllers\Api\CategoryAnnouncementController;
 use App\Http\Controllers\Api\CityController;
 use App\Http\Controllers\Api\CommentController;
@@ -11,6 +13,8 @@ use App\Http\Controllers\Api\ContinentController;
 use App\Http\Controllers\Api\CountryController;
 use App\Http\Controllers\Api\CurrencyController;
 use App\Http\Controllers\Api\EmailVerificationController;
+use App\Http\Controllers\Api\LanguageController;
+use App\Http\Controllers\Api\LegalStatusController;
 use App\Http\Controllers\Api\MinistryController;
 use App\Http\Controllers\Api\PostController;
 use App\Http\Controllers\Api\UniversityController;
@@ -35,7 +39,6 @@ Route::post('email/verification-notification', [EmailVerificationController::cla
 
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function(){
     
-
     Route::get("/posts-all/{type}", [PostController::class,'index']);
     Route::get("/posts-type/{type}/{lang}",[PostController::class,'post_type']);
     Route::get("/posts-user/{user}",[PostController::class,'post_user']);
@@ -51,6 +54,16 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function(){
     Route::get("/universities2/{university}", [UniversityController::class,'show2']);
 
     Route::apiResource('currencies', CurrencyController::class);
+
+    Route::apiResource('languages', LanguageController::class);
+
+    Route::apiResource('businessSizes', BusinessSizeController::class);
+
+    Route::apiResource('businessTypes', BusinessTypeController::class);
+
+    Route::apiResource('legalStatuses', LegalStatusController::class);
+
+    Route::apiResource('activityAreas', ActivityAreaController::class);
 
     Route::apiResource('categoryAnnouncements', CategoryAnnouncementController::class);
 
