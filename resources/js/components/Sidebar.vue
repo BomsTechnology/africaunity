@@ -55,6 +55,13 @@
                 <ChatIcon class="w-6 h-6" />
                 <p class="text-base leading-4">Comments</p>
             </router-link>
+            <router-link
+                    :to="{name:'admin.other'}"
+                class="flex jusitfy-start items-center w-full space-x-6 focus:outline-none text-white focus:text-primary-blue rounded"
+            >
+                <ColorSwatchIcon class="w-6 h-6" />
+                <p class="text-base leading-4">Others</p>
+            </router-link>
         </div>
         <div
             class="flex flex-col justify-start items-center px-4 border-b border-gray-600 w-full"
@@ -283,12 +290,6 @@
                     <CurrencyDollarIcon class="w-6 h-6" />
                     <p class="text-base leading-4">Currency</p>
                 </router-link>
-                <button
-                    class="flex justify-start items-center space-x-6 hover:text-white focus:bg-gray-700 focus:text-white hover:bg-gray-700 text-gray-400 rounded px-3 py-2 w-full md:w-52"
-                >
-                    <ColorSwatchIcon class="w-6 h-6" />
-                    <p class="text-base leading-4">Other Tools</p>
-                </button>
             </div>
         </div>
         <div

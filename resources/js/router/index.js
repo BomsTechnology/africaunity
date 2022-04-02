@@ -22,6 +22,7 @@ const NotFound = () => import  ("../views/front/NotFound.vue");
 const Profile = () => import  ("../views/front/Profile.vue");
 const LoginAdmin = () => import  ("../views/back/Login.vue");
 const Dashboard = () => import  ("../views/back/Dashboard.vue");
+const OtherTools = () => import  ("../views/back/OtherTools.vue");
 const PostIndex = () => import  ("../views/back/posts/PostIndex.vue");
 const PostCreate = () => import  ("../views/back/posts/PostCreate.vue");
 const PostEdit = () => import ("../views/back/posts/PostEdit.vue");
@@ -261,6 +262,16 @@ const routes = [
                     title: siteName + ' - Dashboard'
                 }
             },
+
+            {
+                path: 'other',
+                component: OtherTools,
+                name: 'admin.other',
+                meta:{
+                    title: siteName + ' - Other'
+                }
+            },
+
             {
                 path: 'post/:type',
                 component: PostIndex,

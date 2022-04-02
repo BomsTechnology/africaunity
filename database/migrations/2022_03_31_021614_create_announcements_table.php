@@ -20,12 +20,12 @@ class CreateAnnouncementsTable extends Migration
             $table->string('image')->nullable();
             $table->integer('status')->default(1);
             $table->string('adress')->nullable();
-            $table->string('phone');
-            $table->string('email');
+            $table->string('phone')->nullable();
+            $table->string('email')->nullable();
             $table->string('website')->nullable();
-            $table->string('price');
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('currency_id')->constrained();
+            $table->string('price')->nullable();
+            $table->foreignId('user_id')->constrained()->nullable();
+            $table->foreignId('currency_id')->constrained()->nullable();
             $table->foreignId('category_announcement_id')->constrained();
             $table->foreignId('university_id')->constrained();
             $table->timestamps();
