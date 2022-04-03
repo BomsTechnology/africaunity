@@ -466,7 +466,7 @@ export default {
                 break;
                 case 4:
                     await createLegalStatus({...item});
-                    errors.value = errorsBS.value;
+                    errors.value = errorsLegal.value;
                     if(errors.value == ''){
                         await getLegalStatuses();
                         items.value = legalStatuses.value;
@@ -517,7 +517,7 @@ export default {
                 break;
                 case 4:
                     await updateLegalStatus(id.value, item);
-                    errors.value = errorsBS.value;
+                    errors.value = errorsLegal.value;
                     if(errors.value == ''){
                         await getLegalStatuses();
                         items.value = legalStatuses.value;
@@ -571,7 +571,7 @@ export default {
                     break;
                     case 4:
                         await destroyLegalStatus(id)
-                        errors.value = errorsBS.value;
+                        errors.value = errorsLegal.value;
                         if(errors.value == ''){
                             await getLegalStatuses();
                             items.value = legalStatuses.value;
@@ -615,7 +615,7 @@ export default {
                 break;
                 case 4:                
                     await getLegalStatuses();
-                    errors.value = errorsBS.value;
+                    errors.value = errorsLegal.value;
                     if(errors.value == ''){
                         items.value = legalStatuses.value;
                     }

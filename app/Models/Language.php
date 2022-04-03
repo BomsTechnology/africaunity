@@ -15,4 +15,8 @@ class Language extends Model
         'name_es',
         'name_pt',
     ];
+
+    public function details(){
+        return $this->belongsToMany(Detail::class);
+    }
 }

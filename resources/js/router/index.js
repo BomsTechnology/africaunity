@@ -20,6 +20,7 @@ const Universities = () => import ("../views/front/Universities.vue");
 const Register = () => import ("../views/front/Register.vue");
 const NotFound = () => import  ("../views/front/NotFound.vue");
 const Profile = () => import  ("../views/front/Profile.vue");
+const SettingAccount = () => import  ("../views/front/SettingAccount.vue");
 const LoginAdmin = () => import  ("../views/back/Login.vue");
 const Dashboard = () => import  ("../views/back/Dashboard.vue");
 const OtherTools = () => import  ("../views/back/OtherTools.vue");
@@ -227,6 +228,15 @@ const routes = [
         component: Profile,
         meta:{
             title: siteName + ' - Compte'
+        }
+    },
+    {
+        path: '/setting-account/:name/:id',
+        name: 'setting-account',
+        props: true,
+        component: SettingAccount,
+        meta:{
+            title: siteName + ' - Parametre du Compte'
         }
     },
     {

@@ -12,6 +12,7 @@ use App\Http\Controllers\Api\CommentController;
 use App\Http\Controllers\Api\ContinentController;
 use App\Http\Controllers\Api\CountryController;
 use App\Http\Controllers\Api\CurrencyController;
+use App\Http\Controllers\Api\DetailController;
 use App\Http\Controllers\Api\EmailVerificationController;
 use App\Http\Controllers\Api\LanguageController;
 use App\Http\Controllers\Api\LegalStatusController;
@@ -64,6 +65,8 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function(){
     Route::apiResource('legalStatuses', LegalStatusController::class);
 
     Route::apiResource('activityAreas', ActivityAreaController::class);
+
+    Route::apiResource('details', DetailController::class);
 
     Route::apiResource('categoryAnnouncements', CategoryAnnouncementController::class);
 

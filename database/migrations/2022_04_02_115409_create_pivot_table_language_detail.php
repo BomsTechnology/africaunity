@@ -13,7 +13,7 @@ class CreatePivotTableLanguageDetail extends Migration
      */
     public function up()
     {
-        Schema::create('language_detail', function (Blueprint $table) {
+        Schema::create('detail_language', function (Blueprint $table) {
             $table->id();
             $table->foreignId('detail_id')->constrained()->onDelete('cascade')->nullable();
             $table->foreignId('language_id')->constrained()->onDelete('cascade')->nullable();

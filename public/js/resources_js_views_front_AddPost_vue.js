@@ -673,7 +673,6 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* TEXT */
   ), _hoisted_52]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
     required: "",
-    type: "text",
     "onUpdate:modelValue": _cache[10] || (_cache[10] = function ($event) {
       return $setup.post.content = $event;
     }),

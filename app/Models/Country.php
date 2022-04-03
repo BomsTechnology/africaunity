@@ -24,4 +24,8 @@ class Country extends Model
     public function universities(){
         return $this->hasMany(University::class);
     }
+
+    public function details(){
+        return $this->hasMany(Detail::class);
+    }
 }

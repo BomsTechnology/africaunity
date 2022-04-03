@@ -439,7 +439,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return createLegalStatus(_objectSpread({}, item));
 
               case 38:
-                errors.value = errorsBS.value;
+                errors.value = errorsLegal.value;
 
                 if (!(errors.value == '')) {
                   _context2.next = 43;
@@ -575,7 +575,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return updateLegalStatus(id.value, item);
 
               case 38:
-                errors.value = errorsBS.value;
+                errors.value = errorsLegal.value;
 
                 if (!(errors.value == '')) {
                   _context3.next = 43;
@@ -718,7 +718,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return destroyLegalStatus(id);
 
               case 39:
-                errors.value = errorsBS.value;
+                errors.value = errorsLegal.value;
 
                 if (!(errors.value == '')) {
                   _context4.next = 44;
@@ -818,7 +818,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return getLegalStatuses();
 
               case 26:
-                errors.value = errorsBS.value;
+                errors.value = errorsLegal.value;
 
                 if (errors.value == '') {
                   items.value = legalStatuses.value;

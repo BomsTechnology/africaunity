@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\DetailResource;
 use App\Models\Detail;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class DetailController extends Controller
@@ -35,9 +37,9 @@ class DetailController extends Controller
      * @param  \App\Models\Detail  $detail
      * @return \Illuminate\Http\Response
      */
-    public function show(Detail $detail)
+    public function show($id)
     {
-        //
+        return new DetailResource(User::find($id)->detail);
     }
 
     /**
@@ -49,7 +51,33 @@ class DetailController extends Controller
      */
     public function update(Request $request, Detail $detail)
     {
-        //
+        $detail->update([
+            'status' => $request->status, 
+            'social_object' => $request->social_object,
+            'goal_attribution' => $request->goal_attribution,
+            'presentation' => $request->presentation,
+            'sex' => $request->sex,
+            'name_responsible' => $request->name_responsible,
+            'adress' => $request->adress,
+            'phone_number' => $request->phone_number,
+            'phone_number_2' => $request->phone_number_2,
+            'navite_date' => $request->navite_date,
+            'website' => $request->website,
+            'youtube' => $request->youtube,
+            'other_activity' => $request->other_activity,
+            'search_partner' => $request->search_partner,
+            'user_id' => $request->user_id,
+            'business_type_id' => $request->business_type_id,
+            'business_size_id' => $request->business_size_id,
+            'legal_status_id' => $request->legal_status_id,
+            'native_country' => $request->native_country,
+            'residence_country' => $request->residence_country,
+        ]);
+
+        $detail->activity_areas()->toggle($request->activity_areas);
+        $detail->languages()->toggle($request->languages);
+        
+        return new DetailResource($detail);
     }
 
     /**

@@ -10,13 +10,35 @@
                     <img :src="user.avatar" class="w-full h-full bg-cover object-cover" alt="" v-if="user.avatar">
                     <UserCircleIcon v-else class="w-full h-full text-gray-500"/>
                 </div>
-                <div class="lg:w-[80%] px-8 py-4">
-                    <div class="flex lg:justify-between items-center lg:flex-row flex-col lg:mt-0 mt-20">
+                <div class="lg:w-[80%] px-8 py-4 lg:mt-0 mt-20">
+                    <div v-if="loading == 1" class="p-28">
+                        <svg
+                            class="animate-spin h-16 w-16 mx-auto"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                        >
+                            <circle
+                                class="opacity-25"
+                                cx="12"
+                                cy="12"
+                                r="10"
+                                stroke="currentColor"
+                                stroke-width="4"
+                            ></circle>
+                            <path
+                                class="opacity-75"
+                                fill="currentColor"
+                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                            ></path>
+                        </svg>
+                    </div>
+                    <div v-else class="flex lg:justify-between items-center lg:flex-row flex-col lg:mt-0 mt-20">
                         <div>
                             <h1 class="lg:text-3xl text-2xl lg:text-left text-center font-semibold capitalize text-gray-700"> <span>{{ user.firstname }}</span> <span v-if="user.type ==  'particular'">{{ user.lastname }}</span> </h1>
                             <div class="flex items-center space-x-2 text-sm mt-2">
                                 <h2 class="text-primary-blue">{{ user.email }}</h2> 
-                                <h2 class="text-gray-400">° 9999999</h2>
+                                <h2 class="text-gray-400">° {{ detail.phone_number }}</h2>
                             </div>
                         </div>
                         <div class="space-x-2 flex items-center lg:py-0 py-1" v-if="user.id == loginUser.id">
@@ -28,17 +50,17 @@
                                 <PlusCircleIcon class="w-5 h-5"/>
                                 <span class="lg:block hidden">{{ $t('add') }} {{ $t('articles') }}</span>                        
                             </router-link>
-                            <a href="#" class="py-2 lg:px-4 px-2 shadow-md flex items-center text-sm space-x-2 text-white rounded-xl bg-primary-blue">
+                            <button @click="changeTab('edit')" class="py-2 lg:px-4 px-2 shadow-md flex items-center text-sm space-x-2 text-white rounded-xl bg-primary-blue">
                                 <PencilIcon class="w-5 h-5"/>
                                 <span class="lg:block hidden">{{ $t('edit') }} {{ $t('profile') }}</span> 
-                            </a>
+                            </button>
                             <a href="#">
                                 <CogIcon class="h-8 w-8 text-gray-600  hover:text-primary-blue" />
                             </a>
                         </div>
                     </div>
                     <div class="text-sm font-light text-gray-500 overflow-y-auto lg:h-24 h-20 mt-2">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat quod reiciendis quae, laudantium officiis nam ducimus nihil tempora dicta magni unde ipsa facilis ipsum animi asperiores, alias itaque facere enim.
+                        {{ detail.presentation }}
                     </div>
                 </div>
             </div>
@@ -69,10 +91,312 @@
                 <span class="lg:block hidden">{{ $t('my-ads') }}</span>               
             </button>
         </div>
-        <div class=" py-8 px-16" v-if="open.profil">
-                Profil
+        <div v-if="loading == 1" class="p-28">
+                <svg
+                    class="animate-spin h-16 w-16 mx-auto"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                >
+                    <circle
+                        class="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        stroke-width="4"
+                    ></circle>
+                    <path
+                        class="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                    ></path>
+                </svg>
         </div>
-         <div v-else-if="open.article">
+        <div class=" py-8 px-16" v-if="(open.profil) && (loading == 0)">
+            <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
+                        <div v-if="user.type == 'particular'" class="grid grid-cols-1 gap-6 sm:grid-cols-2 col-span-2">
+                            <div class="relative">
+                                <label class="text-gray-700 py-1 text-md font-semibold">{{ $t('firstname') }}</label>
+                                <p class="py-1">{{ user.firstname }}</p>    
+                            </div>
+                            <div class="relative">
+                                <label class="text-gray-700 py-1 text-md font-semibold">{{ $t('lastname') }}</label>
+                                <p class="py-1">{{ user.lastname }}</p>
+                            </div>
+                        </div>
+                        <div
+                            v-else-if="
+                                user.type == 'business1' || user.type == 'business2'
+                            "
+                            class="relative col-span-2">
+                            <label class="text-gray-700 py-1 text-md font-semibold">{{ $t('social-reason') }}</label>
+                            <p class="py-1">{{ user.firstname }}</p>
+                        </div>
+                        <div v-else class="relative col-span-2">
+                            <label class="text-gray-700 py-1 text-md font-semibold">{{ $t('denomination') }} </label>
+                            <p class="py-1">{{ user.firstname }}</p>
+                        </div>
+                        <div v-if="user.type == 'particular'" class="relative col-span-2">
+                            <label class="text-gray-700 py-1 text-md font-semibold">Statut</label>
+                                <p class="py-1">
+                                    <span v-if="detail.status == 1">Actif</span>
+                                    <span v-else>Non Actif</span>
+                                </p>
+                        </div>
+                        <div  
+                            v-else-if="
+                                user.type == 'business1' || user.type == 'business2'
+                            "
+                            class="relative col-span-2">
+                            <label class="text-gray-700 py-1 text-md font-semibold">Objet Social</label>
+                            <p class="py-1">{{ detail.social_object }}</p>
+                        </div>
+                        <div v-else-if="user.type == 'ip'" class="relative col-span-2">
+                            <label class="text-gray-700 py-1 text-md font-semibold">But - Attribution</label>
+                            <p class="py-1">{{ detail.goal_attribution }}</p>
+                        </div>
+                        <div class="relative col-span-2">
+                            <label class="text-gray-700 py-1 text-md font-semibold">{{ $t('adresse') + ' ' + $t('email') }}</label>
+                            <p class="py-1">{{ user.email }}</p>
+                        </div>
+                        <div  
+                            v-if="user.type == 'particular'"
+                            class="relative col-span-2">
+                            <label class="text-gray-700 py-1 text-md font-semibold">Diplome et Certification</label>
+                            <p class="py-1">{{ detail.goal_attribution }}</p>
+                        </div>
+                        <div
+                            v-if="
+                                user.type == 'business1' || user.type == 'business2' || user.type == 'ip'
+                            "
+                            class="relative col-span-2">
+                            <label class="text-gray-700 py-1 text-md font-semibold">Nom - Prénom du Responsable</label>
+                            <p class="py-1">{{ detail.name_responsible }}</p>
+                        </div>
+                        <div
+                            v-if="
+                                user.type == 'business1' || user.type == 'business2' || user.type == 'ip'
+                            "
+                            class="relative col-span-2">
+                            <label class="text-gray-700 py-1 text-md font-semibold">Adresse</label>
+                            <p class="py-1">{{ detail.adress }}</p>
+                        </div>
+                        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 col-span-2">
+                            <div v-if="user.type == 'particular'"  class="relative">
+                                <label class="text-gray-700 py-1 text-md font-semibold">Sexe</label>
+                                 <p class="py-1">  <span v-if="detail.sex == 1">Homme</span>
+                                    <span v-else>Femme</span> </p> 
+                            </div>
+                            <div class="relative">
+                                <label class="text-gray-700 py-1 text-md font-semibold">Numéro de Téléphone</label>
+                                <p class="py-1">{{ detail.phone_number }}</p>
+                            </div>
+                            <div v-if="user.type != 'particular'" class="relative">
+                                <label class="text-gray-700 py-1 text-md font-semibold">Numéro de Téléphone 2</label>
+                                <p class="py-1">{{ detail.phone_number_2 }}</p>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 col-span-2">
+                            <div class="relative" v-if="user.type == 'particular' || user.type == 'ip'">
+                                <label class="text-gray-700 py-1 text-md font-semibold">
+                                    <span>Pays d'origine</span> 
+                                </label>
+                                <ul class="py-1">
+                                    <li v-for="country in countries" :key="country.id">
+                                            <span v-if="country.id === detail.native_country">
+                                                <span v-if="$i18n.locale == 'en'">{{
+                                                    country.name_en
+                                                }}</span>
+                                                <span v-else-if="$i18n.locale == 'fr'">{{
+                                                    country.name_fr
+                                                }}</span>
+                                                <span v-else-if="$i18n.locale == 'es'">{{
+                                                    country.name_es
+                                                }}</span>
+                                                <span v-else>{{ country.name_pt }}</span>
+                                            </span>
+                                    </li>
+                                </ul>
+
+                            </div>
+                            <div  :class="[user.type == 'particular' || user.type == 'ip' ? '' : 'col-span-2']">
+                                <label class="text-gray-700 py-1 text-md font-semibold">
+                                    <span v-if="user.type == 'particular' || user.type == 'ip'">Pays de Résidence</span>
+                                    <span v-else>Pays siege social</span>
+                                </label>
+                                <ul class="py-1">
+                                    <li v-for="country in countries" :key="country.id">
+                                            <span v-if="country.id === detail.residence_country">
+                                                <span v-if="$i18n.locale == 'en'">{{
+                                                    country.name_en
+                                                }}</span>
+                                                <span v-else-if="$i18n.locale == 'fr'">{{
+                                                    country.name_fr
+                                                }}</span>
+                                                <span v-else-if="$i18n.locale == 'es'">{{
+                                                    country.name_es
+                                                }}</span>
+                                                <span v-else>{{ country.name_pt }}</span>
+                                            </span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div v-if="user.type != 'particular'" class="grid grid-cols-1 gap-6 sm:grid-cols-2 col-span-2">
+                            <div class="relative">
+                                <label class="text-gray-700 py-1 text-md font-semibold">
+                                    <span v-if="user.type == 'ip'">Périmètre</span>
+                                    <span v-else>Type Entreprise</span> 
+                                </label>
+                                <ul class="py-1">
+                                    <li v-for="businessType in businessTypes" :key="businessType.id">
+                                            <span v-if="businessType.id === detail.business_type_id">
+                                                <span v-if="$i18n.locale == 'en'">{{
+                                                    businessType.name_en
+                                                }}</span>
+                                                <span v-else-if="$i18n.locale == 'fr'">{{
+                                                    businessType.name_fr
+                                                }}</span>
+                                                <span v-else-if="$i18n.locale == 'es'">{{
+                                                    businessType.name_es
+                                                }}</span>
+                                                <span v-else>{{ businessType.name_pt }}</span>
+                                            </span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="relative">
+                                <label class="text-gray-700 py-1 text-md font-semibold">
+                                    <span v-if="user.type == 'ip'">Taille Institution</span>
+                                    <span v-else>Taille Entreprise</span>
+                                </label>
+                                <ul class="py-1">
+                                    <li v-for="BusinessSize in businessSizes" :key="BusinessSize.id">
+                                            <span v-if="BusinessSize.id === detail.business_size_id">
+                                                <span v-if="$i18n.locale == 'en'">{{
+                                                    BusinessSize.name_en
+                                                }}</span>
+                                                <span v-else-if="$i18n.locale == 'fr'">{{
+                                                    BusinessSize.name_fr
+                                                }}</span>
+                                                <span v-else-if="$i18n.locale == 'es'">{{
+                                                    BusinessSize.name_es
+                                                }}</span>
+                                                <span v-else>{{ BusinessSize.name_pt }}</span>
+                                            </span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div
+                            v-if="user.type == 'particular'"
+                            class="relative col-span-2">
+                            <label class="text-gray-700 py-1 text-md font-semibold">Langues parlées</label>
+                            <ul class="py-1">
+                                <li v-for="language in languages" :key="language.id">
+                                    <span v-for="lang in detail.languages" :key="lang.id">
+                                        <span v-if="lang.id === language.id">
+                                            <span v-if="$i18n.locale == 'en'">{{
+                                                language.name_en
+                                            }}</span>
+                                            <span v-else-if="$i18n.locale == 'fr'">{{
+                                                language.name_fr
+                                            }}</span>
+                                            <span v-else-if="$i18n.locale == 'es'">{{
+                                                language.name_es
+                                            }}</span>
+                                            <span v-else>{{ language.name_pt }}</span>
+                                        </span>
+                                    </span>
+                                </li>
+                            </ul> 
+                        </div>
+                        <div
+                            v-if="
+                                user.type == 'business1' || user.type == 'business2'
+                            "
+                            class="relative col-span-2">
+                            <label class="text-gray-700 py-1 text-md font-semibold">Forme Juridique</label>
+                            <ul class="py-1">
+                                <li v-for="legalStatus in legalStatuses" :key="legalStatus.id">
+                                        <span v-if="legalStatus.id === detail.legal_status_id">
+                                            <span v-if="$i18n.locale == 'en'">{{
+                                                legalStatus.name_en
+                                            }}</span>
+                                            <span v-else-if="$i18n.locale == 'fr'">{{
+                                                legalStatus.name_fr
+                                            }}</span>
+                                            <span v-else-if="$i18n.locale == 'es'">{{
+                                                legalStatus.name_es
+                                            }}</span>
+                                            <span v-else>{{ legalStatus.name_pt }}</span>
+                                        </span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div
+                            class="relative col-span-2">
+                            <label class="text-gray-700 py-1 text-md font-semibold">
+                                <span v-if="user.type == 'particular'">Date de naissance</span>
+                                <span v-else>Date de création</span>
+                            </label>
+                            <p class="py-1">{{ detail.navite_date }}</p>
+                        </div>
+                        <div  class="grid grid-cols-1 gap-6 sm:grid-cols-2 col-span-2">
+                            <div class="relative">
+                                <label class="text-gray-700 py-1 text-md font-semibold">
+                                    Site Web
+                                </label>
+                                <p class="py-1">{{ detail.website }}</p>
+                            </div>
+                            <div class="relative">
+                                <label class="text-gray-700 py-1 text-md font-semibold">
+                                    Youtube
+                                </label>
+                                <p class="py-1">{{ detail.youtube }}</p>
+                            </div>
+                        </div>
+                        <div
+                        v-if="user.type != 'ip'"
+                            class="relative col-span-2">
+                            <label class="text-gray-700 py-1 text-md font-semibold">
+                                Secteur d'activité
+                            </label>
+                            <ul class="py-1">
+                                <li v-for="activityArea in activityAreas" :key="activityArea.id">
+                                    <span v-for="activity_area in detail.activity_areas" :key="activity_area.id">
+                                        <span v-if="activity_area.id === activityArea.id">
+                                            <span v-if="$i18n.locale == 'en'">{{
+                                                activityArea.name_en
+                                            }}</span>
+                                            <span v-else-if="$i18n.locale == 'fr'">{{
+                                                activityArea.name_fr
+                                            }}</span>
+                                            <span v-else-if="$i18n.locale == 'es'">{{
+                                                activityArea.name_es
+                                            }}</span>
+                                            <span v-else>{{ activityArea.name_pt }}</span>
+                                        </span>
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div  
+                            v-if="user.type == 'particular'"
+                            class="relative col-span-2">
+                            <label class="text-gray-700 py-1 text-md font-semibold">Autres Activités</label>
+                            <p class="py-1">{{ detail.other_activity }}</p>
+                        </div>
+                        <div  
+                            v-if="user.type == 'particular'"
+                            class="relative col-span-2">
+                            <label class="text-gray-700 py-1 text-md font-semibold">Recherche partenariat</label>
+                            <p class="py-1">{{ detail.search_partner }}</p>
+                        </div>
+            </div>
+        </div>
+         <div v-else-if="(open.article) && (loading == 0)">
             <div
                 class="grid lg:grid-cols-2 gap-8 px-6 py-8"
                 v-if="articles.length != 0"
@@ -123,9 +447,9 @@
                 </div>
             </div>
             </div>
-            <h1  v-else class="text-center text-2xl text-gray-500 font-bold italic">NO ARTICLE</h1>
+            <h1  v-else class="text-center text-2xl text-gray-500 font-bold italic mt-2">NO ARTICLE</h1>
         </div>
-         <div class=" py-8 px-16" v-else-if="open.propau">
+         <div class=" py-8 px-16" v-else-if="(open.propau) && (loading == 0)">
             <div
                 class="grid lg:grid-cols-2 gap-8 px-10 py-8"
                 v-if="propau.length != 0"
@@ -179,7 +503,7 @@
             </div>
             <h1 v-else class="text-center text-2xl text-gray-500 font-bold italic">NO PROPAU</h1>
         </div>
-         <div class=" py-8 px-16" v-else-if="open.comment">
+         <div class=" py-8 px-16" v-else-if="(open.comment) && (loading == 0)">
                 <div class="overflow-hidden">
                     <table
                         class="min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-700"
@@ -287,10 +611,10 @@
                     </table>
                 </div>
         </div>
-         <div class=" py-8 px-16" v-else-if="open.job">
+         <div class=" py-8 px-16" v-else-if="(open.job) && (loading == 0)">
                 <h1 class="text-center text-2xl text-gray-500 font-bold italic">Job Comming Soon</h1>
         </div>
-         <div class=" py-8 px-16" v-else>
+         <div class=" py-8 px-16" v-else-if="(open.ads) && (loading == 0)">
              <div class="flex justify-end px-6">
                 <router-link
                     :to="{
@@ -389,6 +713,10 @@
                     </table>
                 </div>
         </div>
+        <div class=" py-8 px-16" v-else-if="(open.edit) && (loading == 0)">
+                <h1 class="text-center text-2xl text-gray-500 font-bold">Modifier Votre Profil</h1>
+                <EditProfile :user="user" :detail="detail" :legalStatuses="legalStatuses" :languages="languages" :countries="countries" :activityAreas="activityAreas" :businessSizes="businessSizes" :businessTypes="businessTypes"/>
+        </div>
 
     </section>
     <Footer/>
@@ -400,9 +728,16 @@ import Footer from "../../components/Footer.vue";
 import { reactive, ref, onMounted} from "vue";
 import router from "../../router";
 import usePosts from "../../services/postServices.js";
+import EditProfile from "../../components/EditProfile.vue";
 import useUsers from "../../services/userServices.js";
 import useComments from "../../services/commentServices.js";
 import useAnnouncements from "../../services/announcementServices.js";
+import useLanguages from "../../services/languageServices.js";
+import useBusinessTypes from "../../services/businessTypeServices.js";
+import useBusinessSizes from "../../services/businessSizeServices.js";
+import useActivityAreas from "../../services/activityAreaServices.js";
+import useLegalStatuses from "../../services/legalStatusServices.js";
+import useCountries from "../../services/countryServices.js";
 import { CogIcon, TrashIcon, PlusCircleIcon, SpeakerphoneIcon, PencilIcon, PencilAltIcon, NewspaperIcon, ChatIcon, ChatAltIcon, BookOpenIcon, IdentificationIcon, UserCircleIcon } from "@heroicons/vue/solid";
 export default {
     props: {
@@ -418,6 +753,7 @@ export default {
     components:{
         Header,
         Footer,
+        EditProfile,
         PencilAltIcon,
         TrashIcon,
         BookOpenIcon,
@@ -438,15 +774,37 @@ export default {
     },
     setup(props) {
         const loginUser = JSON.parse(localStorage.user);
-        const { articles, getPostsUser, propau, loading, errors } = usePosts();
-        const { user, getUser, } = useUsers();
+        const { articles, getPostsUser, propau } = usePosts();
+        const { user, getUser } = useUsers();
         const { comments, getCommentsUser, destroyComment, updateComment} = useComments();
         const { announcements, getAnnouncementsUser, destroyAnnouncement} = useAnnouncements();
+        const { languages, getLanguages } = useLanguages();
+        const { businessTypes, getBusinessTypes } = useBusinessTypes();
+        const { businessSizes, getBusinessSizes } = useBusinessSizes();
+        const { activityAreas, getActivityAreas } = useActivityAreas();
+        const { legalStatuses, getLegalStatuses } = useLegalStatuses();
+        const { countries, getCountries } = useCountries();
+        const detail = ref([]);
+        const loading = ref(0);
         onMounted(                
             async () => {
+                loading.value = 1;
                 await getUser(props.id);
+                let response = await axios.get('/api/details/' + props.id, {
+                    headers:{
+                        'Authorization': `Bearer ${localStorage.token}`
+                    }
+                });
+                detail.value = response.data.data;
+                loading.value = 0;
                 await getPostsUser(props.id);
                 await getCommentsUser(props.id);
+                await getLanguages();
+                await getBusinessTypes();
+                await getBusinessSizes();
+                await getActivityAreas();
+                await getLegalStatuses();
+                await getCountries();
                 await getAnnouncementsUser(props.id);
             }
             
@@ -495,7 +853,8 @@ export default {
             propau: false, 
             comment: false,
             job: false,
-            ads: false 
+            ads: false,
+            edit: false,
         });
 
         const changeTab = (type) => {
@@ -548,10 +907,20 @@ export default {
                     open.profil = false;
                     open.ads = true;
                 break;
+                case 'edit':
+                    open.job = false;
+                    open.comment = false;
+                    open.propau = false;
+                    open.article = false;
+                    open.profil = false;
+                    open.ads = false;
+                    open.edit = true;
+                break;
             }
         }
 
         return{
+            detail,
             open,
             deleteAnnouncement,
             changeTab,
@@ -562,9 +931,14 @@ export default {
             propau,
             articles,
             loading,
-            errors,
             comments,
             modifyComment,
+            languages,
+            businessTypes,
+            businessSizes,
+            activityAreas,
+            legalStatuses,
+            countries,
             selectComment,
             saveComment,
         }

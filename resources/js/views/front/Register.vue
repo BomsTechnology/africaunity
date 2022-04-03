@@ -78,7 +78,7 @@
                             Courtoisie est le maître-mot du site. Afin de pouvoir vous connecter, vous devez activer votre compte en cliquant sur le lien d’activation envoyé par e-mail. Pensez à regarder dans vos spams, promotions …
                         </p>
                     </div>
-                    <form v-else @submit.prevent="register" class="py-7" >
+                    <form v-else @submit.prevent="register()" class="py-7" >
                         <span v-if="type == 'particular'">
                             <div class="relative">
                                 <span

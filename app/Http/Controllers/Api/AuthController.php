@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Detail;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -25,6 +26,10 @@ class AuthController extends Controller
             'type'=>$fields['type'],
             'email'=>$fields['email'],
             'password'=>Hash::make($fields['password']),
+        ]);
+
+        Detail::create([
+            'user_id' => $user->id
         ]);
 
         event(new Registered($user));
