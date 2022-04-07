@@ -876,7 +876,7 @@
         </div>
         <div class="lg:w-[30%]">
             <FilterArticle />
-            <div class="w-full">
+            <div class="w-full" v-if="!token">
                 <h1 class="text-white px-2 py-1 bg-primary-blue inline-block">
                     {{ $t("register") }}
                 </h1>
@@ -885,7 +885,7 @@
                 >
                     <router-link :to="{ name: 'pack' }">
                         <img
-                            src="/img/barre-laterale-africa.jpg'"
+                            src="/img/barre-laterale-africa.jpg"
                             alt=""
                             class="object-cover mx-auto"
                         />

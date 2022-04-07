@@ -522,7 +522,7 @@
                                 >
                                     Comment
                                 </th>
-                                <th scope="col" class="p-4">
+                                <th scope="col" class="p-4" v-if="user.id == loginUser.id">
                                     <span class="sr-only"
                                         >Edit</span
                                     >
@@ -567,6 +567,7 @@
                                     </form>
                                 </td>
                                 <td
+                                    v-if="user.id == loginUser.id"
                                     class="py-4 px-6 text-sm font-medium text-right whitespace-nowrap"
                                 >
                                     <div class="flex">

@@ -228,13 +228,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 /* harmony import */ var _components_Sidebar_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/Sidebar.vue */ "./resources/js/components/Sidebar.vue");
-/* harmony import */ var _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @heroicons/vue/solid */ "./node_modules/@heroicons/vue/solid/esm/PlusCircleIcon.js");
+/* harmony import */ var _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @heroicons/vue/solid */ "./node_modules/@heroicons/vue/solid/esm/PlusCircleIcon.js");
 /* harmony import */ var _components_Error_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/Error.vue */ "./resources/js/components/Error.vue");
 /* harmony import */ var _services_languageServices_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../services/languageServices.js */ "./resources/js/services/languageServices.js");
 /* harmony import */ var _services_businessTypeServices_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../services/businessTypeServices.js */ "./resources/js/services/businessTypeServices.js");
 /* harmony import */ var _services_businessSizeServices_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../services/businessSizeServices.js */ "./resources/js/services/businessSizeServices.js");
 /* harmony import */ var _services_activityAreaServices_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../services/activityAreaServices.js */ "./resources/js/services/activityAreaServices.js");
-/* harmony import */ var _services_legalStatusServices_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../services/legalStatusServices.js */ "./resources/js/services/legalStatusServices.js");
+/* harmony import */ var _services_sizeCompanyServices_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../services/sizeCompanyServices.js */ "./resources/js/services/sizeCompanyServices.js");
+/* harmony import */ var _services_levelStudyServices_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../services/levelStudyServices.js */ "./resources/js/services/levelStudyServices.js");
+/* harmony import */ var _services_offerTypeServices_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../services/offerTypeServices.js */ "./resources/js/services/offerTypeServices.js");
+/* harmony import */ var _services_workDepartmentServices_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../services/workDepartmentServices.js */ "./resources/js/services/workDepartmentServices.js");
+/* harmony import */ var _services_workModeServices_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../services/workModeServices.js */ "./resources/js/services/workModeServices.js");
+/* harmony import */ var _services_yearExperienceServices_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../services/yearExperienceServices.js */ "./resources/js/services/yearExperienceServices.js");
+/* harmony import */ var _services_legalStatusServices_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../services/legalStatusServices.js */ "./resources/js/services/legalStatusServices.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
@@ -256,9 +262,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
+
+
+
+
+
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
-    PlusCircleIcon: _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_9__["default"],
+    PlusCircleIcon: _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_15__["default"],
     Sidebar: _components_Sidebar_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
     Error: _components_Error_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
@@ -295,13 +307,61 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         updateActivityArea = _useActivityAreas.updateActivityArea,
         errorsActivy = _useActivityAreas.errorsActivy;
 
-    var _useLegalStatuses = (0,_services_legalStatusServices_js__WEBPACK_IMPORTED_MODULE_8__["default"])(),
+    var _useLegalStatuses = (0,_services_legalStatusServices_js__WEBPACK_IMPORTED_MODULE_14__["default"])(),
         legalStatuses = _useLegalStatuses.legalStatuses,
         getLegalStatuses = _useLegalStatuses.getLegalStatuses,
         createLegalStatus = _useLegalStatuses.createLegalStatus,
         destroyLegalStatus = _useLegalStatuses.destroyLegalStatus,
         updateLegalStatus = _useLegalStatuses.updateLegalStatus,
         errorsLegal = _useLegalStatuses.errorsLegal;
+
+    var _useSizeCompanies = (0,_services_sizeCompanyServices_js__WEBPACK_IMPORTED_MODULE_8__["default"])(),
+        sizeCompanies = _useSizeCompanies.sizeCompanies,
+        getSizeCompanies = _useSizeCompanies.getSizeCompanies,
+        createSizeCompany = _useSizeCompanies.createSizeCompany,
+        destroySizeCompany = _useSizeCompanies.destroySizeCompany,
+        updateSizeCompany = _useSizeCompanies.updateSizeCompany,
+        errorsSC = _useSizeCompanies.errorsSC;
+
+    var _useLevelStudies = (0,_services_levelStudyServices_js__WEBPACK_IMPORTED_MODULE_9__["default"])(),
+        levelStudies = _useLevelStudies.levelStudies,
+        getLevelStudies = _useLevelStudies.getLevelStudies,
+        createLevelStudy = _useLevelStudies.createLevelStudy,
+        destroyLevelStudy = _useLevelStudies.destroyLevelStudy,
+        updateLevelStudy = _useLevelStudies.updateLevelStudy,
+        errorsLS = _useLevelStudies.errorsLS;
+
+    var _useOfferTypes = (0,_services_offerTypeServices_js__WEBPACK_IMPORTED_MODULE_10__["default"])(),
+        offerTypes = _useOfferTypes.offerTypes,
+        getOfferTypes = _useOfferTypes.getOfferTypes,
+        createOfferType = _useOfferTypes.createOfferType,
+        destroyOfferType = _useOfferTypes.destroyOfferType,
+        updateOfferType = _useOfferTypes.updateOfferType,
+        errorsOT = _useOfferTypes.errorsOT;
+
+    var _useWorkDepartments = (0,_services_workDepartmentServices_js__WEBPACK_IMPORTED_MODULE_11__["default"])(),
+        workDepartments = _useWorkDepartments.workDepartments,
+        getWorkDepartments = _useWorkDepartments.getWorkDepartments,
+        createWorkDepartment = _useWorkDepartments.createWorkDepartment,
+        destroyWorkDepartment = _useWorkDepartments.destroyWorkDepartment,
+        updateWorkDepartment = _useWorkDepartments.updateWorkDepartment,
+        errorsWD = _useWorkDepartments.errorsWD;
+
+    var _useWorkModes = (0,_services_workModeServices_js__WEBPACK_IMPORTED_MODULE_12__["default"])(),
+        workModes = _useWorkModes.workModes,
+        getWorkModes = _useWorkModes.getWorkModes,
+        createWorkMode = _useWorkModes.createWorkMode,
+        destroyWorkMode = _useWorkModes.destroyWorkMode,
+        updateWorkMode = _useWorkModes.updateWorkMode,
+        errorsWM = _useWorkModes.errorsWM;
+
+    var _useYearExperiences = (0,_services_yearExperienceServices_js__WEBPACK_IMPORTED_MODULE_13__["default"])(),
+        yearExperiences = _useYearExperiences.yearExperiences,
+        getYearExperiences = _useYearExperiences.getYearExperiences,
+        createYearExperience = _useYearExperiences.createYearExperience,
+        destroyYearExperience = _useYearExperiences.destroyYearExperience,
+        updateYearExperience = _useYearExperiences.updateYearExperience,
+        errorsYE = _useYearExperiences.errorsYE;
 
     var searchKey = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)("");
     var currentOther = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(0);
@@ -347,7 +407,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 loading.value = 1;
                 _context2.t0 = currentOther.value;
-                _context2.next = _context2.t0 === 0 ? 4 : _context2.t0 === 1 ? 12 : _context2.t0 === 2 ? 20 : _context2.t0 === 3 ? 28 : _context2.t0 === 4 ? 36 : 44;
+                _context2.next = _context2.t0 === 0 ? 4 : _context2.t0 === 1 ? 12 : _context2.t0 === 2 ? 20 : _context2.t0 === 3 ? 28 : _context2.t0 === 4 ? 36 : _context2.t0 === 5 ? 44 : _context2.t0 === 6 ? 52 : _context2.t0 === 7 ? 60 : _context2.t0 === 8 ? 68 : _context2.t0 === 9 ? 76 : _context2.t0 === 10 ? 84 : 92;
                 break;
 
               case 4:
@@ -369,7 +429,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 items.value = languages.value;
 
               case 11:
-                return _context2.abrupt("break", 44);
+                return _context2.abrupt("break", 92);
 
               case 12:
                 _context2.next = 14;
@@ -390,7 +450,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 items.value = activityAreas.value;
 
               case 19:
-                return _context2.abrupt("break", 44);
+                return _context2.abrupt("break", 92);
 
               case 20:
                 _context2.next = 22;
@@ -411,7 +471,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 items.value = businessTypes.value;
 
               case 27:
-                return _context2.abrupt("break", 44);
+                return _context2.abrupt("break", 92);
 
               case 28:
                 _context2.next = 30;
@@ -432,7 +492,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 items.value = businessSizes.value;
 
               case 35:
-                return _context2.abrupt("break", 44);
+                return _context2.abrupt("break", 92);
 
               case 36:
                 _context2.next = 38;
@@ -453,16 +513,142 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 items.value = legalStatuses.value;
 
               case 43:
-                return _context2.abrupt("break", 44);
+                return _context2.abrupt("break", 92);
 
               case 44:
+                _context2.next = 46;
+                return createWorkDepartment(_objectSpread({}, item));
+
+              case 46:
+                errors.value = errorsWD.value;
+
+                if (!(errors.value == '')) {
+                  _context2.next = 51;
+                  break;
+                }
+
+                _context2.next = 50;
+                return getWorkDepartments();
+
+              case 50:
+                items.value = workDepartments.value;
+
+              case 51:
+                return _context2.abrupt("break", 92);
+
+              case 52:
+                _context2.next = 54;
+                return createYearExperience(_objectSpread({}, item));
+
+              case 54:
+                errors.value = errorsYE.value;
+
+                if (!(errors.value == '')) {
+                  _context2.next = 59;
+                  break;
+                }
+
+                _context2.next = 58;
+                return getYearExperiences();
+
+              case 58:
+                items.value = yearExperiences.value;
+
+              case 59:
+                return _context2.abrupt("break", 92);
+
+              case 60:
+                _context2.next = 62;
+                return createWorkMode(_objectSpread({}, item));
+
+              case 62:
+                errors.value = errorsWM.value;
+
+                if (!(errors.value == '')) {
+                  _context2.next = 67;
+                  break;
+                }
+
+                _context2.next = 66;
+                return getWorkModes();
+
+              case 66:
+                items.value = workModes.value;
+
+              case 67:
+                return _context2.abrupt("break", 92);
+
+              case 68:
+                _context2.next = 70;
+                return createLevelStudy(_objectSpread({}, item));
+
+              case 70:
+                errors.value = errorsLS.value;
+
+                if (!(errors.value == '')) {
+                  _context2.next = 75;
+                  break;
+                }
+
+                _context2.next = 74;
+                return getLevelStudies();
+
+              case 74:
+                items.value = levelStudies.value;
+
+              case 75:
+                return _context2.abrupt("break", 92);
+
+              case 76:
+                _context2.next = 78;
+                return createOfferType(_objectSpread({}, item));
+
+              case 78:
+                errors.value = errorsOT.value;
+
+                if (!(errors.value == '')) {
+                  _context2.next = 83;
+                  break;
+                }
+
+                _context2.next = 82;
+                return getOfferTypes();
+
+              case 82:
+                items.value = offerTypes.value;
+
+              case 83:
+                return _context2.abrupt("break", 92);
+
+              case 84:
+                _context2.next = 86;
+                return createSizeCompany(_objectSpread({}, item));
+
+              case 86:
+                errors.value = errorsSC.value;
+
+                if (!(errors.value == '')) {
+                  _context2.next = 91;
+                  break;
+                }
+
+                _context2.next = 90;
+                return getSizeCompanies();
+
+              case 90:
+                items.value = sizeCompanies.value;
+
+              case 91:
+                return _context2.abrupt("break", 92);
+
+              case 92:
                 item.name_fr = '';
                 item.name_en = '';
                 item.name_es = '';
                 item.name_pt = '';
                 loading.value = 0;
 
-              case 49:
+              case 97:
               case "end":
                 return _context2.stop();
             }
@@ -483,7 +669,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 loading.value = 1;
                 _context3.t0 = currentOther.value;
-                _context3.next = _context3.t0 === 0 ? 4 : _context3.t0 === 1 ? 12 : _context3.t0 === 2 ? 20 : _context3.t0 === 3 ? 28 : _context3.t0 === 4 ? 36 : 44;
+                _context3.next = _context3.t0 === 0 ? 4 : _context3.t0 === 1 ? 12 : _context3.t0 === 2 ? 20 : _context3.t0 === 3 ? 28 : _context3.t0 === 4 ? 36 : _context3.t0 === 5 ? 44 : _context3.t0 === 6 ? 52 : _context3.t0 === 7 ? 60 : _context3.t0 === 8 ? 68 : _context3.t0 === 9 ? 76 : _context3.t0 === 10 ? 84 : 92;
                 break;
 
               case 4:
@@ -505,7 +691,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 items.value = languages.value;
 
               case 11:
-                return _context3.abrupt("break", 44);
+                return _context3.abrupt("break", 92);
 
               case 12:
                 _context3.next = 14;
@@ -526,7 +712,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 items.value = activityAreas.value;
 
               case 19:
-                return _context3.abrupt("break", 44);
+                return _context3.abrupt("break", 92);
 
               case 20:
                 _context3.next = 22;
@@ -547,7 +733,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 items.value = businessTypes.value;
 
               case 27:
-                return _context3.abrupt("break", 44);
+                return _context3.abrupt("break", 92);
 
               case 28:
                 _context3.next = 30;
@@ -568,7 +754,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 items.value = businessSizes.value;
 
               case 35:
-                return _context3.abrupt("break", 44);
+                return _context3.abrupt("break", 92);
 
               case 36:
                 _context3.next = 38;
@@ -589,9 +775,135 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 items.value = legalStatuses.value;
 
               case 43:
-                return _context3.abrupt("break", 44);
+                return _context3.abrupt("break", 92);
 
               case 44:
+                _context3.next = 46;
+                return updateWorkDepartment(id.value, item);
+
+              case 46:
+                errors.value = errorsWD.value;
+
+                if (!(errors.value == '')) {
+                  _context3.next = 51;
+                  break;
+                }
+
+                _context3.next = 50;
+                return getWorkDepartments();
+
+              case 50:
+                items.value = workDepartments.value;
+
+              case 51:
+                return _context3.abrupt("break", 92);
+
+              case 52:
+                _context3.next = 54;
+                return updateYearExperience(id.value, item);
+
+              case 54:
+                errors.value = errorsYE.value;
+
+                if (!(errors.value == '')) {
+                  _context3.next = 59;
+                  break;
+                }
+
+                _context3.next = 58;
+                return getYearExperiences();
+
+              case 58:
+                items.value = yearExperiences.value;
+
+              case 59:
+                return _context3.abrupt("break", 92);
+
+              case 60:
+                _context3.next = 62;
+                return updateWorkMode(id.value, item);
+
+              case 62:
+                errors.value = errorsWM.value;
+
+                if (!(errors.value == '')) {
+                  _context3.next = 67;
+                  break;
+                }
+
+                _context3.next = 66;
+                return getWorkModes();
+
+              case 66:
+                items.value = workModes.value;
+
+              case 67:
+                return _context3.abrupt("break", 92);
+
+              case 68:
+                _context3.next = 70;
+                return updateLevelStudy(id.value, item);
+
+              case 70:
+                errors.value = errorsLS.value;
+
+                if (!(errors.value == '')) {
+                  _context3.next = 75;
+                  break;
+                }
+
+                _context3.next = 74;
+                return getLevelStudies();
+
+              case 74:
+                items.value = levelStudies.value;
+
+              case 75:
+                return _context3.abrupt("break", 92);
+
+              case 76:
+                _context3.next = 78;
+                return updateOfferType(id.value, item);
+
+              case 78:
+                errors.value = errorsOT.value;
+
+                if (!(errors.value == '')) {
+                  _context3.next = 83;
+                  break;
+                }
+
+                _context3.next = 82;
+                return getOfferTypes();
+
+              case 82:
+                items.value = offerTypes.value;
+
+              case 83:
+                return _context3.abrupt("break", 92);
+
+              case 84:
+                _context3.next = 86;
+                return updateSizeCompany(id.value, item);
+
+              case 86:
+                errors.value = errorsSC.value;
+
+                if (!(errors.value == '')) {
+                  _context3.next = 91;
+                  break;
+                }
+
+                _context3.next = 90;
+                return getSizeCompanies();
+
+              case 90:
+                items.value = sizeCompanies.value;
+
+              case 91:
+                return _context3.abrupt("break", 92);
+
+              case 92:
                 loading.value = 0;
                 item.name_fr = '';
                 item.name_en = '';
@@ -600,7 +912,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 id.value = 0;
                 isEdit.value = false;
 
-              case 51:
+              case 99:
               case "end":
                 return _context3.stop();
             }
@@ -620,13 +932,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context4.prev = _context4.next) {
               case 0:
                 if (!confirm("I you Sure ?")) {
-                  _context4.next = 46;
+                  _context4.next = 94;
                   break;
                 }
 
                 loading.value = 1;
                 _context4.t0 = currentOther.value;
-                _context4.next = _context4.t0 === 0 ? 5 : _context4.t0 === 1 ? 13 : _context4.t0 === 2 ? 21 : _context4.t0 === 3 ? 29 : _context4.t0 === 4 ? 37 : 45;
+                _context4.next = _context4.t0 === 0 ? 5 : _context4.t0 === 1 ? 13 : _context4.t0 === 2 ? 21 : _context4.t0 === 3 ? 29 : _context4.t0 === 4 ? 37 : _context4.t0 === 5 ? 45 : _context4.t0 === 6 ? 53 : _context4.t0 === 7 ? 61 : _context4.t0 === 8 ? 69 : _context4.t0 === 10 ? 77 : _context4.t0 === 9 ? 85 : 93;
                 break;
 
               case 5:
@@ -648,7 +960,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 items.value = languages.value;
 
               case 12:
-                return _context4.abrupt("break", 45);
+                return _context4.abrupt("break", 93);
 
               case 13:
                 _context4.next = 15;
@@ -669,7 +981,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 items.value = activityAreas.value;
 
               case 20:
-                return _context4.abrupt("break", 45);
+                return _context4.abrupt("break", 93);
 
               case 21:
                 _context4.next = 23;
@@ -690,7 +1002,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 items.value = businessTypes.value;
 
               case 28:
-                return _context4.abrupt("break", 45);
+                return _context4.abrupt("break", 93);
 
               case 29:
                 _context4.next = 31;
@@ -711,7 +1023,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 items.value = businessSizes.value;
 
               case 36:
-                return _context4.abrupt("break", 45);
+                return _context4.abrupt("break", 93);
 
               case 37:
                 _context4.next = 39;
@@ -732,12 +1044,138 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 items.value = legalStatuses.value;
 
               case 44:
-                return _context4.abrupt("break", 45);
+                return _context4.abrupt("break", 93);
 
               case 45:
+                _context4.next = 47;
+                return destroyWorkDepartment(id);
+
+              case 47:
+                errors.value = errorsWD.value;
+
+                if (!(errors.value == '')) {
+                  _context4.next = 52;
+                  break;
+                }
+
+                _context4.next = 51;
+                return getWorkDepartments();
+
+              case 51:
+                items.value = workDepartments.value;
+
+              case 52:
+                return _context4.abrupt("break", 93);
+
+              case 53:
+                _context4.next = 55;
+                return destroyYearExperience(id);
+
+              case 55:
+                errors.value = errorsYE.value;
+
+                if (!(errors.value == '')) {
+                  _context4.next = 60;
+                  break;
+                }
+
+                _context4.next = 59;
+                return getYearExperiences();
+
+              case 59:
+                items.value = yearExperiences.value;
+
+              case 60:
+                return _context4.abrupt("break", 93);
+
+              case 61:
+                _context4.next = 63;
+                return destroyWorkMode(id);
+
+              case 63:
+                errors.value = errorsWM.value;
+
+                if (!(errors.value == '')) {
+                  _context4.next = 68;
+                  break;
+                }
+
+                _context4.next = 67;
+                return getWorkModes();
+
+              case 67:
+                items.value = workModes.value;
+
+              case 68:
+                return _context4.abrupt("break", 93);
+
+              case 69:
+                _context4.next = 71;
+                return destroyLevelStudy(id);
+
+              case 71:
+                errors.value = errorsLS.value;
+
+                if (!(errors.value == '')) {
+                  _context4.next = 76;
+                  break;
+                }
+
+                _context4.next = 75;
+                return getLevelStudies();
+
+              case 75:
+                items.value = levelStudies.value;
+
+              case 76:
+                return _context4.abrupt("break", 93);
+
+              case 77:
+                _context4.next = 79;
+                return destroyOfferType(id);
+
+              case 79:
+                errors.value = errorsOT.value;
+
+                if (!(errors.value == '')) {
+                  _context4.next = 84;
+                  break;
+                }
+
+                _context4.next = 83;
+                return getOfferTypes();
+
+              case 83:
+                items.value = offerTypes.value;
+
+              case 84:
+                return _context4.abrupt("break", 93);
+
+              case 85:
+                _context4.next = 87;
+                return destroySizeCompany(id);
+
+              case 87:
+                errors.value = errorsSC.value;
+
+                if (!(errors.value == '')) {
+                  _context4.next = 92;
+                  break;
+                }
+
+                _context4.next = 91;
+                return getSizeCompanies();
+
+              case 91:
+                items.value = sizeCompanies.value;
+
+              case 92:
+                return _context4.abrupt("break", 93);
+
+              case 93:
                 loading.value = 0;
 
-              case 46:
+              case 94:
               case "end":
                 return _context4.stop();
             }
@@ -758,7 +1196,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 loading.value = 1;
                 _context5.t0 = currentOther.value;
-                _context5.next = _context5.t0 === 0 ? 4 : _context5.t0 === 1 ? 9 : _context5.t0 === 2 ? 14 : _context5.t0 === 3 ? 19 : _context5.t0 === 4 ? 24 : 29;
+                _context5.next = _context5.t0 === 0 ? 4 : _context5.t0 === 1 ? 9 : _context5.t0 === 2 ? 14 : _context5.t0 === 3 ? 19 : _context5.t0 === 4 ? 24 : _context5.t0 === 5 ? 29 : _context5.t0 === 6 ? 34 : _context5.t0 === 7 ? 39 : _context5.t0 === 8 ? 44 : _context5.t0 === 9 ? 49 : _context5.t0 === 10 ? 54 : 59;
                 break;
 
               case 4:
@@ -772,7 +1210,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   items.value = languages.value;
                 }
 
-                return _context5.abrupt("break", 29);
+                return _context5.abrupt("break", 59);
 
               case 9:
                 _context5.next = 11;
@@ -785,7 +1223,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   items.value = activityAreas.value;
                 }
 
-                return _context5.abrupt("break", 29);
+                return _context5.abrupt("break", 59);
 
               case 14:
                 _context5.next = 16;
@@ -798,7 +1236,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   items.value = businessTypes.value;
                 }
 
-                return _context5.abrupt("break", 29);
+                return _context5.abrupt("break", 59);
 
               case 19:
                 _context5.next = 21;
@@ -811,7 +1249,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   items.value = businessSizes.value;
                 }
 
-                return _context5.abrupt("break", 29);
+                return _context5.abrupt("break", 59);
 
               case 24:
                 _context5.next = 26;
@@ -824,9 +1262,87 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   items.value = legalStatuses.value;
                 }
 
-                return _context5.abrupt("break", 29);
+                return _context5.abrupt("break", 59);
 
               case 29:
+                _context5.next = 31;
+                return getWorkDepartments();
+
+              case 31:
+                errors.value = errorsWD.value;
+
+                if (errors.value == '') {
+                  items.value = workDepartments.value;
+                }
+
+                return _context5.abrupt("break", 59);
+
+              case 34:
+                _context5.next = 36;
+                return getYearExperiences();
+
+              case 36:
+                errors.value = errorsYE.value;
+
+                if (errors.value == '') {
+                  items.value = yearExperiences.value;
+                }
+
+                return _context5.abrupt("break", 59);
+
+              case 39:
+                _context5.next = 41;
+                return getWorkModes();
+
+              case 41:
+                errors.value = errorsWM.value;
+
+                if (errors.value == '') {
+                  items.value = workModes.value;
+                }
+
+                return _context5.abrupt("break", 59);
+
+              case 44:
+                _context5.next = 46;
+                return getLevelStudies();
+
+              case 46:
+                errors.value = errorsLS.value;
+
+                if (errors.value == '') {
+                  items.value = levelStudies.value;
+                }
+
+                return _context5.abrupt("break", 59);
+
+              case 49:
+                _context5.next = 51;
+                return getOfferTypes();
+
+              case 51:
+                errors.value = errorsOT.value;
+
+                if (errors.value == '') {
+                  items.value = offerTypes.value;
+                }
+
+                return _context5.abrupt("break", 59);
+
+              case 54:
+                _context5.next = 56;
+                return getSizeCompanies();
+
+              case 56:
+                errors.value = errorsSC.value;
+
+                if (errors.value == '') {
+                  items.value = sizeCompanies.value;
+                }
+
+                return _context5.abrupt("break", 59);
+
+              case 59:
                 item.name_fr = '';
                 item.name_en = '';
                 item.name_es = '';
@@ -835,7 +1351,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 isEdit.value = false;
                 loading.value = 0;
 
-              case 36:
+              case 66:
               case "end":
                 return _context5.stop();
             }
@@ -1230,7 +1746,7 @@ var _hoisted_51 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 );
 
 var _hoisted_52 = {
-  "class": "flex flex-col justify-between items-center h-full pb-6 w-full space-y-32"
+  "class": "relative flex flex-col justify-between items-center h-full pb-6 w-full"
 };
 var _hoisted_53 = {
   "class": "flex flex-col justify-start items-center px-4 border-b border-gray-600 w-full"
@@ -1270,28 +1786,38 @@ var _hoisted_60 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_61 = {
+var _hoisted_61 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": ""
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+  src: "/img/gno_logo.png",
+  "class": "h-16",
+  alt: ""
+})], -1
+/* HOISTED */
+);
+
+var _hoisted_62 = {
   "class": "flex justify-between px-6 items-center w-full"
 };
-var _hoisted_62 = {
+var _hoisted_63 = {
   "class": "flex justify-center items-center space-x-2"
 };
-var _hoisted_63 = {
+var _hoisted_64 = {
   key: 0,
   "class": "rounded-full",
   src: "https://i.ibb.co/L1LQtBm/Ellipse-1.png",
   alt: "avatar"
 };
-var _hoisted_64 = {
+var _hoisted_65 = {
   "class": "flex justify-start flex-col items-start"
 };
-var _hoisted_65 = {
+var _hoisted_66 = {
   "class": "cursor-pointer text-sm leading-5 text-white"
 };
-var _hoisted_66 = {
+var _hoisted_67 = {
   "class": "cursor-pointer text-xs leading-3 text-gray-300"
 };
-var _hoisted_67 = {
+var _hoisted_68 = {
   key: 1,
   "class": "animate-spin text-white mt-1 h-6 w-6 cursor-wait",
   xmlns: "http://www.w3.org/2000/svg",
@@ -1299,7 +1825,7 @@ var _hoisted_67 = {
   viewBox: "0 0 24 24"
 };
 
-var _hoisted_68 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("circle", {
+var _hoisted_69 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("circle", {
   "class": "opacity-25",
   cx: "12",
   cy: "12",
@@ -1310,7 +1836,7 @@ var _hoisted_68 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_69 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
+var _hoisted_70 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
   "class": "opacity-75",
   fill: "currentColor",
   d: "M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
@@ -1318,7 +1844,7 @@ var _hoisted_69 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_70 = [_hoisted_68, _hoisted_69];
+var _hoisted_71 = [_hoisted_69, _hoisted_70];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_MenuIcon = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("MenuIcon");
 
@@ -1841,12 +2367,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   }, 8
   /* PROPS */
-  , ["to"])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_61, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_62, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [$setup.user.value.avatar ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("img", _hoisted_63)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_UserCircleIcon, {
+  , ["to"])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), _hoisted_61, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_62, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_63, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [$setup.user.value.avatar ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("img", _hoisted_64)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_UserCircleIcon, {
     key: 1,
     "class": "h-8 w-8 text-white"
-  }))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_64, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_65, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.user.value.firstname) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.user.value.lastname), 1
+  }))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_65, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_66, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.user.value.firstname) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.user.value.lastname), 1
   /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_66, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.user.value.email), 1
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_67, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.user.value.email), 1
   /* TEXT */
   )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CogIcon, {
     "class": "w-6 h-6 text-white"
@@ -1856,7 +2382,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $setup.logout();
     }),
     "class": "w-6 h-6 text-white cursor-pointer"
-  })) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.loading == 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("svg", _hoisted_67, _hoisted_70)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
+  })) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.loading == 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("svg", _hoisted_68, _hoisted_71)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
 }
 
 /***/ }),
@@ -3635,6 +4161,1480 @@ function useLegalStatuses() {
     createLegalStatus: createLegalStatus,
     updateLegalStatus: updateLegalStatus,
     destroyLegalStatus: destroyLegalStatus
+  };
+}
+
+/***/ }),
+
+/***/ "./resources/js/services/levelStudyServices.js":
+/*!*****************************************************!*\
+  !*** ./resources/js/services/levelStudyServices.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ useLevelStudies)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+
+function useLevelStudies() {
+  var levelStudies = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)([]);
+  var levelStudy = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)([]);
+  var errorsLS = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)('');
+  var loading = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(0);
+
+  var getLevelStudies = /*#__PURE__*/function () {
+    var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+      var response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              errorsLS.value = '';
+              loading.value = 1;
+              _context.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/levelStudies', {
+                headers: {
+                  'Authorization': "Bearer ".concat(localStorage.token)
+                }
+              });
+
+            case 4:
+              response = _context.sent;
+              levelStudies.value = response.data.data;
+              loading.value = 2; // console.log(levelStudies.value);
+
+            case 7:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
+
+    return function getLevelStudies() {
+      return _ref.apply(this, arguments);
+    };
+  }();
+
+  var getLevelStudy = /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(id) {
+      var response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              errorsLS.value = '';
+              loading.value = 1;
+              _context2.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/levelStudies/' + id, {
+                headers: {
+                  'Authorization': "Bearer ".concat(localStorage.token)
+                }
+              });
+
+            case 4:
+              response = _context2.sent;
+              loading.value = 0;
+              levelStudy.value = response.data.data;
+
+            case 7:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }));
+
+    return function getLevelStudy(_x) {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+
+  var createLevelStudy = /*#__PURE__*/function () {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(data) {
+      var key;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              errorsLS.value = '';
+              _context3.prev = 1;
+              loading.value = 1;
+              _context3.next = 5;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/levelStudies', data, {
+                headers: {
+                  'Authorization': "Bearer ".concat(localStorage.token)
+                }
+              });
+
+            case 5:
+              loading.value = 2;
+              _context3.next = 11;
+              break;
+
+            case 8:
+              _context3.prev = 8;
+              _context3.t0 = _context3["catch"](1);
+
+              if (_context3.t0.response.status == 422) {
+                loading.value = 0;
+
+                for (key in _context3.t0.response.data.errorsLS) {
+                  errorsLS.value += _context3.t0.response.data.errorsLS[key][0] + "\n";
+                }
+              }
+
+            case 11:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3, null, [[1, 8]]);
+    }));
+
+    return function createLevelStudy(_x2) {
+      return _ref3.apply(this, arguments);
+    };
+  }();
+
+  var updateLevelStudy = /*#__PURE__*/function () {
+    var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4(id, data) {
+      var key;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              errorsLS.value = '';
+              _context4.prev = 1;
+              loading.value = 1;
+              _context4.next = 5;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().put('/api/levelStudies/' + id, data, {
+                headers: {
+                  'Authorization': "Bearer ".concat(localStorage.token)
+                }
+              });
+
+            case 5:
+              loading.value = 2;
+              _context4.next = 12;
+              break;
+
+            case 8:
+              _context4.prev = 8;
+              _context4.t0 = _context4["catch"](1);
+              loading.value = 0;
+
+              if (_context4.t0.response.status == 422) {
+                for (key in _context4.t0.response.data.errorsLS) {
+                  errorsLS.value += _context4.t0.response.data.errorsLS[key][0] + '\t\n';
+                }
+              }
+
+            case 12:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, _callee4, null, [[1, 8]]);
+    }));
+
+    return function updateLevelStudy(_x3, _x4) {
+      return _ref4.apply(this, arguments);
+    };
+  }();
+
+  var destroyLevelStudy = /*#__PURE__*/function () {
+    var _ref5 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5(id) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
+        while (1) {
+          switch (_context5.prev = _context5.next) {
+            case 0:
+              errorsLS.value = '';
+              _context5.prev = 1;
+              loading.value = 1;
+              _context5.next = 5;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]('/api/levelStudies/' + id, {
+                headers: {
+                  'Authorization': "Bearer ".concat(localStorage.token)
+                }
+              });
+
+            case 5:
+              loading.value = 2;
+              _context5.next = 12;
+              break;
+
+            case 8:
+              _context5.prev = 8;
+              _context5.t0 = _context5["catch"](1);
+              loading.value = 0;
+
+              if (_context5.t0.response.status == '500') {
+                errorsLS.value = 'Impossible de supprimer ce pays';
+              }
+
+            case 12:
+            case "end":
+              return _context5.stop();
+          }
+        }
+      }, _callee5, null, [[1, 8]]);
+    }));
+
+    return function destroyLevelStudy(_x5) {
+      return _ref5.apply(this, arguments);
+    };
+  }();
+
+  return {
+    levelStudies: levelStudies,
+    levelStudy: levelStudy,
+    errorsLS: errorsLS,
+    loading: loading,
+    getLevelStudies: getLevelStudies,
+    getLevelStudy: getLevelStudy,
+    createLevelStudy: createLevelStudy,
+    updateLevelStudy: updateLevelStudy,
+    destroyLevelStudy: destroyLevelStudy
+  };
+}
+
+/***/ }),
+
+/***/ "./resources/js/services/offerTypeServices.js":
+/*!****************************************************!*\
+  !*** ./resources/js/services/offerTypeServices.js ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ useOfferTypes)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+
+function useOfferTypes() {
+  var offerTypes = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)([]);
+  var offerType = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)([]);
+  var errorsOT = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)('');
+  var loading = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(0);
+
+  var getOfferTypes = /*#__PURE__*/function () {
+    var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+      var response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              errorsOT.value = '';
+              loading.value = 1;
+              _context.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/offerTypes', {
+                headers: {
+                  'Authorization': "Bearer ".concat(localStorage.token)
+                }
+              });
+
+            case 4:
+              response = _context.sent;
+              offerTypes.value = response.data.data;
+              loading.value = 2; // console.log(offerTypes.value);
+
+            case 7:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
+
+    return function getOfferTypes() {
+      return _ref.apply(this, arguments);
+    };
+  }();
+
+  var getOfferType = /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(id) {
+      var response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              errorsOT.value = '';
+              loading.value = 1;
+              _context2.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/offerTypes/' + id, {
+                headers: {
+                  'Authorization': "Bearer ".concat(localStorage.token)
+                }
+              });
+
+            case 4:
+              response = _context2.sent;
+              loading.value = 0;
+              offerType.value = response.data.data;
+
+            case 7:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }));
+
+    return function getOfferType(_x) {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+
+  var createOfferType = /*#__PURE__*/function () {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(data) {
+      var key;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              errorsOT.value = '';
+              _context3.prev = 1;
+              loading.value = 1;
+              _context3.next = 5;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/offerTypes', data, {
+                headers: {
+                  'Authorization': "Bearer ".concat(localStorage.token)
+                }
+              });
+
+            case 5:
+              loading.value = 2;
+              _context3.next = 11;
+              break;
+
+            case 8:
+              _context3.prev = 8;
+              _context3.t0 = _context3["catch"](1);
+
+              if (_context3.t0.response.status == 422) {
+                loading.value = 0;
+
+                for (key in _context3.t0.response.data.errorsOT) {
+                  errorsOT.value += _context3.t0.response.data.errorsOT[key][0] + "\n";
+                }
+              }
+
+            case 11:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3, null, [[1, 8]]);
+    }));
+
+    return function createOfferType(_x2) {
+      return _ref3.apply(this, arguments);
+    };
+  }();
+
+  var updateOfferType = /*#__PURE__*/function () {
+    var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4(data) {
+      var key;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              errorsOT.value = '';
+              _context4.prev = 1;
+              loading.value = 1;
+              _context4.next = 5;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().put('/api/offerTypes/' + id, data, {
+                headers: {
+                  'Authorization': "Bearer ".concat(localStorage.token)
+                }
+              });
+
+            case 5:
+              loading.value = 2;
+              _context4.next = 12;
+              break;
+
+            case 8:
+              _context4.prev = 8;
+              _context4.t0 = _context4["catch"](1);
+              loading.value = 0;
+
+              if (_context4.t0.response.status == 422) {
+                for (key in _context4.t0.response.data.errorsOT) {
+                  errorsOT.value += _context4.t0.response.data.errorsOT[key][0] + '\t\n';
+                }
+              }
+
+            case 12:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, _callee4, null, [[1, 8]]);
+    }));
+
+    return function updateOfferType(_x3) {
+      return _ref4.apply(this, arguments);
+    };
+  }();
+
+  var destroyOfferType = /*#__PURE__*/function () {
+    var _ref5 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5(id) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
+        while (1) {
+          switch (_context5.prev = _context5.next) {
+            case 0:
+              errorsOT.value = '';
+              _context5.prev = 1;
+              loading.value = 1;
+              _context5.next = 5;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]('/api/offerTypes/' + id, {
+                headers: {
+                  'Authorization': "Bearer ".concat(localStorage.token)
+                }
+              });
+
+            case 5:
+              loading.value = 2;
+              return _context5.abrupt("return", true);
+
+            case 9:
+              _context5.prev = 9;
+              _context5.t0 = _context5["catch"](1);
+              loading.value = 0;
+              errorsOT.value = 'Impossible de supprimer ce offerType';
+
+            case 13:
+            case "end":
+              return _context5.stop();
+          }
+        }
+      }, _callee5, null, [[1, 9]]);
+    }));
+
+    return function destroyOfferType(_x4) {
+      return _ref5.apply(this, arguments);
+    };
+  }();
+
+  return {
+    offerTypes: offerTypes,
+    offerType: offerType,
+    errorsOT: errorsOT,
+    loading: loading,
+    getOfferTypes: getOfferTypes,
+    getOfferType: getOfferType,
+    createOfferType: createOfferType,
+    updateOfferType: updateOfferType,
+    destroyOfferType: destroyOfferType
+  };
+}
+
+/***/ }),
+
+/***/ "./resources/js/services/sizeCompanyServices.js":
+/*!******************************************************!*\
+  !*** ./resources/js/services/sizeCompanyServices.js ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ useSizeCompanies)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+
+function useSizeCompanies() {
+  var sizeCompanies = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)([]);
+  var sizeCompany = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)([]);
+  var errorsSC = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)('');
+  var loading = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(0);
+
+  var getSizeCompanies = /*#__PURE__*/function () {
+    var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+      var response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              errorsSC.value = '';
+              loading.value = 1;
+              _context.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/sizeCompanies', {
+                headers: {
+                  'Authorization': "Bearer ".concat(localStorage.token)
+                }
+              });
+
+            case 4:
+              response = _context.sent;
+              sizeCompanies.value = response.data.data;
+              loading.value = 2; // console.log(sizeCompanies.value);
+
+            case 7:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
+
+    return function getSizeCompanies() {
+      return _ref.apply(this, arguments);
+    };
+  }();
+
+  var getSizeCompany = /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(id) {
+      var response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              errorsSC.value = '';
+              loading.value = 1;
+              _context2.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/sizeCompanies/' + id, {
+                headers: {
+                  'Authorization': "Bearer ".concat(localStorage.token)
+                }
+              });
+
+            case 4:
+              response = _context2.sent;
+              loading.value = 0;
+              sizeCompany.value = response.data.data;
+
+            case 7:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }));
+
+    return function getSizeCompany(_x) {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+
+  var createSizeCompany = /*#__PURE__*/function () {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(data) {
+      var key;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              errorsSC.value = '';
+              _context3.prev = 1;
+              loading.value = 1;
+              _context3.next = 5;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/sizeCompanies', data, {
+                headers: {
+                  'Authorization': "Bearer ".concat(localStorage.token)
+                }
+              });
+
+            case 5:
+              loading.value = 2;
+              _context3.next = 11;
+              break;
+
+            case 8:
+              _context3.prev = 8;
+              _context3.t0 = _context3["catch"](1);
+
+              if (_context3.t0.response.status == 422) {
+                loading.value = 0;
+
+                for (key in _context3.t0.response.data.errorsSC) {
+                  errorsSC.value += _context3.t0.response.data.errorsSC[key][0] + "\n";
+                }
+              }
+
+            case 11:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3, null, [[1, 8]]);
+    }));
+
+    return function createSizeCompany(_x2) {
+      return _ref3.apply(this, arguments);
+    };
+  }();
+
+  var updateSizeCompany = /*#__PURE__*/function () {
+    var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4(id, data) {
+      var key;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              errorsSC.value = '';
+              _context4.prev = 1;
+              loading.value = 1;
+              _context4.next = 5;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().put('/api/sizeCompanies/' + id, data, {
+                headers: {
+                  'Authorization': "Bearer ".concat(localStorage.token)
+                }
+              });
+
+            case 5:
+              loading.value = 2;
+              _context4.next = 12;
+              break;
+
+            case 8:
+              _context4.prev = 8;
+              _context4.t0 = _context4["catch"](1);
+              loading.value = 0;
+
+              if (_context4.t0.response.status == 422) {
+                for (key in _context4.t0.response.data.errorsSC) {
+                  errorsSC.value += _context4.t0.response.data.errorsSC[key][0] + '\t\n';
+                }
+              }
+
+            case 12:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, _callee4, null, [[1, 8]]);
+    }));
+
+    return function updateSizeCompany(_x3, _x4) {
+      return _ref4.apply(this, arguments);
+    };
+  }();
+
+  var destroySizeCompany = /*#__PURE__*/function () {
+    var _ref5 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5(id) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
+        while (1) {
+          switch (_context5.prev = _context5.next) {
+            case 0:
+              errorsSC.value = '';
+              _context5.prev = 1;
+              loading.value = 1;
+              _context5.next = 5;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]('/api/sizeCompanies/' + id, {
+                headers: {
+                  'Authorization': "Bearer ".concat(localStorage.token)
+                }
+              });
+
+            case 5:
+              loading.value = 2;
+              _context5.next = 12;
+              break;
+
+            case 8:
+              _context5.prev = 8;
+              _context5.t0 = _context5["catch"](1);
+              loading.value = 0;
+
+              if (_context5.t0.response.status == '500') {
+                errorsSC.value = 'Impossible de supprimer ce pays';
+              }
+
+            case 12:
+            case "end":
+              return _context5.stop();
+          }
+        }
+      }, _callee5, null, [[1, 8]]);
+    }));
+
+    return function destroySizeCompany(_x5) {
+      return _ref5.apply(this, arguments);
+    };
+  }();
+
+  return {
+    sizeCompanies: sizeCompanies,
+    sizeCompany: sizeCompany,
+    errorsSC: errorsSC,
+    loading: loading,
+    getSizeCompanies: getSizeCompanies,
+    getSizeCompany: getSizeCompany,
+    createSizeCompany: createSizeCompany,
+    updateSizeCompany: updateSizeCompany,
+    destroySizeCompany: destroySizeCompany
+  };
+}
+
+/***/ }),
+
+/***/ "./resources/js/services/workDepartmentServices.js":
+/*!*********************************************************!*\
+  !*** ./resources/js/services/workDepartmentServices.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ useWorkDepartments)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+
+function useWorkDepartments() {
+  var workDepartments = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)([]);
+  var workDepartment = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)([]);
+  var errorsWD = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)('');
+  var loading = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(0);
+
+  var getWorkDepartments = /*#__PURE__*/function () {
+    var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+      var response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              errorsWD.value = '';
+              loading.value = 1;
+              _context.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/workDepartments', {
+                headers: {
+                  'Authorization': "Bearer ".concat(localStorage.token)
+                }
+              });
+
+            case 4:
+              response = _context.sent;
+              workDepartments.value = response.data.data;
+              loading.value = 2; // console.log(workDepartments.value);
+
+            case 7:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
+
+    return function getWorkDepartments() {
+      return _ref.apply(this, arguments);
+    };
+  }();
+
+  var getWorkDepartment = /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(id) {
+      var response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              errorsWD.value = '';
+              loading.value = 1;
+              _context2.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/workDepartments/' + id, {
+                headers: {
+                  'Authorization': "Bearer ".concat(localStorage.token)
+                }
+              });
+
+            case 4:
+              response = _context2.sent;
+              loading.value = 0;
+              workDepartment.value = response.data.data;
+
+            case 7:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }));
+
+    return function getWorkDepartment(_x) {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+
+  var createWorkDepartment = /*#__PURE__*/function () {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(data) {
+      var key;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              errorsWD.value = '';
+              _context3.prev = 1;
+              loading.value = 1;
+              _context3.next = 5;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/workDepartments', data, {
+                headers: {
+                  'Authorization': "Bearer ".concat(localStorage.token)
+                }
+              });
+
+            case 5:
+              loading.value = 2;
+              _context3.next = 11;
+              break;
+
+            case 8:
+              _context3.prev = 8;
+              _context3.t0 = _context3["catch"](1);
+
+              if (_context3.t0.response.status == 422) {
+                loading.value = 0;
+
+                for (key in _context3.t0.response.data.errorsWD) {
+                  errorsWD.value += _context3.t0.response.data.errorsWD[key][0] + "\n";
+                }
+              }
+
+            case 11:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3, null, [[1, 8]]);
+    }));
+
+    return function createWorkDepartment(_x2) {
+      return _ref3.apply(this, arguments);
+    };
+  }();
+
+  var updateWorkDepartment = /*#__PURE__*/function () {
+    var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4(id, data) {
+      var key;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              errorsWD.value = '';
+              _context4.prev = 1;
+              loading.value = 1;
+              _context4.next = 5;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().put('/api/workDepartments/' + id, data, {
+                headers: {
+                  'Authorization': "Bearer ".concat(localStorage.token)
+                }
+              });
+
+            case 5:
+              loading.value = 2;
+              _context4.next = 12;
+              break;
+
+            case 8:
+              _context4.prev = 8;
+              _context4.t0 = _context4["catch"](1);
+              loading.value = 0;
+
+              if (_context4.t0.response.status == 422) {
+                for (key in _context4.t0.response.data.errorsWD) {
+                  errorsWD.value += _context4.t0.response.data.errorsWD[key][0] + '\t\n';
+                }
+              }
+
+            case 12:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, _callee4, null, [[1, 8]]);
+    }));
+
+    return function updateWorkDepartment(_x3, _x4) {
+      return _ref4.apply(this, arguments);
+    };
+  }();
+
+  var destroyWorkDepartment = /*#__PURE__*/function () {
+    var _ref5 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5(id) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
+        while (1) {
+          switch (_context5.prev = _context5.next) {
+            case 0:
+              errorsWD.value = '';
+              _context5.prev = 1;
+              loading.value = 1;
+              _context5.next = 5;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]('/api/workDepartments/' + id, {
+                headers: {
+                  'Authorization': "Bearer ".concat(localStorage.token)
+                }
+              });
+
+            case 5:
+              loading.value = 2;
+              return _context5.abrupt("return", true);
+
+            case 9:
+              _context5.prev = 9;
+              _context5.t0 = _context5["catch"](1);
+              loading.value = 0;
+              errorsWD.value = 'Impossible de supprimer ce workDepartment';
+
+            case 13:
+            case "end":
+              return _context5.stop();
+          }
+        }
+      }, _callee5, null, [[1, 9]]);
+    }));
+
+    return function destroyWorkDepartment(_x5) {
+      return _ref5.apply(this, arguments);
+    };
+  }();
+
+  return {
+    workDepartments: workDepartments,
+    workDepartment: workDepartment,
+    errorsWD: errorsWD,
+    loading: loading,
+    getWorkDepartments: getWorkDepartments,
+    getWorkDepartment: getWorkDepartment,
+    createWorkDepartment: createWorkDepartment,
+    updateWorkDepartment: updateWorkDepartment,
+    destroyWorkDepartment: destroyWorkDepartment
+  };
+}
+
+/***/ }),
+
+/***/ "./resources/js/services/workModeServices.js":
+/*!***************************************************!*\
+  !*** ./resources/js/services/workModeServices.js ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ useWorkModes)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+
+function useWorkModes() {
+  var workModes = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)([]);
+  var workMode = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)([]);
+  var errorsWM = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)('');
+  var loading = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(0);
+
+  var getWorkModes = /*#__PURE__*/function () {
+    var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+      var response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              errorsWM.value = '';
+              loading.value = 1;
+              _context.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/workModes', {
+                headers: {
+                  'Authorization': "Bearer ".concat(localStorage.token)
+                }
+              });
+
+            case 4:
+              response = _context.sent;
+              workModes.value = response.data.data;
+              loading.value = 2; // console.log(workModes.value);
+
+            case 7:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
+
+    return function getWorkModes() {
+      return _ref.apply(this, arguments);
+    };
+  }();
+
+  var getWorkMode = /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(id) {
+      var response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              errorsWM.value = '';
+              loading.value = 1;
+              _context2.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/workModes/' + id, {
+                headers: {
+                  'Authorization': "Bearer ".concat(localStorage.token)
+                }
+              });
+
+            case 4:
+              response = _context2.sent;
+              loading.value = 0;
+              workMode.value = response.data.data;
+
+            case 7:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }));
+
+    return function getWorkMode(_x) {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+
+  var createWorkMode = /*#__PURE__*/function () {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(data) {
+      var key;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              errorsWM.value = '';
+              _context3.prev = 1;
+              loading.value = 1;
+              _context3.next = 5;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/workModes', data, {
+                headers: {
+                  'Authorization': "Bearer ".concat(localStorage.token)
+                }
+              });
+
+            case 5:
+              loading.value = 2;
+              _context3.next = 11;
+              break;
+
+            case 8:
+              _context3.prev = 8;
+              _context3.t0 = _context3["catch"](1);
+
+              if (_context3.t0.response.status == 422) {
+                loading.value = 0;
+
+                for (key in _context3.t0.response.data.errorsWM) {
+                  errorsWM.value += _context3.t0.response.data.errorsWM[key][0] + "\n";
+                }
+              }
+
+            case 11:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3, null, [[1, 8]]);
+    }));
+
+    return function createWorkMode(_x2) {
+      return _ref3.apply(this, arguments);
+    };
+  }();
+
+  var updateWorkMode = /*#__PURE__*/function () {
+    var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4(id, data) {
+      var key;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              errorsWM.value = '';
+              _context4.prev = 1;
+              loading.value = 1;
+              _context4.next = 5;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().put('/api/workModes/' + id, data, {
+                headers: {
+                  'Authorization': "Bearer ".concat(localStorage.token)
+                }
+              });
+
+            case 5:
+              loading.value = 2;
+              _context4.next = 12;
+              break;
+
+            case 8:
+              _context4.prev = 8;
+              _context4.t0 = _context4["catch"](1);
+              loading.value = 0;
+
+              if (_context4.t0.response.status == 422) {
+                for (key in _context4.t0.response.data.errorsWM) {
+                  errorsWM.value += _context4.t0.response.data.errorsWM[key][0] + '\t\n';
+                }
+              }
+
+            case 12:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, _callee4, null, [[1, 8]]);
+    }));
+
+    return function updateWorkMode(_x3, _x4) {
+      return _ref4.apply(this, arguments);
+    };
+  }();
+
+  var destroyWorkMode = /*#__PURE__*/function () {
+    var _ref5 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5(id) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
+        while (1) {
+          switch (_context5.prev = _context5.next) {
+            case 0:
+              errorsWM.value = '';
+              _context5.prev = 1;
+              loading.value = 1;
+              _context5.next = 5;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]('/api/workModes/' + id, {
+                headers: {
+                  'Authorization': "Bearer ".concat(localStorage.token)
+                }
+              });
+
+            case 5:
+              loading.value = 2;
+              return _context5.abrupt("return", true);
+
+            case 9:
+              _context5.prev = 9;
+              _context5.t0 = _context5["catch"](1);
+              loading.value = 0;
+              errorsWM.value = 'Impossible de supprimer ce workMode';
+
+            case 13:
+            case "end":
+              return _context5.stop();
+          }
+        }
+      }, _callee5, null, [[1, 9]]);
+    }));
+
+    return function destroyWorkMode(_x5) {
+      return _ref5.apply(this, arguments);
+    };
+  }();
+
+  return {
+    workModes: workModes,
+    workMode: workMode,
+    errorsWM: errorsWM,
+    loading: loading,
+    getWorkModes: getWorkModes,
+    getWorkMode: getWorkMode,
+    createWorkMode: createWorkMode,
+    updateWorkMode: updateWorkMode,
+    destroyWorkMode: destroyWorkMode
+  };
+}
+
+/***/ }),
+
+/***/ "./resources/js/services/yearExperienceServices.js":
+/*!*********************************************************!*\
+  !*** ./resources/js/services/yearExperienceServices.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ useYearExperiences)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var _router_index_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../router/index.js */ "./resources/js/router/index.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+
+
+function useYearExperiences() {
+  var yearExperiences = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)([]);
+  var yearExperience = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)([]);
+  var errorsYE = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)('');
+  var loading = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(0);
+
+  var getYearExperiences = /*#__PURE__*/function () {
+    var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+      var response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              errorsYE.value = '';
+              loading.value = 1;
+              _context.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/yearExperiences', {
+                headers: {
+                  'Authorization': "Bearer ".concat(localStorage.token)
+                }
+              });
+
+            case 4:
+              response = _context.sent;
+              yearExperiences.value = response.data.data;
+              loading.value = 2; // console.log(yearExperiences.value);
+
+            case 7:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
+
+    return function getYearExperiences() {
+      return _ref.apply(this, arguments);
+    };
+  }();
+
+  var getYearExperience = /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(id) {
+      var response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              errorsYE.value = '';
+              loading.value = 1;
+              _context2.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/yearExperiences/' + id, {
+                headers: {
+                  'Authorization': "Bearer ".concat(localStorage.token)
+                }
+              });
+
+            case 4:
+              response = _context2.sent;
+              loading.value = 0;
+              yearExperience.value = response.data.data;
+
+            case 7:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }));
+
+    return function getYearExperience(_x) {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+
+  var createYearExperience = /*#__PURE__*/function () {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(data) {
+      var key;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              errorsYE.value = '';
+              _context3.prev = 1;
+              loading.value = 1;
+              _context3.next = 5;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/yearExperiences', data, {
+                headers: {
+                  'Authorization': "Bearer ".concat(localStorage.token)
+                }
+              });
+
+            case 5:
+              loading.value = 2;
+              _context3.next = 11;
+              break;
+
+            case 8:
+              _context3.prev = 8;
+              _context3.t0 = _context3["catch"](1);
+
+              if (_context3.t0.response.status == 422) {
+                loading.value = 0;
+
+                for (key in _context3.t0.response.data.errorsYE) {
+                  errorsYE.value += _context3.t0.response.data.errorsYE[key][0] + "\n";
+                }
+              }
+
+            case 11:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3, null, [[1, 8]]);
+    }));
+
+    return function createYearExperience(_x2) {
+      return _ref3.apply(this, arguments);
+    };
+  }();
+
+  var updateYearExperience = /*#__PURE__*/function () {
+    var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4(id, data) {
+      var key;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              errorsYE.value = '';
+              _context4.prev = 1;
+              loading.value = 1;
+              _context4.next = 5;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().put('/api/yearExperiences/' + id, data, {
+                headers: {
+                  'Authorization': "Bearer ".concat(localStorage.token)
+                }
+              });
+
+            case 5:
+              loading.value = 2;
+              _context4.next = 12;
+              break;
+
+            case 8:
+              _context4.prev = 8;
+              _context4.t0 = _context4["catch"](1);
+              loading.value = 0;
+
+              if (_context4.t0.response.status == 422) {
+                for (key in _context4.t0.response.data.errorsYE) {
+                  errorsYE.value += _context4.t0.response.data.errorsYE[key][0] + '\t\n';
+                }
+              }
+
+            case 12:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, _callee4, null, [[1, 8]]);
+    }));
+
+    return function updateYearExperience(_x3, _x4) {
+      return _ref4.apply(this, arguments);
+    };
+  }();
+
+  var destroyYearExperience = /*#__PURE__*/function () {
+    var _ref5 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5(id) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
+        while (1) {
+          switch (_context5.prev = _context5.next) {
+            case 0:
+              errorsYE.value = '';
+              _context5.prev = 1;
+              loading.value = 1;
+              _context5.next = 5;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]('/api/yearExperiences/' + id, {
+                headers: {
+                  'Authorization': "Bearer ".concat(localStorage.token)
+                }
+              });
+
+            case 5:
+              loading.value = 2;
+              return _context5.abrupt("return", true);
+
+            case 9:
+              _context5.prev = 9;
+              _context5.t0 = _context5["catch"](1);
+              loading.value = 0;
+              errorsYE.value = 'Impossible de supprimer ce yearExperience';
+
+            case 13:
+            case "end":
+              return _context5.stop();
+          }
+        }
+      }, _callee5, null, [[1, 9]]);
+    }));
+
+    return function destroyYearExperience(_x5) {
+      return _ref5.apply(this, arguments);
+    };
+  }();
+
+  return {
+    yearExperiences: yearExperiences,
+    yearExperience: yearExperience,
+    errorsYE: errorsYE,
+    loading: loading,
+    getYearExperiences: getYearExperiences,
+    getYearExperience: getYearExperience,
+    createYearExperience: createYearExperience,
+    updateYearExperience: updateYearExperience,
+    destroyYearExperience: destroyYearExperience
   };
 }
 

@@ -293,7 +293,7 @@
             </div>
         </div>
         <div
-            class="flex flex-col justify-between items-center h-full pb-6 w-full space-y-32"
+            class="relative flex flex-col justify-between items-center h-full pb-6 w-full "
         >
             <div
                 class="flex flex-col justify-start items-center px-4 border-b border-gray-600 w-full"
@@ -348,6 +348,9 @@
                         <p class="text-base leading-4">Currency</p>
                     </router-link>
                 </div>
+            </div>
+            <div class="">
+                <img src="/img/gno_logo.png"  class=" h-16" alt="">
             </div>
             <div class="flex justify-between px-6 items-center w-full">
                 <div class="flex justify-center items-center space-x-2">

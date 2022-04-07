@@ -16,10 +16,16 @@ use App\Http\Controllers\Api\DetailController;
 use App\Http\Controllers\Api\EmailVerificationController;
 use App\Http\Controllers\Api\LanguageController;
 use App\Http\Controllers\Api\LegalStatusController;
+use App\Http\Controllers\Api\LevelStudyController;
 use App\Http\Controllers\Api\MinistryController;
+use App\Http\Controllers\Api\OfferTypeController;
 use App\Http\Controllers\Api\PostController;
+use App\Http\Controllers\Api\SizeCompanyController;
 use App\Http\Controllers\Api\UniversityController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\WorkDepartmentController;
+use App\Http\Controllers\Api\WorkModeController;
+use App\Http\Controllers\Api\YearExperienceController;
 use App\Http\Controllers\Api\ZoneController;
 
 Route::post("/register",[AuthController::class,'register']);
@@ -60,11 +66,23 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function(){
 
     Route::apiResource('businessSizes', BusinessSizeController::class);
 
+    Route::apiResource('offerTypes', OfferTypeController::class);
+
+    Route::apiResource('yearExperiences', YearExperienceController::class);
+
+    Route::apiResource('workDepartments', WorkDepartmentController::class);
+
+    Route::apiResource('workModes', WorkModeController::class);
+
     Route::apiResource('businessTypes', BusinessTypeController::class);
 
     Route::apiResource('legalStatuses', LegalStatusController::class);
 
     Route::apiResource('activityAreas', ActivityAreaController::class);
+
+    Route::apiResource("levelStudies", LevelStudyController::class);
+
+    Route::apiResource("sizeCompanies", SizeCompanyController::class);
 
     Route::apiResource('details', DetailController::class);
 

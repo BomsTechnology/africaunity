@@ -379,6 +379,12 @@ import useLanguages from "../../services/languageServices.js";
 import useBusinessTypes from "../../services/businessTypeServices.js";
 import useBusinessSizes from "../../services/businessSizeServices.js";
 import useActivityAreas from "../../services/activityAreaServices.js";
+import useSizeCompanies from "../../services/sizeCompanyServices.js";
+import useLevelStudies from "../../services/levelStudyServices.js";
+import useOfferTypes from "../../services/offerTypeServices.js";
+import useWorkDepartments from "../../services/workDepartmentServices.js";
+import useWorkModes from "../../services/workModeServices.js";
+import useYearExperiences from "../../services/yearExperienceServices.js";
 import useLegalStatuses from "../../services/legalStatusServices.js";
 export default {
     components: {
@@ -392,6 +398,12 @@ export default {
         const { businessSizes, getBusinessSizes, createBusinessSize, destroyBusinessSize, updateBusinessSize, errorsBS } = useBusinessSizes();
         const { activityAreas, getActivityAreas, createActivityArea, destroyActivityArea, updateActivityArea, errorsActivy } = useActivityAreas();
         const { legalStatuses, getLegalStatuses, createLegalStatus, destroyLegalStatus, updateLegalStatus, errorsLegal } = useLegalStatuses();
+        const { sizeCompanies, getSizeCompanies, createSizeCompany, destroySizeCompany, updateSizeCompany, errorsSC } = useSizeCompanies();
+        const { levelStudies, getLevelStudies, createLevelStudy, destroyLevelStudy, updateLevelStudy, errorsLS } = useLevelStudies();
+        const { offerTypes, getOfferTypes, createOfferType, destroyOfferType, updateOfferType, errorsOT } = useOfferTypes();
+        const { workDepartments, getWorkDepartments, createWorkDepartment, destroyWorkDepartment, updateWorkDepartment, errorsWD } = useWorkDepartments();
+        const { workModes, getWorkModes, createWorkMode, destroyWorkMode, updateWorkMode, errorsWM } = useWorkModes();
+        const { yearExperiences, getYearExperiences, createYearExperience, destroyYearExperience, updateYearExperience, errorsYE } = useYearExperiences();
         const searchKey = ref("");
         const currentOther = ref(0);
         const loading = ref(0);
@@ -472,6 +484,54 @@ export default {
                         items.value = legalStatuses.value;
                     }
                 break;
+                case 5:
+                    await createWorkDepartment({...item});
+                    errors.value = errorsWD.value;
+                    if(errors.value == ''){
+                        await getWorkDepartments();
+                        items.value = workDepartments.value;
+                    }
+                break;
+                case 6:
+                    await createYearExperience({...item});
+                    errors.value = errorsYE.value;
+                    if(errors.value == ''){
+                        await getYearExperiences();
+                        items.value = yearExperiences.value;
+                    }
+                break;
+                case 7:
+                    await createWorkMode({...item});
+                    errors.value = errorsWM.value;
+                    if(errors.value == ''){
+                        await getWorkModes();
+                        items.value = workModes.value;
+                    }
+                break;
+                case 8:
+                    await createLevelStudy({...item});
+                    errors.value = errorsLS.value;
+                    if(errors.value == ''){
+                        await getLevelStudies();
+                        items.value = levelStudies.value;
+                    }
+                break;
+                case 9:
+                    await createOfferType({...item});
+                    errors.value = errorsOT.value;
+                    if(errors.value == ''){
+                        await getOfferTypes();
+                        items.value = offerTypes.value;
+                    }
+                break;
+                case 10:
+                    await createSizeCompany({...item});
+                    errors.value = errorsSC.value;
+                    if(errors.value == ''){
+                        await getSizeCompanies();
+                        items.value = sizeCompanies.value;
+                    }
+                break;
             }
             item.name_fr = ''
             item.name_en = ''
@@ -521,6 +581,54 @@ export default {
                     if(errors.value == ''){
                         await getLegalStatuses();
                         items.value = legalStatuses.value;
+                    }
+                break;
+                case 5:
+                    await updateWorkDepartment(id.value, item);
+                    errors.value = errorsWD.value;
+                    if(errors.value == ''){
+                        await getWorkDepartments();
+                        items.value = workDepartments.value;
+                    }
+                break;
+                case 6:
+                    await updateYearExperience(id.value, item);
+                    errors.value = errorsYE.value;
+                    if(errors.value == ''){
+                        await getYearExperiences();
+                        items.value = yearExperiences.value;
+                    }
+                break;
+                case 7:
+                    await updateWorkMode(id.value, item);
+                    errors.value = errorsWM.value;
+                    if(errors.value == ''){
+                        await getWorkModes();
+                        items.value = workModes.value;
+                    }
+                break;
+                case 8:
+                    await updateLevelStudy(id.value, item);
+                    errors.value = errorsLS.value;
+                    if(errors.value == ''){
+                        await getLevelStudies();
+                        items.value = levelStudies.value;
+                    }
+                break;
+                case 9:
+                    await updateOfferType(id.value, item);
+                    errors.value = errorsOT.value;
+                    if(errors.value == ''){
+                        await getOfferTypes();
+                        items.value = offerTypes.value;
+                    }
+                break;
+                case 10:
+                    await updateSizeCompany(id.value, item);
+                    errors.value = errorsSC.value;
+                    if(errors.value == ''){
+                        await getSizeCompanies();
+                        items.value = sizeCompanies.value;
                     }
                 break;
             }
@@ -577,6 +685,54 @@ export default {
                             items.value = legalStatuses.value;
                         }
                     break;
+                    case 5:
+                        await destroyWorkDepartment(id)
+                        errors.value = errorsWD.value;
+                        if(errors.value == ''){
+                            await getWorkDepartments();
+                            items.value = workDepartments.value;
+                        }
+                    break;
+                    case 6:
+                        await destroyYearExperience(id)
+                        errors.value = errorsYE.value;
+                        if(errors.value == ''){
+                            await getYearExperiences();
+                            items.value = yearExperiences.value;
+                        }
+                    break;
+                    case 7:
+                        await destroyWorkMode(id)
+                        errors.value = errorsWM.value;
+                        if(errors.value == ''){
+                            await getWorkModes();
+                            items.value = workModes.value;
+                        }
+                    break;
+                    case 8:
+                        await destroyLevelStudy(id)
+                        errors.value = errorsLS.value;
+                        if(errors.value == ''){
+                            await getLevelStudies();
+                            items.value = levelStudies.value;
+                        }
+                    break;
+                    case 10:
+                        await destroyOfferType(id)
+                        errors.value = errorsOT.value;
+                        if(errors.value == ''){
+                            await getOfferTypes();
+                            items.value = offerTypes.value;
+                        }
+                    break;
+                    case 9:
+                        await destroySizeCompany(id)
+                        errors.value = errorsSC.value;
+                        if(errors.value == ''){
+                            await getSizeCompanies();
+                            items.value = sizeCompanies.value;
+                        }
+                    break;
                 }
                 loading.value = 0;
             }
@@ -618,6 +774,48 @@ export default {
                     errors.value = errorsLegal.value;
                     if(errors.value == ''){
                         items.value = legalStatuses.value;
+                    }
+                break;
+                case 5:                
+                    await getWorkDepartments();
+                    errors.value = errorsWD.value;
+                    if(errors.value == ''){
+                        items.value = workDepartments.value;
+                    }
+                break;
+                case 6:                
+                    await getYearExperiences();
+                    errors.value = errorsYE.value;
+                    if(errors.value == ''){
+                        items.value = yearExperiences.value;
+                    }
+                break;
+                case 7:                
+                    await getWorkModes();
+                    errors.value = errorsWM.value;
+                    if(errors.value == ''){
+                        items.value = workModes.value;
+                    }
+                break;
+                case 8:                
+                    await getLevelStudies();
+                    errors.value = errorsLS.value;
+                    if(errors.value == ''){
+                        items.value = levelStudies.value;
+                    }
+                break;
+                case 9:                
+                    await getOfferTypes();
+                    errors.value = errorsOT.value;
+                    if(errors.value == ''){
+                        items.value = offerTypes.value;
+                    }
+                break;
+                case 10:                
+                    await getSizeCompanies();
+                    errors.value = errorsSC.value;
+                    if(errors.value == ''){
+                        items.value = sizeCompanies.value;
                     }
                 break;
             }

@@ -37,6 +37,8 @@
                         Login...
                     </button>
                 </div>
+
+                <p class="text-center font-mone text-sm text-primary-blue py-2 underline italic">Powered By GNO Solutions</p>
             </form>
         </div>
     </div>
