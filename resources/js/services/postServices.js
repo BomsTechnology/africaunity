@@ -14,87 +14,137 @@ export default function usePosts() {
 
     const getPostsAll = async (type) => {
         errors.value = '';
-        loading.value = 1;
-        let response = await axios.get('/api/posts-all/' + type,  {
-            headers:{
-                'Authorization': `Bearer ${localStorage.token}`
-            }
-        });
-        posts.value = response.data.data;
+        try{
+            loading.value = 1;
+            let response = await axios.get('/api/posts-all/' + type,  {
+                headers:{
+                    'Authorization': `Bearer ${localStorage.token}`
+                }
+            });
+            posts.value = response.data.data;
+            loading.value = 2;
+        }catch(e){
 
-        loading.value = 2;
+            if(e.response.status == 401){
+                location.href = 'login/not-login';
+                window.localStorage.removeItem("token");
+                window.localStorage.removeItem("user");
+            }
+        }
     };
 
     const getPostsUser = async (id) => {
         errors.value = '';
-        loading.value = 1;
-        let response = await axios.get('/api/posts-user/' + id,  {
-            headers:{
-                'Authorization': `Bearer ${localStorage.token}`
+        try{
+            loading.value = 1;
+            let response = await axios.get('/api/posts-user/' + id,  {
+                headers:{
+                    'Authorization': `Bearer ${localStorage.token}`
+                }
+            });
+            posts.value = response.data.data;
+
+            articles.value = posts.value.filter((post) => {
+                return post.type == 'article';
+            });
+
+            propau.value = posts.value.filter((post) => {
+                return post.type == 'propau';
+            });
+            loading.value = 2;
+        }catch(e){
+
+            if(e.response.status == 401){
+                location.href = 'login/not-login';
+                window.localStorage.removeItem("token");
+                window.localStorage.removeItem("user");
             }
-        });
-        posts.value = response.data.data;
-
-        articles.value = posts.value.filter((post) => {
-            return post.type == 'article';
-        });
-
-        propau.value = posts.value.filter((post) => {
-            return post.type == 'propau';
-        });
-
-        loading.value = 2;
+        }
         
     };
 
     const getPosts = async (type, lang) => {
         errors.value = '';
         loading.value = 1;
-        let response = await axios.get('/api/posts-type/' + type + '/' + lang,  {
-            headers:{
-                'Authorization': `Bearer ${localStorage.token}`
-            }
-        });
-        posts.value = response.data.data;
+        try{
+            let response = await axios.get('/api/posts-type/' + type + '/' + lang,  {
+                headers:{
+                    'Authorization': `Bearer ${localStorage.token}`
+                }
+            });
+            posts.value = response.data.data;
+            loading.value = 2;
+        }catch(e){
 
-        loading.value = 2;
+            if(e.response.status == 401){
+                location.href = 'login/not-login';
+                window.localStorage.removeItem("token");
+                window.localStorage.removeItem("user");
+            }
+        }
     };
 
     const getPostCarousssel = async (lang) => {
         errors.value = '';
-        loading.value = 1;
-        let response = await axios.get('/api/posts-caroussel/' + lang,  {
-            headers:{
-                'Authorization': `Bearer ${localStorage.token}`
-            }
-        });
-        postCaroussel.value = response.data.data;
+        try{
+            loading.value = 1;
+            let response = await axios.get('/api/posts-caroussel/' + lang,  {
+                headers:{
+                    'Authorization': `Bearer ${localStorage.token}`
+                }
+            });
+            postCaroussel.value = response.data.data;
+            loading.value = 2;
+        }catch(e){
 
-        loading.value = 2;
+            if(e.response.status == 401){
+                location.href = 'login/not-login';
+                window.localStorage.removeItem("token");
+                window.localStorage.removeItem("user");
+            }
+        }
     };
 
     const getPost = async (id) => {
         errors.value = '';
-        loading.value = 1;
-        let response = await axios.get('/api/posts/' + id, {
-            headers:{
-                'Authorization': `Bearer ${localStorage.token}`
+        try{
+            loading.value = 1;
+            let response = await axios.get('/api/posts/' + id, {
+                headers:{
+                    'Authorization': `Bearer ${localStorage.token}`
+                }
+            });
+            loading.value = 0;
+            post.value = response.data.data;
+        }catch(e){
+
+            if(e.response.status == 401){
+                location.href = 'login/not-login';
+                window.localStorage.removeItem("token");
+                window.localStorage.removeItem("user");
             }
-        });
-        loading.value = 0;
-        post.value = response.data.data;
+        }
     };
 
     const getPost2 = async (id) => {
         errors.value = '';
-        loading.value = 1;
-        let response = await axios.get('/api/posts2/' + id, {
-            headers:{
-                'Authorization': `Bearer ${localStorage.token}`
+        try{
+            loading.value = 1;
+            let response = await axios.get('/api/posts2/' + id, {
+                headers:{
+                    'Authorization': `Bearer ${localStorage.token}`
+                }
+            });
+            loading.value = 0;
+            post.value = response.data.data;
+        }catch(e){
+
+            if(e.response.status == 401){
+                location.href = 'login/not-login';
+                window.localStorage.removeItem("token");
+                window.localStorage.removeItem("user");
             }
-        });
-        loading.value = 0;
-        post.value = response.data.data;
+        }
     };
 
     const createPost = async (data) => {

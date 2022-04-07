@@ -858,25 +858,38 @@ function useUniversities() {
           switch (_context.prev = _context.next) {
             case 0:
               errors.value = '';
+              _context.prev = 1;
               loading.value = 1;
-              _context.next = 4;
+              _context.next = 5;
               return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/universities', {
                 headers: {
                   'Authorization': "Bearer ".concat(localStorage.token)
                 }
               });
 
-            case 4:
+            case 5:
               response = _context.sent;
               universities.value = response.data.data;
-              loading.value = 2; // console.log(universities.value);
+              loading.value = 2;
+              _context.next = 13;
+              break;
 
-            case 7:
+            case 10:
+              _context.prev = 10;
+              _context.t0 = _context["catch"](1);
+
+              if (_context.t0.response.status == 401) {
+                location.href = 'login/not-login';
+                window.localStorage.removeItem("token");
+                window.localStorage.removeItem("user");
+              }
+
+            case 13:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee);
+      }, _callee, null, [[1, 10]]);
     }));
 
     return function getUniversities() {
@@ -892,25 +905,38 @@ function useUniversities() {
           switch (_context2.prev = _context2.next) {
             case 0:
               errors.value = '';
+              _context2.prev = 1;
               loading.value = 1;
-              _context2.next = 4;
+              _context2.next = 5;
               return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/universities/' + id, {
                 headers: {
                   'Authorization': "Bearer ".concat(localStorage.token)
                 }
               });
 
-            case 4:
+            case 5:
               response = _context2.sent;
               loading.value = 0;
               university.value = response.data.data;
+              _context2.next = 13;
+              break;
 
-            case 7:
+            case 10:
+              _context2.prev = 10;
+              _context2.t0 = _context2["catch"](1);
+
+              if (_context2.t0.response.status == 401) {
+                location.href = 'login/not-login';
+                window.localStorage.removeItem("token");
+                window.localStorage.removeItem("user");
+              }
+
+            case 13:
             case "end":
               return _context2.stop();
           }
         }
-      }, _callee2);
+      }, _callee2, null, [[1, 10]]);
     }));
 
     return function getUniversity(_x) {
@@ -926,25 +952,38 @@ function useUniversities() {
           switch (_context3.prev = _context3.next) {
             case 0:
               errors.value = '';
+              _context3.prev = 1;
               loading.value = 1;
-              _context3.next = 4;
+              _context3.next = 5;
               return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/universities2/' + id, {
                 headers: {
                   'Authorization': "Bearer ".concat(localStorage.token)
                 }
               });
 
-            case 4:
+            case 5:
               response = _context3.sent;
               loading.value = 0;
               university.value = response.data.data;
+              _context3.next = 13;
+              break;
 
-            case 7:
+            case 10:
+              _context3.prev = 10;
+              _context3.t0 = _context3["catch"](1);
+
+              if (_context3.t0.response.status == 401) {
+                location.href = 'login/not-login';
+                window.localStorage.removeItem("token");
+                window.localStorage.removeItem("user");
+              }
+
+            case 13:
             case "end":
               return _context3.stop();
           }
         }
-      }, _callee3);
+      }, _callee3, null, [[1, 10]]);
     }));
 
     return function getUniversity2(_x2) {

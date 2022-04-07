@@ -2446,25 +2446,38 @@ function usePosts() {
           switch (_context.prev = _context.next) {
             case 0:
               errors.value = '';
+              _context.prev = 1;
               loading.value = 1;
-              _context.next = 4;
+              _context.next = 5;
               return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/posts-all/' + type, {
                 headers: {
                   'Authorization': "Bearer ".concat(localStorage.token)
                 }
               });
 
-            case 4:
+            case 5:
               response = _context.sent;
               posts.value = response.data.data;
               loading.value = 2;
+              _context.next = 13;
+              break;
 
-            case 7:
+            case 10:
+              _context.prev = 10;
+              _context.t0 = _context["catch"](1);
+
+              if (_context.t0.response.status == 401) {
+                location.href = 'login/not-login';
+                window.localStorage.removeItem("token");
+                window.localStorage.removeItem("user");
+              }
+
+            case 13:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee);
+      }, _callee, null, [[1, 10]]);
     }));
 
     return function getPostsAll(_x) {
@@ -2480,15 +2493,16 @@ function usePosts() {
           switch (_context2.prev = _context2.next) {
             case 0:
               errors.value = '';
+              _context2.prev = 1;
               loading.value = 1;
-              _context2.next = 4;
+              _context2.next = 5;
               return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/posts-user/' + id, {
                 headers: {
                   'Authorization': "Bearer ".concat(localStorage.token)
                 }
               });
 
-            case 4:
+            case 5:
               response = _context2.sent;
               posts.value = response.data.data;
               articles.value = posts.value.filter(function (post) {
@@ -2498,13 +2512,25 @@ function usePosts() {
                 return post.type == 'propau';
               });
               loading.value = 2;
+              _context2.next = 15;
+              break;
 
-            case 9:
+            case 12:
+              _context2.prev = 12;
+              _context2.t0 = _context2["catch"](1);
+
+              if (_context2.t0.response.status == 401) {
+                location.href = 'login/not-login';
+                window.localStorage.removeItem("token");
+                window.localStorage.removeItem("user");
+              }
+
+            case 15:
             case "end":
               return _context2.stop();
           }
         }
-      }, _callee2);
+      }, _callee2, null, [[1, 12]]);
     }));
 
     return function getPostsUser(_x2) {
@@ -2521,24 +2547,37 @@ function usePosts() {
             case 0:
               errors.value = '';
               loading.value = 1;
-              _context3.next = 4;
+              _context3.prev = 2;
+              _context3.next = 5;
               return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/posts-type/' + type + '/' + lang, {
                 headers: {
                   'Authorization': "Bearer ".concat(localStorage.token)
                 }
               });
 
-            case 4:
+            case 5:
               response = _context3.sent;
               posts.value = response.data.data;
               loading.value = 2;
+              _context3.next = 13;
+              break;
 
-            case 7:
+            case 10:
+              _context3.prev = 10;
+              _context3.t0 = _context3["catch"](2);
+
+              if (_context3.t0.response.status == 401) {
+                location.href = 'login/not-login';
+                window.localStorage.removeItem("token");
+                window.localStorage.removeItem("user");
+              }
+
+            case 13:
             case "end":
               return _context3.stop();
           }
         }
-      }, _callee3);
+      }, _callee3, null, [[2, 10]]);
     }));
 
     return function getPosts(_x3, _x4) {
@@ -2554,25 +2593,38 @@ function usePosts() {
           switch (_context4.prev = _context4.next) {
             case 0:
               errors.value = '';
+              _context4.prev = 1;
               loading.value = 1;
-              _context4.next = 4;
+              _context4.next = 5;
               return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/posts-caroussel/' + lang, {
                 headers: {
                   'Authorization': "Bearer ".concat(localStorage.token)
                 }
               });
 
-            case 4:
+            case 5:
               response = _context4.sent;
               postCaroussel.value = response.data.data;
               loading.value = 2;
+              _context4.next = 13;
+              break;
 
-            case 7:
+            case 10:
+              _context4.prev = 10;
+              _context4.t0 = _context4["catch"](1);
+
+              if (_context4.t0.response.status == 401) {
+                location.href = 'login/not-login';
+                window.localStorage.removeItem("token");
+                window.localStorage.removeItem("user");
+              }
+
+            case 13:
             case "end":
               return _context4.stop();
           }
         }
-      }, _callee4);
+      }, _callee4, null, [[1, 10]]);
     }));
 
     return function getPostCarousssel(_x5) {
@@ -2588,25 +2640,38 @@ function usePosts() {
           switch (_context5.prev = _context5.next) {
             case 0:
               errors.value = '';
+              _context5.prev = 1;
               loading.value = 1;
-              _context5.next = 4;
+              _context5.next = 5;
               return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/posts/' + id, {
                 headers: {
                   'Authorization': "Bearer ".concat(localStorage.token)
                 }
               });
 
-            case 4:
+            case 5:
               response = _context5.sent;
               loading.value = 0;
               post.value = response.data.data;
+              _context5.next = 13;
+              break;
 
-            case 7:
+            case 10:
+              _context5.prev = 10;
+              _context5.t0 = _context5["catch"](1);
+
+              if (_context5.t0.response.status == 401) {
+                location.href = 'login/not-login';
+                window.localStorage.removeItem("token");
+                window.localStorage.removeItem("user");
+              }
+
+            case 13:
             case "end":
               return _context5.stop();
           }
         }
-      }, _callee5);
+      }, _callee5, null, [[1, 10]]);
     }));
 
     return function getPost(_x6) {
@@ -2622,25 +2687,38 @@ function usePosts() {
           switch (_context6.prev = _context6.next) {
             case 0:
               errors.value = '';
+              _context6.prev = 1;
               loading.value = 1;
-              _context6.next = 4;
+              _context6.next = 5;
               return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/posts2/' + id, {
                 headers: {
                   'Authorization': "Bearer ".concat(localStorage.token)
                 }
               });
 
-            case 4:
+            case 5:
               response = _context6.sent;
               loading.value = 0;
               post.value = response.data.data;
+              _context6.next = 13;
+              break;
 
-            case 7:
+            case 10:
+              _context6.prev = 10;
+              _context6.t0 = _context6["catch"](1);
+
+              if (_context6.t0.response.status == 401) {
+                location.href = 'login/not-login';
+                window.localStorage.removeItem("token");
+                window.localStorage.removeItem("user");
+              }
+
+            case 13:
             case "end":
               return _context6.stop();
           }
         }
-      }, _callee6);
+      }, _callee6, null, [[1, 10]]);
     }));
 
     return function getPost2(_x7) {

@@ -10,29 +10,43 @@ export default function useUsers() {
     const loading = ref(0);
 
     const getUsers = async () => {
-        errors.value = '';
-        loading.value = 1;
-        let response = await axios.get('/api/users',  {
-            headers:{
-                'Authorization': `Bearer ${localStorage.token}`
+        try{
+            errors.value = '';
+            loading.value = 1;
+            let response = await axios.get('/api/users',  {
+                headers:{
+                    'Authorization': `Bearer ${localStorage.token}`
+                }
+            });
+            users.value = response.data.data;
+            loading.value = 2;
+        }catch(e){
+            if(e.response.status == 401){
+                location.href = 'login/not-login';
+                window.localStorage.removeItem("token");
+                window.localStorage.removeItem("user");
             }
-        });
-        users.value = response.data.data;
-
-        loading.value = 2;
-        // console.log(users.value);
+        }
     };
 
     const getUser = async (id) => {
         errors.value = '';
-        loading.value = 1;
-        let response = await axios.get('/api/users/' + id, {
-            headers:{
-                'Authorization': `Bearer ${localStorage.token}`
+        try{
+            loading.value = 1;
+            let response = await axios.get('/api/users/' + id, {
+                headers:{
+                    'Authorization': `Bearer ${localStorage.token}`
+                }
+            });
+            loading.value = 0;
+            user.value = response.data.data;
+        }catch(e){
+            if(e.response.status == 401){
+                location.href = 'login/not-login';
+                window.localStorage.removeItem("token");
+                window.localStorage.removeItem("user");
             }
-        });
-        loading.value = 0;
-        user.value = response.data.data;
+        }
     };
 
     const createUser = async (data) => {

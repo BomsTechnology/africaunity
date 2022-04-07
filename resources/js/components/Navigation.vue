@@ -148,7 +148,7 @@
                 <router-link  v-if="token != ''" :to="{name:'compte',  params: { name: user.firstname, id : user.id }}">
                 <div class="flex space-x-2 items-center text-white transition-colors duration-200 text-sm bg-primary-blue px-3 py-2 uppercase">
                     <span v-if="user.avatar">
-                        <img :src="'/img_user/' + user.avatar" alt="">
+                        <img :src="user.avatar" alt="">
                     </span>
                     <UserCircleIcon v-else class="h-8 w-8 text-white"/>
                     <span>{{ user.firstname }} {{ user.lastname }}</span>

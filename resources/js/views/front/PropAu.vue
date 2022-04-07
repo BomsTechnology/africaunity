@@ -151,11 +151,11 @@ export default {
         Footer,
         FilterPropAu,
     },
-    created(){
-        if (!localStorage.token) {
-                router.push({ name: "login", params: { redirect: 'not-login' }, });
-        }
-    },
+    // created(){
+    //     if (!localStorage.token) {
+    //             router.push({ name: "login", params: { redirect: 'not-login' }, });
+    //     }
+    // },
     setup(props) {
         const { posts, getPosts, loading, errors } = usePosts();
         onMounted(() => {

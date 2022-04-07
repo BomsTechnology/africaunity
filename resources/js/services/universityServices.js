@@ -11,40 +11,66 @@ export default function useUniversities() {
 
     const getUniversities = async () => {
         errors.value = '';
-        loading.value = 1;
-        let response = await axios.get('/api/universities',  {
-            headers:{
-                'Authorization': `Bearer ${localStorage.token}`
-            }
-        });
-        universities.value = response.data.data;
+        try{
+            loading.value = 1;
+            let response = await axios.get('/api/universities',  {
+                headers:{
+                    'Authorization': `Bearer ${localStorage.token}`
+                }
+            });
+            universities.value = response.data.data;
 
-        loading.value = 2;
-        // console.log(universities.value);
+            loading.value = 2;
+        }catch(e){
+            if(e.response.status == 401){
+                location.href = 'login/not-login';
+                window.localStorage.removeItem("token");
+                window.localStorage.removeItem("user");
+            }
+        }
+
     };
 
     const getUniversity = async (id) => {
         errors.value = '';
-        loading.value = 1;
-        let response = await axios.get('/api/universities/' + id, {
-            headers:{
-                'Authorization': `Bearer ${localStorage.token}`
+        try{
+            loading.value = 1;
+            let response = await axios.get('/api/universities/' + id, {
+                headers:{
+                    'Authorization': `Bearer ${localStorage.token}`
+                }
+            });
+            loading.value = 0;
+            university.value = response.data.data;
+        }catch(e){
+
+            if(e.response.status == 401){
+                location.href = 'login/not-login';
+                window.localStorage.removeItem("token");
+                window.localStorage.removeItem("user");
             }
-        });
-        loading.value = 0;
-        university.value = response.data.data;
+        }
     };
 
     const getUniversity2 = async (id) => {
         errors.value = '';
-        loading.value = 1;
-        let response = await axios.get('/api/universities2/' + id, {
-            headers:{
-                'Authorization': `Bearer ${localStorage.token}`
+        try{
+            loading.value = 1;
+            let response = await axios.get('/api/universities2/' + id, {
+                headers:{
+                    'Authorization': `Bearer ${localStorage.token}`
+                }
+            });
+            loading.value = 0;
+            university.value = response.data.data;
+        }catch(e){
+
+            if(e.response.status == 401){
+                location.href = 'login/not-login';
+                window.localStorage.removeItem("token");
+                window.localStorage.removeItem("user");
             }
-        });
-        loading.value = 0;
-        university.value = response.data.data;
+        }
     };
 
     const createUniversity = async (data) => {

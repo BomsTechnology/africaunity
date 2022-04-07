@@ -203,11 +203,6 @@ export default {
         CalendarIcon,
         PlusCircleIcon
     },
-    created(){
-        if (!localStorage.token) {
-                router.push({ name: "login", params: { redirect: 'not-login' }, });
-        }
-    },
     setup(props) {
         const { universities, getUniversities, loading, errors } =
             useUniversities();

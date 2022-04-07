@@ -788,24 +788,32 @@ export default {
         const loading = ref(0);
         onMounted(                
             async () => {
-                loading.value = 1;
-                await getUser(props.id);
-                let response = await axios.get('/api/details/' + props.id, {
-                    headers:{
-                        'Authorization': `Bearer ${localStorage.token}`
+                try{
+                    loading.value = 1;
+                    await getUser(props.id);
+                    let response = await axios.get('/api/details/' + props.id, {
+                        headers:{
+                            'Authorization': `Bearer ${localStorage.token}`
+                        }
+                    });
+                    detail.value = response.data.data;
+                    loading.value = 0;
+                    await getPostsUser(props.id);
+                    await getCommentsUser(props.id);
+                    await getLanguages();
+                    await getBusinessTypes();
+                    await getBusinessSizes();
+                    await getActivityAreas();
+                    await getLegalStatuses();
+                    await getCountries();
+                    await getAnnouncementsUser(props.id);
+                }catch(e){
+                    if(e.response.status == 401){
+                        location.href = 'login/not-login';
+                        window.localStorage.removeItem("token");
+                        window.localStorage.removeItem("user");
                     }
-                });
-                detail.value = response.data.data;
-                loading.value = 0;
-                await getPostsUser(props.id);
-                await getCommentsUser(props.id);
-                await getLanguages();
-                await getBusinessTypes();
-                await getBusinessSizes();
-                await getActivityAreas();
-                await getLegalStatuses();
-                await getCountries();
-                await getAnnouncementsUser(props.id);
+                }
             }
             
         );      

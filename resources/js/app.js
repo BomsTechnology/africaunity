@@ -11,7 +11,5 @@ const app = createApp({
     },
 }).use(i18n).use(router).mount('#app');
 
-
-
 // app.config.globalProperties.Basepath = "boms";
 

@@ -189,7 +189,7 @@
                                     required
                                     class="form-input px-3 pr-2  w-full text-gray-700 bg-white border border-gray-200 rounded-md  mt-2 placeholder:text-gray-400 focus:ring-primary-blue focus:border-primary-blue block"
                                 >
-                                    <option v-for="BusinessSize in BusinessSizes" :key="BusinessSize.id" :value="BusinessSize.id">
+                                    <option v-for="BusinessSize in businessSizes" :key="BusinessSize.id" :value="BusinessSize.id">
                                         <span v-if="$i18n.locale == 'en'">{{
                                             BusinessSize.name_en
                                         }}</span>

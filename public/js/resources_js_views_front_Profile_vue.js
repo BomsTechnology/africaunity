@@ -248,63 +248,78 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
+              _context.prev = 0;
               loading.value = 1;
-              _context.next = 3;
+              _context.next = 4;
               return getUser(props.id);
 
-            case 3:
-              _context.next = 5;
+            case 4:
+              _context.next = 6;
               return axios.get('/api/details/' + props.id, {
                 headers: {
                   'Authorization': "Bearer ".concat(localStorage.token)
                 }
               });
 
-            case 5:
+            case 6:
               response = _context.sent;
               detail.value = response.data.data;
               loading.value = 0;
-              _context.next = 10;
+              _context.next = 11;
               return getPostsUser(props.id);
 
-            case 10:
-              _context.next = 12;
+            case 11:
+              _context.next = 13;
               return getCommentsUser(props.id);
 
-            case 12:
-              _context.next = 14;
+            case 13:
+              _context.next = 15;
               return getLanguages();
 
-            case 14:
-              _context.next = 16;
+            case 15:
+              _context.next = 17;
               return getBusinessTypes();
 
-            case 16:
-              _context.next = 18;
+            case 17:
+              _context.next = 19;
               return getBusinessSizes();
 
-            case 18:
-              _context.next = 20;
+            case 19:
+              _context.next = 21;
               return getActivityAreas();
 
-            case 20:
-              _context.next = 22;
+            case 21:
+              _context.next = 23;
               return getLegalStatuses();
 
-            case 22:
-              _context.next = 24;
+            case 23:
+              _context.next = 25;
               return getCountries();
 
-            case 24:
-              _context.next = 26;
+            case 25:
+              _context.next = 27;
               return getAnnouncementsUser(props.id);
 
-            case 26:
+            case 27:
+              _context.next = 32;
+              break;
+
+            case 29:
+              _context.prev = 29;
+              _context.t0 = _context["catch"](0);
+
+              if (_context.t0.response.status == 401) {
+                location.href = 'login/not-login';
+                window.localStorage.removeItem("token");
+                window.localStorage.removeItem("user");
+              }
+
+            case 32:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee);
+      }, _callee, null, [[0, 29]]);
     })));
 
     var deleteComment = /*#__PURE__*/function () {
@@ -1176,7 +1191,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     required: "",
     "class": "form-input px-3 pr-2 w-full text-gray-700 bg-white border border-gray-200 rounded-md mt-2 placeholder:text-gray-400 focus:ring-primary-blue focus:border-primary-blue block"
-  }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.BusinessSizes, function (BusinessSize) {
+  }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.businessSizes, function (BusinessSize) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
       key: BusinessSize.id,
       value: BusinessSize.id
@@ -2474,7 +2489,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     ))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
   }), 128
   /* KEYED_FRAGMENT */
-  ))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_112, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", _hoisted_113, [$setup.user.type == 'ip' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_114, "Taille Institution")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_115, "Taille Entreprise"))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_116, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.BusinessSizes, function (BusinessSize) {
+  ))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_112, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", _hoisted_113, [$setup.user.type == 'ip' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_114, "Taille Institution")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_115, "Taille Entreprise"))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_116, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.businessSizes, function (BusinessSize) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", {
       key: BusinessSize.id
     }, [BusinessSize.id === $setup.detail.business_size_id ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_117, [_ctx.$i18n.locale == 'en' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_118, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(BusinessSize.name_en), 1
@@ -5069,25 +5084,38 @@ function usePosts() {
           switch (_context.prev = _context.next) {
             case 0:
               errors.value = '';
+              _context.prev = 1;
               loading.value = 1;
-              _context.next = 4;
+              _context.next = 5;
               return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/posts-all/' + type, {
                 headers: {
                   'Authorization': "Bearer ".concat(localStorage.token)
                 }
               });
 
-            case 4:
+            case 5:
               response = _context.sent;
               posts.value = response.data.data;
               loading.value = 2;
+              _context.next = 13;
+              break;
 
-            case 7:
+            case 10:
+              _context.prev = 10;
+              _context.t0 = _context["catch"](1);
+
+              if (_context.t0.response.status == 401) {
+                location.href = 'login/not-login';
+                window.localStorage.removeItem("token");
+                window.localStorage.removeItem("user");
+              }
+
+            case 13:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee);
+      }, _callee, null, [[1, 10]]);
     }));
 
     return function getPostsAll(_x) {
@@ -5103,15 +5131,16 @@ function usePosts() {
           switch (_context2.prev = _context2.next) {
             case 0:
               errors.value = '';
+              _context2.prev = 1;
               loading.value = 1;
-              _context2.next = 4;
+              _context2.next = 5;
               return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/posts-user/' + id, {
                 headers: {
                   'Authorization': "Bearer ".concat(localStorage.token)
                 }
               });
 
-            case 4:
+            case 5:
               response = _context2.sent;
               posts.value = response.data.data;
               articles.value = posts.value.filter(function (post) {
@@ -5121,13 +5150,25 @@ function usePosts() {
                 return post.type == 'propau';
               });
               loading.value = 2;
+              _context2.next = 15;
+              break;
 
-            case 9:
+            case 12:
+              _context2.prev = 12;
+              _context2.t0 = _context2["catch"](1);
+
+              if (_context2.t0.response.status == 401) {
+                location.href = 'login/not-login';
+                window.localStorage.removeItem("token");
+                window.localStorage.removeItem("user");
+              }
+
+            case 15:
             case "end":
               return _context2.stop();
           }
         }
-      }, _callee2);
+      }, _callee2, null, [[1, 12]]);
     }));
 
     return function getPostsUser(_x2) {
@@ -5144,24 +5185,37 @@ function usePosts() {
             case 0:
               errors.value = '';
               loading.value = 1;
-              _context3.next = 4;
+              _context3.prev = 2;
+              _context3.next = 5;
               return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/posts-type/' + type + '/' + lang, {
                 headers: {
                   'Authorization': "Bearer ".concat(localStorage.token)
                 }
               });
 
-            case 4:
+            case 5:
               response = _context3.sent;
               posts.value = response.data.data;
               loading.value = 2;
+              _context3.next = 13;
+              break;
 
-            case 7:
+            case 10:
+              _context3.prev = 10;
+              _context3.t0 = _context3["catch"](2);
+
+              if (_context3.t0.response.status == 401) {
+                location.href = 'login/not-login';
+                window.localStorage.removeItem("token");
+                window.localStorage.removeItem("user");
+              }
+
+            case 13:
             case "end":
               return _context3.stop();
           }
         }
-      }, _callee3);
+      }, _callee3, null, [[2, 10]]);
     }));
 
     return function getPosts(_x3, _x4) {
@@ -5177,25 +5231,38 @@ function usePosts() {
           switch (_context4.prev = _context4.next) {
             case 0:
               errors.value = '';
+              _context4.prev = 1;
               loading.value = 1;
-              _context4.next = 4;
+              _context4.next = 5;
               return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/posts-caroussel/' + lang, {
                 headers: {
                   'Authorization': "Bearer ".concat(localStorage.token)
                 }
               });
 
-            case 4:
+            case 5:
               response = _context4.sent;
               postCaroussel.value = response.data.data;
               loading.value = 2;
+              _context4.next = 13;
+              break;
 
-            case 7:
+            case 10:
+              _context4.prev = 10;
+              _context4.t0 = _context4["catch"](1);
+
+              if (_context4.t0.response.status == 401) {
+                location.href = 'login/not-login';
+                window.localStorage.removeItem("token");
+                window.localStorage.removeItem("user");
+              }
+
+            case 13:
             case "end":
               return _context4.stop();
           }
         }
-      }, _callee4);
+      }, _callee4, null, [[1, 10]]);
     }));
 
     return function getPostCarousssel(_x5) {
@@ -5211,25 +5278,38 @@ function usePosts() {
           switch (_context5.prev = _context5.next) {
             case 0:
               errors.value = '';
+              _context5.prev = 1;
               loading.value = 1;
-              _context5.next = 4;
+              _context5.next = 5;
               return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/posts/' + id, {
                 headers: {
                   'Authorization': "Bearer ".concat(localStorage.token)
                 }
               });
 
-            case 4:
+            case 5:
               response = _context5.sent;
               loading.value = 0;
               post.value = response.data.data;
+              _context5.next = 13;
+              break;
 
-            case 7:
+            case 10:
+              _context5.prev = 10;
+              _context5.t0 = _context5["catch"](1);
+
+              if (_context5.t0.response.status == 401) {
+                location.href = 'login/not-login';
+                window.localStorage.removeItem("token");
+                window.localStorage.removeItem("user");
+              }
+
+            case 13:
             case "end":
               return _context5.stop();
           }
         }
-      }, _callee5);
+      }, _callee5, null, [[1, 10]]);
     }));
 
     return function getPost(_x6) {
@@ -5245,25 +5325,38 @@ function usePosts() {
           switch (_context6.prev = _context6.next) {
             case 0:
               errors.value = '';
+              _context6.prev = 1;
               loading.value = 1;
-              _context6.next = 4;
+              _context6.next = 5;
               return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/posts2/' + id, {
                 headers: {
                   'Authorization': "Bearer ".concat(localStorage.token)
                 }
               });
 
-            case 4:
+            case 5:
               response = _context6.sent;
               loading.value = 0;
               post.value = response.data.data;
+              _context6.next = 13;
+              break;
 
-            case 7:
+            case 10:
+              _context6.prev = 10;
+              _context6.t0 = _context6["catch"](1);
+
+              if (_context6.t0.response.status == 401) {
+                location.href = 'login/not-login';
+                window.localStorage.removeItem("token");
+                window.localStorage.removeItem("user");
+              }
+
+            case 13:
             case "end":
               return _context6.stop();
           }
         }
-      }, _callee6);
+      }, _callee6, null, [[1, 10]]);
     }));
 
     return function getPost2(_x7) {
@@ -5469,26 +5562,39 @@ function useUsers() {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
+              _context.prev = 0;
               errors.value = '';
               loading.value = 1;
-              _context.next = 4;
+              _context.next = 5;
               return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/users', {
                 headers: {
                   'Authorization': "Bearer ".concat(localStorage.token)
                 }
               });
 
-            case 4:
+            case 5:
               response = _context.sent;
               users.value = response.data.data;
-              loading.value = 2; // console.log(users.value);
+              loading.value = 2;
+              _context.next = 13;
+              break;
 
-            case 7:
+            case 10:
+              _context.prev = 10;
+              _context.t0 = _context["catch"](0);
+
+              if (_context.t0.response.status == 401) {
+                location.href = 'login/not-login';
+                window.localStorage.removeItem("token");
+                window.localStorage.removeItem("user");
+              }
+
+            case 13:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee);
+      }, _callee, null, [[0, 10]]);
     }));
 
     return function getUsers() {
@@ -5504,25 +5610,38 @@ function useUsers() {
           switch (_context2.prev = _context2.next) {
             case 0:
               errors.value = '';
+              _context2.prev = 1;
               loading.value = 1;
-              _context2.next = 4;
+              _context2.next = 5;
               return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/users/' + id, {
                 headers: {
                   'Authorization': "Bearer ".concat(localStorage.token)
                 }
               });
 
-            case 4:
+            case 5:
               response = _context2.sent;
               loading.value = 0;
               user.value = response.data.data;
+              _context2.next = 13;
+              break;
 
-            case 7:
+            case 10:
+              _context2.prev = 10;
+              _context2.t0 = _context2["catch"](1);
+
+              if (_context2.t0.response.status == 401) {
+                location.href = 'login/not-login';
+                window.localStorage.removeItem("token");
+                window.localStorage.removeItem("user");
+              }
+
+            case 13:
             case "end":
               return _context2.stop();
           }
         }
-      }, _callee2);
+      }, _callee2, null, [[1, 10]]);
     }));
 
     return function getUser(_x) {
