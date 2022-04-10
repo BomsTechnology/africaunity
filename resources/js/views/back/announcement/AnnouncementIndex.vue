@@ -115,12 +115,12 @@
                                             >
                                                 Adress
                                             </th> -->
-                                            <th
+                                            <!-- <th
                                                 scope="col"
                                                 class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
                                             >
                                                 Website
-                                            </th>
+                                            </th> -->
                                             <th scope="col" class="p-4">
                                                 <span class="sr-only"
                                                     >Edit</span
@@ -172,11 +172,11 @@
                                             >
                                                 {{ announcement.category.name }}
                                             </td>
-                                            <td
+                                            <!-- <td
                                                 class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
                                             >
                                                 {{ announcement.email }}
-                                            </td>
+                                            </td> -->
                                             <!-- <td
                                                 class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
                                             >

@@ -3,20 +3,24 @@
     <div class=" w-full lg:px-20 py-4">
         <div class=" py-5 text-center w-full space-y-4">
             <h1 class="text-4xl  text-primary-blue font-bold capitalize">
-                {{ $t('edit') }} Annonce
+                {{ $t('edit') }} {{ $t('ads') }}
             </h1>
         </div>
 
                 
     <section class=" p-6 bg-white shadow-xl rounded-md mx-auto  w-full">
         <Error v-if="errors != ''">{{ errors }}</Error>
-        <h1 class="text-xl font-semibold">{{ $t('edit') }} Annonce</h1>
+        <h1 class="text-xl font-semibold">{{ $t('edit') }} {{ $t('ads') }}</h1>
         <h2 class="text-md font-light text-gray-700">{{ $t('good-msg-post') }} ! </h2>
+
         <form  @submit.prevent="saveAnnouncement()" id="announcementform" enctype="multipart/form-data">
-            <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
+                <div class="mt-4">
                             <div class="col-span-2">
                                 <label class="text-gray-700 dark:text-gray-200"
-                                    >Title</label
+                                    >
+                                    {{ $t('title') }} 
+                                    <span class="text-red-500">*</span>                              
+                                    </label
                                 >
                                 <input
                                     required
@@ -25,135 +29,145 @@
                                     class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
                                 />
                             </div>
-
-                            <div>
-                                <label
-                                    class="text-gray-700 dark:text-gray-200"
-                                    for="pt"
-                                    >University</label
-                                >
-                                <select
-                                    required
-                                    v-model="announcement.university_id"
-                                    class="form-select block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
-                                >
-                                    <option
-                                        v-for="university in universities"
-                                        :key="university.id"
-                                        :value="university.id"
+                            <div class="col-span-2 grid grid-cols-1 gap-6 sm:grid-cols-2 mt-4">
+                                <div>
+                                    <label
+                                        class="text-gray-700 dark:text-gray-200"
+                                        for="pt"
+                                        >{{ $t('university') }} 
+                                        <span class="text-red-500">*</span>
+                                        </label
                                     >
-                                        {{ university.name }}
-                                    </option>
-                                </select>
-                            </div>
-
-                            <div>
-                                <label
-                                    class="text-gray-700 dark:text-gray-200"
-                                    for="pt"
-                                    >Category</label
-                                >
-                                <select
-                                    required
-                                    v-model="announcement.category_announcement_id"
-                                    name=""
-                                    id=""
-                                    class="form-select block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
-                                >
-                                    <option
-                                        v-for="category_announcement in categoryAnnouncements"
-                                        :key="category_announcement.id"
-                                        :value="category_announcement.id"
+                                    <select
+                                        required
+                                        v-model="announcement.university_id"
+                                        class="form-select block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
                                     >
-                                        {{ category_announcement.name }}
-                                    </option>
-                                </select>
-                            </div>
+                                        <option
+                                            v-for="university in universities"
+                                            :key="university.id"
+                                            :value="university.id"
+                                        >
+                                            {{ university.name }}
+                                        </option>
+                                    </select>
+                                </div>
 
-                            <div>
-                                <label class="text-gray-700 dark:text-gray-200"
-                                    >Contact Phone</label
-                                >
-                                <input
-                                    required
-                                    v-model="announcement.phone"
-                                    type="text"
-                                    class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
-                                />
-                            </div>
-
-                            <div>
-                                <label class="text-gray-700 dark:text-gray-200"
-                                    >Contact Adress Email</label
-                                >
-                                <input
-                                    required
-                                    v-model="announcement.email"
-                                    type="email"
-                                    class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
-                                />
-                            </div>
-
-                            <div>
-                                <label class="text-gray-700 dark:text-gray-200"
-                                    >Price</label
-                                >
-                                <input
-                                    required
-                                    v-model="announcement.price"
-                                    type="text"
-                                    class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
-                                />
-                            </div>
-
-                            <div>
-                                <label
-                                    class="text-gray-700 dark:text-gray-200"
-                                    for="es"
-                                    >Currency</label
-                                >
-                                <select
-                                    required
-                                    v-model="announcement.currency_id"
-                                    class="form-select block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
-                                >
-                                    <option
-                                        v-for="currency in currencies"
-                                        :key="currency.id"
-                                        :value="currency.id"
+                                <div>
+                                    <label
+                                        class="text-gray-700 dark:text-gray-200"
+                                        for="pt"
+                                        >{{ $t('category') }} <span class="text-red-500">*</span></label
                                     >
-                                        {{ currency.symbol + ' ' + currency.name }}
-                                    </option>
-                                </select>
-                            </div>
+                                    <select
+                                        required
+                                        v-model="announcement.category_announcement_id"
+                                        name=""
+                                        id=""
+                                        class="form-select block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
+                                    >
+                                        <option
+                                            v-for="category_announcement in categoryAnnouncements"
+                                            :key="category_announcement.id"
+                                            :value="category_announcement.id"
+                                        >
+                                            {{ category_announcement.name }}
+                                        </option>
+                                    </select>
+                                </div>
 
-                            <div>
-                                <label class="text-gray-700 dark:text-gray-200"
-                                    >Address</label
-                                >
-                                <input
-                                    v-model="announcement.adress"
-                                    type="text"
-                                    class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
-                                />
-                            </div>
-                            
-                            <div>
-                                <label class="text-gray-700 dark:text-gray-200"
-                                    >Website</label
-                                >
-                                <input
-                                    v-model="announcement.website"
-                                    type="text"
-                                    class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
-                                />
-                            </div>
+                                <div>
+                                    <label class="text-gray-700 dark:text-gray-200"
+                                        >{{ $t('contact-phone') }} 
+                                        <span class="text-red-500">*</span>
+                                        </label
+                                    >
+                                    <input
+                                        required
+                                        v-model="announcement.phone"
+                                        type="text"
+                                        class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                                    />
+                                </div>
 
-                            <div class="col-span-2">
+                                <div>
+                                    <label class="text-gray-700 dark:text-gray-200"
+                                        >{{ $t('contact-email') }}
+                                        <span class="text-red-500">*</span>
+                                        </label
+                                    >
+                                    <input
+                                        required
+                                        v-model="announcement.email"
+                                        type="email"
+                                        class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                                    />
+                                </div>
+
+                                <div>
+                                    <label class="text-gray-700 dark:text-gray-200"
+                                        >{{ $t('price') }}
+                                        <span class="text-red-500">*</span>
+                                        </label
+                                    >
+                                    <input
+                                        required
+                                        v-model="announcement.price"
+                                        type="text"
+                                        class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                                    />
+                                </div>
+
+                                <div>
+                                    <label
+                                        class="text-gray-700 dark:text-gray-200"
+                                        for="es"
+                                        >{{ $t('currency') }}
+                                        <span class="text-red-500">*</span>
+                                        </label
+                                    >
+                                    <select
+                                        required
+                                        v-model="announcement.currency_id"
+                                        class="form-select block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
+                                    >
+                                        <option
+                                            v-for="currency in currencies"
+                                            :key="currency.id"
+                                            :value="currency.id"
+                                        >
+                                            {{ currency.symbol + ' ' + currency.name }}
+                                        </option>
+                                    </select>
+                                </div>
+
+                                <div>
+                                    <label class="text-gray-700 dark:text-gray-200"
+                                        >{{ $t('adresse') }}</label
+                                    >
+                                    <input
+                                        v-model="announcement.adress"
+                                        type="text"
+                                        class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                                    />
+                                </div>
+                                
+                                <div>
+                                    <label class="text-gray-700 dark:text-gray-200"
+                                        >{{ $t('website') }}</label
+                                    >
+                                    <input
+                                        v-model="announcement.website"
+                                        type="text"
+                                        class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                                    />
+                                </div>
+                            </div>
+                            <div class="col-span-2 mt-4">
                                 <label
                                     class="text-gray-700 dark:text-gray-200"
                                     for="fr"
-                                    >Image</label
+                                    >{{ $t('thumbnails') }}</label
                                 >
                                 <input
                                     ref="file"
@@ -163,11 +177,13 @@
                                 />
                             </div>
 
-                            <div class="col-span-2">
+                            <div class="col-span-2 mt-4">
                                 <label
                                     class="text-gray-700 dark:text-gray-200"
                                     for="pt"
-                                    >Description</label
+                                    >{{ $t('description') }}
+                                    <span class="text-red-500">*</span>
+                                    </label
                                 >
                                 <textarea
                                     required
@@ -179,7 +195,6 @@
                                 </textarea>
                             </div>
                         </div>
-
             <div class="mt-6">
                 <button v-if="loading == 0" type="submit" class="px-6 py-4 text-md leading-5 w-full text-white rounded bg-primary-blue focus:outline-none">{{ $t('save') }}</button>
                 <button v-if="loading == 1" type="submit" disabled class="px-6 py-4 text-md leading-5 flex justify-center items-center w-full text-white rounded bg-blue-300 focus:outline-none">

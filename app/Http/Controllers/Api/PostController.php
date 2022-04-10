@@ -98,7 +98,7 @@ class PostController extends Controller
                 'zone_id' => 'integer|required',
                 'country_id' => 'integer|required',
                 'ministry_id' => 'integer|required',
-                'image' => 'required|mimes:png,jpg,jpeng,gif|dimensions:max_width=2048,max_height=2048'
+                'image' => 'required|mimes:png,jpg,jpeg,gif|dimensions:max_width=2048,max_height=2048'
             ]);
             $filename = '/uploads/'.time().'.'. $request->file('image')->extension();
             $request->file('image')->storePubliclyAs('public', $filename);

@@ -257,11 +257,11 @@ export default {
                 location.href = '/';
             } catch (e) {
                 loading.value = 0;
-                if (e.response.status == 422) {
-                    for (const key in e.response.data.errors)
-                        errors.value += e.response.data.errors[key][0] + "\n";
+                if(e.response.status == 401){
+                    location.href = '/';
+                    window.localStorage.removeItem("token");
+                    window.localStorage.removeItem("user");
                 }
-                console.log(errors.value);
             }
         };
 

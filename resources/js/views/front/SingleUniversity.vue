@@ -86,7 +86,7 @@
                     class="flex justify-start items-center space-x-3 text-white bg-primary-blue rounded px-3 py-2"
                 >
                     <PlusCircleIcon class="w-6 h-6" />
-                    <p class="text-base leading-4">{{ $t('add') }} Annonce</p>
+                    <p class="text-base leading-4">{{ $t('add') }} {{ $t('ads') }}</p>
                 </router-link>
             </div>
     <div class="py-8">
@@ -102,7 +102,10 @@
                                     name: 'show.ads',
                                     params: { id: announcement.id },
                                 }">
-                <img class="object-cover w-full h-48 mt-2 rounded-t-lg" :src="announcement.image" :alt="announcement.title">
+                <img class="object-cover w-full h-48 mt-2 rounded-t-lg" v-if="announcement.image" :src="announcement.image" :alt="announcement.title">
+                <div v-else class=" overflow-hidden w-full h-48 mt-2 rounded-t-lg bg-gray-50 py-10">
+                    <SpeakerphoneIcon  class=" h-full w-full text-gray-500" />
+                </div>
                 </router-link>
                 <div class="px-4 py-2 space-y-2">
                     <a
@@ -169,7 +172,7 @@ import router from "../../router";
 import { reactive, ref, onMounted } from "vue";
 import Header from "../../components/Header.vue";
 import Footer from "../../components/Footer.vue";
-import {EmojiSadIcon, PlusCircleIcon} from "@heroicons/vue/solid";
+import {EmojiSadIcon, PlusCircleIcon, SpeakerphoneIcon, CalendarIcon, UserIcon} from "@heroicons/vue/solid";
 import useUniversities from "../../services/universityServices.js";
 import useAnnouncements from "../../services/announcementServices.js";
 import Error from "../../components/Error.vue";
@@ -183,9 +186,11 @@ export default {
     components: {
         EmojiSadIcon,
         PlusCircleIcon,
+        SpeakerphoneIcon,
         Header,
         Footer,
-        Error
+        Error,
+        CalendarIcon, UserIcon
     },
     created(){
         if (!localStorage.token) {

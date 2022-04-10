@@ -3,14 +3,14 @@
         <form  @submit.prevent="saveDetail()" class="py-7" >
             <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
                         <div v-if="user.type == 'particular'" class="relative col-span-2">
-                            <label class="text-gray-700 dark:text-gray-200">Statut <span class="text-red-500">*</span></label>
+                            <label class="text-gray-700 dark:text-gray-200">{{ $t('status') }} <span class="text-red-500">*</span></label>
                             <select
                                 v-model="detail.status"
                                 required
                                 class="form-input px-3 pr-2  w-full mt-3 placeholder:text-gray-400 text-gray-700 bg-white border border-gray-200 rounded-md  focus:ring-primary-blue focus:border-primary-blue block"
                             >
-                                <option value="1">Actif</option>
-                                <option value="0">Non Actif</option>
+                                <option value="1">{{ $t('actif') }}</option>
+                                <option value="0">{{ $t('no-actif') }}</option>
                             </select>
                         </div>
                         <div  
@@ -18,12 +18,12 @@
                                 user.type == 'business1' || user.type == 'business2'
                             "
                             class="relative col-span-2">
-                            <label class="text-gray-700 dark:text-gray-200">Objet Social</label>
+                            <label class="text-gray-700 dark:text-gray-200">{{ $t('social-object') }}</label>
                             <textarea v-model="detail.social_object" class="block w-full px-4 py-2 h-20 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:ring-primary-blue focus:border-primary-blue focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
                             </textarea>
                         </div>
                         <div v-else class="relative col-span-2">
-                            <label class="text-gray-700 dark:text-gray-200">But - Attribution</label>
+                            <label class="text-gray-700 dark:text-gray-200">{{ $t('goal-attribution') }}</label>
                             <textarea v-model="detail.goal_attribution"  class="block w-full px-4 py-2 h-20 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:ring-primary-blue focus:border-primary-blue focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
                             </textarea>
                         </div>
@@ -40,13 +40,13 @@
                         <div  
                             v-if="user.type == 'particular'"
                             class="relative col-span-2">
-                            <label class="text-gray-700 dark:text-gray-200">Diplome et Certification</label>
+                            <label class="text-gray-700 dark:text-gray-200">{{ $t('diplome-certification') }}</label>
                             <textarea v-model="detail.goal_attribution" class="block w-full px-4 py-2 h-20 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:ring-primary-blue focus:border-primary-blue focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
                             </textarea>
                         </div>
                         <div  
                             class="relative col-span-2">
-                            <label  class="text-gray-700 dark:text-gray-200">Présentation</label>
+                            <label  class="text-gray-700 dark:text-gray-200">{{ $t('presentation') }}</label>
                             <textarea  v-model="detail.presentation" class="block w-full px-4 py-2 h-32 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:ring-primary-blue focus:border-primary-blue focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
                             </textarea>
                         </div>
@@ -55,7 +55,7 @@
                                 user.type == 'business1' || user.type == 'business2' || user.type == 'ip'
                             "
                             class="relative col-span-2">
-                            <label class="text-gray-700 dark:text-gray-200">Nom - Prénom du Responsable <span class="text-red-500">*</span></label>
+                            <label class="text-gray-700 dark:text-gray-200">{{ $t('name-responsable') }}<span class="text-red-500">*</span></label>
                             <input
                                 type="text"
                                 v-model="detail.name_responsible"
@@ -68,7 +68,7 @@
                                 user.type == 'business1' || user.type == 'business2' || user.type == 'ip'
                             "
                             class="relative col-span-2">
-                            <label class="text-gray-700 dark:text-gray-200">Adresse</label>
+                            <label class="text-gray-700 dark:text-gray-200">{{ $t('adresse') }}</label>
                             <input
                                 type="text"
                                 v-model="detail.adress"
@@ -78,17 +78,17 @@
                         </div>
                         <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 col-span-2">
                             <div v-if="user.type == 'particular'"  class="relative">
-                                <label class="text-gray-700 dark:text-gray-200">Sexe <span class="text-red-500">*</span></label>
+                                <label class="text-gray-700 dark:text-gray-200">{{ $t('sex') }} <span class="text-red-500">*</span></label>
                                 <select 
                                     v-model="detail.sex"
                                     class="form-input px-3 pr-2 w-full text-gray-700 bg-white border border-gray-200 rounded-md  mt-2 placeholder:text-gray-400 focus:ring-primary-blue focus:border-primary-blue block"
                                 >
-                                    <option value="1">Homme</option>
-                                    <option value="2">Femme</option>
+                                    <option value="1">{{ $t('male') }}</option>
+                                    <option value="2">{{ $t('female') }}</option>
                                 </select>
                             </div>
                             <div class="relative">
-                                <label class="text-gray-700 dark:text-gray-200">Numéro de Téléphone <span class="text-red-500">*</span></label>
+                                <label class="text-gray-700 dark:text-gray-200">{{ $t('phone-number') }}<span class="text-red-500">*</span></label>
                                 <input
                                     type="text"
                                     v-model="detail.phone_number"
@@ -97,7 +97,7 @@
                                 />
                             </div>
                             <div v-if="user.type != 'particular'" class="relative">
-                                <label class="text-gray-700 dark:text-gray-200">Numéro de Téléphone 2</label>
+                                <label class="text-gray-700 dark:text-gray-200">{{ $t('phone-number') }} 2</label>
                                 <input
                                     type="text"
                                     v-model="detail.phone_number_2"
@@ -108,7 +108,7 @@
                         <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 col-span-2">
                             <div class="relative" v-if="user.type == 'particular' || user.type == 'ip'">
                                 <label class="text-gray-700 dark:text-gray-200">
-                                    <span>Pays d'origine</span> 
+                                    <span>{{ $t('native-country') }}</span> 
                                     <span class="text-red-500"> *</span>
                                 </label>
                                 <select 
@@ -130,8 +130,8 @@
                             </div>
                             <div  :class="[user.type == 'particular' || user.type == 'ip' ? '' : 'col-span-2']">
                                 <label class="text-gray-700 dark:text-gray-200">
-                                    <span v-if="user.type == 'particular' || user.type == 'ip'">Pays de Résidence</span>
-                                    <span v-else>Pays siege social</span>
+                                    <span v-if="user.type == 'particular' || user.type == 'ip'">{{ $t('residence-country') }}</span>
+                                    <span v-else>{{ $t('social-country') }}</span>
                                     <span class="text-red-500"> *</span>
                                 </label>
                                 <select 
@@ -155,8 +155,8 @@
                         <div v-if="user.type != 'particular'" class="grid grid-cols-1 gap-6 sm:grid-cols-2 col-span-2">
                             <div class="relative">
                                 <label class="text-gray-700 dark:text-gray-200">
-                                    <span v-if="user.type == 'ip'">Périmètre</span>
-                                    <span v-else>Type Entreprise</span> 
+                                    <span v-if="user.type == 'ip'">{{ $t('perimetre') }}</span>
+                                    <span v-else>{{ $t('type-company') }}</span> 
                                     <span class="text-red-500"> *</span>
                                 </label>
                                 <select
@@ -180,8 +180,8 @@
                             </div>
                             <div class="relative">
                                 <label class="text-gray-700 dark:text-gray-200">
-                                    <span v-if="user.type == 'ip'">Taille Institution</span>
-                                    <span v-else>Taille Entreprise</span>
+                                    <span v-if="user.type == 'ip'">{{ $t('size-institution') }}</span>
+                                    <span v-else>{{ $t('size-company') }}</span>
                                     <span class="text-red-500"> *</span>
                                 </label>
                                 <select
@@ -207,7 +207,7 @@
                         <div
                             v-if="user.type == 'particular'"
                             class="relative col-span-2">
-                            <label class="text-gray-700 dark:text-gray-200">Langues parlées <span class="text-red-500"> *</span></label>
+                            <label class="text-gray-700 dark:text-gray-200">{{ $t('speak-language') }} <span class="text-red-500"> *</span></label>
                             <select
                                 multiple
                                 size="4"
@@ -234,7 +234,7 @@
                                 user.type == 'business1' || user.type == 'business2'
                             "
                             class="relative col-span-2">
-                            <label class="text-gray-700 dark:text-gray-200">Forme Juridique <span class="text-red-500"> *</span></label>
+                            <label class="text-gray-700 dark:text-gray-200">{{ $t('legal-status') }}<span class="text-red-500"> *</span></label>
                             <select
                                 v-model="detail.legal_status_id"
                                 required
@@ -257,8 +257,8 @@
                         <div
                             class="relative col-span-2">
                             <label class="text-gray-700 dark:text-gray-200">
-                                <span v-if="user.type == 'particular'">Date de naissance</span>
-                                <span v-else>Date de création</span>
+                                <span v-if="user.type == 'particular'">{{ $t('birth-date') }}</span>
+                                <span v-else>{{ $t('create-date') }}</span>
                                 <span class="text-red-500"> *</span>
                             </label>
                             <input
@@ -271,7 +271,7 @@
                         <div  class="grid grid-cols-1 gap-6 sm:grid-cols-2 col-span-2">
                             <div class="relative">
                                 <label class="text-gray-700 dark:text-gray-200">
-                                    Site Web
+                                    {{ $t('website') }}
                                 </label>
                                 <input
                                     v-model="detail.website"
@@ -294,7 +294,7 @@
                         v-if="user.type != 'ip'"
                             class="relative col-span-2">
                             <label class="text-gray-700 dark:text-gray-200">
-                                Secteur d'activité
+                                {{ $t('activity-area') }}
                                 <span class="text-red-500"> *</span>
                             </label>
                             <select
@@ -321,14 +321,14 @@
                         <div  
                             v-if="user.type == 'particular'"
                             class="relative col-span-2">
-                            <label class="text-gray-700 dark:text-gray-200">Autres Activités</label>
+                            <label class="text-gray-700 dark:text-gray-200">{{ $t('o-activity') }}</label>
                             <textarea v-model="detail.other_activity" class="block w-full px-4 py-2 h-20 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:ring-primary-blue focus:border-primary-blue focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
                             </textarea>
                         </div>
                         <div  
                             v-if="user.type == 'particular'"
                             class="relative col-span-2">
-                            <label class="text-gray-700 dark:text-gray-200">Recherche partenariat</label>
+                            <label class="text-gray-700 dark:text-gray-200">{{ $t('rsearch-p') }}</label>
                             <textarea v-model="detail.search_partner" class="block w-full px-4 py-2 h-20 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:ring-primary-blue focus:border-primary-blue focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
                             </textarea>
                         </div>

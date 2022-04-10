@@ -17,7 +17,7 @@
           <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
             <div class="py-4">
               <p class="text-md text-gray-500 text-center">
-                  Vous devez vous authentifier pour accéder au contenu de notre plateforme !!!
+                  {{ $t('modal-not-login') }}
               </p>
             </div>
           </div>

@@ -14,6 +14,7 @@ use App\Http\Controllers\Api\CountryController;
 use App\Http\Controllers\Api\CurrencyController;
 use App\Http\Controllers\Api\DetailController;
 use App\Http\Controllers\Api\EmailVerificationController;
+use App\Http\Controllers\Api\JobOfferController;
 use App\Http\Controllers\Api\LanguageController;
 use App\Http\Controllers\Api\LegalStatusController;
 use App\Http\Controllers\Api\LevelStudyController;
@@ -31,7 +32,7 @@ use App\Http\Controllers\Api\ZoneController;
 Route::post("/register",[AuthController::class,'register']);
 Route::post("/login",[AuthController::class,'login']);
 Route::post("/login-admin",[AuthController::class,'login_admin']);
-Route::post("/verif-admin",[AuthController::class,'verif_admin']);
+
 Route::get("/posts-caroussel/{lang}",[PostController::class,'post_caroussel']);
 Route::get("/posts-home/{lang}/{ministry}",[PostController::class,'post_home']);
 Route::get("/continents", [ContinentController::class,'index']);
@@ -92,6 +93,10 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function(){
     Route::get('comments-post/{id}', [CommentController::class, 'comment_post']);
     Route::get('comments-user/{id}', [CommentController::class, 'comment_user']);
 
+    Route::apiResource('jobOffers', JobOfferController::class);
+    Route::get('jobOffers-user/{id}', [JobOfferController::class, 'jobOffers_user']);
+    Route::get("/jobOffers2/{jobOffer}", [JobOfferController::class,'show2']);
+
     Route::apiResource('announcements', AnnouncementController::class);
     Route::get('announcements-university/{id}', [AnnouncementController::class, 'announcements_university']);
     Route::get('announcements-user/{id}', [AnnouncementController::class, 'announcements_user']);
@@ -118,4 +123,5 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function(){
     Route::delete("/ministries/{ministry}", [MinistryController::class,'destroy']);
 
     Route::post("/logout",[AuthController::class,'logout']);
+    Route::post("/verif-admin",[AuthController::class,'verif_admin']);
 });

@@ -10,6 +10,7 @@
                 >
                     <!-- Announcement -->
                     <img
+                    v-if="announcement.image"
                         class="object-cover w-full h-96"
                         :src="announcement.image"
                         alt=""
@@ -131,8 +132,8 @@
                 <div class="text-gray-500 flex items-center space-x-2 "> <LocationMarkerIcon class="h-8 w-8" /> <span>{{ announcement.university.name }}</span></div>
                 <div class="text-gray-500 flex items-center space-x-2 ">  <MailIcon class="h-8 w-8" /> <span>{{ announcement.email }}</span> </div>
                 <div class="text-gray-500 flex items-center space-x-2 ">  <PhoneIcon class="h-8 w-8" /> <span>{{ announcement.phone }} </span> </div>
-                <div class="text-gray-500 flex items-center space-x-2 " v-if="announcement.website"> <GlobeIcon class=" h-8 w-8" /> <span>{{ announcement.website }} </span></div>
-                <div class="text-gray-500 flex items-center space-x-2 " v-if="announcement.adress">   <BriefcaseIcon class="h-8 w-8" /> <span>{{ announcement.adress }} </span></div>
+                <div class="text-gray-500 flex items-center space-x-2 " v-if="announcement.website != 'null'"> <GlobeIcon class=" h-8 w-8" /> <span>{{ announcement.website }} </span></div>
+                <div class="text-gray-500 flex items-center space-x-2 " v-if="announcement.adress != 'null'">   <BriefcaseIcon class="h-8 w-8" /> <span>{{ announcement.adress }} </span></div>
                 <div class="text-gray-500 flex items-center space-x-2 ">   <CashIcon class=" h-8 w-8" /> <span>{{ announcement.price }} {{ announcement.currency.symbol }} </span></div>
             </div>
             <div class="shadow rounded-md py-5 mt-4">

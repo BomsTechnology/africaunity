@@ -19,7 +19,7 @@
                 <div class="mt-4">
                     <div class="flex items-center justify-between">
                         <label for="password"  class="block text-sm text-gray-800">Password</label>
-                        <a href="#" class="text-xs text-gray-600 hover:underline">Forget Password?</a>
+                        <!-- <a href="#" class="text-xs text-gray-600 hover:underline">Forget Password?</a> -->
                     </div>
 
                     <input type="password"

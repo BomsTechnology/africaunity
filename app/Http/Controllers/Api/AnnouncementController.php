@@ -38,36 +38,41 @@ class AnnouncementController extends Controller
      */
     public function store(Request $request)
     {
-            $fileds = $request->validate([
-                'title' => 'required|string|between:1,50',
-                'description' => 'required|string',
-                'adress' => '',
-                'phone' => 'required|string',
-                'email' => 'required|string',
-                'website' => '',
-                'price' => 'required|string',
-                'user_id' => 'integer|required',
-                'currency_id' => 'integer|required',
-                'category_announcement_id' => 'integer|required',
-                'university_id' => 'integer|required',
+        $fileds = $request->validate([
+            'title' => 'required|string|between:1,50',
+            'description' => 'required|string',
+            'adress' => '',
+            'phone' => 'required|string',
+            'email' => 'required|string',
+            'website' => '',
+            'price' => 'required|string',
+            'user_id' => 'integer|required',
+            'currency_id' => 'integer|required',
+            'category_announcement_id' => 'integer|required',
+            'university_id' => 'integer|required',
+        ]);
+        $data = [
+            'title' => $fileds['title'],
+            'description' => $fileds['description'],
+            'adress' => $fileds['adress'],
+            'phone' => $fileds['phone'],
+            'website' => $fileds['website'],
+            'price' => $fileds['price'],
+            'user_id' => $fileds['user_id'],
+            'currency_id' => $fileds['currency_id'],
+            'category_announcement_id' => $fileds['category_announcement_id'],
+            'university_id' => $fileds['university_id'],
+            'email' => $fileds['email'],
+        ];
+
+        if($request->file('image')){
+            $request->validate([
                 'image' => 'required|mimes:png,jpg,jpeng,gif|dimensions:max_width=2048,max_height=2048'
             ]);
             $filename = '/uploads/'.time().'.'. $request->file('image')->extension();
             $request->file('image')->storePubliclyAs('public', $filename);
-            $data = [
-                'title' => $fileds['title'],
-                'description' => $fileds['description'],
-                'adress' => $fileds['adress'],
-                'phone' => $fileds['phone'],
-                'website' => $fileds['website'],
-                'price' => $fileds['price'],
-                'user_id' => $fileds['user_id'],
-                'currency_id' => $fileds['currency_id'],
-                'category_announcement_id' => $fileds['category_announcement_id'],
-                'university_id' => $fileds['university_id'],
-                'email' => $fileds['email'],
-                'image' => $filename
-            ];
+            $data['image'] = $filename;
+        }
         
         $announcement = Announcement::create($data);
     

@@ -48,7 +48,7 @@
                 </div>
 
                 <div class="lg:col-span-1 col-span-2">
-                    <label class="text-gray-700 dark:text-gray-200" for="pt">{{ $t('zoned') }} <span class="text-red-500">*</span></label>
+                    <label class="text-gray-700 dark:text-gray-200" for="pt">{{ $t('zoned') }}<span class="text-red-500">*</span></label>
                     <select required v-model="post.zone_id" name="" id="" class="form-select block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue">
                         <option v-for="zone in zones" :key="zone.id" :value="zone.id">
                             <span v-if="$i18n.locale == 'en'">{{
@@ -65,7 +65,7 @@
                     </select>
                 </div>
                 <div class="lg:col-span-1 col-span-2">
-                    <label class="text-gray-700 dark:text-gray-200" for="es">{{ $t('country') }} <span class="text-red-500">*</span></label>
+                    <label class="text-gray-700 dark:text-gray-200" for="es">{{ $t('country') }}<span class="text-red-500">*</span></label>
                     <select required v-model="post.country_id" class="form-select block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue">
                         <option v-for="country in countries" :key="country.id" :value="country.id">
                             <span v-if="$i18n.locale == 'en'">{{
@@ -83,7 +83,7 @@
                 </div>
 
                 <div class="lg:col-span-1 col-span-2">
-                    <label class="text-gray-700 dark:text-gray-200" for="pt">{{ $t('ministry') }} <span class="text-red-500">*</span></label>
+                    <label class="text-gray-700 dark:text-gray-200" for="pt">{{ $t('ministry') }}<span class="text-red-500">*</span></label>
                     <select required v-model="post.ministry_id" class="form-select block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue">
                         <option v-for="ministry in ministries" :key="ministry.id" :value="ministry.id">
                             <span v-if="$i18n.locale == 'en'">{{

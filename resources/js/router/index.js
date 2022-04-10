@@ -7,6 +7,9 @@ const Job = () => import ("../views/front/Job.vue");
 const Login = () => import ("../views/front/Login.vue");
 const Pack = () => import ("../views/front/Pack.vue");
 const AddPost = () => import ("../views/front/AddPost.vue");
+const AddJob = () => import ("../views/front/AddJob.vue");
+const SingleJob = () => import ("../views/front/SingleJob.vue");
+const EditJob = () => import ("../views/front/EditJob.vue");
 const SinglePost = () => import ("../views/front/SinglePost.vue");
 const SingleUniversity = () => import ("../views/front/SingleUniversity.vue");
 const SingleAnnouncement = () => import ("../views/front/SingleAnnouncement.vue");
@@ -47,6 +50,9 @@ const CategoryAnnouncementEdit = () => import  ("../views/back/category_announce
 const AnnouncementIndex = () => import  ("../views/back/announcement/AnnouncementIndex.vue");
 const AnnouncementCreate = () => import  ("../views/back/announcement/AnnouncementCreate.vue");
 const AnnouncementEdit = () => import  ("../views/back/announcement/AnnouncementEdit.vue");
+const JobOfferIndex = () => import  ("../views/back/jobOffer/JobOfferIndex.vue");
+const JobOfferCreate = () => import  ("../views/back/jobOffer/JobOfferCreate.vue");
+const JobOfferEdit = () => import  ("../views/back/jobOffer/JobOfferEdit.vue");
 const CityIndex = () => import  ("../views/back/city/CityIndex.vue");
 const CityCreate = () => import  ("../views/back/city/CityCreate.vue");
 const CityEdit = () => import  ("../views/back/city/CityEdit.vue");
@@ -112,7 +118,7 @@ const routes = [
         }
     },
     {
-        path: '/ads/:id',
+        path: '/ads/:id/edit',
         name: 'edit.ads',
         props: true,
         component: EditAnnouncement,
@@ -129,6 +135,33 @@ const routes = [
             title: siteName
         }
     },
+    {
+        path: '/add/job',
+        name: 'add.job',
+        props: true,
+        component: AddJob,
+        meta:{
+            title: siteName
+        }
+    },
+    {
+        path: '/job/:id',
+        name: 'show.job',
+        props: true,
+        component: SingleJob,
+        meta:{
+            title: siteName
+        }
+    },
+    {
+        path: '/job/:id/edit',
+        name: 'edit.job',
+        props: true,
+        component: EditJob,
+        meta:{
+            title: siteName
+        }
+    },    
     {
         path: '/:type/:id/edit',
         name: 'edit.post',
@@ -332,6 +365,31 @@ const routes = [
                 name: 'admin.continent.edit',
                 meta:{
                     title: siteName + ' - Edit Continent'
+                }
+            },
+            {
+                path: 'job',
+                component: JobOfferIndex,
+                name: 'admin.jobOffer.index',
+                meta:{
+                    title: siteName + ' - Job'
+                }
+            },
+            {
+                path: 'job/create',
+                component: JobOfferCreate,
+                name: 'admin.jobOffer.create',
+                meta:{
+                    title: siteName + ' - Create Job'
+                }
+            },
+            {
+                path: 'job/edit/:id',
+                component: JobOfferEdit,
+                props: true,
+                name: 'admin.jobOffer.edit',
+                meta:{
+                    title: siteName + ' - Edit Job'
                 }
             },
             {

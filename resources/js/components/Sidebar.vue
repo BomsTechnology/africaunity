@@ -249,12 +249,13 @@
                 v-if="open.job"
                 class="flex justify-start flex-col w-full md:w-auto items-start pb-1"
             >
-                <button
+                <router-link
+                    :to="{name:'admin.jobOffer.index'}"
                     class="flex justify-start items-center space-x-6 hover:text-white focus:bg-gray-700 focus:text-white hover:bg-gray-700 text-gray-400 rounded px-3 py-2 w-full md:w-52"
                 >
                     <TableIcon class="w-6 h-6" />
                     <p class="text-base leading-4">All Job</p>
-                </button>
+                </router-link>
                 <router-link
                     :to="{name:'admin.continent.index'}"
                     class="flex justify-start items-center space-x-6 hover:text-white focus:bg-gray-700 focus:text-white hover:bg-gray-700 text-gray-400 rounded px-3 py-2 w-full md:w-52"
@@ -358,8 +359,8 @@
                         <img
                             v-if="user.value.avatar"
                             class="rounded-full"
-                            src="https://i.ibb.co/L1LQtBm/Ellipse-1.png"
-                            alt="avatar"
+                            :src="user.value.avatar"
+                            :alt="user.value.firstname"
                         />
                         <UserCircleIcon v-else class="h-8 w-8 text-white"/>
                     </div>
@@ -451,12 +452,23 @@ export default {
                 user.value = JSON.parse(localStorage.user);
 
                 try {
-                  let response = await axios.post('/api/verif-admin', {id:user.value.id});
+                  let response = await axios.post('/api/verif-admin', {id:user.value.id}, {
+            headers:{
+                'Authorization': `Bearer ${localStorage.token}`
+            }
+        });
                 } catch (e) {
-                        location.href = '/admin';
+                        if(e.response.status == 401){
+                            location.href = '/admin';
+                            window.localStorage.removeItem("token");
+                            window.localStorage.removeItem("user");
+                        }
+                        
                 }
             }else{
                 location.href = '/admin';
+                window.localStorage.removeItem("token");
+                window.localStorage.removeItem("user");
             }        
         }
         onMounted(verifAdmin());

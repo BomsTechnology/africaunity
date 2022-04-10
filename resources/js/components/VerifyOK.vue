@@ -15,7 +15,7 @@
           <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
             <div class="py-4">
               <p class="text-md font-semibold text-gray-500 text-center">
-                  Votre compte a été verifier avec succés, connecter vous pour profiter de notre site web
+                  {{ $t('modal-verif-ok') }}
               </p>
             </div>
           </div>

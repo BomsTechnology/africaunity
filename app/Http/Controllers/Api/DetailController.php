@@ -74,8 +74,8 @@ class DetailController extends Controller
             'residence_country' => $request->residence_country,
         ]);
 
-        $detail->activity_areas()->toggle($request->activity_areas);
-        $detail->languages()->toggle($request->languages);
+        $detail->activity_areas()->sync($request->activity_areas);
+        $detail->languages()->sync($request->languages);
         
         return new DetailResource($detail);
     }
