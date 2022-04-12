@@ -7,20 +7,24 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class ContactNotification extends Notification
+class ContactAnnouncementNotification extends Notification
 {
     use Queueable;
 
-    public $data;
+    public $announcement;
+    public $contactUser;
+    public $content;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($data)
+    public function __construct($announcement, $contactUser, $content)
     {
-        $this->data = $data;
+        $this->announcement = $announcement;
+        $this->contactUser = $contactUser;
+        $this->content = $content;
     }
 
     /**
@@ -43,13 +47,9 @@ class ContactNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('New Contact From User.')
-                    ->line('Name: '. $this->data['name'])
-                    ->line('Email: '. $this->data['email'])
-                    ->line('About: '. $this->data['about'])
-                    ->line('City: '. $this->data['city'])
-                    ->line('Content: '. $this->data['content'])
-                    ->action('Login to manage', url('/admin'))
+                    ->line('The user '.$this->contactUser->firstname.' '.$this->contactUser->lastname.'('.$this->contactUser->email.')'. ' contact you in relation to your advertisement '.$this->announcement->title)
+                    ->line('Message: '.$this->content)
+                    ->action('Login to manage', url('/login'))
                     ->line('Thank you for using our application!');
     }
 

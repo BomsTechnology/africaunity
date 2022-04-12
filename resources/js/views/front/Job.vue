@@ -129,9 +129,9 @@ export default {
         }
     },
     setup(props) {
-        const { jobOffers, getJobOffers, loading, errors } = useJobOffers();
+        const { jobOffers, getJobOffersFront, loading, errors } = useJobOffers();
         const user = JSON.parse(localStorage.user);
-        onMounted(getJobOffers());
+        onMounted(getJobOffersFront());
 
         return{
             user,

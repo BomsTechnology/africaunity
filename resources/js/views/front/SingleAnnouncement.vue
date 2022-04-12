@@ -138,11 +138,17 @@
             </div>
             <div class="shadow rounded-md py-5 mt-4">
                 <Error v-if="errors != ''">{{ errors }}</Error>
-                    <form @submit.prevent="">
+                    <div v-if="loadingC == 2" class="py-4 px-2 bg-green-50 text-green-700">
+                        <p>
+                            {{ $t("msg-contact-sucess") }}
+                        </p>
+                    </div>
+                    <form v-else @submit.prevent="sendContact()">
                         <div class="px-8">
                             <label class="text-xl text-primary-blue  font-bold" for="pt">{{ $t('contact-ads') }}  <span class="text-red-500">*</span></label>
-                            <textarea  required type="text"  id="pt" class="block w-full px-4 py-2 mt-2 text-gray-700 h-60 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:ring-primary-blue focus:border-primary-blue focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+                            <textarea v-model="contact.content"  required type="text"  id="pt" class="block w-full px-4 py-2 mt-2 text-gray-700 h-60 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:ring-primary-blue focus:border-primary-blue focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
                             </textarea>
+
                             <div class="mt-6">
                                 <input type="hidden">
                                 <button v-if="loadingC == 0" type="submit" class="px-6 py-4 text-md leading-5 w-full text-white rounded bg-primary-blue focus:outline-none">{{ $t('send') }}</button>
@@ -220,8 +226,35 @@ export default {
             getAnnouncement2(props.id)  
         );
 
+        const contact = reactive({
+            user: user.id,
+            ads: props.id,
+            content: ""
+        });
+
+        const sendContact = async () => {
+            errors.value = '';
+            try {
+                loadingC.value = 1;
+                await axios.post('/api/announcement-send-contact', contact, {
+                    headers:{
+                        'Authorization': `Bearer ${localStorage.token}`
+                    }
+                });
+                        loadingC.value = 2;
+            } catch (e) {
+                if(e.response.status == 422){
+                loadingC.value = 0;
+                    for (const key in e.response.data.errors)
+                        errors.value += e.response.data.errors[key][0] + "\n";
+                }
+            }
+        }
+
         
         return {
+            contact,
+            sendContact,
             loading,
             errors,
             announcement,

@@ -27,7 +27,7 @@
             </select>
         </div> -->
     </div>
-    <div class="p-4 flex flex-col md:flex-row md:justify-between justify-center">
+    <div class="p-4 flex flex-col lg:flex-row md:justify-between justify-center">
         <img src="/img/logo_au.png" class=" h-28" alt="">
         <img src="/img/barniere-africa.png" alt="">
     </div>

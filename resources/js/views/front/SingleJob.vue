@@ -1,5 +1,6 @@
 <template>
     <Header />
+    <Apply :open="openApply" :toogleModal="closeModal()" :id="id"/>
     <div
         class="flex lg:flex-row flex-col p-4 lg:space-x-2 md:space-y-2 text-lg"
     >
@@ -104,6 +105,7 @@
                     
                     
                 </div>
+
                 
             </div>
             <div v-else-if="loading == 1" class="p-28">
@@ -304,28 +306,12 @@
                             </ul> 
                     </span>
                 </div>
+                <div>
+                    <button type="button" @click="showModal()" class="px-3 py-2 bg-primary-blue w-full text-white rounded">
+                        Apply
+                    </button>
+                </div>
             </div>
-            <!-- <div class="shadow rounded-md py-5 mt-4">
-                <Error v-if="errors != ''">{{ errors }}</Error>
-                    <form @submit.prevent="">
-                        <div class="px-8">
-                            <label class="text-xl text-primary-blue  font-bold" for="pt">Contactez le lanceur d'annonce <span class="text-red-500">*</span></label>
-                            <textarea  required type="text"  id="pt" class="block w-full px-4 py-2 mt-2 text-gray-700 h-60 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:ring-primary-blue focus:border-primary-blue focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
-                            </textarea>
-                            <div class="mt-6">
-                                <input type="hidden">
-                                <button v-if="loadingC == 0" type="submit" class="px-6 py-4 text-md leading-5 w-full text-white rounded bg-primary-blue focus:outline-none">Envoyer</button>
-                                <button v-if="loadingC == 1" type="submit" disabled class="px-6 py-4 text-md leading-5 flex justify-center items-center w-full text-white rounded bg-blue-300 focus:outline-none">
-                                    {{ $t('save') }}...
-                                    <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                        </svg>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-            </div> -->
         </div>
     </div>
     <Footer />
@@ -337,6 +323,7 @@ import { reactive, ref, onMounted } from "vue";
 import Header from "../../components/Header.vue";
 import Footer from "../../components/Footer.vue";
 import Error from "../../components/Error.vue";
+import Apply from "../../components/Apply.vue";
 import {
     DesktopComputerIcon,
     GlobeAltIcon,
@@ -368,6 +355,7 @@ export default {
         },
     },
     components: {
+        Apply,
         DesktopComputerIcon,
         GlobeAltIcon,
         TemplateIcon,
@@ -398,6 +386,7 @@ export default {
         }
     },
     setup(props) {
+        const openApply = ref(false);
         const { jobOffer, getJobOffer, loading, errors } = useJobOffers();
         const user = JSON.parse(localStorage.user);
         const loadingC = ref(0);
@@ -406,7 +395,11 @@ export default {
         );
 
         
+
+        
+        
         return {
+            openApply,
             loading,
             errors,
             jobOffer,
@@ -414,5 +407,14 @@ export default {
             loadingC
         };
     },
+
+    methods: {
+        showModal() {
+            this.openApply = true;
+        }, 
+        closeModal(){
+            this.openApply = false;
+        }
+    }
 };
 </script>

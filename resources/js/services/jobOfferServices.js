@@ -30,6 +30,26 @@ export default function useJobOffers() {
         }
     };
 
+    const getJobOffersFront = async () => {
+        errors.value = '';
+        try{
+            loading.value = 1;
+            let response = await axios.get('/api/jobOffers-front/',  {
+                headers:{
+                    'Authorization': `Bearer ${localStorage.token}`
+                }
+            });
+            jobOffers.value = response.data.data;
+            loading.value = 2;
+        }catch(e){
+            if(e.response.status == 401){
+                location.href = 'login/not-login';
+                window.localStorage.removeItem("token");
+                window.localStorage.removeItem("user");
+            }
+        }
+    };
+
     const getJobOffersUser = async (id) => {
         errors.value = '';
         try{
@@ -137,12 +157,30 @@ export default function useJobOffers() {
                 }
             });
             loading.value = 2;
-    } catch (e) {
-        loading.value = 0;
-        if (e.response.status == '500') {
-            errors.value = 'Impossible de supprimer ce jobOffer';
+        } catch (e) {
+            loading.value = 0;
+            if (e.response.status == '500') {
+                errors.value = 'Impossible de supprimer ce jobOffer';
+            }
         }
-    }
+    };
+
+    const markFilled = async (id) => {
+        errors.value = '';
+        try {
+            loading.value = 1;
+            await axios.get('/api/jobOffers-mark-filled/' + id, {
+                headers:{
+                    'Authorization': `Bearer ${localStorage.token}`
+                }
+            });
+            loading.value = 2;
+        } catch (e) {
+            loading.value = 0;
+            if (e.response.status == '500') {
+                errors.value = 'Impossible de supprimer ce jobOffer';
+            }
+        }
     };
 
     return {
@@ -156,6 +194,8 @@ export default function useJobOffers() {
         updateJobOffer,
         destroyJobOffer,
         getJobOffersUser,
-        getJobOffer2
+        getJobOffer2,
+        markFilled,
+        getJobOffersFront,
     };
 } 

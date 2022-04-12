@@ -86,7 +86,7 @@
                 <ChatAltIcon class="w-5 h-5"/>
                 <span class="lg:block hidden">{{ $t('my-jobs') }}</span>               
             </button>
-            <button v-if="(user.type == 'particular') && (user.id == loginUser.id)" @click="changeTab('ads')" :class="[ open.ads ? 'text-white bg-primary-blue flex items-center space-x-2 px-2 py-1 text-md rounded-md': 'text-white flex items-center space-x-2 hover:bg-white/25 px-2 py-1 text-md rounded-md']">
+            <button v-if="(user.type == 'particular' || user.type == 'admin') && (user.id == loginUser.id)" @click="changeTab('ads')" :class="[ open.ads ? 'text-white bg-primary-blue flex items-center space-x-2 px-2 py-1 text-md rounded-md': 'text-white flex items-center space-x-2 hover:bg-white/25 px-2 py-1 text-md rounded-md']">
                 <SpeakerphoneIcon class="w-5 h-5"/>
                 <span class="lg:block hidden">{{ $t('my-ads') }}</span>               
             </button>
@@ -427,7 +427,7 @@
                     <div class="flex mt-2 item-center space-x-1">
                         <ChatIcon class="h-4 w-4 text-gray-500" />
                         <a href="#" class="hover:text-primary-blue text-xs"
-                            >0</a
+                            >{{ post.comments }}</a
                         >
 
                     </div>
@@ -437,7 +437,7 @@
                                 :to="{
                                     name: 'show.post',
                                     params: { id: post.id },
-                                }" class="text-sm font-bold text-primary-blue hover:underline">Read More</router-link>
+                                }" class="text-sm font-bold text-primary-blue hover:underline">{{ $t('read-more') }}</router-link>
                         <router-link
                                 :to="{
                                     name: 'edit.post',
@@ -634,7 +634,7 @@
                 </div>
         </div>
          <div class=" py-8 lg:px-16" v-else-if="(open.job) && (loading == 0)">
-                <div class="flex justify-end px-6">
+                <div class="flex justify-end px-6 py-2">
                 <router-link
                     :to="{
                         name: 'add.job',
@@ -656,6 +656,12 @@
                                     class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
                                 >
                                     {{ $t('my-jobs') }}
+                                </th>
+                                <th
+                                    scope="col"
+                                    class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
+                                >
+                                    {{ $t('status') }}
                                 </th>
                                 <th v-if="user.id == loginUser.id" scope="col" class="p-4">
                                     <span class="sr-only"
@@ -685,6 +691,12 @@
                                     >{{ jobOffer.title }}</router-link> 
                                 </td>
                                 <td
+                                    class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                                >
+                                    <span v-if="jobOffer.status == 3" class="text-xs px-2 py-1 bg-green-50 text-green-700 rounded-full">Pourvu</span>
+                                    <span v-else class="text-xs px-2 py-1 bg-yellow-50 text-yellow-700 rounded-full">En Cours</span>
+                                </td>
+                                <td
                                     v-if="user.id == loginUser.id"
                                     class="py-4 px-6 text-sm font-medium text-right whitespace-nowrap"
                                 >
@@ -710,6 +722,16 @@
                                                 />
                                             </button
                                         >
+                                        <button
+                                            @click="mark(jobOffer.id)"
+                                            v-if="jobOffer.status != 3"
+                                            class="text-red-600 ml-3 dark:text-blue-500 hover:underline"
+                                            >
+                                                <CheckCircleIcon
+                                                    class="h-5 w-5 hover:text-purple-700 cursor-pointer text-purple-400"
+                                                />
+                                            </button
+                                        >
                                     </div>
                                 </td>
                             </tr>
@@ -723,7 +745,7 @@
                                 class="hover:bg-gray-100 dark:hover:bg-gray-700"
                             >
                                 <td
-                                    colspan="5"
+                                    colspan="3"
                                     class="py-4 px-6 text-xl font-medium text-gray-900 text-center whitespace-nowrap dark:text-white"
                                 >
                                     <div
@@ -739,7 +761,7 @@
                 </div>
         </div>
          <div class=" py-8 lg:px-16" v-else-if="(open.ads) && (loading == 0)">
-             <div class="flex justify-end px-6">
+             <div class="flex justify-end px-6 py-2">
                 <router-link
                     :to="{
                         name: 'add.ads',
@@ -869,7 +891,7 @@ import useActivityAreas from "../../services/activityAreaServices.js";
 import useJobOffers from "../../services/jobOfferServices.js";
 import useLegalStatuses from "../../services/legalStatusServices.js";
 import useCountries from "../../services/countryServices.js";
-import { CogIcon, TrashIcon, EmojiSadIcon, PlusCircleIcon, SpeakerphoneIcon, PencilIcon, PencilAltIcon, NewspaperIcon, ChatIcon, ChatAltIcon, BookOpenIcon, IdentificationIcon, UserCircleIcon } from "@heroicons/vue/solid";
+import { CogIcon, TrashIcon, EmojiSadIcon, PlusCircleIcon, SpeakerphoneIcon, CheckCircleIcon, PencilIcon, PencilAltIcon, NewspaperIcon, ChatIcon, ChatAltIcon, BookOpenIcon, IdentificationIcon, UserCircleIcon } from "@heroicons/vue/solid";
 export default {
     props: {
         name: {
@@ -895,6 +917,7 @@ export default {
         PencilIcon,
         IdentificationIcon,
         SpeakerphoneIcon,
+        CheckCircleIcon,
         CogIcon,
         PlusCircleIcon,
         UserCircleIcon
@@ -909,7 +932,7 @@ export default {
         const { articles, getPostsUser, propau } = usePosts();
         const { user, getUser } = useUsers();
         const { comments, getCommentsUser, destroyComment, updateComment} = useComments();
-        const { jobOffers, getJobOffersUser, destroyJobOffer} = useJobOffers();
+        const { jobOffers, getJobOffersUser, destroyJobOffer, markFilled} = useJobOffers();
         const { announcements, getAnnouncementsUser, destroyAnnouncement} = useAnnouncements();
         const { languages, getLanguages } = useLanguages();
         const { businessTypes, getBusinessTypes } = useBusinessTypes();
@@ -969,6 +992,13 @@ export default {
         const deleteJobOffer = async (id) => {
             if(confirm("I you Sure ?")){
                 await destroyJobOffer(id)
+                await getJobOffersUser(props.id);
+            }
+        };
+
+        const mark = async (id) => {
+            if(confirm("I you Sure ?")){
+                await markFilled(id)
                 await getJobOffersUser(props.id);
             }
         };
@@ -1069,6 +1099,7 @@ export default {
         }
 
         return{
+            mark,
             detail,
             open,
             deleteAnnouncement,

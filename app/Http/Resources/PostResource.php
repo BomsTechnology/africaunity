@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\ContinentResource;
+use App\Models\Comment;
 use App\Models\Continent;
 use App\Models\Country;
 use App\Models\Ministry;
@@ -34,6 +35,7 @@ class PostResource extends JsonResource
             'zone' => new ZoneResource(Zone::find($this->zone_id)),
             'country' => new CountryResource(Country::find($this->country_id)),
             'ministry' => new MinistryResource(Ministry::find($this->ministry_id)),
+            'comments' => (Comment::where('post_id', $this->id)->get())->count(),
             'date' => $this->created_at->format('Y-m-d'),
         ];
     }

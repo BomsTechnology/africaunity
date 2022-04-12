@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\AnnouncementResource;
 use App\Http\Resources\AnnouncementResource2;
 use App\Models\Announcement;
+use App\Models\User;
+use App\Notifications\ContactAnnouncementNotification;
 use Illuminate\Http\Request;
 
 class AnnouncementController extends Controller
@@ -28,6 +30,26 @@ class AnnouncementController extends Controller
     public function announcements_university($university)
     {
         return AnnouncementResource::collection(Announcement::where('university_id',$university)->orderBy('id', 'desc')->get());
+    }
+
+    public function contact(Request $request)
+    {
+        $fileds = $request->validate([
+            'user' => 'required',
+            'ads' => 'required',
+            'content' => 'required|string',
+        ]);
+
+        $contactUser = User::find($fileds['user']);
+        $announcement = Announcement::find($fileds['ads']);
+        $authorUser = User::find($announcement->user_id);
+        $authorUser->notify(new ContactAnnouncementNotification($announcement, $contactUser, $fileds['content']));
+
+        $response = [
+            'status'=>true,
+            'message'=>'Contact Send successfully!',
+        ];
+        return response($response,201);
     }
 
     /**

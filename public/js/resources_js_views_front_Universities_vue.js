@@ -159,7 +159,7 @@ var _hoisted_21 = {
 };
 var _hoisted_22 = {
   key: 0,
-  "class": "grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8 px-10 py-8"
+  "class": "grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8 lg:px-10 py-8"
 };
 var _hoisted_23 = ["src", "alt"];
 var _hoisted_24 = {
@@ -193,7 +193,7 @@ var _hoisted_32 = {
   "class": "flex space-x-1"
 };
 var _hoisted_33 = {
-  "class": "flex space-x-1"
+  "class": "hidden lg:flex space-x-1"
 };
 var _hoisted_34 = {
   href: "#",

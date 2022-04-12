@@ -98,12 +98,16 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function(){
 
     Route::apiResource('jobOffers', JobOfferController::class);
     Route::get('jobOffers-user/{id}', [JobOfferController::class, 'jobOffers_user']);
+    Route::get('jobOffers-front', [JobOfferController::class, 'jobOffers_front']);
+    Route::get('jobOffers-mark-filled/{jobOffer}', [JobOfferController::class, 'jobOffers_mark']);
     Route::get("/jobOffers2/{jobOffer}", [JobOfferController::class,'show2']);
 
     Route::apiResource('announcements', AnnouncementController::class);
     Route::get('announcements-university/{id}', [AnnouncementController::class, 'announcements_university']);
     Route::get('announcements-user/{id}', [AnnouncementController::class, 'announcements_user']);
     Route::get("/announcements2/{announcement}", [AnnouncementController::class,'show2']);
+    Route::get("/announcements2/{announcement}", [AnnouncementController::class,'show2']);
+    Route::post("/announcement-send-contact", [AnnouncementController::class,'contact']);
 
     Route::post("/continents", [ContinentController::class,'store']);
     Route::get("/continents/{continent}", [ContinentController::class,'show']);

@@ -23,7 +23,7 @@
                 </router-link>
             </div>
             <div
-                class="grid lg:grid-cols-2 gap-8 px-10 py-8"
+                class="grid lg:grid-cols-2 gap-8 lg:px-10 py-8"
                 v-if="posts.length != 0"
             >
                 <div
@@ -88,7 +88,7 @@
                                         >{{ post.user.firstname }}</router-link
                                     >
                                 </div>
-                                <div class="flex space-x-1">
+                                <div class="hidden lg:flex space-x-1">
                                     <CalendarIcon class="h-4 w-4" />
                                     <a
                                         href="#"
@@ -96,6 +96,13 @@
                                         >{{ post.date }}</a
                                     >
                                 </div>
+                                <div class="flex item-center space-x-1">
+                        <ChatIcon class="h-4 w-4 text-gray-500" />
+                        <a href="#" class="hover:text-primary-blue text-xs"
+                            >{{ post.comments }}</a
+                        >
+
+                    </div>
                             </div>
                         </div>
                     </div>
@@ -138,12 +145,13 @@
 import Header from "../../components/Header.vue";
 import Footer from "../../components/Footer.vue";
 import FilterPropAu from "../../components/FilterPropAu.vue";
-import { PlusCircleIcon, CalendarIcon, UserIcon, EmojiSadIcon} from "@heroicons/vue/solid";
+import { PlusCircleIcon, CalendarIcon, UserIcon, EmojiSadIcon, ChatIcon} from "@heroicons/vue/solid";
 import { reactive, ref, onMounted } from "vue";
 import router from "../../router";
 import usePosts from "../../services/postServices.js";
 export default {
     components: {
+        ChatIcon,
         PlusCircleIcon,
         UserIcon,
         CalendarIcon,

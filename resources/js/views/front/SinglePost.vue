@@ -1,10 +1,11 @@
 <template>
+    <Report :open="openReport" :toogleModal="toogleModal" :id="id"/>
     <Header />
     <div
         class="flex lg:flex-row flex-col p-4 lg:space-x-2 md:space-y-2 text-lg"
     >
         <div class="lg:w-[70%]">
-            <div class="py-6 px-4" v-if="post.length != 0">
+            <div class="py-6 lg:px-4" v-if="post.length != 0">
                 <div 
                     class="overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800"
                 >
@@ -58,7 +59,7 @@
                                 <div class="flex space-x-1">
                                     <ChatIcon class="h-4 w-4" />
                                     <a href="#" class="hover:text-primary-blue"
-                                        >0</a
+                                        >{{ post.comments }}</a
                                     >
                                 </div>
                             </div>
@@ -90,9 +91,13 @@
                                 
                                 <div class="flex items-center">
                                     <div>
-                                        <ExclamationCircleIcon
-                                            class="h-5 w-5 text-gray-400 cursor-pointer hover:text-red-300"
-                                        />
+                                        <button @click="toogleModal()" class="flex text-gray-400 cursor-pointer text-xs border-gray-400 border rounded-full px-2 py-1 items-center hover:bg-yellow-300 space-x-2 hover:text-white hover:border-white">
+                                            <ExclamationCircleIcon
+                                            class="h-5 w-5 "
+                                            />
+                                            <span class="hidden lg:block">{{ $t('report') }}</span>
+                                        </button>
+                                        
                                     </div>
                                     <div
                                         class="ml-3"
@@ -116,7 +121,7 @@
                     <div class="mt-4 px-8 py-4" v-if="comments.length != 0">
                         <div class="flex border-b py-4" v-for="comment in comments" :key="comment.id">
                             <div>
-                                <router-link  v-if="token != ''" :to="{name:'compte',  params: { name: comment.user.firstname, id : comment.user.id }}">
+                                <router-link  :to="{name:'compte',  params: { name: comment.user.firstname, id : comment.user.id }}">
                                 <div class="md:w-20 md:h-20 w-12 h-12 rounded-full shadow overflow-hidden">
                                     <img :src="user.avatar" class="w-full h-full bg-cover object-cover" alt="" v-if="user.avatar">
                                     <UserCircleIcon v-else class="w-full h-full text-gray-500"/>
@@ -197,6 +202,7 @@ import { reactive, ref, onMounted } from "vue";
 import Header from "../../components/Header.vue";
 import Footer from "../../components/Footer.vue";
 import FilterArticle from "../../components/FilterArticle.vue";
+import Report from "../../components/Report.vue";
 import {
     PlusCircleIcon,
     CalendarIcon,
@@ -228,6 +234,7 @@ export default {
         PencilAltIcon,
         Header,
         Footer,
+        Report,
         FilterArticle,
         Error
     },
@@ -252,6 +259,11 @@ export default {
                 comment.post_id = post.value.id;
             },  
         );
+        const openReport = ref(false);
+
+        const toogleModal = () => {
+            openReport.value = !openReport.value;
+        };
 
         
         
@@ -264,6 +276,8 @@ export default {
             await getCommentsPost(props.id);
         }
         return {
+            openReport,
+            toogleModal,
             loading,
             loadingC,
             storeComment,

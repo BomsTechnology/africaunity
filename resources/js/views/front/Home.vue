@@ -129,7 +129,7 @@
                                                 <a
                                                     href="#"
                                                     class="hover:text-primary-blue"
-                                                    >0</a
+                                                    >{{ article.comments }}</a
                                                 >
                                             </div>
                                         </div>
@@ -205,7 +205,7 @@
                                             <a
                                                 href="#"
                                                 class="hover:text-primary-blue"
-                                                >0</a
+                                                >{{ article.comments }}</a
                                             >
                                         </div>
                                     </div>
@@ -348,7 +348,7 @@
                                                     <a
                                                         href="#"
                                                         class="hover:text-primary-blue"
-                                                        >0</a
+                                                        >{{ article.comments }}</a
                                                     >
                                                 </div>
                                             </div>
@@ -429,7 +429,7 @@
                                                     <a
                                                         href="#"
                                                         class="hover:text-primary-blue"
-                                                        >0</a
+                                                        >{{ article.comments }}</a
                                                     >
                                                 </div>
                                             </div>
@@ -571,7 +571,7 @@
                                                     <a
                                                         href="#"
                                                         class="hover:text-primary-blue"
-                                                        >0</a
+                                                        >{{ article.comments }}</a
                                                     >
                                                 </div>
                                             </div>
@@ -651,7 +651,7 @@
                                                     <a
                                                         href="#"
                                                         class="hover:text-primary-blue"
-                                                        >0</a
+                                                        >{{ article.comments }}</a
                                                     >
                                                 </div>
                                             </div>
@@ -790,7 +790,7 @@
                                                 <a
                                                     href="#"
                                                     class="hover:text-primary-blue"
-                                                    >0</a
+                                                    >{{ article.comments }}</a
                                                 >
                                             </div>
                                         </div>
@@ -863,7 +863,7 @@
                                             <a
                                                 href="#"
                                                 class="hover:text-primary-blue"
-                                                >0</a
+                                                >{{ article.comments }}</a
                                             >
                                         </div>
                                     </div>

@@ -20,6 +20,11 @@ class JobOfferController extends Controller
         return JobOfferResource::collection(JobOffer::latest()->get());
     }
 
+    public function jobOffers_front()
+    {
+        return JobOfferResource::collection(JobOffer::where('status','<>',3)->orderBy('id', 'desc')->get());
+    }
+
     public function jobOffers_user($user)
     {
         return JobOfferResource::collection(JobOffer::where('user_id',$user)->orderBy('id', 'desc')->get());
@@ -195,6 +200,14 @@ class JobOfferController extends Controller
     public function destroy(JobOffer $jobOffer)
     {
         $jobOffer->delete();
+
+        return response()->noContent();
+    }
+
+    public function jobOffers_mark(JobOffer $jobOffer)
+    {
+        $jobOffer->status = 3;
+        $jobOffer->save();
 
         return response()->noContent();
     }

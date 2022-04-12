@@ -19,7 +19,7 @@
                     <div class="flex text-xs space-x-2">
                         <div class="flex space-x-1"><CalendarIcon class="h-4 w-4"/> <a href="#" class="hover:text-primary-blue">{{ post.date }}</a></div>
                         <div class="flex space-x-1"><UserIcon class="h-4 w-4"/> <a href="#" class="hover:text-primary-blue">{{ post.user.firstname }}</a></div>
-                        <div class="flex space-x-1"><ChatIcon class="h-4 w-4"/> <a href="#" class="hover:text-primary-blue">0</a></div>
+                        <div class="flex space-x-1"><ChatIcon class="h-4 w-4"/> <a href="#" class="hover:text-primary-blue">{{ post.comments }}</a></div>
                     </div>
                 </div>
                 <img :src="post.image" :alt="post.title" class="object-cover w-full h-full">
@@ -42,7 +42,7 @@
                     <div class="flex text-xs space-x-2">
                         <div class="flex space-x-1"><CalendarIcon class="h-4 w-4"/> <a href="#" class="hover:text-primary-blue">{{ post.date }}</a></div>
                         <div class="flex space-x-1"><UserIcon class="h-4 w-4"/> <a href="#" class="hover:text-primary-blue">{{ post.user.firstname }}</a></div>
-                        <div class="flex space-x-1"><ChatIcon class="h-4 w-4"/> <a href="#" class="hover:text-primary-blue">0</a></div>
+                        <div class="flex space-x-1"><ChatIcon class="h-4 w-4"/> <a href="#" class="hover:text-primary-blue">{{ post.comments }}</a></div>
                     </div>
                 </div>
                 <img :src="post.image" :alt="post.title" class="object-cover w-full h-full">
@@ -59,7 +59,7 @@
                     <div><a href="#" class="text-md hover:text-primary-blue"> {{ post.title }} </a></div>
                     <div class="flex text-xs space-x-2">
                         <div class="flex space-x-1"><CalendarIcon class="h-4 w-4"/> <a href="#" class="hover:text-primary-blue">{{ post.date }}</a></div>
-                        <div class="flex space-x-1"><ChatIcon class="h-4 w-4"/> <a href="#" class="hover:text-primary-blue">0</a></div>
+                        <div class="flex space-x-1"><ChatIcon class="h-4 w-4"/> <a href="#" class="hover:text-primary-blue">{{ post.comments }}</a></div>
                     </div>
                 </div>
                 <img :src="post.image" :alt="post.title" class="object-cover md:h-full h-60 w-full">
@@ -73,7 +73,7 @@
                     <div><a href="#" class="text-md hover:text-primary-blue"> {{ post.title }} </a></div>
                     <div class="flex text-xs space-x-2">
                         <div class="flex space-x-1"><CalendarIcon class="h-4 w-4"/> <a href="#" class="hover:text-primary-blue">{{ post.date }}</a></div>
-                        <div class="flex space-x-1"><ChatIcon class="h-4 w-4"/> <a href="#" class="hover:text-primary-blue">0</a></div>
+                        <div class="flex space-x-1"><ChatIcon class="h-4 w-4"/> <a href="#" class="hover:text-primary-blue">{{ post.comments }}</a></div>
                     </div>
                 </div>
                 <img :src="post.image" :alt="post.title" class="object-cover md:h-full h-60 w-full">

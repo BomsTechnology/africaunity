@@ -91,7 +91,7 @@
             </div>
     <div class="py-8">
         <div
-                class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8 px-10 py-8"
+                class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8 lg:px-10 py-8"
                 v-if="announcements.length != 0"
             >           
             <div class="overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800" v-for="announcement in announcements"
@@ -141,7 +141,7 @@
                                         >{{ announcement.user.firstname }}</router-link
                                     >
                                 </div>
-                                <div class="flex space-x-1">
+                                <div class="hidden lg:flex space-x-1">
                                     <CalendarIcon class="h-4 w-4" />
                                     <a
                                         href="#"
