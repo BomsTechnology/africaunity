@@ -196,9 +196,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return updateJobOffer(formData, props.id);
 
               case 27:
-                _router_index_js__WEBPACK_IMPORTED_MODULE_19__["default"].push({
-                  name: "home"
-                });
+                if (errors.value == '') {
+                  _router_index_js__WEBPACK_IMPORTED_MODULE_19__["default"].push({
+                    name: "jobs"
+                  });
+                }
 
               case 28:
               case "end":

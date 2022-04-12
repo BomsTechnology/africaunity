@@ -6,6 +6,17 @@
 
         </div>
         <div class="p-2 bg-primary-blue"></div>
+        <div class="flex justify-end px-6 py-4" v-if="(user.type != 'particular' && user.type != 'business1')">
+                <router-link
+                    :to="{
+                        name: 'add.job',
+                    }"
+                    class="flex justify-start items-center space-x-3 text-white bg-primary-blue rounded px-3 py-2"
+                >
+                    <PlusCircleIcon class="w-6 h-6" />
+                    <p class="text-base leading-4">{{ $t('add') }} Job</p>
+                </router-link>
+            </div>
         <div v-if="jobOffers.length != 0" class="text-lg">
 
             <div 
@@ -19,7 +30,7 @@
                     }"
                     class="flex px-2 py-4 justify-between items-center border-b border-gray-200 hover:bg-gray-100"
                 >
-                    <div class="flex items-center space-x-4">
+                    <div class="flex items-center space-x-4 ">
                         <div class="hidden lg:block">
                             <img v-if="jobOffer.company_logo" :src="jobOffer.company_logo" alt="" class="w-16 h-16 object-cover">
                             <OfficeBuildingIcon v-else class="w-16 h-16 text-gray-500" />
@@ -28,20 +39,20 @@
                             <h1 class="capitalize">{{ jobOffer.title }}</h1>
                             <h2 class="font-bold capitalize text-gray-500">{{ jobOffer.company_name }}</h2>
                         </div>
-                    </div>
-                    <div class="hidden lg:flex space-x-4 font-light justify-center w-1/2 capitalize text-gray-500">
-                        <h1 class="flex items-center justify-center space-x-2">
-                            <LocationMarkerIcon class="w-5 h-5" />
-                            <span>
-                                {{ jobOffer.location }}
-                            </span>
-                        </h1>
-                        <h2 class="flex items-center justify-start space-x-2">
-                            <CashIcon class="w-5 h-5" />
-                            <span>
-                                {{ jobOffer.min_price + jobOffer.currency.symbol }} - {{ jobOffer.max_price + jobOffer.currency.symbol }}
-                            </span>
-                        </h2>
+                        <div class="hidden lg:flex space-x-4 font-light justify-start capitalize text-gray-500">
+                            <h1 class="flex items-center justify-center space-x-2">
+                                <LocationMarkerIcon class="w-5 h-5" />
+                                <span>
+                                    {{ jobOffer.location }}
+                                </span>
+                            </h1>
+                            <h2 class="flex items-center justify-start space-x-2">
+                                <CashIcon class="w-5 h-5" />
+                                <span>
+                                    {{ jobOffer.min_price + jobOffer.currency.symbol }} - {{ jobOffer.max_price + jobOffer.currency.symbol }}
+                                </span>
+                            </h2>
+                        </div>
                     </div>
                     <div class="">
                         <h2 class="font-bold capitalize text-primary-blue">
@@ -98,7 +109,7 @@
 <script>
 import Header from "../../components/Header.vue";
 import Footer from "../../components/Footer.vue";
-import { OfficeBuildingIcon, EmojiSadIcon , LocationMarkerIcon, CashIcon} from "@heroicons/vue/solid";
+import { OfficeBuildingIcon, EmojiSadIcon , LocationMarkerIcon, PlusCircleIcon, CashIcon} from "@heroicons/vue/solid";
 import useJobOffers from "../../services/jobOfferServices.js";
 import { reactive, ref, onMounted} from "vue";
 import router from "../../router";
@@ -108,6 +119,7 @@ export default {
         Footer,
         OfficeBuildingIcon,
         LocationMarkerIcon,
+        PlusCircleIcon,
         EmojiSadIcon,
         CashIcon
     },
@@ -118,9 +130,11 @@ export default {
     },
     setup(props) {
         const { jobOffers, getJobOffers, loading, errors } = useJobOffers();
+        const user = JSON.parse(localStorage.user);
         onMounted(getJobOffers());
 
         return{
+            user,
             jobOffers,
             loading,
         }

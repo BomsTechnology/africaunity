@@ -138,7 +138,7 @@
         </div>
         <div class="lg:w-[35%] bg-white py-5">
             <div class="shadow rounded-md py-5 px-10 space-y-3 ">
-                <h1 class="text-2xl text-primary-blue  font-bold">Job Détails</h1>
+                <h1 class="text-2xl text-primary-blue  font-bold">Job {{ $t('details') }}</h1>
                 <div class="grid lg:grid-cols-2 gap-4 ">
                     <div class="text-gray-500 flex items-center space-x-2 ">   
                         <GlobeIcon class="h-8 w-8" /> 

@@ -668,9 +668,11 @@ export default {
 
             await updateJobOffer(formData, props.id);
 
+            if(errors.value == ''){
                 router.push({
-                    name: "home",
-            });
+                    name: "jobs",
+                });
+            }
         };
         return {
             clanguages,

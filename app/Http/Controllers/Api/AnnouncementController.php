@@ -42,12 +42,12 @@ class AnnouncementController extends Controller
             'title' => 'required|string|between:1,50',
             'description' => 'required|string',
             'adress' => '',
-            'phone' => 'required|string',
+            'phone' => 'integer|string',
             'email' => 'required|string',
             'website' => '',
-            'price' => 'required|string',
+            'price' => '',
             'user_id' => 'integer|required',
-            'currency_id' => 'integer|required',
+            'currency_id' => '',
             'category_announcement_id' => 'integer|required',
             'university_id' => 'integer|required',
         ]);
@@ -110,9 +110,7 @@ class AnnouncementController extends Controller
             'phone' => 'required|string',
             'email' => 'required|string',
             'website' => '',
-            'price' => 'required|string',
             'user_id' => 'integer|required',
-            'currency_id' => 'integer|required',
             'category_announcement_id' => 'integer|required',
             'university_id' => 'integer|required',
         ]);
@@ -122,13 +120,25 @@ class AnnouncementController extends Controller
             'adress' => $fileds['adress'],
             'phone' => $fileds['phone'],
             'website' => $fileds['website'],
-            'price' => $fileds['price'],
             'user_id' => $fileds['user_id'],
-            'currency_id' => $fileds['currency_id'],
             'category_announcement_id' => $fileds['category_announcement_id'],
             'university_id' => $fileds['university_id'],
             'email' => $fileds['email'],
         ];
+
+        if($request->has('currency_id') && $request->currency_id != 'null'){
+            $fileds = $request->validate([
+                'currency_id' => 'integer|required'
+            ]);
+            $data['currency_id'] = $fileds['currency_id'];
+        }
+
+        if($request->has('price') && $request->price != 'null'){
+            $fileds = $request->validate([
+                'price' => 'integer|required'
+            ]);
+            $data['price'] = $fileds['price'];
+        }
 
         if($request->file('image')){
             $request->validate([

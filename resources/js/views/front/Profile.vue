@@ -46,7 +46,7 @@
                     :to="{
                         name: 'add.post',
                         params: { type: 'article' },
-                    }" class="py-2 lg:px-4 px-2 shadow-md flex items-center text-sm space-x-2 text-white rounded-xl bg-primary-blue">
+                    }" class="py-2 lg:px-4 px-2 shadow-md flex items-center text-sm space-x-2 text-white rounded-xl bg-primary-blue" v-if="(user.type != 'business1')">
                                 <PlusCircleIcon class="w-5 h-5"/>
                                 <span class="lg:block hidden">{{ $t('add') }} {{ $t('articles') }}</span>                        
                             </router-link>
@@ -70,11 +70,11 @@
                 <IdentificationIcon class="w-5 h-5"/>
                 <span class="lg:block hidden">{{ $t('profile') }}</span>
             </button>
-            <button @click="changeTab('article')" :class="[ open.article ? 'text-white bg-primary-blue flex items-center space-x-2 px-2 py-1 text-md rounded-md': 'text-white flex items-center space-x-2 hover:bg-white/25 px-2 py-1 text-md rounded-md']">
+            <button v-if="(user.type != 'business1')" @click="changeTab('article')" :class="[ open.article ? 'text-white bg-primary-blue flex items-center space-x-2 px-2 py-1 text-md rounded-md': 'text-white flex items-center space-x-2 hover:bg-white/25 px-2 py-1 text-md rounded-md']">
                 <NewspaperIcon class="w-5 h-5"/>
                 <span class="lg:block hidden">{{ $t('articles') }}</span>                
             </button>
-            <button @click="changeTab('propau')" :class="[ open.propau ? 'text-white bg-primary-blue flex items-center space-x-2 px-2 py-1 text-md rounded-md': 'text-white flex items-center space-x-2 hover:bg-white/25 px-2 py-1 text-md rounded-md']">
+            <button v-if="(user.type != 'business1')" @click="changeTab('propau')" :class="[ open.propau ? 'text-white bg-primary-blue flex items-center space-x-2 px-2 py-1 text-md rounded-md': 'text-white flex items-center space-x-2 hover:bg-white/25 px-2 py-1 text-md rounded-md']">
                 <BookOpenIcon class="w-5 h-5"/>
                 <span class="lg:block hidden">{{ $t('propau') }}</span>               
             </button>
@@ -82,11 +82,11 @@
                 <ChatIcon class="w-5 h-5"/>
                 <span class="lg:block hidden">{{ $t('comments') }}</span>               
             </button>
-            <button v-if="user.id == loginUser.id" @click="changeTab('job')" :class="[ open.job ? 'text-white bg-primary-blue flex items-center space-x-2 px-2 py-1 text-md rounded-md': 'text-white flex items-center space-x-2 hover:bg-white/25 px-2 py-1 text-md rounded-md']">
+            <button v-if="(user.type != 'particular' && user.type != 'business1') && (user.id == loginUser.id)" @click="changeTab('job')" :class="[ open.job ? 'text-white bg-primary-blue flex items-center space-x-2 px-2 py-1 text-md rounded-md': 'text-white flex items-center space-x-2 hover:bg-white/25 px-2 py-1 text-md rounded-md']">
                 <ChatAltIcon class="w-5 h-5"/>
                 <span class="lg:block hidden">{{ $t('my-jobs') }}</span>               
             </button>
-            <button v-if="user.id == loginUser.id" @click="changeTab('ads')" :class="[ open.ads ? 'text-white bg-primary-blue flex items-center space-x-2 px-2 py-1 text-md rounded-md': 'text-white flex items-center space-x-2 hover:bg-white/25 px-2 py-1 text-md rounded-md']">
+            <button v-if="(user.type == 'particular') && (user.id == loginUser.id)" @click="changeTab('ads')" :class="[ open.ads ? 'text-white bg-primary-blue flex items-center space-x-2 px-2 py-1 text-md rounded-md': 'text-white flex items-center space-x-2 hover:bg-white/25 px-2 py-1 text-md rounded-md']">
                 <SpeakerphoneIcon class="w-5 h-5"/>
                 <span class="lg:block hidden">{{ $t('my-ads') }}</span>               
             </button>
@@ -844,7 +844,7 @@
                 </div>
         </div>
         <div class=" py-8 lg:px-16" v-else-if="(open.edit) && (loading == 0)">
-                <h1 class="text-center text-2xl text-gray-500 font-bold">Modifier Votre Profil</h1>
+                <h1 class="text-center text-2xl text-gray-500 font-bold">{{ $t('edit') }} {{ $t('your') }} {{ $t('profile') }}</h1>
                 <EditProfile :user="user" :detail="detail" :legalStatuses="legalStatuses" :languages="languages" :countries="countries" :activityAreas="activityAreas" :businessSizes="businessSizes" :businessTypes="businessTypes"/>
         </div>
 

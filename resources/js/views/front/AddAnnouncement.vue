@@ -103,7 +103,7 @@
                                     />
                                 </div>
 
-                                <div>
+                                <div v-if="announcement.category_announcement_id != 10">
                                     <label class="text-gray-700 dark:text-gray-200"
                                         >{{ $t('price') }}
                                         <span class="text-red-500">*</span>
@@ -117,7 +117,7 @@
                                     />
                                 </div>
 
-                                <div>
+                                <div v-if="announcement.category_announcement_id != 10">
                                     <label
                                         class="text-gray-700 dark:text-gray-200"
                                         for="es"
@@ -235,6 +235,8 @@ export default {
     created(){
         if (!localStorage.token) {
                 router.push({ name: "login", params: { redirect: 'not-login' }, });
+        }else if((JSON.parse(localStorage.user).type != 'particular') || (JSON.parse(localStorage.user).type != 'admin')){
+                router.push({ name: "home"});
         }
     },
     setup(props) {
@@ -257,11 +259,11 @@ export default {
             image: "",
             adress: "",
             website: "",
-            email: "",
+            email: user.email,
             phone: "",
-            category_announcement_id: 1,
-            currency_id: 1,
-            university_id: 1,
+            category_announcement_id: "",
+            currency_id: "",
+            university_id: "",
         });
         const { createAnnouncement, errors, loading } = useAnnouncements();
 
@@ -283,11 +285,11 @@ export default {
             formData.append("university_id", announcement.university_id);
 
             await createAnnouncement(formData);
-
+            if(errors.value == ''){
                 router.push({
-                    name: "home",
+                    name: "universities",
                 });
-
+            }
         };
         return {
             announcement,

@@ -15,6 +15,7 @@
                         name: 'add.post',
                         params: { type: 'article' },
                     }"
+                    v-if="(user.type != 'business1')"
                     class="flex justify-start items-center space-x-3 text-white bg-primary-blue rounded px-3 py-2"
                 >
                     <PlusCircleIcon class="w-6 h-6" />
@@ -180,11 +181,13 @@ export default {
     },
     setup(props) {
         const { posts, getPosts, loading, errors } = usePosts();
+        const user = JSON.parse(localStorage.user);
         onMounted(
             getPosts("article", localStorage.lang)
         );
 
         return {
+            user,
             loading,
             errors,
             posts,

@@ -87,6 +87,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           redirect: 'not-login'
         }
       });
+    } else if (JSON.parse(localStorage.user).type == 'business1' || JSON.parse(localStorage.user).type == 'particular') {
+      _router_index_js__WEBPACK_IMPORTED_MODULE_19__["default"].push({
+        name: "home"
+      });
     }
   },
   setup: function setup(props) {
@@ -150,7 +154,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       description: "",
       location: "",
       company_name: "",
-      company_email: "",
+      company_email: user.email,
       company_website: "",
       company_logo: "",
       min_price: "",
@@ -211,9 +215,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return createJobOffer(formData);
 
               case 26:
-                _router_index_js__WEBPACK_IMPORTED_MODULE_19__["default"].push({
-                  name: "home"
-                });
+                if (errors.value == '') {
+                  _router_index_js__WEBPACK_IMPORTED_MODULE_19__["default"].push({
+                    name: "jobs"
+                  });
+                }
 
               case 27:
               case "end":

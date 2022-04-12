@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-menu border-t-4 text-md font-semibold border-primary-blue px-4 pb-2 flex justify-between relative w-full z-40">
+    <div class="bg-menu border-t-4 text-md font-semibold border-primary-blue px-4 pb-2 flex justify-between relative w-full z-10">
         <nav class="hidden lg:flex">
             <router-link :to="{name:'home'}" class="text-white transition-colors duration-200 hover:bg-primary-blue px-3 py-2 flex justify-center items-start">
                 <HomeIcon class="h-6 w-6"/>

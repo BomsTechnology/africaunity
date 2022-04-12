@@ -77,7 +77,7 @@
                 <EmojiSadIcon class="h-16 w-16" />
                 <span class="text-2xl mt-2">{{ $t('no-content') }}</span>
             </div>
-            <h1 class="text-3xl text-primary-blue text-center py-2  font-bold">Les Annonces relatives à {{ university.name }}</h1>
+            <h1 class="text-3xl text-primary-blue text-center py-2  font-bold">{{ $t('ads-university') }} {{ university.name }}</h1>
             <div class="flex justify-end px-6">
                 <router-link
                     :to="{
@@ -91,10 +91,10 @@
             </div>
     <div class="py-8">
         <div
-                class="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-8 px-10 py-8"
+                class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8 px-10 py-8"
                 v-if="announcements.length != 0"
             >           
-            <div class="max-w-lg mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800" v-for="announcement in announcements"
+            <div class="overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800" v-for="announcement in announcements"
                                             :key="announcement.id">
                 
                 <router-link
@@ -126,8 +126,8 @@
                         {{ announcement.description.substring(0, 19) + "..." }}
                     </p>
                 </div>
-                <div class="flex items-center justify-between px-4 py-2 bg-gray-900">
-                    <h1 class="text-lg font-bold text-white">
+                <div class="flex items-center justify-between px-4 py-2 bg-gray-900 h-10">
+                    <h1 class="text-lg font-bold text-white" v-if="announcement.price && announcement.price != 'null'">
                         {{ announcement.price }} {{ announcement.currency.symbol }}
                     </h1>
                     <div

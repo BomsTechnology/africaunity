@@ -104,7 +104,7 @@
                                     />
                                 </div>
 
-                                <div>
+                                <div v-if="announcement.category_announcement_id != 10">
                                     <label class="text-gray-700 dark:text-gray-200"
                                         >{{ $t('price') }}
                                         <span class="text-red-500">*</span>
@@ -118,7 +118,7 @@
                                     />
                                 </div>
 
-                                <div>
+                                <div v-if="announcement.category_announcement_id != 10">
                                     <label
                                         class="text-gray-700 dark:text-gray-200"
                                         for="es"
@@ -269,9 +269,11 @@ export default {
             formData.append('_method', 'PUT');
 
             await updateAnnouncement(formData, props.id);
+            if(errors.value == ''){
                 router.push({
-                    name: "home",
-            });
+                    name: "universities",
+                });
+            }
         };
         return {
             announcement,

@@ -594,6 +594,8 @@ export default {
     created(){
         if (!localStorage.token) {
                 router.push({ name: "login", params: { redirect: 'not-login' }, });
+        }else if((JSON.parse(localStorage.user).type == 'business1') || (JSON.parse(localStorage.user).type == 'particular')){
+                router.push({ name: "home"});
         }
     },
     setup(props) {
@@ -633,7 +635,7 @@ export default {
             description: "",
             location: "",
             company_name: "",
-            company_email: "",
+            company_email: user.email,
             company_website: "",
             company_logo: "",
             min_price: "",
@@ -684,11 +686,11 @@ export default {
             formData.append("activityAreas", jobOffer.activityAreas);
 
             await createJobOffer(formData);
-
+            if(errors.value == ''){
                 router.push({
-                    name: "home",
+                    name: "jobs",
                 });
-
+            }
         };
         return {
             jobOffer,

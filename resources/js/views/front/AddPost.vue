@@ -154,6 +154,8 @@ export default {
     created(){
         if (!localStorage.token) {
                 router.push({ name: "login", params: { redirect: 'not-login' }, });
+        }else if((JSON.parse(localStorage.user).type == 'business1')){
+                router.push({ name: "home"});
         }
     },
     setup(props) {

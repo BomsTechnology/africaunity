@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\BusinessTypeController;
 use App\Http\Controllers\Api\CategoryAnnouncementController;
 use App\Http\Controllers\Api\CityController;
 use App\Http\Controllers\Api\CommentController;
+use App\Http\Controllers\Api\ContactController;
 use App\Http\Controllers\Api\ContinentController;
 use App\Http\Controllers\Api\CountryController;
 use App\Http\Controllers\Api\CurrencyController;
@@ -44,6 +45,8 @@ Route::get("/ministries-home", [MinistryController::class,'ministry_home']);
 
 Route::get('verify-email/{id}/{hash}', [EmailVerificationController::class, 'verify'])->name('verification.verify');
 Route::post('email/verification-notification', [EmailVerificationController::class, 'sendVerificationEmail']);
+
+Route::post('send-contact', [ContactController::class, 'store'])->name('contact');
 
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function(){
     

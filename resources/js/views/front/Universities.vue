@@ -107,18 +107,19 @@
                     :to="{
                         name: 'add.ads',
                     }"
+                    v-if="(user.type == 'particular')"
                     class="flex justify-start items-center space-x-3 text-white bg-primary-blue rounded px-3 py-2"
                 >
                     <PlusCircleIcon class="w-6 h-6" />
                     <p class="text-base leading-4">{{ $t('add') }} {{ $t('ads') }}</p>
                 </router-link>
             </div>
-    <div class=" py-8 px-16">
+    <div class=" py-8 px-10">
         <div
-                class="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-8 px-10 py-8"
+                class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8 px-10 py-8"
                 v-if="announcements.length != 0"
             >           
-            <div class="max-w-lg mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800" v-for="announcement in announcements"
+            <div class="overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800" v-for="announcement in announcements"
                                             :key="announcement.id">
                 <router-link
                                 :to="{
@@ -149,8 +150,8 @@
                         {{ announcement.description.substring(0, 19) + "..." }}
                     </p>
                 </div>
-                <div class="flex items-center justify-between px-4 py-2 bg-gray-900">
-                    <h1 class="text-lg font-bold text-white">
+                <div class="flex items-center justify-between px-4 py-2 bg-gray-900 h-10">
+                    <h1 class="text-lg font-bold text-white" v-if="announcement.price && announcement.price != 'null'">
                         {{ announcement.price }} {{ announcement.currency.symbol }}
                     </h1>
                     <div
@@ -211,12 +212,14 @@ export default {
         const { universities, getUniversities, loading, errors } =
             useUniversities();
         const { announcements, getAnnouncements } = useAnnouncements();
+        const user = JSON.parse(localStorage.user);
             onMounted(
                 getUniversities(),
                 getAnnouncements()
                 );
 
             return {
+                user,
             universities,
             announcements,
             loading,

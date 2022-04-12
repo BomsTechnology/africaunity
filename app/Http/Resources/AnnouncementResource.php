@@ -31,7 +31,7 @@ class AnnouncementResource extends JsonResource
             'adress' => $this->adress,
             'website' => $this->website,
             'user' => User::find($this->user_id),
-            'currency' => new CurrencyResource(Currency::find($this->currency_id)),
+            'currency' => $this->currency_id != null ? new CurrencyResource(Currency::find($this->currency_id)) : '',
             'category' => new CategoryAnnouncementResource(CategoryAnnouncement::find($this->category_announcement_id)),
             'university' => new UniversityResource(University::find($this->university_id)),
             'date' => $this->created_at->format('Y-m-d'),

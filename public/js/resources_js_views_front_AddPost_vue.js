@@ -75,6 +75,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           redirect: 'not-login'
         }
       });
+    } else if (JSON.parse(localStorage.user).type == 'business1') {
+      _router_index_js__WEBPACK_IMPORTED_MODULE_10__["default"].push({
+        name: "home"
+      });
     }
   },
   setup: function setup(props) {

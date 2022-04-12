@@ -128,26 +128,26 @@
         </div>
         <div class="lg:w-[30%] bg-white py-5">
             <div class="shadow rounded-md py-5 px-10 space-y-3 ">
-                <h1 class="text-2xl text-primary-blue  font-bold">Contact Détails</h1>
+                <h1 class="text-2xl text-primary-blue  font-bold">{{ $t('details') }}</h1>
                 <div class="text-gray-500 flex items-center space-x-2 "> <LocationMarkerIcon class="h-8 w-8" /> <span>{{ announcement.university.name }}</span></div>
                 <div class="text-gray-500 flex items-center space-x-2 ">  <MailIcon class="h-8 w-8" /> <span>{{ announcement.email }}</span> </div>
                 <div class="text-gray-500 flex items-center space-x-2 ">  <PhoneIcon class="h-8 w-8" /> <span>{{ announcement.phone }} </span> </div>
                 <div class="text-gray-500 flex items-center space-x-2 " v-if="announcement.website != 'null'"> <GlobeIcon class=" h-8 w-8" /> <span>{{ announcement.website }} </span></div>
                 <div class="text-gray-500 flex items-center space-x-2 " v-if="announcement.adress != 'null'">   <BriefcaseIcon class="h-8 w-8" /> <span>{{ announcement.adress }} </span></div>
-                <div class="text-gray-500 flex items-center space-x-2 ">   <CashIcon class=" h-8 w-8" /> <span>{{ announcement.price }} {{ announcement.currency.symbol }} </span></div>
+                <div class="text-gray-500 flex items-center space-x-2 " v-if="announcement.adress != 'null'">   <CashIcon class=" h-8 w-8" /> <span>{{ announcement.price }} {{ announcement.currency.symbol }} </span></div>
             </div>
             <div class="shadow rounded-md py-5 mt-4">
                 <Error v-if="errors != ''">{{ errors }}</Error>
                     <form @submit.prevent="">
                         <div class="px-8">
-                            <label class="text-xl text-primary-blue  font-bold" for="pt">Contactez le lanceur d'annonce <span class="text-red-500">*</span></label>
+                            <label class="text-xl text-primary-blue  font-bold" for="pt">{{ $t('contact-ads') }}  <span class="text-red-500">*</span></label>
                             <textarea  required type="text"  id="pt" class="block w-full px-4 py-2 mt-2 text-gray-700 h-60 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:ring-primary-blue focus:border-primary-blue focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
                             </textarea>
                             <div class="mt-6">
                                 <input type="hidden">
-                                <button v-if="loadingC == 0" type="submit" class="px-6 py-4 text-md leading-5 w-full text-white rounded bg-primary-blue focus:outline-none">Envoyer</button>
+                                <button v-if="loadingC == 0" type="submit" class="px-6 py-4 text-md leading-5 w-full text-white rounded bg-primary-blue focus:outline-none">{{ $t('send') }}</button>
                                 <button v-if="loadingC == 1" type="submit" disabled class="px-6 py-4 text-md leading-5 flex justify-center items-center w-full text-white rounded bg-blue-300 focus:outline-none">
-                                    {{ $t('save') }}...
+                                    {{ $t('send') }}...
                                     <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                                             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
