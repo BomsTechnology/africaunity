@@ -83,7 +83,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   setup: function setup(props) {
     var types = ["article", "propau"];
-    var user = JSON.parse(localStorage.user);
+    var user = localStorage.user ? JSON.parse(localStorage.user) : '';
 
     var _useContinents = (0,_services_continentServices_js__WEBPACK_IMPORTED_MODULE_6__["default"])(),
         continents = _useContinents.continents,

@@ -240,7 +240,7 @@ export default {
         }
     },
     setup(props) {
-        const user = JSON.parse(localStorage.user);
+        const user = localStorage.user ? JSON.parse(localStorage.user) : '';
         const { categoryAnnouncements, getCategoryAnnouncements } = usecategoryAnnouncements();
         const { currencies, getCurrencies } = useCurrencies();
         const { universities, getUniversities } = useUniversities();

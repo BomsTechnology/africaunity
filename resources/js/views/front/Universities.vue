@@ -212,7 +212,7 @@ export default {
         const { universities, getUniversities, loading, errors } =
             useUniversities();
         const { announcements, getAnnouncements } = useAnnouncements();
-        const user = JSON.parse(localStorage.user);
+        const user = localStorage.user ? JSON.parse(localStorage.user) : '';
             onMounted(
                 getUniversities(),
                 getAnnouncements()

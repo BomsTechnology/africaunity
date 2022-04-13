@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CommentRequest;
 use App\Http\Resources\CommentResource;
 use App\Models\Comment;
+use App\Models\Post;
+use App\Models\User;
+use App\Notifications\NewCommentNotification;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -45,6 +48,12 @@ class CommentController extends Controller
     public function store(CommentRequest $request)
     {
         $comment = Comment::create($request->validated());
+
+        $post = Post::find($request->post_id);
+        $authorUser = User::find($post->user_id);
+        $commentUser = User::find($request->user_id);
+
+        $authorUser->notify(new NewCommentNotification($post, $commentUser, $request->content));
 
         return new CommentResource($comment);
     }

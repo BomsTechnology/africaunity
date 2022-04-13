@@ -123,14 +123,10 @@ export default {
         EmojiSadIcon,
         CashIcon
     },
-    created(){
-        if (!localStorage.token) {
-                router.push({ name: "login", params: { redirect: 'not-login' }, });
-        }
-    },
+
     setup(props) {
         const { jobOffers, getJobOffersFront, loading, errors } = useJobOffers();
-        const user = JSON.parse(localStorage.user);
+        const user = localStorage.user ? JSON.parse(localStorage.user) : '';
         onMounted(getJobOffersFront());
 
         return{

@@ -8,7 +8,7 @@
                 <SwiperSlide class="relative" v-for="post in posts" :key="post.id"> 
                    <router-link  v-if="!token"
                                 :to="{
-                                    name: 'login',
+                                    name: 'login', params: { redirect: 'not-login' },
                                 }" class="text-primary-blue">
                                 {{ post.title }}
                                 </router-link>

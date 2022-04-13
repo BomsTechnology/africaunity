@@ -4,7 +4,7 @@
             <SwiperSlide class="relative" v-for="post in posts" :key="post.id">
                 <router-link  v-if="!token"
                                 :to="{
-                                    name: 'login',
+                                    name: 'login', params: { redirect: 'not-login' },
                                 }">                
                 <div class="object-cover absolute w-full h-full text-white space-y-1 px-8 py-6 flex flex-col justify-end bg-black/25">
                     <div>
@@ -53,7 +53,7 @@
             <div class="relative h-[230px]"  v-for="post in posts" :key="post.id">
                 <router-link  v-if="!token"
                                 :to="{
-                                    name: 'login',
+                                    name: 'login', params: { redirect: 'not-login' },
                                 }">
                 <div class="object-cover absolute w-full h-full text-white space-y-1 p-4 flex flex-col justify-end bg-black/25">
                     <div><a href="#" class="text-md hover:text-primary-blue"> {{ post.title }} </a></div>

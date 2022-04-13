@@ -160,7 +160,7 @@ export default {
     },
     setup(props) {
         const types = ["article", "propau"];
-        const user = JSON.parse(localStorage.user);
+        const user = localStorage.user ? JSON.parse(localStorage.user) : '';
         const { continents, getContinents } = useContinents();
         const { zones, getZones } = useZones();
         const { countries, getCountries } = useCountries();

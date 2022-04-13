@@ -94,7 +94,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   setup: function setup(props) {
-    var user = JSON.parse(localStorage.user);
+    var user = localStorage.user ? JSON.parse(localStorage.user) : '';
 
     var _useCurrencies = (0,_services_currencyServices_js__WEBPACK_IMPORTED_MODULE_6__["default"])(),
         currencies = _useCurrencies.currencies,

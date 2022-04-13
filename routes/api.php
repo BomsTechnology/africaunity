@@ -56,6 +56,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function(){
     
     Route::apiResource('posts', PostController::class);
     Route::get("/posts2/{post}", [PostController::class,'show2']);
+    Route::post("/post-report", [PostController::class,'post_report']);
 
     Route::apiResource('users', UserController::class);
 
@@ -101,6 +102,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function(){
     Route::get('jobOffers-front', [JobOfferController::class, 'jobOffers_front']);
     Route::get('jobOffers-mark-filled/{jobOffer}', [JobOfferController::class, 'jobOffers_mark']);
     Route::get("/jobOffers2/{jobOffer}", [JobOfferController::class,'show2']);
+    Route::post("/jobOffers-apply", [JobOfferController::class,'jobOffers_apply']);
 
     Route::apiResource('announcements', AnnouncementController::class);
     Route::get('announcements-university/{id}', [AnnouncementController::class, 'announcements_university']);

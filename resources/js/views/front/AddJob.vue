@@ -599,7 +599,7 @@ export default {
         }
     },
     setup(props) {
-        const user = JSON.parse(localStorage.user);
+        const user = localStorage.user ? JSON.parse(localStorage.user) : '';
         const { currencies, getCurrencies } = useCurrencies();
         const { languages, getLanguages } = useLanguages();
         const { activityAreas, getActivityAreas } = useActivityAreas();

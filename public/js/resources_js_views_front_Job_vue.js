@@ -37,16 +37,6 @@ __webpack_require__.r(__webpack_exports__);
     EmojiSadIcon: _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_8__["default"],
     CashIcon: _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_9__["default"]
   },
-  created: function created() {
-    if (!localStorage.token) {
-      _router__WEBPACK_IMPORTED_MODULE_4__["default"].push({
-        name: "login",
-        params: {
-          redirect: 'not-login'
-        }
-      });
-    }
-  },
   setup: function setup(props) {
     var _useJobOffers = (0,_services_jobOfferServices_js__WEBPACK_IMPORTED_MODULE_2__["default"])(),
         jobOffers = _useJobOffers.jobOffers,
@@ -54,7 +44,7 @@ __webpack_require__.r(__webpack_exports__);
         loading = _useJobOffers.loading,
         errors = _useJobOffers.errors;
 
-    var user = JSON.parse(localStorage.user);
+    var user = localStorage.user ? JSON.parse(localStorage.user) : '';
     (0,vue__WEBPACK_IMPORTED_MODULE_3__.onMounted)(getJobOffersFront());
     return {
       user: user,

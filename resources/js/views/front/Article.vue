@@ -190,7 +190,7 @@ export default {
     },
     setup(props) {
         const { posts, getPosts, loading, errors } = usePosts();
-        const user = JSON.parse(localStorage.user);
+        const user = localStorage.user ? JSON.parse(localStorage.user) : '';
         onMounted(
             getPosts("article", localStorage.lang)
         );

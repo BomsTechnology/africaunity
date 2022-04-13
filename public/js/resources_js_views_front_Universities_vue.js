@@ -50,7 +50,7 @@ __webpack_require__.r(__webpack_exports__);
         announcements = _useAnnouncements.announcements,
         getAnnouncements = _useAnnouncements.getAnnouncements;
 
-    var user = JSON.parse(localStorage.user);
+    var user = localStorage.user ? JSON.parse(localStorage.user) : '';
     (0,vue__WEBPACK_IMPORTED_MODULE_2__.onMounted)(getUniversities(), getAnnouncements());
     return {
       user: user,

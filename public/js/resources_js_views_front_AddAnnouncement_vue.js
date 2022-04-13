@@ -80,7 +80,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   setup: function setup(props) {
-    var user = JSON.parse(localStorage.user);
+    var user = localStorage.user ? JSON.parse(localStorage.user) : '';
 
     var _usecategoryAnnouncem = (0,_services_categoryAnnouncementServices_js__WEBPACK_IMPORTED_MODULE_6__["default"])(),
         categoryAnnouncements = _usecategoryAnnouncem.categoryAnnouncements,

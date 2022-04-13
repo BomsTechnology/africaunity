@@ -88,7 +88,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         getUniversity2 = _useUniversities.getUniversity2,
         loading = _useUniversities.loading;
 
-    var user = JSON.parse(localStorage.user);
+    var user = localStorage.user ? JSON.parse(localStorage.user) : '';
 
     var _useAnnouncements = (0,_services_announcementServices_js__WEBPACK_IMPORTED_MODULE_6__["default"])(),
         announcements = _useAnnouncements.announcements,

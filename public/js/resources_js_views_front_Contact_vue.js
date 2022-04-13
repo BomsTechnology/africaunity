@@ -64,7 +64,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     });
 
     var checkAbout = function checkAbout() {
-      if (contact.about == 5) {
+      if (contact.about == 4) {
         show_city.value = true;
       }
     };

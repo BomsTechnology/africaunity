@@ -57,7 +57,7 @@ __webpack_require__.r(__webpack_exports__);
         loading = _usePosts.loading,
         errors = _usePosts.errors;
 
-    var user = JSON.parse(localStorage.user);
+    var user = localStorage.user ? JSON.parse(localStorage.user) : '';
     (0,vue__WEBPACK_IMPORTED_MODULE_1__.onMounted)(getPosts("article", localStorage.lang));
     return {
       user: user,

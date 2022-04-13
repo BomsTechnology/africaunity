@@ -265,7 +265,7 @@ const routes = [
     },
     {
         path: '/setting-account/:name/:id',
-        name: 'setting-account',
+        name: 'setting.account',
         props: true,
         component: SettingAccount,
         meta:{

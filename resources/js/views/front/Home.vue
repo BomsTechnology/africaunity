@@ -34,7 +34,7 @@
                             >
                             <router-link  v-if="!token"
                                 :to="{
-                                    name: 'login',
+                                    name: 'login', params: { redirect: 'not-login' },
                                 }"> <img
                                         :src="article.image"
                                         alt=""
@@ -92,7 +92,7 @@
                                         <div>
                                             <router-link  v-if="!token"
                                 :to="{
-                                    name: 'login',
+                                    name: 'login', params: { redirect: 'not-login' },
                                 }"> {{ article.title }} </router-link>
                                             <router-link v-else
                                                 :to="{
@@ -155,7 +155,7 @@
                             >
                             <router-link  v-if="!token"
                                 :to="{
-                                    name: 'login',
+                                    name: 'login', params: { redirect: 'not-login' },
                                 }" class=" w-36"> <img
                                         :src="article.image"
                                         alt=""
@@ -178,7 +178,7 @@
                                     <div>
                                         <router-link  v-if="!token"
                                 :to="{
-                                    name: 'login',
+                                    name: 'login', params: { redirect: 'not-login' },
                                 }"> {{ article.title }} </router-link>
                                             <router-link v-else
                                                 :to="{
@@ -248,7 +248,7 @@
                                 >
                                     <router-link  v-if="!token"
                                 :to="{
-                                    name: 'login',
+                                    name: 'login', params: { redirect: 'not-login' },
                                 }"> <img
                                         :src="article.image"
                                         alt=""
@@ -308,7 +308,7 @@
                                             <div>
                                                 <router-link  v-if="!token"
                                 :to="{
-                                    name: 'login',
+                                    name: 'login', params: { redirect: 'not-login' },
                                 }"> {{ article.title }} </router-link>
                                             <router-link v-else
                                                 :to="{
@@ -377,7 +377,7 @@
                                     >
                                     <router-link  v-if="!token"
                                 :to="{
-                                    name: 'login',
+                                    name: 'login', params: { redirect: 'not-login' },
                                 }" class=" w-36"> <img
                                         :src="article.image"
                                         alt=""
@@ -400,7 +400,7 @@
                                             <div>
                                                 <router-link  v-if="!token"
                                 :to="{
-                                    name: 'login',
+                                    name: 'login', params: { redirect: 'not-login' },
                                 }"> {{ article.title }} </router-link>
                                             <router-link v-else
                                                 :to="{
@@ -471,7 +471,7 @@
                                 >
                                    <router-link  v-if="!token"
                                 :to="{
-                                    name: 'login',
+                                    name: 'login', params: { redirect: 'not-login' },
                                 }"> <img
                                         :src="article.image"
                                         alt=""
@@ -531,7 +531,7 @@
                                             <div>
                                                 <router-link  v-if="!token"
                                 :to="{
-                                    name: 'login',
+                                    name: 'login', params: { redirect: 'not-login' },
                                 }"> {{ article.title }} </router-link>
                                             <router-link v-else
                                                 :to="{
@@ -600,7 +600,7 @@
                                     >
                                     <router-link  v-if="!token"
                                 :to="{
-                                    name: 'login',
+                                    name: 'login', params: { redirect: 'not-login' },
                                 }" class=" w-36"> <img
                                         :src="article.image"
                                         alt=""
@@ -622,7 +622,7 @@
                                             <div>
                                                 <router-link  v-if="!token"
                                 :to="{
-                                    name: 'login',
+                                    name: 'login', params: { redirect: 'not-login' },
                                 }"> {{ article.title }} </router-link>
                                             <router-link v-else
                                                 :to="{
@@ -695,7 +695,7 @@
                             >
                                 <router-link  v-if="!token"
                                 :to="{
-                                    name: 'login',
+                                    name: 'login', params: { redirect: 'not-login' },
                                 }"> <img
                                         :src="article.image"
                                         alt=""
@@ -753,7 +753,7 @@
                                         <div>
                                             <router-link  v-if="!token"
                                 :to="{
-                                    name: 'login',
+                                    name: 'login', params: { redirect: 'not-login' },
                                 }"> {{ article.title }} </router-link>
                                             <router-link v-else
                                                 :to="{
@@ -816,7 +816,7 @@
                             >
                             <router-link  v-if="!token"
                                 :to="{
-                                    name: 'login',
+                                    name: 'login', params: { redirect: 'not-login' },
                                     
                                 }" class=" w-36"> <img
                                         :src="article.image"

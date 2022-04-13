@@ -7,6 +7,8 @@ use App\Http\Requests\PostRequest;
 use App\Http\Resources\PostResource;
 use App\Http\Resources\PostResource2;
 use App\Models\Post;
+use App\Models\User;
+use App\Notifications\ReportNotification;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -28,6 +30,30 @@ class PostController extends Controller
             ['type',$type],
             ['language',$lang]
             ])->orderBy('id', 'desc')->get());
+    }
+
+    public function post_report(Request $request)
+    {
+        $request->validate([
+            'user' => 'required',
+            'post' => 'required',
+            'content' => 'required|string',
+        ]);
+
+        $admins = User::where('type', 'admin')->get();
+        
+        $post = Post::find($request->post);
+        $userReport = User::find($request->user);
+
+        foreach($admins as $admin){
+            $admin->notify(new ReportNotification($post, $userReport , $request->content));
+        }
+
+        $response = [
+            'status'=>true,
+            'message'=>'Report Send successfully!',
+        ];
+        return response($response,201);
     }
 
     public function post_user($user)

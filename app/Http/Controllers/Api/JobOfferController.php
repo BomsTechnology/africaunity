@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\JobOfferResource;
 use App\Http\Resources\JobOfferResource2;
 use App\Models\JobOffer;
+use App\Models\User;
+use App\Notifications\ApplyJobNotification;
 use Illuminate\Http\Request;
 
 class JobOfferController extends Controller
@@ -28,6 +30,40 @@ class JobOfferController extends Controller
     public function jobOffers_user($user)
     {
         return JobOfferResource::collection(JobOffer::where('user_id',$user)->orderBy('id', 'desc')->get());
+    }
+
+    public function jobOffers_apply(Request $request)
+    {
+        $request->validate([
+            'user' => 'required',
+            'job' => 'required',
+            'message' => 'required|string',
+            'email' => 'required|email',
+            'name' => 'string|required',
+            'cv' => 'required|mimes:pdf'
+        ]);
+
+        $job = JobOffer::find($request->job);
+        $applyUser = User::find($request->user);
+        $authorUser = User::find($job->user_id);
+
+        $filename = '/uploads/'.$job->title.'_'.$applyUser->firstname.'_'.time().'.'. $request->file('cv')->extension();
+        $request->file('cv')->storePubliclyAs('public', $filename);       
+
+
+        $data = [
+            'name' => $request->name,
+            'message' => $request->message,
+            'email' => $request->email,
+            'cv' => $filename,
+        ];
+
+        $authorUser->notify(new ApplyJobNotification($job, $data));
+        $response = [
+            'status'=>true,
+            'message'=>'Apply Send successfully!',
+        ];
+        return response($response,201);
     }
 
     /**

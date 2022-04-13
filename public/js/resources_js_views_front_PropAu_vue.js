@@ -132,7 +132,7 @@ __webpack_require__.r(__webpack_exports__);
         loading = _usePosts.loading,
         errors = _usePosts.errors;
 
-    var user = JSON.parse(localStorage.user);
+    var user = localStorage.user ? JSON.parse(localStorage.user) : '';
     (0,vue__WEBPACK_IMPORTED_MODULE_3__.onMounted)(function () {
       if (!localStorage.token) {
         _router__WEBPACK_IMPORTED_MODULE_4__["default"].push({

@@ -88,7 +88,7 @@ export default {
         });
         
         const checkAbout = () => {
-            if(contact.about == 5){
+            if(contact.about == 4){
                 show_city.value = true;
             }
         };

@@ -199,7 +199,7 @@ export default {
     },
     setup(props) {
         const { university, getUniversity2, loading } = useUniversities();
-        const user = JSON.parse(localStorage.user);
+        const user = localStorage.user ? JSON.parse(localStorage.user) : '';
         const { announcements, getAnnouncementsUniversity} = useAnnouncements();
         onMounted(
             async () => {

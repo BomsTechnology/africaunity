@@ -23361,7 +23361,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             return [!$setup.token ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_router_link, {
               key: 0,
               to: {
-                name: 'login'
+                name: 'login',
+                params: {
+                  redirect: 'not-login'
+                }
               }
             }, {
               "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -23481,7 +23484,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }, [!$setup.token ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_router_link, {
       key: 0,
       to: {
-        name: 'login'
+        name: 'login',
+        params: {
+          redirect: 'not-login'
+        }
       }
     }, {
       "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -23932,7 +23938,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             return [!$setup.token ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_router_link, {
               key: 0,
               to: {
-                name: 'login'
+                name: 'login',
+                params: {
+                  redirect: 'not-login'
+                }
               },
               "class": "text-primary-blue"
             }, {
@@ -25208,7 +25217,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }, [index === 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_8, [!$setup.token ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_router_link, {
       key: 0,
       to: {
-        name: 'login'
+        name: 'login',
+        params: {
+          redirect: 'not-login'
+        }
       }
     }, {
       "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -25265,7 +25277,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [!$setup.token ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_router_link, {
       key: 0,
       to: {
-        name: 'login'
+        name: 'login',
+        params: {
+          redirect: 'not-login'
+        }
       }
     }, {
       "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -25340,7 +25355,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }, [index !== 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_25, [!$setup.token ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_router_link, {
       key: 0,
       to: {
-        name: 'login'
+        name: 'login',
+        params: {
+          redirect: 'not-login'
+        }
       },
       "class": "w-36"
     }, {
@@ -25385,7 +25403,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     , ["to"])), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [!$setup.token ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_router_link, {
       key: 0,
       to: {
-        name: 'login'
+        name: 'login',
+        params: {
+          redirect: 'not-login'
+        }
       }
     }, {
       "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -25453,7 +25474,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }, [index === 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_41, [!$setup.token ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_router_link, {
       key: 0,
       to: {
-        name: 'login'
+        name: 'login',
+        params: {
+          redirect: 'not-login'
+        }
       }
     }, {
       "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -25510,7 +25534,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [!$setup.token ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_router_link, {
       key: 0,
       to: {
-        name: 'login'
+        name: 'login',
+        params: {
+          redirect: 'not-login'
+        }
       }
     }, {
       "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -25585,7 +25612,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }, [index !== 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_58, [!$setup.token ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_router_link, {
       key: 0,
       to: {
-        name: 'login'
+        name: 'login',
+        params: {
+          redirect: 'not-login'
+        }
       },
       "class": "w-36"
     }, {
@@ -25630,7 +25660,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     , ["to"])), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_61, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [!$setup.token ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_router_link, {
       key: 0,
       to: {
-        name: 'login'
+        name: 'login',
+        params: {
+          redirect: 'not-login'
+        }
       }
     }, {
       "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -25698,7 +25731,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }, [index === 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_73, [!$setup.token ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_router_link, {
       key: 0,
       to: {
-        name: 'login'
+        name: 'login',
+        params: {
+          redirect: 'not-login'
+        }
       }
     }, {
       "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -25755,7 +25791,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [!$setup.token ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_router_link, {
       key: 0,
       to: {
-        name: 'login'
+        name: 'login',
+        params: {
+          redirect: 'not-login'
+        }
       }
     }, {
       "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -25830,7 +25869,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }, [index !== 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_90, [!$setup.token ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_router_link, {
       key: 0,
       to: {
-        name: 'login'
+        name: 'login',
+        params: {
+          redirect: 'not-login'
+        }
       },
       "class": "w-36"
     }, {
@@ -25875,7 +25917,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     , ["to"])), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_93, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [!$setup.token ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_router_link, {
       key: 0,
       to: {
-        name: 'login'
+        name: 'login',
+        params: {
+          redirect: 'not-login'
+        }
       }
     }, {
       "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -25940,7 +25985,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }, [index === 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_105, [!$setup.token ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_router_link, {
       key: 0,
       to: {
-        name: 'login'
+        name: 'login',
+        params: {
+          redirect: 'not-login'
+        }
       }
     }, {
       "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -25997,7 +26045,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [!$setup.token ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_router_link, {
       key: 0,
       to: {
-        name: 'login'
+        name: 'login',
+        params: {
+          redirect: 'not-login'
+        }
       }
     }, {
       "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -26072,7 +26123,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }, [index !== 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_122, [!$setup.token ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_router_link, {
       key: 0,
       to: {
-        name: 'login'
+        name: 'login',
+        params: {
+          redirect: 'not-login'
+        }
       },
       "class": "w-36"
     }, {
@@ -26709,7 +26763,7 @@ var routes = [// front routes
   }
 }, {
   path: '/setting-account/:name/:id',
-  name: 'setting-account',
+  name: 'setting.account',
   props: true,
   component: SettingAccount,
   meta: {
@@ -66757,7 +66811,7 @@ module.exports = JSON.parse('{"lastest":"Reciente","fr":"Français","en":"Englis
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"lastest":"Récents","fr":"Français","en":"English","es":"Español","pt":"Português","articles":"Articles","profile":"Profil","propau":"PropAU","univerities":"Universités","contact":"Contact","jobs":"Jobs","particular":"Particulier","establishment":"Etablissement","ip":"Institutions Politique","login":"Se Connecter","register":"S\'inscrire","about-title":"A Propos","about-text":"AfricaUnity est un réseau social professionnel et un groupe de réflexion numérique pour le développement de l\'Afrique et de l\'Amérique latine. A travers des articles écrits proposés aux ministères, institutions et organisations, les contributeurs d\'AfricaUnity participent à l\'amélioration des différents Etats. Les participants ont la possibilité d\'interagir sur n\'importe quel sujet de manière éthique et courtoise. C\'est une plateforme sur laquelle vous trouverez de nombreux CV et présentations d\'organismes publics et privés.","filter-article":"Filtre Articles","filter-propau":"Filtre PropAU","filter":"Filtrer","key-words":"Mot Clés","continent":"Continent","zoned":"Zone","country":"Pays","ministry":"Ministère","search":"Recherche","recent-posts":"Postes Récents","video":"Vidéo","presentation":"Présentation","language":"Langue","all":"","full-name":"Nom Complet","firstname":"Nom","lastname":"Prénom","adresse":"Adresse","login-welcome-msg":"Bienvenue sur AfricaUnity","login-desc":"Connectez-vous à votre compte et interagissez dans l’esprit de courtoisie de la communauté. N’hésitez pas à nous contacter à tout moment si vous rencontrez des difficultés quelconques.","no-signup":"Vous n\'avez pas encore de compte ?","already-signup":"Vous avez déja un compte ?","email":"E-mail","password":"Mot de passe","confirm-password":"Confirmer le Mot de passe","password-forgot":"Mot de passe oublié","show-confidentail-politic":"Afficher la politique de confidentialité","confirm-confidentail-politic":"Confirmer que vous acceptez notre politique de confidentialité","create-account":"Créer un compte","pack":"Pack","account":"Mon Compte","create-other-account":"Vous voulez plutot créer un compte","business":"Business","politic":"Politique","register-free-desc":"Nous sommes heureux de vous avoir dans cette communauté dédiée à l’émergence de l’Afrique et de l’Amérique Latine. Remplissez les champs pour créer votre compte gratuitement et accédez aux avantages spéciaux des membres.","register-desc":"Merci de créer un compte qui sied à votre statut et bénéficiez des nombreux avantages","register-pay-desc":"Nous sommes heureux de vous avoir dans cette communauté dédiée à l’émergence de l’Afrique et de l’Amérique Latine. Remplissez les champs pour créer votre compte et accédez aux avantages spéciaux des membres.","social-reason":"Raison Social","denomination":"Dénomination","plan-desc1":"Page de présentation","plan-desc2":"Rédiger des articles","plan-desc3":"Rédiger des PropAU","plan-desc4":"Commenter les publications","plan-desc5":"Rechercher des jobs","plan-desc6":"Poster des annonces","plan-desc7":"Augmenter votre visibilité","plan-desc8":"Poster des jobs","logout":"Déconnexion","corporation":"Personne Morale","physical-person":"Personne physique","free":"Gratuit","year":"An","unlimited":"Illimité","essential-features":"Essential Features","advanced-features":"Advanced Features","add":"Ajouter un","edit":"Editer un","your":"Votre","content":"Contenu","thumbnails":"Image mise en avant","title":"Titre","save":"Enregistrer","comments":"Commentaires","my-ads":"Mes Annonces","my-jobs":"Mes offres d\'emploi","add-desc-1":"sera publié dans la langue actuelle du site","select-lang":"Veuillez sélectionner la langue de publication","good-msg-post":"Merci de garder à l\'esprit que la courtoisie est le maitre mot de la communauté","read-more":"Lire la suite","no-content":"Pas de contenu","ads":"Annonce","university":"Université","category":"Catégorie","contact-phone":"Numéro de Contact","contact-email":"Adresse E-mail de Contact","price":"Prix","currency":"Devise","website":"Site Web","description":"Description","city":"Ville","location":"Localisation","company-name":"Nom de l\'entreprise","company-logo":"Logo de l\'entreprise","company-website":"Site Web de l\'entreprise","company-email":"Adresse E-mail de l\'entreprise","work-mode":"Mode de travail","work-dept":"Département de travail","offer-type":"Type d\'offre","y-experience":"Année d\'experience","activity-area":"Secteur d\'activité","level-study":"Niveau d\'étude","size-company":"Taille de l\'entreprise","type-company":"Type d\'entreprise","size-institution":"Taille de l\'institution","status":"Statut","rsearch-p":"Recherche de partenaire","o-activity":"Autres Activités","birth-date":"Date de naissance","create-date":"Date de création","legal-status":"Forme juridique","speak-language":"Langues parlées","sex":"Sexe","male":"Homme","female":"Femme","perimetre":"Périmètre","phone-number":"Numéro de téléphone","native-country":"Pays d\'origine","residence-country":"Pays de Résidence","social-country":"Pays du siège social","social-object":"Objet Social","name-responsable":"Nom & Prénom du Responsable","goal-attribution":"But - Attribution","details":"Détails","ads-university":"Les Annonces relatives à","contact-ads":"Contactez le lanceur d\'annonce","actif":"Actif","no-actif":"Non Actif","diplome-certification":"Diplôme et Certification","contact-about-1":"Invitation à une conférence","contact-about-2":"Proposition commerciale","contact-about-3":"Proposition de collaboration","contact-about-4":"Proposer une université","contact-about-5":"Autres","send":"Envoyer","report":"Signaler","the-post":"Cette publication","contact-msg":"Pour nous contacter, veuillez remplir le formulaire ci-dessous","report-msg":"Dites ce qui vous déplait sur cette publication","msg-contact-sucess":"Merci de nous avoir contacté. Nous vous répondrons dans les 48h. EN attendant profitez des offres, annonce et opportunité d\'emploi dans votre secteur !!!","msg-a-register":"Courtoisie est le maître-mot du site. Afin de pouvoir vous connecter, vous devez activer votre compte en cliquant sur le lien d’activation envoyé par e-mail. Pensez à regarder dans vos spams, promotions …","modal-not-login":"L\'accés à ce contenu est réservé aux inscrits. Merci de vous connecter ou vous inscrire","modal-verif-ok":"Votre compte a été vérifié avec succés, connecter vous pour profiter de notre site web"}');
+module.exports = JSON.parse('{"lastest":"Récents","fr":"Français","en":"English","es":"Español","pt":"Português","articles":"Articles","profile":"Profil","propau":"PropAU","univerities":"Universités","contact":"Contact","jobs":"Jobs","particular":"Particulier","establishment":"Etablissement","ip":"Institution Politique","login":"Se Connecter","register":"S\'inscrire","about-title":"A Propos","about-text":"AfricaUnity est un réseau social professionnel et un groupe de réflexion numérique pour le développement de l\'Afrique et de l\'Amérique latine. A travers des articles écrits proposés aux ministères, institutions et organisations, les contributeurs d\'AfricaUnity participent à l\'amélioration des différents Etats. Les participants ont la possibilité d\'interagir sur n\'importe quel sujet de manière éthique et courtoise. C\'est une plateforme sur laquelle vous trouverez de nombreux CV et présentations d\'organismes publics et privés.","filter-article":"Filtre Articles","filter-propau":"Filtre PropAU","filter":"Filtrer","key-words":"Mot Clés","continent":"Continent","zoned":"Zone","country":"Pays","ministry":"Ministère","search":"Recherche","recent-posts":"Postes Récents","video":"Vidéo","presentation":"Présentation","language":"Langue","all":"","full-name":"Nom Complet","firstname":"Nom","lastname":"Prénom","adresse":"Adresse","login-welcome-msg":"Bienvenue sur AfricaUnity","login-desc":"Connectez-vous à votre compte et interagissez dans l’esprit de courtoisie de la communauté. N’hésitez pas à nous contacter à tout moment si vous rencontrez des difficultés quelconques.","no-signup":"Vous n\'avez pas encore de compte ?","already-signup":"Vous avez déja un compte ?","email":"E-mail","password":"Mot de passe","confirm-password":"Confirmer le Mot de passe","password-forgot":"Mot de passe oublié","show-confidentail-politic":"Afficher la politique de confidentialité","confirm-confidentail-politic":"Confirmer que vous acceptez notre politique de confidentialité","create-account":"Créer un compte","pack":"Pack","account":"Mon Compte","create-other-account":"Vous voulez plutot créer un compte","business":"Business","politic":"Politique","register-free-desc":"Nous sommes heureux de vous avoir dans cette communauté dédiée à l’émergence de l’Afrique et de l’Amérique Latine. Remplissez les champs pour créer votre compte gratuitement et accédez aux avantages spéciaux des membres.","register-desc":"Merci de créer un compte qui sied à votre statut et bénéficiez des nombreux avantages","register-pay-desc":"Nous sommes heureux de vous avoir dans cette communauté dédiée à l’émergence de l’Afrique et de l’Amérique Latine. Remplissez les champs pour créer votre compte et accédez aux avantages spéciaux des membres.","social-reason":"Raison Social","denomination":"Dénomination","plan-desc1":"Page de présentation","plan-desc2":"Rédiger des articles","plan-desc3":"Rédiger des PropAU","plan-desc4":"Commenter les publications","plan-desc5":"Rechercher des jobs","plan-desc6":"Poster des annonces","plan-desc7":"Augmenter votre visibilité","plan-desc8":"Poster des jobs","logout":"Déconnexion","corporation":"Personne Morale","physical-person":"Personne physique","free":"Gratuit","year":"An","unlimited":"Illimité","essential-features":"Essential Features","advanced-features":"Advanced Features","add":"Ajouter un","edit":"Editer un","your":"Votre","content":"Contenu","thumbnails":"Image mise en avant","title":"Titre","save":"Enregistrer","comments":"Commentaires","my-ads":"Mes Annonces","my-jobs":"Mes offres d\'emploi","add-desc-1":"sera publié dans la langue actuelle du site","select-lang":"Veuillez sélectionner la langue de publication","good-msg-post":"Merci de garder à l\'esprit que la courtoisie est le maitre mot de la communauté","read-more":"Lire la suite","no-content":"Pas de contenu","ads":"Annonce","university":"Université","category":"Catégorie","contact-phone":"Numéro de Contact","contact-email":"Adresse E-mail de Contact","price":"Prix","currency":"Devise","website":"Site Web","description":"Description","city":"Ville","location":"Localisation","company-name":"Nom de l\'entreprise","company-logo":"Logo de l\'entreprise","company-website":"Site Web de l\'entreprise","company-email":"Adresse E-mail de l\'entreprise","work-mode":"Mode de travail","work-dept":"Département de travail","offer-type":"Type d\'offre","y-experience":"Année d\'experience","activity-area":"Secteur d\'activité","level-study":"Niveau d\'étude","size-company":"Taille de l\'entreprise","type-company":"Type d\'entreprise","size-institution":"Taille de l\'institution","status":"Statut","rsearch-p":"Recherche de partenaire","o-activity":"Autres Activités","birth-date":"Date de naissance","create-date":"Date de création","legal-status":"Forme juridique","speak-language":"Langues parlées","sex":"Sexe","male":"Homme","female":"Femme","perimetre":"Périmètre","phone-number":"Numéro de téléphone","native-country":"Pays d\'origine","residence-country":"Pays de Résidence","social-country":"Pays du siège social","social-object":"Objet Social","name-responsable":"Nom & Prénom du Responsable","goal-attribution":"But - Attribution","details":"Détails","ads-university":"Les Annonces relatives à","contact-ads":"Contactez le lanceur d\'annonce","actif":"Actif","no-actif":"Non Actif","diplome-certification":"Diplôme et Certification","contact-about-1":"Invitation à une conférence","contact-about-2":"Proposition commerciale","contact-about-3":"Proposition de collaboration","contact-about-4":"Proposer une université","contact-about-5":"Autres","send":"Envoyer","report":"Signaler","the-post":"Cette publication","contact-msg":"Pour nous contacter, veuillez remplir le formulaire ci-dessous","report-msg":"Dites ce qui vous déplait sur cette publication","msg-contact-sucess":"Merci de nous avoir contacté. Nous vous répondrons dans les 48h. EN attendant profitez des offres, annonce et opportunité d\'emploi dans votre secteur !!!","msg-a-register":"Courtoisie est le maître-mot du site. Afin de pouvoir vous connecter, vous devez activer votre compte en cliquant sur le lien d’activation envoyé par e-mail. Pensez à regarder dans vos spams, promotions …","modal-not-login":"L\'accés à ce contenu est réservé aux inscrits. Merci de vous connecter ou vous inscrire","modal-verif-ok":"Votre compte a été vérifié avec succés, connecter vous pour profiter de notre site web"}');
 
 /***/ }),
 
