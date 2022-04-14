@@ -2,11 +2,11 @@
     <Header />
    <section class="lg:py-10 p-4 lg:px-20">
         <div class="h-96 relative">
-            <div class="h-1/2 bg-gray-50 z-0">
-
+            <div class="h-1/2 bg-gray-50 z-0 shadow">
+                <img :src="user.cover" class="w-full h-full bg-cover object-cover" alt="" v-if="user.cover">
             </div>
             <div class="h-1/2 bg-white z-10 flex lg:justify-end items-center justify-center lg:space-x-3 relative">
-                <div class="lg:w-60 lg:h-60 overflow-hidden absolute h-40 w-40 text-center lg:left-4 mb-40 lg:mt-0 -mt-28 bg-white z-10 rounded-full">
+                <div class="lg:w-60 lg:h-60 overflow-hidden absolute h-40 w-40 text-center shadow lg:left-4 mb-40 lg:mt-0 -mt-28 bg-white z-10 rounded-full">
                     <img :src="user.avatar" class="w-full h-full bg-cover object-cover" alt="" v-if="user.avatar">
                     <UserCircleIcon v-else class="w-full h-full text-gray-500"/>
                 </div>
@@ -414,13 +414,43 @@
                         </div>
             </div>
         </div>
-         <div v-else-if="(open.article) && (loading == 0)">
+         <div class=" py-8 lg:px-16" v-else-if="(open.article) && (loading == 0)">
+            <div class="p-4">
+                <label for="table-search" class="sr-only"
+                    >Search</label
+                >
+                <div class="relative mt-1">
+                    <div
+                        class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none"
+                    >
+                        <svg
+                            class="w-5 h-5 text-gray-500 dark:text-gray-400"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                fill-rule="evenodd"
+                                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                                clip-rule="evenodd"
+                            ></path>
+                        </svg>
+                    </div>
+                    <input
+                        type="text"
+                        id="table-search"
+                        v-model="searchArticle"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="Search"
+                    />
+                </div>
+            </div>
             <div
                 class="grid lg:grid-cols-2 gap-8 px-6 py-8"
-                v-if="articles.length != 0"
+                v-if="filteredArticles.length != 0"
             >
             
-            <div v-for="post in articles"
+            <div v-for="post in filteredArticles"
                     :key="post.id" class="flex max-w-md mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
                     
                 <div class="w-1/3 bg-cover overflow-hidden">
@@ -474,11 +504,41 @@
             </div>
         </div>
          <div class=" py-8 lg:px-16" v-else-if="(open.propau) && (loading == 0)">
+            <div class="p-4">
+                <label for="table-search" class="sr-only"
+                    >Search</label
+                >
+                <div class="relative mt-1">
+                    <div
+                        class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none"
+                    >
+                        <svg
+                            class="w-5 h-5 text-gray-500 dark:text-gray-400"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                fill-rule="evenodd"
+                                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                                clip-rule="evenodd"
+                            ></path>
+                        </svg>
+                    </div>
+                    <input
+                        type="text"
+                        id="table-search"
+                        v-model="searchProp"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="Search"
+                    />
+                </div>
+            </div>
             <div
                 class="grid lg:grid-cols-2 gap-8 px-10 py-8"
-                v-if="propau.length != 0"
+                v-if="filteredPropAu.length != 0"
             >
-            <div v-for="post in propau"
+            <div v-for="post in filteredPropAu"
                     :key="post.id" class="flex max-w-md mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
                     
                 <div class="w-1/3 bg-cover overflow-hidden">
@@ -534,6 +594,36 @@
             </div>
         </div>
          <div class=" py-8 lg:px-16" v-else-if="(open.comment) && (loading == 0)">
+            <div class="p-4">
+                <label for="table-search" class="sr-only"
+                    >Search</label
+                >
+                <div class="relative mt-1">
+                    <div
+                        class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none"
+                    >
+                        <svg
+                            class="w-5 h-5 text-gray-500 dark:text-gray-400"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                fill-rule="evenodd"
+                                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                                clip-rule="evenodd"
+                            ></path>
+                        </svg>
+                    </div>
+                    <input
+                        type="text"
+                        id="table-search"
+                        v-model="searchComment"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="Search"
+                    />
+                </div>
+            </div>
                 <div class="overflow-x-auto">
                     <table
                         class="min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-700"
@@ -561,10 +651,10 @@
                         </thead>
                         <tbody
                             class="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700"
-                            v-if="comments.length != 0"
+                            v-if="filteredComment.length != 0"
                         >
                             <tr
-                                v-for="comment in comments"
+                                v-for="comment in filteredComment"
                                 :key="comment.id"
                                 class="hover:bg-gray-100 dark:hover:bg-gray-700"
                             >
@@ -648,16 +738,46 @@
                 </div>
         </div>
          <div class=" py-8 lg:px-16" v-else-if="(open.job) && (loading == 0)">
-                <div class="flex justify-end px-6 py-2">
-                <router-link
-                    :to="{
-                        name: 'add.job',
-                    }"
-                    class="flex justify-start items-center space-x-3 text-white bg-primary-blue rounded px-3 py-2"
-                >
-                    <PlusCircleIcon class="w-6 h-6" />
-                    <p class="text-base leading-4">{{ $t('add') }} Job</p>
-                </router-link>
+                <div class="flex justify-between lg:flex-row flex-col-reverse items-center px-6 py-2">
+                    <div class="p-4">
+                        <label for="table-search" class="sr-only"
+                            >Search</label
+                        >
+                        <div class="relative mt-1">
+                            <div
+                                class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none"
+                            >
+                                <svg
+                                    class="w-5 h-5 text-gray-500 dark:text-gray-400"
+                                    fill="currentColor"
+                                    viewBox="0 0 20 20"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        fill-rule="evenodd"
+                                        d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                                        clip-rule="evenodd"
+                                    ></path>
+                                </svg>
+                            </div>
+                            <input
+                                type="text"
+                                id="table-search"
+                                v-model="searchJob"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="Search"
+                            />
+                        </div>
+                    </div>
+                    <router-link
+                        :to="{
+                            name: 'add.job',
+                        }"
+                        class="flex justify-start items-center space-x-3 text-white bg-primary-blue rounded px-3 py-2 lg:mb-0 mb-2"
+                    >
+                        <PlusCircleIcon class="w-6 h-6" />
+                        <p class="text-base leading-4">{{ $t('add') }} Job</p>
+                    </router-link>
             </div>
                 <div class="overflow-x-auto">
                     <table
@@ -686,10 +806,10 @@
                         </thead>
                         <tbody
                             class="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700"
-                            v-if="jobOffers.length != 0"
+                            v-if="filteredJob.length != 0"
                         >
                             <tr
-                                v-for="jobOffer in jobOffers"
+                                v-for="jobOffer in filteredJob"
                                 :key="jobOffer.id"
                                 class="hover:bg-gray-100 dark:hover:bg-gray-700"
                             >
@@ -775,16 +895,46 @@
                 </div>
         </div>
          <div class=" py-8 lg:px-16" v-else-if="(open.ads) && (loading == 0)">
-             <div class="flex justify-end px-6 py-2">
-                <router-link
-                    :to="{
-                        name: 'add.ads',
-                    }"
-                    class="flex justify-start items-center space-x-3 text-white bg-primary-blue rounded px-3 py-2"
-                >
-                    <PlusCircleIcon class="w-6 h-6" />
-                    <p class="text-base leading-4">{{ $t('add') }} {{ $t('ads') }}</p>
-                </router-link>
+             <div class="flex justify-between lg:flex-row flex-col-reverse items-center px-6 py-2">
+                    <div>
+                        <label for="table-search" class="sr-only"
+                            >Search</label
+                        >
+                        <div class="relative mt-1">
+                            <div
+                                class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none"
+                            >
+                                <svg
+                                    class="w-5 h-5 text-gray-500 dark:text-gray-400"
+                                    fill="currentColor"
+                                    viewBox="0 0 20 20"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        fill-rule="evenodd"
+                                        d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                                        clip-rule="evenodd"
+                                    ></path>
+                                </svg>
+                            </div>
+                            <input
+                                type="text"
+                                id="table-search"
+                                v-model="searchAds"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="Search"
+                            />
+                        </div>
+                    </div>
+                    <router-link
+                        :to="{
+                            name: 'add.ads',
+                        }"
+                        class="flex items-center space-x-3 text-white bg-primary-blue rounded px-3 py-2 lg:mb-0 mb-2"
+                    >
+                        <PlusCircleIcon class="w-6 h-6" />
+                        <p class="text-base leading-4 ">{{ $t('add') }} {{ $t('ads') }}</p>
+                    </router-link>
             </div>
                 <div class="overflow-x-auto">
                     <table
@@ -807,10 +957,10 @@
                         </thead>
                         <tbody
                             class="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700"
-                            v-if="announcements.length != 0"
+                            v-if="filteredAnnouncement.length != 0"
                         >
                             <tr
-                                v-for="announcement in announcements"
+                                v-for="announcement in filteredAnnouncement"
                                 :key="announcement.id"
                                 class="hover:bg-gray-100 dark:hover:bg-gray-700"
                             >
@@ -956,6 +1106,11 @@ export default {
         const { countries, getCountries } = useCountries();
         const detail = ref([]);
         const loading = ref(0);
+        const searchArticle = ref('');
+        const searchAds = ref('');
+        const searchJob = ref('');
+        const searchComment = ref('');
+        const searchProp = ref('');
         const url = window.location.href;
         onMounted(                
             async () => {
@@ -1114,6 +1269,11 @@ export default {
         }
 
         return{
+            searchProp,
+            searchComment,
+            searchJob,
+            searchAds,
+            searchArticle,
             url,
             mark,
             detail,
@@ -1140,6 +1300,44 @@ export default {
             selectComment,
             saveComment,
         }
+    },
+
+    computed: {
+        filteredAnnouncement() {
+            return this.announcements.filter((announcement) => {
+                return announcement.title
+                    .toLowerCase()
+                    .includes(this.searchAds.toLowerCase());
+            });
+        },
+        filteredJob() {
+            return this.jobOffers.filter((jobOffer) => {
+                return jobOffer.title
+                    .toLowerCase()
+                    .includes(this.searchJob.toLowerCase());
+            });
+        },
+        filteredComment() {
+            return this.comments.filter((comment) => {
+                return comment.post.title
+                    .toLowerCase()
+                    .includes(this.searchComment.toLowerCase());
+            });
+        },
+        filteredPropAu() {
+            return this.propau.filter((prop) => {
+                return prop.title
+                    .toLowerCase()
+                    .includes(this.searchProp.toLowerCase());
+            });
+        },
+        filteredArticles() {
+            return this.articles.filter((article) => {
+                return article.title
+                    .toLowerCase()
+                    .includes(this.searchArticle.toLowerCase());
+            });
+        },
     },
 }
 </script>

@@ -24349,7 +24349,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "class": "flex items-start space-x-2"
       }, [$setup.user.avatar ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
         src: $setup.user.avatar,
-        alt: ""
+        alt: "",
+        "class": "h-10 w-10 rounded-full object-cover"
       }, null, 8
       /* PROPS */
       , _hoisted_5)])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_UserCircleIcon, {
@@ -26762,7 +26763,7 @@ var routes = [// front routes
     title: siteName + ' - Compte'
   }
 }, {
-  path: '/setting-account/:name/:id',
+  path: '/setting/:name/:id',
   name: 'setting.account',
   props: true,
   component: SettingAccount,

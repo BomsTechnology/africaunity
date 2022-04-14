@@ -64,6 +64,10 @@ class AuthController extends Controller
             return response(['status'=>false, 'message'=>'Your email address is not verified.'] ,403);
         }
 
+        if($user->status == 3){
+            return response(['status'=>false, 'message'=>'Your account is deactivated please contact our administrators.'] ,403);
+        }
+
         //create token
         $token = $user->createToken('myapptoken')->plainTextToken;
 

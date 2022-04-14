@@ -59,6 +59,10 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function(){
     Route::post("/post-report", [PostController::class,'post_report']);
 
     Route::apiResource('users', UserController::class);
+    Route::put("/users-change-password/{user}", [UserController::class,'changePassword']);
+    Route::put("/users-change-status/{user}", [UserController::class,'changeStatus']);
+    Route::post("/users-delete-data", [UserController::class,'deleteData']);
+    Route::post("/users-delete-user", [UserController::class,'deleteUser']);
 
     Route::apiResource('cities', CityController::class);
 

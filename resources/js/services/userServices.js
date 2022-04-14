@@ -55,11 +55,11 @@ export default function useUsers() {
             loading.value = 1;
             await axios.post('/api/users', data, {
                 headers:{
-                    'Authorization': `Bearer ${localStorage.token}`
+                    'Authorization': `Bearer ${localStorage.token}`,
+                    'Content-Type' : 'multipart/form-data',
                 }
             });
             loading.value = 2;
-            router.push({ name: 'admin.user.index' });
         } catch (e) {
             if(e.response.status == 422){
             loading.value = 0;
@@ -69,22 +69,111 @@ export default function useUsers() {
         }
     };
 
-    const updateUser = async (id) => {
+    const updateUser = async (id, data) => {
         errors.value = '';
         try {
             loading.value = 1;
-            await axios.put('/api/users/' + id, user.value, {
+            let response = await axios.post('/api/users/' + id, data, {
                 headers:{
-                    'Authorization': `Bearer ${localStorage.token}`
+                    'Authorization': `Bearer ${localStorage.token}`,
+                    'Content-Type' : 'multipart/form-data',
                 }
             });
             loading.value = 2;
-            router.push({ name: 'admin.user.index' });
+            localStorage.user = JSON.stringify(response.data.data);
+            location.reload();
         } catch (e) {
             loading.value = 0;
             if(e.response.status == 422){
                 for(const key in e.response.data.errors)
                 errors.value += e.response.data.errors[key][0] + '\t\n';
+            }
+        }
+        
+    };
+
+    const updateStatusUser = async (id, data) => {
+        errors.value = '';
+        try {
+            loading.value = 1;
+            let response = await axios.put('/api/users-change-status/' + id, data, {
+                headers:{
+                    'Authorization': `Bearer ${localStorage.token}`,
+                }
+            });
+            loading.value = 2;
+            localStorage.user = JSON.stringify(response.data.data);
+        } catch (e) {
+            loading.value = 0;
+            if(e.response.status == 422){
+                for(const key in e.response.data.errors)
+                errors.value += e.response.data.errors[key][0] + '\t\n';
+            }
+        }
+        
+    };
+
+    const deleteUserData = async (data) => {
+        errors.value = '';
+        try {
+            loading.value = 1;
+            let response = await axios.post('/api/users-delete-data', data, {
+                headers:{
+                    'Authorization': `Bearer ${localStorage.token}`,
+                }
+            });
+            loading.value = 2;
+        } catch (e) {
+            loading.value = 0;
+            if(e.response.status == 422){
+                for(const key in e.response.data.errors)
+                errors.value += e.response.data.errors[key][0] + '\t\n';
+            }else if(e.response.status == 401){
+                errors.value = e.response.data.message
+            }
+        }
+        
+    };
+
+    const destroyUserFront = async (data) => {
+        errors.value = '';
+        try {
+            loading.value = 1;
+            let response = await axios.post('/api/users-delete-user', data, {
+                headers:{
+                    'Authorization': `Bearer ${localStorage.token}`,
+                }
+            });
+            loading.value = 2;
+        } catch (e) {
+            loading.value = 0;
+            if(e.response.status == 422){
+                for(const key in e.response.data.errors)
+                errors.value += e.response.data.errors[key][0] + '\t\n';
+            }else if(e.response.status == 401){
+                errors.value = e.response.data.message
+            }
+        }
+        
+    };
+
+    const updatePasswordUser = async (id, data) => {
+        errors.value = '';
+        try {
+            loading.value = 1;
+            await axios.put('/api/users-change-password/' + id, data, {
+                headers:{
+                    'Authorization': `Bearer ${localStorage.token}`,
+                }
+            });
+            loading.value = 2;
+        } catch (e) {
+            loading.value = 0;
+            if(e.response.status == 422){
+                for(const key in e.response.data.errors)
+                errors.value += e.response.data.errors[key][0] + '\t\n';
+            }else if(e.response.status == 401){
+                errors.value = e.response.data.message
             }
         }
         
@@ -112,10 +201,14 @@ export default function useUsers() {
         user,
         errors,
         loading,
+        deleteUserData,
         getUsers,
         getUser,
         createUser,
         updateUser,
-        destroyUser
+        destroyUser,
+        updatePasswordUser,
+        updateStatusUser,
+        destroyUserFront,
     };
 } 

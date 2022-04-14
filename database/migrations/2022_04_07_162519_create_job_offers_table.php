@@ -25,7 +25,7 @@ class CreateJobOffersTable extends Migration
             $table->string('company_logo')->nullable();
             $table->string('min_price');
             $table->string('max_price');
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('currency_id')->constrained();
             $table->foreignId('year_experience_id')->constrained();
             $table->foreignId('work_department_id')->constrained();

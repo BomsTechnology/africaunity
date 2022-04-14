@@ -21,7 +21,7 @@ class CreatePostsTable extends Migration
             $table->integer('status')->default(1);
             $table->enum('type', ['article', 'propau']);
             $table->enum('language', ['fr', 'en', 'es', 'pt']);
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('continent_id')->constrained();
             $table->foreignId('zone_id')->constrained();
             $table->foreignId('country_id')->constrained();

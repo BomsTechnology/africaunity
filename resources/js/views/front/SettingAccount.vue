@@ -3,27 +3,51 @@
     <h1 class="lg:text-5xl text-4xl text-primary-blue text-center py-4 capitalize font-bold">Setting Account</h1>
    <div class=" py-8 lg:px-16 flex mx-auto">
        <div class="border bg-gray-50 lg:px-6 px-2 py-4 flex flex-col items-center justify-center shadow">
-           <div class="lg:h-32 lg:w-32 h-20 w-20  rounded-full overflow-hidden">
-               <img :src="user.avatar" class="w-full h-full bg-cover object-cover" alt="" v-if="user.avatar">
-                <UserCircleIcon v-else class="w-full h-full text-gray-500"/>
-           </div>
-           <h1 class=" capitalize font-bold lg:text-xl text-lg text-center mt-2 hidden lg:block">{{ user.firstname }} {{ user.lastname }}</h1>
-           <h2 class="text-center lg:text-md text-sm font-light mt-1">
-               <span v-if="user.type == 'particular'">{{ $t('physical-person') }}</span>
-               <span v-else-if="user.type == 'ip'">{{ $t('ip') }}</span>
-               <span v-else-if="user.type == 'admin'">Admin</span>
-               <span v-else>{{ $t('corporation') }}</span>
-           </h2>
-           <h3 class="text-center font-black text-primary-blue lg:text-lg text-md mt-1">
-               <span v-if="user.type == 'particular'">{{ $t('pack') }} {{ $t('particular') }}</span>
-               <span v-else-if="user.type == 'ip'">{{ $t('pack') }} {{ $t('politic') }}</span>
-               <span v-else-if="user.type == 'admin'">Admin</span>
-               <span v-else>{{ $t('pack') }} {{ $t('business') }}</span>
-           </h3>
-           <button disabled v-if="user.type == 'business1'" class=" bg-primary-blue px-2 py-1 flex items-center justify-center lg:text-md text-xs space-x-2 shadow text-white rounded">
-               <ArrowCircleUpIcon  class="w-6 h-6"/>
-               <span class="hidden lg:block">UPGRADE PACK</span>
-           </button>
+            <div v-if="loading == 1" class="p-28">
+                        <svg
+                            class="animate-spin h-16 w-16 mx-auto"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                        >
+                            <circle
+                                class="opacity-25"
+                                cx="12"
+                                cy="12"
+                                r="10"
+                                stroke="currentColor"
+                                stroke-width="4"
+                            ></circle>
+                            <path
+                                class="opacity-75"
+                                fill="currentColor"
+                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                            ></path>
+                        </svg>
+            </div>
+            <div v-else>
+                <div class="lg:h-32 lg:w-32 h-20 w-20  rounded-full overflow-hidden">
+                    <img :src="user.avatar" class="w-full h-full bg-cover object-cover" alt="" v-if="user.avatar">
+                        <UserCircleIcon v-else class="w-full h-full text-gray-500"/>
+                </div>
+                <h1 class=" capitalize font-bold lg:text-xl text-lg text-center mt-2 hidden lg:block">{{ user.firstname }} {{ user.lastname }}</h1>
+                <h2 class="text-center lg:text-md text-sm font-light mt-1">
+                    <span v-if="user.type == 'particular'">{{ $t('physical-person') }}</span>
+                    <span v-else-if="user.type == 'ip'">{{ $t('ip') }}</span>
+                    <span v-else-if="user.type == 'admin'">Admin</span>
+                    <span v-else>{{ $t('corporation') }}</span>
+                </h2>
+                <h3 class="text-center font-black text-primary-blue lg:text-lg text-md mt-1">
+                    <span v-if="user.type == 'particular'">{{ $t('pack') }} {{ $t('particular') }}</span>
+                    <span v-else-if="user.type == 'ip'">{{ $t('pack') }} {{ $t('politic') }}</span>
+                    <span v-else-if="user.type == 'admin'">Admin</span>
+                    <span v-else>{{ $t('pack') }} {{ $t('business') }}</span>
+                </h3>
+                <button disabled v-if="user.type == 'business1'" class=" bg-primary-blue px-2 py-1 flex items-center justify-center lg:text-md text-xs space-x-2 shadow text-white rounded">
+                    <ArrowCircleUpIcon  class="w-6 h-6"/>
+                    <span class="hidden lg:block">UPGRADE PACK</span>
+                </button>
+            </div>
            <div class="mt-4">
                <button @click="changeTab('account')" :class="[ !open.account ? 'border-y  w-full bg-menu text-white px-3 py-2 flex items-center justify-start space-x-2' : 'border-y bg-primary-blue w-full  text-white px-3 py-2 flex items-center justify-start space-x-2']" >
                    <UserCircleIcon class="w-6 h-6"/>
@@ -44,282 +68,317 @@
            </div>
        </div>
        <div class=" py-10 w-[70%]">
-           <div v-if="open.account">
-                <form>
-                    <div v-if="user.type == 'particular' || user.type == 'admin'">
-                        <div class="lg:px-16 px-8 lg:text-sm text-xs mt-2">
+           <div v-if="errors != ''" class="px-12"> 
+               <Error>{{ errors }}</Error>
+           </div>
+           <div v-if="loadingC == 2" class=" flex justify-start space-x-3 py-4 px-4 bg-green-50 text-green-700 mx-12">
+                <CheckCircleIcon class="h-6 w-6" />
+                <p> Mise à Jour reussi</p>
+            </div>
+           <div v-if="loading == 1" class="p-28">
+                        <svg
+                            class="animate-spin h-16 w-16 mx-auto"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                        >
+                            <circle
+                                class="opacity-25"
+                                cx="12"
+                                cy="12"
+                                r="10"
+                                stroke="currentColor"
+                                stroke-width="4"
+                            ></circle>
+                            <path
+                                class="opacity-75"
+                                fill="currentColor"
+                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                            ></path>
+                        </svg>
+            </div>  
+           <div v-else>
+                <div v-if="open.account">
+                        <form @submit.prevent="saveUserSetting()">
+                            <div v-if="user.type == 'particular' || user.type == 'admin'">
+                                <div class="lg:px-16 px-8 lg:text-sm text-xs mt-2">
+                                        <label class="">
+                                            {{ $t('firstname') }}
+                                        </label>
+                                        <input
+                                            type="text"
+                                            required
+                                            v-model="user.firstname"
+                                            class="form-input px-3  w-full mt-3 placeholder:text-gray-400 border-gray-400 focus:ring-primary-blue focus:border-primary-blue block"
+                                        />
+                                </div>
+                                <div class="lg:px-16 px-8 lg:text-sm text-xs mt-2">
+                                    <label class="">
+                                        {{ $t('lastname') }}
+                                    </label>
+                                    <input
+                                        type="text"
+                                        required
+                                        v-model="user.lastname"
+                                        class="form-input px-3 w-full mt-3 placeholder:text-gray-400 border-gray-400 focus:ring-primary-blue focus:border-primary-blue block"
+                                    />
+                                </div>
+                            </div>
+                            <div v-else-if=" user.type == 'business1' || user.type == 'business2'" class="lg:px-16 px-8 lg:text-sm text-xs mt-2">
                                 <label class="">
-                                    {{ $t('firstname') }}
+                                    {{ $t('social-reason') }}
                                 </label>
                                 <input
                                     type="text"
                                     required
-                                    v-model="user.password"
+                                    v-model="user.firstname"
                                     class="form-input px-3  w-full mt-3 placeholder:text-gray-400 border-gray-400 focus:ring-primary-blue focus:border-primary-blue block"
                                 />
-                        </div>
-                        <div class="lg:px-16 px-8 lg:text-sm text-xs mt-2">
-                            <label class="">
-                                {{ $t('lastname') }}
-                            </label>
-                            <input
-                                type="text"
-                                required
-                                v-model="user.password"
-                                class="form-input px-3 w-full mt-3 placeholder:text-gray-400 border-gray-400 focus:ring-primary-blue focus:border-primary-blue block"
-                            />
-                        </div>
-                    </div>
-                    <div v-else-if=" user.type == 'business1' || user.type == 'business2'" class="lg:px-16 px-8 lg:text-sm text-xs mt-2">
-                        <label class="">
-                            {{ $t('social-reason') }}
-                        </label>
-                        <input
-                            type="text"
-                            required
-                            v-model="user.password"
-                            class="form-input px-3  w-full mt-3 placeholder:text-gray-400 border-gray-400 focus:ring-primary-blue focus:border-primary-blue block"
-                        />
-                    </div>
+                            </div>
 
-                    <div v-else class="lg:px-16 px-8 lg:text-sm text-xs mt-2">
-                        <label class="">
-                            {{ $t('denomination') }}
-                        </label>
-                        <input
-                            type="text"
-                            required
-                            v-model="user.password"
-                            class="form-input px-3  w-full mt-3 placeholder:text-gray-400 border-gray-400 focus:ring-primary-blue focus:border-primary-blue block"
-                        />
-                    </div>
+                            <div v-else class="lg:px-16 px-8 lg:text-sm text-xs mt-2">
+                                <label class="">
+                                    {{ $t('denomination') }}
+                                </label>
+                                <input
+                                    type="text"
+                                    required
+                                    v-model="user.firstname"
+                                    class="form-input px-3  w-full mt-3 placeholder:text-gray-400 border-gray-400 focus:ring-primary-blue focus:border-primary-blue block"
+                                />
+                            </div>
 
-                    <div  class="lg:px-16 px-8 lg:text-sm text-xs mt-2">
-                        <label class="">
-                            {{ $t('adresse') + ' ' + $t('email') }}
-                        </label>
-                        <input
-                            type="email"
-                            required
-                            v-model="user.password"
-                            class="form-input px-3  w-full mt-3 placeholder:text-gray-400 border-gray-400 focus:ring-primary-blue focus:border-primary-blue block"
-                        />
-                    </div>
+                            <div  class="lg:px-16 px-8 lg:text-sm text-xs mt-2">
+                                <label class="">
+                                    {{ $t('adresse') + ' ' + $t('email') }}
+                                </label>
+                                <input
+                                    type="email"
+                                    required
+                                    v-model="user.email"
+                                    class="form-input px-3  w-full mt-3 placeholder:text-gray-400 border-gray-400 focus:ring-primary-blue focus:border-primary-blue block"
+                                />
+                            </div>
 
-                    <div  class="lg:px-16 px-8 lg:text-sm text-xs mt-2">
-                        <label class="">
-                            Photo de profil
-                        </label>
-                        <input
-                            type="file"
-                            required
-                            class="form-input px-3  w-full mt-3 placeholder:text-gray-400 border-gray-400 focus:ring-primary-blue focus:border-primary-blue block"
-                        />
-                    </div>
+                            <div  class="lg:px-16 px-8 lg:text-sm text-xs mt-2">
+                                <label class="">
+                                    Photo de profil
+                                </label>
+                                <input
+                                    @change="handelAvatarObject()"
+                                    type="file"
+                                    ref="avatar"
+                                    class="form-input px-3  w-full mt-3 placeholder:text-gray-400 border-gray-400 focus:ring-primary-blue focus:border-primary-blue block"
+                                />
+                            </div>
 
-                    <div  class="lg:px-16 px-8 lg:text-sm text-xs mt-2">
-                        <label class="">
-                            Photo de couverture
-                        </label>
-                        <input
-                            type="file"
-                            required
-                            class="form-input px-3 w-full mt-3 placeholder:text-gray-400 border-gray-400 focus:ring-primary-blue focus:border-primary-blue block"
-                        />
-                    </div>
+                            <div  class="lg:px-16 px-8 lg:text-sm text-xs mt-2">
+                                <label class="">
+                                    Photo de couverture
+                                </label>
+                                <input
+                                    @change="handelCoverObject()"
+                                    type="file"
+                                    ref="cover"
+                                    class="form-input px-3 w-full mt-3 placeholder:text-gray-400 border-gray-400 focus:ring-primary-blue focus:border-primary-blue block"
+                                />
+                            </div>
 
-                    <div class="lg:px-16 px-8 lg:text-sm text-xs">
-                        <button v-if="loading == 0" type="submit" class="text-white  bg-primary-blue px-8 py-2 mt-6 w-full"> Delete </button>
-                        <button v-if="loading == 1" disabled type="submit" class="inline-flex items-center justify-center text-white  bg-blue-300 cursor-wait px-8 py-2 mt-6 w-full">
-                            <svg class="animate-spin mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                            </svg>
-                            {{ $t("delete") }}...
-                        </button>
-                    </div>
-                </form>
-           </div>
-           <div v-if="open.conf">
-                <div class="bg-gray-100 text-gray-700 px-3 py-2 m-4 rounded lg:text-sm text-xs flex space-x-2">
-                    <h1 class="font-bold">Confidentialité du profil</h1> <span class=" font-light">(Qui peut voir votre profil)</span>
+                            <div class="lg:px-16 px-8 lg:text-sm text-xs">
+                                <button v-if="loadingC == 0 || loadingC == 2" type="submit" class="text-white  bg-primary-blue px-8 py-2 mt-6 w-full"> Mettre à jour </button>
+                                <button v-if="loadingC == 1" disabled type="submit" class="inline-flex items-center justify-center text-white  bg-blue-300 cursor-wait px-8 py-2 mt-6 w-full">
+                                    <svg class="animate-spin mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                    </svg>
+                                    Mettre à jour...
+                                </button>
+                            </div>
+                        </form>
                 </div>
-                <form>
-                        <div class="lg:px-16 px-8 lg:text-sm text-xs mt-2">
-                            <input
-                                type="password"
-                                required
-                                v-model="user.password"
-                                class="form-input px-3  w-full mt-3 placeholder:text-gray-400 border-gray-400 focus:ring-primary-blue focus:border-primary-blue block"
-                            />
+                <div v-if="open.conf">
+                        <div class="bg-gray-100 text-gray-700 px-3 py-2 m-4 rounded lg:text-sm text-xs flex space-x-2">
+                            <h1 class="font-bold">Confidentialité du profil</h1> <span class=" font-light">(Qui peut voir votre profil)</span>
                         </div>
+                        <form @submit.prevent="changePrivacy()">
+                                <div class="lg:px-16 px-8 lg:text-sm text-xs mt-2">
+                                    <select
+                                        required
+                                        v-model="status.status"
+                                        class="form-input px-3  w-full mt-3 placeholder:text-gray-400 border-gray-400 focus:ring-primary-blue focus:border-primary-blue block"
+                                    >
+                                        <option value="1">Tout le monde</option>
+                                        <option value="2">Moi uniquement</option>
+                                    </select>
+                                </div>
 
-                        <div class="lg:px-16 px-8 lg:text-sm text-xs">
-                            <button v-if="loading == 0" type="submit" class="text-white  bg-primary-blue px-8 py-2 mt-2 w-full"> Delete </button>
-                            <button v-if="loading == 1" disabled type="submit" class="inline-flex items-center justify-center text-white  bg-blue-300 cursor-wait px-8 py-2 mt-2 w-full">
-                                <svg class="animate-spin mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                </svg>
-                                {{ $t("delete") }}...
-                            </button>
+                                <div class="lg:px-16 px-8 lg:text-sm text-xs">
+                                    <button v-if="loadingC == 0 || loadingC == 2" type="submit" class="text-white  bg-primary-blue px-8 py-2 mt-2 w-full"> Mettre à jour </button>
+                                    <button v-if="loadingC == 1" disabled type="submit" class="inline-flex items-center justify-center text-white  bg-blue-300 cursor-wait px-8 py-2 mt-2 w-full">
+                                        <svg class="animate-spin mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                        </svg>
+                                        Mettre à Jour...
+                                    </button>
+                                </div>
+                        </form>
+                        <div class="bg-gray-100 opacity-25 text-gray-700 px-3 py-2 m-4 rounded lg:text-sm text-xs flex space-x-2">
+                            <h1 class="font-bold">Téléchargez vos données</h1> <span class=" font-light">(Saisissez votre mot de passe pour confirmer l'exportation de vos données personnelles)</span>
                         </div>
-                </form>
-                <div class="bg-gray-100 text-gray-700 px-3 py-2 m-4 rounded lg:text-sm text-xs flex space-x-2">
-                    <h1 class="font-bold">Téléchargez vos données</h1> <span class=" font-light">(Saisissez votre mot de passe pour confirmer l'exportation de vos données personnelles)</span>
+                        <form class=" opacity-25">
+                                <div class="lg:px-16 px-8 lg:text-sm text-xs mt-2">
+                                    <input
+                                        type="password"
+                                        required
+                                        v-model="user.password"
+                                        :placeholder="$t('password')"
+                                        class="form-input px-3  w-full mt-3 placeholder:text-gray-400 border-gray-400 focus:ring-primary-blue focus:border-primary-blue block"
+                                    />
+                                </div>
+
+                                <div class="lg:px-16 px-8 lg:text-sm text-xs">
+                                    <button v-if="loadingC == 0 || loadingC == 2" disabled type="submit" class="text-white  bg-primary-blue px-8 py-2 mt-2 w-full"> Delete </button>
+                                    <button v-if="loadingC == 1" disabled type="submit" class="inline-flex items-center justify-center text-white  bg-blue-300 cursor-wait px-8 py-2 mt-2 w-full">
+                                        <svg class="animate-spin mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                        </svg>
+                                        {{ $t("delete") }}...
+                                    </button>
+                                </div>
+                        </form>
+                        <div class="bg-gray-100 text-gray-700 px-3 py-2 m-4 rounded lg:text-sm text-xs flex space-x-2">
+                            <h1 class="font-bold">Effacement de vos données</h1> <span class=" font-light">(Saisissez votre mot de passe pour confirmer l'effacement de vos données personnelles (articles, propau, commentaires, annonces, jobs... ))</span>
+                        </div>
+                        <form @submit.prevent="deleteData()">
+                                <div class="lg:px-16 px-8 lg:text-sm text-xs mt-2">
+                                    <input
+                                        type="password"
+                                        required
+                                        v-model="deleteD.password"
+                                        :placeholder="$t('password')"
+                                        class="form-input px-3  w-full mt-3 placeholder:text-gray-400 border-gray-400 focus:ring-primary-blue focus:border-primary-blue block"
+                                    />
+                                </div>
+
+                                <div class="lg:px-16 px-8 lg:text-sm text-xs">
+                                    <button v-if="loadingC == 0 || loadingC == 2" type="submit" class="text-white  bg-primary-blue px-8 py-2 mt-2 w-full"> Supprimer </button>
+                                    <button v-if="loadingC == 1" disabled type="submit" class="inline-flex items-center justify-center text-white  bg-blue-300 cursor-wait px-8 py-2 mt-2 w-full">
+                                        <svg class="animate-spin mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                        </svg>
+                                        Supprimer...
+                                    </button>
+                                </div>
+                        </form>
                 </div>
-                <form>
-                        <div class="lg:px-16 px-8 lg:text-sm text-xs mt-2">
-                            <input
-                                type="password"
-                                required
-                                v-model="user.password"
-                                :placeholder="$t('password')"
-                                class="form-input px-3  w-full mt-3 placeholder:text-gray-400 border-gray-400 focus:ring-primary-blue focus:border-primary-blue block"
-                            />
-                        </div>
+                <div v-if="open.password">
+                        <form @submit.prevent="changeUserPassword()">
+                            <div class="relative lg:px-16 px-8 lg:text-sm text-xs mt-2">
+                                    <label class="">
+                                        Ancien Mot de passe 
+                                    </label>
+                                    <input
+                                        type="password"
+                                        required
+                                        v-model="password.old_password"
+                                        class="form-input px-3 w-full mt-3 placeholder:text-gray-400 border-gray-400 focus:ring-primary-blue focus:border-primary-blue block"
+                                    />
+                                </div>
+                                <div class="relative lg:px-16 px-8 lg:text-sm text-xs mt-2">
+                                    <label class="">
+                                        Nouveau Mot de passe 
+                                    </label>
+                                    <input
+                                        type="password"
+                                        required
+                                        v-model="password.password"
+                                        class="form-input px-3 w-full mt-3 placeholder:text-gray-400 border-gray-400 focus:ring-primary-blue focus:border-primary-blue block"
+                                    />
+                                </div>
+                            <div class="relative lg:px-16 px-8 lg:text-sm text-xs mt-2">
+                                    <label class="">
+                                        Confirmer le mot de passe
+                                    </label>
+                                    <input
+                                        type="password"
+                                        required
+                                        v-model="password.password_confirmation"
+                                        class="form-input px-3 w-full mt-3 placeholder:text-gray-400 border-gray-400 focus:ring-primary-blue focus:border-primary-blue block"
+                                    />
+                                </div>
 
-                        <div class="lg:px-16 px-8 lg:text-sm text-xs">
-                            <button v-if="loading == 0" type="submit" class="text-white  bg-primary-blue px-8 py-2 mt-2 w-full"> Delete </button>
-                            <button v-if="loading == 1" disabled type="submit" class="inline-flex items-center justify-center text-white  bg-blue-300 cursor-wait px-8 py-2 mt-2 w-full">
-                                <svg class="animate-spin mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                </svg>
-                                {{ $t("delete") }}...
-                            </button>
-                        </div>
-                </form>
-                <div class="bg-gray-100 text-gray-700 px-3 py-2 m-4 rounded lg:text-sm text-xs flex space-x-2">
-                    <h1 class="font-bold">Effacement de vos données</h1> <span class=" font-light">(Saisissez votre mot de passe pour confirmer l'effacement de vos données personnelles)</span>
+                                <div class="lg:px-16 px-8 lg:text-sm text-xs">
+                                    <button v-if="loadingC == 0 || loadingC == 2" type="submit" class="text-white  bg-primary-blue px-8 py-2 mt-6 w-full"> Mettre à jour </button>
+                                    <button v-if="loadingC == 1" disabled type="submit" class="inline-flex items-center justify-center text-white  bg-blue-300 cursor-wait px-8 py-2 mt-6 w-full">
+                                        <svg class="animate-spin mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                        </svg>
+                                        Mettre à jour...
+                                    </button>
+                                </div>
+                        </form>
                 </div>
-                <form>
-                        <div class="lg:px-16 px-8 lg:text-sm text-xs mt-2">
-                            <input
-                                type="password"
-                                required
-                                v-model="user.password"
-                                :placeholder="$t('password')"
-                                class="form-input px-3  w-full mt-3 placeholder:text-gray-400 border-gray-400 focus:ring-primary-blue focus:border-primary-blue block"
-                            />
-                        </div>
+                <div v-if="open.delete">
+                        <form @submit.prevent="deleteUser()">
+                            <div class="flex space-x-4 lg:text-sm text-xs px-2 justify-center">
+                                
+                                <div>
+                                    <input type="radio" id="fulldelete" value="2" v-model="deleteU.type" class="border p-1 mr-2">
+                                    <label for="fulldelete">Suppression complete</label>
+                                    
+                                </div>
 
-                        <div class="lg:px-16 px-8 lg:text-sm text-xs">
-                            <button v-if="loading == 0" type="submit" class="text-white  bg-primary-blue px-8 py-2 mt-2 w-full"> Delete </button>
-                            <button v-if="loading == 1" disabled type="submit" class="inline-flex items-center justify-center text-white  bg-blue-300 cursor-wait px-8 py-2 mt-2 w-full">
-                                <svg class="animate-spin mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                </svg>
-                                {{ $t("delete") }}...
-                            </button>
-                        </div>
-                </form>
-           </div>
-           <div v-if="open.password">
-                <form>
-                    <div class="relative lg:px-16 px-8 lg:text-sm text-xs mt-2">
-                            <label class="">
-                                Ancien Mot de passe 
-                            </label>
-                            <input
-                                type="password"
-                                required
-                                v-model="user.password"
-                                class="form-input px-3 w-full mt-3 placeholder:text-gray-400 border-gray-400 focus:ring-primary-blue focus:border-primary-blue block"
-                            />
-                        </div>
-                        <div class="relative lg:px-16 px-8 lg:text-sm text-xs mt-2">
-                            <label class="">
-                                Nouveau Mot de passe 
-                            </label>
-                            <input
-                                type="password"
-                                required
-                                v-model="user.password"
-                                class="form-input px-3 w-full mt-3 placeholder:text-gray-400 border-gray-400 focus:ring-primary-blue focus:border-primary-blue block"
-                            />
-                        </div>
-                    <div class="relative lg:px-16 px-8 lg:text-sm text-xs mt-2">
-                            <label class="">
-                                Confirmer le mot de passe
-                            </label>
-                            <input
-                                type="password"
-                                required
-                                v-model="user.password"
-                                class="form-input px-3 w-full mt-3 placeholder:text-gray-400 border-gray-400 focus:ring-primary-blue focus:border-primary-blue block"
-                            />
-                        </div>
+                                <div>
+                                    <input type="radio" id="softdelete" value="1" v-model="deleteU.type" class="border p-1 mr-2">
+                                    <label for="softdelete">Suppression partielle</label>
+                                    
+                                </div>
 
-                        <div class="lg:px-16 px-8 lg:text-sm text-xs">
-                            <button v-if="loading == 0" type="submit" class="text-white  bg-primary-blue px-8 py-2 mt-6 w-full"> Delete </button>
-                            <button v-if="loading == 1" disabled type="submit" class="inline-flex items-center justify-center text-white  bg-blue-300 cursor-wait px-8 py-2 mt-6 w-full">
-                                <svg class="animate-spin mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                </svg>
-                                {{ $t("delete") }}...
-                            </button>
-                        </div>
-                </form>
-           </div>
-           <div v-if="open.delete">
-                <form>
-                    <div class="flex space-x-4 lg:text-sm text-xs px-2 justify-center">
-                        
-                        <div>
-                            <input type="radio" id="fulldelete" value="2" v-model="deleteType" class="border p-1 mr-2">
-                            <label for="fulldelete">Suppression complete</label>
-                            
-                        </div>
+                            </div>
+                            <div class="bg-gray-100 text-gray-700 px-3 py-2 m-4 rounded lg:text-sm text-xs">
+                                <span v-if="deleteU.type == 2">
+                                    Ceci entrainera la suppression de toutes vos données sur ce site.
+                                </span>
+                                    
 
-                        <div>
-                            <input type="radio" id="softdelete" value="1" v-model="deleteType" class="border p-1 mr-2">
-                            <label for="softdelete">Suppression partielle</label>
-                            
-                        </div>
+                                <span v-else>
+                                Ceci desactivera votre compte, pour le reactiver vous devrez contacter les administrateurs du site via le formulaire de contact
+                                </span>
+                            </div>
 
-                    </div>
-                    <div class="bg-gray-100 text-gray-700 px-3 py-2 m-4 rounded lg:text-sm text-xs">
-                        <span v-if="deleteType == 2">
-                            Ceci entrainera la suppression de toutes vos données sur ce site.
-                        </span>
-                            
+                            <div class="relative lg:px-16 px-8 lg:text-sm text-xs">
+                                    <label class="">
+                                        Pour supprimer votre compte saississez votre mot de passe ci-dessous
+                                    </label>
+                                    <span
+                                        ><LockClosedIcon
+                                            class="absolute h-6 w-6 mt-5 ml-2 text-gray-400"
+                                    /></span>
+                                    <input
+                                        type="password"
+                                        required
+                                        v-model="deleteU.password"
+                                        :placeholder="$t('password')"
+                                        class="form-input px-3 pr-2 pl-10 w-full mt-3 placeholder:text-gray-400 border-gray-400 focus:ring-primary-blue focus:border-primary-blue block"
+                                    />
+                                </div>
 
-                        <span v-else>
-                        Ceci desactivera votre compte, pour le reactiver vous devrez contacter les administrateurs du site via le formulaire de contact
-                        </span>
-                    </div>
-
-                    <div class="relative lg:px-16 px-8 lg:text-sm text-xs">
-                            <label class="">
-                                Pour supprimer votre compte saississez votre mot de passe ci-dessous
-                            </label>
-                            <span
-                                ><LockClosedIcon
-                                    class="absolute h-6 w-6 mt-5 ml-2 text-gray-400"
-                            /></span>
-                            <input
-                                type="password"
-                                required
-                                v-model="user.password"
-                                :placeholder="$t('password')"
-                                class="form-input px-3 pr-2 pl-10 w-full mt-3 placeholder:text-gray-400 border-gray-400 focus:ring-primary-blue focus:border-primary-blue block"
-                            />
-                        </div>
-
-                        <div class="lg:px-16 px-8 lg:text-sm text-xs">
-                            <button v-if="loading == 0" type="submit" class="text-white  bg-primary-blue px-8 py-2 mt-6 w-full"> Delete </button>
-                            <button v-if="loading == 1" disabled type="submit" class="inline-flex items-center justify-center text-white  bg-blue-300 cursor-wait px-8 py-2 mt-6 w-full">
-                                <svg class="animate-spin mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                </svg>
-                                {{ $t("delete") }}...
-                            </button>
-                        </div>
-                </form>
+                                <div class="lg:px-16 px-8 lg:text-sm text-xs">
+                                    <button v-if="loadingC == 0 || loadingC == 2" type="submit" class="text-white  bg-primary-blue px-8 py-2 mt-6 w-full"> Supprimer </button>
+                                    <button v-if="loadingC == 1" disabled type="submit" class="inline-flex items-center justify-center text-white  bg-blue-300 cursor-wait px-8 py-2 mt-6 w-full">
+                                        <svg class="animate-spin mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                        </svg>
+                                        Supprimer...
+                                    </button>
+                                </div>
+                        </form>
+                </div>
            </div>
        </div>
     </div>
@@ -331,9 +390,13 @@ import Header from "../../components/Header.vue";
 import Footer from "../../components/Footer.vue";
 import { reactive, ref, onMounted} from "vue";
 import useUsers from "../../services/userServices.js";
-import { UserCircleIcon, ArrowCircleUpIcon, TrashIcon, KeyIcon, LockClosedIcon } from "@heroicons/vue/solid";
+import Error from "../../components/Error.vue";
+import { UserCircleIcon, CheckCircleIcon, ArrowCircleUpIcon, TrashIcon, KeyIcon, LockClosedIcon } from "@heroicons/vue/solid";
+
 export default {
     components:{
+        CheckCircleIcon,
+        Error,
         ArrowCircleUpIcon,
         UserCircleIcon,
         TrashIcon,
@@ -357,11 +420,34 @@ export default {
         }
     },
     setup(props) {
-        const { user, getUser } = useUsers();
+        const { user, getUser, deleteUserData, destroyUserFront, updateUser, updateStatusUser, errors, updatePasswordUser } = useUsers();
         const deleteType = ref(1);
         const loading = ref(0);
+        const avatar = ref('');
+        const loadingC = ref(0);
+        const status = reactive({
+            status: ""
+        });
+        const deleteD = reactive({
+            user: "",
+            password: "",
+        });
+        const deleteU = reactive({
+            user: "",
+            type: 1,
+            password: "",
+        });
 
-        onMounted( getUser(props.id));
+        onMounted(
+            async () => { 
+                loading.value = 1;
+                await getUser(props.id);
+                status.status = user.value.status;
+                deleteD.user = user.value.id;
+                deleteU.user = user.value.id;
+                loading.value = 0;
+            }
+        );
 
         const open = reactive({
             account: true,
@@ -370,42 +456,149 @@ export default {
             conf: false,
         });
 
+        const password = reactive({
+            old_password: "",
+            password: "",
+            password_confirmation: "",
+        });
+
          const changeTab = (type) => {
             switch (type){
                 case 'account':
                     open.password = false;
                     open.delete = false;
                     open.conf = false;
+                    loadingC.value = 0;
+                    errors.value = '';
                     open.account = true;
                 break;
                 case 'password':
                     open.account = false;
                     open.delete = false;
                     open.conf = false;
+                    loadingC.value = 0;
+                    errors.value = '';
                     open.password = true;
                 break;
                 case 'delete':
                     open.account = false;
                     open.password = false;
                     open.conf = false;
+                    loadingC.value = 0;
+                    errors.value = '';
                     open.delete = true;
                 break;
                 case 'conf':
                     open.account = false;
                     open.password = false;
                     open.delete = false;
+                    loadingC.value = 0;
+                    errors.value = '';
                     open.conf = true;
                 break;
             }
-        }
+        };
+
+        const saveUserSetting = async () => {
+            loadingC.value = 1;
+            let  formData = new FormData();
+            formData.append('firstname', user.value.firstname);
+            formData.append('lastname', user.value.lastname);
+            formData.append('email', user.value.email);
+            formData.append('avatar', avatar.value);
+            formData.append('cover', user.value.cover);
+            formData.append('_method', 'PUT');
+
+            await updateUser(user.value.id, formData)
+            if(errors.value == ''){
+                loadingC.value = 2;
+            }else{
+                loadingC.value = 0;
+            }
+
+        };
+
+        const changeUserPassword = async () => {
+            loadingC.value = 1;
+            await updatePasswordUser(user.value.id, {...password})
+            if(errors.value == ''){
+                loadingC.value = 2;
+                password.old_password = '';
+                password.password = '';
+                password.password_confirmation = '';
+            }else{
+                loadingC.value = 0;
+            }
+        };      
+
+        const changePrivacy = async () => {
+            loadingC.value = 1;   
+            await updateStatusUser(user.value.id, {...status})
+            if(errors.value == ''){
+                loadingC.value = 2;
+            }else{
+                loadingC.value = 0;
+            }
+        };
+
+        const deleteData = async () => {
+            loadingC.value = 1;
+            if(confirm("I you Sure ?")){   
+                await deleteUserData({...deleteD})
+            }
+            if(errors.value == ''){
+                loadingC.value = 2;
+                deleteD.password = '';
+            }else{
+                loadingC.value = 0;
+            }
+        };
+
+        const deleteUser = async () => {
+            loadingC.value = 1;
+            if(confirm("I you Sure ?")){   
+                await destroyUserFront({...deleteU})
+            }
+            if(errors.value == ''){
+                loadingC.value = 2;
+                deleteU.password = '';
+                location.href = '/';
+                window.localStorage.removeItem("token");
+                window.localStorage.removeItem("user");
+            }else{
+                loadingC.value = 0;
+            }
+        };
 
         return{
+            deleteUser,
+            deleteU,
+            deleteD,
+            deleteData,
+            status,
+            changePrivacy,
+            password,
+            changeUserPassword,
+            avatar,
+            loadingC,
+            errors,
+            saveUserSetting,
             loading,
             deleteType,
             changeTab,
             open,
             user
         }
+    },
+    methods: {
+        handelAvatarObject() {
+            this.avatar = this.$refs.avatar.files[0];
+            console.log(this.user);
+        },
+        handelCoverObject() {
+            this.user.cover = this.$refs.cover.files[0];
+            console.log(this.user);
+        },
     }
 }
 </script>
