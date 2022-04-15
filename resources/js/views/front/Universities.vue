@@ -2,13 +2,74 @@
     <Header />
    <h1 class="text-5xl text-primary-blue text-center py-2 capitalize font-bold">{{ $t('univerities') }}</h1>
    <div class=" py-8 lg:px-16">
-                <div
+       <div class="grid lg:grid-cols-3 grid-cols-1 gap-2 px-10 pb-8 pt-4  bg-gray-50 shadow">
+            <div class="lg:text-sm text-xs">
+                <label class="text-gray-700" for="es">{{ $t('continent') }}</label>
+                <select v-model="filterUniversity.continent"   class="form-select block w-full px-4 py-2 mt-1 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue">
+                    <option value="">--------------</option>
+                    <option v-for="continent in continents" :key="continent.id" :value="continent.id">
+                        <span v-if="$i18n.locale == 'en'">{{
+                            continent.name_en
+                        }}</span>
+                        <span v-else-if="$i18n.locale == 'fr'">{{
+                            continent.name_fr
+                        }}</span>
+                        <span v-else-if="$i18n.locale == 'es'">{{
+                            continent.name_es
+                        }}</span>
+                        <span v-else>{{ continent.name_pt }}</span>
+                    </option>
+                </select>
+            </div>
+            <div class="lg:text-sm text-xs">
+                <label class="text-gray-700" for="es">{{ $t('country') }}</label>
+                <select v-model="filterUniversity.country"   class="form-select block w-full px-4 py-2 mt-1 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue">
+                    <option value="">--------------</option>
+                    <option v-for="country in countries" :key="country.id" :value="country.id">
+                        <span v-if="$i18n.locale == 'en'">{{
+                            country.name_en
+                        }}</span>
+                        <span v-else-if="$i18n.locale == 'fr'">{{
+                            country.name_fr
+                        }}</span>
+                        <span v-else-if="$i18n.locale == 'es'">{{
+                            country.name_es
+                        }}</span>
+                        <span v-else>{{ country.name_pt }}</span>
+                    </option>
+                </select>
+            </div>
+            <div class="lg:text-sm text-xs">
+                <label class="text-gray-700" for="es">{{ $t('city') }}</label>
+                <select v-model="filterUniversity.city"   class="form-select block w-full px-4 py-2 mt-1 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue">
+                    <option value="">--------------</option>
+                    <option
+                        v-for="city in cities"
+                        :key="city.id"
+                        :value="city.id"
+                    >
+                        <span v-if="$i18n.locale == 'en'">{{
+                            city.name_en
+                        }}</span>
+                        <span v-else-if="$i18n.locale == 'fr'">{{
+                            city.name_fr
+                        }}</span>
+                        <span v-else-if="$i18n.locale == 'es'">{{
+                            city.name_es
+                        }}</span>
+                        <span v-else>{{ city.name_pt }}</span>
+                    </option>
+                </select>
+            </div>
+    </div>
+    <div class="p-2 bg-primary-blue shadow"></div>
+            <div
                 class="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-8 px-10 py-8"
-                v-if="universities.length != 0"
+                v-if="filteredUniversity.length != 0"
             >
                 <div
                     class="overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800"
-                    v-for="university in universities"
+                    v-for="university in filteredUniversity"
                     :key="university.id"
                 >
                     <router-link
@@ -102,6 +163,45 @@
             </div>
     </div>
     <h1 class="text-5xl text-primary-blue text-center py-2 capitalize font-bold">{{ $t('ads') }}</h1>
+    <div class=" py-8 lg:px-16">
+    <div class="grid lg:grid-cols-3 grid-cols-1 gap-2 px-10 pb-8 pt-4 bg-gray-50 shadow mt-4">
+            <div
+                class="lg:text-sm text-xs">
+                <label class="text-gray-700 dark:text-gray-200">{{ $t('key-words') }}</label>
+                <input
+                    type="text"
+                    v-model="filterAds.searchKey"
+                    class="form-input px-3 pr-2  w-full text-gray-700 bg-white border border-gray-200 rounded-md  mt-2 placeholder:text-gray-400 focus:ring-primary-blue focus:border-primary-blue block"
+                />
+            </div>
+            <div class="lg:text-sm text-xs">
+                <label class="text-gray-700" for="es">{{ $t('univerities') }}</label>
+                <select v-model="filterAds.university"   class="form-select block w-full px-4 py-2 mt-1 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue">
+                    <option value="">--------------</option>
+                    <option
+                        v-for="university in universities"
+                        :key="university.id"
+                        :value="university.id"
+                    >
+                        {{ university.name }}
+                    </option>
+                </select>
+            </div>
+            <div class="lg:text-sm text-xs">
+                <label class="text-gray-700" for="es">{{ $t('category') }}</label>
+                <select v-model="filterAds.category"   class="form-select block w-full px-4 py-2 mt-1 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue">
+                    <option value="">--------------</option>
+                    <option
+                        v-for="category_announcement in categoryAnnouncements"
+                        :key="category_announcement.id"
+                        :value="category_announcement.id"
+                    >
+                        {{ category_announcement.name }}
+                    </option>
+                </select>
+            </div>
+    </div>
+    <div class="p-2 bg-primary-blue shadow"></div>
     <div class="flex justify-end px-6">
                 <router-link
                     :to="{
@@ -113,14 +213,13 @@
                     <PlusCircleIcon class="w-6 h-6" />
                     <p class="text-base leading-4">{{ $t('add') }} {{ $t('ads') }}</p>
                 </router-link>
-            </div>
+    </div>
     <div class=" py-8 px-10">
         <div
                 class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8 lg:px-10 py-8"
-                v-if="announcements.length != 0"
+                v-if="filteredAnnouncement.length != 0"
             >           
-            <div class="overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800" v-for="announcement in announcements"
-                                            :key="announcement.id">
+            <div class="overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800" v-for="announcement in filteredAnnouncement" :key="announcement.id">
                 <router-link
                                 :to="{
                                     name: 'show.ads',
@@ -185,6 +284,7 @@
                 <span class="text-2xl mt-2">{{ $t('no-content') }} </span>
         </div>
     </div>
+    </div>
     <Footer/>
 </template>
 
@@ -197,6 +297,10 @@ import {
 } from "@heroicons/vue/solid";
 import useUniversities from "../../services/universityServices.js";
 import useAnnouncements from "../../services/announcementServices.js";
+import usecategoryAnnouncements from "../../services/categoryAnnouncementServices.js";
+import useContinents from "../../services/continentServices.js";
+import useCountries from "../../services/countryServices.js";
+import useCities from "../../services/cityServices.js";
 import router from "../../router";
 export default {
     components:{
@@ -212,19 +316,82 @@ export default {
         const { universities, getUniversities, loading, errors } =
             useUniversities();
         const { announcements, getAnnouncements } = useAnnouncements();
+        const { continents, getContinents } = useContinents();
+        const { countries, getCountries } = useCountries();
+        const { categoryAnnouncements, getCategoryAnnouncements } = usecategoryAnnouncements();
+        const { cities, getCities } = useCities();
         const user = localStorage.user ? JSON.parse(localStorage.user) : '';
-            onMounted(
-                getUniversities(),
-                getAnnouncements()
-                );
+        onMounted(
+            getUniversities(),
+            getAnnouncements(),
+            getContinents(),
+            getCountries(),
+            getCategoryAnnouncements(),
+            getCities(),
+            );
+        const filterAds = reactive({
+            searchKey:"",
+            university: "",
+            category:"",
+        });
+        const filterUniversity = reactive({
+            country:"",
+            continent: "",
+            city:"",
+        });
 
-            return {
-                user,
+        return {
+            cities,
+            continents,
+            countries,
+            categoryAnnouncements,
+            filterUniversity,
+            filterAds,
+            user,
             universities,
             announcements,
             loading,
             errors,
         };
+    },
+
+    computed: {
+        filteredAnnouncement() {
+            return this.announcements.filter((announcement) => {
+                let data = "";
+                if(this.filterAds.university != "" && this.filterAds.category != "") 
+                    data = announcement.title.toLowerCase().includes(this.filterAds.searchKey.toLowerCase()) && announcement.category.id == this.filterAds.category && announcement.university.id == this.filterAds.university;
+                else if(this.filterAds.university != "") 
+                    data = announcement.title.toLowerCase().includes(this.filterAds.searchKey.toLowerCase()) && announcement.university.id == this.filterAds.university;
+                else if(this.filterAds.category != "") 
+                    data = announcement.title.toLowerCase().includes(this.filterAds.searchKey.toLowerCase()) && announcement.category.id == this.filterAds.category;
+                else
+                    data = announcement.title.toLowerCase().includes(this.filterAds.searchKey.toLowerCase()) ;
+                return data;
+            });
+        },
+        filteredUniversity() {
+            return this.universities.filter((university) => {
+                let data = "";
+                if(this.filterUniversity.country != "" && this.filterUniversity.continent != "" && this.filterUniversity.city != "") 
+                    data = university.country.id == this.filterUniversity.country && university.continent.id == this.filterUniversity.continent && university.city.id == this.filterUniversity.city;
+                else if(this.filterUniversity.country != "" && this.filterUniversity.continent != "") 
+                    data =  university.country.id == this.filterUniversity.country && university.continent.id == this.filterUniversity.continent;
+                else if(this.filterUniversity.continent != "" && this.filterUniversity.city != "") 
+                    data =  university.continent.id == this.filterUniversity.continent && university.city.id == this.filterUniversity.city;
+                else if(this.filterUniversity.country != "" && this.filterUniversity.city != "") 
+                    data =  university.country.id == this.filterUniversity.country && university.city.id == this.filterUniversity.city;
+                else if(this.filterUniversity.country != "") 
+                    data =  university.country.id == this.filterUniversity.country;
+                else if(this.filterUniversity.city != "") 
+                    data =  university.city.id == this.filterUniversity.city;
+                else if(this.filterUniversity.continent != "") 
+                    data =  university.continent.id == this.filterUniversity.continent;
+                else
+                    data = university ;
+                return data;
+            });
+        },
     },
 }
 </script>

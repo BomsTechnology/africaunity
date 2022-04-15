@@ -19,4 +19,8 @@ class ActivityArea extends Model
     public function details(){
         return $this->belongsToMany(Detail::class);
     }
+
+    public function job_offers(){
+        return $this->belongsToMany(JobOffer::class);
+    }
 }

@@ -60,9 +60,11 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function(){
 
     Route::apiResource('users', UserController::class);
     Route::put("/users-change-password/{user}", [UserController::class,'changePassword']);
+    Route::get("/users-type/{type}", [UserController::class,'usersType']);
     Route::put("/users-change-status/{user}", [UserController::class,'changeStatus']);
     Route::post("/users-delete-data", [UserController::class,'deleteData']);
     Route::post("/users-delete-user", [UserController::class,'deleteUser']);
+    Route::post("/users-filter", [UserController::class,'filter']);
 
     Route::apiResource('cities', CityController::class);
 
@@ -107,6 +109,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function(){
     Route::get('jobOffers-mark-filled/{jobOffer}', [JobOfferController::class, 'jobOffers_mark']);
     Route::get("/jobOffers2/{jobOffer}", [JobOfferController::class,'show2']);
     Route::post("/jobOffers-apply", [JobOfferController::class,'jobOffers_apply']);
+    Route::post("/jobOffers-filter", [JobOfferController::class,'filter']);
 
     Route::apiResource('announcements', AnnouncementController::class);
     Route::get('announcements-university/{id}', [AnnouncementController::class, 'announcements_university']);

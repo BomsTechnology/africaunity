@@ -29,6 +29,47 @@ export default function useUsers() {
         }
     };
 
+    const getUsersType = async (type) => {
+        try{
+            errors.value = '';
+            loading.value = 1;
+            let response = await axios.get('/api/users-type/' + type,  {
+                headers:{
+                    'Authorization': `Bearer ${localStorage.token}`
+                }
+            });
+            users.value = response.data.data;
+            loading.value = 2;
+        }catch(e){
+            if(e.response.status == 401){
+                location.href = 'login/not-login';
+                window.localStorage.removeItem("token");
+                window.localStorage.removeItem("user");
+            }
+        }
+    };
+
+    const filterUsers = async (data) => {  
+        errors.value = '';
+        try{
+            loading.value = 1;
+            let response = await axios.post('/api/users-filter', data,  {
+                headers:{
+                    'Authorization': `Bearer ${localStorage.token}`
+                }
+            });
+            users.value = response.data.data;
+            console.log(users.value);
+            loading.value = 2;
+        }catch(e){
+            if(e.response.status == 401){
+                location.href = 'login/not-login';
+                window.localStorage.removeItem("token");
+                window.localStorage.removeItem("user");
+            }
+        }
+    };
+
     const getUser = async (id) => {
         errors.value = '';
         try{
@@ -210,5 +251,7 @@ export default function useUsers() {
         updatePasswordUser,
         updateStatusUser,
         destroyUserFront,
+        getUsersType,
+        filterUsers,
     };
 } 

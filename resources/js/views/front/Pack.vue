@@ -9,7 +9,7 @@
             </div>
 
 
-                <div class="grid gap-6 mt-16 -mx-6 px-6 sm:gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                <div class="grid gap-6 mt-16 -mx-6 px-6 sm:gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 ">
 
                     <div class="px-6 py-4 transition-colors duration-200 transform rounded-lg  shadow hover:bg-gray-50 ">
                         <div class="text-center">
@@ -161,9 +161,12 @@
                             </div>
                         </div>
 
-                        <router-link :to="{name:'register', params: { type : 'business2' }}" class="w-full block text-center px-4 py-2 mt-10 font-medium tracking-wide text-primary-blue capitalize transition-colors duration-200 transform bg-white rounded-md hover:bg-white focus:outline-none focus:bg-white">
+                        <button disabled class="w-full block text-center px-4 py-2 mt-10 font-medium tracking-wide text-primary-blue capitalize transition-colors duration-200 transform bg-white rounded-md hover:bg-white focus:outline-none focus:bg-white">
                             {{ $t("register") }}
-                        </router-link>
+                        </button>
+                        <!-- <router-link  :to="{name:'register', params: { type : 'business2' }}" class="w-full block text-center px-4 py-2 mt-10 font-medium tracking-wide text-primary-blue capitalize transition-colors duration-200 transform bg-white rounded-md hover:bg-white focus:outline-none focus:bg-white">
+                            {{ $t("register") }}
+                        </router-link> -->
                     </div>
                     <div class="px-6 py-4 transition-colors duration-200 transform rounded-lg  bg-white shadow hover:bg-gray-50 ">
                         <div class="text-center">

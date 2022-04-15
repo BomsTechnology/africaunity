@@ -8,6 +8,7 @@ use App\Http\Resources\JobOfferResource2;
 use App\Models\JobOffer;
 use App\Models\User;
 use App\Notifications\ApplyJobNotification;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class JobOfferController extends Controller
@@ -20,6 +21,109 @@ class JobOfferController extends Controller
     public function index()
     {
         return JobOfferResource::collection(JobOffer::latest()->get());
+    }
+
+    public function filter(Request $request)
+    {
+        $jobs = JobOffer::where('status','<>',3);
+
+        if($request->offer_type != ""){
+            $offer_type = $request->offer_type;
+            $jobs = $jobs->with(['offer_type' => function ($query) use($offer_type) {
+                $query->where('id', $offer_type);
+            }])->whereHas('offer_type', function (Builder $query) use($offer_type) {
+                $query->where('id', $offer_type);
+            });
+        }
+
+        if($request->work_mode != ""){
+            $work_mode = $request->work_mode;
+            $jobs = $jobs->with(['work_mode' => function ($query) use($work_mode) {
+                $query->where('id', $work_mode);
+            }])->whereHas('work_mode', function (Builder $query) use($work_mode) {
+                $query->where('id', $work_mode);
+            });
+        }
+
+        if($request->level_study != ""){
+            $level_study = $request->level_study;
+            $jobs = $jobs->with(['level_study' => function ($query) use($level_study) {
+                $query->where('id', $level_study);
+            }])->whereHas('level_study', function (Builder $query) use($level_study) {
+                $query->where('id', $level_study);
+            });
+        }
+
+        if($request->year_experience != ""){
+            $year_experience = $request->year_experience;
+            $jobs = $jobs->with(['year_experience' => function ($query) use($year_experience) {
+                $query->where('id', $year_experience);
+            }])->whereHas('year_experience', function (Builder $query) use($year_experience) {
+                $query->where('id', $year_experience);
+            });
+        }
+
+        if($request->city != ""){
+            $city = $request->city;
+            $jobs = $jobs->with(['city' => function ($query) use($city) {
+                $query->where('id', $city);
+            }])->whereHas('city', function (Builder $query) use($city) {
+                $query->where('id', $city);
+            });
+        }
+
+        if($request->zone != ""){
+            $zone = $request->zone;
+            $jobs = $jobs->with(['zone' => function ($query) use($zone) {
+                $query->where('id', $zone);
+            }])->whereHas('zone', function (Builder $query) use($zone) {
+                $query->where('id', $zone);
+            });
+        }
+
+        if($request->continent != ""){
+            $continent = $request->continent;
+            $jobs = $jobs->with(['continent' => function ($query) use($continent) {
+                $query->where('id', $continent);
+            }])->whereHas('continent', function (Builder $query) use($continent) {
+                $query->where('id', $continent);
+            });
+        }
+
+        if($request->country != ""){
+            $country = $request->country;
+            $jobs = $jobs->with(['country' => function ($query) use($country) {
+                $query->where('id', $country);
+            }])->whereHas('country', function (Builder $query) use($country) {
+                $query->where('id', $country);
+            });
+        }
+
+        if($request->currency != ""){
+            $currency = $request->currency;
+            $jobs = $jobs->with(['currency' => function ($query) use($currency) {
+                $query->where('id', $currency);
+            }])->whereHas('currency', function (Builder $query) use($currency) {
+                $query->where('id', $currency);
+            });
+        }
+
+        if($request->activity_area != ""){
+            $activity_area = $request->activity_area;
+            $jobs = $jobs->whereHas('activity_areas', function (Builder $query) use($activity_area) {
+                    $query->where('activity_areas.id', $activity_area);
+                });
+        }
+
+        if($request->language != ""){
+            $language = $request->language;
+            $jobs = $jobs->whereHas('languages', function (Builder $query) use($language) {
+                    $query->where('languages.id', $language);
+                });
+        }
+
+
+        return JobOfferResource::collection($jobs->get());
     }
 
     public function jobOffers_front()

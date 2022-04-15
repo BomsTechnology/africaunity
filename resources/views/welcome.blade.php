@@ -14,16 +14,16 @@
         <meta property="og:type"          content="website" />
         <meta property="og:title"         content="AfricaUnity" />
         <meta property="og:description"   content="AfricaUnity the profesional and social network" />
-        <meta property="og:image"         content="{{ asset('/img') }}/logo_au.png" />
+        <meta property="og:image"         content="{{ asset('/img/logo_au.png') }}" />
 
         {{-- Twitter --}}
         <meta property="twitter:card" content="summary_large_image">
         <meta property="twitter:url" content="{{ url('') }}">
         <meta property="twitter:title" content="AfricaUnity">
         <meta property="twitter:description" content="AfricaUnity the profesional and social network">
-        <meta property="twitter:image" content="{{ asset('/img')  }}/logo_au.png">
+        <meta property="twitter:image" content="{{ asset('/img/logo_au.png')  }}">
 
-        
+        <link rel="icon" type="image/x-icon" href="{{ asset('/img/ico.png')  }}">
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     </head>
     <body class="bg-white py-3" style="background-image:url('/img/random-shapes.svg')">

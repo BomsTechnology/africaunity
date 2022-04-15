@@ -54,27 +54,27 @@ class JobOffer extends Model
         return $this->belongsTo(City::class);
     }
 
-    public function levelStudy(){
+    public function level_study(){
         return $this->belongsTo(LevelStudy::class);
     }
 
-    public function offerType(){
+    public function offer_type(){
         return $this->belongsTo(OfferType::class);
     }
 
-    public function sizeCompany(){
+    public function size_company(){
         return $this->belongsTo(SizeCompany::class);
     }
 
-    public function workMode(){
+    public function work_mode(){
         return $this->belongsTo(WorkMode::class);
     }
 
-    public function workDepartment(){
+    public function work_department(){
         return $this->belongsTo(WorkDepartment::class);
     }
 
-    public function yearExperience(){
+    public function year_experience(){
         return $this->belongsTo(YearExperience::class);
     }
 

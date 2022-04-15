@@ -4,12 +4,14 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
+use App\Http\Resources\UserResource2;
 use App\Models\Announcement;
 use App\Models\JobOffer;
 use App\Models\Post;
 use App\Models\User;
 use App\Notifications\DeleteAccountNotification;
 use App\Notifications\DesactivationAccountNotification;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -22,7 +24,102 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        return UserResource::collection(User::latest()->get());
+    }
+
+    public function usersType($type)
+    {
+        if($type == 'business'){
+            $users = User::where('status', '<>', 3)->where(function($query) {
+                $query->where('type', 'business1')->orWhere('type', 'business2');
+            });
+        }else{
+            $users = User::where([
+                ['type', $type],
+                ['status', '<>', 3]
+            ]);
+        }
+        return UserResource2::collection($users->get());
+    }
+
+    public function filter(Request $request)
+    {
+        if($request->type == 'business'){
+            $users = User::where('status', '<>', 3)->where(function($query) {
+                $query->where('type', 'business1')->orWhere('type', 'business2');
+            });
+        }else{
+            $users = User::where([
+                ['type', $request->type],
+                ['status', '<>', 3]
+            ]);
+        }
+
+        if($request->status != ""){
+            $status = $request->status;
+            $users = $users->with(['detail' => function ($query) use($status) {
+                $query->where('status', $status);
+            }])->whereHas('detail', function (Builder $query) use($status) {
+                $query->where('status', $status);
+            });
+        }
+
+        if($request->native_country != ""){
+            $native_country = $request->native_country;
+            $users = $users->with(['detail' => function ($query) use($native_country) {
+                $query->where('native_country', $native_country);
+            }])->whereHas('detail', function (Builder $query) use($native_country) {
+                $query->where('native_country', $native_country);
+            });
+        }
+
+        if($request->residence_country != ""){
+            $residence_country = $request->residence_country;
+            $users = $users->with(['detail' => function ($query) use($residence_country) {
+                $query->where('residence_country', $residence_country);
+            }])->whereHas('detail', function (Builder $query) use($residence_country) {
+                $query->where('residence_country', $residence_country);
+            });
+        }
+
+        if($request->activity_area != ""){
+            $activity_area = $request->activity_area;
+            $users = $users->whereHas('detail', function (Builder $query) use($activity_area) {
+                $query->whereHas('activity_areas', function (Builder $query) use($activity_area) {
+                    $query->where('activity_areas.id', $activity_area);
+                });
+            });
+        }
+
+        if($request->language != ""){
+            $language = $request->language;
+            $users = $users->whereHas('detail', function (Builder $query) use($language) {
+                $query->whereHas('languages', function (Builder $query) use($language) {
+                    $query->where('languages.id', $language);
+                });
+            });
+        }
+
+        if($request->business_size != ""){
+            $business_size = $request->business_size;
+            $users = $users->with(['detail' => function ($query) use($business_size) {
+                $query->where('business_size_id', $business_size);
+            }])->whereHas('detail', function (Builder $query) use($business_size) {
+                $query->where('business_size_id', $business_size);
+            });
+        }
+
+        if($request->business_type != ""){
+            $business_type = $request->business_type;
+            $users = $users->with(['detail' => function ($query) use($business_type) {
+                $query->where('business_type_id', $business_type);
+            }])->whereHas('detail', function (Builder $query) use($business_type) {
+                $query->where('business_type_id', $business_type);
+            });
+        }
+
+        return UserResource2::collection($users->get());
+
     }
 
     /**

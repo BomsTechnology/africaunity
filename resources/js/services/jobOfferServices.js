@@ -50,6 +50,27 @@ export default function useJobOffers() {
         }
     };
 
+    const filterJobs = async (data) => {  
+        errors.value = '';
+        try{
+            loading.value = 1;
+            let response = await axios.post('/api/jobOffers-filter', data,  {
+                headers:{
+                    'Authorization': `Bearer ${localStorage.token}`
+                }
+            });
+            jobOffers.value = response.data.data;
+            console.log(jobOffers.value);
+            loading.value = 2;
+        }catch(e){
+            if(e.response.status == 401){
+                location.href = 'login/not-login';
+                window.localStorage.removeItem("token");
+                window.localStorage.removeItem("user");
+            }
+        }
+    };
+
     const getJobOffersUser = async (id) => {
         errors.value = '';
         try{
@@ -188,6 +209,7 @@ export default function useJobOffers() {
         jobOffer,
         errors,
         loading,
+        filterJobs,
         getJobOffers,
         getJobOffer,
         createJobOffer,

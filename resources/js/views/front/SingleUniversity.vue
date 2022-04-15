@@ -80,6 +80,7 @@
             <h1 class="text-3xl text-primary-blue text-center py-2  font-bold">{{ $t('ads-university') }} {{ university.name }}</h1>
             <div class="flex justify-end px-6">
                 <router-link
+                v-if="(user.type == 'particular')"
                     :to="{
                         name: 'add.ads',
                     }"
@@ -89,12 +90,37 @@
                     <p class="text-base leading-4">{{ $t('add') }} {{ $t('ads') }}</p>
                 </router-link>
             </div>
+            <div class="grid lg:grid-cols-3 grid-cols-1 gap-2 px-10 pb-8 pt-4 bg-gray-50 shadow mt-4">
+                    <div
+                        class="lg:text-sm text-xs">
+                        <label class="text-gray-700 dark:text-gray-200">{{ $t('key-words') }}</label>
+                        <input
+                            type="text"
+                            v-model="filterAds.searchKey"
+                            class="form-input px-3 pr-2  w-full text-gray-700 bg-white border border-gray-200 rounded-md  mt-2 placeholder:text-gray-400 focus:ring-primary-blue focus:border-primary-blue block"
+                        />
+                    </div>
+                    <div class="lg:text-sm text-xs">
+                        <label class="text-gray-700" for="es">{{ $t('category') }}</label>
+                        <select v-model="filterAds.category"   class="form-select block w-full px-4 py-2 mt-1 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue">
+                            <option value="">--------------</option>
+                            <option
+                                v-for="category_announcement in categoryAnnouncements"
+                                :key="category_announcement.id"
+                                :value="category_announcement.id"
+                            >
+                                {{ category_announcement.name }}
+                            </option>
+                        </select>
+                    </div>
+            </div>
+            <div class="p-2 bg-primary-blue shadow"></div>
     <div class="py-8">
         <div
                 class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8 lg:px-10 py-8"
-                v-if="announcements.length != 0"
+                v-if="filteredAnnouncement.length != 0"
             >           
-            <div class="overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800" v-for="announcement in announcements"
+            <div class="overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800" v-for="announcement in filteredAnnouncement"
                                             :key="announcement.id">
                 
                 <router-link
@@ -175,6 +201,7 @@ import Footer from "../../components/Footer.vue";
 import {EmojiSadIcon, PlusCircleIcon, SpeakerphoneIcon, CalendarIcon, UserIcon} from "@heroicons/vue/solid";
 import useUniversities from "../../services/universityServices.js";
 import useAnnouncements from "../../services/announcementServices.js";
+import usecategoryAnnouncements from "../../services/categoryAnnouncementServices.js";
 import Error from "../../components/Error.vue";
 export default {
     props: {
@@ -199,21 +226,42 @@ export default {
     },
     setup(props) {
         const { university, getUniversity2, loading } = useUniversities();
+        const { categoryAnnouncements, getCategoryAnnouncements } = usecategoryAnnouncements();
         const user = localStorage.user ? JSON.parse(localStorage.user) : '';
         const { announcements, getAnnouncementsUniversity} = useAnnouncements();
         onMounted(
             async () => {
                 await getUniversity2(props.id);
                 await getAnnouncementsUniversity(props.id);
+                await getCategoryAnnouncements();
             },  
         );
+        const filterAds = reactive({
+            searchKey:"",
+            category:"",
+        });
         
         return {
+            filterAds,
+            categoryAnnouncements,
             loading,
             university,
             announcements,
             user,
         };
+    },
+
+    computed: {
+        filteredAnnouncement() {
+            return this.announcements.filter((announcement) => {
+                let data = "";
+                if(this.filterAds.category != "") 
+                    data = announcement.title.toLowerCase().includes(this.filterAds.searchKey.toLowerCase()) && announcement.category.id == this.filterAds.category;
+                else
+                    data = announcement.title.toLowerCase().includes(this.filterAds.searchKey.toLowerCase()) ;
+                return data;
+            });
+        },
     },
 };
 </script>

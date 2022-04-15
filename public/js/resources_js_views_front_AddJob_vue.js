@@ -2653,8 +2653,8 @@ function useJobOffers() {
     };
   }();
 
-  var getJobOffersUser = /*#__PURE__*/function () {
-    var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(id) {
+  var filterJobs = /*#__PURE__*/function () {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(data) {
       var response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
         while (1) {
@@ -2664,7 +2664,7 @@ function useJobOffers() {
               _context3.prev = 1;
               loading.value = 1;
               _context3.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/jobOffers-user/' + id, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/jobOffers-filter', data, {
                 headers: {
                   'Authorization': "Bearer ".concat(localStorage.token)
                 }
@@ -2673,12 +2673,13 @@ function useJobOffers() {
             case 5:
               response = _context3.sent;
               jobOffers.value = response.data.data;
+              console.log(jobOffers.value);
               loading.value = 2;
-              _context3.next = 13;
+              _context3.next = 14;
               break;
 
-            case 10:
-              _context3.prev = 10;
+            case 11:
+              _context3.prev = 11;
               _context3.t0 = _context3["catch"](1);
 
               if (_context3.t0.response.status == 401) {
@@ -2687,20 +2688,20 @@ function useJobOffers() {
                 window.localStorage.removeItem("user");
               }
 
-            case 13:
+            case 14:
             case "end":
               return _context3.stop();
           }
         }
-      }, _callee3, null, [[1, 10]]);
+      }, _callee3, null, [[1, 11]]);
     }));
 
-    return function getJobOffersUser(_x) {
+    return function filterJobs(_x) {
       return _ref3.apply(this, arguments);
     };
   }();
 
-  var getJobOffer = /*#__PURE__*/function () {
+  var getJobOffersUser = /*#__PURE__*/function () {
     var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4(id) {
       var response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
@@ -2711,7 +2712,7 @@ function useJobOffers() {
               _context4.prev = 1;
               loading.value = 1;
               _context4.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/jobOffers/' + id, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/jobOffers-user/' + id, {
                 headers: {
                   'Authorization': "Bearer ".concat(localStorage.token)
                 }
@@ -2719,8 +2720,8 @@ function useJobOffers() {
 
             case 5:
               response = _context4.sent;
-              loading.value = 0;
-              jobOffer.value = response.data.data;
+              jobOffers.value = response.data.data;
+              loading.value = 2;
               _context4.next = 13;
               break;
 
@@ -2742,12 +2743,12 @@ function useJobOffers() {
       }, _callee4, null, [[1, 10]]);
     }));
 
-    return function getJobOffer(_x2) {
+    return function getJobOffersUser(_x2) {
       return _ref4.apply(this, arguments);
     };
   }();
 
-  var getJobOffer2 = /*#__PURE__*/function () {
+  var getJobOffer = /*#__PURE__*/function () {
     var _ref5 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5(id) {
       var response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
@@ -2755,8 +2756,55 @@ function useJobOffers() {
           switch (_context5.prev = _context5.next) {
             case 0:
               errors.value = '';
+              _context5.prev = 1;
               loading.value = 1;
-              _context5.next = 4;
+              _context5.next = 5;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/jobOffers/' + id, {
+                headers: {
+                  'Authorization': "Bearer ".concat(localStorage.token)
+                }
+              });
+
+            case 5:
+              response = _context5.sent;
+              loading.value = 0;
+              jobOffer.value = response.data.data;
+              _context5.next = 13;
+              break;
+
+            case 10:
+              _context5.prev = 10;
+              _context5.t0 = _context5["catch"](1);
+
+              if (_context5.t0.response.status == 401) {
+                location.href = 'login/not-login';
+                window.localStorage.removeItem("token");
+                window.localStorage.removeItem("user");
+              }
+
+            case 13:
+            case "end":
+              return _context5.stop();
+          }
+        }
+      }, _callee5, null, [[1, 10]]);
+    }));
+
+    return function getJobOffer(_x3) {
+      return _ref5.apply(this, arguments);
+    };
+  }();
+
+  var getJobOffer2 = /*#__PURE__*/function () {
+    var _ref6 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee6(id) {
+      var response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee6$(_context6) {
+        while (1) {
+          switch (_context6.prev = _context6.next) {
+            case 0:
+              errors.value = '';
+              loading.value = 1;
+              _context6.next = 4;
               return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/jobOffers2/' + id, {
                 headers: {
                   'Authorization': "Bearer ".concat(localStorage.token)
@@ -2764,73 +2812,25 @@ function useJobOffers() {
               });
 
             case 4:
-              response = _context5.sent;
+              response = _context6.sent;
               loading.value = 0;
               jobOffer.value = response.data.data;
               console.log(jobOffer.value);
 
             case 8:
             case "end":
-              return _context5.stop();
-          }
-        }
-      }, _callee5);
-    }));
-
-    return function getJobOffer2(_x3) {
-      return _ref5.apply(this, arguments);
-    };
-  }();
-
-  var createJobOffer = /*#__PURE__*/function () {
-    var _ref6 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee6(data) {
-      var key;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee6$(_context6) {
-        while (1) {
-          switch (_context6.prev = _context6.next) {
-            case 0:
-              errors.value = '';
-              _context6.prev = 1;
-              loading.value = 1;
-              _context6.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/jobOffers', data, {
-                headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token),
-                  'Content-Type': 'multipart/form-data'
-                }
-              });
-
-            case 5:
-              loading.value = 2;
-              _context6.next = 11;
-              break;
-
-            case 8:
-              _context6.prev = 8;
-              _context6.t0 = _context6["catch"](1);
-
-              if (_context6.t0.response.status == 422) {
-                loading.value = 0;
-
-                for (key in _context6.t0.response.data.errors) {
-                  errors.value += _context6.t0.response.data.errors[key][0] + "\n";
-                }
-              }
-
-            case 11:
-            case "end":
               return _context6.stop();
           }
         }
-      }, _callee6, null, [[1, 8]]);
+      }, _callee6);
     }));
 
-    return function createJobOffer(_x4) {
+    return function getJobOffer2(_x4) {
       return _ref6.apply(this, arguments);
     };
   }();
 
-  var updateJobOffer = /*#__PURE__*/function () {
+  var createJobOffer = /*#__PURE__*/function () {
     var _ref7 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee7(data) {
       var key;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee7$(_context7) {
@@ -2841,7 +2841,7 @@ function useJobOffers() {
               _context7.prev = 1;
               loading.value = 1;
               _context7.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/jobOffers/' + jobOffer.value.id, data, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/jobOffers', data, {
                 headers: {
                   'Authorization': "Bearer ".concat(localStorage.token),
                   'Content-Type': 'multipart/form-data'
@@ -2850,21 +2850,22 @@ function useJobOffers() {
 
             case 5:
               loading.value = 2;
-              _context7.next = 12;
+              _context7.next = 11;
               break;
 
             case 8:
               _context7.prev = 8;
               _context7.t0 = _context7["catch"](1);
-              loading.value = 0;
 
               if (_context7.t0.response.status == 422) {
+                loading.value = 0;
+
                 for (key in _context7.t0.response.data.errors) {
-                  errors.value += _context7.t0.response.data.errors[key][0] + '\t\n';
+                  errors.value += _context7.t0.response.data.errors[key][0] + "\n";
                 }
               }
 
-            case 12:
+            case 11:
             case "end":
               return _context7.stop();
           }
@@ -2872,13 +2873,14 @@ function useJobOffers() {
       }, _callee7, null, [[1, 8]]);
     }));
 
-    return function updateJobOffer(_x5) {
+    return function createJobOffer(_x5) {
       return _ref7.apply(this, arguments);
     };
   }();
 
-  var destroyJobOffer = /*#__PURE__*/function () {
-    var _ref8 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee8(id) {
+  var updateJobOffer = /*#__PURE__*/function () {
+    var _ref8 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee8(data) {
+      var key;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee8$(_context8) {
         while (1) {
           switch (_context8.prev = _context8.next) {
@@ -2887,9 +2889,10 @@ function useJobOffers() {
               _context8.prev = 1;
               loading.value = 1;
               _context8.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]('/api/jobOffers/' + id, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/jobOffers/' + jobOffer.value.id, data, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  'Authorization': "Bearer ".concat(localStorage.token),
+                  'Content-Type': 'multipart/form-data'
                 }
               });
 
@@ -2903,8 +2906,10 @@ function useJobOffers() {
               _context8.t0 = _context8["catch"](1);
               loading.value = 0;
 
-              if (_context8.t0.response.status == '500') {
-                errors.value = 'Impossible de supprimer ce jobOffer';
+              if (_context8.t0.response.status == 422) {
+                for (key in _context8.t0.response.data.errors) {
+                  errors.value += _context8.t0.response.data.errors[key][0] + '\t\n';
+                }
               }
 
             case 12:
@@ -2915,12 +2920,12 @@ function useJobOffers() {
       }, _callee8, null, [[1, 8]]);
     }));
 
-    return function destroyJobOffer(_x6) {
+    return function updateJobOffer(_x6) {
       return _ref8.apply(this, arguments);
     };
   }();
 
-  var markFilled = /*#__PURE__*/function () {
+  var destroyJobOffer = /*#__PURE__*/function () {
     var _ref9 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee9(id) {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee9$(_context9) {
         while (1) {
@@ -2930,7 +2935,7 @@ function useJobOffers() {
               _context9.prev = 1;
               loading.value = 1;
               _context9.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/jobOffers-mark-filled/' + id, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]('/api/jobOffers/' + id, {
                 headers: {
                   'Authorization': "Bearer ".concat(localStorage.token)
                 }
@@ -2958,8 +2963,51 @@ function useJobOffers() {
       }, _callee9, null, [[1, 8]]);
     }));
 
-    return function markFilled(_x7) {
+    return function destroyJobOffer(_x7) {
       return _ref9.apply(this, arguments);
+    };
+  }();
+
+  var markFilled = /*#__PURE__*/function () {
+    var _ref10 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee10(id) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee10$(_context10) {
+        while (1) {
+          switch (_context10.prev = _context10.next) {
+            case 0:
+              errors.value = '';
+              _context10.prev = 1;
+              loading.value = 1;
+              _context10.next = 5;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/jobOffers-mark-filled/' + id, {
+                headers: {
+                  'Authorization': "Bearer ".concat(localStorage.token)
+                }
+              });
+
+            case 5:
+              loading.value = 2;
+              _context10.next = 12;
+              break;
+
+            case 8:
+              _context10.prev = 8;
+              _context10.t0 = _context10["catch"](1);
+              loading.value = 0;
+
+              if (_context10.t0.response.status == '500') {
+                errors.value = 'Impossible de supprimer ce jobOffer';
+              }
+
+            case 12:
+            case "end":
+              return _context10.stop();
+          }
+        }
+      }, _callee10, null, [[1, 8]]);
+    }));
+
+    return function markFilled(_x8) {
+      return _ref10.apply(this, arguments);
     };
   }();
 
@@ -2968,6 +3016,7 @@ function useJobOffers() {
     jobOffer: jobOffer,
     errors: errors,
     loading: loading,
+    filterJobs: filterJobs,
     getJobOffers: getJobOffers,
     getJobOffer: getJobOffer,
     createJobOffer: createJobOffer,
