@@ -8,9 +8,9 @@
                 class="flex justify-start text-sm items-center text-primary-blue hover:underline"
             >
                 <ChevronUpIcon v-if="showFilter" class="w-5 h-5" />
-                <span v-if="showFilter">Masquer le filtre</span>
+                <span v-if="showFilter">{{ $t('hide-filter') }}</span>
                 <ChevronDownIcon v-if="!showFilter" class="w-5 h-5" />
-                <span v-if="!showFilter">Afficher le filtre</span>
+                <span v-if="!showFilter">{{ $t('show-filter') }}</span>
             </button>
         </div>
         <div class="lg:text-sm text-xs bg-gray-100 px-10 pb-8 pt-4 shadow" v-if="showFilter">

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
 use App\Http\Resources\UserResource2;
 use App\Models\Announcement;
+use App\Models\Detail;
 use App\Models\JobOffer;
 use App\Models\Post;
 use App\Models\User;
@@ -130,7 +131,29 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $fields = $request->validate([
+            'firstname' =>'required|string',
+            'lastname'=>'nullable|string',
+            'type' =>'required|string',
+            'email'=>'required|string|email|unique:users,email',
+            'password' =>'required|confirmed'
+        ]);
+
+        $user = User::create([
+            'firstname'=>$fields['firstname'],
+            'lastname'=>$fields['lastname'],
+            'type'=>$fields['type'],
+            'email'=>$fields['email'],
+            'password'=>Hash::make($fields['password']),
+        ]);
+
+        Detail::create([
+            'user_id' => $user->id
+        ]);
+
+        $user->markEmailAsVerified();
+
+        return new UserResource($user);
     }
 
     public function deleteData(Request $request)
@@ -230,12 +253,43 @@ class UserController extends Controller
     public function changeStatus(Request $request, User $user)
     {
         $fileds = $request->validate([
-            'status' => 'required|integer|between:1,2',
+            'status' => 'required|integer|between:1,3',
         ]);
 
         $user->status = $fileds['status'];
         $user->save();
 
+        return new UserResource($user);
+    }
+
+    public function update2(Request $request, User $user)
+    {
+        $fileds = $request->validate([
+            'firstname' => 'required|string',
+            'lastname' => '',
+            'type' =>'required|string',
+            'email' => 'required|string|email',
+        ]);
+        $data = [
+                'firstname' => $fileds['firstname'],
+                'lastname' => $fileds['lastname'],
+                'type' => $fileds['type'],
+                'email' => $fileds['email'],
+        ];
+
+        if($user->email != $fileds['email']){
+            $e = $request->validate([
+                'email' => 'unique:users,email'
+            ]);
+            $data['email'] = $e;
+        }
+
+        if($request->password){
+            $user->password = Hash::make($request->password);
+        }
+
+        $user->update($data);
+        
         return new UserResource($user);
     }
 
@@ -290,6 +344,11 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        Post::where('user_id', $user->id)->delete();
+        JobOffer::where('user_id', $user->id)->delete();
+        Announcement::where('user_id', $user->id)->delete();
+        $user->delete();
+
+        return response()->noContent();
     }
 }

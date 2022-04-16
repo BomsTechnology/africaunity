@@ -1747,8 +1747,7 @@ function useUsers() {
               _context5.next = 5;
               return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/users', data, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token),
-                  'Content-Type': 'multipart/form-data'
+                  'Authorization': "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -1832,8 +1831,8 @@ function useUsers() {
     };
   }();
 
-  var updateStatusUser = /*#__PURE__*/function () {
-    var _ref7 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee7(id, data) {
+  var updateUser2 = /*#__PURE__*/function () {
+    var _ref7 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee7() {
       var response, key;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee7$(_context7) {
         while (1) {
@@ -1843,7 +1842,7 @@ function useUsers() {
               _context7.prev = 1;
               loading.value = 1;
               _context7.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().put('/api/users-change-status/' + id, data, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().put('/api/users-update/' + user.value.id, user.value, {
                 headers: {
                   'Authorization': "Bearer ".concat(localStorage.token)
                 }
@@ -1852,12 +1851,11 @@ function useUsers() {
             case 5:
               response = _context7.sent;
               loading.value = 2;
-              localStorage.user = JSON.stringify(response.data.data);
-              _context7.next = 14;
+              _context7.next = 13;
               break;
 
-            case 10:
-              _context7.prev = 10;
+            case 9:
+              _context7.prev = 9;
               _context7.t0 = _context7["catch"](1);
               loading.value = 0;
 
@@ -1867,21 +1865,21 @@ function useUsers() {
                 }
               }
 
-            case 14:
+            case 13:
             case "end":
               return _context7.stop();
           }
         }
-      }, _callee7, null, [[1, 10]]);
+      }, _callee7, null, [[1, 9]]);
     }));
 
-    return function updateStatusUser(_x7, _x8) {
+    return function updateUser2() {
       return _ref7.apply(this, arguments);
     };
   }();
 
-  var deleteUserData = /*#__PURE__*/function () {
-    var _ref8 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee8(data) {
+  var updateStatusUser = /*#__PURE__*/function () {
+    var _ref8 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee8(id, data) {
       var response, key;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee8$(_context8) {
         while (1) {
@@ -1891,7 +1889,7 @@ function useUsers() {
               _context8.prev = 1;
               loading.value = 1;
               _context8.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/users-delete-data', data, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().put('/api/users-change-status/' + id, data, {
                 headers: {
                   'Authorization': "Bearer ".concat(localStorage.token)
                 }
@@ -1900,11 +1898,12 @@ function useUsers() {
             case 5:
               response = _context8.sent;
               loading.value = 2;
-              _context8.next = 13;
+              localStorage.user = JSON.stringify(response.data.data);
+              _context8.next = 14;
               break;
 
-            case 9:
-              _context8.prev = 9;
+            case 10:
+              _context8.prev = 10;
               _context8.t0 = _context8["catch"](1);
               loading.value = 0;
 
@@ -1912,24 +1911,22 @@ function useUsers() {
                 for (key in _context8.t0.response.data.errors) {
                   errors.value += _context8.t0.response.data.errors[key][0] + '\t\n';
                 }
-              } else if (_context8.t0.response.status == 401) {
-                errors.value = _context8.t0.response.data.message;
               }
 
-            case 13:
+            case 14:
             case "end":
               return _context8.stop();
           }
         }
-      }, _callee8, null, [[1, 9]]);
+      }, _callee8, null, [[1, 10]]);
     }));
 
-    return function deleteUserData(_x9) {
+    return function updateStatusUser(_x7, _x8) {
       return _ref8.apply(this, arguments);
     };
   }();
 
-  var destroyUserFront = /*#__PURE__*/function () {
+  var deleteUserData = /*#__PURE__*/function () {
     var _ref9 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee9(data) {
       var response, key;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee9$(_context9) {
@@ -1940,7 +1937,7 @@ function useUsers() {
               _context9.prev = 1;
               loading.value = 1;
               _context9.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/users-delete-user', data, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/users-delete-data', data, {
                 headers: {
                   'Authorization': "Bearer ".concat(localStorage.token)
                 }
@@ -1973,14 +1970,14 @@ function useUsers() {
       }, _callee9, null, [[1, 9]]);
     }));
 
-    return function destroyUserFront(_x10) {
+    return function deleteUserData(_x9) {
       return _ref9.apply(this, arguments);
     };
   }();
 
-  var updatePasswordUser = /*#__PURE__*/function () {
-    var _ref10 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee10(id, data) {
-      var key;
+  var destroyUserFront = /*#__PURE__*/function () {
+    var _ref10 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee10(data) {
+      var response, key;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee10$(_context10) {
         while (1) {
           switch (_context10.prev = _context10.next) {
@@ -1989,19 +1986,20 @@ function useUsers() {
               _context10.prev = 1;
               loading.value = 1;
               _context10.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().put('/api/users-change-password/' + id, data, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/users-delete-user', data, {
                 headers: {
                   'Authorization': "Bearer ".concat(localStorage.token)
                 }
               });
 
             case 5:
+              response = _context10.sent;
               loading.value = 2;
-              _context10.next = 12;
+              _context10.next = 13;
               break;
 
-            case 8:
-              _context10.prev = 8;
+            case 9:
+              _context10.prev = 9;
               _context10.t0 = _context10["catch"](1);
               loading.value = 0;
 
@@ -2013,21 +2011,22 @@ function useUsers() {
                 errors.value = _context10.t0.response.data.message;
               }
 
-            case 12:
+            case 13:
             case "end":
               return _context10.stop();
           }
         }
-      }, _callee10, null, [[1, 8]]);
+      }, _callee10, null, [[1, 9]]);
     }));
 
-    return function updatePasswordUser(_x11, _x12) {
+    return function destroyUserFront(_x10) {
       return _ref10.apply(this, arguments);
     };
   }();
 
-  var destroyUser = /*#__PURE__*/function () {
-    var _ref11 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee11(id) {
+  var updatePasswordUser = /*#__PURE__*/function () {
+    var _ref11 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee11(id, data) {
+      var key;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee11$(_context11) {
         while (1) {
           switch (_context11.prev = _context11.next) {
@@ -2036,6 +2035,53 @@ function useUsers() {
               _context11.prev = 1;
               loading.value = 1;
               _context11.next = 5;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().put('/api/users-change-password/' + id, data, {
+                headers: {
+                  'Authorization': "Bearer ".concat(localStorage.token)
+                }
+              });
+
+            case 5:
+              loading.value = 2;
+              _context11.next = 12;
+              break;
+
+            case 8:
+              _context11.prev = 8;
+              _context11.t0 = _context11["catch"](1);
+              loading.value = 0;
+
+              if (_context11.t0.response.status == 422) {
+                for (key in _context11.t0.response.data.errors) {
+                  errors.value += _context11.t0.response.data.errors[key][0] + '\t\n';
+                }
+              } else if (_context11.t0.response.status == 401) {
+                errors.value = _context11.t0.response.data.message;
+              }
+
+            case 12:
+            case "end":
+              return _context11.stop();
+          }
+        }
+      }, _callee11, null, [[1, 8]]);
+    }));
+
+    return function updatePasswordUser(_x11, _x12) {
+      return _ref11.apply(this, arguments);
+    };
+  }();
+
+  var destroyUser = /*#__PURE__*/function () {
+    var _ref12 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee12(id) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee12$(_context12) {
+        while (1) {
+          switch (_context12.prev = _context12.next) {
+            case 0:
+              errors.value = '';
+              _context12.prev = 1;
+              loading.value = 1;
+              _context12.next = 5;
               return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]('/api/users/' + id, {
                 headers: {
                   'Authorization': "Bearer ".concat(localStorage.token)
@@ -2044,24 +2090,24 @@ function useUsers() {
 
             case 5:
               loading.value = 2;
-              return _context11.abrupt("return", true);
+              return _context12.abrupt("return", true);
 
             case 9:
-              _context11.prev = 9;
-              _context11.t0 = _context11["catch"](1);
+              _context12.prev = 9;
+              _context12.t0 = _context12["catch"](1);
               loading.value = 0;
               errors.value = 'Impossible de supprimer ce user';
 
             case 13:
             case "end":
-              return _context11.stop();
+              return _context12.stop();
           }
         }
-      }, _callee11, null, [[1, 9]]);
+      }, _callee12, null, [[1, 9]]);
     }));
 
     return function destroyUser(_x13) {
-      return _ref11.apply(this, arguments);
+      return _ref12.apply(this, arguments);
     };
   }();
 
@@ -2080,7 +2126,8 @@ function useUsers() {
     updateStatusUser: updateStatusUser,
     destroyUserFront: destroyUserFront,
     getUsersType: getUsersType,
-    filterUsers: filterUsers
+    filterUsers: filterUsers,
+    updateUser2: updateUser2
   };
 }
 

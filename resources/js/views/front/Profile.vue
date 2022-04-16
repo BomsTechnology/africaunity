@@ -827,8 +827,8 @@
                                 <td
                                     class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
                                 >
-                                    <span v-if="jobOffer.status == 3" class="text-xs px-2 py-1 bg-green-50 text-green-700 rounded-full">Pourvu</span>
-                                    <span v-else class="text-xs px-2 py-1 bg-yellow-50 text-yellow-700 rounded-full">En Cours</span>
+                                    <span v-if="jobOffer.status == 3" class="text-xs px-2 py-1 bg-green-50 text-green-700 rounded-full">{{ $t('provided') }}</span>
+                                    <span v-else class="text-xs px-2 py-1 bg-yellow-50 text-yellow-700 rounded-full">{{ $t('in-progress') }}</span>
                                 </td>
                                 <td
                                     v-if="user.id == loginUser.id"

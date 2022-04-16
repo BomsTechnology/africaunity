@@ -167,6 +167,27 @@ export default function usePosts() {
         }
     };
 
+    const filterPost = async (data) => {  
+        errors.value = '';
+        try{
+            loading.value = 1;
+            let response = await axios.post('/api/posts-filter', data,  {
+                headers:{
+                    'Authorization': `Bearer ${localStorage.token}`
+                }
+            });
+            posts.value = response.data.data;
+            console.log(posts.value);
+            loading.value = 0;
+        }catch(e){
+            if(e.response.status == 401){
+                location.href = 'login/not-login';
+                window.localStorage.removeItem("token");
+                window.localStorage.removeItem("user");
+            }
+        }
+    };
+
     const updatePost = async (data) => {
         errors.value = '';
         try {
@@ -207,6 +228,7 @@ export default function usePosts() {
     };
 
     return {
+        filterPost,
         posts,
         post,
         errors,

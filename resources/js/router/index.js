@@ -30,6 +30,9 @@ const OtherTools = () => import  ("../views/back/OtherTools.vue");
 const PostIndex = () => import  ("../views/back/posts/PostIndex.vue");
 const PostCreate = () => import  ("../views/back/posts/PostCreate.vue");
 const PostEdit = () => import ("../views/back/posts/PostEdit.vue");
+const UserIndex = () => import  ("../views/back/user/UserIndex.vue");
+const UserCreate = () => import  ("../views/back/user/UserCreate.vue");
+const UserEdit = () => import ("../views/back/user/UserEdit.vue");
 const ContinentIndex = () => import ("../views/back/continent/ContinentIndex.vue");
 const ContinentCreate = () => import  ("../views/back/continent/ContinentCreate.vue");
 const ContinentEdit = () => import ("../views/back/continent/ContinentEdit.vue");
@@ -365,6 +368,31 @@ const routes = [
                 name: 'admin.continent.edit',
                 meta:{
                     title: siteName + ' - Edit Continent'
+                }
+            },
+            {
+                path: 'user',
+                component: UserIndex,
+                name: 'admin.user.index',
+                meta:{
+                    title: siteName + ' - User'
+                }
+            },
+            {
+                path: 'user/create',
+                component: UserCreate,
+                name: 'admin.user.create',
+                meta:{
+                    title: siteName + ' - Create User'
+                }
+            },
+            {
+                path: 'user/edit/:id',
+                component: UserEdit,
+                props: true,
+                name: 'admin.user.edit',
+                meta:{
+                    title: siteName + ' - Edit User'
                 }
             },
             {

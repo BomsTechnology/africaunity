@@ -1,6 +1,6 @@
 <template>
     <Header />
-    <h1 class="lg:text-5xl text-4xl text-primary-blue text-center py-4 capitalize font-bold">Setting Account</h1>
+    <h1 class="lg:text-5xl text-4xl text-primary-blue text-center py-4 capitalize font-bold">{{ $t('setting-account') }}</h1>
    <div class=" py-8 lg:px-16 flex mx-auto">
        <div class="border bg-gray-50 lg:px-6 px-2 py-4 flex flex-col items-center justify-center shadow">
             <div v-if="loading == 1" class="p-28">
@@ -25,10 +25,12 @@
                             ></path>
                         </svg>
             </div>
-            <div v-else>
+            <div v-else >
+                <div class="w-full">
                 <div class="lg:h-32 lg:w-32 h-20 w-20  rounded-full overflow-hidden">
                     <img :src="user.avatar" class="w-full h-full bg-cover object-cover" alt="" v-if="user.avatar">
                         <UserCircleIcon v-else class="w-full h-full text-gray-500"/>
+                </div>
                 </div>
                 <h1 class=" capitalize font-bold lg:text-xl text-lg text-center mt-2 hidden lg:block">{{ user.firstname }} {{ user.lastname }}</h1>
                 <h2 class="text-center lg:text-md text-sm font-light mt-1">
@@ -51,19 +53,19 @@
            <div class="mt-4">
                <button @click="changeTab('account')" :class="[ !open.account ? 'border-y  w-full bg-menu text-white px-3 py-2 flex items-center justify-start space-x-2' : 'border-y bg-primary-blue w-full  text-white px-3 py-2 flex items-center justify-start space-x-2']" >
                    <UserCircleIcon class="w-6 h-6"/>
-                   <span class="hidden lg:block">Compte</span>
+                   <span class="hidden lg:block">{{ $t('account') }}</span>
                </button>
                <button @click="changeTab('conf')" :class="[ !open.conf ? 'border-y bg-menu w-full  text-white px-3 py-2 flex items-center justify-start space-x-2' : 'border-y bg-primary-blue w-full  text-white px-3 py-2 flex items-center justify-start space-x-2']">
                    <KeyIcon class="w-6 h-6"/>
-                   <span class="hidden lg:block">Confidentialité</span>
+                   <span class="hidden lg:block">{{ $t('privacy') }}</span>
                </button>
                <button @click="changeTab('password')" :class="[ !open.password ? 'border-y bg-menu w-full  text-white px-3 py-2 flex items-center justify-start space-x-2' : 'border-y bg-primary-blue w-full  text-white px-3 py-2 flex items-center justify-start space-x-2']">
                    <LockClosedIcon class="w-6 h-6"/>
-                   <span class="hidden lg:block">Modifier le mot de passe</span>
+                   <span class="hidden lg:block">{{ $t('change-password') }}</span>
                </button>
                <button @click="changeTab('delete')" :class="[ !open.delete ? 'border-y bg-menu w-full  text-white px-3 py-2 flex items-center justify-start space-x-2' : 'border-y bg-primary-blue w-full  text-white px-3 py-2 flex items-center justify-start space-x-2']">
                    <TrashIcon class="w-6 h-6"/>
-                   <span class="hidden lg:block">Supprimer le compte</span>
+                   <span class="hidden lg:block">{{ $t('delete-account') }}</span>
                </button>
            </div>
        </div>
@@ -73,7 +75,7 @@
            </div>
            <div v-if="loadingC == 2" class=" flex justify-start space-x-3 py-4 px-4 bg-green-50 text-green-700 mx-12">
                 <CheckCircleIcon class="h-6 w-6" />
-                <p> Mise à Jour reussi</p>
+                <p> {{ $t('update-s') }}</p>
             </div>
            <div v-if="loading == 1" class="p-28">
                         <svg
@@ -162,7 +164,7 @@
 
                             <div  class="lg:px-16 px-8 lg:text-sm text-xs mt-2">
                                 <label class="">
-                                    Photo de profil
+                                    {{ $t('profile-picture')  }}
                                 </label>
                                 <input
                                     @change="handelAvatarObject()"
@@ -174,7 +176,7 @@
 
                             <div  class="lg:px-16 px-8 lg:text-sm text-xs mt-2">
                                 <label class="">
-                                    Photo de couverture
+                                    {{ $t('cover-picture')  }}
                                 </label>
                                 <input
                                     @change="handelCoverObject()"
@@ -185,20 +187,20 @@
                             </div>
 
                             <div class="lg:px-16 px-8 lg:text-sm text-xs">
-                                <button v-if="loadingC == 0 || loadingC == 2" type="submit" class="text-white  bg-primary-blue px-8 py-2 mt-6 w-full"> Mettre à jour </button>
+                                <button v-if="loadingC == 0 || loadingC == 2" type="submit" class="text-white  bg-primary-blue px-8 py-2 mt-6 w-full"> {{ $t('update')  }} </button>
                                 <button v-if="loadingC == 1" disabled type="submit" class="inline-flex items-center justify-center text-white  bg-blue-300 cursor-wait px-8 py-2 mt-6 w-full">
                                     <svg class="animate-spin mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                                         <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                                     </svg>
-                                    Mettre à jour...
+                                    {{ $t('update')  }}...
                                 </button>
                             </div>
                         </form>
                 </div>
                 <div v-if="open.conf">
                         <div class="bg-gray-100 text-gray-700 px-3 py-2 m-4 rounded lg:text-sm text-xs flex space-x-2">
-                            <h1 class="font-bold">Confidentialité du profil</h1> <span class=" font-light">(Qui peut voir votre profil)</span>
+                            <h1 class="font-bold">{{ $t('privacy') }}</h1> <span class=" font-light">({{ $t('privacy-desc') }})</span>
                         </div>
                         <form @submit.prevent="changePrivacy()">
                                 <div class="lg:px-16 px-8 lg:text-sm text-xs mt-2">
@@ -207,24 +209,24 @@
                                         v-model="status.status"
                                         class="form-input px-3  w-full mt-3 placeholder:text-gray-400 border-gray-400 focus:ring-primary-blue focus:border-primary-blue block"
                                     >
-                                        <option value="1">Tout le monde</option>
-                                        <option value="2">Moi uniquement</option>
+                                        <option value="1">{{ $t('evreyone') }}</option>
+                                        <option value="2">{{ $t('only-me') }}</option>
                                     </select>
                                 </div>
 
                                 <div class="lg:px-16 px-8 lg:text-sm text-xs">
-                                    <button v-if="loadingC == 0 || loadingC == 2" type="submit" class="text-white  bg-primary-blue px-8 py-2 mt-2 w-full"> Mettre à jour </button>
+                                    <button v-if="loadingC == 0 || loadingC == 2" type="submit" class="text-white  bg-primary-blue px-8 py-2 mt-2 w-full"> {{ $t('update')  }} </button>
                                     <button v-if="loadingC == 1" disabled type="submit" class="inline-flex items-center justify-center text-white  bg-blue-300 cursor-wait px-8 py-2 mt-2 w-full">
                                         <svg class="animate-spin mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                                             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                                         </svg>
-                                        Mettre à Jour...
+                                        {{ $t('update')  }}...
                                     </button>
                                 </div>
                         </form>
                         <div class="bg-gray-100 opacity-25 text-gray-700 px-3 py-2 m-4 rounded lg:text-sm text-xs flex space-x-2">
-                            <h1 class="font-bold">Téléchargez vos données</h1> <span class=" font-light">(Saisissez votre mot de passe pour confirmer l'exportation de vos données personnelles)</span>
+                            <h1 class="font-bold">{{ $t('download-data')  }}</h1> <span class=" font-light">({{ $t('download-data-desc')  }})</span>
                         </div>
                         <form class=" opacity-25">
                                 <div class="lg:px-16 px-8 lg:text-sm text-xs mt-2">
@@ -238,18 +240,18 @@
                                 </div>
 
                                 <div class="lg:px-16 px-8 lg:text-sm text-xs">
-                                    <button v-if="loadingC == 0 || loadingC == 2" disabled type="submit" class="text-white  bg-primary-blue px-8 py-2 mt-2 w-full"> Delete </button>
+                                    <button v-if="loadingC == 0 || loadingC == 2" disabled type="submit" class="text-white  bg-primary-blue px-8 py-2 mt-2 w-full"> {{ $t("download") }} </button>
                                     <button v-if="loadingC == 1" disabled type="submit" class="inline-flex items-center justify-center text-white  bg-blue-300 cursor-wait px-8 py-2 mt-2 w-full">
                                         <svg class="animate-spin mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                                             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                                         </svg>
-                                        {{ $t("delete") }}...
+                                        {{ $t("download") }}...
                                     </button>
                                 </div>
                         </form>
                         <div class="bg-gray-100 text-gray-700 px-3 py-2 m-4 rounded lg:text-sm text-xs flex space-x-2">
-                            <h1 class="font-bold">Effacement de vos données</h1> <span class=" font-light">(Saisissez votre mot de passe pour confirmer l'effacement de vos données personnelles (articles, propau, commentaires, annonces, jobs... ))</span>
+                            <h1 class="font-bold">{{ $t("delete-data") }}</h1> <span class=" font-light">({{ $t("delete-data-desc") }})</span>
                         </div>
                         <form @submit.prevent="deleteData()">
                                 <div class="lg:px-16 px-8 lg:text-sm text-xs mt-2">
@@ -263,13 +265,13 @@
                                 </div>
 
                                 <div class="lg:px-16 px-8 lg:text-sm text-xs">
-                                    <button v-if="loadingC == 0 || loadingC == 2" type="submit" class="text-white  bg-primary-blue px-8 py-2 mt-2 w-full"> Supprimer </button>
+                                    <button v-if="loadingC == 0 || loadingC == 2" type="submit" class="text-white  bg-primary-blue px-8 py-2 mt-2 w-full"> {{ $t("delete") }} </button>
                                     <button v-if="loadingC == 1" disabled type="submit" class="inline-flex items-center justify-center text-white  bg-blue-300 cursor-wait px-8 py-2 mt-2 w-full">
                                         <svg class="animate-spin mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                                             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                                         </svg>
-                                        Supprimer...
+                                        {{ $t("delete") }}...
                                     </button>
                                 </div>
                         </form>
@@ -278,7 +280,7 @@
                         <form @submit.prevent="changeUserPassword()">
                             <div class="relative lg:px-16 px-8 lg:text-sm text-xs mt-2">
                                     <label class="">
-                                        Ancien Mot de passe 
+                                        {{ $t("old-password") }}
                                     </label>
                                     <input
                                         type="password"
@@ -289,7 +291,7 @@
                                 </div>
                                 <div class="relative lg:px-16 px-8 lg:text-sm text-xs mt-2">
                                     <label class="">
-                                        Nouveau Mot de passe 
+                                        {{ $t("new-password") }} 
                                     </label>
                                     <input
                                         type="password"
@@ -300,7 +302,7 @@
                                 </div>
                             <div class="relative lg:px-16 px-8 lg:text-sm text-xs mt-2">
                                     <label class="">
-                                        Confirmer le mot de passe
+                                        {{ $t('confirm-password') }}
                                     </label>
                                     <input
                                         type="password"
@@ -311,13 +313,13 @@
                                 </div>
 
                                 <div class="lg:px-16 px-8 lg:text-sm text-xs">
-                                    <button v-if="loadingC == 0 || loadingC == 2" type="submit" class="text-white  bg-primary-blue px-8 py-2 mt-6 w-full"> Mettre à jour </button>
+                                    <button v-if="loadingC == 0 || loadingC == 2" type="submit" class="text-white  bg-primary-blue px-8 py-2 mt-6 w-full"> {{ $t('update') }} </button>
                                     <button v-if="loadingC == 1" disabled type="submit" class="inline-flex items-center justify-center text-white  bg-blue-300 cursor-wait px-8 py-2 mt-6 w-full">
                                         <svg class="animate-spin mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                                             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                                         </svg>
-                                        Mettre à jour...
+                                        {{ $t('update') }}...
                                     </button>
                                 </div>
                         </form>
@@ -328,31 +330,31 @@
                                 
                                 <div>
                                     <input type="radio" id="fulldelete" value="2" v-model="deleteU.type" class="border p-1 mr-2">
-                                    <label for="fulldelete">Suppression complete</label>
+                                    <label for="fulldelete">{{ $t('complete-delete') }}</label>
                                     
                                 </div>
 
                                 <div>
                                     <input type="radio" id="softdelete" value="1" v-model="deleteU.type" class="border p-1 mr-2">
-                                    <label for="softdelete">Suppression partielle</label>
+                                    <label for="softdelete">{{ $t('partial-delete') }}</label>
                                     
                                 </div>
 
                             </div>
                             <div class="bg-gray-100 text-gray-700 px-3 py-2 m-4 rounded lg:text-sm text-xs">
                                 <span v-if="deleteU.type == 2">
-                                    Ceci entrainera la suppression de toutes vos données sur ce site.
+                                    {{ $t('complete-delete-desc') }}
                                 </span>
                                     
 
                                 <span v-else>
-                                Ceci desactivera votre compte, pour le reactiver vous devrez contacter les administrateurs du site via le formulaire de contact
+                                {{ $t('partial-delete-desc') }}
                                 </span>
                             </div>
 
                             <div class="relative lg:px-16 px-8 lg:text-sm text-xs">
                                     <label class="">
-                                        Pour supprimer votre compte saississez votre mot de passe ci-dessous
+                                        {{ $t('delete-account-desc') }}
                                     </label>
                                     <span
                                         ><LockClosedIcon
@@ -368,13 +370,13 @@
                                 </div>
 
                                 <div class="lg:px-16 px-8 lg:text-sm text-xs">
-                                    <button v-if="loadingC == 0 || loadingC == 2" type="submit" class="text-white  bg-primary-blue px-8 py-2 mt-6 w-full"> Supprimer </button>
+                                    <button v-if="loadingC == 0 || loadingC == 2" type="submit" class="text-white  bg-primary-blue px-8 py-2 mt-6 w-full"> {{ $t('delete') }} </button>
                                     <button v-if="loadingC == 1" disabled type="submit" class="inline-flex items-center justify-center text-white  bg-blue-300 cursor-wait px-8 py-2 mt-6 w-full">
                                         <svg class="animate-spin mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                                             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                                         </svg>
-                                        Supprimer...
+                                        {{ $t('delete') }}...
                                     </button>
                                 </div>
                         </form>

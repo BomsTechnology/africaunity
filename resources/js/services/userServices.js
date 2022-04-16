@@ -97,7 +97,6 @@ export default function useUsers() {
             await axios.post('/api/users', data, {
                 headers:{
                     'Authorization': `Bearer ${localStorage.token}`,
-                    'Content-Type' : 'multipart/form-data',
                 }
             });
             loading.value = 2;
@@ -123,6 +122,26 @@ export default function useUsers() {
             loading.value = 2;
             localStorage.user = JSON.stringify(response.data.data);
             location.reload();
+        } catch (e) {
+            loading.value = 0;
+            if(e.response.status == 422){
+                for(const key in e.response.data.errors)
+                errors.value += e.response.data.errors[key][0] + '\t\n';
+            }
+        }
+        
+    };
+
+    const updateUser2 = async () => {
+        errors.value = '';
+        try {
+            loading.value = 1;
+            let response = await axios.put('/api/users-update/' + user.value.id, user.value, {
+                headers:{
+                    'Authorization': `Bearer ${localStorage.token}`,
+                }
+            });
+            loading.value = 2;
         } catch (e) {
             loading.value = 0;
             if(e.response.status == 422){
@@ -253,5 +272,6 @@ export default function useUsers() {
         destroyUserFront,
         getUsersType,
         filterUsers,
+        updateUser2
     };
 } 

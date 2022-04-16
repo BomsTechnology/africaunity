@@ -892,7 +892,7 @@
                     </router-link>
                 </div>
             </div>
-            <div class="w-full">
+            <!-- <div class="w-full">
                 <h1 class="text-white px-2 py-1 bg-primary-blue inline-block">
                     {{ $t("recent-posts") }}
                 </h1>
@@ -901,7 +901,7 @@
                 >
                     <p></p>
                 </div>
-            </div>
+            </div> -->
             <div class="w-full">
                 <h1 class="text-white px-2 py-1 bg-primary-blue inline-block">
                     {{ $t("video") }}

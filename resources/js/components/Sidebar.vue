@@ -42,12 +42,13 @@
                 <HomeIcon class="w-6 h-6" />
                 <p class="text-base leading-4">Dashboard</p>
             </router-link>
-            <button
+            <router-link
+                :to="{name:'admin.user.index'}"
                 class="flex jusitfy-start items-center w-full space-x-6 focus:outline-none text-white focus:text-primary-blue rounded"
             >
                 <UserGroupIcon class="w-6 h-6" />
                 <p class="text-base leading-4">Users</p>
-            </button>
+            </router-link>
             <router-link
                     :to="{name:'admin.comment.index'}"
                 class="flex jusitfy-start items-center w-full space-x-6 focus:outline-none text-white focus:text-primary-blue rounded"
@@ -376,7 +377,7 @@
                     </div>
                 </div>
                 <div>
-                    <CogIcon class="w-6 h-6 text-white" />
+                    <!-- <CogIcon class="w-6 h-6 text-white" /> -->
                     <LogoutIcon v-if="loading == 0" @click="logout()" class="w-6 h-6 text-white cursor-pointer" />
                     <svg v-if="loading == 1" class="animate-spin text-white mt-1  h-6 w-6 cursor-wait" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
                                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>

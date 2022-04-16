@@ -9,6 +9,7 @@ use App\Http\Resources\PostResource2;
 use App\Models\Post;
 use App\Models\User;
 use App\Notifications\ReportNotification;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -30,6 +31,58 @@ class PostController extends Controller
             ['type',$type],
             ['language',$lang]
             ])->orderBy('id', 'desc')->get());
+    }
+
+    public function filter(Request $request)
+    {
+        $posts = Post::where([
+            ['status', 1],
+            ['type',$request->type],
+            ['language',$request->lang]
+            ]);
+
+            if($request->keywords != ""){
+                $keywords = $request->keywords;
+                $posts = $posts->where('title', 'like', "%$keywords%");
+            }
+    
+            if($request->zone != ""){
+                $zone = $request->zone;
+                $posts = $posts->with(['zone' => function ($query) use($zone) {
+                    $query->where('id', $zone);
+                }])->whereHas('zone', function (Builder $query) use($zone) {
+                    $query->where('id', $zone);
+                });
+            }
+    
+            if($request->ministry != ""){
+                $ministry = $request->ministry;
+                $posts = $posts->with(['ministry' => function ($query) use($ministry) {
+                    $query->where('id', $ministry);
+                }])->whereHas('ministry', function (Builder $query) use($ministry) {
+                    $query->where('id', $ministry);
+                });
+            }
+    
+            if($request->continent != ""){
+                $continent = $request->continent;
+                $posts = $posts->with(['continent' => function ($query) use($continent) {
+                    $query->where('id', $continent);
+                }])->whereHas('continent', function (Builder $query) use($continent) {
+                    $query->where('id', $continent);
+                });
+            }
+    
+            if($request->country != ""){
+                $country = $request->country;
+                $posts = $posts->with(['country' => function ($query) use($country) {
+                    $query->where('id', $country);
+                }])->whereHas('country', function (Builder $query) use($country) {
+                    $query->where('id', $country);
+                });
+            }
+        
+        return PostResource::collection($posts->orderBy('id', 'desc')->get());
     }
 
     public function post_report(Request $request)
@@ -161,6 +214,7 @@ class PostController extends Controller
     {
         return new PostResource($post);
     }
+
 
     /**
      * Update the specified resource in storage.

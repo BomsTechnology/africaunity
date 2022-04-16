@@ -207,10 +207,11 @@ export default {
             formData.append("ministry_id", post.ministry_id);
 
             await createPost(formData);
-
+            if(errors.value == ''){
                 router.push({
                     name: "home",
                 });
+            }
 
         };
         return {
