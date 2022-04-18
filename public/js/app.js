@@ -26399,6 +26399,14 @@ var Login = function Login() {
   return __webpack_require__.e(/*! import() */ "resources_js_views_front_Login_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../views/front/Login.vue */ "./resources/js/views/front/Login.vue"));
 };
 
+var ForgotPassword = function ForgotPassword() {
+  return __webpack_require__.e(/*! import() */ "resources_js_views_front_ForgotPassword_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../views/front/ForgotPassword.vue */ "./resources/js/views/front/ForgotPassword.vue"));
+};
+
+var ResetPassword = function ResetPassword() {
+  return __webpack_require__.e(/*! import() */ "resources_js_views_front_ResetPassword_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../views/front/ResetPassword.vue */ "./resources/js/views/front/ResetPassword.vue"));
+};
+
 var Pack = function Pack() {
   return __webpack_require__.e(/*! import() */ "resources_js_views_front_Pack_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../views/front/Pack.vue */ "./resources/js/views/front/Pack.vue"));
 };
@@ -26783,6 +26791,20 @@ var routes = [// front routes
   component: Contact,
   meta: {
     title: siteName + ' - Contact'
+  }
+}, {
+  path: '/forgot-password',
+  name: 'forgot.password',
+  component: ForgotPassword,
+  meta: {
+    title: siteName + ' - Mot de passe oublié'
+  }
+}, {
+  path: '/reset-password',
+  name: 'reset.password',
+  component: ResetPassword,
+  meta: {
+    title: siteName + ' - Modifié Le Mot de passe'
   }
 }, {
   path: '/login/:redirect?',
@@ -67009,7 +67031,7 @@ module.exports = JSON.parse('{"lastest":"Recente","fr":"Français","en":"English
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_views_front_Article_vue":1,"resources_js_views_front_Contact_vue":1,"resources_js_views_front_Establishment_vue":1,"resources_js_views_front_Job_vue":1,"resources_js_views_front_Login_vue":1,"resources_js_views_front_Pack_vue":1,"resources_js_views_front_AddPost_vue":1,"resources_js_views_front_AddJob_vue":1,"resources_js_views_front_SingleJob_vue":1,"resources_js_views_front_EditJob_vue":1,"resources_js_views_front_SinglePost_vue":1,"resources_js_views_front_SingleUniversity_vue":1,"resources_js_views_front_SingleAnnouncement_vue":1,"resources_js_views_front_EditPost_vue":1,"resources_js_views_front_EditAnnouncement_vue":1,"resources_js_views_front_AddAnnouncement_vue":1,"resources_js_views_front_Particular_vue":1,"resources_js_views_front_PoliticalInstitution_vue":1,"resources_js_views_front_PropAu_vue":1,"resources_js_views_front_Universities_vue":1,"resources_js_views_front_Register_vue":1,"resources_js_views_front_NotFound_vue":1,"resources_js_views_front_Profile_vue":1,"resources_js_views_front_SettingAccount_vue":1,"resources_js_views_back_Login_vue":1,"resources_js_views_back_Dashboard_vue":1,"resources_js_views_back_OtherTools_vue":1,"resources_js_views_back_posts_PostIndex_vue":1,"resources_js_views_back_posts_PostCreate_vue":1,"resources_js_views_back_posts_PostEdit_vue":1,"resources_js_views_back_user_UserIndex_vue":1,"resources_js_views_back_user_UserCreate_vue":1,"resources_js_views_back_user_UserEdit_vue":1,"resources_js_views_back_continent_ContinentIndex_vue":1,"resources_js_views_back_continent_ContinentCreate_vue":1,"resources_js_views_back_continent_ContinentEdit_vue":1,"resources_js_views_back_comment_CommentIndex_vue":1,"resources_js_views_back_comment_CommentCreate_vue":1,"resources_js_views_back_zone_ZoneIndex_vue":1,"resources_js_views_back_zone_ZoneCreate_vue":1,"resources_js_views_back_zone_ZoneEdit_vue":1,"resources_js_views_back_country_CountryIndex_vue":1,"resources_js_views_back_country_CountryCreate_vue":1,"resources_js_views_back_country_CountryEdit_vue":1,"resources_js_views_back_currency_CurrencyIndex_vue":1,"resources_js_views_back_currency_CurrencyCreate_vue":1,"resources_js_views_back_currency_CurrencyEdit_vue":1,"resources_js_views_back_category_announcement_CategoryAnnouncementIndex_vue":1,"resources_js_views_back_category_announcement_CategoryAnnouncementCreate_vue":1,"resources_js_views_back_category_announcement_CategoryAnnouncementEdit_vue":1,"resources_js_views_back_announcement_AnnouncementIndex_vue":1,"resources_js_views_back_announcement_AnnouncementCreate_vue":1,"resources_js_views_back_announcement_AnnouncementEdit_vue":1,"resources_js_views_back_jobOffer_JobOfferIndex_vue":1,"resources_js_views_back_jobOffer_JobOfferCreate_vue":1,"resources_js_views_back_jobOffer_JobOfferEdit_vue":1,"resources_js_views_back_city_CityIndex_vue":1,"resources_js_views_back_city_CityCreate_vue":1,"resources_js_views_back_city_CityEdit_vue":1,"resources_js_views_back_university_UniversityIndex_vue":1,"resources_js_views_back_university_UniversityCreate_vue":1,"resources_js_views_back_university_UniversityEdit_vue":1,"resources_js_views_back_ministry_MinistryIndex_vue":1,"resources_js_views_back_ministry_MinistryCreate_vue":1,"resources_js_views_back_ministry_MinistryEdit_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_views_front_Article_vue":1,"resources_js_views_front_Contact_vue":1,"resources_js_views_front_Establishment_vue":1,"resources_js_views_front_Job_vue":1,"resources_js_views_front_Login_vue":1,"resources_js_views_front_ForgotPassword_vue":1,"resources_js_views_front_ResetPassword_vue":1,"resources_js_views_front_Pack_vue":1,"resources_js_views_front_AddPost_vue":1,"resources_js_views_front_AddJob_vue":1,"resources_js_views_front_SingleJob_vue":1,"resources_js_views_front_EditJob_vue":1,"resources_js_views_front_SinglePost_vue":1,"resources_js_views_front_SingleUniversity_vue":1,"resources_js_views_front_SingleAnnouncement_vue":1,"resources_js_views_front_EditPost_vue":1,"resources_js_views_front_EditAnnouncement_vue":1,"resources_js_views_front_AddAnnouncement_vue":1,"resources_js_views_front_Particular_vue":1,"resources_js_views_front_PoliticalInstitution_vue":1,"resources_js_views_front_PropAu_vue":1,"resources_js_views_front_Universities_vue":1,"resources_js_views_front_Register_vue":1,"resources_js_views_front_NotFound_vue":1,"resources_js_views_front_Profile_vue":1,"resources_js_views_front_SettingAccount_vue":1,"resources_js_views_back_Login_vue":1,"resources_js_views_back_Dashboard_vue":1,"resources_js_views_back_OtherTools_vue":1,"resources_js_views_back_posts_PostIndex_vue":1,"resources_js_views_back_posts_PostCreate_vue":1,"resources_js_views_back_posts_PostEdit_vue":1,"resources_js_views_back_user_UserIndex_vue":1,"resources_js_views_back_user_UserCreate_vue":1,"resources_js_views_back_user_UserEdit_vue":1,"resources_js_views_back_continent_ContinentIndex_vue":1,"resources_js_views_back_continent_ContinentCreate_vue":1,"resources_js_views_back_continent_ContinentEdit_vue":1,"resources_js_views_back_comment_CommentIndex_vue":1,"resources_js_views_back_comment_CommentCreate_vue":1,"resources_js_views_back_zone_ZoneIndex_vue":1,"resources_js_views_back_zone_ZoneCreate_vue":1,"resources_js_views_back_zone_ZoneEdit_vue":1,"resources_js_views_back_country_CountryIndex_vue":1,"resources_js_views_back_country_CountryCreate_vue":1,"resources_js_views_back_country_CountryEdit_vue":1,"resources_js_views_back_currency_CurrencyIndex_vue":1,"resources_js_views_back_currency_CurrencyCreate_vue":1,"resources_js_views_back_currency_CurrencyEdit_vue":1,"resources_js_views_back_category_announcement_CategoryAnnouncementIndex_vue":1,"resources_js_views_back_category_announcement_CategoryAnnouncementCreate_vue":1,"resources_js_views_back_category_announcement_CategoryAnnouncementEdit_vue":1,"resources_js_views_back_announcement_AnnouncementIndex_vue":1,"resources_js_views_back_announcement_AnnouncementCreate_vue":1,"resources_js_views_back_announcement_AnnouncementEdit_vue":1,"resources_js_views_back_jobOffer_JobOfferIndex_vue":1,"resources_js_views_back_jobOffer_JobOfferCreate_vue":1,"resources_js_views_back_jobOffer_JobOfferEdit_vue":1,"resources_js_views_back_city_CityIndex_vue":1,"resources_js_views_back_city_CityCreate_vue":1,"resources_js_views_back_city_CityEdit_vue":1,"resources_js_views_back_university_UniversityIndex_vue":1,"resources_js_views_back_university_UniversityCreate_vue":1,"resources_js_views_back_university_UniversityEdit_vue":1,"resources_js_views_back_ministry_MinistryIndex_vue":1,"resources_js_views_back_ministry_MinistryCreate_vue":1,"resources_js_views_back_ministry_MinistryEdit_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

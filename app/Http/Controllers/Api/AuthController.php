@@ -63,7 +63,7 @@ class AuthController extends Controller
         if(!$user->email_verified_at){
             return response(['status'=>false, 'message'=>'Your email address is not verified.'] ,403);
         }
-
+        //verify activation account
         if($user->status == 3){
             return response(['status'=>false, 'message'=>'Your account is deactivated please contact our administrators.'] ,403);
         }

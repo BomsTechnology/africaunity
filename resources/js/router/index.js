@@ -5,6 +5,8 @@ const Contact = () => import ("../views/front/Contact.vue");
 const Establishment = () => import ("../views/front/Establishment.vue");
 const Job = () => import ("../views/front/Job.vue");
 const Login = () => import ("../views/front/Login.vue");
+const ForgotPassword = () => import ("../views/front/ForgotPassword.vue");
+const ResetPassword = () => import ("../views/front/ResetPassword.vue");
 const Pack = () => import ("../views/front/Pack.vue");
 const AddPost = () => import ("../views/front/AddPost.vue");
 const AddJob = () => import ("../views/front/AddJob.vue");
@@ -229,6 +231,22 @@ const routes = [
         component: Contact,
         meta:{
             title: siteName + ' - Contact'
+        }
+    },
+    {
+        path: '/forgot-password',
+        name: 'forgot.password',
+        component: ForgotPassword,
+        meta:{
+            title: siteName + ' - Mot de passe oublié'
+        }
+    },
+    {
+        path: '/reset-password',
+        name: 'reset.password',
+        component: ResetPassword,
+        meta:{
+            title: siteName + ' - Modifié Le Mot de passe'
         }
     },
     {

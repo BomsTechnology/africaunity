@@ -83,11 +83,8 @@
                             </button>
                         </div>
 
-                        <!-- <div class="pt-6 text-center">
-                            <router-link class="text-gray-400 hover:underline" :to="{name:'pack'}"> {{ $t("password-forgot") }} ? </router-link> 
-                        </div> -->
                         <div class="pt-6 text-center">
-                            <button disabled class="text-gray-400 hover:underline"> {{ $t("password-forgot") }} ? </button> 
+                            <router-link class="text-gray-400 hover:underline" :to="{name:'forgot.password'}"> {{ $t("password-forgot") }} ? </router-link> 
                         </div>
 
                     </form>
