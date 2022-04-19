@@ -715,7 +715,6 @@ export default {
     methods: {
         handelFileObject() {
             this.jobOffer.company_logo = this.$refs.file.files[0];
-            console.log(this.jobOffer);
         },
     },
 }

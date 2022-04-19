@@ -185,7 +185,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 window.localStorage.removeItem("user");
                 loading.value = 2;
                 location.href = '/';
-                _context2.next = 15;
+                _context2.next = 14;
                 break;
 
               case 10:
@@ -199,9 +199,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 }
 
-                console.log(errors.value);
-
-              case 15:
+              case 14:
               case "end":
                 return _context2.stop();
             }
@@ -320,16 +318,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 formData.append("category_announcement_id", announcement.category_announcement_id);
                 formData.append("currency_id", announcement.currency_id);
                 formData.append("university_id", announcement.university_id);
-                console.log(announcement);
-                _context.next = 16;
+                _context.next = 15;
                 return createAnnouncement(formData);
 
-              case 16:
+              case 15:
                 _router_index_js__WEBPACK_IMPORTED_MODULE_8__["default"].push({
                   name: "admin.announcement.index"
                 });
 
-              case 17:
+              case 16:
               case "end":
                 return _context.stop();
             }
@@ -355,7 +352,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   methods: {
     handelFileObject: function handelFileObject() {
       this.announcement.image = this.$refs.file.files[0];
-      console.log(this.announcement);
     }
   }
 });
@@ -1840,9 +1836,8 @@ function useAnnouncements() {
               response = _context5.sent;
               loading.value = 0;
               announcement.value = response.data.data;
-              console.log(announcement.value);
 
-            case 8:
+            case 7:
             case "end":
               return _context5.stop();
           }
@@ -2061,7 +2056,7 @@ function useCategoryAnnouncements() {
             case 4:
               response = _context.sent;
               categoryAnnouncements.value = response.data.data;
-              loading.value = 2; // console.log(categoryAnnouncements.value);
+              loading.value = 2;
 
             case 7:
             case "end":
@@ -2317,7 +2312,7 @@ function useCurrencies() {
             case 4:
               response = _context.sent;
               currencies.value = response.data.data;
-              loading.value = 2; // console.log(currencies.value);
+              loading.value = 2;
 
             case 7:
             case "end":

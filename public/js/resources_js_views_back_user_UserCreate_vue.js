@@ -185,7 +185,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 window.localStorage.removeItem("user");
                 loading.value = 2;
                 location.href = '/';
-                _context2.next = 15;
+                _context2.next = 14;
                 break;
 
               case 10:
@@ -199,9 +199,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 }
 
-                console.log(errors.value);
-
-              case 15:
+              case 14:
               case "end":
                 return _context2.stop();
             }
@@ -1674,13 +1672,12 @@ function useUsers() {
             case 5:
               response = _context3.sent;
               users.value = response.data.data;
-              console.log(users.value);
               loading.value = 2;
-              _context3.next = 14;
+              _context3.next = 13;
               break;
 
-            case 11:
-              _context3.prev = 11;
+            case 10:
+              _context3.prev = 10;
               _context3.t0 = _context3["catch"](1);
 
               if (_context3.t0.response.status == 401) {
@@ -1689,12 +1686,12 @@ function useUsers() {
                 window.localStorage.removeItem("user");
               }
 
-            case 14:
+            case 13:
             case "end":
               return _context3.stop();
           }
         }
-      }, _callee3, null, [[1, 11]]);
+      }, _callee3, null, [[1, 10]]);
     }));
 
     return function filterUsers(_x2) {

@@ -867,9 +867,8 @@ function useAnnouncements() {
               response = _context5.sent;
               loading.value = 0;
               announcement.value = response.data.data;
-              console.log(announcement.value);
 
-            case 8:
+            case 7:
             case "end":
               return _context5.stop();
           }

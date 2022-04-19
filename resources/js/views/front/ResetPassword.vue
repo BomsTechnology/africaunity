@@ -94,7 +94,6 @@ export default {
             async () =>{
                 if("email" in route.query){
                     resetPass.email = route.query.email;
-                    console.log(resetPass);
                 }else {
                     router.push({name:'compte',  params: {name: cuser.firstname, id : cuser.id }});
                 }

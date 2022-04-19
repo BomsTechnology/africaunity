@@ -19,7 +19,6 @@ export default function useWorkModes() {
         workModes.value = response.data.data;
 
         loading.value = 2;
-        // console.log(workModes.value);
     };
 
     const getWorkMode = async (id) => {

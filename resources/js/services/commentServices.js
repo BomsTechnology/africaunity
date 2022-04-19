@@ -20,7 +20,6 @@ export default function useComments() {
         comments.value = response.data.data;
 
         loading.value = 2;
-        // console.log(comments.value);
     };
 
     const getCommentsPost = async (id) => {

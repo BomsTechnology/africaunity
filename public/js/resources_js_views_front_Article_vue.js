@@ -809,7 +809,7 @@ function useContinents() {
             case 4:
               response = _context.sent;
               continents.value = response.data.data;
-              loading.value = 2; // console.log(continents.value);
+              loading.value = 2;
 
             case 7:
             case "end":
@@ -1061,7 +1061,7 @@ function useCountries() {
             case 4:
               response = _context.sent;
               countries.value = response.data.data;
-              loading.value = 2; // console.log(countries.value);
+              loading.value = 2;
 
             case 7:
             case "end":
@@ -1317,7 +1317,7 @@ function useMinistries() {
             case 4:
               response = _context.sent;
               ministries.value = response.data.data;
-              loading.value = 2; // console.log(ministries.value);
+              loading.value = 2;
 
             case 7:
             case "end":
@@ -1913,13 +1913,12 @@ function usePosts() {
             case 5:
               response = _context8.sent;
               posts.value = response.data.data;
-              console.log(posts.value);
               loading.value = 0;
-              _context8.next = 14;
+              _context8.next = 13;
               break;
 
-            case 11:
-              _context8.prev = 11;
+            case 10:
+              _context8.prev = 10;
               _context8.t0 = _context8["catch"](1);
 
               if (_context8.t0.response.status == 401) {
@@ -1928,12 +1927,12 @@ function usePosts() {
                 window.localStorage.removeItem("user");
               }
 
-            case 14:
+            case 13:
             case "end":
               return _context8.stop();
           }
         }
-      }, _callee8, null, [[1, 11]]);
+      }, _callee8, null, [[1, 10]]);
     }));
 
     return function filterPost(_x9) {
@@ -2104,7 +2103,7 @@ function useZones() {
             case 4:
               response = _context.sent;
               zones.value = response.data.data;
-              loading.value = 2; // console.log(zones.value);
+              loading.value = 2;
 
             case 7:
             case "end":

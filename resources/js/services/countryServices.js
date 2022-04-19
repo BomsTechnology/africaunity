@@ -20,7 +20,6 @@ export default function useCountries() {
         countries.value = response.data.data;
 
         loading.value = 2;
-        // console.log(countries.value);
     };
 
     const getCountry = async (id) => {

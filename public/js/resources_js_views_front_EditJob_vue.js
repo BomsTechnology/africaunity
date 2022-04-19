@@ -1522,7 +1522,7 @@ function useCities() {
             case 4:
               response = _context.sent;
               cities.value = response.data.data;
-              loading.value = 2; // console.log(cities.value);
+              loading.value = 2;
 
             case 7:
             case "end":
@@ -1778,7 +1778,7 @@ function useContinents() {
             case 4:
               response = _context.sent;
               continents.value = response.data.data;
-              loading.value = 2; // console.log(continents.value);
+              loading.value = 2;
 
             case 7:
             case "end":
@@ -2030,7 +2030,7 @@ function useCountries() {
             case 4:
               response = _context.sent;
               countries.value = response.data.data;
-              loading.value = 2; // console.log(countries.value);
+              loading.value = 2;
 
             case 7:
             case "end":
@@ -2286,7 +2286,7 @@ function useCurrencies() {
             case 4:
               response = _context.sent;
               currencies.value = response.data.data;
-              loading.value = 2; // console.log(currencies.value);
+              loading.value = 2;
 
             case 7:
             case "end":
@@ -2637,13 +2637,12 @@ function useJobOffers() {
             case 5:
               response = _context3.sent;
               jobOffers.value = response.data.data;
-              console.log(jobOffers.value);
               loading.value = 2;
-              _context3.next = 14;
+              _context3.next = 13;
               break;
 
-            case 11:
-              _context3.prev = 11;
+            case 10:
+              _context3.prev = 10;
               _context3.t0 = _context3["catch"](1);
 
               if (_context3.t0.response.status == 401) {
@@ -2652,12 +2651,12 @@ function useJobOffers() {
                 window.localStorage.removeItem("user");
               }
 
-            case 14:
+            case 13:
             case "end":
               return _context3.stop();
           }
         }
-      }, _callee3, null, [[1, 11]]);
+      }, _callee3, null, [[1, 10]]);
     }));
 
     return function filterJobs(_x) {
@@ -2779,9 +2778,8 @@ function useJobOffers() {
               response = _context6.sent;
               loading.value = 0;
               jobOffer.value = response.data.data;
-              console.log(jobOffer.value);
 
-            case 8:
+            case 7:
             case "end":
               return _context6.stop();
           }
@@ -3287,7 +3285,7 @@ function useLevelStudies() {
             case 4:
               response = _context.sent;
               levelStudies.value = response.data.data;
-              loading.value = 2; // console.log(levelStudies.value);
+              loading.value = 2;
 
             case 7:
             case "end":
@@ -3535,7 +3533,7 @@ function useOfferTypes() {
             case 4:
               response = _context.sent;
               offerTypes.value = response.data.data;
-              loading.value = 2; // console.log(offerTypes.value);
+              loading.value = 2;
 
             case 7:
             case "end":
@@ -3779,7 +3777,7 @@ function useSizeCompanies() {
             case 4:
               response = _context.sent;
               sizeCompanies.value = response.data.data;
-              loading.value = 2; // console.log(sizeCompanies.value);
+              loading.value = 2;
 
             case 7:
             case "end":
@@ -4027,7 +4025,7 @@ function useWorkDepartments() {
             case 4:
               response = _context.sent;
               workDepartments.value = response.data.data;
-              loading.value = 2; // console.log(workDepartments.value);
+              loading.value = 2;
 
             case 7:
             case "end":
@@ -4271,7 +4269,7 @@ function useWorkModes() {
             case 4:
               response = _context.sent;
               workModes.value = response.data.data;
-              loading.value = 2; // console.log(workModes.value);
+              loading.value = 2;
 
             case 7:
             case "end":
@@ -4517,7 +4515,7 @@ function useYearExperiences() {
             case 4:
               response = _context.sent;
               yearExperiences.value = response.data.data;
-              loading.value = 2; // console.log(yearExperiences.value);
+              loading.value = 2;
 
             case 7:
             case "end":
@@ -4763,7 +4761,7 @@ function useZones() {
             case 4:
               response = _context.sent;
               zones.value = response.data.data;
-              loading.value = 2; // console.log(zones.value);
+              loading.value = 2;
 
             case 7:
             case "end":

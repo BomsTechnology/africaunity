@@ -501,7 +501,6 @@ export default {
                     for (const key in e.response.data.errors)
                         errors.value += e.response.data.errors[key][0] + "\n";
                 }
-                console.log(errors.value);
             }
         };
 

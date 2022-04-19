@@ -29,7 +29,6 @@ export default function useAuth() {
             loading.value = 1;
             let response = await axios.post('/api/login', data);
             user.value = response.data.data;
-            console.log(user.value);
             localStorage.user = JSON.stringify(response.data.data.user);
             localStorage.token = response.data.data.token;
             loading.value = 2;
@@ -63,7 +62,6 @@ export default function useAuth() {
             loading.value = 1;
             let response = await axios.post('/api/verif-admin', data);
             user.value = response.data.data;
-            console.log(user.value);
             loading.value = 2;
             return true;
         } catch (e) {

@@ -177,7 +177,6 @@ export default function usePosts() {
                 }
             });
             posts.value = response.data.data;
-            console.log(posts.value);
             loading.value = 0;
         }catch(e){
             if(e.response.status == 401){

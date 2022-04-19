@@ -19,7 +19,6 @@ export default function useLevelStudies() {
         levelStudies.value = response.data.data;
 
         loading.value = 2;
-        // console.log(levelStudies.value);
     };
 
     const getLevelStudy = async (id) => {

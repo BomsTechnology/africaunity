@@ -74,7 +74,6 @@ export default function useAnnouncements() {
         });
         loading.value = 0;
         announcement.value = response.data.data;
-        console.log(announcement.value)
     };
 
     const createAnnouncement = async (data) => {

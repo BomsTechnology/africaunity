@@ -118,7 +118,6 @@ export default {
     methods: {
         handelFileObject() {
             this.apply.cv = this.$refs.file.files[0];
-            console.log(this.apply);
         },
     }
 };

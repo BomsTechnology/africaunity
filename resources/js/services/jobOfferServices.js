@@ -60,7 +60,6 @@ export default function useJobOffers() {
                 }
             });
             jobOffers.value = response.data.data;
-            console.log(jobOffers.value);
             loading.value = 2;
         }catch(e){
             if(e.response.status == 401){
@@ -124,7 +123,6 @@ export default function useJobOffers() {
         });
         loading.value = 0;
         jobOffer.value = response.data.data;
-        console.log(jobOffer.value)
     };
 
     const createJobOffer = async (data) => {

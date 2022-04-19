@@ -282,7 +282,6 @@ export default {
         const register = async () => {
                 if(cpolitic){
                     await createUser({...user});
-                    console.log(user);
                 }else{
                     errors.value = "Veillez accepter notre politique de confidentialité";
                 }

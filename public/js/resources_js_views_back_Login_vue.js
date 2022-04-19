@@ -414,27 +414,26 @@ function useAuth() {
             case 5:
               response = _context2.sent;
               user.value = response.data.data;
-              console.log(user.value);
               localStorage.user = JSON.stringify(response.data.data.user);
               localStorage.token = response.data.data.token;
               loading.value = 2; //router.push({ name: "home" });
 
-              _context2.next = 17;
+              _context2.next = 16;
               break;
 
-            case 13:
-              _context2.prev = 13;
+            case 12:
+              _context2.prev = 12;
               _context2.t0 = _context2["catch"](1);
               loading.value = 0; // errors.value = "invalid email or password";
 
               errors.value = _context2.t0.response.data.message;
 
-            case 17:
+            case 16:
             case "end":
               return _context2.stop();
           }
         }
-      }, _callee2, null, [[1, 13]]);
+      }, _callee2, null, [[1, 12]]);
     }));
 
     return function loginUser(_x2) {
@@ -501,12 +500,11 @@ function useAuth() {
             case 5:
               response = _context4.sent;
               user.value = response.data.data;
-              console.log(user.value);
               loading.value = 2;
               return _context4.abrupt("return", true);
 
-            case 12:
-              _context4.prev = 12;
+            case 11:
+              _context4.prev = 11;
               _context4.t0 = _context4["catch"](1);
               loading.value = 0;
               errors.value = "Your not a admin";
@@ -514,12 +512,12 @@ function useAuth() {
                 name: "admin"
               });
 
-            case 17:
+            case 16:
             case "end":
               return _context4.stop();
           }
         }
-      }, _callee4, null, [[1, 12]]);
+      }, _callee4, null, [[1, 11]]);
     }));
 
     return function verifAdmin(_x4) {

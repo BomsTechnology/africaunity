@@ -169,7 +169,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 window.localStorage.removeItem("user");
                 loading.value = 2;
                 location.href = '/';
-                _context2.next = 15;
+                _context2.next = 14;
                 break;
 
               case 10:
@@ -183,9 +183,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 }
 
-                console.log(errors.value);
-
-              case 15:
+              case 14:
               case "end":
                 return _context2.stop();
             }

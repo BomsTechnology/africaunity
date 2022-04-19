@@ -1026,7 +1026,7 @@ function useComments() {
             case 4:
               response = _context.sent;
               comments.value = response.data.data;
-              loading.value = 2; // console.log(comments.value);
+              loading.value = 2;
 
             case 7:
             case "end":
@@ -1682,13 +1682,12 @@ function usePosts() {
             case 5:
               response = _context8.sent;
               posts.value = response.data.data;
-              console.log(posts.value);
               loading.value = 0;
-              _context8.next = 14;
+              _context8.next = 13;
               break;
 
-            case 11:
-              _context8.prev = 11;
+            case 10:
+              _context8.prev = 10;
               _context8.t0 = _context8["catch"](1);
 
               if (_context8.t0.response.status == 401) {
@@ -1697,12 +1696,12 @@ function usePosts() {
                 window.localStorage.removeItem("user");
               }
 
-            case 14:
+            case 13:
             case "end":
               return _context8.stop();
           }
         }
-      }, _callee8, null, [[1, 11]]);
+      }, _callee8, null, [[1, 10]]);
     }));
 
     return function filterPost(_x9) {

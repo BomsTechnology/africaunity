@@ -185,7 +185,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 window.localStorage.removeItem("user");
                 loading.value = 2;
                 location.href = '/';
-                _context2.next = 15;
+                _context2.next = 14;
                 break;
 
               case 10:
@@ -199,9 +199,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 }
 
-                console.log(errors.value);
-
-              case 15:
+              case 14:
               case "end":
                 return _context2.stop();
             }
@@ -4226,7 +4224,7 @@ function useLevelStudies() {
             case 4:
               response = _context.sent;
               levelStudies.value = response.data.data;
-              loading.value = 2; // console.log(levelStudies.value);
+              loading.value = 2;
 
             case 7:
             case "end":
@@ -4474,7 +4472,7 @@ function useOfferTypes() {
             case 4:
               response = _context.sent;
               offerTypes.value = response.data.data;
-              loading.value = 2; // console.log(offerTypes.value);
+              loading.value = 2;
 
             case 7:
             case "end":
@@ -4718,7 +4716,7 @@ function useSizeCompanies() {
             case 4:
               response = _context.sent;
               sizeCompanies.value = response.data.data;
-              loading.value = 2; // console.log(sizeCompanies.value);
+              loading.value = 2;
 
             case 7:
             case "end":
@@ -4966,7 +4964,7 @@ function useWorkDepartments() {
             case 4:
               response = _context.sent;
               workDepartments.value = response.data.data;
-              loading.value = 2; // console.log(workDepartments.value);
+              loading.value = 2;
 
             case 7:
             case "end":
@@ -5210,7 +5208,7 @@ function useWorkModes() {
             case 4:
               response = _context.sent;
               workModes.value = response.data.data;
-              loading.value = 2; // console.log(workModes.value);
+              loading.value = 2;
 
             case 7:
             case "end":
@@ -5456,7 +5454,7 @@ function useYearExperiences() {
             case 4:
               response = _context.sent;
               yearExperiences.value = response.data.data;
-              loading.value = 2; // console.log(yearExperiences.value);
+              loading.value = 2;
 
             case 7:
             case "end":

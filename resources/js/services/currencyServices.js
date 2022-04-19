@@ -20,7 +20,6 @@ export default function useCurrencies() {
         currencies.value = response.data.data;
 
         loading.value = 2;
-        // console.log(currencies.value);
     };
 
     const getCurrency = async (id) => {

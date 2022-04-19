@@ -19,7 +19,6 @@ export default function useSizeCompanies() {
         sizeCompanies.value = response.data.data;
 
         loading.value = 2;
-        // console.log(sizeCompanies.value);
     };
 
     const getSizeCompany = async (id) => {

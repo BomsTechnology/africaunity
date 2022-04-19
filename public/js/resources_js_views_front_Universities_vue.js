@@ -933,9 +933,8 @@ function useAnnouncements() {
               response = _context5.sent;
               loading.value = 0;
               announcement.value = response.data.data;
-              console.log(announcement.value);
 
-            case 8:
+            case 7:
             case "end":
               return _context5.stop();
           }
@@ -1154,7 +1153,7 @@ function useCategoryAnnouncements() {
             case 4:
               response = _context.sent;
               categoryAnnouncements.value = response.data.data;
-              loading.value = 2; // console.log(categoryAnnouncements.value);
+              loading.value = 2;
 
             case 7:
             case "end":
@@ -1410,7 +1409,7 @@ function useCities() {
             case 4:
               response = _context.sent;
               cities.value = response.data.data;
-              loading.value = 2; // console.log(cities.value);
+              loading.value = 2;
 
             case 7:
             case "end":
@@ -1666,7 +1665,7 @@ function useContinents() {
             case 4:
               response = _context.sent;
               continents.value = response.data.data;
-              loading.value = 2; // console.log(continents.value);
+              loading.value = 2;
 
             case 7:
             case "end":
@@ -1918,7 +1917,7 @@ function useCountries() {
             case 4:
               response = _context.sent;
               countries.value = response.data.data;
-              loading.value = 2; // console.log(countries.value);
+              loading.value = 2;
 
             case 7:
             case "end":

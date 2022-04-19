@@ -20,7 +20,6 @@ export default function useCities() {
         cities.value = response.data.data;
 
         loading.value = 2;
-        // console.log(cities.value);
     };
 
     const getCity = async (id) => {

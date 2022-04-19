@@ -19,7 +19,6 @@ export default function useOfferTypes() {
         offerTypes.value = response.data.data;
 
         loading.value = 2;
-        // console.log(offerTypes.value);
     };
 
     const getOfferType = async (id) => {

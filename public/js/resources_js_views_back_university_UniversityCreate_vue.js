@@ -185,7 +185,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 window.localStorage.removeItem("user");
                 loading.value = 2;
                 location.href = '/';
-                _context2.next = 15;
+                _context2.next = 14;
                 break;
 
               case 10:
@@ -199,9 +199,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 }
 
-                console.log(errors.value);
-
-              case 15:
+              case 14:
               case "end":
                 return _context2.stop();
             }
@@ -340,7 +338,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   methods: {
     handelFileObject: function handelFileObject() {
       this.university.image = this.$refs.file.files[0];
-      console.log(this.university);
     }
   }
 });
@@ -1615,7 +1612,7 @@ function useCities() {
             case 4:
               response = _context.sent;
               cities.value = response.data.data;
-              loading.value = 2; // console.log(cities.value);
+              loading.value = 2;
 
             case 7:
             case "end":
@@ -1871,7 +1868,7 @@ function useContinents() {
             case 4:
               response = _context.sent;
               continents.value = response.data.data;
-              loading.value = 2; // console.log(continents.value);
+              loading.value = 2;
 
             case 7:
             case "end":
@@ -2123,7 +2120,7 @@ function useCountries() {
             case 4:
               response = _context.sent;
               countries.value = response.data.data;
-              loading.value = 2; // console.log(countries.value);
+              loading.value = 2;
 
             case 7:
             case "end":

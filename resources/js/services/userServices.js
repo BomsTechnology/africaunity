@@ -59,7 +59,6 @@ export default function useUsers() {
                 }
             });
             users.value = response.data.data;
-            console.log(users.value);
             loading.value = 2;
         }catch(e){
             if(e.response.status == 401){

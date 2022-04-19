@@ -19,7 +19,6 @@ export default function useWorkDepartments() {
         workDepartments.value = response.data.data;
 
         loading.value = 2;
-        // console.log(workDepartments.value);
     };
 
     const getWorkDepartment = async (id) => {

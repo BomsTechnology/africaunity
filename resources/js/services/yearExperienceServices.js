@@ -20,7 +20,6 @@ export default function useYearExperiences() {
         yearExperiences.value = response.data.data;
 
         loading.value = 2;
-        // console.log(yearExperiences.value);
     };
 
     const getYearExperience = async (id) => {

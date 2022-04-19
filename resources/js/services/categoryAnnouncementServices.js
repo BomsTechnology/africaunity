@@ -20,7 +20,6 @@ export default function useCategoryAnnouncements() {
         categoryAnnouncements.value = response.data.data;
 
         loading.value = 2;
-        // console.log(categoryAnnouncements.value);
     };
 
     const getCategoryAnnouncement = async (id) => {

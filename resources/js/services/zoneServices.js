@@ -20,7 +20,6 @@ export default function useZones() {
         zones.value = response.data.data;
 
         loading.value = 2;
-        // console.log(zones.value);
     };
 
     const getZone = async (id) => {

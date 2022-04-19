@@ -169,7 +169,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   methods: {
     handelFileObject: function handelFileObject() {
       this.announcement.image = this.$refs.file.files[0];
-      console.log(this.announcement);
     }
   }
 });
@@ -775,9 +774,8 @@ function useAnnouncements() {
               response = _context5.sent;
               loading.value = 0;
               announcement.value = response.data.data;
-              console.log(announcement.value);
 
-            case 8:
+            case 7:
             case "end":
               return _context5.stop();
           }
@@ -996,7 +994,7 @@ function useCategoryAnnouncements() {
             case 4:
               response = _context.sent;
               categoryAnnouncements.value = response.data.data;
-              loading.value = 2; // console.log(categoryAnnouncements.value);
+              loading.value = 2;
 
             case 7:
             case "end":
@@ -1252,7 +1250,7 @@ function useCurrencies() {
             case 4:
               response = _context.sent;
               currencies.value = response.data.data;
-              loading.value = 2; // console.log(currencies.value);
+              loading.value = 2;
 
             case 7:
             case "end":

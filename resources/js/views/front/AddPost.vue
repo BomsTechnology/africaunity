@@ -228,7 +228,6 @@ export default {
     methods: {
         handelFileObject() {
             this.post.image = this.$refs.file.files[0];
-            console.log(this.post);
         },
         changeLocale(lang){
             this.$i18n.locale = lang;

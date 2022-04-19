@@ -595,11 +595,9 @@ export default {
     methods: {
         handelAvatarObject() {
             this.avatar = this.$refs.avatar.files[0];
-            console.log(this.user);
         },
         handelCoverObject() {
             this.user.cover = this.$refs.cover.files[0];
-            console.log(this.user);
         },
     }
 }

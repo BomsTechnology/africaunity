@@ -303,7 +303,6 @@ export default {
     methods: {
         handelFileObject() {
             this.announcement.image = this.$refs.file.files[0];
-            console.log(this.announcement);
         },
 
     },

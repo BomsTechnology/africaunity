@@ -185,7 +185,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 window.localStorage.removeItem("user");
                 loading.value = 2;
                 location.href = '/';
-                _context2.next = 15;
+                _context2.next = 14;
                 break;
 
               case 10:
@@ -199,9 +199,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 }
 
-                console.log(errors.value);
-
-              case 15:
+              case 14:
               case "end":
                 return _context2.stop();
             }
@@ -2061,13 +2059,12 @@ function usePosts() {
             case 5:
               response = _context8.sent;
               posts.value = response.data.data;
-              console.log(posts.value);
               loading.value = 0;
-              _context8.next = 14;
+              _context8.next = 13;
               break;
 
-            case 11:
-              _context8.prev = 11;
+            case 10:
+              _context8.prev = 10;
               _context8.t0 = _context8["catch"](1);
 
               if (_context8.t0.response.status == 401) {
@@ -2076,12 +2073,12 @@ function usePosts() {
                 window.localStorage.removeItem("user");
               }
 
-            case 14:
+            case 13:
             case "end":
               return _context8.stop();
           }
         }
-      }, _callee8, null, [[1, 11]]);
+      }, _callee8, null, [[1, 10]]);
     }));
 
     return function filterPost(_x9) {
