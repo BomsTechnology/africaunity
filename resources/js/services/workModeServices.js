@@ -47,8 +47,8 @@ export default function useWorkModes() {
         } catch (e) {
             if(e.response.status == 422){
             loading.value = 0;
-                for (const key in e.response.data.errorsWM)
-                    errorsWM.value += e.response.data.errorsWM[key][0] + "\n";
+                for (const key in e.response.data.errors)
+                    errorsWM.value += e.response.data.errors[key][0] + "\n";
             }
         }
     };
@@ -66,8 +66,8 @@ export default function useWorkModes() {
         } catch (e) {
             loading.value = 0;
             if(e.response.status == 422){
-                for(const key in e.response.data.errorsWM)
-                errorsWM.value += e.response.data.errorsWM[key][0] + '\t\n';
+                for(const key in e.response.data.errors)
+                errorsWM.value += e.response.data.errors[key][0] + '\t\n';
             }
         }
         

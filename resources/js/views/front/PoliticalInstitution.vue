@@ -102,7 +102,7 @@
                 :key="user.id"
                 class="flex flex-col items-center py-2 text-center space-y-5 dark:bg-gray-800 border"
             >
-                <div>
+                <router-link   :to="{name:'compte',  params: { name: user.firstname, id : user.id }}" class="flex justify-center flex-col items-center">
                     <img
                         class="object-cover lg:h-44 lg:w-44 rounded-full h-36 w-36"
                         :src="user.avatar"
@@ -119,7 +119,7 @@
                     <button @click="changeShowDetail(user.id)" class="mt-2" v-if="showDetail.id != user.id">
                         <ChevronDownIcon class="h-8 w-8 text-gray-500" />
                     </button>
-                </div>
+                </router-link >
                 <div class="text-center border-t w-full py-3 space-y-3 text-xs" v-if="showDetail.id == user.id && showDetail.state == true">
 
                     <p class="leading-3">
@@ -259,11 +259,6 @@ export default {
         EmojiSadIcon,
         Header,
         Footer, ChevronDownIcon, ChevronUpIcon
-    },
-    created() {
-        if (!localStorage.token) {
-            router.push({ name: "login", params: { redirect: "not-login" } });
-        }
     },
     setup(props) {
         const { businessSizes, getBusinessSizes } = useBusinessSizes();

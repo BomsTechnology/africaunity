@@ -6,11 +6,16 @@
                 <img :src="user.cover" class="w-full h-full bg-cover object-cover" alt="" v-if="user.cover">
             </div>
             <div class="h-1/2 bg-white z-10 flex lg:justify-end items-center justify-center lg:space-x-3 relative">
-                <div class="lg:w-60 lg:h-60 overflow-hidden absolute h-40 w-40 text-center shadow lg:left-4 mb-40 lg:mt-0 -mt-28 bg-white z-10 rounded-full">
-                    <img :src="user.avatar" class="w-full h-full bg-cover object-cover" alt="" v-if="user.avatar">
-                    <UserCircleIcon v-else class="w-full h-full text-gray-500"/>
-                </div>
-                <div class="lg:w-[80%] px-8 py-4 lg:mt-0 mt-20">
+                    <router-link :to="{name:'setting.account',  params: {name: user.firstname, id : user.id }}" v-if="user.id == loginUser.id" class="lg:w-60 lg:h-60 overflow-hidden absolute h-40 w-40 text-center shadow lg:left-4 mb-40 lg:mt-0 -mt-28 bg-white z-10 rounded-full">
+                        <img :src="user.avatar" class="w-full h-full bg-cover object-cover" alt="" v-if="user.avatar">
+                        <UserCircleIcon v-else class="w-full h-full text-gray-500"/>
+                    </router-link >
+                    <div v-else class="lg:w-60 lg:h-60  overflow-hidden absolute h-40 w-40 text-center shadow lg:left-4 mb-40 lg:mt-0 -mt-28 bg-white z-10 rounded-full">
+                        <img :src="user.avatar" class="w-full h-full bg-cover object-cover" alt="" v-if="user.avatar">
+                        <UserCircleIcon v-else class="w-full h-full text-gray-500"/>
+                    </div>
+                <div class="lg:w-60 lg:h-60"></div>
+                <div class="grow  px-8 py-4 lg:mt-0 mt-20">
                     <div v-if="loading == 1" class="p-28">
                         <svg
                             class="animate-spin h-16 w-16 mx-auto"

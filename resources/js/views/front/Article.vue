@@ -292,11 +292,6 @@ export default {
         Header,
         Footer,
     },
-    // created(){
-    //     if (!localStorage.token) {
-    //             router.push({ name: "login", params: { redirect: 'not-login' }, });
-    //     }
-    // },
     setup(props) {
         const route = useRoute();
         const { posts, getPosts, filterPost, loading, errors } = usePosts();

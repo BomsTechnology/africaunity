@@ -270,11 +270,6 @@ export default {
         Footer,
         FilterPropAu,
     },
-    // created(){
-    //     if (!localStorage.token) {
-    //             router.push({ name: "login", params: { redirect: 'not-login' }, });
-    //     }
-    // },
     setup(props) {
         const { posts, getPosts, filterPost, loading, errors } = usePosts();
         const { countries, getCountries } = useCountries();

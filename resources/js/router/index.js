@@ -242,9 +242,10 @@ const routes = [
         }
     },
     {
-        path: '/reset-password',
+        path: '/reset-password/:token',
         name: 'reset.password',
         component: ResetPassword,
+        props: true,
         meta:{
             title: siteName + ' - Modifié Le Mot de passe'
         }

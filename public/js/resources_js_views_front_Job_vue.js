@@ -3708,8 +3708,8 @@ function useWorkModes() {
               if (_context3.t0.response.status == 422) {
                 loading.value = 0;
 
-                for (key in _context3.t0.response.data.errorsWM) {
-                  errorsWM.value += _context3.t0.response.data.errorsWM[key][0] + "\n";
+                for (key in _context3.t0.response.data.errors) {
+                  errorsWM.value += _context3.t0.response.data.errors[key][0] + "\n";
                 }
               }
 
@@ -3754,8 +3754,8 @@ function useWorkModes() {
               loading.value = 0;
 
               if (_context4.t0.response.status == 422) {
-                for (key in _context4.t0.response.data.errorsWM) {
-                  errorsWM.value += _context4.t0.response.data.errorsWM[key][0] + '\t\n';
+                for (key in _context4.t0.response.data.errors) {
+                  errorsWM.value += _context4.t0.response.data.errors[key][0] + '\t\n';
                 }
               }
 

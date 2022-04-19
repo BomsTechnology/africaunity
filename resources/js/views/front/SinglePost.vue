@@ -137,7 +137,7 @@
                             <div>
                                 <router-link  :to="{name:'compte',  params: { name: comment.user.firstname, id : comment.user.id }}">
                                 <div class="md:w-20 md:h-20 w-10 h-10 rounded-full shadow overflow-hidden">
-                                    <img :src="user.avatar" class="w-full h-full bg-cover object-cover" alt="" v-if="user.avatar">
+                                    <img :src="comment.user.avatar" class="w-full h-full bg-cover object-cover" alt="" v-if="comment.user.avatar">
                                     <UserCircleIcon v-else class="w-full h-full text-gray-500"/>
                                 </div>
                                 <h1 class="mt-2 text-center text-xs lg:text-sm font-bold hover:underline">{{ comment.user.firstname }}</h1>

@@ -221,12 +221,6 @@ import useCurrencies from "../../services/currencyServices.js";
 import useUniversities from "../../services/universityServices.js";
 import router from "../../router/index.js";
 export default {
-    props: {
-        type: {
-            required: true,
-            type: String,
-        },
-    },
     components:{
         Header,
         Footer,
@@ -235,8 +229,13 @@ export default {
     created(){
         if (!localStorage.token) {
                 router.push({ name: "login", params: { redirect: 'not-login' }, });
-        }else if((JSON.parse(localStorage.user).type != 'particular') || (JSON.parse(localStorage.user).type != 'admin')){
+        }else{
+            const user = localStorage.user ? JSON.parse(localStorage.user) : '';
+            if(((user.type == 'particular') || (user.type == 'admin'))){
+
+            }else{
                 router.push({ name: "home"});
+            }
         }
     },
     setup(props) {

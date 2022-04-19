@@ -24406,7 +24406,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       }, [$setup.user.avatar ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
         src: $setup.user.avatar,
         alt: "",
-        "class": "h-10 w-10 border rounded-full object-cover"
+        "class": "h-10 w-10 border rounded-full object-cover shadow"
       }, null, 8
       /* PROPS */
       , _hoisted_5)])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_UserCircleIcon, {
@@ -24663,6 +24663,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [$setup.user.avatar ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
         src: $setup.user.avatar,
+        "class": "h-16 w-16 border rounded-full shadow",
         alt: ""
       }, null, 8
       /* PROPS */
@@ -26800,9 +26801,10 @@ var routes = [// front routes
     title: siteName + ' - Mot de passe oublié'
   }
 }, {
-  path: '/reset-password',
+  path: '/reset-password/:token',
   name: 'reset.password',
   component: ResetPassword,
+  props: true,
   meta: {
     title: siteName + ' - Modifié Le Mot de passe'
   }

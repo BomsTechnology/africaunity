@@ -41,7 +41,8 @@ Route::get("/posts-home/{lang}/{ministry}",[PostController::class,'post_home']);
 
 Route::get("/continents", [ContinentController::class,'index']);
 
-Route::get("/forgot-password/{email}", [ForgotPasswordController::class,'index']);
+Route::post("/forgot-password", [ForgotPasswordController::class,'index'])->name('password.request');
+Route::post("/reset-password/{token}", [ForgotPasswordController::class,'index'])->name('password.reset');
 
 Route::get("/zones", [ZoneController::class,'index']);
 

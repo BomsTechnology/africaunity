@@ -26,7 +26,7 @@
                         </svg>
             </div>
             <div v-else >
-                <div class="w-full">
+                <div class="w-full flex justify-center flex-col items-center">
                 <div class="lg:h-32 lg:w-32 h-20 w-20  rounded-full overflow-hidden">
                     <img :src="user.avatar" class="w-full h-full bg-cover object-cover" alt="" v-if="user.avatar">
                         <UserCircleIcon v-else class="w-full h-full text-gray-500"/>

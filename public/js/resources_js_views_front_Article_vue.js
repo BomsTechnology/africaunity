@@ -61,11 +61,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     Header: _components_Header_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
     Footer: _components_Footer_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
   },
-  // created(){
-  //     if (!localStorage.token) {
-  //             router.push({ name: "login", params: { redirect: 'not-login' }, });
-  //     }
-  // },
   setup: function setup(props) {
     var route = (0,vue_router__WEBPACK_IMPORTED_MODULE_15__.useRoute)();
 

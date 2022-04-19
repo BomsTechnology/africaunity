@@ -84,24 +84,24 @@
                 :key="user.id"
                 class="flex flex-col items-center py-2 text-center space-y-5 dark:bg-gray-800 border"
             >
-                <div>
-                    <img
-                        class="object-cover lg:h-44 lg:w-44 rounded-full h-36 w-36"
-                        :src="user.avatar"
-                        v-if="user.avatar"
-                    />
-                    <UserCircleIcon v-else class="lg:h-44 lg:w-44 h-36 w-36 text-gray-700" />
+                    <router-link   :to="{name:'compte',  params: { name: user.firstname, id : user.id }}" class="flex justify-center flex-col items-center">
+                        <img
+                            class="object-cover lg:h-44 lg:w-44 rounded-full h-36 w-36"
+                            :src="user.avatar"
+                            v-if="user.avatar"
+                        />
+                        <UserCircleIcon v-else class="lg:h-44 lg:w-44 h-36 w-36 text-gray-700" />
 
-                    <h4
-                        class="text-gray-700 font-bold capitalize dark:text-gray-300"
-                    >
-                        {{ user.firstname }} {{ user.lastname }}
-                    </h4>
+                        <h4
+                            class="text-gray-700 font-bold capitalize dark:text-gray-300"
+                        >
+                            {{ user.firstname }} {{ user.lastname }}
+                        </h4>
+                    </router-link >
 
                     <button @click="changeShowDetail(user.id)" class="mt-2" v-if="showDetail.id != user.id">
                         <ChevronDownIcon class="h-8 w-8 text-gray-500" />
                     </button>
-                </div>
                 <div class="text-center border-t w-full py-3 space-y-3 text-xs" v-if="showDetail.id == user.id && showDetail.state == true">
 
                     <p class="leading-3">
@@ -223,11 +223,6 @@ export default {
         EmojiSadIcon,
         Header,
         Footer, ChevronDownIcon, ChevronUpIcon
-    },
-    created() {
-        if (!localStorage.token) {
-            router.push({ name: "login", params: { redirect: "not-login" } });
-        }
     },
     setup(props) {
         const { businessSizes, getBusinessSizes } = useBusinessSizes();

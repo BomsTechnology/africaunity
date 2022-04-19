@@ -8,6 +8,11 @@
                         {{ $t("password-forgot") }}
                     </h1>
                     <Error v-if="errors != ''">{{ errors }}</Error>
+                    <div v-if="loading == 2" class="py-4 px-2 bg-green-50 text-green-700 mx-8">
+                        <p>
+                            the password reset link has been sent to you by email
+                        </p>
+                    </div>
                     <form  @submit.prevent="sendMailForgot()" class="py-7">
                         <p class=" font-light text-sm">Saissisez votre adresse e-mail</p>
                         <div class="relative">
@@ -18,7 +23,7 @@
                             <input
                                 type="email"
                                 required
-                                v-model="email"
+                                v-model="email.email"
                                 :placeholder="$t('adresse') + ' ' + $t('email')"
                                 class="form-input px-3 pr-2 pl-10 w-full border-gray-400 mt-2 placeholder:text-gray-400 focus:ring-primary-blue focus:border-primary-blue block"
                             />
@@ -45,7 +50,7 @@
 <script>
 import Header from "../../components/Header.vue";
 import Footer from "../../components/Footer.vue";
-import { ref, onMounted} from "vue";
+import { ref, onMounted, reactive } from 'vue';
 import Error from "../../components/Error.vue";
 import router from "../../router";
 import { MailIcon } from '@heroicons/vue/solid';
@@ -64,18 +69,24 @@ export default {
                 router.push({name:'compte',  params: {name: cuser.firstname, id : cuser.id }});
             }
         });
-        const email = ref('');
+        const email = reactive({
+            email: ""
+        });
         const errors = ref('');
         const loading = ref(0);
 
         const sendMailForgot = async () => {
                 try{
-                    let response = await axios.get('/api/forgot-password/' + email.value);
+                    loading = 1
+                    await axios.post('/api/forgot-password/', email);
+                    loading = 2
                 }catch(e){
                     if(e.response.status == 422){
                     loading.value = 0;
-                        for (const key in e.response.data.errorsWM)
-                            errorsWM.value += e.response.data.errorsWM[key][0] + "\n";
+                        for (const key in e.response.data.errors)
+                            errorsWM.value += e.response.data.errors[key][0] + "\n";
+                    }else if(e.response.status == 401){
+                        errors.value = e.response.data.message
                     }
                 }     
         };

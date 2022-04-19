@@ -17,7 +17,7 @@
                             <input
                                 type="password"
                                 required
-                                v-model="user.password"
+                                v-model="resetPass.password"
                                 :placeholder="$t('new-password')"
                                 class="form-input px-3 pr-2 pl-10 w-full mt-3 placeholder:text-gray-400 border-gray-400 focus:ring-primary-blue focus:border-primary-blue block"
                             />
@@ -31,7 +31,7 @@
                             <input
                                 type="password"
                                 required
-                                v-model="user.password"
+                                v-model="resetPass.password_confirmation"
                                 :placeholder="$t('confirm-password')"
                                 class="form-input px-3 pr-2 pl-10 w-full mt-3 placeholder:text-gray-400 border-gray-400 focus:ring-primary-blue focus:border-primary-blue block"
                             />
@@ -64,6 +64,7 @@ import Error from "../../components/Error.vue";
 import useAuth from "../../services/authServices.js"
 import router from "../../router";
 import { LockClosedIcon } from '@heroicons/vue/solid';
+import { useRoute } from "vue-router";
 export default {
     components: {
         Header,
@@ -71,20 +72,33 @@ export default {
         Error,
         LockClosedIcon,
     },
+    props: {
+        token: {
+            required: true,
+            type: String,
+        },
+    },
     setup(props) {
+        const route = useRoute();
         const cuser = localStorage.user ? JSON.parse(localStorage.user) : '';
-        const user = reactive({
+        const resetPass = reactive({
             email: "",
             password: "",
+            password_confirmation: "",
+            token: props.token,
         });
 
         const { loginUser , errors, loading } = useAuth();
 
         onMounted( 
-            () => {
-            if (localStorage.token) {
-                router.push({name:'compte',  params: {name: cuser.firstname, id : cuser.id }});
-            }
+            async () =>{
+                if("email" in route.query){
+                    resetPass.email = route.query.email;
+                    console.log(resetPass);
+                }else {
+                    router.push({name:'compte',  params: {name: cuser.firstname, id : cuser.id }});
+                }
+
         });
 
         const login = async () => {
@@ -95,7 +109,7 @@ export default {
         };
 
         return {
-            user,
+            resetPass,
             errors,
             login,
             loading,

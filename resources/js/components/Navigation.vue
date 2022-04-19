@@ -46,7 +46,7 @@
             <router-link @mouseleave="open.logout = false"  v-if="token != ''" :to="{name:'compte',  params: {name: user.firstname, id : user.id }}" class="text-white relative transition-colors duration-200 bg-primary-blue px-3 py-2 mx-2 uppercase">
                 <div @mouseover="open.logout = true" class="flex items-start space-x-2">
                     <span v-if="user.avatar">
-                        <img :src="user.avatar" alt="" class="h-10 w-10 border rounded-full object-cover">
+                        <img :src="user.avatar" alt="" class="h-10 w-10 border rounded-full object-cover shadow">
                     </span>
                     <UserCircleIcon v-else class="h-8 w-8 text-white"/>
                     <span>{{ user.firstname }}</span>
@@ -148,7 +148,7 @@
                 <router-link  v-if="token != ''" :to="{name:'compte',  params: { name: user.firstname, id : user.id }}">
                 <div class="flex space-x-2 items-center text-white transition-colors duration-200 text-sm bg-primary-blue px-3 py-2 uppercase">
                     <span v-if="user.avatar">
-                        <img :src="user.avatar" alt="">
+                        <img :src="user.avatar" class="h-16 w-16 border rounded-full shadow" alt="">
                     </span>
                     <UserCircleIcon v-else class="h-8 w-8 text-white"/>
                     <span>{{ user.firstname }} {{ user.lastname }}</span>
