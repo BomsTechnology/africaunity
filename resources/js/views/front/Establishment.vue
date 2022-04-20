@@ -95,7 +95,7 @@
                         <h4
                             class="text-gray-700 font-bold capitalize dark:text-gray-300"
                         >
-                            {{ user.firstname }} {{ user.lastname }}
+                            {{ user.firstname }}
                         </h4>
                     </router-link >
 

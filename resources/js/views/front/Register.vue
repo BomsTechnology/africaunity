@@ -45,21 +45,18 @@
                 {{ $t("create-other-account") }}
                 <router-link
                     :to="{ name: 'register', params: { type: 'ip' } }"
-                    v-if="type != 'ip'"
                     class="text-primary-blue hover:underline"
                 >
                     IP ({{ $t("pack") }} {{ $t("politic") }}) ?
                 </router-link>
                 <router-link
                     :to="{ name: 'register', params: { type: 'business1' } }"
-                    v-if="type != 'business1' && type != 'business2'"
                     class="text-primary-blue hover:underline"
                 >
                     PB ({{ $t("pack") }} {{ $t("business") }}) ?
                 </router-link>
                 <router-link
                     :to="{ name: 'register', params: { type: 'particular' } }"
-                    v-if="type != 'particular'"
                     class="text-primary-blue hover:underline"
                 >
                     PP ({{ $t("pack") }} {{ $t("particular") }}) ?

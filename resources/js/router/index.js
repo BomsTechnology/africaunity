@@ -76,7 +76,7 @@ const routes = [
         name: 'home',
         component: Home,
         meta:{
-            title: siteName + ' - Acceuil'
+            title: siteName + ' - Accueil'
         }
     },
     {

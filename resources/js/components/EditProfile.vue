@@ -212,7 +212,7 @@
                                 multiple
                                 size="4"
                                 required
-                                v-model="detail.languages"
+                                v-model="langs"
                                 class="form-input px-3 pr-2  w-full text-gray-700 bg-white border border-gray-200 rounded-md  mt-2 placeholder:text-gray-400 focus:ring-primary-blue focus:border-primary-blue block"
                             >
                                 <option v-for="language in languages" :key="language.id" :value="language.id">
@@ -301,7 +301,7 @@
                                 multiple
                                 size="4"
                                 required
-                                v-model="detail.activity_areas"
+                                v-model="area_activities"
                                 class="form-input px-3 pr-2  w-full text-gray-700 bg-white border border-gray-200 rounded-md  mt-2 placeholder:text-gray-400 focus:ring-primary-blue focus:border-primary-blue block"
                             >
                                 <option v-for="activity in activityAreas" :key="activity.id" :value="activity.id">
@@ -378,11 +378,25 @@ export default {
         MailIcon,
     },
     setup(props) {
-        
+        const area_activities = ref([]);
+        const langs = ref([]);
         const loading = ref(0);
+
+        onMounted(
+           async () => {
+                for(const item of props.detail.activity_areas){
+                    area_activities.value.push(item.id)
+                }
+                for(const item of props.detail.languages){
+                    langs.value.push(item.id)
+                }
+            }
+        )
 
         const saveDetail = async () => {
             loading.value = 1;
+            props.detail.activity_areas = area_activities.value;
+            props.detail.languages = langs.value;
             await axios.put('/api/details/' + props.detail.id, props.detail, {
                 headers:{
                     'Authorization': `Bearer ${localStorage.token}`
@@ -393,6 +407,8 @@ export default {
         }
 
         return{
+            langs,
+            area_activities,
             loading,    
             saveDetail
         }

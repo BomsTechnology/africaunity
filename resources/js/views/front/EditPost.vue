@@ -102,7 +102,9 @@
 
                 <div class="col-span-2" v-if="type == 'article'">
                     <label class="text-gray-700 dark:text-gray-200" for="fr">{{ $t('thumbnails') }} <span class="text-red-500">*</span></label>
-                    <input ref="file" @change="handelFileObject()" type="file" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+                    <div class="flex items-center space-x-4 py-4">
+                        <img :src="post.image" class="h-16 w-16 rounded-full" :alt="post.title">    <input ref="file" @change="handelFileObject()" type="file" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+                    </div>
                 </div>
 
                 <div class="col-span-2">
@@ -201,9 +203,9 @@ export default {
             formData.append('_method', 'PUT');
 
             await updatePost(formData, props.id);
-                router.push({
-                    name: "home",
-                });
+            if(errors.value == ''){
+                router.push({name:'compte',  params: { name: user.firstname, id : user.id }});
+            }
         };
         return {
             post,

@@ -208,9 +208,7 @@ export default {
 
             await createPost(formData);
             if(errors.value == ''){
-                router.push({
-                    name: "home",
-                });
+                router.push({name:'compte',  params: { name: user.firstname, id : user.id }});
             }
 
         };

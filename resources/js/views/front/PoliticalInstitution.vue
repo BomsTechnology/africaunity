@@ -113,13 +113,13 @@
                     <h4
                         class="text-gray-700 font-bold capitalize dark:text-gray-300"
                     >
-                        {{ user.firstname }} {{ user.lastname }}
+                        {{ user.firstname }}
                     </h4>
-
+                </router-link >
                     <button @click="changeShowDetail(user.id)" class="mt-2" v-if="showDetail.id != user.id">
                         <ChevronDownIcon class="h-8 w-8 text-gray-500" />
                     </button>
-                </router-link >
+                
                 <div class="text-center border-t w-full py-3 space-y-3 text-xs" v-if="showDetail.id == user.id && showDetail.state == true">
 
                     <p class="leading-3">

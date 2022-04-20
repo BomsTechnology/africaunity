@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Country;
 use App\Models\Detail;
 use Illuminate\Http\Resources\Json\JsonResource;
 

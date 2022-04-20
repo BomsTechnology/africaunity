@@ -150,7 +150,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 13:
                 if (errors.value == '') {
                   _router_index_js__WEBPACK_IMPORTED_MODULE_10__["default"].push({
-                    name: "home"
+                    name: 'compte',
+                    params: {
+                      name: user.firstname,
+                      id: user.id
+                    }
                   });
                 }
 
