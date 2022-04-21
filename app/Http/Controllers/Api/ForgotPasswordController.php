@@ -7,7 +7,10 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Auth\Events\PasswordReset;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password as RulesPassword;
+use Illuminate\Support\Str;
 
 class ForgotPasswordController extends Controller
 {
@@ -47,9 +50,15 @@ class ForgotPasswordController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function verif(Request $request)
     {
-        //
+        $verif = DB::table('password_resets')->select('*')->where('email', htmlspecialchars($request->email))->get();
+
+        if(!$verif || !Hash::check($request->token,$verif[0]->token)){
+            return redirect('/');
+        }else{
+            return redirect("/reset-password/$request->token?email=".$_GET['email']);
+        }
     }
 
     /**
@@ -70,9 +79,37 @@ class ForgotPasswordController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function reset(Request $request)
     {
-        //
+        $request->validate([
+            'token' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|min:8|confirmed',
+        ]);
+
+        $status = Password::reset(
+            $request->only('email', 'password', 'password_confirmation', 'token'),
+            function ($user) use ($request) {
+                $user->forceFill([
+                    'password' => Hash::make($request->password),
+                    'remember_token' => Str::random(60),
+                ])->save();
+
+                $user->tokens()->delete();
+
+                event(new PasswordReset($user));
+            }
+        );
+
+        if ($status == Password::PASSWORD_RESET) {
+            return response([
+                'message'=> 'Password reset successfully'
+            ]);
+        }
+
+        return response([
+            'message'=> __($status)
+        ], 500);
     }
 
     /**

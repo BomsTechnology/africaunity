@@ -8,7 +8,18 @@
                         {{ $t('change-password') }}
                     </h1>
                     <Error v-if="errors != ''">{{ errors }}</Error>
-                    <form  @submit.prevent="login" class="py-7">
+                    <div v-if="loading == 2" class="py-4 px-2 mt-2 bg-green-50 text-green-700 mx-8">
+                        <p>
+                            Password changed successfully
+                            <router-link
+                                class="text-[#242A56] hover:underline"
+                                :to="{ name: 'login' }"
+                            >
+                                {{ $t("login") }}
+                            </router-link>
+                        </p>
+                    </div>
+                    <form v-else @submit.prevent="resetPassword()" class="py-7">
                         <div class="relative">
                             <span
                                 ><LockClosedIcon
@@ -80,37 +91,46 @@ export default {
     },
     setup(props) {
         const route = useRoute();
-        const cuser = localStorage.user ? JSON.parse(localStorage.user) : '';
         const resetPass = reactive({
             email: "",
             password: "",
             password_confirmation: "",
             token: props.token,
         });
-
-        const { loginUser , errors, loading } = useAuth();
+        const errors = ref('');
+        const loading = ref(0);
 
         onMounted( 
             async () =>{
-                if("email" in route.query){
+                if(props.token && "email" in route.query){
                     resetPass.email = route.query.email;
                 }else {
-                    router.push({name:'compte',  params: {name: cuser.firstname, id : cuser.id }});
+                    router.push({name:'home'});
                 }
 
         });
 
-        const login = async () => {
-                await loginUser({...user});
-                if(errors.value == ''){
-                    router.push({ name: "home" });
-                }               
+        const resetPassword = async () => {
+                try{
+                    errors.value = '';
+                    loading.value = 1
+                    await axios.post('/api/reset-password/', resetPass);
+                    loading.value = 2
+                }catch(e){
+                    loading.value = 0;
+                    if(e.response.status == 422){
+                        for (const key in e.response.data.errors)
+                            errors.value += e.response.data.errors[key][0] + "\n";
+                    }else {
+                        errors.value = e.response.data.message
+                    }
+                }            
         };
 
         return {
             resetPass,
             errors,
-            login,
+            resetPassword,
             loading,
         };
     },

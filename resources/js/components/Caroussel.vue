@@ -1,6 +1,6 @@
 <template>
     <div class="p-4 lg:flex lg:space-x-3 lg:space-y-0 space-y-3" v-if="posts.length != 0">
-        <Swiper class="w-full h-[480px]"  :centeredSlides="true" :autoplay="{delay: 2500, disableOnInteraction: false,}" :modules="modules">
+        <Swiper class="w-full h-[400px]"  :centeredSlides="true" :autoplay="{delay: 2500, disableOnInteraction: false,}" :modules="modules">
             <SwiperSlide class="relative" v-for="post in posts" :key="post.id">
                 <router-link  v-if="!token"
                                 :to="{
@@ -49,8 +49,8 @@
                 </router-link>  
             </SwiperSlide>
         </Swiper>
-        <div class="w-full h-[480px] grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div class="relative h-[230px]"  v-for="post in posts" :key="post.id">
+        <div class="w-full md:h-[400px] grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="relative md:h-[190px]"  v-for="post in posts" :key="post.id">
                 <router-link  v-if="!token"
                                 :to="{
                                     name: 'login', params: { redirect: 'not-login' },

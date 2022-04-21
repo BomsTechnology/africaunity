@@ -41,8 +41,6 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-function _readOnlyError(name) { throw new TypeError("\"" + name + "\" is read-only"); }
-
 
 
 
@@ -83,22 +81,22 @@ function _readOnlyError(name) { throw new TypeError("\"" + name + "\" is read-on
             switch (_context.prev = _context.next) {
               case 0:
                 _context.prev = 0;
-                1, _readOnlyError("loading");
-                _context.next = 4;
+                errors.value = '';
+                loading.value = 1;
+                _context.next = 5;
                 return axios.post('/api/forgot-password/', email);
 
-              case 4:
-                2, _readOnlyError("loading");
-                _context.next = 10;
+              case 5:
+                loading.value = 2;
+                _context.next = 12;
                 break;
 
-              case 7:
-                _context.prev = 7;
+              case 8:
+                _context.prev = 8;
                 _context.t0 = _context["catch"](0);
+                loading.value = 0;
 
                 if (_context.t0.response.status == 422) {
-                  loading.value = 0;
-
                   for (key in _context.t0.response.data.errors) {
                     errorsWM.value += _context.t0.response.data.errors[key][0] + "\n";
                   }
@@ -106,12 +104,12 @@ function _readOnlyError(name) { throw new TypeError("\"" + name + "\" is read-on
                   errors.value = _context.t0.response.data.message;
                 }
 
-              case 10:
+              case 12:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[0, 7]]);
+        }, _callee, null, [[0, 8]]);
       }));
 
       return function sendMailForgot() {
@@ -199,7 +197,7 @@ var _hoisted_5 = {
 };
 var _hoisted_6 = {
   key: 1,
-  "class": "py-4 px-2 bg-green-50 text-green-700 mx-8"
+  "class": "py-4 px-2 mt-2 bg-green-50 text-green-700 mx-8"
 };
 
 var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, " the password reset link has been sent to you by email ", -1
@@ -272,7 +270,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     _: 1
     /* STABLE */
 
-  })) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.loading == 2 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_6, _hoisted_8)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
+  })) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.loading == 2 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_6, _hoisted_8)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("form", {
+    key: 2,
     onSubmit: _cache[1] || (_cache[1] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
       return $setup.sendMailForgot();
     }, ["prevent"])),
@@ -295,7 +294,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* TEXT */
   )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])], 32
   /* HYDRATE_EVENTS */
-  )])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Footer)], 64
+  ))])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Footer)], 64
   /* STABLE_FRAGMENT */
   );
 }

@@ -43,10 +43,10 @@
                 {{ $t('contact') }}
             </router-link>
 
-            <router-link @mouseleave="open.logout = false"  v-if="token != ''" :to="{name:'compte',  params: {name: user.firstname, id : user.id }}" class="text-white relative transition-colors duration-200 bg-primary-blue px-3 py-2 mx-2 uppercase">
+            <a @mouseleave="open.logout = false"  v-if="token != ''" :href="'account/' + user.firstname + '/' + user.id" class="text-white relative transition-colors duration-200 bg-primary-blue px-3 py-2 mx-2 uppercase">
                 <div @mouseover="open.logout = true" class="flex items-start space-x-2">
                     <span v-if="user.avatar">
-                        <img :src="user.avatar" alt="" class="h-10 w-10 border rounded-full object-cover shadow">
+                        <img :src="user.avatar" alt="" class="h-7 w-7 border rounded-full object-cover shadow">
                     </span>
                     <UserCircleIcon v-else class="h-8 w-8 text-white"/>
                     <span>{{ user.firstname }}</span>
@@ -61,7 +61,7 @@
                             </svg>
                     </a>
                 </div>           
-            </router-link>
+            </a>
             <router-link v-else  :to="{name:'login'}" class="text-white flex transition-colors duration-200 bg-primary-blue px-3 py-2 mx-2 uppercase">
                     {{ $t('login') }} / {{ $t('register') }}
             </router-link>

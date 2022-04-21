@@ -8,12 +8,12 @@
                         {{ $t("password-forgot") }}
                     </h1>
                     <Error v-if="errors != ''">{{ errors }}</Error>
-                    <div v-if="loading == 2" class="py-4 px-2 bg-green-50 text-green-700 mx-8">
+                    <div v-if="loading == 2" class="py-4 px-2 mt-2 bg-green-50 text-green-700 mx-8">
                         <p>
                             the password reset link has been sent to you by email
                         </p>
                     </div>
-                    <form  @submit.prevent="sendMailForgot()" class="py-7">
+                    <form v-else @submit.prevent="sendMailForgot()" class="py-7">
                         <p class=" font-light text-sm">Saissisez votre adresse e-mail</p>
                         <div class="relative">
                             <span
@@ -77,12 +77,13 @@ export default {
 
         const sendMailForgot = async () => {
                 try{
-                    loading = 1
+                    errors.value = '';
+                    loading.value = 1
                     await axios.post('/api/forgot-password/', email);
-                    loading = 2
+                    loading.value = 2
                 }catch(e){
-                    if(e.response.status == 422){
                     loading.value = 0;
+                    if(e.response.status == 422){
                         for (const key in e.response.data.errors)
                             errorsWM.value += e.response.data.errors[key][0] + "\n";
                     }else if(e.response.status == 401){
