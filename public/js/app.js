@@ -24800,7 +24800,7 @@ var _hoisted_6 = {
 };
 var _hoisted_7 = {
   key: 0,
-  "class": "lg:flex lg:items-start lg:space-x-4"
+  "class": "lg:flex lg:items-start lg:space-x-2"
 };
 var _hoisted_8 = {
   key: 0,
@@ -24850,11 +24850,11 @@ var _hoisted_23 = {
   "class": "mt-2 text-sm text-gray-600 dark:text-gray-400"
 };
 var _hoisted_24 = {
-  "class": "space-y-2 w-full"
+  "class": "space-y-2 grow"
 };
 var _hoisted_25 = {
   key: 0,
-  "class": "overflow-hidden h-32 flex space-x-2 shadow bg-white"
+  "class": "overflow-hidden w-full h-32 flex space-x-2 shadow bg-white"
 };
 var _hoisted_26 = ["src"];
 var _hoisted_27 = ["src"];
@@ -25097,11 +25097,11 @@ var _hoisted_103 = {
 };
 var _hoisted_104 = {
   key: 0,
-  "class": "lg:flex lg:justify-between"
+  "class": "lg:flex lg:items-start lg:space-x-2"
 };
 var _hoisted_105 = {
   key: 0,
-  "class": "overflow-hidden shadow bg-white w-full"
+  "class": "overflow-hidden shadow bg-white"
 };
 var _hoisted_106 = ["src"];
 var _hoisted_107 = ["src"];
@@ -25147,7 +25147,7 @@ var _hoisted_120 = {
   "class": "mt-2 text-sm text-gray-600 dark:text-gray-400"
 };
 var _hoisted_121 = {
-  "class": "space-y-2 w-1/2"
+  "class": "space-y-2 grow"
 };
 var _hoisted_122 = {
   key: 0,

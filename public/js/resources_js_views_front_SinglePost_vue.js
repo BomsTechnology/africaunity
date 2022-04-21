@@ -245,6 +245,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       openReport.value = !openReport.value;
     };
 
+    var displayHtml = function displayHtml(str) {
+      var parser = new DOMParser(); // convert html string into DOM
+
+      var document = parser.parseFromString(str, "text/html");
+      console.log(document);
+      return document.body.innerHTML;
+    };
+
     var loadingC = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(0);
 
     var storeComment = /*#__PURE__*/function () {
@@ -277,6 +285,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }();
 
     return {
+      displayHtml: displayHtml,
       url: url,
       openReport: openReport,
       toogleModal: toogleModal,

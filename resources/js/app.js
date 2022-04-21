@@ -5,6 +5,7 @@ import Home from "./views/front/Home.vue";
 import router from "./router";
 import i18n from './locales/i18n';
 
+
 const app = createApp({
     components:{
         Home

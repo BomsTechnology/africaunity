@@ -24,9 +24,9 @@
                     :style="'border-color:' + ministry1.color"
                 >
                     <div
-                    class="lg:flex lg:items-start lg:space-x-4"
+                    class="lg:flex lg:items-start lg:space-x-2"
                     v-if="articles1.length != 0"
-                >
+                    >
                     <div v-for="(article, index) in articles1" :key="index" >
                             <div
                                 class="overflow-hidden shadow bg-white"
@@ -147,10 +147,10 @@
                                 </div>
                             </div>
                     </div>
-                    <div class="space-y-2 w-full">
+                    <div class="space-y-2 grow">
                         <div v-for="(article, index) in articles1" :key="index">
                             <div
-                                class="overflow-hidden h-32 flex space-x-2 shadow bg-white"
+                                class="overflow-hidden w-full h-32 flex space-x-2 shadow bg-white"
                                 v-if="index !== 0"
                             >
                             <router-link  v-if="!token"
@@ -685,12 +685,12 @@
                     <span v-else>{{ ministry4.name_pt }}</span>
                 </h1>
                 <div
-                    class="lg:flex lg:justify-between"
+                    class="lg:flex lg:items-start lg:space-x-2"
                     v-if="articles4.length != 0"
                 >
                     <div v-for="(article, index) in articles4" :key="index">
                             <div
-                                class="overflow-hidden shadow bg-white w-full"
+                                class="overflow-hidden shadow bg-white"
                                 v-if="index === 0"
                             >
                                 <router-link  v-if="!token"
@@ -808,7 +808,7 @@
                                 </div>
                             </div>
                     </div>
-                    <div class="space-y-2 w-1/2">
+                    <div class="space-y-2 grow">
                         <div v-for="(article, index) in articles4" :key="index">
                             <div
                                 class="overflow-hidden h-32 flex space-x-2 shadow bg-white"

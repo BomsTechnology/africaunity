@@ -66,7 +66,7 @@
                             <p
                                 class="mt-2 py-4 my-4 text-gray-600 dark:text-gray-400"
                             >
-                                {{ post.content }}
+                               {{ post.content }}
                             </p>
                         </div>
 
@@ -280,6 +280,15 @@ export default {
             openReport.value = !openReport.value;
         };
 
+
+        const displayHtml = (str) => {
+            const parser = new DOMParser();
+
+            // convert html string into DOM
+            const document = parser.parseFromString(str, "text/html");
+            console.log(document)
+            return document.body.innerHTML;
+        }
         
         
         const loadingC = ref(0);
@@ -291,6 +300,7 @@ export default {
             await getCommentsPost(props.id);
         }
         return {
+            displayHtml,
             url,
             openReport,
             toogleModal,

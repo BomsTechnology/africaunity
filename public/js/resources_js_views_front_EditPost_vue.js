@@ -71,18 +71,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     Footer: _components_Footer_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
     Error: _components_Error_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
   },
-  created: function created() {
-    if (!localStorage.token) {
-      _router_index_js__WEBPACK_IMPORTED_MODULE_10__["default"].push({
-        name: "login",
-        params: {
-          redirect: 'not-login'
-        }
-      });
-    }
-  },
   setup: function setup(props) {
     var types = ["article", "propau"];
+    var user = localStorage.user ? JSON.parse(localStorage.user) : '';
 
     var _usePosts = (0,_services_postServices_js__WEBPACK_IMPORTED_MODULE_5__["default"])(),
         updatePost = _usePosts.updatePost,
@@ -108,27 +99,38 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         getMinistries = _useMinistries.getMinistries;
 
     ;
-    (0,vue__WEBPACK_IMPORTED_MODULE_3__.onMounted)(function () {
-      if (!localStorage.token) {
-        _router_index_js__WEBPACK_IMPORTED_MODULE_10__["default"].push({
-          name: "login"
-        });
-      }
-    }, function () {
-      if (!types.includes(props.type)) {
-        _router_index_js__WEBPACK_IMPORTED_MODULE_10__["default"].push({
-          name: "home"
-        });
-      }
-    }, getPost(props.id), getContinents(), getZones(), getCountries(), getMinistries());
+    (0,vue__WEBPACK_IMPORTED_MODULE_3__.onMounted)( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              if (!types.includes(props.type)) {
+                _router_index_js__WEBPACK_IMPORTED_MODULE_10__["default"].push({
+                  name: "home"
+                });
+              }
+
+              getPost(props.id);
+              getContinents();
+              getZones();
+              getCountries();
+              getMinistries();
+
+            case 6:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    })));
     post.value.image = '';
 
     var savePost = /*#__PURE__*/function () {
-      var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+      var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
         var formData;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
           while (1) {
-            switch (_context.prev = _context.next) {
+            switch (_context2.prev = _context2.next) {
               case 0:
                 formData = new FormData();
                 formData.append('image', post.value.image);
@@ -136,13 +138,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 formData.append('type', post.value.type);
                 formData.append('user_id', post.value.user_id);
                 formData.append('language', post.value.language);
-                formData.append('content', post.value.content);
+                formData.append('content', JSON.stringify(post.value.content));
                 formData.append('continent_id', post.value.continent_id);
                 formData.append('zone_id', post.value.zone_id);
                 formData.append('country_id', post.value.country_id);
                 formData.append('ministry_id', post.value.ministry_id);
                 formData.append('_method', 'PUT');
-                _context.next = 14;
+                _context2.next = 14;
                 return updatePost(formData, props.id);
 
               case 14:
@@ -158,14 +160,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 15:
               case "end":
-                return _context.stop();
+                return _context2.stop();
             }
           }
-        }, _callee);
+        }, _callee2);
       }));
 
       return function savePost() {
-        return _ref.apply(this, arguments);
+        return _ref2.apply(this, arguments);
       };
     }();
 
@@ -436,7 +438,7 @@ var _hoisted_55 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 );
 
 var _hoisted_56 = {
-  "class": "mt-6"
+  "class": "mt-20"
 };
 var _hoisted_57 = {
   key: 0,
@@ -682,7 +684,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "block w-full px-4 py-2 h-32 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:ring-primary-blue focus:border-primary-blue focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
   }, "\r\n                    ", 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.post.content]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_56, [$setup.loading == 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", _hoisted_57, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('save')), 1
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.post.content]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"h-32 mt-2\">\r\n                            <QuillEditor v-model:content=\"post.content\"  theme=\"snow\" toolbar=\"full\"/>\r\n                    </div> ")])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_56, [$setup.loading == 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", _hoisted_57, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('save')), 1
   /* TEXT */
   )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.loading == 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", _hoisted_58, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('save')) + "... ", 1
   /* TEXT */

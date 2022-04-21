@@ -111,10 +111,13 @@
                     <label class="text-gray-700 dark:text-gray-200" for="pt">{{ $t('content') }} <span class="text-red-500">*</span></label>
                     <textarea required type="text" v-model="post.content" id="pt" class="block w-full px-4 py-2 h-32 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:ring-primary-blue focus:border-primary-blue focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
                     </textarea>
+                    <!-- <div class="h-32 mt-2">
+                            <QuillEditor v-model:content="post.content"  theme="snow" toolbar="full"/>
+                    </div> -->
                 </div>
             </div>
 
-            <div class="mt-6">
+            <div class="mt-20">
                 <button v-if="loading == 0" type="submit" class="px-6 py-4 text-md leading-5 w-full text-white rounded bg-primary-blue focus:outline-none">{{ $t('save') }}</button>
                 <button v-if="loading == 1" type="submit" disabled class="px-6 py-4 text-md leading-5 flex justify-center items-center w-full text-white rounded bg-blue-300 focus:outline-none">
                     {{ $t('save') }}...
@@ -141,6 +144,7 @@ import useZones from "../../services/zoneServices.js";
 import useCountries from "../../services/countryServices.js";
 import useMinistries from "../../services/ministryServices.js";
 import router from "../../router/index.js";
+
 export default {
     props: {
           type : {
@@ -157,13 +161,9 @@ export default {
         Footer,
         Error
     },
-    created(){
-        if (!localStorage.token) {
-                router.push({ name: "login", params: { redirect: 'not-login' }, });
-        }
-    },
     setup(props) {
         const types = ["article", "propau"];
+        const user = localStorage.user ? JSON.parse(localStorage.user) : '';
         const { updatePost ,getPost, post, errors, loading } = usePosts();
         const { continents, getContinents } = useContinents();
         const { zones, getZones } = useZones();
@@ -171,21 +171,18 @@ export default {
         const { ministries, getMinistries } = useMinistries();
 
         ;onMounted(
-            ()=>{
-            if(!localStorage.token){
-                router.push({ name: "login" });
-            }
-            },
-            () => {
+            async () => {
                 if (!types.includes(props.type)) {
                     router.push({ name: "home" });
                 }
+                getPost(props.id); 
+                getContinents();
+                getZones();
+                getCountries();
+                getMinistries();
+                
             },
-            getPost(props.id),   
-            getContinents(),
-            getZones(),
-            getCountries(),
-            getMinistries(), 
+             
         );
         post.value.image = '';
         const savePost = async () => {
@@ -195,7 +192,7 @@ export default {
             formData.append('type', post.value.type);
             formData.append('user_id', post.value.user_id);
             formData.append('language', post.value.language);
-            formData.append('content', post.value.content);
+            formData.append('content', JSON.stringify(post.value.content));
             formData.append('continent_id', post.value.continent_id);
             formData.append('zone_id', post.value.zone_id);
             formData.append('country_id', post.value.country_id);

@@ -107,12 +107,15 @@
 
                 <div class="col-span-2">
                     <label class="text-gray-700 dark:text-gray-200" for="pt">{{ $t('content') }} <span class="text-red-500">*</span></label>
-                    <textarea required v-model="post.content" id="pt" class="block w-full px-4 py-2 h-32 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:ring-primary-blue focus:border-primary-blue focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+                    <textarea required v-model="post.content" id="pt" class="block w-full px-4 py-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:ring-primary-blue focus:border-primary-blue focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
                     </textarea>
+                    <!-- <div class="h-32 mt-2">
+                            <QuillEditor v-model:content="post.content" theme="snow" toolbar="full"/>
+                    </div> -->
                 </div>
             </div>
 
-            <div class="mt-6">
+            <div class="mt-20">
                 <button v-if="loading == 0" type="submit" class="px-6 py-4 text-md leading-5 w-full text-white rounded bg-primary-blue focus:outline-none">{{ $t('save') }}</button>
                 <button v-if="loading == 1" type="submit" disabled class="px-6 py-4 text-md leading-5 flex justify-center items-center w-full text-white rounded bg-blue-300 focus:outline-none">
                     {{ $t('save') }}...
