@@ -47,8 +47,9 @@
                         <div  
                             class="relative col-span-2">
                             <label  class="text-gray-700 dark:text-gray-200">{{ $t('presentation') }}</label>
-                            <textarea  v-model="detail.presentation" class="block w-full px-4 py-2 h-32 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:ring-primary-blue focus:border-primary-blue focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+                            <textarea maxlength="500"  v-model="detail.presentation" class="block w-full px-4 py-2 h-32 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:ring-primary-blue focus:border-primary-blue focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
                             </textarea>
+                            <span class="text-xs font-light text-gray-400">{{ detail.presentation ? detail.presentation.length : 0 }} of 500 Characters</span>
                         </div>
                         <div
                             v-if="

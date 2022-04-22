@@ -107,7 +107,7 @@
                                 }"
                                 href="#"
                                 class="block mt-2 text-2xl font-semibold text-gray-800 transition-colors duration-200 transform dark:text-white hover:text-gray-600 hover:underline"
-                                >{{ university.name }}</router-link
+                                >{{ university.name.length <= 30 ? university.name : university.name.substring(0, 29) + "..." }}</router-link
                             >
                             <p
                                 class="mt-2 text-sm text-gray-600 dark:text-gray-400"
@@ -235,14 +235,14 @@
                         href="#"
                         class="text-xs py-1 px-2 mt-2 rounded capitalize text-white bg-primary-blue"
                     >
-                        {{ announcement.category.name }}
+                        {{ announcement.category.name.length <= 30 ? announcement.category.name : announcement.category.name.substring(0, 25) + "..." }}
                             </a>
                             <router-link
                                 :to="{
                                     name: 'show.ads',
                                     params: { id: announcement.id },
                                 }">
-                    <h1 class="text-2xl font-bold text-gray-800 capitalize hover:underline">{{ announcement.title }}</h1>
+                    <h1 class="text-2xl font-bold text-gray-800 capitalize hover:underline">{{ announcement.title.length <= 20 ? announcement.title : announcement.title.substring(0, 19) + "..." }}</h1>
                     </router-link>
                     
                     <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">

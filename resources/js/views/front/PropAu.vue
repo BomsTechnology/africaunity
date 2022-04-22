@@ -56,7 +56,7 @@
                                 }"
                                 href="#"
                                 class="block mt-2 text-2xl font-semibold text-gray-800 transition-colors duration-200 transform dark:text-white hover:text-gray-600 hover:underline"
-                                >{{ post.title }}</router-link
+                                >{{ post.title.length <= 20 ? post.title : post.title.substring(0, 19) + "..." }}</router-link
                             >
                             <p
                                 class="mt-2 text-sm text-gray-600 dark:text-gray-400"

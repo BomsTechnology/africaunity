@@ -67,7 +67,7 @@
                                 }"
                                 href="#"
                                 class="block mt-2 text-2xl font-semibold text-gray-800 transition-colors duration-200 transform dark:text-white hover:text-gray-600 hover:underline"
-                                >{{ post.title }}</router-link
+                                >{{ post.title.length <= 20 ? post.title : post.title.substring(0, 19) + "..." }}</router-link
                             >
                             <p
                                 class="mt-2 text-sm text-gray-600 dark:text-gray-400"
@@ -155,15 +155,15 @@
             {{ $t("filter-article") }}
         </h1>
         <form @submit.prevent="PostsFilter()">
-            <div class="border-t-2 space-y-2 border-primary-blue text-md p-4">
+            <div class="border-t-2 space-y-1 border-primary-blue text-md p-4">
                 <div>
-                    <label class="text-gray-500">{{
+                    <label class="text-gray-500 text-xs">{{
                         $t("language")
                     }}</label>
                     <select
                         v-model="filter.lang"
                         
-                        class="form-select px-3 py-2 w-full mt-2  border-gray-300 focus:ring-primary-blue focus:border-primary-blue block"
+                        class="form-select px-3 text-xs py-2 w-full mt-1  border-gray-300 focus:ring-primary-blue focus:border-primary-blue block"
                     >
                         <option value="fr">{{ $t("fr") }}</option>
                         <option value="en">{{ $t("en") }}</option>
@@ -172,20 +172,20 @@
                     </select>
                 </div>
                 <div>
-                    <label class="text-gray-500">{{ $t("key-words") }}</label>
+                    <label class="text-gray-500 text-xs">{{ $t("key-words") }}</label>
                     <input
                         type="text"
                         v-model="filter.keywords"
                         :placeholder="$t('key-words')"
-                        class="form-input px-3 py-2 w-full mt-2 border-gray-300 focus:ring-primary-blue focus:border-primary-blue block"
+                        class="form-input px-3 py-2 w-full text-xs mt-1 border-gray-300 focus:ring-primary-blue focus:border-primary-blue block"
                     />
                 </div>
                 <div>
-                    <label class="text-gray-500">{{ $t("continent") }}</label>
+                    <label class="text-gray-500 text-xs">{{ $t("continent") }}</label>
                     <select
                         v-model="filter.continent"
                         
-                        class="form-select px-3 py-2 w-full mt-2 border-gray-300  focus:ring-primary-blue focus:border-primary-blue block"
+                        class="form-select px-3 py-2 w-full mt-1 text-xs border-gray-300  focus:ring-primary-blue focus:border-primary-blue block"
                     >
                         <option value="">--------------</option>
                         <option v-for="continent in continents" :key="continent.id" :value="continent.id">
@@ -197,11 +197,11 @@
                     </select>
                 </div>
                 <div>
-                    <label class="text-gray-500">{{ $t("zoned") }}</label>
+                    <label class="text-gray-500 text-xs">{{ $t("zoned") }}</label>
                     <select
                         v-model="filter.zone"
                         
-                        class="form-select px-3 py-2 w-full mt-2 border-gray-300  focus:ring-primary-blue focus:border-primary-blue block"
+                        class="form-select px-3 py-2 w-full mt-1 text-xs border-gray-300  focus:ring-primary-blue focus:border-primary-blue block"
                     >
                         <option value="">--------------</option>
                         <option v-for="zone in zones" :key="zone.id" :value="zone.id">
@@ -213,11 +213,11 @@
                     </select>
                 </div>
                 <div>
-                    <label class="text-gray-500">{{ $t("country") }}</label>
+                    <label class="text-gray-500 text-xs">{{ $t("country") }}</label>
                     <select
                         v-model="filter.country"
               
-                        class="form-select px-3 py-2 w-full mt-2 border-gray-300 focus:ring-primary-blue focus:border-primary-blue block"
+                        class="form-select px-3 py-2 w-full mt-1 text-xs border-gray-300 focus:ring-primary-blue focus:border-primary-blue block"
                     >
                         <option value="">--------------</option>
                         <option v-for="country in countries" :key="country.id" :value="country.id">
@@ -229,11 +229,11 @@
                     </select>
                 </div>
                 <div>
-                    <label class="text-gray-500">{{ $t("ministry") }}</label>
+                    <label class="text-gray-500 text-xs">{{ $t("ministry") }}</label>
                     <select
                         v-model="filter.ministry"
                         
-                        class="form-select px-3 py-2 w-full mt-2  border-gray-300 focus:ring-primary-blue focus:border-primary-blue block"
+                        class="form-select px-3 py-2 w-full mt-1 text-xs  border-gray-300 focus:ring-primary-blue focus:border-primary-blue block"
                     >
                         <option value="">--------------</option>
                         <option v-for="ministry in ministries" :key="ministry.id" :value="ministry.id">
@@ -245,8 +245,8 @@
                     </select>
                 </div>
                 <div>
-                    <button type="submit" v-if="loading == 0 || loading == 2" class="text-white text-lg bg-primary-blue px-8 py-2 mt-6 w-full">{{ $t("filter") }}</button>
-                    <button  disabled type="submit" v-if="loading == 1" class="inline-flex items-center justify-center text-white text-lg bg-blue-300 cursor-wait px-8 py-2 mt-6 w-full">
+                    <button type="submit" v-if="loading == 0 || loading == 2" class="text-white text-lg bg-primary-blue px-8 py-2 mt-3 w-full">{{ $t("filter") }}</button>
+                    <button  disabled type="submit" v-if="loading == 1" class="inline-flex items-center justify-center text-white text-lg bg-blue-300 cursor-wait px-8 py-2 mt-3 w-full">
                         <svg class="animate-spin mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>

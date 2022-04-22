@@ -93,14 +93,14 @@
                                             <router-link  v-if="!token"
                                 :to="{
                                     name: 'login', params: { redirect: 'not-login' },
-                                }"> {{ article.title }} </router-link>
+                                }"> {{ article.title.length <= 20 ? article.title : article.title.substring(0, 19) + "..." }} </router-link>
                                             <router-link v-else
                                                 :to="{
                                                     name: 'show.post',
                                                     params: { id: article.id },
                                                 }"
                                                 class="text-xl font-semibold text-gray-600 hover:text-primary-blue"
-                                                >{{ article.title }}
+                                                >{{ article.title.length <= 20 ? article.title : article.title.substring(0, 19) + "..." }}
                                             </router-link>
                                         </div>
                                         <div
@@ -179,14 +179,14 @@
                                         <router-link  v-if="!token"
                                 :to="{
                                     name: 'login', params: { redirect: 'not-login' },
-                                }"> {{ article.title }} </router-link>
+                                }"> {{ article.title.length <= 20 ? article.title : article.title.substring(0, 19) + "..." }} </router-link>
                                             <router-link v-else
                                                 :to="{
                                                     name: 'show.post',
                                                     params: { id: article.id },
                                                 }"
                                                 class="text-xl font-semibold text-gray-600 hover:text-primary-blue"
-                                                >{{ article.title }}
+                                                >{{ article.title.length <= 20 ? article.title : article.title.substring(0, 19) + "..." }}
                                             </router-link>
                                     </div>
                                     <div
@@ -309,14 +309,14 @@
                                                 <router-link  v-if="!token"
                                 :to="{
                                     name: 'login', params: { redirect: 'not-login' },
-                                }"> {{ article.title }} </router-link>
+                                }"> {{ article.title.length <= 20 ? article.title : article.title.substring(0, 19) + "..." }} </router-link>
                                             <router-link v-else
                                                 :to="{
                                                     name: 'show.post',
                                                     params: { id: article.id },
                                                 }"
                                                 class="text-xl font-semibold text-gray-600 hover:text-primary-blue"
-                                                >{{ article.title }}
+                                                >{{ article.title.length <= 20 ? article.title : article.title.substring(0, 19) + "..." }}
                                             </router-link>
                                             </div>
                                             <div
@@ -401,14 +401,14 @@
                                                 <router-link  v-if="!token"
                                 :to="{
                                     name: 'login', params: { redirect: 'not-login' },
-                                }"> {{ article.title }} </router-link>
+                                }"> {{ article.title.length <= 20 ? article.title : article.title.substring(0, 19) + "..." }} </router-link>
                                             <router-link v-else
                                                 :to="{
                                                     name: 'show.post',
                                                     params: { id: article.id },
                                                 }"
                                                 class="text-xl font-semibold text-gray-600 hover:text-primary-blue"
-                                                >{{ article.title }}
+                                                >{{ article.title.length <= 20 ? article.title : article.title.substring(0, 19) + "..." }}
                                             </router-link>
                                             </div>
                                             <div
@@ -532,14 +532,14 @@
                                                 <router-link  v-if="!token"
                                 :to="{
                                     name: 'login', params: { redirect: 'not-login' },
-                                }"> {{ article.title }} </router-link>
+                                }"> {{ article.title.length <= 20 ? article.title : article.title.substring(0, 19) + "..." }} </router-link>
                                             <router-link v-else
                                                 :to="{
                                                     name: 'show.post',
                                                     params: { id: article.id },
                                                 }"
                                                 class="text-xl font-semibold text-gray-600 hover:text-primary-blue"
-                                                >{{ article.title }}
+                                                >{{ article.title.length <= 20 ? article.title : article.title.substring(0, 19) + "..." }}
                                             </router-link>
                                             </div>
                                             <div
@@ -623,14 +623,14 @@
                                                 <router-link  v-if="!token"
                                 :to="{
                                     name: 'login', params: { redirect: 'not-login' },
-                                }"> {{ article.title }} </router-link>
+                                }"> {{ article.title.length <= 20 ? article.title : article.title.substring(0, 19) + "..." }} </router-link>
                                             <router-link v-else
                                                 :to="{
                                                     name: 'show.post',
                                                     params: { id: article.id },
                                                 }"
                                                 class="text-xl font-semibold text-gray-600 hover:text-primary-blue"
-                                                >{{ article.title }}
+                                                >{{ article.title.length <= 20 ? article.title : article.title.substring(0, 19) + "..." }}
                                             </router-link>
                                             </div>
                                             <div
@@ -754,14 +754,14 @@
                                             <router-link  v-if="!token"
                                 :to="{
                                     name: 'login', params: { redirect: 'not-login' },
-                                }"> {{ article.title }} </router-link>
+                                }"> {{ article.title.length <= 20 ? article.title : article.title.substring(0, 19) + "..." }} </router-link>
                                             <router-link v-else
                                                 :to="{
                                                     name: 'show.post',
                                                     params: { id: article.id },
                                                 }"
                                                 class="text-xl font-semibold text-gray-600 hover:text-primary-blue"
-                                                >{{ article.title }}
+                                                >{{ article.title.length <= 20 ? article.title : article.title.substring(0, 19) + "..." }}
                                             </router-link>
                                         </div>
                                         <div
@@ -844,7 +844,7 @@
                                                     params: { id: article.id },
                                                 }"
                                                 class="text-xl font-semibold text-gray-600 hover:text-primary-blue"
-                                                >{{ article.title }}
+                                                >{{ article.title.length <= 20 ? article.title : article.title.substring(0, 19) + "..." }}
                                             </router-link>
                                     </div>
                                     <div

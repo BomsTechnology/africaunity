@@ -227,7 +227,7 @@ class JobOfferController extends Controller
 
         if($request->file('company_logo')){
             $request->validate([
-                'company_logo' => 'required|mimes:png,jpg,jpeng,gif|dimensions:max_width=2048,max_height=2048'
+                'company_logo' => 'required|mimes:png,jpg,jpeg,gif|dimensions:max_width=2048,max_height=2048'
             ]);
             $filename = '/uploads/'.time().'.'. $request->file('company_logo')->extension();
             $request->file('company_logo')->storePubliclyAs('public', $filename);

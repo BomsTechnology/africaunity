@@ -172,6 +172,7 @@
                                     ref="avatar"
                                     class="form-input px-3  w-full mt-3 placeholder:text-gray-400 border-gray-400 focus:ring-primary-blue focus:border-primary-blue block"
                                 />
+                                <span class="text-xs font-light text-gray-500">(Format: png, jpg, jpeg, gif)</span>
                             </div>
 
                             <div  class="lg:px-16 px-8 lg:text-sm text-xs mt-2">
@@ -184,6 +185,7 @@
                                     ref="cover"
                                     class="form-input px-3 w-full mt-3 placeholder:text-gray-400 border-gray-400 focus:ring-primary-blue focus:border-primary-blue block"
                                 />
+                                <span class="text-xs font-light text-gray-500">(Format: png, jpg, jpeg, gif)</span>
                             </div>
 
                             <div class="lg:px-16 px-8 lg:text-sm text-xs">

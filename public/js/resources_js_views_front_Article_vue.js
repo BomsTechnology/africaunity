@@ -303,10 +303,10 @@ var _hoisted_28 = {
   "class": "text-white px-2 py-1 bg-primary-blue inline-block"
 };
 var _hoisted_29 = {
-  "class": "border-t-2 space-y-2 border-primary-blue text-md p-4"
+  "class": "border-t-2 space-y-1 border-primary-blue text-md p-4"
 };
 var _hoisted_30 = {
-  "class": "text-gray-500"
+  "class": "text-gray-500 text-xs"
 };
 var _hoisted_31 = {
   value: "fr"
@@ -321,11 +321,11 @@ var _hoisted_34 = {
   value: "pt"
 };
 var _hoisted_35 = {
-  "class": "text-gray-500"
+  "class": "text-gray-500 text-xs"
 };
 var _hoisted_36 = ["placeholder"];
 var _hoisted_37 = {
-  "class": "text-gray-500"
+  "class": "text-gray-500 text-xs"
 };
 
 var _hoisted_38 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
@@ -348,7 +348,7 @@ var _hoisted_43 = {
   key: 3
 };
 var _hoisted_44 = {
-  "class": "text-gray-500"
+  "class": "text-gray-500 text-xs"
 };
 
 var _hoisted_45 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
@@ -371,7 +371,7 @@ var _hoisted_50 = {
   key: 3
 };
 var _hoisted_51 = {
-  "class": "text-gray-500"
+  "class": "text-gray-500 text-xs"
 };
 
 var _hoisted_52 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
@@ -394,7 +394,7 @@ var _hoisted_57 = {
   key: 3
 };
 var _hoisted_58 = {
-  "class": "text-gray-500"
+  "class": "text-gray-500 text-xs"
 };
 
 var _hoisted_59 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
@@ -419,13 +419,13 @@ var _hoisted_64 = {
 var _hoisted_65 = {
   key: 0,
   type: "submit",
-  "class": "text-white text-lg bg-primary-blue px-8 py-2 mt-6 w-full"
+  "class": "text-white text-lg bg-primary-blue px-8 py-2 mt-3 w-full"
 };
 var _hoisted_66 = {
   key: 1,
   disabled: "",
   type: "submit",
-  "class": "inline-flex items-center justify-center text-white text-lg bg-blue-300 cursor-wait px-8 py-2 mt-6 w-full"
+  "class": "inline-flex items-center justify-center text-white text-lg bg-blue-300 cursor-wait px-8 py-2 mt-3 w-full"
 };
 
 var _hoisted_67 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
@@ -540,7 +540,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       "class": "block mt-2 text-2xl font-semibold text-gray-800 transition-colors duration-200 transform dark:text-white hover:text-gray-600 hover:underline"
     }, {
       "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-        return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(post.title), 1
+        return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(post.title.length <= 20 ? post.title : post.title.substring(0, 19) + "..."), 1
         /* TEXT */
         )];
       }),
@@ -620,7 +620,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
       return $setup.filter.lang = $event;
     }),
-    "class": "form-select px-3 py-2 w-full mt-2 border-gray-300 focus:ring-primary-blue focus:border-primary-blue block"
+    "class": "form-select px-3 text-xs py-2 w-full mt-1 border-gray-300 focus:ring-primary-blue focus:border-primary-blue block"
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", _hoisted_31, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t("fr")), 1
   /* TEXT */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", _hoisted_32, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t("en")), 1
@@ -639,7 +639,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $setup.filter.keywords = $event;
     }),
     placeholder: _ctx.$t('key-words'),
-    "class": "form-input px-3 py-2 w-full mt-2 border-gray-300 focus:ring-primary-blue focus:border-primary-blue block"
+    "class": "form-input px-3 py-2 w-full text-xs mt-1 border-gray-300 focus:ring-primary-blue focus:border-primary-blue block"
   }, null, 8
   /* PROPS */
   , _hoisted_36), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.filter.keywords]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", _hoisted_37, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t("continent")), 1
@@ -648,7 +648,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
       return $setup.filter.continent = $event;
     }),
-    "class": "form-select px-3 py-2 w-full mt-2 border-gray-300 focus:ring-primary-blue focus:border-primary-blue block"
+    "class": "form-select px-3 py-2 w-full mt-1 text-xs border-gray-300 focus:ring-primary-blue focus:border-primary-blue block"
   }, [_hoisted_38, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.continents, function (continent) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
       key: continent.id,
@@ -674,7 +674,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
       return $setup.filter.zone = $event;
     }),
-    "class": "form-select px-3 py-2 w-full mt-2 border-gray-300 focus:ring-primary-blue focus:border-primary-blue block"
+    "class": "form-select px-3 py-2 w-full mt-1 text-xs border-gray-300 focus:ring-primary-blue focus:border-primary-blue block"
   }, [_hoisted_45, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.zones, function (zone) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
       key: zone.id,
@@ -700,7 +700,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
       return $setup.filter.country = $event;
     }),
-    "class": "form-select px-3 py-2 w-full mt-2 border-gray-300 focus:ring-primary-blue focus:border-primary-blue block"
+    "class": "form-select px-3 py-2 w-full mt-1 text-xs border-gray-300 focus:ring-primary-blue focus:border-primary-blue block"
   }, [_hoisted_52, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.countries, function (country) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
       key: country.id,
@@ -726,7 +726,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
       return $setup.filter.ministry = $event;
     }),
-    "class": "form-select px-3 py-2 w-full mt-2 border-gray-300 focus:ring-primary-blue focus:border-primary-blue block"
+    "class": "form-select px-3 py-2 w-full mt-1 text-xs border-gray-300 focus:ring-primary-blue focus:border-primary-blue block"
   }, [_hoisted_59, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.ministries, function (ministry) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
       key: ministry.id,

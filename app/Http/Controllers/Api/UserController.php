@@ -315,7 +315,7 @@ class UserController extends Controller
 
         if($request->file('avatar')){
             $request->validate([
-                'avatar' => 'required|mimes:png,jpg,jpeng,gif|dimensions:max_width=2048,max_height=2048'
+                'avatar' => 'required|mimes:png,jpg,jpeg,gif|dimensions:max_width=2048,max_height=2048'
             ]);
             $filename = '/uploads/'.time().'.'. $request->file('avatar')->extension();
             $request->file('avatar')->storePubliclyAs('public', $filename);

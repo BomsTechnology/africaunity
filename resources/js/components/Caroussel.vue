@@ -38,7 +38,7 @@
                             <span v-else>{{ post.country.name_pt }}</span> 
                          </a>
                     </div>
-                    <div><a href="#" class="text-lg hover:text-primary-blue"> {{ post.title }} </a></div>
+                    <div><a href="#" class="text-lg hover:text-primary-blue">  {{ post.title.length <= 20 ? post.title : post.title.substring(0, 19) + "..." }} </a></div>
                     <div class="flex text-xs space-x-2">
                         <div class="flex space-x-1"><CalendarIcon class="h-4 w-4"/> <a href="#" class="hover:text-primary-blue">{{ post.date }}</a></div>
                         <div class="flex space-x-1"><UserIcon class="h-4 w-4"/> <a href="#" class="hover:text-primary-blue">{{ post.user.firstname }}</a></div>
@@ -56,7 +56,7 @@
                                     name: 'login', params: { redirect: 'not-login' },
                                 }">
                 <div class="object-cover absolute w-full h-full text-white space-y-1 p-4 flex flex-col justify-end bg-black/25">
-                    <div><a href="#" class="text-md hover:text-primary-blue"> {{ post.title }} </a></div>
+                    <div><a href="#" class="text-md hover:text-primary-blue"> {{ post.title.length <= 20 ? post.title : post.title.substring(0, 19) + "..." }} </a></div>
                     <div class="flex text-xs space-x-2">
                         <div class="flex space-x-1"><CalendarIcon class="h-4 w-4"/> <a href="#" class="hover:text-primary-blue">{{ post.date }}</a></div>
                         <div class="flex space-x-1"><ChatIcon class="h-4 w-4"/> <a href="#" class="hover:text-primary-blue">{{ post.comments }}</a></div>
@@ -70,7 +70,7 @@
                                     params: { id: post.id },
                                 }">
                 <div class="object-cover absolute w-full h-full text-white space-y-1 p-4 flex flex-col justify-end bg-black/25">
-                    <div><a href="#" class="text-md hover:text-primary-blue"> {{ post.title }} </a></div>
+                    <div><a href="#" class="text-md hover:text-primary-blue"> {{ post.title.length <= 20 ? post.title : post.title.substring(0, 19) + "..." }} </a></div>
                     <div class="flex text-xs space-x-2">
                         <div class="flex space-x-1"><CalendarIcon class="h-4 w-4"/> <a href="#" class="hover:text-primary-blue">{{ post.date }}</a></div>
                         <div class="flex space-x-1"><ChatIcon class="h-4 w-4"/> <a href="#" class="hover:text-primary-blue">{{ post.comments }}</a></div>

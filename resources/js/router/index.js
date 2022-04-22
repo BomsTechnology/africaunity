@@ -277,7 +277,7 @@ const routes = [
         }
     },
     {
-        path: '/account/:name/:id',
+        path: '/account/:name/:id/:redirect?',
         name: 'compte',
         props: true,
         component: Profile,

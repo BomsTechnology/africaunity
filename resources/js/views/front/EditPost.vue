@@ -26,7 +26,8 @@
             <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
                 <div class="col-span-2">
                     <label class="text-gray-700 dark:text-gray-200">{{ $t('title') }} <span class="text-red-500">*</span></label>
-                    <input required v-model="post.title" type="text" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+                    <input required v-model="post.title" maxlength="50" type="text" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+                    <span class="text-xs font-light text-gray-400">{{ post.title ? post.title.length : 0 }} of 50 Characters</span>
                 </div>
 
                 <div class="lg:col-span-1 col-span-2">
@@ -192,7 +193,7 @@ export default {
             formData.append('type', post.value.type);
             formData.append('user_id', post.value.user_id);
             formData.append('language', post.value.language);
-            formData.append('content', JSON.stringify(post.value.content));
+            formData.append('content', post.value.content);
             formData.append('continent_id', post.value.continent_id);
             formData.append('zone_id', post.value.zone_id);
             formData.append('country_id', post.value.country_id);
@@ -201,7 +202,11 @@ export default {
 
             await updatePost(formData, props.id);
             if(errors.value == ''){
-                router.push({name:'compte',  params: { name: user.firstname, id : user.id }});
+                if(props.type == 'article'){
+                    router.push({name:'compte',  params: { name: user.firstname, id : user.id, redirect: 'article' }});
+                }else{
+                    router.push({name:'compte',  params: { name: user.firstname, id : user.id, redirect: 'propau' }});
+                }
             }
         };
         return {

@@ -65,7 +65,7 @@
 
                      <div class="px-6 py-4 transition-colors duration-200 transform rounded-lg  shadow hover:bg-gray-50 ">
                         <div class="text-center">
-                            <p class="text-3xl font-semibold text-gray-800 uppercase">{{ $t("pack") }} <br/> {{ $t("business") }}</p>
+                            <p class="text-3xl font-semibold text-gray-800 uppercase">{{ $t("pack") }} <br/> PRO</p>
                             <h4 class="mt-2 text-gray-600  dark:text-gray-400">({{ $t("corporation") }})</h4>
                             <p class="mt-4 text-gray-500 ">{{ $t("essential-features") }}</p>
                             <h4 class="mt-2 text-5xl font-semibold text-gray-800 uppercase ">{{ $t("free") }}</h4>

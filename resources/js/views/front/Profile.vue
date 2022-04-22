@@ -480,7 +480,7 @@
                     <router-link :to="{
                                     name: 'show.post',
                                     params: { id: post.id },
-                                }"  class="text-2xl font-bold text-gray-800 dark:text-white">{{ post.title }}</router-link>
+                                }"  class="text-2xl font-bold text-gray-800 dark:text-white"> {{ post.title.length <= 20 ? post.title : post.title.substring(0, 19) + "..." }}</router-link>
 
                     <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">{{ post.content.substring(0, 19) + "..." }}</p>
 
@@ -582,7 +582,7 @@
                     <router-link :to="{
                                     name: 'show.post',
                                     params: { id: post.id },
-                                }"  class="text-2xl font-bold text-gray-800 dark:text-white">{{ post.title }}</router-link>
+                                }"  class="text-2xl font-bold text-gray-800 dark:text-white">{{ post.title.length <= 20 ? post.title : post.title.substring(0, 19) + "..." }}</router-link>
 
                     <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">{{ post.content.substring(0, 19) + "..." }}</p>
 
@@ -1095,6 +1095,10 @@ export default {
             required: true,
             type: String,
         },
+        redirect: {
+            required: false,
+            type: String,
+        },
     },
     components:{
         EmojiSadIcon,
@@ -1138,10 +1142,26 @@ export default {
         const langArticle = ref('');
         const langProp = ref('');
         const url = window.location.href;
+        const open = reactive({
+            profil: true,
+            article: false,
+            propau: false, 
+            comment: false,
+            job: false,
+            ads: false,
+            edit: false,
+        });
         onMounted(                
             async () => {
                 try{
                     loading.value = 1;
+                    if(props.redirect == 'article'){
+                        open.profil = false;
+                        open.article = true;
+                    }else if(props.redirect == 'propau'){
+                        open.profil = false;
+                        open.propau = true;
+                    }
                     await getUser(props.id);
                     let response = await axios.get('/api/details/' + props.id, {
                         headers:{
@@ -1222,16 +1242,6 @@ export default {
             modifyComment.post_id = '';
             await getCommentsUser(props.id);
         }
-
-        const open = reactive({
-            profil: true,
-            article: false,
-            propau: false, 
-            comment: false,
-            job: false,
-            ads: false,
-            edit: false,
-        });
 
         const changeTab = (type) => {
             switch (type){

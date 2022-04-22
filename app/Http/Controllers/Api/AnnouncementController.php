@@ -89,7 +89,7 @@ class AnnouncementController extends Controller
 
         if($request->file('image')){
             $request->validate([
-                'image' => 'required|mimes:png,jpg,jpeng,gif|dimensions:max_width=2048,max_height=2048'
+                'image' => 'required|mimes:png,jpg,jpeg,gif|dimensions:max_width=2048,max_height=2048'
             ]);
             $filename = '/uploads/'.time().'.'. $request->file('image')->extension();
             $request->file('image')->storePubliclyAs('public', $filename);
