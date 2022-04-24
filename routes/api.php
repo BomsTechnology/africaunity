@@ -52,6 +52,7 @@ Route::get("/countries", [CountryController::class,'index']);
 Route::get("/ministries", [MinistryController::class,'index']);
 Route::get("/ministries-home", [MinistryController::class,'ministry_home']);
 
+Route::get('jobOffers-home', [JobOfferController::class, 'jobOffers_home']);
 
 Route::get('verify-email/{id}/{hash}', [EmailVerificationController::class, 'verify'])->name('verification.verify');
 Route::post('email/verification-notification', [EmailVerificationController::class, 'sendVerificationEmail']);

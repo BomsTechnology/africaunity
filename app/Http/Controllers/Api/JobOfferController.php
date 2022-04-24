@@ -131,6 +131,11 @@ class JobOfferController extends Controller
         return JobOfferResource::collection(JobOffer::where('status','<>',3)->orderBy('id', 'desc')->get());
     }
 
+    public function jobOffers_home()
+    {
+        return JobOfferResource::collection(JobOffer::where('status','<>',3)->limit(5)->orderBy('id', 'desc')->get());
+    }
+
     public function jobOffers_user($user)
     {
         return JobOfferResource::collection(JobOffer::where('user_id',$user)->orderBy('id', 'desc')->get());

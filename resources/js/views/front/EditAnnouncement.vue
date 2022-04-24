@@ -172,12 +172,15 @@
                                     for="fr"
                                     >{{ $t('thumbnails') }}</label
                                 >
+                                <div class="flex items-center space-x-4 py-4">
+                                <img v-if="announcement.image" :src="announcement.image" class="h-16 w-16 rounded-full" :alt="announcement.title">    
                                 <input
                                     ref="file"
                                     @change="handelFileObject()"
                                     type="file"
                                     class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
                                 />
+                                </div>
                             </div>
 
                             <div class="col-span-2 mt-4">

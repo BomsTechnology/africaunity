@@ -892,16 +892,86 @@
                     </router-link>
                 </div>
             </div>
-            <!-- <div class="w-full">
+            <div class="w-full">
                 <h1 class="text-white px-2 py-1 bg-primary-blue inline-block">
                     {{ $t("recent-posts") }}
                 </h1>
                 <div
                     class="border-t-2 w-full border-primary-blue text-justify py-4"
                 >
-                    <p></p>
+                    <p v-if="jobOffersHome.length != 0" class="p-4">
+                        <div 
+                        v-for="jobOffer in jobOffersHome"
+                        :key="jobOffer.id"
+                        >
+                        <router-link  v-if="!token"
+                                :to="{
+                                    name: 'login', params: { redirect: 'not-login' },
+                                }"
+                            class="flex px-2 py-4 justify-between items-center border-b border-gray-200 hover:bg-gray-100"
+                        >
+                            <div class="flex items-center space-x-4 ">
+                                <div class="hidden lg:block">
+                                    <img v-if="jobOffer.company_logo" :src="jobOffer.company_logo" alt="" class="w-10 h-10 object-cover">
+                                    <OfficeBuildingIcon v-else class="w-10 h-10 text-gray-500" />
+                                </div>
+                                <div>
+                                    <h1 class="capitalize text-sm">{{ jobOffer.title }}</h1>
+                                    <h2 class="font-bold capitalize text-gray-500 text-sm">{{ jobOffer.company_name }}</h2>
+                                </div>
+                            </div>
+                            <div class="">
+                                <h2 class="font-bold capitalize text-primary-blue text-sm">
+                                    <span v-if="$i18n.locale == 'en'">{{
+                                        jobOffer.offer_type.name_en
+                                    }}</span>
+                                    <span v-else-if="$i18n.locale == 'fr'">{{
+                                        jobOffer.offer_type.name_fr
+                                    }}</span>
+                                    <span v-else-if="$i18n.locale == 'es'">{{
+                                        jobOffer.offer_type.name_es
+                                    }}</span>
+                                    <span v-else>{{ jobOffer.offer_type.name_pt }}</span>
+                                </h2>
+                            </div>
+                        </router-link>
+                        <router-link 
+                        v-else
+                        :to="{
+                            name: 'show.job',
+                            params: { id: jobOffer.id },
+                            }"
+                            class="flex px-2 py-4 justify-between items-center border-b border-gray-200 hover:bg-gray-100"
+                        >
+                            <div class="flex items-center space-x-4 ">
+                                <div class="hidden lg:block">
+                                    <img v-if="jobOffer.company_logo" :src="jobOffer.company_logo" alt="" class="w-10 h-10 object-cover">
+                                    <OfficeBuildingIcon v-else class="w-10 h-10 text-gray-500" />
+                                </div>
+                                <div>
+                                    <h1 class="capitalize text-sm">{{ jobOffer.title }}</h1>
+                                    <h2 class="font-bold capitalize text-gray-500 text-sm">{{ jobOffer.company_name }}</h2>
+                                </div>
+                            </div>
+                            <div class="">
+                                <h2 class="font-bold capitalize text-primary-blue text-sm">
+                                    <span v-if="$i18n.locale == 'en'">{{
+                                        jobOffer.offer_type.name_en
+                                    }}</span>
+                                    <span v-else-if="$i18n.locale == 'fr'">{{
+                                        jobOffer.offer_type.name_fr
+                                    }}</span>
+                                    <span v-else-if="$i18n.locale == 'es'">{{
+                                        jobOffer.offer_type.name_es
+                                    }}</span>
+                                    <span v-else>{{ jobOffer.offer_type.name_pt }}</span>
+                                </h2>
+                            </div>
+                        </router-link>
+                    </div>
+                    </p>
                 </div>
-            </div> -->
+            </div>
             <div class="w-full">
                 <h1 class="text-white px-2 py-1 bg-primary-blue inline-block">
                     {{ $t("video") }}
@@ -909,7 +979,7 @@
                 <div
                     class="border-t-2 w-full border-primary-blue text-justify py-4"
                 >
-                    <p>
+                    <p class="p-4">
                         <iframe class="w-full h-60" src="https://www.youtube.com/embed/TBikbn5XJhg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </p>
                 </div>
@@ -921,7 +991,7 @@
                 <div
                     class="border-t-2 w-full border-primary-blue text-justify py-4"
                 >
-                    <p>
+                    <p class="p-4">
                         <iframe class="w-full h-60" src="https://www.youtube.com/embed/3gb2do8F6Q0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </p>
                 </div>
@@ -936,7 +1006,7 @@ import Header from "../../components/Header.vue";
 import FilterArticle from "../../components/FilterArticle.vue";
 import Footer from "../../components/Footer.vue";
 import Caroussel from "../../components/Caroussel.vue";
-import { CalendarIcon, UserIcon, ChatIcon } from "@heroicons/vue/solid";
+import { CalendarIcon, UserIcon, ChatIcon, OfficeBuildingIcon } from "@heroicons/vue/solid";
 import { reactive, ref, onMounted } from "vue";
 export default {
     components: {
@@ -947,6 +1017,7 @@ export default {
         UserIcon,
         ChatIcon,
         FilterArticle,
+        OfficeBuildingIcon,
     },
     setup(props) {
         const token = localStorage.token;
@@ -961,6 +1032,7 @@ export default {
         const ministry2 = ref("");
         const ministry3 = ref("");
         const ministry4 = ref("");
+        const jobOffersHome = ref([]);
 
         onMounted(async () => {
             loading.value = 1;
@@ -1003,10 +1075,14 @@ export default {
             );
             articles4.value = response.data.data;
 
+            response = await axios.get('/api/jobOffers-home/');
+            jobOffersHome.value = response.data.data;
+
             loading.value = 2;
         });
 
         return {
+            jobOffersHome,
             loading,
             errors,
             articles4,
