@@ -1664,7 +1664,7 @@ function useUsers() {
               _context3.t0 = _context3["catch"](1);
 
               if (_context3.t0.response.status == 401) {
-                location.href = location.origin + 'login/not-login';
+                location.href = location.origin + '/login/not-login';
                 window.localStorage.removeItem("token");
                 window.localStorage.removeItem("user");
               }
@@ -1711,7 +1711,7 @@ function useUsers() {
               _context4.t0 = _context4["catch"](1);
 
               if (_context4.t0.response.status == 401) {
-                location.href = location.origin + 'login/not-login';
+                location.href = location.origin + '/login/not-login';
                 window.localStorage.removeItem("token");
                 window.localStorage.removeItem("user");
               }

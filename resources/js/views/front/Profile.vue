@@ -1196,7 +1196,7 @@ export default {
                     await getCountries();
                 }catch(e){
                     if(e.response.status == 401){
-                        location.href = location.origin + 'login/not-login';
+                        location.href = location.origin + '/login/not-login';
                         window.localStorage.removeItem("token");
                         window.localStorage.removeItem("user");
                     }
@@ -1222,7 +1222,7 @@ export default {
                     await getAnnouncementsUser(currentValue.id);
                 }catch(e){
                     if(e.response.status == 401){
-                        location.href = location.origin + 'login/not-login';
+                        location.href = location.origin + '/login/not-login';
                         window.localStorage.removeItem("token");
                         window.localStorage.removeItem("user");
                     }

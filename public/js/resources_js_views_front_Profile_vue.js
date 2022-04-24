@@ -521,7 +521,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               _context.t0 = _context["catch"](0);
 
               if (_context.t0.response.status == 401) {
-                location.href = location.origin + 'login/not-login';
+                location.href = location.origin + '/login/not-login';
                 window.localStorage.removeItem("token");
                 window.localStorage.removeItem("user");
               }
@@ -581,7 +581,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context2.t0 = _context2["catch"](0);
 
                 if (_context2.t0.response.status == 401) {
-                  location.href = location.origin + 'login/not-login';
+                  location.href = location.origin + '/login/not-login';
                   window.localStorage.removeItem("token");
                   window.localStorage.removeItem("user");
                 }
@@ -7350,7 +7350,7 @@ function useUsers() {
               _context3.t0 = _context3["catch"](1);
 
               if (_context3.t0.response.status == 401) {
-                location.href = location.origin + 'login/not-login';
+                location.href = location.origin + '/login/not-login';
                 window.localStorage.removeItem("token");
                 window.localStorage.removeItem("user");
               }
@@ -7397,7 +7397,7 @@ function useUsers() {
               _context4.t0 = _context4["catch"](1);
 
               if (_context4.t0.response.status == 401) {
-                location.href = location.origin + 'login/not-login';
+                location.href = location.origin + '/login/not-login';
                 window.localStorage.removeItem("token");
                 window.localStorage.removeItem("user");
               }

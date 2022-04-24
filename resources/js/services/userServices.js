@@ -62,7 +62,7 @@ export default function useUsers() {
             loading.value = 2;
         }catch(e){
             if(e.response.status == 401){
-                location.href = location.origin + 'login/not-login';
+                location.href = location.origin + '/login/not-login';
                 window.localStorage.removeItem("token");
                 window.localStorage.removeItem("user");
             }
@@ -82,7 +82,7 @@ export default function useUsers() {
             user.value = response.data.data;
         }catch(e){
             if(e.response.status == 401){
-                location.href = location.origin + 'login/not-login';
+                location.href = location.origin + '/login/not-login';
                 window.localStorage.removeItem("token");
                 window.localStorage.removeItem("user");
             }
