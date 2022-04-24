@@ -1,5 +1,5 @@
 <template>
-    <Report :open="openReport" :toogleModal="toogleModal" :id="id"/>
+    <Report :open="openReport" :toogleModal="toogleModal" :id="id" :type="'post'"/>
     <Header />
     <div
         class="flex lg:flex-row flex-col p-4 lg:space-x-2 md:space-y-2 text-lg"
@@ -64,9 +64,16 @@
                                 </div>
                             </div>
                             <p
+                                v-if="post.type == 'article'"
                                 class="mt-2 py-4 my-4 text-gray-600 dark:text-gray-400"
+                                v-html="displayHtml(post.content2)"
                             >
-                               {{ post.content }}
+                            </p>
+                            <p
+                                v-else
+                                class="mt-2 py-4 my-4 text-gray-600 dark:text-gray-400 break-words"
+                            >
+                                {{ post.content }}
                             </p>
                         </div>
 
@@ -286,7 +293,6 @@ export default {
 
             // convert html string into DOM
             const document = parser.parseFromString(str, "text/html");
-            console.log(document)
             return document.body.innerHTML;
         }
         

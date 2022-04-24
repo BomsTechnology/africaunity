@@ -110,11 +110,14 @@
 
                 <div class="col-span-2">
                     <label class="text-gray-700 dark:text-gray-200" for="pt">{{ $t('content') }} <span class="text-red-500">*</span></label>
-                    <textarea required type="text" v-model="post.content" id="pt" class="block w-full px-4 py-2 h-32 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:ring-primary-blue focus:border-primary-blue focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+                    <textarea required v-if="type == 'article'" ref="textarea" class="w-full h-96">
                     </textarea>
-                    <!-- <div class="h-32 mt-2">
-                            <QuillEditor v-model:content="post.content"  theme="snow" toolbar="full"/>
-                    </div> -->
+
+                    <div v-else>
+                        <textarea required v-if="post.content"  v-model="post.content" maxlength="2000" class="block w-full px-4 py-2 h-32 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:ring-primary-blue focus:border-primary-blue focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+                        </textarea>
+                        <span v-if="post.content" class="text-xs font-light text-gray-400">{{ post.content.length }} of 2000 Characters</span>
+                    </div>
                 </div>
             </div>
 
@@ -170,23 +173,46 @@ export default {
         const { zones, getZones } = useZones();
         const { countries, getCountries} = useCountries();
         const { ministries, getMinistries } = useMinistries();
-
+        const textarea = ref("");
         ;onMounted(
             async () => {
+                await getPost(props.id); 
+
+                if(props.type == 'article'){
+                    textarea.value.value = post.value.content;
+                    sceditor.create(textarea.value, {
+                        format: 'bbcode',
+                        style: 'https://cdn.jsdelivr.net/npm/sceditor@3/minified/themes/content/default.min.css',
+                        height: 400,
+                        toolbarExclude: 'indent,outdent,email,date,time,ltr,rtl,print,subscript,superscript,table,code,quote,emoticon',
+                        icons: 'material'
+                    });
+                }
+
                 if (!types.includes(props.type)) {
                     router.push({ name: "home" });
                 }
-                getPost(props.id); 
-                getContinents();
-                getZones();
-                getCountries();
-                getMinistries();
+                
+                await getContinents();
+                await getZones();
+                await getCountries();
+                await getMinistries();
                 
             },
              
         );
         post.value.image = '';
         const savePost = async () => {
+
+            if(props.type == 'article'){
+                if(post.value.content == textarea.value.value)
+                { console.log('click again'); return; }
+                else{
+                    post.value.content = textarea.value.value;
+                    console.log(post.content);
+                }
+            }
+
             let  formData = new FormData();
             formData.append('image', post.value.image);
             formData.append('title', post.value.title);
@@ -210,6 +236,7 @@ export default {
             }
         };
         return {
+            textarea,
             post,
             continents,
             zones,

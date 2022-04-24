@@ -18,8 +18,7 @@
             </div>
             <form v-else @submit.prevent="sendApply()" class="px-6 pb-4 space-y-6 lg:px-8 sm:pb-6 xl:pb-8" action="#">
                 <h3 class="text-xl md:text-2xl font-bold text-gray-900  flex items-center justify-center">
-                 Apply Job
-                </h3>
+                 {{ $t('apply') }}                 </h3>
                 <div class="">
                         <label class="text-gray-700 dark:text-gray-200">{{ $t('full-name') }} <span class="text-red-500">*</span></label>
                         <input required v-model="apply.name" type="text" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">

@@ -544,6 +544,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $setup.announcement.adress = $event;
     }),
     type: "text",
+    placeholder: "Douala Cameroon",
     "class": "block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
   }, null, 512
   /* NEED_PATCH */
@@ -1489,6 +1490,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 function useUniversities() {
   var universities = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)([]);
+  var minUniversities = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)([]);
   var university = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)([]);
   var errors = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)('');
   var loading = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(0);
@@ -1513,12 +1515,13 @@ function useUniversities() {
             case 5:
               response = _context.sent;
               universities.value = response.data.data;
+              minUniversities.value = universities.value.slice(0, 8);
               loading.value = 2;
-              _context.next = 13;
+              _context.next = 14;
               break;
 
-            case 10:
-              _context.prev = 10;
+            case 11:
+              _context.prev = 11;
               _context.t0 = _context["catch"](1);
 
               if (_context.t0.response.status == 401) {
@@ -1527,12 +1530,12 @@ function useUniversities() {
                 window.localStorage.removeItem("user");
               }
 
-            case 13:
+            case 14:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[1, 10]]);
+      }, _callee, null, [[1, 11]]);
     }));
 
     return function getUniversities() {
@@ -1777,6 +1780,7 @@ function useUniversities() {
   }();
 
   return {
+    minUniversities: minUniversities,
     universities: universities,
     university: university,
     errors: errors,

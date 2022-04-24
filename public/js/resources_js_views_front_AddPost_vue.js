@@ -68,14 +68,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     Error: _components_Error_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
   },
   created: function created() {
-    if (!localStorage.token) {
-      _router_index_js__WEBPACK_IMPORTED_MODULE_10__["default"].push({
-        name: "login",
-        params: {
-          redirect: 'not-login'
-        }
-      });
-    } else if (JSON.parse(localStorage.user).type == 'business1') {
+    if (JSON.parse(localStorage.user).type == 'business1') {
       _router_index_js__WEBPACK_IMPORTED_MODULE_10__["default"].push({
         name: "home"
       });
@@ -101,13 +94,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         ministries = _useMinistries.ministries,
         getMinistries = _useMinistries.getMinistries;
 
-    (0,vue__WEBPACK_IMPORTED_MODULE_3__.onMounted)(function () {
-      if (!types.includes(props.type)) {
-        _router_index_js__WEBPACK_IMPORTED_MODULE_10__["default"].push({
-          name: "home"
-        });
-      }
-    }, getContinents(), getZones(), getCountries(), getMinistries());
+    var textarea = (0,vue__WEBPACK_IMPORTED_MODULE_3__.ref)("");
     var post = (0,vue__WEBPACK_IMPORTED_MODULE_3__.reactive)({
       title: "",
       type: props.type,
@@ -119,7 +106,51 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       zone_id: 1,
       country_id: 1,
       ministry_id: 1
-    }); // computed();
+    });
+    (0,vue__WEBPACK_IMPORTED_MODULE_3__.onMounted)( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              if (props.type == 'article') {
+                sceditor.create(textarea.value, {
+                  format: 'bbcode',
+                  style: 'https://cdn.jsdelivr.net/npm/sceditor@3/minified/themes/content/default.min.css',
+                  height: 400,
+                  toolbarExclude: 'indent,outdent,email,date,time,ltr,rtl,print,subscript,superscript,table,code,quote,emoticon',
+                  icons: 'material'
+                });
+                textarea.value.value == '';
+              }
+
+              if (!types.includes(props.type)) {
+                _router_index_js__WEBPACK_IMPORTED_MODULE_10__["default"].push({
+                  name: "home"
+                });
+              }
+
+              _context.next = 4;
+              return getContinents();
+
+            case 4:
+              _context.next = 6;
+              return getZones();
+
+            case 6:
+              _context.next = 8;
+              return getCountries();
+
+            case 8:
+              _context.next = 10;
+              return getMinistries();
+
+            case 10:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    })));
 
     var _usePosts = (0,_services_postServices_js__WEBPACK_IMPORTED_MODULE_5__["default"])(),
         createPost = _usePosts.createPost,
@@ -127,12 +158,29 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         loading = _usePosts.loading;
 
     var storePost = /*#__PURE__*/function () {
-      var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+      var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
         var formData;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
           while (1) {
-            switch (_context.prev = _context.next) {
+            switch (_context2.prev = _context2.next) {
               case 0:
+                if (!(props.type == 'article')) {
+                  _context2.next = 7;
+                  break;
+                }
+
+                if (!(textarea.value.value == '' || post.content == textarea.value.value)) {
+                  _context2.next = 6;
+                  break;
+                }
+
+                console.log('click again');
+                return _context2.abrupt("return");
+
+              case 6:
+                post.content = textarea.value.value;
+
+              case 7:
                 formData = new FormData();
                 formData.append("image", post.image);
                 formData.append("title", post.title);
@@ -144,10 +192,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 formData.append("zone_id", post.zone_id);
                 formData.append("country_id", post.country_id);
                 formData.append("ministry_id", post.ministry_id);
-                _context.next = 13;
+                _context2.next = 20;
                 return createPost(formData);
 
-              case 13:
+              case 20:
                 if (errors.value == '') {
                   if (props.type == 'article') {
                     _router_index_js__WEBPACK_IMPORTED_MODULE_10__["default"].push({
@@ -170,20 +218,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 }
 
-              case 14:
+              case 21:
               case "end":
-                return _context.stop();
+                return _context2.stop();
             }
           }
-        }, _callee);
+        }, _callee2);
       }));
 
       return function storePost() {
-        return _ref.apply(this, arguments);
+        return _ref2.apply(this, arguments);
       };
     }();
 
+    var savePost = function savePost() {};
+
     return {
+      textarea: textarea,
       post: post,
       loading: loading,
       errors: errors,
@@ -446,21 +497,33 @@ var _hoisted_53 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 );
 
 var _hoisted_54 = {
-  "class": "mt-20"
+  key: 0,
+  required: "",
+  ref: "textarea",
+  "class": "w-full h-96"
 };
 var _hoisted_55 = {
+  key: 1
+};
+var _hoisted_56 = {
+  "class": "text-xs font-light text-gray-400"
+};
+var _hoisted_57 = {
+  "class": "mt-20"
+};
+var _hoisted_58 = {
   key: 0,
   type: "submit",
   "class": "px-6 py-4 text-md leading-5 w-full text-white rounded bg-primary-blue focus:outline-none"
 };
-var _hoisted_56 = {
+var _hoisted_59 = {
   key: 1,
   type: "submit",
   disabled: "",
   "class": "px-6 py-4 text-md leading-5 flex justify-center items-center w-full text-white rounded bg-blue-300 focus:outline-none"
 };
 
-var _hoisted_57 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
+var _hoisted_60 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
   "class": "animate-spin h-5 w-5 text-white",
   xmlns: "http://www.w3.org/2000/svg",
   fill: "none",
@@ -680,20 +743,24 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* HYDRATE_EVENTS, NEED_PATCH */
   )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_51, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", _hoisted_52, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('content')) + " ", 1
   /* TEXT */
-  ), _hoisted_53]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
+  ), _hoisted_53]), $props.type == 'article' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("textarea", _hoisted_54, "\r\n                    ", 512
+  /* NEED_PATCH */
+  )) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_55, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
     required: "",
     "onUpdate:modelValue": _cache[10] || (_cache[10] = function ($event) {
       return $setup.post.content = $event;
     }),
-    id: "pt",
-    "class": "block w-full px-4 py-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:ring-primary-blue focus:border-primary-blue focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
-  }, "\r\n                    ", 512
+    maxlength: "2000",
+    "class": "block w-full px-4 py-2 h-32 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:ring-primary-blue focus:border-primary-blue focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+  }, "\r\n                        ", 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.post.content]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"h-32 mt-2\">\r\n                            <QuillEditor v-model:content=\"post.content\" theme=\"snow\" toolbar=\"full\"/>\r\n                    </div> ")])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_54, [$setup.loading == 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", _hoisted_55, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('save')), 1
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.post.content]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_56, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.post.content.length) + " of 2000 Characters", 1
   /* TEXT */
-  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.loading == 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", _hoisted_56, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('save')) + "... ", 1
+  )]))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_57, [$setup.loading == 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", _hoisted_58, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('save')), 1
   /* TEXT */
-  ), _hoisted_57])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])], 32
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.loading == 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", _hoisted_59, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('save')) + "... ", 1
+  /* TEXT */
+  ), _hoisted_60])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])], 32
   /* HYDRATE_EVENTS */
   )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Footer)], 64
   /* STABLE_FRAGMENT */
@@ -1760,8 +1827,8 @@ function usePosts() {
 
             case 5:
               response = _context6.sent;
-              loading.value = 0;
               post.value = response.data.data;
+              loading.value = 0;
               _context6.next = 13;
               break;
 

@@ -287,6 +287,7 @@
                         class="text-gray-700 dark:text-gray-200"
                         for="es"
                         >{{ $t('language') }}
+                        <span class=" font-light text-xs hidden lg:inline-block">({{ $t('maintain-crtl') }})</span>
                         <span class="text-red-500">*</span>
                         </label
                     >
@@ -375,6 +376,7 @@
                         class="text-gray-700 dark:text-gray-200"
                         for="es"
                         >{{ $t('activity-area') }}
+                        <span class=" font-light text-xs hidden lg:inline-block">({{ $t('maintain-crtl') }})</span>
                         <span class="text-red-500">*</span>
                         </label
                     >

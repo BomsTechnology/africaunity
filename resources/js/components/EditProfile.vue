@@ -28,7 +28,13 @@
                             </textarea>
                         </div>
                         <div class="relative col-span-2">
-                            <label class="text-gray-700 dark:text-gray-200">{{ $t('adresse') + ' ' + $t('email') }} <span class="text-red-500">*</span></label>
+                            <label class="text-gray-700 dark:text-gray-200">
+                                {{ $t('adresse') + ' ' + $t('email') }} 
+                                <span class="text-red-500">*</span>
+                                <span class="ml-4">
+                                <input type="checkbox" v-model="user.hide_email"> <span class=" font-light text-xs">Masquer</span>
+                                </span>
+                            </label>
                             <input
                                 type="email"
                                 v-model="user.email"
@@ -208,7 +214,7 @@
                         <div
                             v-if="user.type == 'particular'"
                             class="relative col-span-2">
-                            <label class="text-gray-700 dark:text-gray-200">{{ $t('speak-language') }} <span class="text-red-500"> *</span></label>
+                            <label class="text-gray-700 dark:text-gray-200">{{ $t('speak-language') }} <span class=" font-light text-xs hidden lg:inline-block">({{ $t('maintain-crtl') }})</span> <span class="text-red-500"> *</span></label>
                             <select
                                 multiple
                                 size="4"
@@ -296,6 +302,7 @@
                             class="relative col-span-2">
                             <label class="text-gray-700 dark:text-gray-200">
                                 {{ $t('activity-area') }}
+                                <span class=" font-light text-xs hidden lg:inline-block">({{ $t('maintain-crtl') }})</span>
                                 <span class="text-red-500"> *</span>
                             </label>
                             <select
@@ -398,6 +405,7 @@ export default {
             loading.value = 1;
             props.detail.activity_areas = area_activities.value;
             props.detail.languages = langs.value;
+            props.detail.hideEmail = props.user.hide_email;
             await axios.put('/api/details/' + props.detail.id, props.detail, {
                 headers:{
                     'Authorization': `Bearer ${localStorage.token}`

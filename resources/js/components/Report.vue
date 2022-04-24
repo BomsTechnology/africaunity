@@ -18,7 +18,7 @@
             </div>
             <form v-else @submit.prevent="sendReport()" class="px-6 pb-4 space-y-6 lg:px-8 sm:pb-6 xl:pb-8" action="#">
                 <h3 class="text-xl md:text-2xl font-bold text-gray-900  flex items-center justify-center">
-                 <span class="p-2 bg-yellow-100 text-yellow-700 rounded-full mr-2"><ExclamationCircleIcon class="h-5 w-5 "/></span> {{ $t('report') }} {{ $t('the-post') }}
+                 <span class="p-2 bg-yellow-100 text-yellow-700 rounded-full mr-2"><ExclamationCircleIcon class="h-5 w-5 "/></span> {{ $t('report') }}
                 </h3>
                 <div>
                     <label for="report" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ $t('report-msg') }} <span class="text-red-500">*</span></label>
@@ -51,7 +51,7 @@ import { ExclamationCircleIcon } from "@heroicons/vue/solid";
 import { reactive, ref, onMounted } from "vue";
 import Error from "../components/Error.vue";
 export default {
-    props: ["open", "toogleModal", "id"],
+    props: ["open", "toogleModal", "id", "type"],
     components: {
         Error,
         ExclamationCircleIcon,
@@ -59,7 +59,7 @@ export default {
     setup(props) {
         const report = reactive({
             user: JSON.parse(localStorage.user).id,
-            post: props.id,
+            reported: props.id,
             content: "",
         });
         const loadingC = ref(0);
@@ -68,11 +68,19 @@ export default {
             errors.value = "";
             try {
                 loadingC.value = 1;
-                await axios.post("/api/post-report", report, {
-                    headers: {
-                        Authorization: `Bearer ${localStorage.token}`,
-                    },
-                });
+                if(props.type == 'post'){
+                    await axios.post("/api/post-report", report, {
+                        headers: {
+                            Authorization: `Bearer ${localStorage.token}`,
+                        },
+                    });
+                }else{
+                    await axios.post("/api/users-report", report, {
+                        headers: {
+                            Authorization: `Bearer ${localStorage.token}`,
+                        },
+                    });
+                }
                 loadingC.value = 2;
             } catch (e) {
                 if (e.response.status == 422) {

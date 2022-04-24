@@ -10,11 +10,11 @@
                     <Error v-if="errors != ''">{{ errors }}</Error>
                     <div v-if="loading == 2" class="py-4 px-2 mt-2 bg-green-50 text-green-700 mx-8">
                         <p>
-                            the password reset link has been sent to you by email
+                            {{ $t("msg-sucess-send-Fp") }}
                         </p>
                     </div>
                     <form v-else @submit.prevent="sendMailForgot()" class="py-7">
-                        <p class=" font-light text-sm">Saissisez votre adresse e-mail</p>
+                        <p class=" font-light text-sm">{{ $t("write-email") }}</p>
                         <div class="relative">
                             <span
                                 ><MailIcon

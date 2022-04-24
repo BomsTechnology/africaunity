@@ -43,7 +43,7 @@
                 {{ $t('contact') }}
             </router-link>
 
-            <a @mouseleave="open.logout = false"  v-if="token" :href=" url + '/account/' + user.firstname + '/' + user.id" class="text-white relative transition-colors duration-200 bg-primary-blue px-3 py-2 mx-2 uppercase">
+            <router-link @mouseleave="open.logout = false"  v-if="token" :to="{name:'compte', params: { name: user.firstname ,id: user.id}}" class="text-white relative transition-colors duration-200 bg-primary-blue px-3 py-2 mx-2 uppercase">
                 <div @mouseover="open.logout = true" class="flex items-start space-x-2">
                     <span v-if="user.avatar">
                         <img :src="user.avatar" alt="" class="h-7 w-7 border rounded-full object-cover shadow">
@@ -61,7 +61,7 @@
                             </svg>
                     </a>
                 </div>           
-            </a>
+            </router-link>
             <router-link v-else  :to="{name:'login'}" class="text-white flex transition-colors duration-200 bg-primary-blue px-3 py-2 mx-2 uppercase">
                     {{ $t('login') }} / {{ $t('register') }}
             </router-link>
@@ -145,7 +145,7 @@
                     {{ $t('contact') }}
                 </router-link>
 
-                <a v-if="token" :href=" url + '/account/' + user.firstname + '/' + user.id">
+                <router-link v-if="token" :to="{name:'compte', params: { name: user.firstname ,id: user.id},}" >
                 <div class="flex space-x-2 items-center text-white transition-colors duration-200 text-sm bg-primary-blue px-3 py-2 uppercase">
                     <span v-if="user.avatar">
                         <img :src="user.avatar" class="h-16 w-16 border rounded-full shadow" alt="">
@@ -162,7 +162,7 @@
                             </svg>
                     </a>
                 </div>           
-            </a>
+            </router-link>
             <router-link v-else  :to="{name:'login'}" class="text-white transition-colors duration-200 bg-primary-blue px-3 py-2 uppercase">
                     {{ $t('login') }} / {{ $t('register') }}
             </router-link>

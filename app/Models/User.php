@@ -20,7 +20,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'password',
         'type',
         'avatar',
-        'cover'
+        'cover',
+        'hide_email'
     ];
 
     protected $hidden = [
@@ -30,6 +31,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'hide_email' => 'boolean',
     ];
 
 

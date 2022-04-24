@@ -163,7 +163,7 @@
                         </span> 
                     </div>
                 <div class="grid lg:grid-cols-2 gap-2 text-sm">
-                    <div class="text-gray-500 flex items-center space-x-2">   
+                    <div class="text-gray-500 flex items-center space-x-2" v-if="jobOffer.continent">   
                         <GlobeIcon class="h-6 w-6" /> 
                         <span>
                             <span v-if="$i18n.locale == 'en'">{{
@@ -178,7 +178,7 @@
                             <span v-else>{{ jobOffer.continent.name_pt }}</span>  
                         </span>
                     </div>
-                    <div class="text-gray-500 flex items-center space-x-2 ">   
+                    <div class="text-gray-500 flex items-center space-x-2 " v-if="jobOffer.zone">   
                         <MapIcon class="h-6 w-6" /> 
                         <span>
                             <span v-if="$i18n.locale == 'en'">{{
@@ -193,7 +193,7 @@
                             <span v-else>{{ jobOffer.zone.name_pt }}</span>
                         </span>
                     </div>
-                    <div class="text-gray-500 flex items-center space-x-2 ">   
+                    <div class="text-gray-500 flex items-center space-x-2 " v-if="jobOffer.country">   
                         <FlagIcon class="h-6 w-6" /> 
                         <span>
                             <span v-if="$i18n.locale == 'en'">{{
@@ -208,7 +208,7 @@
                             <span v-else>{{ jobOffer.country.name_pt }}</span>
                         </span>
                     </div>
-                    <div class="text-gray-500 flex items-center space-x-2 ">   
+                    <div class="text-gray-500 flex items-center space-x-2 " v-if="jobOffer.city">   
                         <OfficeBuildingIcon class="h-6 w-6" /> 
                         <span>
                             <span v-if="$i18n.locale == 'en'">{{
@@ -223,7 +223,7 @@
                             <span v-else>{{ jobOffer.city.name_pt }}</span>
                         </span>
                     </div>
-                    <div class="text-gray-500 flex items-center space-x-2 ">   
+                    <div class="text-gray-500 flex items-center space-x-2 " v-if="jobOffer.work_department">   
                         <BriefcaseIcon class="h-6 w-6" /> 
                         <span>
                             <span v-if="$i18n.locale == 'en'">{{
@@ -238,7 +238,7 @@
                             <span v-else>{{ jobOffer.work_department.name_pt }}</span>
                         </span>
                     </div>
-                    <div class="text-gray-500 flex items-center space-x-2 ">   
+                    <div class="text-gray-500 flex items-center space-x-2 " v-if="jobOffer.work_mode">   
                         <DesktopComputerIcon class="h-6 w-6" /> 
                         <span>
                             <span v-if="$i18n.locale == 'en'">{{
@@ -259,7 +259,7 @@
                             {{ jobOffer.location }}
                         </span>
                     </div>
-                    <div class="text-gray-500 flex items-center space-x-2 ">  
+                    <div class="text-gray-500 flex items-center space-x-2 " v-if="jobOffer.year_experience">  
                         <AcademicCapIcon class="h-6 w-6" /> 
                         <span>
                             <span v-if="$i18n.locale == 'en'">{{
@@ -274,7 +274,7 @@
                             <span v-else>{{ jobOffer.year_experience.name_pt }}</span> 
                         </span> 
                     </div>
-                    <div class="text-gray-500 flex items-center space-x-2 ">  
+                    <div class="text-gray-500 flex items-center space-x-2 " v-if="jobOffer.size_company">  
                         <TemplateIcon class="h-6 w-6" /> 
                         <span>
                             <span v-if="$i18n.locale == 'en'">{{
@@ -295,7 +295,7 @@
                             {{ jobOffer.company_website }} 
                         </span>
                     </div>
-                    <div class="text-gray-500 flex items-center space-x-2 ">
+                    <div class="text-gray-500 flex items-center space-x-2 " v-if="jobOffer.currency">
                         <CashIcon class=" h-6 w-6" /> 
                         <span>
                             {{ jobOffer.min_price + jobOffer.currency.symbol }} - {{ jobOffer.max_price + jobOffer.currency.symbol }} 
@@ -324,7 +324,7 @@
                 </div>
                 <div v-if="user.type == 'particular'">
                     <button type="button" @click="toogleModal()" class="px-3 py-2 bg-primary-blue w-full text-white rounded">
-                        Apply
+                        {{ $t('apply') }}
                     </button>
                 </div>
             </div>

@@ -143,12 +143,12 @@
         <div class="lg:w-[30%] bg-white py-5">
             <div class="shadow rounded-md py-5 px-10 space-y-3 ">
                 <h1 class="text-2xl text-primary-blue  font-bold">{{ $t('details') }}</h1>
-                <div class="text-gray-500 flex items-center space-x-2 "> <LocationMarkerIcon class="h-8 w-8" /> <span>{{ announcement.university.name }}</span></div>
-                <div class="text-gray-500 flex items-center space-x-2 ">  <MailIcon class="h-8 w-8" /> <span>{{ announcement.email }}</span> </div>
-                <div class="text-gray-500 flex items-center space-x-2 ">  <PhoneIcon class="h-8 w-8" /> <span>{{ announcement.phone }} </span> </div>
-                <div class="text-gray-500 flex items-center space-x-2 " v-if="announcement.website != 'null'"> <GlobeIcon class=" h-8 w-8" /> <span>{{ announcement.website }} </span></div>
-                <div class="text-gray-500 flex items-center space-x-2 " v-if="announcement.adress != 'null'">   <BriefcaseIcon class="h-8 w-8" /> <span>{{ announcement.adress }} </span></div>
-                <div class="text-gray-500 flex items-center space-x-2 " v-if="announcement.adress != 'null'">   <CashIcon class=" h-8 w-8" /> <span>{{ announcement.price }} {{ announcement.currency.symbol }} </span></div>
+                <div class="text-gray-500 flex items-center space-x-2 " v-if="announcement.university"> <LocationMarkerIcon class="h-8 w-8" /> <span>{{ announcement.university.name }}</span></div>
+                <div class="text-gray-500 flex items-center space-x-2 " v-if="announcement.email">  <MailIcon class="h-8 w-8" /> <span>{{ announcement.email }}</span> </div>
+                <div class="text-gray-500 flex items-center space-x-2 " v-if="announcement.phone">  <PhoneIcon class="h-8 w-8" /> <span>{{ announcement.phone }} </span> </div>
+                <div class="text-gray-500 flex items-center space-x-2 " v-if="announcement.website && announcement.website != 'null'"> <GlobeIcon class=" h-8 w-8" /> <span>{{ announcement.website }} </span></div>
+                <div class="text-gray-500 flex items-center space-x-2 " v-if="announcement.adress && announcement.adress != 'null'">   <BriefcaseIcon class="h-8 w-8" /> <span>{{ announcement.adress }} </span></div>
+                <div class="text-gray-500 flex items-center space-x-2 " v-if="announcement.currency && announcement.price != 'null'">   <CashIcon class=" h-8 w-8" /> <span>{{ announcement.price }} {{ announcement.currency.symbol }} </span></div>
             </div>
             <div class="shadow rounded-md py-5 mt-4">
                 <Error v-if="errors != ''">{{ errors }}</Error>

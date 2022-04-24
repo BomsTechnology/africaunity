@@ -64,7 +64,6 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function(){
     Route::get("/posts-type/{type}/{lang}",[PostController::class,'post_type']);
     Route::get("/posts-user/{user}",[PostController::class,'post_user']);
     Route::post("/posts-filter",[PostController::class,'filter']);
-    
     Route::apiResource('posts', PostController::class);
     Route::get("/posts2/{post}", [PostController::class,'show2']);
     Route::post("/post-report", [PostController::class,'post_report']);
@@ -77,6 +76,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function(){
     Route::post("/users-delete-data", [UserController::class,'deleteData']);
     Route::post("/users-delete-user", [UserController::class,'deleteUser']);
     Route::post("/users-filter", [UserController::class,'filter']);
+    Route::post("/users-report", [UserController::class,'user_report']);
 
     Route::apiResource('cities', CityController::class);
 

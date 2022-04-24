@@ -32,7 +32,7 @@
                         <UserCircleIcon v-else class="w-full h-full text-gray-500"/>
                 </div>
                 </div>
-                <h1 class=" capitalize font-bold lg:text-xl text-lg text-center mt-2 hidden lg:block">{{ user.firstname }} {{ user.lastname }}</h1>
+                <h1 class=" capitalize font-bold lg:text-xl text-lg text-center mt-2 hidden lg:block">{{ user.firstname }} <span v-if="user.type == 'particular'">{{ user.lastname }}</span> </h1>
                 <h2 class="text-center lg:text-md text-sm font-light mt-1">
                     <span v-if="user.type == 'particular'">{{ $t('physical-person') }}</span>
                     <span v-else-if="user.type == 'ip'">{{ $t('ip') }}</span>

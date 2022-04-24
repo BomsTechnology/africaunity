@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->integer('status')->default(1);
             $table->enum('type', ['particular', 'business1', 'business2', 'ip', 'admin']);
             $table->string('email')->unique();
+            $table->integer('hide_email')->default(0);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('avatar')->nullable();

@@ -12,6 +12,7 @@ use App\Models\Post;
 use App\Models\User;
 use App\Notifications\DeleteAccountNotification;
 use App\Notifications\DesactivationAccountNotification;
+use App\Notifications\ReportNotification;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -59,7 +60,7 @@ class UserController extends Controller
         if($request->status != ""){
             $status = $request->status;
             $users = $users->with(['detail' => function ($query) use($status) {
-                $query->where('status', $status);
+                $query->where('status',  $status);
             }])->whereHas('detail', function (Builder $query) use($status) {
                 $query->where('status', $status);
             });
@@ -121,6 +122,32 @@ class UserController extends Controller
 
         return UserResource2::collection($users->get());
 
+    }
+
+    public function user_report(Request $request)
+    {
+        $request->validate([
+            'user' => 'required',
+            'reported' => 'required',
+            'content' => 'required|string',
+        ]);
+
+        $admins = User::where('type', 'admin')->get();
+        
+        $user = User::find($request->reported);
+        $url = "/account/$user->firstname/$user->id";
+
+        $userReport = User::find($request->user);
+        
+        foreach($admins as $admin){
+            $admin->notify(new ReportNotification($url, $userReport , $request->content));
+        }
+
+        $response = [
+            'status'=>true,
+            'message'=>'Report Send successfully!',
+        ];
+        return response($response,201);
     }
 
     /**

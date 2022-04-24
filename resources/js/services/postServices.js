@@ -135,8 +135,9 @@ export default function usePosts() {
                     'Authorization': `Bearer ${localStorage.token}`
                 }
             });
-            loading.value = 0;
             post.value = response.data.data;
+            loading.value = 0;
+            
         }catch(e){
 
             if(e.response.status == 401){

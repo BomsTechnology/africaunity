@@ -3,14 +3,14 @@
     <div class=" w-full lg:px-20 py-4">
         <div class=" py-5 text-center w-full space-y-4">
             <h1 class="text-4xl  text-primary-blue font-bold capitalize">
-                {{ $t('edit') }} Annonce
+                {{ $t('edit') }} Job
             </h1>
         </div>
 
                 
     <section class=" p-6 bg-white shadow-xl rounded-md mx-auto  w-full">
         <Error v-if="errors != ''">{{ errors }}</Error>
-        <h1 class="text-xl font-semibold">{{ $t('edit') }} Annonce</h1>
+        <h1 class="text-xl font-semibold">{{ $t('edit') }} Job</h1>
         <h2 class="text-md font-light text-gray-700">{{ $t('good-msg-post') }} ! </h2>
          <form
             @submit.prevent="saveJobOffer()"
@@ -287,13 +287,14 @@
                         class="text-gray-700 dark:text-gray-200"
                         for="es"
                         >{{ $t('language') }}
+                        <span class=" font-light text-xs hidden lg:inline-block">({{ $t('maintain-crtl') }})</span>
                         <span class="text-red-500">*</span>
                         </label
                     >
                     <select
                         required
                         multiple
-                        v-model="jobOffer.languages"
+                        v-model="clanguages"
                         class="form-select block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
                     >
                         <option
@@ -375,13 +376,14 @@
                         class="text-gray-700 dark:text-gray-200"
                         for="es"
                         >{{ $t('activity-area') }}
+                        <span class=" font-light text-xs hidden lg:inline-block">({{ $t('maintain-crtl') }})</span>
                         <span class="text-red-500">*</span>
                         </label
                     >
                     <select
                         required
                         multiple
-                        v-model="jobOffer.activityAreas"
+                        v-model="cactivityAreas"
                         class="form-select block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
                     >
                         <option
@@ -620,26 +622,28 @@ export default {
         const { zones, getZones } = useZones();
         const { continents, getContinents } = useContinents();
         const { cities, getCities } = useCities();
-
-         ;onMounted(
-                getJobOffer2(props.id),   
-                getCurrencies(),
-                getContinents(),
-                getZones(),
-                getYearExperiences(),
-                getWorkModes(),
-                getWorkDepartments(),
-                getLevelStudies(),
-                getSizeCompanies(),
-                getOfferTypes(),
-                getActivityAreas(),
-                getLanguages(),
-                getCountries(),
-                getCities(),                    
-        );
-
         const clanguages = ref([]);
         const cactivityAreas = ref([]);
+
+         ;onMounted(                
+                async () => {
+                    await getJobOffer2(props.id);
+                    await getCurrencies();
+                    await getContinents();
+                    await getZones();
+                    await getYearExperiences();
+                    await getWorkModes();
+                    await getWorkDepartments();
+                    await getLevelStudies();
+                    await getSizeCompanies();
+                    await getOfferTypes();
+                    await getActivityAreas();
+                    await getLanguages();
+                    await getCountries();
+                    await getCities();  
+                },
+                                  
+        );
         
         const saveJobOffer = async () => {
             let  formData = new FormData();

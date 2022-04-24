@@ -69,11 +69,11 @@
                                 class="block mt-2 text-2xl font-semibold text-gray-800 transition-colors duration-200 transform dark:text-white hover:text-gray-600 hover:underline"
                                 >{{ post.title.length <= 20 ? post.title : post.title.substring(0, 19) + "..." }}</router-link
                             >
-                            <p
+                            <!-- <p
                                 class="mt-2 text-sm text-gray-600 dark:text-gray-400"
                             >
                                 {{ post.content.substring(0, 19) + "..." }}
-                            </p>
+                            </p> -->
                         </div>
 
                         <div

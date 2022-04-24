@@ -5,6 +5,7 @@ import router from "../router/index.js"
 export default function useUniversities() {
 
     const universities = ref([]);
+    const minUniversities = ref([]);
     const university = ref([]);
     const errors = ref('');
     const loading = ref(0);
@@ -19,6 +20,8 @@ export default function useUniversities() {
                 }
             });
             universities.value = response.data.data;
+
+            minUniversities.value = universities.value.slice(0, 8);
 
             loading.value = 2;
         }catch(e){
@@ -133,6 +136,7 @@ export default function useUniversities() {
     };
 
     return {
+        minUniversities,
         universities,
         university,
         errors,

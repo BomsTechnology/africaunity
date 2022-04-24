@@ -312,13 +312,9 @@ var _hoisted_6 = {
   key: 1,
   "class": "py-4 px-2 bg-green-50 text-green-700 mx-8"
 };
-
-var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
+var _hoisted_7 = {
   "class": "text-xl md:text-2xl font-bold text-gray-900 flex items-center justify-center"
-}, " Apply Job ", -1
-/* HOISTED */
-);
-
+};
 var _hoisted_8 = {
   "class": ""
 };
@@ -431,7 +427,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }, ["prevent"])),
     "class": "px-6 pb-4 space-y-6 lg:px-8 sm:pb-6 xl:pb-8",
     action: "#"
-  }, [_hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('full-name')) + " ", 1
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('apply')), 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('full-name')) + " ", 1
   /* TEXT */
   ), _hoisted_10]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     required: "",
@@ -684,6 +682,7 @@ var _hoisted_39 = {
   "class": "grid lg:grid-cols-2 gap-2 text-sm"
 };
 var _hoisted_40 = {
+  key: 0,
   "class": "text-gray-500 flex items-center space-x-2"
 };
 var _hoisted_41 = {
@@ -699,6 +698,7 @@ var _hoisted_44 = {
   key: 3
 };
 var _hoisted_45 = {
+  key: 1,
   "class": "text-gray-500 flex items-center space-x-2"
 };
 var _hoisted_46 = {
@@ -714,6 +714,7 @@ var _hoisted_49 = {
   key: 3
 };
 var _hoisted_50 = {
+  key: 2,
   "class": "text-gray-500 flex items-center space-x-2"
 };
 var _hoisted_51 = {
@@ -729,6 +730,7 @@ var _hoisted_54 = {
   key: 3
 };
 var _hoisted_55 = {
+  key: 3,
   "class": "text-gray-500 flex items-center space-x-2"
 };
 var _hoisted_56 = {
@@ -744,6 +746,7 @@ var _hoisted_59 = {
   key: 3
 };
 var _hoisted_60 = {
+  key: 4,
   "class": "text-gray-500 flex items-center space-x-2"
 };
 var _hoisted_61 = {
@@ -759,6 +762,7 @@ var _hoisted_64 = {
   key: 3
 };
 var _hoisted_65 = {
+  key: 5,
   "class": "text-gray-500 flex items-center space-x-2"
 };
 var _hoisted_66 = {
@@ -777,6 +781,7 @@ var _hoisted_70 = {
   "class": "text-gray-500 flex items-center space-x-2"
 };
 var _hoisted_71 = {
+  key: 6,
   "class": "text-gray-500 flex items-center space-x-2"
 };
 var _hoisted_72 = {
@@ -792,6 +797,7 @@ var _hoisted_75 = {
   key: 3
 };
 var _hoisted_76 = {
+  key: 7,
   "class": "text-gray-500 flex items-center space-x-2"
 };
 var _hoisted_77 = {
@@ -807,10 +813,11 @@ var _hoisted_80 = {
   key: 3
 };
 var _hoisted_81 = {
-  key: 0,
+  key: 8,
   "class": "text-gray-500 flex items-center space-x-2"
 };
 var _hoisted_82 = {
+  key: 9,
   "class": "text-gray-500 flex items-center space-x-2"
 };
 var _hoisted_83 = {
@@ -957,7 +964,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "h-6 w-6"
   }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.jobOffer.company_email), 1
   /* TEXT */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_39, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_40, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["GlobeIcon"], {
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_39, [$setup.jobOffer.continent ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_40, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["GlobeIcon"], {
     "class": "h-6 w-6"
   }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, [_ctx.$i18n.locale == 'en' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_41, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.jobOffer.continent.name_en), 1
   /* TEXT */
@@ -967,7 +974,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* TEXT */
   )) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_44, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.jobOffer.continent.name_pt), 1
   /* TEXT */
-  ))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_45, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["MapIcon"], {
+  ))])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.jobOffer.zone ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_45, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["MapIcon"], {
     "class": "h-6 w-6"
   }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, [_ctx.$i18n.locale == 'en' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_46, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.jobOffer.zone.name_en), 1
   /* TEXT */
@@ -977,7 +984,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* TEXT */
   )) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_49, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.jobOffer.zone.name_pt), 1
   /* TEXT */
-  ))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_50, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["FlagIcon"], {
+  ))])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.jobOffer.country ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_50, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["FlagIcon"], {
     "class": "h-6 w-6"
   }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, [_ctx.$i18n.locale == 'en' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_51, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.jobOffer.country.name_en), 1
   /* TEXT */
@@ -987,7 +994,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* TEXT */
   )) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_54, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.jobOffer.country.name_pt), 1
   /* TEXT */
-  ))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_55, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["OfficeBuildingIcon"], {
+  ))])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.jobOffer.city ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_55, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["OfficeBuildingIcon"], {
     "class": "h-6 w-6"
   }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, [_ctx.$i18n.locale == 'en' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_56, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.jobOffer.city.name_en), 1
   /* TEXT */
@@ -997,7 +1004,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* TEXT */
   )) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_59, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.jobOffer.city.name_pt), 1
   /* TEXT */
-  ))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_60, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BriefcaseIcon"], {
+  ))])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.jobOffer.work_department ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_60, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BriefcaseIcon"], {
     "class": "h-6 w-6"
   }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, [_ctx.$i18n.locale == 'en' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_61, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.jobOffer.work_department.name_en), 1
   /* TEXT */
@@ -1007,7 +1014,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* TEXT */
   )) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_64, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.jobOffer.work_department.name_pt), 1
   /* TEXT */
-  ))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_65, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DesktopComputerIcon"], {
+  ))])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.jobOffer.work_mode ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_65, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DesktopComputerIcon"], {
     "class": "h-6 w-6"
   }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, [_ctx.$i18n.locale == 'en' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_66, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.jobOffer.work_mode.name_en), 1
   /* TEXT */
@@ -1017,11 +1024,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* TEXT */
   )) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_69, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.jobOffer.work_mode.name_pt), 1
   /* TEXT */
-  ))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_70, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["LocationMarkerIcon"], {
+  ))])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_70, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["LocationMarkerIcon"], {
     "class": "h-6 w-6"
   }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.jobOffer.location), 1
   /* TEXT */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_71, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["AcademicCapIcon"], {
+  )]), $setup.jobOffer.year_experience ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_71, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["AcademicCapIcon"], {
     "class": "h-6 w-6"
   }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, [_ctx.$i18n.locale == 'en' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_72, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.jobOffer.year_experience.name_en), 1
   /* TEXT */
@@ -1031,7 +1038,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* TEXT */
   )) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_75, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.jobOffer.year_experience.name_pt), 1
   /* TEXT */
-  ))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_76, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["TemplateIcon"], {
+  ))])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.jobOffer.size_company ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_76, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["TemplateIcon"], {
     "class": "h-6 w-6"
   }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, [_ctx.$i18n.locale == 'en' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_77, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.jobOffer.size_company.name_en), 1
   /* TEXT */
@@ -1041,15 +1048,15 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* TEXT */
   )) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_80, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.jobOffer.size_company.name_pt), 1
   /* TEXT */
-  ))])]), $setup.jobOffer.company_website && $setup.jobOffer.company_website != 'null' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_81, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["GlobeAltIcon"], {
+  ))])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.jobOffer.company_website && $setup.jobOffer.company_website != 'null' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_81, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["GlobeAltIcon"], {
     "class": "h-6 w-6"
   }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.jobOffer.company_website), 1
   /* TEXT */
-  )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_82, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["CashIcon"], {
+  )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.jobOffer.currency ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_82, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["CashIcon"], {
     "class": "h-6 w-6"
   }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.jobOffer.min_price + $setup.jobOffer.currency.symbol) + " - " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.jobOffer.max_price + $setup.jobOffer.currency.symbol), 1
   /* TEXT */
-  )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_83, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["TranslateIcon"], {
+  )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_83, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["TranslateIcon"], {
     "class": "h-6 w-6"
   }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_84, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.jobOffer.languages, function (lang) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", {
@@ -1071,7 +1078,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $setup.toogleModal();
     }),
     "class": "px-3 py-2 bg-primary-blue w-full text-white rounded"
-  }, " Apply ")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Footer"])], 64
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('apply')), 1
+  /* TEXT */
+  )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Footer"])], 64
   /* STABLE_FRAGMENT */
   );
 }

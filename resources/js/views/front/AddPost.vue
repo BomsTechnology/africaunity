@@ -108,11 +108,14 @@
 
                 <div class="col-span-2">
                     <label class="text-gray-700 dark:text-gray-200" for="pt">{{ $t('content') }} <span class="text-red-500">*</span></label>
-                    <textarea required v-model="post.content" id="pt" class="block w-full px-4 py-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:ring-primary-blue focus:border-primary-blue focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+                    <textarea required v-if="type == 'article'" ref="textarea" class="w-full h-96">
                     </textarea>
-                    <!-- <div class="h-32 mt-2">
-                            <QuillEditor v-model:content="post.content" theme="snow" toolbar="full"/>
-                    </div> -->
+
+                    <div v-else>
+                        <textarea required  v-model="post.content" maxlength="2000" class="block w-full px-4 py-2 h-32 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:ring-primary-blue focus:border-primary-blue focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+                        </textarea>
+                        <span class="text-xs font-light text-gray-400">{{ post.content.length }} of 2000 Characters</span>
+                    </div>
                 </div>
             </div>
 
@@ -156,9 +159,7 @@ export default {
         Error
     },
     created(){
-        if (!localStorage.token) {
-                router.push({ name: "login", params: { redirect: 'not-login' }, });
-        }else if((JSON.parse(localStorage.user).type == 'business1')){
+        if((JSON.parse(localStorage.user).type == 'business1')){
                 router.push({ name: "home"});
         }
     },
@@ -169,19 +170,7 @@ export default {
         const { zones, getZones } = useZones();
         const { countries, getCountries } = useCountries();
         const { ministries, getMinistries } = useMinistries();
-        
-        onMounted(
-            () => {
-                if (!types.includes(props.type)) {
-                    router.push({ name: "home" });
-                }
-            },
-            getContinents(),
-            getZones(),
-            getCountries(),
-            getMinistries()
-        );
-
+        const textarea = ref("");      
         const post = reactive({
             title: "",
             type: props.type,
@@ -194,13 +183,43 @@ export default {
             country_id: 1,
             ministry_id: 1,
         });
-        
 
-        // computed();
+        onMounted(
+            async () => {
+                if(props.type == 'article'){
+                    sceditor.create(textarea.value, {
+                        format: 'bbcode',
+                        style: 'https://cdn.jsdelivr.net/npm/sceditor@3/minified/themes/content/default.min.css',
+                        height: 400,
+                        toolbarExclude: 'indent,outdent,email,date,time,ltr,rtl,print,subscript,superscript,table,code,quote,emoticon',
+                        icons: 'material'
+                    });
+                    textarea.value.value == '';
+                }
+
+                if (!types.includes(props.type)) {
+                    router.push({ name: "home" });
+                }
+                
+                await getContinents();
+                await getZones();
+                await getCountries();
+                await getMinistries();
+            },
+        );
+        
 
         const { createPost, errors, loading } = usePosts();
 
-        const storePost = async () => {
+        const storePost =  async () => {
+            
+            if(props.type == 'article'){
+                if(textarea.value.value == '' || post.content == textarea.value.value)
+                { console.log('click again'); return; }
+                else{
+                    post.content = textarea.value.value;
+                }
+            }
             let formData = new FormData();
             formData.append("image", post.image);
             formData.append("title", post.title);
@@ -223,7 +242,12 @@ export default {
             }
 
         };
+
+        const savePost = () => {
+            
+        };
         return {
+            textarea,
             post,
             loading,
             errors,
@@ -244,4 +268,5 @@ export default {
         },
     },
 }
+
 </script>

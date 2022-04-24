@@ -63,6 +63,17 @@
             </div>
     </div>
     <div class="p-2 bg-primary-blue shadow"></div>
+    <div class="flex justify-center py-2" v-if="universities.length > 8">
+                    <button
+                    @click="toogleShowAllU()"
+                    class="flex justify-start text-sm items-center text-primary-blue hover:underline"
+                >
+                    <ChevronUpIcon v-if="showAllU" class="w-5 h-5" />
+                    <span v-if="showAllU">{{ $t('hide-more') }}</span>
+                    <ChevronDownIcon v-if="!showAllU" class="w-5 h-5" />
+                    <span v-if="!showAllU">{{ $t('show-more') }}</span>
+                </button>
+            </div>
             <div
                 class="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-8 px-10 py-8"
                 v-if="filteredUniversity.length != 0"
@@ -107,7 +118,7 @@
                                 }"
                                 href="#"
                                 class="block mt-2 text-2xl font-semibold text-gray-800 transition-colors duration-200 transform dark:text-white hover:text-gray-600 hover:underline"
-                                >{{ university.name.length <= 30 ? university.name : university.name.substring(0, 29) + "..." }}</router-link
+                                >{{ university.name.length <= 30 ? university.name : university.name.substring(0, 27) + "..." }}</router-link
                             >
                             <p
                                 class="mt-2 text-sm text-gray-600 dark:text-gray-400"
@@ -161,6 +172,19 @@
                 <EmojiSadIcon class="h-16 w-16" />
                 <span class="text-2xl mt-2">{{ $t('no-content') }} </span>
             </div>
+            <div class="flex justify-center" v-if="universities.length > 8">
+                    <button
+                    @click="toogleShowAllU()"
+                    class="flex justify-start text-sm items-center text-primary-blue hover:underline"
+                >
+                    <ChevronUpIcon v-if="showAllU" class="w-5 h-5" />
+                    <span v-if="showAllU">{{ $t('hide-more') }}</span>
+                    <ChevronDownIcon v-if="!showAllU" class="w-5 h-5" />
+                    <span v-if="!showAllU">{{ $t('show-more') }}</span>
+                </button>
+            </div>
+            
+            
     </div>
     <h1 class="text-5xl text-primary-blue text-center py-2 capitalize font-bold">{{ $t('ads') }}</h1>
     <div class=" py-8 lg:px-16">
@@ -293,7 +317,7 @@ import Header from "../../components/Header.vue";
 import Footer from "../../components/Footer.vue";
 import { reactive, ref, onMounted} from "vue";
 import {
-    EmojiSadIcon, UserIcon, CalendarIcon, PlusCircleIcon, SpeakerphoneIcon
+    EmojiSadIcon, UserIcon, CalendarIcon, PlusCircleIcon, SpeakerphoneIcon, ChevronUpIcon, ChevronDownIcon,
 } from "@heroicons/vue/solid";
 import useUniversities from "../../services/universityServices.js";
 import useAnnouncements from "../../services/announcementServices.js";
@@ -301,7 +325,6 @@ import usecategoryAnnouncements from "../../services/categoryAnnouncementService
 import useContinents from "../../services/continentServices.js";
 import useCountries from "../../services/countryServices.js";
 import useCities from "../../services/cityServices.js";
-import router from "../../router";
 export default {
     components:{
         Header,
@@ -310,10 +333,10 @@ export default {
         UserIcon,
         CalendarIcon,
         PlusCircleIcon,
-        SpeakerphoneIcon
+        SpeakerphoneIcon, ChevronUpIcon, ChevronDownIcon,
     },
     setup(props) {
-        const { universities, getUniversities, loading, errors } =
+        const { universities, minUniversities, getUniversities, loading, errors } =
             useUniversities();
         const { announcements, getAnnouncements } = useAnnouncements();
         const { continents, getContinents } = useContinents();
@@ -321,6 +344,7 @@ export default {
         const { categoryAnnouncements, getCategoryAnnouncements } = usecategoryAnnouncements();
         const { cities, getCities } = useCities();
         const user = localStorage.user ? JSON.parse(localStorage.user) : '';
+        const showAllU = ref(false);
         onMounted(
             getUniversities(),
             getAnnouncements(),
@@ -328,7 +352,7 @@ export default {
             getCountries(),
             getCategoryAnnouncements(),
             getCities(),
-            );
+        );
         const filterAds = reactive({
             searchKey:"",
             university: "",
@@ -339,8 +363,14 @@ export default {
             continent: "",
             city:"",
         });
+        const toogleShowAllU = () => {
+            showAllU.value = !showAllU.value
+        }
 
         return {
+            showAllU,
+            toogleShowAllU,
+            minUniversities,
             cities,
             continents,
             countries,
@@ -371,26 +401,49 @@ export default {
             });
         },
         filteredUniversity() {
-            return this.universities.filter((university) => {
-                let data = "";
-                if(this.filterUniversity.country != "" && this.filterUniversity.continent != "" && this.filterUniversity.city != "") 
-                    data = university.country.id == this.filterUniversity.country && university.continent.id == this.filterUniversity.continent && university.city.id == this.filterUniversity.city;
-                else if(this.filterUniversity.country != "" && this.filterUniversity.continent != "") 
-                    data =  university.country.id == this.filterUniversity.country && university.continent.id == this.filterUniversity.continent;
-                else if(this.filterUniversity.continent != "" && this.filterUniversity.city != "") 
-                    data =  university.continent.id == this.filterUniversity.continent && university.city.id == this.filterUniversity.city;
-                else if(this.filterUniversity.country != "" && this.filterUniversity.city != "") 
-                    data =  university.country.id == this.filterUniversity.country && university.city.id == this.filterUniversity.city;
-                else if(this.filterUniversity.country != "") 
-                    data =  university.country.id == this.filterUniversity.country;
-                else if(this.filterUniversity.city != "") 
-                    data =  university.city.id == this.filterUniversity.city;
-                else if(this.filterUniversity.continent != "") 
-                    data =  university.continent.id == this.filterUniversity.continent;
-                else
-                    data = university ;
-                return data;
-            });
+            if(this.showAllU){
+                return this.universities.filter((university) => {
+                    let data = "";
+                    if(this.filterUniversity.country != "" && this.filterUniversity.continent != "" && this.filterUniversity.city != "") 
+                        data = university.country.id == this.filterUniversity.country && university.continent.id == this.filterUniversity.continent && university.city.id == this.filterUniversity.city;
+                    else if(this.filterUniversity.country != "" && this.filterUniversity.continent != "") 
+                        data =  university.country.id == this.filterUniversity.country && university.continent.id == this.filterUniversity.continent;
+                    else if(this.filterUniversity.continent != "" && this.filterUniversity.city != "") 
+                        data =  university.continent.id == this.filterUniversity.continent && university.city.id == this.filterUniversity.city;
+                    else if(this.filterUniversity.country != "" && this.filterUniversity.city != "") 
+                        data =  university.country.id == this.filterUniversity.country && university.city.id == this.filterUniversity.city;
+                    else if(this.filterUniversity.country != "") 
+                        data =  university.country.id == this.filterUniversity.country;
+                    else if(this.filterUniversity.city != "") 
+                        data =  university.city.id == this.filterUniversity.city;
+                    else if(this.filterUniversity.continent != "") 
+                        data =  university.continent.id == this.filterUniversity.continent;
+                    else
+                        data = university ;
+                    return data;
+                });
+            }else{
+                    return this.minUniversities.filter((university) => {
+                    let data = "";
+                    if(this.filterUniversity.country != "" && this.filterUniversity.continent != "" && this.filterUniversity.city != "") 
+                        data = university.country.id == this.filterUniversity.country && university.continent.id == this.filterUniversity.continent && university.city.id == this.filterUniversity.city;
+                    else if(this.filterUniversity.country != "" && this.filterUniversity.continent != "") 
+                        data =  university.country.id == this.filterUniversity.country && university.continent.id == this.filterUniversity.continent;
+                    else if(this.filterUniversity.continent != "" && this.filterUniversity.city != "") 
+                        data =  university.continent.id == this.filterUniversity.continent && university.city.id == this.filterUniversity.city;
+                    else if(this.filterUniversity.country != "" && this.filterUniversity.city != "") 
+                        data =  university.country.id == this.filterUniversity.country && university.city.id == this.filterUniversity.city;
+                    else if(this.filterUniversity.country != "") 
+                        data =  university.country.id == this.filterUniversity.country;
+                    else if(this.filterUniversity.city != "") 
+                        data =  university.city.id == this.filterUniversity.city;
+                    else if(this.filterUniversity.continent != "") 
+                        data =  university.continent.id == this.filterUniversity.continent;
+                    else
+                        data = university ;
+                    return data;
+                });
+            }
         },
     },
 }

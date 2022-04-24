@@ -909,7 +909,9 @@
                 <div
                     class="border-t-2 w-full border-primary-blue text-justify py-4"
                 >
-                    <p></p>
+                    <p>
+                        <iframe class="w-full h-60" src="https://www.youtube.com/embed/TBikbn5XJhg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </p>
                 </div>
             </div>
             <div class="w-full">
@@ -919,7 +921,9 @@
                 <div
                     class="border-t-2 w-full border-primary-blue text-justify py-4"
                 >
-                    <p></p>
+                    <p>
+                        <iframe class="w-full h-60" src="https://www.youtube.com/embed/3gb2do8F6Q0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </p>
                 </div>
             </div>
         </div>

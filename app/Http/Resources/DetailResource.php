@@ -2,8 +2,11 @@
 
 namespace App\Http\Resources;
 
+use App\Models\BusinessSize;
+use App\Models\BusinessType;
 use App\Models\Country;
 use App\Models\Detail;
+use App\Models\LegalStatus;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class DetailResource extends JsonResource
@@ -40,6 +43,11 @@ class DetailResource extends JsonResource
             'legal_status_id' => $this->legal_status_id,
             'native_country' => $this->native_country,
             'residence_country' => $this->residence_country,
+            'business_type' => new BusinessTypeResource(BusinessType::find($this->business_type_id)),
+            'business_size' => new BusinessSizeResource(BusinessSize::find($this->business_size_id)),
+            'legal_status' => new LegalStatusResource(LegalStatus::find($this->legal_status_id)),
+            'country_native' => new CountryResource(Country::find($this->native_country)),
+            'country_residence' => new CountryResource(Country::find($this->residence_country)),
             'activity_areas' => ActivityAreaResource::collection(Detail::find($this->id)->activity_areas()->orderBy('id')->get()),
             'languages' => LanguageResource::collection(Detail::find($this->id)->languages()->orderBy('id')->get()),
         ];

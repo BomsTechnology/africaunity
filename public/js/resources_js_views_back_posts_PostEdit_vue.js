@@ -2717,8 +2717,8 @@ function usePosts() {
 
             case 5:
               response = _context6.sent;
-              loading.value = 0;
               post.value = response.data.data;
+              loading.value = 0;
               _context6.next = 13;
               break;
 

@@ -1,4 +1,5 @@
 <template>
+    <Report :open="openReport" :toogleModal="toogleModal" :id="id" :type="'account'"/>
     <Header />
    <section class="lg:py-10 p-4 lg:px-20">
         <div class="h-96 relative">
@@ -14,8 +15,7 @@
                         <img :src="user.avatar" class="w-full h-full bg-cover object-cover" alt="" v-if="user.avatar">
                         <UserCircleIcon v-else class="w-full h-full text-gray-500"/>
                     </div>
-                <div class="lg:w-60 lg:h-60"></div>
-                <div class="grow  px-8 py-4 lg:mt-0 mt-20">
+                <div class="xl:w-[75%] lg:w-[65%] w-full px-8 py-2  h-full overflow-y-auto lg:mt-0 mt-20">
                     <div v-if="loading == 1" class="p-28">
                         <svg
                             class="animate-spin h-16 w-16 mx-auto"
@@ -38,11 +38,12 @@
                             ></path>
                         </svg>
                     </div>
-                    <div v-else class="flex lg:justify-between items-center lg:flex-row flex-col lg:mt-0 mt-20">
-                        <div>
+                    <div v-else >
+                        <div class="flex lg:justify-between items-center lg:flex-row flex-col lg:mt-0 mt-20">
+                            <div>
                             <h1 class="lg:text-3xl text-2xl lg:text-left text-center font-semibold capitalize text-gray-700"> <span>{{ user.firstname }}</span> <span v-if="user.type ==  'particular'">{{ user.lastname }}</span> </h1>
                             <div class="flex items-center space-x-2 text-sm mt-2">
-                                <h2 class="text-primary-blue">{{ user.email }}</h2> 
+                                <h2 class="text-primary-blue" v-if="!user.hide_email">{{ user.email }}</h2> 
                                 <h2 class="text-gray-400">° {{ detail.phone_number }}</h2>
                             </div>
                         </div>
@@ -63,9 +64,10 @@
                                 <CogIcon class="h-8 w-8 text-gray-600  hover:text-primary-blue" />
                             </router-link>
                         </div>
-                    </div>
-                    <div class="text-sm font-light text-gray-500 overflow-y-auto lg:h-24 h-20 mt-2">
-                        {{ detail.presentation }}
+                        </div>
+                        <div class="text-sm font-light text-gray-500 lg:w-full  break-words overflow-y-auto lg:h-24 h-20 my-2 mx-auto">
+                            {{ detail.presentation }}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -161,7 +163,7 @@
                             <label class="text-gray-700 py-1 text-md font-semibold">{{ $t('goal-attribution') }}</label>
                             <p class="py-1">{{ detail.goal_attribution }}</p>
                         </div>
-                        <div class="relative col-span-2">
+                        <div class="relative col-span-2" v-if="!user.hide_email">
                             <label class="text-gray-700 py-1 text-md font-semibold">{{ $t('adresse') + ' ' + $t('email') }}</label>
                             <p class="py-1">{{ user.email }}</p>
                         </div>
@@ -208,19 +210,17 @@
                                     <span>{{ $t('native-country') }}</span> 
                                 </label>
                                 <ul class="py-1">
-                                    <li v-for="country in countries" :key="country.id">
-                                            <span v-if="country.id === detail.native_country">
+                                    <li v-if="detail.country_native">
                                                 <span v-if="$i18n.locale == 'en'">{{
-                                                    country.name_en
+                                                    detail.country_native.name_en
                                                 }}</span>
                                                 <span v-else-if="$i18n.locale == 'fr'">{{
-                                                    country.name_fr
+                                                    detail.country_native.name_fr
                                                 }}</span>
                                                 <span v-else-if="$i18n.locale == 'es'">{{
-                                                    country.name_es
+                                                    detail.country_native.name_es
                                                 }}</span>
-                                                <span v-else>{{ country.name_pt }}</span>
-                                            </span>
+                                                <span v-else>{{ detail.country_native.name_pt }}</span>
                                     </li>
                                 </ul>
 
@@ -231,19 +231,17 @@
                                     <span v-else>{{ $t('social-country') }}</span>
                                 </label>
                                 <ul class="py-1">
-                                    <li v-for="country in countries" :key="country.id">
-                                            <span v-if="country.id === detail.residence_country">
+                                    <li v-if="detail.country_residence">
                                                 <span v-if="$i18n.locale == 'en'">{{
-                                                    country.name_en
+                                                    detail.country_residence.name_en
                                                 }}</span>
                                                 <span v-else-if="$i18n.locale == 'fr'">{{
-                                                    country.name_fr
+                                                    detail.country_residence.name_fr
                                                 }}</span>
                                                 <span v-else-if="$i18n.locale == 'es'">{{
-                                                    country.name_es
+                                                    detail.country_residence.name_es
                                                 }}</span>
-                                                <span v-else>{{ country.name_pt }}</span>
-                                            </span>
+                                                <span v-else>{{ detail.country_residence.name_pt }}</span>
                                     </li>
                                 </ul>
                             </div>
@@ -255,19 +253,17 @@
                                     <span v-else>{{ $t('type-company') }}</span> 
                                 </label>
                                 <ul class="py-1">
-                                    <li v-for="businessType in businessTypes" :key="businessType.id">
-                                            <span v-if="businessType.id === detail.business_type_id">
+                                    <li v-if="detail.business_type">
                                                 <span v-if="$i18n.locale == 'en'">{{
-                                                    businessType.name_en
+                                                    detail.business_type.name_en
                                                 }}</span>
                                                 <span v-else-if="$i18n.locale == 'fr'">{{
-                                                    businessType.name_fr
+                                                    detail.business_type.name_fr
                                                 }}</span>
                                                 <span v-else-if="$i18n.locale == 'es'">{{
-                                                    businessType.name_es
+                                                    detail.business_type.name_es
                                                 }}</span>
-                                                <span v-else>{{ businessType.name_pt }}</span>
-                                            </span>
+                                                <span v-else>{{ detail.business_type.name_pt }}</span>
                                     </li>
                                 </ul>
                             </div>
@@ -277,19 +273,17 @@
                                     <span v-else>{{ $t('size-company') }}</span>
                                 </label>
                                 <ul class="py-1">
-                                    <li v-for="BusinessSize in businessSizes" :key="BusinessSize.id">
-                                            <span v-if="BusinessSize.id === detail.business_size_id">
+                                    <li v-if="detail.business_size">
                                                 <span v-if="$i18n.locale == 'en'">{{
-                                                    BusinessSize.name_en
+                                                    detail.business_size.name_en
                                                 }}</span>
                                                 <span v-else-if="$i18n.locale == 'fr'">{{
-                                                    BusinessSize.name_fr
+                                                    detail.business_size.name_fr
                                                 }}</span>
                                                 <span v-else-if="$i18n.locale == 'es'">{{
-                                                    BusinessSize.name_es
+                                                    detail.business_size.name_es
                                                 }}</span>
-                                                <span v-else>{{ BusinessSize.name_pt }}</span>
-                                            </span>
+                                                <span v-else>{{ detail.business_size.name_pt }}</span>
                                     </li>
                                 </ul>
                             </div>
@@ -324,20 +318,18 @@
                             class="relative col-span-2">
                             <label class="text-gray-700 py-1 text-md font-semibold">{{ $t('legal-status') }}</label>
                             <ul class="py-1">
-                                <li v-for="legalStatus in legalStatuses" :key="legalStatus.id">
-                                        <span v-if="legalStatus.id === detail.legal_status_id">
-                                            <span v-if="$i18n.locale == 'en'">{{
-                                                legalStatus.name_en
-                                            }}</span>
-                                            <span v-else-if="$i18n.locale == 'fr'">{{
-                                                legalStatus.name_fr
-                                            }}</span>
-                                            <span v-else-if="$i18n.locale == 'es'">{{
-                                                legalStatus.name_es
-                                            }}</span>
-                                            <span v-else>{{ legalStatus.name_pt }}</span>
-                                        </span>
-                                </li>
+                                <li v-if="detail.legal_status">
+                                                <span v-if="$i18n.locale == 'en'">{{
+                                                    detail.legal_status.name_en
+                                                }}</span>
+                                                <span v-else-if="$i18n.locale == 'fr'">{{
+                                                    detail.legal_status.name_fr
+                                                }}</span>
+                                                <span v-else-if="$i18n.locale == 'es'">{{
+                                                    detail.legal_status.name_es
+                                                }}</span>
+                                                <span v-else>{{ detail.legal_status.name_pt }}</span>
+                                    </li>
                             </ul>
                         </div>
                         <div
@@ -412,6 +404,16 @@
                             <a :href="'whatsapp://send?text=Hello, I have just published an publication on the AfricaUnity website. please go see, thank you '+url" >
                                 <svg fill="#25D366" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 30 30" class="h-6 w-6">    <path d="M 15 3 C 8.373 3 3 8.373 3 15 C 3 17.251208 3.6323415 19.350068 4.7109375 21.150391 L 3.1074219 27 L 9.0820312 25.431641 C 10.829354 26.425062 12.84649 27 15 27 C 21.627 27 27 21.627 27 15 C 27 8.373 21.627 3 15 3 z M 10.892578 9.4023438 C 11.087578 9.4023438 11.287937 9.4011562 11.460938 9.4101562 C 11.674938 9.4151563 11.907859 9.4308281 12.130859 9.9238281 C 12.395859 10.509828 12.972875 11.979906 13.046875 12.128906 C 13.120875 12.277906 13.173313 12.453437 13.070312 12.648438 C 12.972312 12.848437 12.921344 12.969484 12.777344 13.146484 C 12.628344 13.318484 12.465078 13.532109 12.330078 13.662109 C 12.181078 13.811109 12.027219 13.974484 12.199219 14.271484 C 12.371219 14.568484 12.968563 15.542125 13.851562 16.328125 C 14.986562 17.342125 15.944188 17.653734 16.242188 17.802734 C 16.540187 17.951734 16.712766 17.928516 16.884766 17.728516 C 17.061766 17.533516 17.628125 16.864406 17.828125 16.566406 C 18.023125 16.268406 18.222188 16.319969 18.492188 16.417969 C 18.766188 16.515969 20.227391 17.235766 20.525391 17.384766 C 20.823391 17.533766 21.01875 17.607516 21.09375 17.728516 C 21.17075 17.853516 21.170828 18.448578 20.923828 19.142578 C 20.676828 19.835578 19.463922 20.505734 18.919922 20.552734 C 18.370922 20.603734 17.858562 20.7995 15.351562 19.8125 C 12.327563 18.6215 10.420484 15.524219 10.271484 15.324219 C 10.122484 15.129219 9.0605469 13.713906 9.0605469 12.253906 C 9.0605469 10.788906 9.8286563 10.071437 10.097656 9.7734375 C 10.371656 9.4754375 10.692578 9.4023438 10.892578 9.4023438 z"/></svg>
                             </a>
+
+                            <div>
+                                <button @click="toogleModal()" class="flex text-gray-400 cursor-pointer text-xs border-gray-400 border rounded-full px-2 py-1 items-center hover:bg-yellow-300 space-x-2 hover:text-white hover:border-white">
+                                    <ExclamationCircleIcon
+                                    class="h-5 w-5 "
+                                    />
+                                    <span class="hidden lg:block">{{ $t('report') }}</span>
+                                </button>
+                                
+                            </div>
                             <!-- twitter icon -->
                             <!-- <a :href="'https://twitter.com/intent/tweet?text=Hello, I have just published an publication on the AfricaUnity website. please go see, thank you&url='+url" data-network="twitter" target="_blank">
                                 <svg fill="#1DA1F2" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 30 30" class="h-6 w-6">    <path d="M28,6.937c-0.957,0.425-1.985,0.711-3.064,0.84c1.102-0.66,1.947-1.705,2.345-2.951c-1.03,0.611-2.172,1.055-3.388,1.295 c-0.973-1.037-2.359-1.685-3.893-1.685c-2.946,0-5.334,2.389-5.334,5.334c0,0.418,0.048,0.826,0.138,1.215 c-4.433-0.222-8.363-2.346-10.995-5.574C3.351,6.199,3.088,7.115,3.088,8.094c0,1.85,0.941,3.483,2.372,4.439 c-0.874-0.028-1.697-0.268-2.416-0.667c0,0.023,0,0.044,0,0.067c0,2.585,1.838,4.741,4.279,5.23 c-0.447,0.122-0.919,0.187-1.406,0.187c-0.343,0-0.678-0.034-1.003-0.095c0.679,2.119,2.649,3.662,4.983,3.705 c-1.825,1.431-4.125,2.284-6.625,2.284c-0.43,0-0.855-0.025-1.273-0.075c2.361,1.513,5.164,2.396,8.177,2.396 c9.812,0,15.176-8.128,15.176-15.177c0-0.231-0.005-0.461-0.015-0.69C26.38,8.945,27.285,8.006,28,6.937z"/></svg>
@@ -482,7 +484,7 @@
                                     params: { id: post.id },
                                 }"  class="text-2xl font-bold text-gray-800 dark:text-white"> {{ post.title.length <= 20 ? post.title : post.title.substring(0, 19) + "..." }}</router-link>
 
-                    <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">{{ post.content.substring(0, 19) + "..." }}</p>
+                    <!-- <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">{{ post.content.substring(0, 19) + "..." }}</p> -->
 
                     <div class="flex mt-2 item-center space-x-1">
                         <ChatIcon class="h-4 w-4 text-gray-500" />
@@ -878,22 +880,27 @@
                                         >
                                         <button
                                             @click="deleteJobOffer(jobOffer.id)"
-                                            class="text-red-600 ml-3 dark:text-blue-500 hover:underline"
+                                            class=" text-red-600 ml-3 dark:text-blue-500 hover:underline"
                                             >
                                                 <TrashIcon
                                                     class="h-5 w-5 hover:text-red-700 cursor-pointer text-red-400"
                                                 />
-                                            </button
+                                        </button
                                         >
                                         <button
                                             @click="mark(jobOffer.id)"
                                             v-if="jobOffer.status != 3"
-                                            class="text-red-600 ml-3 dark:text-blue-500 hover:underline"
+                                            @mouseover="showTooltip(jobOffer.id)"
+                                            @mouseleave="hideTooltip()"
+                                            class="text-red-600 relative ml-3 dark:text-blue-500 hover:underline"
                                             >
                                                 <CheckCircleIcon
                                                     class="h-5 w-5 hover:text-purple-700 cursor-pointer text-purple-400"
                                                 />
-                                            </button
+                                                <span v-if="openTooltip.id == jobOffer.id && openTooltip.state == true" class="absolute left-0 px-2 py-1 bg-black/50 text-white">
+                                                {{ $t('mark-provided') }}
+                                            </span>
+                                        </button
                                         >
                                     </div>
                                 </td>
@@ -1070,8 +1077,8 @@
 <script>
 import Header from "../../components/Header.vue";
 import Footer from "../../components/Footer.vue";
-import { reactive, ref, onMounted} from "vue";
-import router from "../../router";
+import { reactive, ref, onMounted, watch} from "vue";
+import Report from "../../components/Report.vue";
 import usePosts from "../../services/postServices.js";
 import EditProfile from "../../components/EditProfile.vue";
 import useUsers from "../../services/userServices.js";
@@ -1084,7 +1091,7 @@ import useActivityAreas from "../../services/activityAreaServices.js";
 import useJobOffers from "../../services/jobOfferServices.js";
 import useLegalStatuses from "../../services/legalStatusServices.js";
 import useCountries from "../../services/countryServices.js";
-import { CogIcon, TrashIcon, EmojiSadIcon, PlusCircleIcon, SpeakerphoneIcon, CheckCircleIcon, PencilIcon, PencilAltIcon, NewspaperIcon, ChatIcon, ChatAltIcon, BookOpenIcon, IdentificationIcon, UserCircleIcon } from "@heroicons/vue/solid";
+import { CogIcon, ExclamationCircleIcon, TrashIcon, EmojiSadIcon, PlusCircleIcon, SpeakerphoneIcon, CheckCircleIcon, PencilIcon, PencilAltIcon, NewspaperIcon, ChatIcon, ChatAltIcon, BookOpenIcon, IdentificationIcon, UserCircleIcon } from "@heroicons/vue/solid";
 export default {
     props: {
         name: {
@@ -1101,6 +1108,8 @@ export default {
         },
     },
     components:{
+        ExclamationCircleIcon,
+        Report,
         EmojiSadIcon,
         Header,
         Footer,
@@ -1142,6 +1151,11 @@ export default {
         const langArticle = ref('');
         const langProp = ref('');
         const url = window.location.href;
+        const openTooltip = reactive({
+            id: null,
+            state: false,
+        });
+        const openReport = ref(false);
         const open = reactive({
             profil: true,
             article: false,
@@ -1169,28 +1183,65 @@ export default {
                         }
                     });
                     detail.value = response.data.data;
-                    // console.log(detail.value.activity_areas)
                     loading.value = 0;
                     await getPostsUser(props.id);
                     await getCommentsUser(props.id);
                     await getJobOffersUser(props.id);
+                    await getAnnouncementsUser(props.id);
                     await getLanguages();
                     await getBusinessTypes();
                     await getBusinessSizes();
                     await getActivityAreas();
                     await getLegalStatuses();
                     await getCountries();
-                    await getAnnouncementsUser(props.id);
                 }catch(e){
                     if(e.response.status == 401){
-                        location.href = 'login/not-login';
+                        location.href = location.origin + 'login/not-login';
                         window.localStorage.removeItem("token");
                         window.localStorage.removeItem("user");
                     }
                 }
             }
             
-        );      
+        );
+        
+        watch(props,  async (currentValue, oldValue) => {
+            try{
+                    loading.value = 1;
+                    await getUser(currentValue.id);
+                    let response = await axios.get('/api/details/' + currentValue.id, {
+                        headers:{
+                            'Authorization': `Bearer ${localStorage.token}`
+                        }
+                    });
+                    detail.value = response.data.data;
+                    loading.value = 0;
+                    await getPostsUser(currentValue.id);
+                    await getCommentsUser(currentValue.id);
+                    await getJobOffersUser(currentValue.id);
+                    await getAnnouncementsUser(currentValue.id);
+                }catch(e){
+                    if(e.response.status == 401){
+                        location.href = location.origin + 'login/not-login';
+                        window.localStorage.removeItem("token");
+                        window.localStorage.removeItem("user");
+                    }
+                }
+        });
+
+        const toogleModal = () => {
+            openReport.value = !openReport.value;
+        };
+
+        const showTooltip = (id) => {
+            openTooltip.id = id;
+            openTooltip.state = true;
+        };
+
+        const hideTooltip = () => {
+            openTooltip.id = null;
+            openTooltip.state = false;
+        };
 
         const deleteComment = async (id) => {
             if(confirm("I you Sure ?")){
@@ -1306,6 +1357,11 @@ export default {
         }
 
         return{
+            toogleModal,
+            openReport,
+            openTooltip,
+            hideTooltip,
+            showTooltip,
             langProp,
             langArticle,
             searchProp,

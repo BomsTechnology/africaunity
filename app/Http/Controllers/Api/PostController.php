@@ -89,17 +89,19 @@ class PostController extends Controller
     {
         $request->validate([
             'user' => 'required',
-            'post' => 'required',
+            'reported' => 'required',
             'content' => 'required|string',
         ]);
 
         $admins = User::where('type', 'admin')->get();
         
-        $post = Post::find($request->post);
-        $userReport = User::find($request->user);
+        $post = Post::find($request->reported);
+        $url = "/post/$post->id";
 
+        $userReport = User::find($request->user);
+        
         foreach($admins as $admin){
-            $admin->notify(new ReportNotification($post, $userReport , $request->content));
+            $admin->notify(new ReportNotification($url, $userReport , $request->content));
         }
 
         $response = [

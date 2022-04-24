@@ -24071,15 +24071,14 @@ var _hoisted_2 = {
 var _hoisted_3 = {
   "class": "absolute left-0 w-60 flex flex-col py-2 mt-2 bg-menu z-40"
 };
-var _hoisted_4 = ["href"];
-var _hoisted_5 = {
+var _hoisted_4 = {
   key: 0
 };
-var _hoisted_6 = ["src"];
-var _hoisted_7 = {
+var _hoisted_5 = ["src"];
+var _hoisted_6 = {
   "class": "absolute left-0 w-48 flex flex-col py-2 mt-2 bg-menu z-40"
 };
-var _hoisted_8 = {
+var _hoisted_7 = {
   key: 0,
   "class": "animate-spin ml-3 h-5 w-5 text-white",
   xmlns: "http://www.w3.org/2000/svg",
@@ -24087,7 +24086,7 @@ var _hoisted_8 = {
   viewBox: "0 0 24 24"
 };
 
-var _hoisted_9 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_8 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("circle", {
     "class": "opacity-25",
     cx: "12",
@@ -24100,7 +24099,7 @@ var _hoisted_9 = /*#__PURE__*/_withScopeId(function () {
   );
 });
 
-var _hoisted_10 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_9 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
     "class": "opacity-75",
     fill: "currentColor",
@@ -24110,49 +24109,48 @@ var _hoisted_10 = /*#__PURE__*/_withScopeId(function () {
   );
 });
 
-var _hoisted_11 = [_hoisted_9, _hoisted_10];
-var _hoisted_12 = {
+var _hoisted_10 = [_hoisted_8, _hoisted_9];
+var _hoisted_11 = {
   key: 0
 };
-var _hoisted_13 = {
+var _hoisted_12 = {
   key: 1
 };
-var _hoisted_14 = {
+var _hoisted_13 = {
   key: 2
 };
-var _hoisted_15 = {
+var _hoisted_14 = {
   key: 3
 };
-var _hoisted_16 = {
+var _hoisted_15 = {
   "class": "absolute left-0 w-48 flex flex-col py-2 mt-2 bg-menu z-40"
 };
-var _hoisted_17 = {
+var _hoisted_16 = {
   "class": "lg:hidden flex z-40"
 };
-var _hoisted_18 = {
+var _hoisted_17 = {
   "class": "bg-white absolute mt-12 w-[90%] mx-auto border border-menu shadow-md flex flex-col justify-center"
 };
-var _hoisted_19 = {
+var _hoisted_18 = {
   "class": "text-menu pl-6 py-2 uppercase relative"
 };
-var _hoisted_20 = {
+var _hoisted_19 = {
   "class": "flex items-center cursor-pointer"
 };
-var _hoisted_21 = {
+var _hoisted_20 = {
   "class": "flex flex-col py-2 mt-2"
 };
-var _hoisted_22 = ["href"];
-var _hoisted_23 = {
+var _hoisted_21 = {
   "class": "flex space-x-2 items-center text-white transition-colors duration-200 text-sm bg-primary-blue px-3 py-2 uppercase"
 };
-var _hoisted_24 = {
+var _hoisted_22 = {
   key: 0
 };
-var _hoisted_25 = ["src"];
-var _hoisted_26 = {
+var _hoisted_23 = ["src"];
+var _hoisted_24 = {
   "class": "flex flex-col py-2"
 };
-var _hoisted_27 = {
+var _hoisted_25 = {
   key: 0,
   "class": "animate-spin ml-3 h-5 w-5",
   xmlns: "http://www.w3.org/2000/svg",
@@ -24160,7 +24158,7 @@ var _hoisted_27 = {
   viewBox: "0 0 24 24"
 };
 
-var _hoisted_28 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_26 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("circle", {
     "class": "opacity-25",
     cx: "12",
@@ -24173,7 +24171,7 @@ var _hoisted_28 = /*#__PURE__*/_withScopeId(function () {
   );
 });
 
-var _hoisted_29 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_27 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
     "class": "opacity-75",
     fill: "currentColor",
@@ -24183,39 +24181,39 @@ var _hoisted_29 = /*#__PURE__*/_withScopeId(function () {
   );
 });
 
-var _hoisted_30 = [_hoisted_28, _hoisted_29];
-var _hoisted_31 = {
+var _hoisted_28 = [_hoisted_26, _hoisted_27];
+var _hoisted_29 = {
   "class": "text-menu pl-6 py-2 uppercase relative"
 };
-var _hoisted_32 = {
+var _hoisted_30 = {
   "class": "flex items-center cursor-pointer"
 };
-var _hoisted_33 = {
+var _hoisted_31 = {
   key: 0
 };
-var _hoisted_34 = {
+var _hoisted_32 = {
   key: 1
 };
-var _hoisted_35 = {
+var _hoisted_33 = {
   key: 2
 };
-var _hoisted_36 = {
+var _hoisted_34 = {
   key: 3
 };
-var _hoisted_37 = {
+var _hoisted_35 = {
   "class": "flex flex-col py-2 mt-2"
 };
-var _hoisted_38 = {
+var _hoisted_36 = {
   "class": "relative"
 };
-var _hoisted_39 = {
+var _hoisted_37 = {
   "class": "absolute right-0 w-48 flex flex-col p-2 mt-2 bg-white lg:bg-menu lg:border-0 border border-menu shadow-md lg:shadow-none z-40"
 };
-var _hoisted_40 = {
+var _hoisted_38 = {
   "class": "flex"
 };
 
-var _hoisted_41 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_39 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "search",
     "class": "px-3 py-2 w-32",
@@ -24225,7 +24223,7 @@ var _hoisted_41 = /*#__PURE__*/_withScopeId(function () {
   );
 });
 
-var _hoisted_42 = {
+var _hoisted_40 = {
   type: "submit",
   "class": "text-white bg-primary-blue px-3 py-2 flex items-center justify-center"
 };
@@ -24388,46 +24386,59 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     _: 1
     /* STABLE */
 
-  }), $setup.token ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", {
+  }), $setup.token ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_router_link, {
     key: 0,
     onMouseleave: _cache[4] || (_cache[4] = function ($event) {
       return $setup.open.logout = false;
     }),
-    href: $setup.url + '/account/' + $setup.user.firstname + '/' + $setup.user.id,
+    to: {
+      name: 'compte',
+      params: {
+        name: $setup.user.firstname,
+        id: $setup.user.id
+      }
+    },
     "class": "text-white relative transition-colors duration-200 bg-primary-blue px-3 py-2 mx-2 uppercase"
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    onMouseover: _cache[2] || (_cache[2] = function ($event) {
-      return $setup.open.logout = true;
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+        onMouseover: _cache[2] || (_cache[2] = function ($event) {
+          return $setup.open.logout = true;
+        }),
+        "class": "flex items-start space-x-2"
+      }, [$setup.user.avatar ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+        src: $setup.user.avatar,
+        alt: "",
+        "class": "h-7 w-7 border rounded-full object-cover shadow"
+      }, null, 8
+      /* PROPS */
+      , _hoisted_5)])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_UserCircleIcon, {
+        key: 1,
+        "class": "h-8 w-8 text-white"
+      })), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.user.firstname), 1
+      /* TEXT */
+      ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ChevronDownIcon, {
+        "class": "h-5 w-5"
+      })])], 32
+      /* HYDRATE_EVENTS */
+      ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+        href: "#",
+        onClick: _cache[3] || (_cache[3] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
+          return $setup.logout();
+        }, ["prevent"])),
+        "class": "text-white flex items-center transition-colors duration-200 text-sm hover:bg-primary-blue px-3 py-2 uppercase"
+      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('logout')) + " ", 1
+      /* TEXT */
+      ), $setup.loading == 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("svg", _hoisted_7, _hoisted_10)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])], 512
+      /* NEED_PATCH */
+      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $setup.open.logout]])];
     }),
-    "class": "flex items-start space-x-2"
-  }, [$setup.user.avatar ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-    src: $setup.user.avatar,
-    alt: "",
-    "class": "h-7 w-7 border rounded-full object-cover shadow"
-  }, null, 8
+    _: 1
+    /* STABLE */
+
+  }, 8
   /* PROPS */
-  , _hoisted_6)])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_UserCircleIcon, {
-    key: 1,
-    "class": "h-8 w-8 text-white"
-  })), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.user.firstname), 1
-  /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ChevronDownIcon, {
-    "class": "h-5 w-5"
-  })])], 32
-  /* HYDRATE_EVENTS */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-    href: "#",
-    onClick: _cache[3] || (_cache[3] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
-      return $setup.logout();
-    }, ["prevent"])),
-    "class": "text-white flex items-center transition-colors duration-200 text-sm hover:bg-primary-blue px-3 py-2 uppercase"
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('logout')) + " ", 1
-  /* TEXT */
-  ), $setup.loading == 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("svg", _hoisted_8, _hoisted_11)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])], 512
-  /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $setup.open.logout]])], 40
-  /* PROPS, HYDRATE_EVENTS */
-  , _hoisted_4)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_router_link, {
+  , ["to"])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_router_link, {
     key: 1,
     to: {
       name: 'login'
@@ -24452,19 +24463,19 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $setup.open.lang = true;
     }),
     "class": "flex items-center justify-center cursor-pointer"
-  }, [_ctx.$i18n.locale == 'fr' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('fr')), 1
+  }, [_ctx.$i18n.locale == 'fr' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('fr')), 1
   /* TEXT */
-  )) : _ctx.$i18n.locale == 'en' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('en')), 1
+  )) : _ctx.$i18n.locale == 'en' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('en')), 1
   /* TEXT */
-  )) : _ctx.$i18n.locale == 'es' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('es')), 1
+  )) : _ctx.$i18n.locale == 'es' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('es')), 1
   /* TEXT */
-  )) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('pt')), 1
+  )) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('pt')), 1
   /* TEXT */
   )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ChevronDownIcon, {
     "class": "h-5 w-5 ml-2"
   })], 32
   /* HYDRATE_EVENTS */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [_ctx.$i18n.locale != 'fr' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", {
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [_ctx.$i18n.locale != 'fr' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", {
     key: 0,
     href: "#",
     onClick: _cache[6] || (_cache[6] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
@@ -24504,7 +24515,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* NEED_PATCH */
   ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $setup.open.lang]])], 32
   /* HYDRATE_EVENTS */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("nav", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("nav", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     to: {
       name: 'home'
     },
@@ -24526,7 +24537,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "text-white transition-colors duration-200 hover:bg-primary-blue px-3 py-2 flex items-center justify-center"
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_MenuIcon, {
     "class": "h-6 w-6"
-  })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+  })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     to: {
       name: 'articles'
     },
@@ -24540,11 +24551,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     _: 1
     /* STABLE */
 
-  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('profile')) + " ", 1
+  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('profile')) + " ", 1
   /* TEXT */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ChevronDownIcon, {
     "class": "h-5 w-5 ml-2"
-  })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+  })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     to: {
       name: 'particular'
     },
@@ -24642,31 +24653,44 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     _: 1
     /* STABLE */
 
-  }), $setup.token ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", {
+  }), $setup.token ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_router_link, {
     key: 0,
-    href: $setup.url + '/account/' + $setup.user.firstname + '/' + $setup.user.id
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [$setup.user.avatar ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-    src: $setup.user.avatar,
-    "class": "h-16 w-16 border rounded-full shadow",
-    alt: ""
-  }, null, 8
+    to: {
+      name: 'compte',
+      params: {
+        name: $setup.user.firstname,
+        id: $setup.user.id
+      }
+    }
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [$setup.user.avatar ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+        src: $setup.user.avatar,
+        "class": "h-16 w-16 border rounded-full shadow",
+        alt: ""
+      }, null, 8
+      /* PROPS */
+      , _hoisted_23)])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_UserCircleIcon, {
+        key: 1,
+        "class": "h-8 w-8 text-white"
+      })), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.user.firstname) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.user.lastname), 1
+      /* TEXT */
+      )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+        href: "#",
+        onClick: _cache[12] || (_cache[12] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
+          return $setup.logout();
+        }, ["prevent"])),
+        "class": "hover:text-white text-menu flex items-center transition-colors duration-200 text-sm hover:bg-primary-blue px-3 py-2 uppercase"
+      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('logout')) + " ", 1
+      /* TEXT */
+      ), $setup.loading == 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("svg", _hoisted_25, _hoisted_28)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])];
+    }),
+    _: 1
+    /* STABLE */
+
+  }, 8
   /* PROPS */
-  , _hoisted_25)])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_UserCircleIcon, {
-    key: 1,
-    "class": "h-8 w-8 text-white"
-  })), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.user.firstname) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.user.lastname), 1
-  /* TEXT */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_26, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-    href: "#",
-    onClick: _cache[12] || (_cache[12] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
-      return $setup.logout();
-    }, ["prevent"])),
-    "class": "hover:text-white text-menu flex items-center transition-colors duration-200 text-sm hover:bg-primary-blue px-3 py-2 uppercase"
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('logout')) + " ", 1
-  /* TEXT */
-  ), $setup.loading == 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("svg", _hoisted_27, _hoisted_30)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])], 8
-  /* PROPS */
-  , _hoisted_22)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_router_link, {
+  , ["to"])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_router_link, {
     key: 1,
     to: {
       name: 'login'
@@ -24681,17 +24705,17 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     _: 1
     /* STABLE */
 
-  })), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_31, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", _hoisted_32, [_ctx.$i18n.locale == 'fr' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_33, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('fr')), 1
+  })), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_29, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", _hoisted_30, [_ctx.$i18n.locale == 'fr' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_31, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('fr')), 1
   /* TEXT */
-  )) : _ctx.$i18n.locale == 'en' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_34, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('en')), 1
+  )) : _ctx.$i18n.locale == 'en' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_32, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('en')), 1
   /* TEXT */
-  )) : _ctx.$i18n.locale == 'es' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_35, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('es')), 1
+  )) : _ctx.$i18n.locale == 'es' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_33, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('es')), 1
   /* TEXT */
-  )) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_36, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('pt')), 1
+  )) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_34, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('pt')), 1
   /* TEXT */
   )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ChevronDownIcon, {
     "class": "h-5 w-5 ml-2"
-  })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_37, [_ctx.$i18n.locale != 'fr' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", {
+  })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_35, [_ctx.$i18n.locale != 'fr' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", {
     key: 0,
     href: "#",
     onClick: _cache[13] || (_cache[13] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
@@ -24729,7 +24753,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* TEXT */
   )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])], 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $setup.open.menu]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_38, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $setup.open.menu]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_36, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     type: "button",
     onClick: _cache[17] || (_cache[17] = function ($event) {
       return $setup.open.search = !$setup.open.search;
@@ -24737,7 +24761,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "text-white hover:bg-primary-blue px-3 py-2 flex items-center justify-center"
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_SearchIcon, {
     "class": "h-6 w-6"
-  })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_39, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_40, [_hoisted_41, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", _hoisted_42, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_SearchIcon, {
+  })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_37, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_38, [_hoisted_39, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", _hoisted_40, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_SearchIcon, {
     "class": "h-6 w-6"
   })])])])], 512
   /* NEED_PATCH */
@@ -25185,7 +25209,14 @@ var _hoisted_137 = {
 
 var _hoisted_138 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "border-t-2 w-full border-primary-blue text-justify py-4"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p")], -1
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("iframe", {
+  "class": "w-full h-60",
+  src: "https://www.youtube.com/embed/TBikbn5XJhg",
+  title: "YouTube video player",
+  frameborder: "0",
+  allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture",
+  allowfullscreen: ""
+})])], -1
 /* HOISTED */
 );
 
@@ -25198,7 +25229,14 @@ var _hoisted_140 = {
 
 var _hoisted_141 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "border-t-2 w-full border-primary-blue text-justify py-4"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p")], -1
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("iframe", {
+  "class": "w-full h-60",
+  src: "https://www.youtube.com/embed/3gb2do8F6Q0",
+  title: "YouTube video player",
+  frameborder: "0",
+  allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture",
+  allowfullscreen: ""
+})])], -1
 /* HOISTED */
 );
 
@@ -26268,7 +26306,7 @@ var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({
   components: {
     Home: _views_front_Home_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   }
-}).use(_locales_i18n__WEBPACK_IMPORTED_MODULE_3__["default"]).use(_router__WEBPACK_IMPORTED_MODULE_2__["default"]).mount('#app'); // app.config.globalProperties.Basepath = "boms";
+}).use(_locales_i18n__WEBPACK_IMPORTED_MODULE_3__["default"]).use(_router__WEBPACK_IMPORTED_MODULE_2__["default"]).mount('#app');
 
 /***/ }),
 
@@ -66868,7 +66906,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"lastest":"Lastest","fr":"Français","en":"English","es":"Español","pt":"Português","articles":"Articles","profile":"Profile","propau":"PropAU","univerities":"Universities","contact":"Contact","jobs":"Jobs","particular":"Particular","establishment":"Establishment","ip":"Political Institutions ","login":"Login","about-title":"About","about-text":"AfricaUnity is a professional social network and digital think tank for the development of Africa and Latin America. Through written articles offered to ministries, institutions and organizations, AfricaUnity contributors participate in the improvement of the various States. Participants have the opportunity to interact on any subject in an ethical and courteous manner. It is a platform on which you will find many CVs and presentations of public and private organizations.","filter-article":"Articles Filter","filter-propau":"PropAU Filter","filter":"Filter","key-words":"Keys Words","continent":"Continent","zoned":"Zoned","country":"Country","ministry":"Ministry","search":"Search","register":"Register","recent-posts":"Recent Posts","video":"Video","presentation":"Presentation","language":"Language","all":"","full-name":"Full Name","firstname":"Name","lastname":"First name","adresse":"Adress","login-welcome-msg":"Welcome to Africaunity","login-desc":"Log in to your account and interact in the spirit of courtesy of the community. Do not hesitate to contact us at any time if you encounter any difficulties.Log in to your account and interact in the spirit of courtesy of the community. Do not hesitate to contact us at any time if you encounter any difficulties.","no-signup":"Do not have an account yet ?","already-signup":"Already have an account ?","email":"E-mail","password":"Password","confirm-password":"Confirm password","password-forgot":"Forgot your password","show-confidentail-politic":"View Privacy Policy","confirm-confidentail-politic":"Confirm that you accept our privacy policy","create-account":"Create an account","pack":"Pack","account":"My account","comments":"Comments","my-ads":"My Ads","my-jobs":"My Jobs Offers","create-other-account":"Do you want to create an account instead?","business":"Business","politic":"Politics","register-free-desc":"We are happy to have you in this community dedicated to the emergence of Africa and Latin America. Fill in the fields to create your free account and access special member benefits.","register-desc":"Please create an account that suits your status and benefit from the many advantages","register-pay-desc":"We are happy to have you in this community dedicated to the emergence of Africa and Latin America. Fill in the fields to create your account and access special member benefits.","social-reason":"Social reason","denomination":"Denomination","plan-desc1":"Presentation page","plan-desc2":"Write articles","plan-desc3":"Write PropAU","plan-desc4":"Comment on posts","plan-desc5":"Search jobs","plan-desc6":"Post ads","plan-desc7":"Increase your visibility","plan-desc8":"Post jobs","logout":"Logout","corporation":"Corporation","physical-person":"Physical Person","free":"Free","year":"year","unlimited":"Unlimited","essential-features":"Essential Features","advanced-features":"Advanced Features","add":"Add","your":"Your","add-desc-1":"will be published in the current language of the site","edit":"Edit","content":"Content","thumbnails":"Featured image","title":"Title","save":"Save","select-lang":"Please select the language of publication","good-msg-post":"Please keep in mind that courtesy is the key word of the community","read-more":"Read More","no-content":"No Content","ads":"Announcement","university":"University","category":"Category","contact-phone":"Contact number","contact-email":"Contact Email Address","price":"Price","currency":"Currency","website":"WebSite","description":"Description","city":"City","location":"Location","company-name":"Company Name","company-logo":"Company logo","company-website":"Company Website","company-email":"Company email address","work-mode":"Work mode","work-dept":"Work department","offer-type":"Type of offer","y-experience":"Year of experience","activity-area":"Activity area","level-study":"Study level","size-company":"Size of the company","type-company":"Type of the company","size-institution":"Institution size","status":"Status","rsearch-p":"Partner search","o-activity":"Other activites","birth-date":"Date of Birth","create-date":"Creation date","legal-status":"Legal status","speak-language":"Spoken languages","sex":"Sex","male":"Male","female":"Female","perimetre":"Perimeter","phone-number":"Phone number","native-country":"Native country","residence-country":"Country of residence","social-country":"Headquarters country","social-object":"Social object","name-responsable":"Last name & first name of the person in charge","goal-attribution":"Purpose - Allocation","details":"Details","ads-university":"Announcements relating to","contact-ads":"Contact the advertiser","actif":"Active","no-actif":"Not Active","contact-about-1":"Invitation to a conference","contact-about-2":"Commercial proposition","contact-about-3":"Proposition of collaboration","contact-about-4":"Propose a university","contact-about-5":"Others","send":"Send","report":"Report","the-post":"This post","setting-account":"Account setting","hide-filter":"Hide filter","show-filter":"Show filter","provided":"Provided","in-progress":"In progress","privacy":"Privacy","change-password":"Change the password","delete-account":"Delete account","delete-account-desc":"To delete your account enter your password below","delete":"Delete","update-s":"Update successful","profile-picture":"Profile picture","cover-picture":"Cover picture","update":"Update","privacy-desc":"Who can see your profile","evreyone":"Everyone","only-me":"Only me","download-data":"Download your data","download":"Download","download-data-desc":"Enter your password to confirm the export of your personal data","delete-data":"Erasing your data","delete-data-desc":"Enter your password to confirm the deletion of your personal data (articles, propau, comments, announcements, jobs, etc.)","old-password":"Old Password","new-password":"New Password","complete-delete":"Complete removal","complete-delete-desc":"This will result in the deletion of all your data on this site.","partial-delete":"Partial deletion","partial-delete-desc":"This deactivates your account, to reactivate it you must contact the administrators of the site via the contact form","diplome-certification":"Diploma and Certification","contact-msg":"To contact us, please complete the form below","report-msg":"Say what you don\'t like about this post","msg-contact-sucess":"Thank you for having contacted us. We will respond to you within 48 hours. In the meantime, take advantage of the offers, announcements and job opportunities in your sector!!!","msg-a-register":"We are happy to have you in this community dedicated to the emergence of Africa and Latin America. Fill in the fields to create your free account and access special member benefits. Activate your account by clicking on the activation link sent by email.","modal-not-login":"Access to this content is restricted to subscribers. Please login or register","modal-verif-ok":"Your account has been successfully created. Log in to take advantage of the features offered by the AU platform"}');
+module.exports = JSON.parse('{"lastest":"Lastest","fr":"Français","en":"English","es":"Español","pt":"Português","articles":"Articles","profile":"Profile","propau":"PropAU","univerities":"Universities","contact":"Contact","jobs":"Jobs","particular":"Particular","establishment":"Establishment","ip":"Political Institutions ","login":"Login","about-title":"About","about-text":"AfricaUnity is a professional social network and digital think tank for the development of Africa and Latin America. Through written articles offered to ministries, institutions and organizations, AfricaUnity contributors participate in the improvement of the various States. Participants have the opportunity to interact on any subject in an ethical and courteous manner. It is a platform on which you will find many CVs and presentations of public and private organizations.","filter-article":"Articles Filter","filter-propau":"PropAU Filter","filter":"Filter","key-words":"Keys Words","continent":"Continent","zoned":"Zoned","country":"Country","ministry":"Ministry","search":"Search","register":"Register","recent-posts":"Recent Posts","video":"Video","presentation":"Presentation","language":"Language","all":"","full-name":"Full Name","firstname":"Name","lastname":"First name","adresse":"Adress","login-welcome-msg":"Welcome to Africaunity","login-desc":"Log in to your account and interact in the spirit of courtesy of the community. Do not hesitate to contact us at any time if you encounter any difficulties.Log in to your account and interact in the spirit of courtesy of the community. Do not hesitate to contact us at any time if you encounter any difficulties.","no-signup":"Do not have an account yet ?","already-signup":"Already have an account ?","email":"E-mail","password":"Password","confirm-password":"Confirm password","password-forgot":"Forgot your password","show-confidentail-politic":"View Privacy Policy","confirm-confidentail-politic":"Confirm that you accept our privacy policy","create-account":"Create an account","pack":"Pack","account":"My account","comments":"Comments","my-ads":"My Ads","my-jobs":"My Jobs Offers","create-other-account":"Do you want to create an account instead?","business":"Business","politic":"Politics","register-free-desc":"We are happy to have you in this community dedicated to the emergence of Africa and Latin America. Fill in the fields to create your free account and access special member benefits.","register-desc":"Please create an account that suits your status and benefit from the many advantages","register-pay-desc":"We are happy to have you in this community dedicated to the emergence of Africa and Latin America. Fill in the fields to create your account and access special member benefits.","social-reason":"Social reason","denomination":"Denomination","plan-desc1":"Presentation page","plan-desc2":"Write articles","plan-desc3":"Write PropAU","plan-desc4":"Comment on posts","plan-desc5":"Search jobs","plan-desc6":"Post ads","plan-desc7":"Increase your visibility","plan-desc8":"Post jobs","logout":"Logout","corporation":"Corporation","physical-person":"Physical Person","free":"Free","year":"year","unlimited":"Unlimited","essential-features":"Essential Features","advanced-features":"Advanced Features","add":"Add","your":"Your","add-desc-1":"will be published in the current language of the site","edit":"Edit","content":"Content","thumbnails":"Featured image","title":"Title","save":"Save","select-lang":"Please select the language of publication","good-msg-post":"Please keep in mind that courtesy is the key word of the community","read-more":"Read More","no-content":"No Content","ads":"Announcement","university":"University","category":"Category","contact-phone":"Contact number","contact-email":"Contact Email Address","price":"Price","currency":"Currency","website":"WebSite","description":"Description","city":"City","location":"Location","company-name":"Company Name","company-logo":"Company logo","company-website":"Company Website","company-email":"Company email address","work-mode":"Work mode","work-dept":"Work department","offer-type":"Type of offer","y-experience":"Year of experience","activity-area":"Activity area","level-study":"Study level","size-company":"Size of the company","type-company":"Type of the company","size-institution":"Institution size","status":"Status","rsearch-p":"Partner search","o-activity":"Other activites","birth-date":"Date of Birth","create-date":"Creation date","legal-status":"Legal status","speak-language":"Spoken languages","sex":"Sex","male":"Male","female":"Female","perimetre":"Perimeter","phone-number":"Phone number","native-country":"Native country","residence-country":"Country of residence","social-country":"Headquarters country","social-object":"Social object","name-responsable":"Last name & first name of the person in charge","goal-attribution":"Purpose - Allocation","details":"Details","ads-university":"Announcements relating to","contact-ads":"Contact the advertiser","actif":"Active","no-actif":"Not Active","contact-about-1":"Invitation to a conference","contact-about-2":"Commercial proposition","contact-about-3":"Proposition of collaboration","contact-about-4":"Propose a university","contact-about-5":"Others","send":"Send","report":"Report","the-post":"This post","setting-account":"Account setting","hide-filter":"Hide filter","show-filter":"Show filter","provided":"Provided","in-progress":"In progress","privacy":"Privacy","change-password":"Change the password","delete-account":"Delete account","delete-account-desc":"To delete your account enter your password below","delete":"Delete","update-s":"Update successful","profile-picture":"Profile picture","cover-picture":"Cover picture","update":"Update","privacy-desc":"Who can see your profile","evreyone":"Everyone","only-me":"Only me","download-data":"Download your data","download":"Download","show-more":"See more","hide-more":"See Less","write-email":"Enter your email address","msg-sucess-send-Fp":"The password reset link has been emailed to you.","msg-sucess-reset-p":"The password has been changed successfully","mark-provided":"Mark as filled","maintain-crtl":"Hold the CTRL key to select multiple","apply":"Apply","download-data-desc":"Enter your password to confirm the export of your personal data","delete-data":"Erasing your data","delete-data-desc":"Enter your password to confirm the deletion of your personal data (articles, propau, comments, announcements, jobs, etc.)","old-password":"Old Password","new-password":"New Password","complete-delete":"Complete removal","complete-delete-desc":"This will result in the deletion of all your data on this site.","partial-delete":"Partial deletion","partial-delete-desc":"This deactivates your account, to reactivate it you must contact the administrators of the site via the contact form","diplome-certification":"Diploma and Certification","contact-msg":"To contact us, please complete the form below","report-msg":"Say what you don\'t like","msg-contact-sucess":"Thank you for having contacted us. We will respond to you within 48 hours. In the meantime, take advantage of the offers, announcements and job opportunities in your sector!!!","msg-a-register":"We are happy to have you in this community dedicated to the emergence of Africa and Latin America. Fill in the fields to create your free account and access special member benefits. Activate your account by clicking on the activation link sent by email.","modal-not-login":"Access to this content is restricted to subscribers. Please login or register","modal-verif-ok":"Your account has been successfully created. Log in to take advantage of the features offered by the AU platform"}');
 
 /***/ }),
 
@@ -66879,7 +66917,7 @@ module.exports = JSON.parse('{"lastest":"Lastest","fr":"Français","en":"English
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"lastest":"Reciente","fr":"Français","en":"English","es":"Español","pt":"Português","articles":"Articulos","profile":"Perfil","propau":"PropAU","univerities":"Universidades","contact":"Contactos","jobs":"Jobs","particular":"Especial","establishment":"Establecimiento","ip":"Instituciones politicas","login":"Iniciar sesión","about-title":"A proposito","about-text":"AfricaUnity es una red social profesional y un think tank digital para el desarrollo de África y América Latina. A través de artículos escritos ofrecidos a ministerios, instituciones y organizaciones, los contribuyentes de AfricaUnity participan en la mejora de los distintos Estados. Los participantes tienen la oportunidad de interactuar sobre cualquier tema de manera ética y cortés. Es una plataforma en la que encontrarás muchos CV y ​​presentaciones de organizaciones públicas y privadas.","filter-article":"Filtro de Articulos","filter-propau":"Filtro de PropAU","filter":"Filtrar","key-words":"Palabra Clave","continent":"Continente","zoned":"Zonificado","country":"Pais","ministry":"Ministro","search":"Buscar","register":"Registrarse","recent-posts":"Mensajes Recientes","video":"Video","presentation":"Presentacion","language":"Lengua","all":"","full-name":"Nombre completo","firstname":"Apellido","lastname":"Primer nombre","adresse":"Habla a","login-welcome-msg":"Bienvenido a AfricaUnity","login-desc":"Inicie sesión en su cuenta e interactúe con el espíritu de cortesía de la comunidad. No dude en ponerse en contacto con nosotros en cualquier momento si encuentra alguna dificultad.","no-signup":"Aun no tiene una cuenta ?","already-signup":"Ya tienes una cuenta ?","email":"E-mail","password":"Contraseña","confirm-password":"Confirmar la contraseña","password-forgot":"Contraseña olvidada","show-confidentail-politic":"Ver política de privacidad","confirm-confidentail-politic":"Confirma que aceptas nuestra política de privacidad","create-account":"Crear una cuenta","pack":"Paquete","account":"Mi cuenta","create-other-account":"¿Quieres crear una cuenta en su lugar","business":"Negocio","politic":"Política","register-free-desc":"Estamos felices de tenerte en esta comunidad dedicada al surgimiento de África y América Latina. Complete los campos para crear su cuenta gratuita y acceder a los beneficios especiales para miembros.","register-desc":"Cree una cuenta que se adapte a su estado y benefíciese de las numerosas ventajas","register-pay-desc":"Estamos felices de tenerte en esta comunidad dedicada al surgimiento de África y América Latina. Complete los campos para crear su cuenta y acceder a beneficios especiales para miembros.","social-reason":"Razón social","denomination":"Denominación","plan-desc1":"Página de presentación","plan-desc2":"Escribe artículos","plan-desc3":"Escritura de PropAU","plan-desc4":"Comentar en las publicaciones","plan-desc5":"Buscar empleos","plan-desc6":"Publicar anuncios","plan-desc7":"Aumenta tu visibilidad","plan-desc8":"Publicar trabajos","logout":"Cerrar sesión","corporation":"Corporación","physical-person":"Persona física","free":"Gratis","year":"año","unlimited":"Ilimitado","essential-features":"Características esenciales","advanced-features":"Características avanzadas","add":"Agregar","edit":"Editar","your":"Tu","content":"Contenido","thumbnails":"Foto principal","title":"Título","save":"Salvar","comments":"Comentarios","my-ads":"Mis anuncios","my-jobs":"Mis ofertas de trabajo","add-desc-1":"se publicará en el idioma actual del sitio","select-lang":"Por favor seleccione el idioma de publicación","good-msg-post":"Tenga en cuenta que la cortesía es la palabra clave de la comunidad.","read-more":"Leer más","no-content":"Sin contenido","ads":"Anuncio","university":"Universidad","category":"Categoría","contact-phone":"Número de contacto","contact-email":"Correo electrónico de contacto","price":"Premio","currency":"Divisa","website":"Sitio web","description":"Descripción","city":"Ciudad","location":"Localización","company-name":"Nombre de la empresa","company-logo":"Logo de la compañía","company-website":"Página Web de la compañía","company-email":"Dirección de correo electrónico de la empresa","work-mode":"Modo de trabajo","work-dept":"Departamento de trabajo","offer-type":"Tipo de oferta","y-experience":"Año de experiencia","activity-area":"Sector de actividad","level-study":"Nivel de estudios","size-company":"Tamaño de la empresa","type-company":"Tipo de empresa","size-institution":"Tamaño de la institución","status":"Estado","rsearch-p":"Búsqueda de socios","o-activity":"Otras actividades","birth-date":"Fecha de nacimiento","create-date":"Fecha de creación","legal-status":"Forma jurídica","speak-language":"Lenguas habladas","sex":"Sexo","male":"Hombre","female":"Mujeres","perimetre":"Perímetro","phone-number":"Número de teléfono","native-country":"País de origen","residence-country":"País de residencia","social-country":"País de la sede","social-object":"Objeto social","name-responsable":"Apellido y nombre de la persona a cargo","goal-attribution":"Propósito - Asignación","details":"Detalles","ads-university":"Anuncios relacionados con","contact-ads":"Contacta con el anunciante","actif":"Activo","no-actif":"No activo","contact-about-1":"Invitación a una conferencia","contact-about-2":"Propuesta comercial","contact-about-3":"Propuesta de colaboración","contact-about-4":"proponer una universidad","contact-about-5":"Otros","send":"Enviar a","report":"Reporte","the-post":"Esta publicación","setting-account":"Configuración de la cuenta","hide-filter":"Ocultar filtro","show-filter":"Mostrar filtro","provided":"Prevista","in-progress":"En curso","privacy":"Privacidad","change-password":"cambiar la contraseña","delete-account":"Borrar cuenta","delete-account-desc":"Para eliminar su cuenta ingrese su contraseña a continuación","delete":"Borrar","update-s":"Actualización exitosa","profile-picture":"Foto de perfil","cover-picture":"Imagen de portada","update":"Actualizar","privacy-desc":"Quién puede ver tu perfil","evreyone":"Todos","only-me":"Solo yo","download-data":"Descarga tus datos","download":"Descargar","download-data-desc":"Introduzca su contraseña para confirmar la exportación de sus datos personales","delete-data":"Borrando tus datos","delete-data-desc":"Ingrese su contraseña para confirmar la eliminación de sus datos personales (artículos, propau, comentarios, anuncios, trabajos, etc.)","old-password":"Contraseña anterior","new-password":"Nueva contraseña","complete-delete":"eliminación completa","complete-delete-desc":"Esto resultará en la eliminación de todos sus datos en este sitio.","partial-delete":"Eliminación parcial","partial-delete-desc":"Esto desactiva su cuenta, para reactivarla debe comunicarse con los administradores del sitio a través del formulario de contacto.","diplome-certification":"Diploma y Certificación","contact-msg":"Para contactarnos, por favor complete el siguiente formulario","report-msg":"Di lo que no te gusta de esta publicación.","msg-contact-sucess":"Gracias por habernos contactado. Le responderemos dentro de las 48 horas. Mientras tanto, aprovecha las ofertas, anuncios y oportunidades laborales de tu sector!!!","msg-a-register":"Estamos felices de tenerte en esta comunidad dedicada al surgimiento de África y América Latina. Complete los campos para crear su cuenta gratuita y acceder a los beneficios especiales para miembros. Active su cuenta haciendo clic en el enlace de activación enviado por correo electrónico.","modal-not-login":"El acceso a este contenido está restringido a suscriptores. Por favor, inicie sesión o regístrese","modal-verif-ok":"Tu cuenta ha sido creada satisfactoriamente. Inicie sesión para aprovechar las funciones que ofrece la plataforma AU"}');
+module.exports = JSON.parse('{"lastest":"Reciente","fr":"Français","en":"English","es":"Español","pt":"Português","articles":"Articulos","profile":"Perfil","propau":"PropAU","univerities":"Universidades","contact":"Contactos","jobs":"Jobs","particular":"Especial","establishment":"Establecimiento","ip":"Instituciones politicas","login":"Iniciar sesión","about-title":"A proposito","about-text":"AfricaUnity es una red social profesional y un think tank digital para el desarrollo de África y América Latina. A través de artículos escritos ofrecidos a ministerios, instituciones y organizaciones, los contribuyentes de AfricaUnity participan en la mejora de los distintos Estados. Los participantes tienen la oportunidad de interactuar sobre cualquier tema de manera ética y cortés. Es una plataforma en la que encontrarás muchos CV y ​​presentaciones de organizaciones públicas y privadas.","filter-article":"Filtro de Articulos","filter-propau":"Filtro de PropAU","filter":"Filtrar","key-words":"Palabra Clave","continent":"Continente","zoned":"Zonificado","country":"Pais","ministry":"Ministro","search":"Buscar","register":"Registrarse","recent-posts":"Mensajes Recientes","video":"Video","presentation":"Presentacion","language":"Lengua","all":"","full-name":"Nombre completo","firstname":"Apellido","lastname":"Primer nombre","adresse":"Habla a","login-welcome-msg":"Bienvenido a AfricaUnity","login-desc":"Inicie sesión en su cuenta e interactúe con el espíritu de cortesía de la comunidad. No dude en ponerse en contacto con nosotros en cualquier momento si encuentra alguna dificultad.","no-signup":"Aun no tiene una cuenta ?","already-signup":"Ya tienes una cuenta ?","email":"E-mail","password":"Contraseña","confirm-password":"Confirmar la contraseña","password-forgot":"Contraseña olvidada","show-confidentail-politic":"Ver política de privacidad","confirm-confidentail-politic":"Confirma que aceptas nuestra política de privacidad","create-account":"Crear una cuenta","pack":"Paquete","account":"Mi cuenta","create-other-account":"¿Quieres crear una cuenta en su lugar","business":"Negocio","politic":"Política","register-free-desc":"Estamos felices de tenerte en esta comunidad dedicada al surgimiento de África y América Latina. Complete los campos para crear su cuenta gratuita y acceder a los beneficios especiales para miembros.","register-desc":"Cree una cuenta que se adapte a su estado y benefíciese de las numerosas ventajas","register-pay-desc":"Estamos felices de tenerte en esta comunidad dedicada al surgimiento de África y América Latina. Complete los campos para crear su cuenta y acceder a beneficios especiales para miembros.","social-reason":"Razón social","denomination":"Denominación","plan-desc1":"Página de presentación","plan-desc2":"Escribe artículos","plan-desc3":"Escritura de PropAU","plan-desc4":"Comentar en las publicaciones","plan-desc5":"Buscar empleos","plan-desc6":"Publicar anuncios","plan-desc7":"Aumenta tu visibilidad","plan-desc8":"Publicar trabajos","logout":"Cerrar sesión","corporation":"Corporación","physical-person":"Persona física","free":"Gratis","year":"año","unlimited":"Ilimitado","essential-features":"Características esenciales","advanced-features":"Características avanzadas","add":"Agregar","edit":"Editar","your":"Tu","content":"Contenido","thumbnails":"Foto principal","title":"Título","save":"Salvar","comments":"Comentarios","my-ads":"Mis anuncios","my-jobs":"Mis ofertas de trabajo","add-desc-1":"se publicará en el idioma actual del sitio","select-lang":"Por favor seleccione el idioma de publicación","good-msg-post":"Tenga en cuenta que la cortesía es la palabra clave de la comunidad.","read-more":"Leer más","no-content":"Sin contenido","ads":"Anuncio","university":"Universidad","category":"Categoría","contact-phone":"Número de contacto","contact-email":"Correo electrónico de contacto","price":"Premio","currency":"Divisa","website":"Sitio web","description":"Descripción","city":"Ciudad","location":"Localización","company-name":"Nombre de la empresa","company-logo":"Logo de la compañía","company-website":"Página Web de la compañía","company-email":"Dirección de correo electrónico de la empresa","work-mode":"Modo de trabajo","work-dept":"Departamento de trabajo","offer-type":"Tipo de oferta","y-experience":"Año de experiencia","activity-area":"Sector de actividad","level-study":"Nivel de estudios","size-company":"Tamaño de la empresa","type-company":"Tipo de empresa","size-institution":"Tamaño de la institución","status":"Estado","rsearch-p":"Búsqueda de socios","o-activity":"Otras actividades","birth-date":"Fecha de nacimiento","create-date":"Fecha de creación","legal-status":"Forma jurídica","speak-language":"Lenguas habladas","sex":"Sexo","male":"Hombre","female":"Mujeres","perimetre":"Perímetro","phone-number":"Número de teléfono","native-country":"País de origen","residence-country":"País de residencia","social-country":"País de la sede","social-object":"Objeto social","name-responsable":"Apellido y nombre de la persona a cargo","goal-attribution":"Propósito - Asignación","details":"Detalles","ads-university":"Anuncios relacionados con","contact-ads":"Contacta con el anunciante","actif":"Activo","no-actif":"No activo","contact-about-1":"Invitación a una conferencia","contact-about-2":"Propuesta comercial","contact-about-3":"Propuesta de colaboración","contact-about-4":"proponer una universidad","contact-about-5":"Otros","send":"Enviar a","report":"Reporte","the-post":"Esta publicación","setting-account":"Configuración de la cuenta","hide-filter":"Ocultar filtro","show-filter":"Mostrar filtro","provided":"Prevista","in-progress":"En curso","privacy":"Privacidad","change-password":"cambiar la contraseña","delete-account":"Borrar cuenta","delete-account-desc":"Para eliminar su cuenta ingrese su contraseña a continuación","delete":"Borrar","update-s":"Actualización exitosa","profile-picture":"Foto de perfil","cover-picture":"Imagen de portada","update":"Actualizar","privacy-desc":"Quién puede ver tu perfil","evreyone":"Todos","only-me":"Solo yo","download-data":"Descarga tus datos","download":"Descargar","show-more":"Ver más","hide-more":"Ver menos","write-email":"Ingrese su dirección de correo electrónico","msg-sucess-send-Fp":"El enlace de restablecimiento de contraseña se le ha enviado por correo electrónico.","msg-sucess-reset-p":"La contraseña ha sido cambiada con éxito","mark-provided":"Marcar como lleno","maintain-crtl":"Mantenga presionada la tecla CTRL para seleccionar varios","apply":"Aplicar","download-data-desc":"Introduzca su contraseña para confirmar la exportación de sus datos personales","delete-data":"Borrando tus datos","delete-data-desc":"Ingrese su contraseña para confirmar la eliminación de sus datos personales (artículos, propau, comentarios, anuncios, trabajos, etc.)","old-password":"Contraseña anterior","new-password":"Nueva contraseña","complete-delete":"eliminación completa","complete-delete-desc":"Esto resultará en la eliminación de todos sus datos en este sitio.","partial-delete":"Eliminación parcial","partial-delete-desc":"Esto desactiva su cuenta, para reactivarla debe comunicarse con los administradores del sitio a través del formulario de contacto.","diplome-certification":"Diploma y Certificación","contact-msg":"Para contactarnos, por favor complete el siguiente formulario","report-msg":"Di lo que no te gusta.","msg-contact-sucess":"Gracias por habernos contactado. Le responderemos dentro de las 48 horas. Mientras tanto, aprovecha las ofertas, anuncios y oportunidades laborales de tu sector!!!","msg-a-register":"Estamos felices de tenerte en esta comunidad dedicada al surgimiento de África y América Latina. Complete los campos para crear su cuenta gratuita y acceder a los beneficios especiales para miembros. Active su cuenta haciendo clic en el enlace de activación enviado por correo electrónico.","modal-not-login":"El acceso a este contenido está restringido a suscriptores. Por favor, inicie sesión o regístrese","modal-verif-ok":"Tu cuenta ha sido creada satisfactoriamente. Inicie sesión para aprovechar las funciones que ofrece la plataforma AU"}');
 
 /***/ }),
 
@@ -66890,7 +66928,7 @@ module.exports = JSON.parse('{"lastest":"Reciente","fr":"Français","en":"Englis
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"lastest":"Récents","fr":"Français","en":"English","es":"Español","pt":"Português","articles":"Articles","profile":"Profil","propau":"PropAU","univerities":"Universités","contact":"Contact","jobs":"Jobs","particular":"Particulier","establishment":"Etablissement","ip":"Institution Politique","login":"Se Connecter","register":"S\'inscrire","about-title":"A Propos","about-text":"AfricaUnity est un réseau social professionnel et un groupe de réflexion numérique pour le développement de l\'Afrique et de l\'Amérique latine. A travers des articles écrits proposés aux ministères, institutions et organisations, les contributeurs d\'AfricaUnity participent à l\'amélioration des différents Etats. Les participants ont la possibilité d\'interagir sur n\'importe quel sujet de manière éthique et courtoise. C\'est une plateforme sur laquelle vous trouverez de nombreux CV et présentations d\'organismes publics et privés.","filter-article":"Filtre Articles","filter-propau":"Filtre PropAU","filter":"Filtrer","key-words":"Mot Clés","continent":"Continent","zoned":"Zone","country":"Pays","ministry":"Ministère","search":"Recherche","recent-posts":"Postes Récents","video":"Vidéo","presentation":"Présentation","language":"Langue","all":"","full-name":"Nom Complet","firstname":"Nom","lastname":"Prénom","adresse":"Adresse","login-welcome-msg":"Bienvenue sur AfricaUnity","login-desc":"Connectez-vous à votre compte et interagissez dans l’esprit de courtoisie de la communauté. N’hésitez pas à nous contacter à tout moment si vous rencontrez des difficultés quelconques.","no-signup":"Vous n\'avez pas encore de compte ?","already-signup":"Vous avez déja un compte ?","email":"E-mail","password":"Mot de passe","confirm-password":"Confirmer le Mot de passe","password-forgot":"Mot de passe oublié","show-confidentail-politic":"Afficher la politique de confidentialité","confirm-confidentail-politic":"Confirmer que vous acceptez notre politique de confidentialité","create-account":"Créer un compte","pack":"Pack","account":"Mon Compte","create-other-account":"Vous voulez plutot créer un compte","business":"Business","politic":"Politique","register-free-desc":"Nous sommes heureux de vous avoir dans cette communauté dédiée à l’émergence de l’Afrique et de l’Amérique Latine. Remplissez les champs pour créer votre compte gratuitement et accédez aux avantages spéciaux des membres.","register-desc":"Merci de créer un compte qui sied à votre statut et bénéficiez des nombreux avantages","register-pay-desc":"Nous sommes heureux de vous avoir dans cette communauté dédiée à l’émergence de l’Afrique et de l’Amérique Latine. Remplissez les champs pour créer votre compte et accédez aux avantages spéciaux des membres.","social-reason":"Raison Social","denomination":"Dénomination","plan-desc1":"Page de présentation","plan-desc2":"Rédiger des articles","plan-desc3":"Rédiger des PropAU","plan-desc4":"Commenter les publications","plan-desc5":"Rechercher des jobs","plan-desc6":"Poster des annonces","plan-desc7":"Augmenter votre visibilité","plan-desc8":"Poster des jobs","logout":"Déconnexion","corporation":"Personne Morale","physical-person":"Personne physique","free":"Gratuit","year":"An","unlimited":"Illimité","essential-features":"Essential Features","advanced-features":"Advanced Features","add":"Ajouter un","edit":"Editer un","your":"Votre","content":"Contenu","thumbnails":"Image mise en avant","title":"Titre","save":"Enregistrer","comments":"Commentaires","my-ads":"Mes Annonces","my-jobs":"Mes offres d\'emploi","add-desc-1":"sera publié dans la langue actuelle du site","select-lang":"Veuillez sélectionner la langue de publication","good-msg-post":"Merci de garder à l\'esprit que la courtoisie est le maitre mot de la communauté","read-more":"Lire la suite","no-content":"Pas de contenu","ads":"Annonce","university":"Université","category":"Catégorie","contact-phone":"Numéro de Contact","contact-email":"Adresse E-mail de Contact","price":"Prix","currency":"Devise","website":"Site Web","description":"Description","city":"Ville","location":"Localisation","company-name":"Nom de l\'entreprise","company-logo":"Logo de l\'entreprise","company-website":"Site Web de l\'entreprise","company-email":"Adresse E-mail de l\'entreprise","work-mode":"Mode de travail","work-dept":"Département de travail","offer-type":"Type d\'offre","y-experience":"Année d\'experience","activity-area":"Secteur d\'activité","level-study":"Niveau d\'étude","size-company":"Taille de l\'entreprise","type-company":"Type d\'entreprise","size-institution":"Taille de l\'institution","status":"Statut","rsearch-p":"Recherche de partenaire","o-activity":"Autres Activités","birth-date":"Date de naissance","create-date":"Date de création","legal-status":"Forme juridique","speak-language":"Langues parlées","sex":"Sexe","male":"Homme","female":"Femme","perimetre":"Périmètre","phone-number":"Numéro de téléphone","native-country":"Pays d\'origine","residence-country":"Pays de Résidence","social-country":"Pays du siège social","social-object":"Objet Social","name-responsable":"Nom & Prénom du Responsable","goal-attribution":"But - Attribution","details":"Détails","ads-university":"Les Annonces relatives à","contact-ads":"Contactez le lanceur d\'annonce","actif":"Actif","no-actif":"Non Actif","diplome-certification":"Diplôme et Certification","contact-about-1":"Invitation à une conférence","contact-about-2":"Proposition commerciale","contact-about-3":"Proposition de collaboration","contact-about-4":"Proposer une université","contact-about-5":"Autres","send":"Envoyer","report":"Signaler","the-post":"Cette publication","setting-account":"Paramètre du compte","hide-filter":"Masquer le filtre","show-filter":"Afficher le filtre","provided":"Pourcu","in-progress":"En Cours","privacy":"Confidentialité","change-password":"Changer le mot de passe","delete-account":"Supprimer le compte","delete-account-desc":"Pour supprimer votre compte entrez votre mot de passe ci-dessous","delete":"Supprimer","update-s":"Mise à jour réussie","profile-picture":"Photo de profil","cover-picture":"Photo de couverture","update":"Mettre à jour","privacy-desc":"Qui peut voir votre profil","evreyone":"Tout le monde","only-me":"Seulement moi","download-data":"Téléchargez vos données","download":"Télécharger","download-data-desc":"Entrez votre mot de passe pour confirmer l\'exportation de vos données personnelles","delete-data":"Effacement de vos données","delete-data-desc":"Entrez votre mot de passe pour confirmer la suppression de vos données personnelles (articles, propau, commentaires, annonces, offres d\'emploi, etc.)","old-password":"Ancien mot de passe","new-password":"Nouveu mot de passe","complete-delete":"Suppression complète","complete-delete-desc":"Cela entraînera la suppression de toutes vos données sur ce site.","partial-delete":"Suppression partielle","partial-delete-desc":"Ceci désactive votre compte, pour le réactiver vous devez contacter les administrateurs du site via le formulaire de contact","contact-msg":"Pour nous contacter, veuillez remplir le formulaire ci-dessous","report-msg":"Dites ce qui vous déplait sur cette publication","msg-contact-sucess":"Merci de nous avoir contacté. Nous vous répondrons dans les 48h. EN attendant profitez des offres, annonce et opportunité d\'emploi dans votre secteur !!!","msg-a-register":"Nous sommes heureux de vous avoir dans cette communauté dédiée à l\'émergence de l\'Afrique et l\'Amérique Latine. Remplissez les champs pour créer votre compte gratuitement et accédez aux avantages spéciaux des membres. Activez votre compte en cliquant sur le lien d\'activation envoyé par e-mail.","modal-not-login":"L\'accés à ce contenu est réservé aux inscrits. Merci de vous connecter ou vous inscrire","modal-verif-ok":"Votre compte a été créé avec succès. Connectez-vous pour profiter des fonctionnalités que propose la plateforme AU"}');
+module.exports = JSON.parse('{"lastest":"Récents","fr":"Français","en":"English","es":"Español","pt":"Português","articles":"Articles","profile":"Profil","propau":"PropAU","univerities":"Universités","contact":"Contact","jobs":"Jobs","particular":"Particulier","establishment":"Etablissement","ip":"Institution Politique","login":"Se Connecter","register":"S\'inscrire","about-title":"A Propos","about-text":"AfricaUnity est un réseau social professionnel et un groupe de réflexion numérique pour le développement de l\'Afrique et de l\'Amérique latine. A travers des articles écrits proposés aux ministères, institutions et organisations, les contributeurs d\'AfricaUnity participent à l\'amélioration des différents Etats. Les participants ont la possibilité d\'interagir sur n\'importe quel sujet de manière éthique et courtoise. C\'est une plateforme sur laquelle vous trouverez de nombreux CV et présentations d\'organismes publics et privés.","filter-article":"Filtre Articles","filter-propau":"Filtre PropAU","filter":"Filtrer","key-words":"Mot Clés","continent":"Continent","zoned":"Zone","country":"Pays","ministry":"Ministère","search":"Recherche","recent-posts":"Postes Récents","video":"Vidéo","presentation":"Présentation","language":"Langue","all":"","full-name":"Nom Complet","firstname":"Nom","lastname":"Prénom","adresse":"Adresse","login-welcome-msg":"Bienvenue sur AfricaUnity","login-desc":"Connectez-vous à votre compte et interagissez dans l’esprit de courtoisie de la communauté. N’hésitez pas à nous contacter à tout moment si vous rencontrez des difficultés quelconques.","no-signup":"Vous n\'avez pas encore de compte ?","already-signup":"Vous avez déja un compte ?","email":"E-mail","password":"Mot de passe","confirm-password":"Confirmer le Mot de passe","password-forgot":"Mot de passe oublié","show-confidentail-politic":"Afficher la politique de confidentialité","confirm-confidentail-politic":"Confirmer que vous acceptez notre politique de confidentialité","create-account":"Créer un compte","pack":"Pack","account":"Mon Compte","create-other-account":"Vous voulez plutot créer un compte","business":"Business","politic":"Politique","register-free-desc":"Nous sommes heureux de vous avoir dans cette communauté dédiée à l’émergence de l’Afrique et de l’Amérique Latine. Remplissez les champs pour créer votre compte gratuitement et accédez aux avantages spéciaux des membres.","register-desc":"Merci de créer un compte qui sied à votre statut et bénéficiez des nombreux avantages","register-pay-desc":"Nous sommes heureux de vous avoir dans cette communauté dédiée à l’émergence de l’Afrique et de l’Amérique Latine. Remplissez les champs pour créer votre compte et accédez aux avantages spéciaux des membres.","social-reason":"Raison Social","denomination":"Dénomination","plan-desc1":"Page de présentation","plan-desc2":"Rédiger des articles","plan-desc3":"Rédiger des PropAU","plan-desc4":"Commenter les publications","plan-desc5":"Rechercher des jobs","plan-desc6":"Poster des annonces","plan-desc7":"Augmenter votre visibilité","plan-desc8":"Poster des jobs","logout":"Déconnexion","corporation":"Personne Morale","physical-person":"Personne physique","free":"Gratuit","year":"An","unlimited":"Illimité","essential-features":"Essential Features","advanced-features":"Advanced Features","add":"Ajouter un","edit":"Editer un","your":"Votre","content":"Contenu","thumbnails":"Image mise en avant","title":"Titre","save":"Enregistrer","comments":"Commentaires","my-ads":"Mes Annonces","my-jobs":"Mes offres d\'emploi","add-desc-1":"sera publié dans la langue actuelle du site","select-lang":"Veuillez sélectionner la langue de publication","good-msg-post":"Merci de garder à l\'esprit que la courtoisie est le maitre mot de la communauté","read-more":"Lire la suite","no-content":"Pas de contenu","ads":"Annonce","university":"Université","category":"Catégorie","contact-phone":"Numéro de Contact","contact-email":"Adresse E-mail de Contact","price":"Prix","currency":"Devise","website":"Site Web","description":"Description","city":"Ville","location":"Localisation","company-name":"Nom de l\'entreprise","company-logo":"Logo de l\'entreprise","company-website":"Site Web de l\'entreprise","company-email":"Adresse E-mail de l\'entreprise","work-mode":"Mode de travail","work-dept":"Département de travail","offer-type":"Type d\'offre","y-experience":"Année d\'experience","activity-area":"Secteur d\'activité","level-study":"Niveau d\'étude","size-company":"Taille de l\'entreprise","type-company":"Type d\'entreprise","size-institution":"Taille de l\'institution","status":"Statut","rsearch-p":"Recherche de partenaire","o-activity":"Autres Activités","birth-date":"Date de naissance","create-date":"Date de création","legal-status":"Forme juridique","speak-language":"Langues parlées","sex":"Sexe","male":"Homme","female":"Femme","perimetre":"Périmètre","phone-number":"Numéro de téléphone","native-country":"Pays d\'origine","residence-country":"Pays de Résidence","social-country":"Pays du siège social","social-object":"Objet Social","name-responsable":"Nom & Prénom du Responsable","goal-attribution":"But - Attribution","details":"Détails","ads-university":"Les Annonces relatives à","contact-ads":"Contactez le lanceur d\'annonce","actif":"Actif","no-actif":"Non Actif","diplome-certification":"Diplôme et Certification","contact-about-1":"Invitation à une conférence","contact-about-2":"Proposition commerciale","contact-about-3":"Proposition de collaboration","contact-about-4":"Proposer une université","contact-about-5":"Autres","send":"Envoyer","report":"Signaler","the-post":"Cette publication","setting-account":"Paramètre du compte","hide-filter":"Masquer le filtre","show-filter":"Afficher le filtre","provided":"Pourvu","in-progress":"En Cours","privacy":"Confidentialité","change-password":"Changer le mot de passe","delete-account":"Supprimer le compte","delete-account-desc":"Pour supprimer votre compte entrez votre mot de passe ci-dessous","delete":"Supprimer","update-s":"Mise à jour réussie","profile-picture":"Photo de profil","cover-picture":"Photo de couverture","update":"Mettre à jour","privacy-desc":"Qui peut voir votre profil","evreyone":"Tout le monde","only-me":"Seulement moi","download-data":"Téléchargez vos données","download":"Télécharger","show-more":"Voir Plus","hide-more":"Voir Moins","write-email":"Saisissez votre adresse e-mail","msg-sucess-send-Fp":"Le lien de réinitialisation du mot de passe vous a été envoyé par email","msg-sucess-reset-p":"Le mot de passe a été changé avec succès","mark-provided":"Marquer comme pourvu","maintain-crtl":"Maintenir la touche CTRL pour sélectionner plusieurs","apply":"Postuler","download-data-desc":"Entrez votre mot de passe pour confirmer l\'exportation de vos données personnelles","delete-data":"Effacement de vos données","delete-data-desc":"Entrez votre mot de passe pour confirmer la suppression de vos données personnelles (articles, propau, commentaires, annonces, offres d\'emploi, etc.)","old-password":"Ancien mot de passe","new-password":"Nouveu mot de passe","complete-delete":"Suppression complète","complete-delete-desc":"Cela entraînera la suppression de toutes vos données sur ce site.","partial-delete":"Suppression partielle","partial-delete-desc":"Ceci désactive votre compte, pour le réactiver vous devez contacter les administrateurs du site via le formulaire de contact","contact-msg":"Pour nous contacter, veuillez remplir le formulaire ci-dessous","report-msg":"Dites ce qui vous déplait","msg-contact-sucess":"Merci de nous avoir contacté. Nous vous répondrons dans les 48h. EN attendant profitez des offres, annonce et opportunité d\'emploi dans votre secteur !!!","msg-a-register":"Nous sommes heureux de vous avoir dans cette communauté dédiée à l\'émergence de l\'Afrique et l\'Amérique Latine. Remplissez les champs pour créer votre compte gratuitement et accédez aux avantages spéciaux des membres. Activez votre compte en cliquant sur le lien d\'activation envoyé par e-mail.","modal-not-login":"L\'accés à ce contenu est réservé aux inscrits. Merci de vous connecter ou vous inscrire","modal-verif-ok":"Votre compte a été créé avec succès. Connectez-vous pour profiter des fonctionnalités que propose la plateforme AU"}');
 
 /***/ }),
 
@@ -66901,7 +66939,7 @@ module.exports = JSON.parse('{"lastest":"Récents","fr":"Français","en":"Englis
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"lastest":"Recente","fr":"Français","en":"English","es":"Español","pt":"Português","articles":"Artigos","profile":"Perfil","propau":"PropAU","univerities":"Universidades","contact":"Contactos","jobs":"Jobs","particular":"Especial","establishment":"Establecimiento","ip":"Instituciones politicas","login":"Login","about-title":"A propósito","about-text":"AfricaUnity é uma rede social profissional e um think tank digital para o desenvolvimento da África e da América Latina. Através de artigos escritos oferecidos a ministérios, instituições e organizações, os contribuintes da AfricaUnity participam na melhoria dos vários Estados. Os participantes têm a oportunidade de interagir sobre qualquer assunto de forma ética e cortês. É uma plataforma na qual você encontrará muitos currículos e apresentações de organizações públicas e privadas.","filter-article":"Filtro de Artigos","filter-propau":"Filtro de PropAU","filter":"Filtro","key-words":"Palavra Chave","continent":"Continente","zoned":"Zoneado","country":"Pais","ministry":"Ministério","search":"Pesquisa","register":"Registro","recent-posts":"Postagens Recentes","video":"Video","presentation":"Apresentaçéão","language":"Lingua","all":"","full-name":"Nome completo","firstname":"Nome","lastname":"Primeiro nome","adresse":"Endereço","login-welcome-msg":"Bem-vindo à AfricaUnity","login-desc":"Faça login na sua conta e interaja no espírito de cortesia da comunidade. Não hesite em nos contatar a qualquer momento se encontrar alguma dificuldade.","no-signup":"Não tem uma conta ainda ?","already-signup":"Já tem uma conta ?","email":"E-mail","password":"Senha","confirm-password":"Confirme a Senha","password-forgot":"Esqueceu sua senha","show-confidentail-politic":"Ver Política de Privacidade","confirm-confidentail-politic":"Confirme que você aceita nossa política de privacidade","create-account":"Crie a sua conta aqui","pack":"Pacote","account":"Minha conta","create-other-account":"Deseja criar uma conta em vez disso?","business":"O negócio","politic":"Política","register-free-desc":"Estamos felizes em tê-lo nesta comunidade dedicada ao surgimento da África e da América Latina. Preencha os campos para criar sua conta gratuita e acessar benefícios especiais para membros.","register-desc":"Por favor, crie uma conta que se adapte ao seu status e beneficie-se das muitas vantagens","register-pay-desc":"Estamos felizes em tê-lo nesta comunidade dedicada ao surgimento da África e da América Latina. Preencha os campos para criar sua conta e acessar benefícios especiais para membros.","social-reason":"Razão social","denomination":"Denominação","plan-desc1":"Página de apresentação","plan-desc2":"Escrever artigos","plan-desc3":"Escrever PropAU","plan-desc4":"Comentar nas postagens","plan-desc5":"Procurar empregos","plan-desc6":"Publicar anúncios","plan-desc7":"Aumente sua visibilidade","plan-desc8":"Postar vagas","logout":"Sair","corporation":"Corporation","physical-person":"Pessoa física","free":"Livre","year":"ano","unlimited":"Ilimitado","essential-features":"Caracteristicas essenciais","advanced-features":"Características avançadas","add":"Adicionar","edit":"Editar","your":"Seu","content":"Conteúdo","thumbnails":"Imagem em destaque","title":"Título","save":"Salvar","comments":"Comentários","my-ads":"Meus anúncios","my-jobs":"Minhas ofertas de trabalho","add-desc-1":"será publicado no idioma atual do site","select-lang":"Selecione o idioma de publicação","good-msg-post":"Por favor, tenha em mente que cortesia é a palavra-chave da comunidade","read-more":"consulte Mais informação","no-content":"Sem conteúdo","ads":"Anúncio","university":"Universidade","category":"Categoria","contact-phone":"Número de contato","contact-email":"Endereço de e-mail de contato","price":"Preço","currency":"Moeda","website":"Local na rede Internet","description":"Descrição","city":"Cidade","location":"Localização","company-name":"Nome da empresa","company-logo":"Logotipo da empresa","company-website":"Site da companhia","company-email":"Endereço de e-mail da empresa","work-mode":"Modo de trabalho","work-dept":"Departamento de trabalho","offer-type":"Tipo de oferta","y-experience":"Ano de experiência","activity-area":"Área de atividade","level-study":"Nível de estudo","size-company":"Tamanho da empresa","type-company":"Tipo de Empresa","size-institution":"Tamanho da instituição","status":"Status","rsearch-p":"Pesquisa de parceiros","o-activity":"Outras atividades","birth-date":"Data de nascimento","create-date":"Data de criação","legal-status":"Status legal","speak-language":"Línguas faladas","sex":"Sexo","male":"Macho","female":"Mulheres","perimetre":"Perímetro","phone-number":"Número de telefone","native-country":"País nativo","residence-country":"País de residência","social-country":"País da sede","social-object":"Objeto social","name-responsable":"Sobrenome e nome do responsável","goal-attribution":"Finalidade - Alocação","details":"Detalhes","ads-university":"Anúncios relacionados a","contact-ads":"Entre em contato com o anunciante","actif":"De ativos","no-actif":"Não ativo","contact-about-1":"Convite para uma conferência","contact-about-2":"Proposta comercial","contact-about-3":"Proposta de colaboração","contact-about-4":"Proponha uma universidade","contact-about-5":"Outros","send":"Enviar","report":"Relatório","the-post":"Esta postagem","setting-account":"Configurações de conta","hide-filter":"Ocultar filtro","show-filter":"Mostrar filtro","provided":"Forneceu","in-progress":"Em andamento","privacy":"Privacidade","change-password":"Alterar a senha","delete-account":"Deletar conta","delete-account-desc":"Para excluir sua conta digite sua senha abaixo","delete":"Excluir","update-s":"Atualização bem sucedida","profile-picture":"Foto do perfil","cover-picture":"Foto de capa","update":"Atualizar","privacy-desc":"Quem pode ver seu perfil","evreyone":"Todos","only-me":"Só eu","download-data":"Baixe seus dados","download":"Download","download-data-desc":"Digite sua senha para confirmar a exportação de seus dados pessoais","delete-data":"Apagando seus dados","delete-data-desc":"Digite sua senha para confirmar a exclusão de seus dados pessoais (artigos, propau, comentários, anúncios, empregos, etc.)","old-password":"Senha Antiga","new-password":"Nova Senha","complete-delete":"Remoção completa","complete-delete-desc":"Isso resultará na exclusão de todos os seus dados neste site.","partial-delete":"Exclusão parcial","partial-delete-desc":"Isso desativa sua conta, para reativá-la você deve entrar em contato com os administradores do site através do formulário de contato","diplome-certification":"Diploma e Certificação","contact-msg":"Para entrar em contato conosco, preencha o formulário abaixo","report-msg":"Diga o que você não gosta neste post","msg-contact-sucess":"Obrigado por nos ter contactado. Nós responderemos a você dentro de 48 horas. Enquanto isso, aproveite as ofertas, anúncios e oportunidades de emprego no seu setor!!!","msg-a-register":"Estamos felizes em tê-lo nesta comunidade dedicada ao surgimento da África e da América Latina. Preencha os campos para criar sua conta gratuita e acessar benefícios especiais para membros. Ative sua conta clicando no link de ativação enviado por e-mail.","modal-not-login":"O acesso a este conteúdo é restrito a assinantes. Por favor faça o login ou registre-se","modal-verif-ok":"Votre compte a été creé avec succès. Connectez-vous pour profiter des fonctionnalités proposto pela plataforma AU"}');
+module.exports = JSON.parse('{"lastest":"Recente","fr":"Français","en":"English","es":"Español","pt":"Português","articles":"Artigos","profile":"Perfil","propau":"PropAU","univerities":"Universidades","contact":"Contactos","jobs":"Jobs","particular":"Especial","establishment":"Establecimiento","ip":"Instituciones politicas","login":"Login","about-title":"A propósito","about-text":"AfricaUnity é uma rede social profissional e um think tank digital para o desenvolvimento da África e da América Latina. Através de artigos escritos oferecidos a ministérios, instituições e organizações, os contribuintes da AfricaUnity participam na melhoria dos vários Estados. Os participantes têm a oportunidade de interagir sobre qualquer assunto de forma ética e cortês. É uma plataforma na qual você encontrará muitos currículos e apresentações de organizações públicas e privadas.","filter-article":"Filtro de Artigos","filter-propau":"Filtro de PropAU","filter":"Filtro","key-words":"Palavra Chave","continent":"Continente","zoned":"Zoneado","country":"Pais","ministry":"Ministério","search":"Pesquisa","register":"Registro","recent-posts":"Postagens Recentes","video":"Video","presentation":"Apresentaçéão","language":"Lingua","all":"","full-name":"Nome completo","firstname":"Nome","lastname":"Primeiro nome","adresse":"Endereço","login-welcome-msg":"Bem-vindo à AfricaUnity","login-desc":"Faça login na sua conta e interaja no espírito de cortesia da comunidade. Não hesite em nos contatar a qualquer momento se encontrar alguma dificuldade.","no-signup":"Não tem uma conta ainda ?","already-signup":"Já tem uma conta ?","email":"E-mail","password":"Senha","confirm-password":"Confirme a Senha","password-forgot":"Esqueceu sua senha","show-confidentail-politic":"Ver Política de Privacidade","confirm-confidentail-politic":"Confirme que você aceita nossa política de privacidade","create-account":"Crie a sua conta aqui","pack":"Pacote","account":"Minha conta","create-other-account":"Deseja criar uma conta em vez disso?","business":"O negócio","politic":"Política","register-free-desc":"Estamos felizes em tê-lo nesta comunidade dedicada ao surgimento da África e da América Latina. Preencha os campos para criar sua conta gratuita e acessar benefícios especiais para membros.","register-desc":"Por favor, crie uma conta que se adapte ao seu status e beneficie-se das muitas vantagens","register-pay-desc":"Estamos felizes em tê-lo nesta comunidade dedicada ao surgimento da África e da América Latina. Preencha os campos para criar sua conta e acessar benefícios especiais para membros.","social-reason":"Razão social","denomination":"Denominação","plan-desc1":"Página de apresentação","plan-desc2":"Escrever artigos","plan-desc3":"Escrever PropAU","plan-desc4":"Comentar nas postagens","plan-desc5":"Procurar empregos","plan-desc6":"Publicar anúncios","plan-desc7":"Aumente sua visibilidade","plan-desc8":"Postar vagas","logout":"Sair","corporation":"Corporation","physical-person":"Pessoa física","free":"Livre","year":"ano","unlimited":"Ilimitado","essential-features":"Caracteristicas essenciais","advanced-features":"Características avançadas","add":"Adicionar","edit":"Editar","your":"Seu","content":"Conteúdo","thumbnails":"Imagem em destaque","title":"Título","save":"Salvar","comments":"Comentários","my-ads":"Meus anúncios","my-jobs":"Minhas ofertas de trabalho","add-desc-1":"será publicado no idioma atual do site","select-lang":"Selecione o idioma de publicação","good-msg-post":"Por favor, tenha em mente que cortesia é a palavra-chave da comunidade","read-more":"consulte Mais informação","no-content":"Sem conteúdo","ads":"Anúncio","university":"Universidade","category":"Categoria","contact-phone":"Número de contato","contact-email":"Endereço de e-mail de contato","price":"Preço","currency":"Moeda","website":"Local na rede Internet","description":"Descrição","city":"Cidade","location":"Localização","company-name":"Nome da empresa","company-logo":"Logotipo da empresa","company-website":"Site da companhia","company-email":"Endereço de e-mail da empresa","work-mode":"Modo de trabalho","work-dept":"Departamento de trabalho","offer-type":"Tipo de oferta","y-experience":"Ano de experiência","activity-area":"Área de atividade","level-study":"Nível de estudo","size-company":"Tamanho da empresa","type-company":"Tipo de Empresa","size-institution":"Tamanho da instituição","status":"Status","rsearch-p":"Pesquisa de parceiros","o-activity":"Outras atividades","birth-date":"Data de nascimento","create-date":"Data de criação","legal-status":"Status legal","speak-language":"Línguas faladas","sex":"Sexo","male":"Macho","female":"Mulheres","perimetre":"Perímetro","phone-number":"Número de telefone","native-country":"País nativo","residence-country":"País de residência","social-country":"País da sede","social-object":"Objeto social","name-responsable":"Sobrenome e nome do responsável","goal-attribution":"Finalidade - Alocação","details":"Detalhes","ads-university":"Anúncios relacionados a","contact-ads":"Entre em contato com o anunciante","actif":"De ativos","no-actif":"Não ativo","contact-about-1":"Convite para uma conferência","contact-about-2":"Proposta comercial","contact-about-3":"Proposta de colaboração","contact-about-4":"Proponha uma universidade","contact-about-5":"Outros","send":"Enviar","report":"Relatório","the-post":"Esta postagem","setting-account":"Configurações de conta","hide-filter":"Ocultar filtro","show-filter":"Mostrar filtro","provided":"Forneceu","in-progress":"Em andamento","privacy":"Privacidade","change-password":"Alterar a senha","delete-account":"Deletar conta","delete-account-desc":"Para excluir sua conta digite sua senha abaixo","delete":"Excluir","update-s":"Atualização bem sucedida","profile-picture":"Foto do perfil","cover-picture":"Foto de capa","update":"Atualizar","privacy-desc":"Quem pode ver seu perfil","evreyone":"Todos","only-me":"Só eu","download-data":"Baixe seus dados","download":"Download","show-more":"Ver mais","hide-more":"Ver menos","write-email":"Insira o seu endereço de email","msg-sucess-send-Fp":"O link de redefinição de senha foi enviado para você.","msg-sucess-reset-p":"A senha foi alterada com sucesso","mark-provided":"Marcar como preenchido","maintain-crtl":"Segure a tecla CTRL para selecionar vários","apply":"Aplicar","download-data-desc":"Digite sua senha para confirmar a exportação de seus dados pessoais","delete-data":"Apagando seus dados","delete-data-desc":"Digite sua senha para confirmar a exclusão de seus dados pessoais (artigos, propau, comentários, anúncios, empregos, etc.)","old-password":"Senha Antiga","new-password":"Nova Senha","complete-delete":"Remoção completa","complete-delete-desc":"Isso resultará na exclusão de todos os seus dados neste site.","partial-delete":"Exclusão parcial","partial-delete-desc":"Isso desativa sua conta, para reativá-la você deve entrar em contato com os administradores do site através do formulário de contato","diplome-certification":"Diploma e Certificação","contact-msg":"Para entrar em contato conosco, preencha o formulário abaixo","report-msg":"Diga o que você não","msg-contact-sucess":"Obrigado por nos ter contactado. Nós responderemos a você dentro de 48 horas. Enquanto isso, aproveite as ofertas, anúncios e oportunidades de emprego no seu setor!!!","msg-a-register":"Estamos felizes em tê-lo nesta comunidade dedicada ao surgimento da África e da América Latina. Preencha os campos para criar sua conta gratuita e acessar benefícios especiais para membros. Ative sua conta clicando no link de ativação enviado por e-mail.","modal-not-login":"O acesso a este conteúdo é restrito a assinantes. Por favor faça o login ou registre-se","modal-verif-ok":"Votre compte a été creé avec succès. Connectez-vous pour profiter des fonctionnalités proposto pela plataforma AU"}');
 
 /***/ })
 

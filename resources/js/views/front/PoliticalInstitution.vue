@@ -131,73 +131,65 @@
 
                     <p class="leading-3" v-if="user.detail.native_country">
                         <h1 class="font-semibold text-sm">{{ $t('native-country') }}</h1>
-                        <h2 class="font-light" v-for="country in countries" :key="country.id">
-                            <span v-if="country.id === user.detail.native_country">
-                                <span v-if="$i18n.locale == 'en'">{{
-                                    country.name_en
-                                }}</span>
-                                <span v-else-if="$i18n.locale == 'fr'">{{
-                                    country.name_fr
-                                }}</span>
-                                <span v-else-if="$i18n.locale == 'es'">{{
-                                    country.name_es
-                                }}</span>
-                                <span v-else>{{ country.name_pt }}</span>
-                            </span>
+                        <h2 class="font-light">
+                            <span v-if="$i18n.locale == 'en'">{{
+                                user.detail.country_native.name_en
+                            }}</span>
+                            <span v-else-if="$i18n.locale == 'fr'">{{
+                                user.detail.country_native.name_fr
+                            }}</span>
+                            <span v-else-if="$i18n.locale == 'es'">{{
+                                user.detail.country_native.name_es
+                            }}</span>
+                            <span v-else>{{ user.detail.country_native.name_pt }}</span>
                         </h2>
                     </p>
 
                     <p class="leading-3" v-if="user.detail.residence_country">
                         <h1 class="font-semibold text-sm">{{ $t('residence-country') }}</h1>
-                        <h2 class="font-light" v-for="country in countries" :key="country.id">
-                            <span v-if="country.id === user.detail.residence_country">
-                                <span v-if="$i18n.locale == 'en'">{{
-                                    country.name_en
-                                }}</span>
-                                <span v-else-if="$i18n.locale == 'fr'">{{
-                                    country.name_fr
-                                }}</span>
-                                <span v-else-if="$i18n.locale == 'es'">{{
-                                    country.name_es
-                                }}</span>
-                                <span v-else>{{ country.name_pt }}</span>
-                            </span>
+                        <h2 class="font-light">
+                            <span v-if="$i18n.locale == 'en'">{{
+                                user.detail.country_residence.name_en
+                            }}</span>
+                            <span v-else-if="$i18n.locale == 'fr'">{{
+                                user.detail.country_residence.name_fr
+                            }}</span>
+                            <span v-else-if="$i18n.locale == 'es'">{{
+                                user.detail.country_residence.name_es
+                            }}</span>
+                            <span v-else>{{ user.detail.country_residence.name_pt }}</span>
                         </h2>
                     </p>
 
                     <p class="leading-3" v-if="user.detail.business_type_id">
                         <h1 class="font-semibold text-sm">{{ $t('perimetre') }}</h1>
-                        <h2 class="font-light"  v-for="businessType in businessTypes" :key="businessType.id">
-                                <span v-if="businessType.id === user.detail.business_type_id">
-                                    <span v-if="$i18n.locale == 'en'">{{
-                                        businessType.name_en
-                                    }}</span>
-                                    <span v-else-if="$i18n.locale == 'fr'">{{
-                                        businessType.name_fr
-                                    }}</span>
-                                    <span v-else-if="$i18n.locale == 'es'">{{
-                                        businessType.name_es
-                                    }}</span>
-                                    <span v-else>{{ businessType.name_pt }}</span>
-                                </span>
+                        <h2 class="font-light">
+                                <span v-if="$i18n.locale == 'en'">{{
+                                    user.detail.business_type.name_en
+                                }}</span>
+                                <span v-else-if="$i18n.locale == 'fr'">{{
+                                    user.detail.business_type.name_fr
+                                }}</span>
+                                <span v-else-if="$i18n.locale == 'es'">{{
+                                    user.detail.business_type.name_es
+                                }}</span>
+                                <span v-else>{{ user.detail.business_type.name_pt }}</span>
                         </h2>
                     </p>
 
                     <p class="leading-3" v-if="user.detail.business_size_id">
                         <h1 class="font-semibold text-sm">{{ $t('size-institution') }}</h1>
-                        <h2 class="font-light"  v-for="BusinessSize in businessSizes" :key="BusinessSize.id">
-                            <span v-if="BusinessSize.id === user.detail.business_size_id">
-                                <span v-if="$i18n.locale == 'en'">{{
-                                    BusinessSize.name_en
-                                }}</span>
-                                <span v-else-if="$i18n.locale == 'fr'">{{
-                                    BusinessSize.name_fr
-                                }}</span>
-                                <span v-else-if="$i18n.locale == 'es'">{{
-                                    BusinessSize.name_es
-                                }}</span>
-                                <span v-else>{{ BusinessSize.name_pt }}</span>
-                            </span>
+                        <h2 class="font-light">
+                            <span v-if="$i18n.locale == 'en'">{{
+                                user.detail.business_size.name_en
+                            }}</span>
+                            <span v-else-if="$i18n.locale == 'fr'">{{
+                                user.detail.business_size.name_fr
+                            }}</span>
+                            <span v-else-if="$i18n.locale == 'es'">{{
+                                user.detail.business_size.name_es
+                            }}</span>
+                            <span v-else>{{ user.detail.business_size.name_pt }}</span>
                         </h2>
                     </p>
 
