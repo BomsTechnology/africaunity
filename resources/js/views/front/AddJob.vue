@@ -590,6 +590,11 @@ import useContinents from "../../services/continentServices.js";
 import useCities from "../../services/cityServices.js";
 import router from "../../router/index.js";
 export default {
+    props: {
+          duplicate : {
+              required: false
+          }
+    },
     components:{
         Header,
         Footer,
@@ -617,23 +622,7 @@ export default {
         const { zones, getZones } = useZones();
         const { continents, getContinents } = useContinents();
         const { cities, getCities } = useCities();
-        
-        onMounted(
-            getCurrencies(),
-            getContinents(),
-            getZones(),
-            getYearExperiences(),
-            getWorkModes(),
-            getWorkDepartments(),
-            getLevelStudies(),
-            getSizeCompanies(),
-            getOfferTypes(),
-            getActivityAreas(),
-            getLanguages(),
-            getCountries(),
-            getCities(),
-        );
-
+        const { createJobOffer, errors, loading } = useJobOffers();
         const jobOffer = reactive({
             title: "",
             description: "",
@@ -659,9 +648,59 @@ export default {
             languages: [],
             activityAreas: [],
         });
-        const { createJobOffer, errors, loading } = useJobOffers();
+        const dJob = ref('');
+        
+        onMounted(
+            async () => {
+                if(props.duplicate){
+                    try{
+                        dJob.value = JSON.parse(props.duplicate);
+                        jobOffer.title = dJob.value.title;
+                        jobOffer.description = dJob.value.description;
+                        jobOffer.location = dJob.value.location;
+                        jobOffer.company_name = dJob.value.company_name;
+                        jobOffer.company_email = dJob.value.company_email;
+                        jobOffer.company_logo = dJob.value.company_logo;
+                        jobOffer.min_price = dJob.value.min_price;
+                        jobOffer.max_price = dJob.value.max_price;
+                        jobOffer.currency_id = dJob.value.currency.id;
+                        jobOffer.year_experience_id = dJob.value.year_experience.id;
+                        jobOffer.work_department_id = dJob.value.work_department.id;
+                        jobOffer.work_mode_id = dJob.value.work_mode.id;
+                        jobOffer.size_company_id = dJob.value.size_company.id;
+                        jobOffer.offer_type_id = dJob.value.offer_type.id;
+                        jobOffer.level_study_id = dJob.value.level_study.id;
+                        jobOffer.city_id = dJob.value.city.id;
+                        jobOffer.zone_id = dJob.value.zone.id;
+                        jobOffer.continent_id = dJob.value.continent.id;
+                        jobOffer.country_id = dJob.value.country.id;
 
-
+                        for(const item of dJob.value.activity_areas){
+                            jobOffer.activityAreas.push(item.id)
+                        }
+                        for(const item of dJob.value.languages){
+                            jobOffer.languages.push(item.id)
+                        }
+                    }catch(e){
+                        router.push({ name: "home"});
+                    };
+                }
+                
+                await getCurrencies();
+                await getContinents();
+                await getZones();
+                await getCountries();
+                await getCities();
+                await getYearExperiences();
+                await getWorkModes();
+                await getWorkDepartments();
+                await getLevelStudies();
+                await getSizeCompanies();
+                await getOfferTypes();
+                await getActivityAreas();
+                await getLanguages();
+            }
+        );
 
         const storeJobOffer = async () => {
             let formData = new FormData();

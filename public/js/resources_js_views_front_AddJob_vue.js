@@ -50,6 +50,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _router_index_js__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../../router/index.js */ "./resources/js/router/index.js");
 
 
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
@@ -74,6 +80,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: {
+    duplicate: {
+      required: false
+    }
+  },
   components: {
     Header: _components_Header_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
     Footer: _components_Footer_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
@@ -148,7 +159,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         cities = _useCities.cities,
         getCities = _useCities.getCities;
 
-    (0,vue__WEBPACK_IMPORTED_MODULE_3__.onMounted)(getCurrencies(), getContinents(), getZones(), getYearExperiences(), getWorkModes(), getWorkDepartments(), getLevelStudies(), getSizeCompanies(), getOfferTypes(), getActivityAreas(), getLanguages(), getCountries(), getCities());
+    var _useJobOffers = (0,_services_jobOfferServices_js__WEBPACK_IMPORTED_MODULE_5__["default"])(),
+        createJobOffer = _useJobOffers.createJobOffer,
+        errors = _useJobOffers.errors,
+        loading = _useJobOffers.loading;
+
     var jobOffer = (0,vue__WEBPACK_IMPORTED_MODULE_3__.reactive)({
       title: "",
       description: "",
@@ -174,18 +189,135 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       languages: [],
       activityAreas: []
     });
+    var dJob = (0,vue__WEBPACK_IMPORTED_MODULE_3__.ref)('');
+    (0,vue__WEBPACK_IMPORTED_MODULE_3__.onMounted)( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+      var _iterator, _step, item, _iterator2, _step2, _item;
 
-    var _useJobOffers = (0,_services_jobOfferServices_js__WEBPACK_IMPORTED_MODULE_5__["default"])(),
-        createJobOffer = _useJobOffers.createJobOffer,
-        errors = _useJobOffers.errors,
-        loading = _useJobOffers.loading;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              if (props.duplicate) {
+                try {
+                  dJob.value = JSON.parse(props.duplicate);
+                  jobOffer.title = dJob.value.title;
+                  jobOffer.description = dJob.value.description;
+                  jobOffer.location = dJob.value.location;
+                  jobOffer.company_name = dJob.value.company_name;
+                  jobOffer.company_email = dJob.value.company_email;
+                  jobOffer.company_logo = dJob.value.company_logo;
+                  jobOffer.min_price = dJob.value.min_price;
+                  jobOffer.max_price = dJob.value.max_price;
+                  jobOffer.currency_id = dJob.value.currency.id;
+                  jobOffer.year_experience_id = dJob.value.year_experience.id;
+                  jobOffer.work_department_id = dJob.value.work_department.id;
+                  jobOffer.work_mode_id = dJob.value.work_mode.id;
+                  jobOffer.size_company_id = dJob.value.size_company.id;
+                  jobOffer.offer_type_id = dJob.value.offer_type.id;
+                  jobOffer.level_study_id = dJob.value.level_study.id;
+                  jobOffer.city_id = dJob.value.city.id;
+                  jobOffer.zone_id = dJob.value.zone.id;
+                  jobOffer.continent_id = dJob.value.continent.id;
+                  jobOffer.country_id = dJob.value.country.id;
+                  _iterator = _createForOfIteratorHelper(dJob.value.activity_areas);
+
+                  try {
+                    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+                      item = _step.value;
+                      jobOffer.activityAreas.push(item.id);
+                    }
+                  } catch (err) {
+                    _iterator.e(err);
+                  } finally {
+                    _iterator.f();
+                  }
+
+                  _iterator2 = _createForOfIteratorHelper(dJob.value.languages);
+
+                  try {
+                    for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+                      _item = _step2.value;
+                      jobOffer.languages.push(_item.id);
+                    }
+                  } catch (err) {
+                    _iterator2.e(err);
+                  } finally {
+                    _iterator2.f();
+                  }
+                } catch (e) {
+                  _router_index_js__WEBPACK_IMPORTED_MODULE_19__["default"].push({
+                    name: "home"
+                  });
+                }
+
+                ;
+              }
+
+              _context.next = 3;
+              return getCurrencies();
+
+            case 3:
+              _context.next = 5;
+              return getContinents();
+
+            case 5:
+              _context.next = 7;
+              return getZones();
+
+            case 7:
+              _context.next = 9;
+              return getCountries();
+
+            case 9:
+              _context.next = 11;
+              return getCities();
+
+            case 11:
+              _context.next = 13;
+              return getYearExperiences();
+
+            case 13:
+              _context.next = 15;
+              return getWorkModes();
+
+            case 15:
+              _context.next = 17;
+              return getWorkDepartments();
+
+            case 17:
+              _context.next = 19;
+              return getLevelStudies();
+
+            case 19:
+              _context.next = 21;
+              return getSizeCompanies();
+
+            case 21:
+              _context.next = 23;
+              return getOfferTypes();
+
+            case 23:
+              _context.next = 25;
+              return getActivityAreas();
+
+            case 25:
+              _context.next = 27;
+              return getLanguages();
+
+            case 27:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    })));
 
     var storeJobOffer = /*#__PURE__*/function () {
-      var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+      var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
         var formData;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
           while (1) {
-            switch (_context.prev = _context.next) {
+            switch (_context2.prev = _context2.next) {
               case 0:
                 formData = new FormData();
                 formData.append("title", jobOffer.title);
@@ -211,7 +343,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 formData.append("country_id", jobOffer.country_id);
                 formData.append("languages", jobOffer.languages);
                 formData.append("activityAreas", jobOffer.activityAreas);
-                _context.next = 26;
+                _context2.next = 26;
                 return createJobOffer(formData);
 
               case 26:
@@ -223,14 +355,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 27:
               case "end":
-                return _context.stop();
+                return _context2.stop();
             }
           }
-        }, _callee);
+        }, _callee2);
       }));
 
       return function storeJobOffer() {
-        return _ref.apply(this, arguments);
+        return _ref2.apply(this, arguments);
       };
     }();
 

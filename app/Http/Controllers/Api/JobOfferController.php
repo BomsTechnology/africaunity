@@ -351,7 +351,7 @@ class JobOfferController extends Controller
 
     public function jobOffers_mark(JobOffer $jobOffer)
     {
-        $jobOffer->status = 3;
+        $jobOffer->status = $jobOffer->status == 3 ? 1 : 3;
         $jobOffer->save();
 
         return response()->noContent();

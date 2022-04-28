@@ -859,7 +859,7 @@
                                     class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
                                 >
                                     <span v-if="jobOffer.status == 3" class="text-xs px-2 py-1 bg-green-50 text-green-700 rounded-full">{{ $t('provided') }}</span>
-                                    <span v-else class="text-xs px-2 py-1 bg-yellow-50 text-yellow-700 rounded-full">{{ $t('in-progress') }}</span>
+                                    <span v-else-if="jobOffer.status == 1" class="text-xs px-2 py-1 bg-yellow-50 text-yellow-700 rounded-full">{{ $t('in-progress') }}</span>
                                 </td>
                                 <td
                                     v-if="user.id == loginUser.id"
@@ -873,34 +873,50 @@
                                             }"
                                             class="text-primary-blue dark:text-blue-500 hover:underline"
                                             >
-                                            <PencilAltIcon
+                                            <!-- <PencilAltIcon
                                                     class="h-5 w-5 hover:text-blue-700 cursor-pointer text-blue-400"
-                                                />
+                                                /> -->
+                                                {{ $t('modify') }}
                                             </router-link
                                         >
                                         <button
                                             @click="deleteJobOffer(jobOffer.id)"
                                             class=" text-red-600 ml-3 dark:text-blue-500 hover:underline"
                                             >
-                                                <TrashIcon
+                                                <!-- <TrashIcon
                                                     class="h-5 w-5 hover:text-red-700 cursor-pointer text-red-400"
-                                                />
+                                                /> -->
+                                                <span>
+                                                {{ $t('delete') }}
+                                            </span>
                                         </button
                                         >
                                         <button
                                             @click="mark(jobOffer.id)"
-                                            v-if="jobOffer.status != 3"
-                                            @mouseover="showTooltip(jobOffer.id)"
-                                            @mouseleave="hideTooltip()"
-                                            class="text-red-600 relative ml-3 dark:text-blue-500 hover:underline"
+                                            class="text-purple-600 relative ml-3 dark:text-blue-500 hover:underline"
                                             >
-                                                <CheckCircleIcon
+                                                <!-- <CheckCircleIcon
                                                     class="h-5 w-5 hover:text-purple-700 cursor-pointer text-purple-400"
-                                                />
-                                                <span v-if="openTooltip.id == jobOffer.id && openTooltip.state == true" class="absolute left-0 px-2 py-1 bg-black/50 text-white">
-                                                {{ $t('mark-provided') }}
-                                            </span>
+                                                /> -->
+                                                <span v-if="jobOffer.status != 3">
+                                                    {{ $t('mark-provided') }}
+                                                </span>
+                                                <span v-else-if="jobOffer.status != 1">
+                                                    {{ $t('mark-progress') }}
+                                                </span>
                                         </button
+                                        >
+                                        <router-link
+                                            :to="{
+                                                name: 'add.job',
+                                                params: { duplicate : JSON.stringify(jobOffer) }
+                                            }"
+                                            class="text-pink-600 relative ml-3 dark:text-blue-500 hover:underline"
+                                            >
+                                                <span>
+                                                {{ $t('duplicate') }}
+                                            </span>
+                                        </router-link
                                         >
                                     </div>
                                 </td>
@@ -1151,10 +1167,10 @@ export default {
         const langArticle = ref('');
         const langProp = ref('');
         const url = window.location.href;
-        const openTooltip = reactive({
-            id: null,
-            state: false,
-        });
+        // const openTooltip = reactive({
+        //     id: null,
+        //     state: false,
+        // });
         const openReport = ref(false);
         const open = reactive({
             profil: true,
@@ -1233,15 +1249,15 @@ export default {
             openReport.value = !openReport.value;
         };
 
-        const showTooltip = (id) => {
-            openTooltip.id = id;
-            openTooltip.state = true;
-        };
+        // const showTooltip = (id) => {
+        //     openTooltip.id = id;
+        //     openTooltip.state = true;
+        // };
 
-        const hideTooltip = () => {
-            openTooltip.id = null;
-            openTooltip.state = false;
-        };
+        // const hideTooltip = () => {
+        //     openTooltip.id = null;
+        //     openTooltip.state = false;
+        // };
 
         const deleteComment = async (id) => {
             if(confirm("I you Sure ?")){
@@ -1359,9 +1375,9 @@ export default {
         return{
             toogleModal,
             openReport,
-            openTooltip,
-            hideTooltip,
-            showTooltip,
+            // openTooltip,
+            // hideTooltip,
+            // showTooltip,
             langProp,
             langArticle,
             searchProp,

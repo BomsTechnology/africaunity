@@ -9,7 +9,10 @@
                 <span v-if="type == 'particular'"
                     >PP ({{ $t("pack") }} {{ $t("particular") }})</span
                 >
-                <span v-else-if="type == 'business1' || type == 'business2'"
+                <span v-else-if="type == 'business1'"
+                    >PB ({{ $t("pack") }} PRO)</span
+                >
+                <span v-else-if="type == 'business2'"
                     >PB ({{ $t("pack") }} {{ $t("business") }})</span
                 >
                 <span v-else>IP ({{ $t("pack") }} {{ $t("politic") }})</span>
@@ -43,19 +46,19 @@
 
             <p>
                 {{ $t("create-other-account") }}
-                <router-link
+                <router-link v-if="type != 'ip'"
                     :to="{ name: 'register', params: { type: 'ip' } }"
                     class="text-primary-blue hover:underline"
                 >
                     IP ({{ $t("pack") }} {{ $t("politic") }}) ?
                 </router-link>
-                <router-link
+                <router-link v-if="type != 'business1'"
                     :to="{ name: 'register', params: { type: 'business1' } }"
                     class="text-primary-blue hover:underline"
                 >
                     PB ({{ $t("pack") }} {{ $t("business") }}) ?
                 </router-link>
-                <router-link
+                <router-link v-if="type != 'particular'"
                     :to="{ name: 'register', params: { type: 'particular' } }"
                     class="text-primary-blue hover:underline"
                 >

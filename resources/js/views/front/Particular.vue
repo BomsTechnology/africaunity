@@ -272,7 +272,6 @@ import useUsers from "../../services/userServices.js";
 import useLanguages from "../../services/languageServices.js";
 import useActivityAreas from "../../services/activityAreaServices.js";
 import useCountries from "../../services/countryServices.js";
-import router from "../../router";
 export default {
     components: {
         UserCircleIcon,

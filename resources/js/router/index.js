@@ -141,7 +141,7 @@ const routes = [
         }
     },
     {
-        path: '/add/job',
+        path: '/add/job/:duplicate?',
         name: 'add.job',
         props: true,
         component: AddJob,

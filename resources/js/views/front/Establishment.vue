@@ -72,6 +72,29 @@
                     </option>
                 </select>
             </div>
+            <div class="lg:text-sm text-xs">
+                <label class="text-gray-700 dark:text-gray-200">
+                    {{ $t('activity-area') }}
+                </label>
+                <select @change.prevent="usersFilter()" 
+                    v-model="filter.activity_area"
+                    class="form-select block w-full px-4 py-2 mt-1 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
+                >
+                    <option value="">--------------</option>
+                    <option v-for="activity in activityAreas" :key="activity.id" :value="activity.id">
+                        <span v-if="$i18n.locale == 'en'">{{
+                                activity.name_en
+                            }}</span>
+                            <span v-else-if="$i18n.locale == 'fr'">{{
+                                activity.name_fr
+                            }}</span>
+                            <span v-else-if="$i18n.locale == 'es'">{{
+                                activity.name_es
+                            }}</span>
+                            <span v-else>{{ activity.name_pt }}</span>
+                    </option>
+                </select>
+            </div>
 
         </div>
         <div class="p-2 bg-primary-blue shadow"></div>
@@ -210,7 +233,7 @@ import useUsers from "../../services/userServices.js";
 import useBusinessTypes from "../../services/businessTypeServices.js";
 import useBusinessSizes from "../../services/businessSizeServices.js";
 import useCountries from "../../services/countryServices.js";
-import router from "../../router";
+import useActivityAreas from "../../services/activityAreaServices.js";
 export default {
     components: {
         UserCircleIcon,
@@ -223,10 +246,12 @@ export default {
         const { countries, getCountries } = useCountries();
         const { businessTypes, getBusinessTypes } = useBusinessTypes();
         const { users, getUsersType, filterUsers, errors, loading } = useUsers();
-        onMounted(getUsersType("business"), getBusinessSizes(), getCountries(), getBusinessTypes());
+        const { activityAreas, getActivityAreas } = useActivityAreas();
+        onMounted(getUsersType("business"), getBusinessSizes(), getCountries(), getBusinessTypes(), getActivityAreas());
         const searchKey = ref('');
         const filter = reactive({
             residence_country:"",
+            activity_area: "",
             business_size:"",
             business_type:"",
             type: "business"
@@ -260,6 +285,7 @@ export default {
             users,
             errors,
             loading,
+            activityAreas,
         };
     },
 

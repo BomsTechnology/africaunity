@@ -16,15 +16,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Header_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/Header.vue */ "./resources/js/components/Header.vue");
 /* harmony import */ var _components_Footer_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/Footer.vue */ "./resources/js/components/Footer.vue");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-/* harmony import */ var _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @heroicons/vue/solid */ "./node_modules/@heroicons/vue/solid/esm/UserCircleIcon.js");
-/* harmony import */ var _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @heroicons/vue/solid */ "./node_modules/@heroicons/vue/solid/esm/EmojiSadIcon.js");
-/* harmony import */ var _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @heroicons/vue/solid */ "./node_modules/@heroicons/vue/solid/esm/ChevronDownIcon.js");
-/* harmony import */ var _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @heroicons/vue/solid */ "./node_modules/@heroicons/vue/solid/esm/ChevronUpIcon.js");
+/* harmony import */ var _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @heroicons/vue/solid */ "./node_modules/@heroicons/vue/solid/esm/UserCircleIcon.js");
+/* harmony import */ var _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @heroicons/vue/solid */ "./node_modules/@heroicons/vue/solid/esm/EmojiSadIcon.js");
+/* harmony import */ var _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @heroicons/vue/solid */ "./node_modules/@heroicons/vue/solid/esm/ChevronDownIcon.js");
+/* harmony import */ var _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @heroicons/vue/solid */ "./node_modules/@heroicons/vue/solid/esm/ChevronUpIcon.js");
 /* harmony import */ var _services_userServices_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../services/userServices.js */ "./resources/js/services/userServices.js");
 /* harmony import */ var _services_languageServices_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../services/languageServices.js */ "./resources/js/services/languageServices.js");
 /* harmony import */ var _services_activityAreaServices_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../services/activityAreaServices.js */ "./resources/js/services/activityAreaServices.js");
 /* harmony import */ var _services_countryServices_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../services/countryServices.js */ "./resources/js/services/countryServices.js");
-/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../router */ "./resources/js/router/index.js");
 
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
@@ -45,15 +44,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
-
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
-    UserCircleIcon: _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_9__["default"],
-    EmojiSadIcon: _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_10__["default"],
+    UserCircleIcon: _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_8__["default"],
+    EmojiSadIcon: _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_9__["default"],
     Header: _components_Header_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
     Footer: _components_Footer_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-    ChevronDownIcon: _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_11__["default"],
-    ChevronUpIcon: _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_12__["default"]
+    ChevronDownIcon: _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_10__["default"],
+    ChevronUpIcon: _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_11__["default"]
   },
   setup: function setup(props) {
     var _useLanguages = (0,_services_languageServices_js__WEBPACK_IMPORTED_MODULE_5__["default"])(),
