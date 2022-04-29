@@ -133,16 +133,6 @@
                                                 >
                                             </div>
                                         </div>
-                                        <p
-                                            class="mt-2 text-sm text-gray-600 dark:text-gray-400"
-                                        >
-                                            {{
-                                                article.content.substring(
-                                                    0,
-                                                    19
-                                                ) + "..."
-                                            }}
-                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -352,16 +342,6 @@
                                                     >
                                                 </div>
                                             </div>
-                                            <p
-                                                class="mt-2 text-sm text-gray-600 dark:text-gray-400"
-                                            >
-                                                {{
-                                                    article.content.substring(
-                                                        0,
-                                                        19
-                                                    ) + "..."
-                                                }}
-                                            </p>
                                         </div>
                                     </div>
                                 </div>
@@ -575,16 +555,6 @@
                                                     >
                                                 </div>
                                             </div>
-                                            <p
-                                                class="mt-2 text-sm text-gray-600 dark:text-gray-400"
-                                            >
-                                                {{
-                                                    article.content.substring(
-                                                        0,
-                                                        19
-                                                    ) + "..."
-                                                }}
-                                            </p>
                                         </div>
                                     </div>
                                 </div>
@@ -794,16 +764,6 @@
                                                 >
                                             </div>
                                         </div>
-                                        <p
-                                            class="mt-2 text-sm text-gray-600 dark:text-gray-400"
-                                        >
-                                            {{
-                                                article.content.substring(
-                                                    0,
-                                                    19
-                                                ) + "..."
-                                            }}
-                                        </p>
                                     </div>
                                 </div>
                             </div>

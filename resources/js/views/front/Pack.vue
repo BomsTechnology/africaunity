@@ -161,12 +161,12 @@
                             </div>
                         </div>
 
-                        <!-- <button disabled class="w-full block text-center px-4 py-2 mt-10 font-medium tracking-wide text-primary-blue capitalize transition-colors duration-200 transform bg-white rounded-md hover:bg-white focus:outline-none focus:bg-white">
+                        <button disabled class="w-full block text-center px-4 py-2 mt-10 font-medium tracking-wide text-primary-blue capitalize transition-colors duration-200 transform bg-white rounded-md hover:bg-white focus:outline-none focus:bg-white">
                             {{ $t("register") }}
-                        </button> -->
-                        <router-link  :to="{name:'register', params: { type : 'business2' }}" class="w-full block text-center px-4 py-2 mt-10 font-medium tracking-wide text-primary-blue capitalize transition-colors duration-200 transform bg-white rounded-md hover:bg-white focus:outline-none focus:bg-white">
+                        </button>
+                        <!-- <router-link  :to="{name:'register', params: { type : 'business2' }}" class="w-full block text-center px-4 py-2 mt-10 font-medium tracking-wide text-primary-blue capitalize transition-colors duration-200 transform bg-white rounded-md hover:bg-white focus:outline-none focus:bg-white">
                             {{ $t("register") }}
-                        </router-link>
+                        </router-link> -->
                     </div>
                     <div class="px-6 py-4 transition-colors duration-200 transform rounded-lg  bg-white shadow hover:bg-gray-50 ">
                         <div class="text-center">
