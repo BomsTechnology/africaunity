@@ -283,7 +283,7 @@ export default {
             this.$i18n.locale = lang;
             localStorage.lang = this.$i18n.locale;
             location.reload();
-        },
+        }
     },
     mounted(){
         if(localStorage.lang){

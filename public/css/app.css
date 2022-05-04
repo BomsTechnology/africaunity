@@ -612,6 +612,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   top: 0px;
   bottom: 0px;
 }
+.inset-x-0 {
+  left: 0px;
+  right: 0px;
+}
 .top-0 {
   top: 0px;
 }
@@ -624,6 +628,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .top-20 {
   top: 5rem;
 }
+.bottom-0 {
+  bottom: 0px;
+}
 .z-40 {
   z-index: 40;
 }
@@ -635,6 +642,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .z-30 {
   z-index: 30;
+}
+.z-50 {
+  z-index: 50;
 }
 .col-span-2 {
   grid-column: span 2 / span 2;
@@ -1282,6 +1292,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-bg-opacity: 1;
   background-color: rgb(17 24 39 / var(--tw-bg-opacity));
 }
+.bg-red-50 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(254 242 242 / var(--tw-bg-opacity));
+}
 .bg-opacity-75 {
   --tw-bg-opacity: 0.75;
 }
@@ -1315,6 +1329,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .p-16 {
   padding: 4rem;
+}
+.p-8 {
+  padding: 2rem;
 }
 .py-3 {
   padding-top: 0.75rem;
@@ -2077,6 +2094,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .md\:flex {
     display: flex;
+  }
+
+  .md\:hidden {
+    display: none;
   }
 
   .md\:h-\[400px\] {

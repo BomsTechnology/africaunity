@@ -22841,6 +22841,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   setup: function setup() {
     var token = localStorage.token;
     var posts = (0,vue__WEBPACK_IMPORTED_MODULE_4__.ref)([]);
+    var download_app = (0,vue__WEBPACK_IMPORTED_MODULE_4__.ref)(null);
     (0,vue__WEBPACK_IMPORTED_MODULE_4__.onMounted)( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
       var response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
@@ -22863,9 +22864,44 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     })));
     return {
       modules: [swiper__WEBPACK_IMPORTED_MODULE_3__.Autoplay],
+      download_app: download_app,
       posts: posts,
       token: token
     };
+  },
+  methods: {
+    initializePWA: function initializePWA() {
+      var deferredPrompt;
+      var addBtn = document.querySelector('.download-app');
+      addBtn.style.display = 'none';
+      window.addEventListener('beforeinstallprompt', function (e) {
+        // Prevent Chrome 67 and earlier from automatically showing the prompt
+        e.preventDefault(); // Stash the event so it can be triggered later.
+
+        deferredPrompt = e; // Update UI to notify the user they can add to home screen
+
+        addBtn.style.display = 'block';
+        addBtn.addEventListener('click', function (e) {
+          // hide our user interface that shows our A2HS button
+          addBtn.style.display = 'none'; // Show the prompt
+
+          deferredPrompt.prompt(); // Wait for the user to respond to the prompt
+
+          deferredPrompt.userChoice.then(function (choiceResult) {
+            if (choiceResult.outcome === 'accepted') {
+              console.log('User accepted the A2HS prompt');
+            } else {
+              console.log('User dismissed the A2HS prompt');
+            }
+
+            deferredPrompt = null;
+          });
+        });
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.initializePWA();
   }
 });
 
@@ -23973,6 +24009,16 @@ var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 /* HOISTED */
 );
 
+var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "fixed md:hidden z-50 bottom-0 inset-x-0 pb-2"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "flex justify-center"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  "class": "px-2 py-1 bg-primary-blue text-white shadow-xl rounded download-app"
+}, "Télécharger AfricaUnity")])], -1
+/* HOISTED */
+);
+
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
 
@@ -24047,7 +24093,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   }, 8
   /* PROPS */
-  , ["modules"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div>\r\n            <select name=\"\" id=\"\">\r\n                <option value=\"\">yo</option>\r\n                <option value=\"\"></option>\r\n                <option value=\"\"></option>\r\n                <option value=\"\"></option>\r\n            </select>\r\n        </div> ")]), _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Navigation)], 64
+  , ["modules"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div>\r\n            <select name=\"\" id=\"\">\r\n                <option value=\"\">yo</option>\r\n                <option value=\"\"></option>\r\n                <option value=\"\"></option>\r\n                <option value=\"\"></option>\r\n            </select>\r\n        </div> ")]), _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Navigation), _hoisted_5], 64
   /* STABLE_FRAGMENT */
   );
 }

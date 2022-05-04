@@ -3,13 +3,16 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+
         <title>AfricaUnity</title>
+
+        @laravelPWA
 
         <meta name="title" content="AfricaUnity">
         <meta name="description" content="AfricaUnity the profesional and social network">
         <meta name="keywords" content="africa, unity, blog, job, job offer, article, ads">
 
-        {{-- Open Graph and Faceboo  --}}
+        {{-- Open Graph and Facebook  --}}
         <meta property="og:url"           content="{{ url('') }}" />
         <meta property="og:type"          content="website" />
         <meta property="og:title"         content="AfricaUnity" />

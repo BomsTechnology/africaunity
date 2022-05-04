@@ -11,6 +11,3 @@ const app = createApp({
         Home
     },
 }).use(i18n).use(router).mount('#app');
-
-
-
