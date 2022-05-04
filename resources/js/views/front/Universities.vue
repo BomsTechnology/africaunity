@@ -2,7 +2,16 @@
     <Header />
    <h1 class="text-5xl text-primary-blue text-center py-2 capitalize font-bold">{{ $t('univerities') }}</h1>
    <div class=" py-8 lg:px-16">
-       <div class="grid lg:grid-cols-3 grid-cols-1 gap-2 px-10 pb-8 pt-4  bg-gray-50 shadow">
+       <div class="grid lg:grid-cols-4 grid-cols-1 gap-2 px-10 pb-8 pt-4  bg-gray-50 shadow">
+           <div
+                class="lg:text-sm text-xs">
+                <label class="text-gray-700 dark:text-gray-200">{{ $t('key-words') }}</label>
+                <input
+                    type="text"
+                    v-model="filterUniversity.searchKey"
+                    class="form-input px-3 pr-2  w-full text-gray-700 bg-white border border-gray-200 rounded-md  mt-2 placeholder:text-gray-400 focus:ring-primary-blue focus:border-primary-blue block"
+                />
+            </div>
             <div class="lg:text-sm text-xs">
                 <label class="text-gray-700" for="es">{{ $t('continent') }}</label>
                 <select v-model="filterUniversity.continent"   class="form-select block w-full px-4 py-2 mt-1 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue">
@@ -362,6 +371,7 @@ export default {
             country:"",
             continent: "",
             city:"",
+            searchKey:"",
         });
         const toogleShowAllU = () => {
             showAllU.value = !showAllU.value
@@ -401,46 +411,67 @@ export default {
             });
         },
         filteredUniversity() {
-            if(this.showAllU){
+            if(this.filterUniversity.searchKey != "" || this.filterUniversity.country != "" || this.filterUniversity.continent != "" || this.filterUniversity.city != ""){
                 return this.universities.filter((university) => {
                     let data = "";
                     if(this.filterUniversity.country != "" && this.filterUniversity.continent != "" && this.filterUniversity.city != "") 
-                        data = university.country.id == this.filterUniversity.country && university.continent.id == this.filterUniversity.continent && university.city.id == this.filterUniversity.city;
+                        data = university.name.toLowerCase().includes(this.filterUniversity.searchKey.toLowerCase()) && university.country.id == this.filterUniversity.country && university.continent.id == this.filterUniversity.continent && university.city.id == this.filterUniversity.city;
                     else if(this.filterUniversity.country != "" && this.filterUniversity.continent != "") 
-                        data =  university.country.id == this.filterUniversity.country && university.continent.id == this.filterUniversity.continent;
+                        data =  university.name.toLowerCase().includes(this.filterUniversity.searchKey.toLowerCase()) && university.country.id == this.filterUniversity.country && university.continent.id == this.filterUniversity.continent;
                     else if(this.filterUniversity.continent != "" && this.filterUniversity.city != "") 
-                        data =  university.continent.id == this.filterUniversity.continent && university.city.id == this.filterUniversity.city;
+                        data =  university.name.toLowerCase().includes(this.filterUniversity.searchKey.toLowerCase()) && university.continent.id == this.filterUniversity.continent && university.city.id == this.filterUniversity.city;
                     else if(this.filterUniversity.country != "" && this.filterUniversity.city != "") 
-                        data =  university.country.id == this.filterUniversity.country && university.city.id == this.filterUniversity.city;
+                        data = university.name.toLowerCase().includes(this.filterUniversity.searchKey.toLowerCase()) && university.country.id == this.filterUniversity.country && university.city.id == this.filterUniversity.city;
                     else if(this.filterUniversity.country != "") 
-                        data =  university.country.id == this.filterUniversity.country;
+                        data = university.name.toLowerCase().includes(this.filterUniversity.searchKey.toLowerCase()) && university.country.id == this.filterUniversity.country;
                     else if(this.filterUniversity.city != "") 
-                        data =  university.city.id == this.filterUniversity.city;
+                        data = university.name.toLowerCase().includes(this.filterUniversity.searchKey.toLowerCase()) && university.city.id == this.filterUniversity.city;
                     else if(this.filterUniversity.continent != "") 
-                        data =  university.continent.id == this.filterUniversity.continent;
+                        data = university.name.toLowerCase().includes(this.filterUniversity.searchKey.toLowerCase()) && university.continent.id == this.filterUniversity.continent;
                     else
-                        data = university ;
+                        data = university.name.toLowerCase().includes(this.filterUniversity.searchKey.toLowerCase()) && university ;
+                    return data;
+                });
+            }else if(this.showAllU){
+                return this.universities.filter((university) => {
+                    let data = "";
+                    if(this.filterUniversity.country != "" && this.filterUniversity.continent != "" && this.filterUniversity.city != "") 
+                        data = university.name.toLowerCase().includes(this.filterUniversity.searchKey.toLowerCase()) && university.country.id == this.filterUniversity.country && university.continent.id == this.filterUniversity.continent && university.city.id == this.filterUniversity.city;
+                    else if(this.filterUniversity.country != "" && this.filterUniversity.continent != "") 
+                        data =  university.name.toLowerCase().includes(this.filterUniversity.searchKey.toLowerCase()) && university.country.id == this.filterUniversity.country && university.continent.id == this.filterUniversity.continent;
+                    else if(this.filterUniversity.continent != "" && this.filterUniversity.city != "") 
+                        data =  university.name.toLowerCase().includes(this.filterUniversity.searchKey.toLowerCase()) && university.continent.id == this.filterUniversity.continent && university.city.id == this.filterUniversity.city;
+                    else if(this.filterUniversity.country != "" && this.filterUniversity.city != "") 
+                        data = university.name.toLowerCase().includes(this.filterUniversity.searchKey.toLowerCase()) && university.country.id == this.filterUniversity.country && university.city.id == this.filterUniversity.city;
+                    else if(this.filterUniversity.country != "") 
+                        data = university.name.toLowerCase().includes(this.filterUniversity.searchKey.toLowerCase()) && university.country.id == this.filterUniversity.country;
+                    else if(this.filterUniversity.city != "") 
+                        data = university.name.toLowerCase().includes(this.filterUniversity.searchKey.toLowerCase()) && university.city.id == this.filterUniversity.city;
+                    else if(this.filterUniversity.continent != "") 
+                        data = university.name.toLowerCase().includes(this.filterUniversity.searchKey.toLowerCase()) && university.continent.id == this.filterUniversity.continent;
+                    else
+                        data = university.name.toLowerCase().includes(this.filterUniversity.searchKey.toLowerCase()) && university ;
                     return data;
                 });
             }else{
                     return this.minUniversities.filter((university) => {
                     let data = "";
                     if(this.filterUniversity.country != "" && this.filterUniversity.continent != "" && this.filterUniversity.city != "") 
-                        data = university.country.id == this.filterUniversity.country && university.continent.id == this.filterUniversity.continent && university.city.id == this.filterUniversity.city;
+                        data = university.name.toLowerCase().includes(this.filterUniversity.searchKey.toLowerCase()) && university.country.id == this.filterUniversity.country && university.continent.id == this.filterUniversity.continent && university.city.id == this.filterUniversity.city;
                     else if(this.filterUniversity.country != "" && this.filterUniversity.continent != "") 
-                        data =  university.country.id == this.filterUniversity.country && university.continent.id == this.filterUniversity.continent;
+                        data = university.name.toLowerCase().includes(this.filterUniversity.searchKey.toLowerCase()) && university.country.id == this.filterUniversity.country && university.continent.id == this.filterUniversity.continent;
                     else if(this.filterUniversity.continent != "" && this.filterUniversity.city != "") 
-                        data =  university.continent.id == this.filterUniversity.continent && university.city.id == this.filterUniversity.city;
+                        data =  university.name.toLowerCase().includes(this.filterUniversity.searchKey.toLowerCase()) && university.continent.id == this.filterUniversity.continent && university.city.id == this.filterUniversity.city;
                     else if(this.filterUniversity.country != "" && this.filterUniversity.city != "") 
-                        data =  university.country.id == this.filterUniversity.country && university.city.id == this.filterUniversity.city;
+                        data = university.name.toLowerCase().includes(this.filterUniversity.searchKey.toLowerCase()) && university.country.id == this.filterUniversity.country && university.city.id == this.filterUniversity.city;
                     else if(this.filterUniversity.country != "") 
-                        data =  university.country.id == this.filterUniversity.country;
+                        data = university.name.toLowerCase().includes(this.filterUniversity.searchKey.toLowerCase()) && university.country.id == this.filterUniversity.country;
                     else if(this.filterUniversity.city != "") 
-                        data =  university.city.id == this.filterUniversity.city;
+                        data = university.name.toLowerCase().includes(this.filterUniversity.searchKey.toLowerCase()) && university.city.id == this.filterUniversity.city;
                     else if(this.filterUniversity.continent != "") 
-                        data =  university.continent.id == this.filterUniversity.continent;
+                        data = university.name.toLowerCase().includes(this.filterUniversity.searchKey.toLowerCase()) && university.continent.id == this.filterUniversity.continent;
                     else
-                        data = university ;
+                        data = university.name.toLowerCase().includes(this.filterUniversity.searchKey.toLowerCase()) && university ;
                     return data;
                 });
             }
