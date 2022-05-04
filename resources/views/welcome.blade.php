@@ -31,6 +31,12 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sceditor@3/minified/themes/default.min.css" />
     </head>
     <body class="bg-white py-3" style="background-image:url('/img/random-shapes.svg')">
+        @include('cookie-consent::index')
+        <div class="fixed md:hidden z-50 bottom-0 inset-x-0 pb-2">
+            <div class=" flex justify-center">
+                <button class="px-2 py-1 bg-primary-blue text-white shadow-xl rounded download-app">Télécharger AfricaUnity</button>
+            </div> 
+        </div>
         <div id="app" class="bg-white  xl:w-[90%]  w-full mx-auto min-h-screen">
             <router-view></router-view>
         </div>

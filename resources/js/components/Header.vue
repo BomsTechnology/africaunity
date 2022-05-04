@@ -10,10 +10,10 @@
                                 :to="{
                                     name: 'login', params: { redirect: 'not-login' },
                                 }" class="text-primary-blue">
-                                {{ post.title }}
+                                 {{ post.title.substring(0, 19) + "..." }}
                                 </router-link>
                         <a v-else :href="'/post/ '+ post.id"
-                                 class="text-primary-blue"> {{ post.title }} </a>
+                                 class="text-primary-blue"> {{ post.title.substring(0, 19) + "..." }} </a>
                 </SwiperSlide>
                 </Swiper>
             </h1>
@@ -32,11 +32,6 @@
         <img src="/img/barniere-africa.png" class=" h-20" alt="">
     </div>
     <Navigation />
-    <div class="fixed md:hidden z-50 bottom-0 inset-x-0 pb-2">
-            <div class=" flex justify-center">
-                <button class="px-2 py-1 bg-primary-blue text-white shadow-xl rounded download-app">Télécharger AfricaUnity</button>
-            </div> 
-        </div>
 </template>
 
 <script>
@@ -73,39 +68,5 @@ export default {
             token
         }
     },
-    methods: {
-        initializePWA () {
-            let deferredPrompt;
-            const addBtn = document.querySelector('.download-app');
-            addBtn.style.display = 'none';
-            window.addEventListener('beforeinstallprompt', (e) => {
-                // Prevent Chrome 67 and earlier from automatically showing the prompt
-                e.preventDefault();
-                // Stash the event so it can be triggered later.
-                deferredPrompt = e;
-                // Update UI to notify the user they can add to home screen
-                addBtn.style.display = 'block';
-
-                addBtn.addEventListener('click', (e) => {
-                // hide our user interface that shows our A2HS button
-                addBtn.style.display = 'none';
-                // Show the prompt
-                deferredPrompt.prompt();
-                // Wait for the user to respond to the prompt
-                deferredPrompt.userChoice.then((choiceResult) => {
-                    if (choiceResult.outcome === 'accepted') {
-                        console.log('User accepted the A2HS prompt');
-                    } else {
-                        console.log('User dismissed the A2HS prompt');
-                    }
-                    deferredPrompt = null;
-                    });
-                });
-            });
-        }
-    },
-    mounted(){
-        this.initializePWA()
-    }
 }
 </script>
