@@ -8,7 +8,7 @@ import i18n from './locales/i18n';
 
 const app = createApp({
     components:{
-        Home
+        Home,
     },
 }).use(i18n).use(router).mount('#app');
 

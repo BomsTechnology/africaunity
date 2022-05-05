@@ -12,7 +12,8 @@
         "laravel/sanctum": "^2.14",
         "laravel/tinker": "^2.5",
         "silviolleite/laravelpwa": "^2.0",
-        "spatie/laravel-cookie-consent": "^3.2"
+        "spatie/laravel-cookie-consent": "^3.2",
+        "stripe/stripe-php": "^7.126"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

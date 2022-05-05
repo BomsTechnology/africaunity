@@ -39,11 +39,16 @@
                                         <span class="text-red-500">*</span>
                                         </label
                                     >
+                                    <!-- <Select2  
+                                        
+                                        
+                                        
+                                        /> -->
                                     <select
                                         required
                                         v-model="announcement.university_id"
                                         class="form-select block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
-                                    >
+                                    >   
                                         <option
                                             v-for="university in universities"
                                             :key="university.id"
@@ -219,12 +224,14 @@ import Footer from "../../components/Footer.vue";
 import { reactive, ref, onMounted } from "vue";
 import Error from "../../components/Error.vue";
 import useAnnouncements from "../../services/announcementServices.js";
+import Select2 from 'v-select2-component';
 import usecategoryAnnouncements from "../../services/categoryAnnouncementServices.js";
 import useCurrencies from "../../services/currencyServices.js";
 import useUniversities from "../../services/universityServices.js";
 import router from "../../router/index.js";
 export default {
     components:{
+        Select2,
         Header,
         Footer,
         Error

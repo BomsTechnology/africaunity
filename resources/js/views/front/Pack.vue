@@ -160,7 +160,15 @@
                                 <span class="mx-4 text-gray-100 ">{{ $t("plan-desc7") }}</span>
                             </div>
                         </div>
-
+                        <!-- <stripe-checkout
+                            ref="checkoutRef"
+                            mode="subscription"
+                            :pk="publishableKey"
+                            :sessionId="sessionId"
+                        />
+                        <button @click="submit" class="w-full block text-center px-4 py-2 mt-10 font-medium tracking-wide text-primary-blue capitalize transition-colors duration-200 transform bg-white rounded-md hover:bg-white focus:outline-none focus:bg-white">
+                            {{ $t("register") }}
+                        </button> -->
                         <button disabled class="w-full block text-center px-4 py-2 mt-10 font-medium tracking-wide text-primary-blue capitalize transition-colors duration-200 transform bg-white rounded-md hover:bg-white focus:outline-none focus:bg-white">
                             {{ $t("register") }}
                         </button>
@@ -235,29 +243,42 @@
 import Header from "../../components/Header.vue";
 import Footer from "../../components/Footer.vue";
 import { CheckCircleIcon, BanIcon } from '@heroicons/vue/solid';
+import { StripeCheckout  } from "@vue-stripe/vue-stripe";
+import axios from "axios";
 export default {
     components:{
+        StripeCheckout,
         Header,
         Footer,
         BanIcon,
         CheckCircleIcon
     },
-    data(){
-        return{
-
-        }
-    },
+    // data(){
+    //     return {
+    //         publishableKey: "pk_test_51KtYynFJTg08EEU2sYHLN0LKrnZTuJCazai8jmokQ2096V7IXYjX2XsdGi7xh5jOgSCz5nnn7YfJS5afTtEHRSxk00EUEcmhsj",
+    //         sessionId: null,
+    //     };
+    // },
     setup(props) {
 
     },
-    methods: {
+    // methods: {
+    //     getSession() {
+    //         axios.get('getSession').then(res => {
+    //             this.sessionId = res.data.id
+    //         }).catch(err => {
 
-    },
-    computed(){
+    //         });
+    //     },
+    //     submit () {
+    //         this.$refs.checkoutRef.redirectToCheckout();
+    //     },
+    // },
+    // computed(){
 
-    },
-    mounted(){
-
-    }
+    // },
+    // mounted(){
+    //     this.getSession()
+    // }
 }
 </script>

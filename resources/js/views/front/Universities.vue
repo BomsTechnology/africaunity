@@ -235,12 +235,12 @@
             </div>
     </div>
     <div class="p-2 bg-primary-blue shadow"></div>
-    <div class="flex justify-end px-6">
+    <div class="flex justify-end py-4">
                 <router-link
                     :to="{
                         name: 'add.ads',
                     }"
-                    v-if="(user.type == 'particular')"
+                    v-if="(user.type == 'particular' || user.type == 'admin')"
                     class="flex justify-start items-center space-x-3 text-white bg-primary-blue rounded px-3 py-2"
                 >
                     <PlusCircleIcon class="w-6 h-6" />
