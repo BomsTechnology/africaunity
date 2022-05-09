@@ -13,8 +13,8 @@ class StripeController extends Controller
           );
 
         $sub = $stripe->checkout->sessions->create([
-            'success_url' => url('/pack'),
-            'cancel_url' => url('/register/business2'),
+            'success_url' => url('/register/business2'),
+            'cancel_url' => url('/pack'),
             'line_items' => [
                 [
                     'price' => 'price_1KtqrBFJTg08EEU2pd78nLkj',
@@ -25,6 +25,6 @@ class StripeController extends Controller
         ]);
 
         return  $sub;
-          
+
     }
 }

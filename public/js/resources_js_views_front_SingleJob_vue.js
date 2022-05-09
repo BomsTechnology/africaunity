@@ -37,7 +37,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       job: props.id,
       message: "",
       email: JSON.parse(localStorage.user).email,
-      name: JSON.parse(localStorage.user).firstname + ' ' + JSON.parse(localStorage.user).lastname,
+      name: JSON.parse(localStorage.user).firstname + ' ' + (JSON.parse(localStorage.user).lastname ? JSON.parse(localStorage.user).lastname : ''),
       cv: ""
     });
     var loadingC = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(0);

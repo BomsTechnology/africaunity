@@ -26494,7 +26494,24 @@ window.addEventListener('beforeinstallprompt', function (e) {
       deferredPrompt = null;
     });
   });
-});
+}); // Detects if device is on iOS 
+
+var isIos = function isIos() {
+  var userAgent = window.navigator.userAgent.toLowerCase();
+  return /iphone|ipad|ipod/.test(userAgent);
+}; // Detects if device is in standalone mode
+
+
+var isInStandaloneMode = function isInStandaloneMode() {
+  return 'standalone' in window.navigator && window.navigator.standalone;
+}; // Checks if should display install popup notification:
+
+
+if (isIos() && !isInStandaloneMode()) {
+  undefined.setState({
+    showInstallMessage: true
+  });
+}
 
 /***/ }),
 

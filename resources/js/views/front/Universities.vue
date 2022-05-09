@@ -233,6 +233,64 @@
                     </option>
                 </select>
             </div>
+            <div class="lg:text-sm text-xs">
+                <label class="text-gray-700" for="es">{{ $t('continent') }}</label>
+                <select v-model="filterAds.continent"   class="form-select block w-full px-4 py-2 mt-1 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue">
+                    <option value="">--------------</option>
+                    <option v-for="continent in continents" :key="continent.id" :value="continent.id">
+                        <span v-if="$i18n.locale == 'en'">{{
+                            continent.name_en
+                        }}</span>
+                        <span v-else-if="$i18n.locale == 'fr'">{{
+                            continent.name_fr
+                        }}</span>
+                        <span v-else-if="$i18n.locale == 'es'">{{
+                            continent.name_es
+                        }}</span>
+                        <span v-else>{{ continent.name_pt }}</span>
+                    </option>
+                </select>
+            </div>
+            <div class="lg:text-sm text-xs">
+                <label class="text-gray-700" for="es">{{ $t('country') }}</label>
+                <select v-model="filterAds.country"   class="form-select block w-full px-4 py-2 mt-1 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue">
+                    <option value="">--------------</option>
+                    <option v-for="country in countries" :key="country.id" :value="country.id">
+                        <span v-if="$i18n.locale == 'en'">{{
+                            country.name_en
+                        }}</span>
+                        <span v-else-if="$i18n.locale == 'fr'">{{
+                            country.name_fr
+                        }}</span>
+                        <span v-else-if="$i18n.locale == 'es'">{{
+                            country.name_es
+                        }}</span>
+                        <span v-else>{{ country.name_pt }}</span>
+                    </option>
+                </select>
+            </div>
+            <div class="lg:text-sm text-xs">
+                <label class="text-gray-700" for="es">{{ $t('city') }}</label>
+                <select v-model="filterAds.city"   class="form-select block w-full px-4 py-2 mt-1 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue">
+                    <option value="">--------------</option>
+                    <option
+                        v-for="city in cities"
+                        :key="city.id"
+                        :value="city.id"
+                    >
+                        <span v-if="$i18n.locale == 'en'">{{
+                            city.name_en
+                        }}</span>
+                        <span v-else-if="$i18n.locale == 'fr'">{{
+                            city.name_fr
+                        }}</span>
+                        <span v-else-if="$i18n.locale == 'es'">{{
+                            city.name_es
+                        }}</span>
+                        <span v-else>{{ city.name_pt }}</span>
+                    </option>
+                </select>
+            </div>
     </div>
     <div class="p-2 bg-primary-blue shadow"></div>
     <div class="flex justify-end py-4">
@@ -251,7 +309,7 @@
         <div
                 class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8 lg:px-10 py-8"
                 v-if="filteredAnnouncement.length != 0"
-            >           
+            >          
             <div class="overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800" v-for="announcement in filteredAnnouncement" :key="announcement.id">
                 <router-link
                                 :to="{
@@ -366,6 +424,9 @@ export default {
             searchKey:"",
             university: "",
             category:"",
+            country:"",
+            continent: "",
+            city:"",
         });
         const filterUniversity = reactive({
             country:"",
@@ -399,8 +460,32 @@ export default {
         filteredAnnouncement() {
             return this.announcements.filter((announcement) => {
                 let data = "";
-                if(this.filterAds.university != "" && this.filterAds.category != "") 
+                if(this.filterAds.country != "" && this.filterAds.continent != "" && this.filterAds.city != "" && this.filterAds.university != "" && this.filterAds.category != "")
+                    data = announcement.title.toLowerCase().includes(this.filterAds.searchKey.toLowerCase()) && announcement.university.city.id == this.filterAds.city && announcement.university.country.id == this.filterAds.country && announcement.university.continent.id == this.filterAds.continent && announcement.category.id == this.filterAds.category && announcement.university.id == this.filterAds.university;
+                else if(this.filterAds.country != "" && this.filterAds.continent != "" && this.filterAds.city != "" && this.filterAds.university != "")
+                    data = announcement.title.toLowerCase().includes(this.filterAds.searchKey.toLowerCase()) && announcement.university.city.id == this.filterAds.city && announcement.university.country.id == this.filterAds.country && announcement.university.continent.id == this.filterAds.continent && announcement.university.id == this.filterAds.university;
+                else if(this.filterAds.continent != "" && this.filterAds.city != "" && this.filterAds.university != "" && this.filterAds.category != "")
+                    data = announcement.title.toLowerCase().includes(this.filterAds.searchKey.toLowerCase()) && announcement.university.city.id == this.filterAds.city && announcement.university.continent.id == this.filterAds.continent && announcement.category.id == this.filterAds.category && announcement.university.id == this.filterAds.university;
+                else if(this.filterAds.continent != "" && this.filterAds.city != "" && this.filterAds.university != "")
+                    data = announcement.title.toLowerCase().includes(this.filterAds.searchKey.toLowerCase()) && announcement.university.city.id == this.filterAds.city && announcement.university.continent.id == this.filterAds.continent && announcement.university.id == this.filterAds.university;
+                else if(this.filterAds.country != "" && this.filterAds.continent != "" && this.filterAds.city != "")
+                    data = announcement.title.toLowerCase().includes(this.filterAds.searchKey.toLowerCase()) && announcement.university.city.id == this.filterAds.city && announcement.university.country.id == this.filterAds.country && announcement.university.continent.id == this.filterAds.continent;
+                else if(this.filterAds.city != "" && this.filterAds.university != "" && this.filterAds.category != "")
+                    data = announcement.title.toLowerCase().includes(this.filterAds.searchKey.toLowerCase()) && announcement.university.city.id == this.filterAds.city && announcement.category.id == this.filterAds.category && announcement.university.id == this.filterAds.university;
+                else if(this.filterAds.city != "" && this.filterAds.university != "")
+                    data = announcement.title.toLowerCase().includes(this.filterAds.searchKey.toLowerCase()) && announcement.university.city.id == this.filterAds.city && announcement.university.id == this.filterAds.university;
+                else if(this.filterAds.country != "" && this.filterAds.continent != "")
+                    data = announcement.title.toLowerCase().includes(this.filterAds.searchKey.toLowerCase()) && announcement.university.country.id == this.filterAds.country && announcement.university.continent.id == this.filterAds.continent;
+                else if(this.filterAds.continent != "" && this.filterAds.city != "")
+                    data = announcement.title.toLowerCase().includes(this.filterAds.searchKey.toLowerCase()) && announcement.university.city.id == this.filterAds.city && announcement.university.continent.id == this.filterAds.continent;
+                else if(this.filterAds.university != "" && this.filterAds.category != "") 
                     data = announcement.title.toLowerCase().includes(this.filterAds.searchKey.toLowerCase()) && announcement.category.id == this.filterAds.category && announcement.university.id == this.filterAds.university;
+                else if(this.filterAds.country != "")
+                    data = announcement.title.toLowerCase().includes(this.filterAds.searchKey.toLowerCase()) &&  announcement.university.country.id == this.filterAds.country;
+                else if( this.filterAds.city != "")
+                    data = announcement.title.toLowerCase().includes(this.filterAds.searchKey.toLowerCase()) && announcement.university.city.id == this.filterAds.city;
+                else if( this.filterAds.continent != "" )
+                    data = announcement.title.toLowerCase().includes(this.filterAds.searchKey.toLowerCase()) && announcement.university.continent.id == this.filterAds.continent;
                 else if(this.filterAds.university != "") 
                     data = announcement.title.toLowerCase().includes(this.filterAds.searchKey.toLowerCase()) && announcement.university.id == this.filterAds.university;
                 else if(this.filterAds.category != "") 

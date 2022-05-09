@@ -13,7 +13,7 @@
                 <span v-if="!showFilter">{{ $t('show-filter') }}</span>
             </button>
         </div>
-        <div class="lg:text-sm text-xs bg-gray-100 px-10 pb-8 pt-4 shadow" v-if="showFilter">
+        <div class="lg:text-sm text-xs bg-gray-100 px-10 pb-8 pt-4 space-y-3 shadow" v-if="showFilter">
             <div class=" gap-2 grid lg:grid-cols-2 grid-cols-1">
                 <div>
                     <label class="text-gray-700 dark:text-gray-200">{{ $t('key-words') }}</label>

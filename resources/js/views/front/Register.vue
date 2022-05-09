@@ -56,7 +56,7 @@
                     :to="{ name: 'register', params: { type: 'business1' } }"
                     class="text-primary-blue hover:underline"
                 >
-                    PB ({{ $t("pack") }} {{ $t("business") }}) ?
+                    PB ({{ $t("pack") }} PRO) ?
                 </router-link>
                 <router-link v-if="type != 'particular'"
                     :to="{ name: 'register', params: { type: 'particular' } }"

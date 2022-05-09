@@ -140,12 +140,15 @@
                                             <td
                                                 class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
                                             >
-                                                <img :src="announcement.image" alt="" class="w-16 rounded-full h-16 object-cover">
+                                                <img v-if="announcement.image" :src="announcement.image" alt="" class="w-16 rounded-full h-16 object-cover">
+                                                <div v-else class="w-16 overflow-hidden py-4 rounded-full h-16 bg-gray-50">
+                                                    <SpeakerphoneIcon  class=" h-full w-full text-gray-500" />
+                                                </div>
                                             </td>
                                             <td
                                                 class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
                                             >
-                                                {{ announcement.title }}
+                                                {{ announcement.title.length <= 20 ? announcement.title : announcement.title.substring(0, 19) + "..." }}
                                             </td>
                                             <td
                                                 class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
@@ -265,7 +268,7 @@
 
 <script>
 import Sidebar from "../../../components/Sidebar.vue";
-import { PlusCircleIcon } from "@heroicons/vue/solid";
+import { PlusCircleIcon, SpeakerphoneIcon } from "@heroicons/vue/solid";
 import { reactive, ref, onMounted } from "vue";
 import router from "../../../router";
 import useAnnouncements from "../../../services/announcementServices.js";
@@ -273,6 +276,7 @@ import Error from "../../../components/Error.vue";
 export default {
     components: {
         PlusCircleIcon,
+        SpeakerphoneIcon,
         Sidebar,
         Error,
     },

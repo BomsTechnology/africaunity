@@ -121,7 +121,7 @@
                                             <td
                                                 class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
                                             >
-                                                {{ university.name }}
+                                                {{  university.name.length <= 20 ? university.name : university.name.substring(0, 19) + "..." }}
                                             </td>
                                             <td
                                                 class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"

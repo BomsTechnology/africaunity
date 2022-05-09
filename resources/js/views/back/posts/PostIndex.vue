@@ -136,7 +136,7 @@
                                             <td
                                                 class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
                                             >
-                                                {{ post.title }}
+                                                {{ post.title.length <= 20 ? post.title : post.title.substring(0, 19) + "..." }}
                                             </td>
                                             <td
                                                 class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
@@ -314,7 +314,7 @@ export default {
             if(confirm("I you Sure ?")){
                 await destroyPost(id)
                 if(errors.value == ''){
-                    await getPosts(props.type);
+                    await getPostsAll(props.type);
                 }
             }
         };

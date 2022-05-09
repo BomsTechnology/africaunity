@@ -282,7 +282,8 @@
                                 </label>
                                 <input
                                     v-model="detail.website"
-                                    type="text"
+                                    type="url"
+                                    placeholder="https://www.monsite.com"
                                     class="form-input px-3 pr-2 w-full text-gray-700 bg-white border border-gray-200 rounded-md  mt-2 placeholder:text-gray-400 focus:ring-primary-blue focus:border-primary-blue block"
                                 />
                             </div>
@@ -291,8 +292,9 @@
                                     Youtube
                                 </label>
                                 <input
-                                    type="text"
+                                    type="url"
                                     v-model="detail.youtube"
+                                    placeholder="https://youtu.be/m0N965nXmXY"
                                     class="form-input px-3 pr-2 w-full text-gray-700 bg-white border border-gray-200 rounded-md  mt-2 placeholder:text-gray-400 focus:ring-primary-blue focus:border-primary-blue block"
                                 />
                             </div>

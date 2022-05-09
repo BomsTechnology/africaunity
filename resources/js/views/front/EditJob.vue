@@ -44,8 +44,9 @@
                             </label
                         >
                         <select
+                            v-if="jobOffer.continent"
                             required
-                            v-model="jobOffer.continent_id"
+                            v-model="jobOffer.continent.id"
                             class="form-select block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
                         >
                             <option
@@ -77,7 +78,8 @@
                         >
                         <select
                             required
-                            v-model="jobOffer.zone_id"
+                            v-if="jobOffer.zone"
+                            v-model="jobOffer.zone.id"
                             class="form-select block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
                         >
                             <option
@@ -109,7 +111,8 @@
                         >
                         <select
                             required
-                            v-model="jobOffer.country_id"
+                            v-if="jobOffer.country"
+                            v-model="jobOffer.country.id"
                             class="form-select block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
                         >
                             <option
@@ -141,7 +144,8 @@
                         >
                         <select
                             required
-                            v-model="jobOffer.city_id"
+                            v-if="jobOffer.city"
+                            v-model="jobOffer.city.id"
                             class="form-select block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
                         >
                             <option
@@ -271,7 +275,8 @@
                         >
                         <select
                             required
-                            v-model="jobOffer.currency_id"
+                            v-if="jobOffer.currency"
+                            v-model="jobOffer.currency.id"
                             class="form-select block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
                         >
                             <option
@@ -329,7 +334,8 @@
                         >
                         <select
                             required
-                            v-model="jobOffer.size_company_id"
+                            v-if="jobOffer.size_company"
+                            v-model="jobOffer.size_company.id"
                             class="form-select block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
                         >
                             <option
@@ -352,7 +358,8 @@
                         >
                         <select
                             required
-                            v-model="jobOffer.level_study_id"
+                            v-if="jobOffer.level_study"
+                            v-model="jobOffer.level_study.id"
                             class="form-select block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
                         >
                             <option
@@ -418,7 +425,8 @@
                         >
                         <select
                             required
-                            v-model="jobOffer.work_department_id"
+                            v-if="jobOffer.work_department"
+                            v-model="jobOffer.work_department.id"
                             class="form-select block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
                         >
                             <option
@@ -450,7 +458,8 @@
                         >
                         <select
                             required
-                            v-model="jobOffer.work_mode_id"
+                            v-if="jobOffer.work_mode"
+                            v-model="jobOffer.work_mode.id"
                             class="form-select block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
                         >
                             <option
@@ -482,7 +491,8 @@
                         >
                         <select
                             required
-                            v-model="jobOffer.offer_type_id"
+                            v-if="jobOffer.offer_type"
+                            v-model="jobOffer.offer_type.id"
                             class="form-select block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
                         >
                             <option
@@ -514,7 +524,8 @@
                         >
                         <select
                             required
-                            v-model="jobOffer.year_experience_id"
+                            v-if="jobOffer.year_experience"
+                            v-model="jobOffer.year_experience.id"
                             class="form-select block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
                         >
                             <option
@@ -611,7 +622,7 @@ export default {
     },
     setup(props) {
 
-        const { updateJobOffer ,getJobOffer2, jobOffer, errors, loading } = useJobOffers();
+        const { updateJobOffer ,getJobOffer, jobOffer, errors, loading } = useJobOffers();
         const { currencies, getCurrencies } = useCurrencies();
         const { languages, getLanguages } = useLanguages();
         const { activityAreas, getActivityAreas } = useActivityAreas();
@@ -630,7 +641,15 @@ export default {
 
          ;onMounted(                
                 async () => {
-                    await getJobOffer2(props.id);
+                    await getJobOffer(props.id);
+
+                    for(const item of jobOffer.value.activity_areas){
+                        cactivityAreas.value.push(item.id)
+                    }
+                    for(const item of jobOffer.value.languages){
+                        clanguages.value.push(item.id)
+                    }
+
                     await getCurrencies();
                     await getContinents();
                     await getZones();
@@ -659,18 +678,18 @@ export default {
             formData.append("company_logo", jobOffer.value.company_logo);
             formData.append("min_price", jobOffer.value.min_price);
             formData.append("max_price", jobOffer.value.max_price);
-            formData.append("user_id", jobOffer.value.user_id);
-            formData.append("currency_id", jobOffer.value.currency_id);
-            formData.append("year_experience_id", jobOffer.value.year_experience_id);
-            formData.append("work_department_id", jobOffer.value.work_department_id);
-            formData.append("work_mode_id", jobOffer.value.work_mode_id);
-            formData.append("size_company_id", jobOffer.value.size_company_id);
-            formData.append("offer_type_id", jobOffer.value.offer_type_id);
-            formData.append("level_study_id", jobOffer.value.level_study_id);
-            formData.append("city_id", jobOffer.value.city_id);
-            formData.append("zone_id", jobOffer.value.zone_id);
-            formData.append("continent_id", jobOffer.value.continent_id);
-            formData.append("country_id", jobOffer.value.country_id);
+            formData.append("user_id", jobOffer.value.user.id);
+            formData.append("currency_id", jobOffer.value.currency.id);
+            formData.append("year_experience_id", jobOffer.value.year_experience.id);
+            formData.append("work_department_id", jobOffer.value.work_department.id);
+            formData.append("work_mode_id", jobOffer.value.work_mode.id);
+            formData.append("size_company_id", jobOffer.value.size_company.id);
+            formData.append("offer_type_id", jobOffer.value.offer_type.id);
+            formData.append("level_study_id", jobOffer.value.level_study.id);
+            formData.append("city_id", jobOffer.value.city.id);
+            formData.append("zone_id", jobOffer.value.zone.id);
+            formData.append("continent_id", jobOffer.value.continent.id);
+            formData.append("country_id", jobOffer.value.country.id);
             formData.append("languages", clanguages.value);
             formData.append("activityAreas", cactivityAreas.value);
             formData.append('_method', 'PUT');

@@ -30,7 +30,10 @@ use App\Http\Controllers\Api\WorkDepartmentController;
 use App\Http\Controllers\Api\WorkModeController;
 use App\Http\Controllers\Api\YearExperienceController;
 use App\Http\Controllers\Api\ZoneController;
+use App\Http\Controllers\StripeController;
 
+
+Route::get('/getSession', [StripeController::class, 'getSession']);
 Route::post("/register",[AuthController::class,'register']);
 Route::post("/login",[AuthController::class,'login']);
 Route::post("/login-admin",[AuthController::class,'login_admin']);

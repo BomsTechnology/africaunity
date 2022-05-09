@@ -165,8 +165,8 @@
                             mode="subscription"
                             :pk="publishableKey"
                             :sessionId="sessionId"
-                        />
-                        <button @click="submit" class="w-full block text-center px-4 py-2 mt-10 font-medium tracking-wide text-primary-blue capitalize transition-colors duration-200 transform bg-white rounded-md hover:bg-white focus:outline-none focus:bg-white">
+                        /> -->
+                        <!-- <button @click="submit" class="w-full block text-center px-4 py-2 mt-10 font-medium tracking-wide text-primary-blue capitalize transition-colors duration-200 transform bg-white rounded-md hover:bg-white focus:outline-none focus:bg-white">
                             {{ $t("register") }}
                         </button> -->
                         <button disabled class="w-full block text-center px-4 py-2 mt-10 font-medium tracking-wide text-primary-blue capitalize transition-colors duration-200 transform bg-white rounded-md hover:bg-white focus:outline-none focus:bg-white">
@@ -245,6 +245,7 @@ import Footer from "../../components/Footer.vue";
 import { CheckCircleIcon, BanIcon } from '@heroicons/vue/solid';
 import { StripeCheckout  } from "@vue-stripe/vue-stripe";
 import axios from "axios";
+import { onMounted, ref } from 'vue';
 export default {
     components:{
         StripeCheckout,
@@ -253,32 +254,37 @@ export default {
         BanIcon,
         CheckCircleIcon
     },
-    // data(){
-    //     return {
-    //         publishableKey: "pk_test_51KtYynFJTg08EEU2sYHLN0LKrnZTuJCazai8jmokQ2096V7IXYjX2XsdGi7xh5jOgSCz5nnn7YfJS5afTtEHRSxk00EUEcmhsj",
-    //         sessionId: null,
-    //     };
-    // },
     setup(props) {
+        const checkoutRef = ref(null)
+        const publishableKey = "pk_test_51KtYynFJTg08EEU2sYHLN0LKrnZTuJCazai8jmokQ2096V7IXYjX2XsdGi7xh5jOgSCz5nnn7YfJS5afTtEHRSxk00EUEcmhsj";
+        const sessionId = ref(null);
 
+        onMounted(
+            // console.log('yo')
+            async () => {
+               try{
+                   let response = await axios.get('api/getSession');
+                   sessionId.value = response.data.id;
+                   console.log(response.data);
+               }catch(e){
+                   console.log('error')
+               }
+               
+
+            }
+        )
+
+        const submit  = () => {
+            // checkoutRef.redirectToCheckout();
+            console.log(checkoutRef)
+        }
+
+        return{
+            submit,
+            publishableKey,
+            sessionId,
+            checkoutRef,
+        }
     },
-    // methods: {
-    //     getSession() {
-    //         axios.get('getSession').then(res => {
-    //             this.sessionId = res.data.id
-    //         }).catch(err => {
-
-    //         });
-    //     },
-    //     submit () {
-    //         this.$refs.checkoutRef.redirectToCheckout();
-    //     },
-    // },
-    // computed(){
-
-    // },
-    // mounted(){
-    //     this.getSession()
-    // }
 }
 </script>

@@ -43,6 +43,7 @@
                     <span v-if="user.type == 'particular'">{{ $t('pack') }} {{ $t('particular') }}</span>
                     <span v-else-if="user.type == 'ip'">{{ $t('pack') }} {{ $t('politic') }}</span>
                     <span v-else-if="user.type == 'admin'">Admin</span>
+                    <span v-else-if="user.type == 'business1'">{{ $t('pack') }} PRO</span>
                     <span v-else>{{ $t('pack') }} {{ $t('business') }}</span>
                 </h3>
                 <button disabled v-if="user.type == 'business1'" class=" bg-primary-blue px-2 py-1 flex items-center justify-center lg:text-md text-xs space-x-2 shadow text-white rounded">

@@ -247,7 +247,7 @@ var _hoisted_5 = {
 };
 var _hoisted_6 = {
   key: 0,
-  "class": "lg:text-sm text-xs bg-gray-100 px-10 pb-8 pt-4 shadow"
+  "class": "lg:text-sm text-xs bg-gray-100 px-10 pb-8 pt-4 space-y-3 shadow"
 };
 var _hoisted_7 = {
   "class": "gap-2 grid lg:grid-cols-2 grid-cols-1"

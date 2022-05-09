@@ -43,8 +43,8 @@
                             <div>
                             <h1 class="lg:text-3xl text-2xl lg:text-left text-center font-semibold capitalize text-gray-700"> <span>{{ user.firstname }}</span> <span v-if="user.type ==  'particular'">{{ user.lastname }}</span> </h1>
                             <div class="flex items-center space-x-2 text-sm mt-2">
-                                <h2 class="text-primary-blue" v-if="!user.hide_email">{{ user.email }}</h2> 
-                                <h2 class="text-gray-400">° {{ detail.phone_number }}</h2>
+                                <h2 class="text-primary-blue" v-if="!user.hide_email">{{ user.email }} °</h2> 
+                                <h2 class="text-gray-400"> {{ detail.phone_number }} </h2>
                             </div>
                         </div>
                         <div class="space-x-2 flex items-center lg:py-0 py-1" v-if="user.id == loginUser.id">
@@ -89,11 +89,11 @@
                 <ChatIcon class="w-5 h-5"/>
                 <span class="lg:block hidden">{{ $t('comments') }}</span>               
             </button>
-            <button v-if="(user.type != 'particular' && user.type != 'business1') && (user.id == loginUser.id)" @click="changeTab('job')" :class="[ open.job ? 'text-white bg-primary-blue flex items-center space-x-2 px-2 py-1 text-md rounded-md': 'text-white flex items-center space-x-2 hover:bg-white/25 px-2 py-1 text-md rounded-md']">
+            <button v-if="(user.type != 'particular' && user.type != 'business1')" @click="changeTab('job')" :class="[ open.job ? 'text-white bg-primary-blue flex items-center space-x-2 px-2 py-1 text-md rounded-md': 'text-white flex items-center space-x-2 hover:bg-white/25 px-2 py-1 text-md rounded-md']">
                 <ChatAltIcon class="w-5 h-5"/>
                 <span class="lg:block hidden">{{ $t('my-jobs') }}</span>               
             </button>
-            <button v-if="(user.type == 'particular' || user.type == 'admin') && (user.id == loginUser.id)" @click="changeTab('ads')" :class="[ open.ads ? 'text-white bg-primary-blue flex items-center space-x-2 px-2 py-1 text-md rounded-md': 'text-white flex items-center space-x-2 hover:bg-white/25 px-2 py-1 text-md rounded-md']">
+            <button v-if="(user.type == 'particular' || user.type == 'admin')" @click="changeTab('ads')" :class="[ open.ads ? 'text-white bg-primary-blue flex items-center space-x-2 px-2 py-1 text-md rounded-md': 'text-white flex items-center space-x-2 hover:bg-white/25 px-2 py-1 text-md rounded-md']">
                 <SpeakerphoneIcon class="w-5 h-5"/>
                 <span class="lg:block hidden">{{ $t('my-ads') }}</span>               
             </button>
@@ -123,11 +123,11 @@
         <div class=" py-8 lg:px-16" v-if="(open.profil) && (loading == 0)">
             <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
                         <div v-if="user.type == 'particular'" class="grid grid-cols-1 gap-6 sm:grid-cols-2 col-span-2">
-                            <div class="relative">
+                            <div class="relative border-b py-2">
                                 <label class="text-gray-700 py-1 text-md font-semibold">{{ $t('firstname') }}</label>
                                 <p class="py-1">{{ user.firstname }}</p>    
                             </div>
-                            <div class="relative">
+                            <div class="relative border-b py-2">
                                 <label class="text-gray-700 py-1 text-md font-semibold">{{ $t('lastname') }}</label>
                                 <p class="py-1">{{ user.lastname }}</p>
                             </div>
@@ -136,11 +136,11 @@
                             v-else-if="
                                 user.type == 'business1' || user.type == 'business2'
                             "
-                            class="relative col-span-2">
+                            class="relative col-span-2 border-b py-2">
                             <label class="text-gray-700 py-1 text-md font-semibold">{{ $t('social-reason') }}</label>
                             <p class="py-1">{{ user.firstname }}</p>
                         </div>
-                        <div v-else class="relative col-span-2">
+                        <div v-else class="relative col-span-2 border-b py-2">
                             <label class="text-gray-700 py-1 text-md font-semibold">{{ $t('denomination') }} </label>
                             <p class="py-1">{{ user.firstname }}</p>
                         </div>
@@ -155,21 +155,21 @@
                             v-else-if="
                                 user.type == 'business1' || user.type == 'business2'
                             "
-                            class="relative col-span-2">
+                            class="relative col-span-2 border-b py-2">
                             <label class="text-gray-700 py-1 text-md font-semibold">{{ $t('social-object') }}</label>
                             <p class="py-1">{{ detail.social_object }}</p>
                         </div>
-                        <div v-else-if="user.type == 'ip'" class="relative col-span-2">
+                        <div v-else-if="user.type == 'ip'" class="relative col-span-2 border-b py-2">
                             <label class="text-gray-700 py-1 text-md font-semibold">{{ $t('goal-attribution') }}</label>
                             <p class="py-1">{{ detail.goal_attribution }}</p>
                         </div>
-                        <div class="relative col-span-2" v-if="!user.hide_email">
+                        <div class="relative col-span-2 border-b py-2" v-if="!user.hide_email">
                             <label class="text-gray-700 py-1 text-md font-semibold">{{ $t('adresse') + ' ' + $t('email') }}</label>
                             <p class="py-1">{{ user.email }}</p>
                         </div>
                         <div  
                             v-if="user.type == 'particular'"
-                            class="relative col-span-2">
+                            class="relative col-span-2 border-b py-2">
                             <label class="text-gray-700 py-1 text-md font-semibold">{{ $t('diplome-certification') }}</label>
                             <p class="py-1">{{ detail.goal_attribution }}</p>
                         </div>
@@ -177,7 +177,7 @@
                             v-if="
                                 user.type == 'business1' || user.type == 'business2' || user.type == 'ip'
                             "
-                            class="relative col-span-2">
+                            class="relative col-span-2 border-b py-2">
                             <label class="text-gray-700 py-1 text-md font-semibold">{{ $t('name-responsable') }}</label>
                             <p class="py-1">{{ detail.name_responsible }}</p>
                         </div>
@@ -185,27 +185,27 @@
                             v-if="
                                 user.type == 'business1' || user.type == 'business2' || user.type == 'ip'
                             "
-                            class="relative col-span-2">
+                            class="relative col-span-2 border-b py-2">
                             <label class="text-gray-700 py-1 text-md font-semibold">{{ $t('adresse') }}</label>
                             <p class="py-1">{{ detail.adress }}</p>
                         </div>
                         <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 col-span-2">
-                            <div v-if="user.type == 'particular'"  class="relative">
+                            <div v-if="user.type == 'particular'"  class="relative border-b py-2">
                                 <label class="text-gray-700 py-1 text-md font-semibold">{{ $t('sex') }}</label>
                                  <p class="py-1">  <span v-if="detail.sex == 1">{{ $t('male') }}</span>
                                     <span v-else>{{ $t('female') }}</span> </p> 
                             </div>
-                            <div class="relative">
+                            <div class="relative border-b py-2">
                                 <label class="text-gray-700 py-1 text-md font-semibold">{{ $t('phone-number') }}</label>
                                 <p class="py-1">{{ detail.phone_number }}</p>
                             </div>
-                            <div v-if="user.type != 'particular'" class="relative">
+                            <div v-if="user.type != 'particular'" class="relative border-b py-2">
                                 <label class="text-gray-700 py-1 text-md font-semibold">{{ $t('phone-number') }} 2</label>
                                 <p class="py-1">{{ detail.phone_number_2 }}</p>
                             </div>
                         </div>
                         <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 col-span-2">
-                            <div class="relative" v-if="user.type == 'particular' || user.type == 'ip'">
+                            <div class="relative border-b py-2" v-if="user.type == 'particular' || user.type == 'ip'">
                                 <label class="text-gray-700 py-1 text-md font-semibold">
                                     <span>{{ $t('native-country') }}</span> 
                                 </label>
@@ -225,7 +225,7 @@
                                 </ul>
 
                             </div>
-                            <div  :class="[user.type == 'particular' || user.type == 'ip' ? '' : 'col-span-2']">
+                            <div  :class="[user.type == 'particular' || user.type == 'ip' ? 'border-b py-2' : 'col-span-2 border-b py-2']">
                                 <label class="text-gray-700 py-1 text-md font-semibold">
                                     <span v-if="user.type == 'particular' || user.type == 'ip'">{{ $t('residence-country') }}</span>
                                     <span v-else>{{ $t('social-country') }}</span>
@@ -247,7 +247,7 @@
                             </div>
                         </div>
                         <div v-if="user.type != 'particular'" class="grid grid-cols-1 gap-6 sm:grid-cols-2 col-span-2">
-                            <div class="relative">
+                            <div class="relative border-b py-2">
                                 <label class="text-gray-700 py-1 text-md font-semibold">
                                     <span v-if="user.type == 'ip'">{{ $t('perimetre') }}</span>
                                     <span v-else>{{ $t('type-company') }}</span> 
@@ -267,7 +267,7 @@
                                     </li>
                                 </ul>
                             </div>
-                            <div class="relative">
+                            <div class="relative border-b py-2">
                                 <label class="text-gray-700 py-1 text-md font-semibold">
                                     <span v-if="user.type == 'ip'">{{ $t('size-institution') }}</span>
                                     <span v-else>{{ $t('size-company') }}</span>
@@ -290,7 +290,7 @@
                         </div>
                         <div
                             v-if="user.type == 'particular'"
-                            class="relative col-span-2">
+                            class="relative col-span-2 border-b py-2">
                             <label class="text-gray-700 py-1 text-md font-semibold">{{ $t('speak-language') }}</label>
                             <ul class="py-1">
                                 <li v-for="language in languages" :key="language.id">
@@ -315,7 +315,7 @@
                             v-if="
                                 user.type == 'business1' || user.type == 'business2'
                             "
-                            class="relative col-span-2">
+                            class="relative col-span-2 border-b py-2">
                             <label class="text-gray-700 py-1 text-md font-semibold">{{ $t('legal-status') }}</label>
                             <ul class="py-1">
                                 <li v-if="detail.legal_status">
@@ -333,7 +333,7 @@
                             </ul>
                         </div>
                         <div
-                            class="relative col-span-2">
+                            class="relative col-span-2 border-b py-2">
                             <label class="text-gray-700 py-1 text-md font-semibold">
                                 <span v-if="user.type == 'particular'">{{ $t('birth-date') }}</span>
                                 <span v-else>{{ $t('create-date') }}</span>
@@ -341,22 +341,22 @@
                             <p class="py-1">{{ detail.navite_date }}</p>
                         </div>
                         <div  class="grid grid-cols-1 gap-6 sm:grid-cols-2 col-span-2">
-                            <div class="relative">
+                            <div class="relative border-b py-2">
                                 <label class="text-gray-700 py-1 text-md font-semibold">
                                     {{ $t('website') }}
                                 </label>
-                                <p class="py-1">{{ detail.website }}</p>
+                                <a target="_blank" class="py-1 text-primary-blue block italic hover:underline" :href="detail.website">{{ detail.website }}</a>
                             </div>
-                            <div class="relative">
+                            <div class="relative border-b py-2">
                                 <label class="text-gray-700 py-1 text-md font-semibold">
                                     Youtube
                                 </label>
-                                <p class="py-1">{{ detail.youtube }}</p>
+                                <a target="_blank" class="py-1 hover:underline block  italic" :href="detail.youtube">Youtube</a>
                             </div>
                         </div>
                         <div
                         v-if="user.type != 'ip'"
-                            class="relative col-span-2">
+                            class="relative col-span-2 border-b py-2">
                             <label class="text-gray-700 py-1 text-md font-semibold">
                                 {{ $t('activity-area') }}
                             </label>
@@ -381,7 +381,7 @@
                         </div>
                         <div  
                             v-if="user.type == 'particular'"
-                            class="relative col-span-2">
+                            class="relative col-span-2 border-b py-2">
                             <label class="text-gray-700 py-1 text-md font-semibold">
                                 {{ $t('o-activity') }}
                             </label>
@@ -389,7 +389,7 @@
                         </div>
                         <div  
                             v-if="user.type == 'particular'"
-                            class="relative col-span-2">
+                            class="relative col-span-2 border-b py-2">
                             <label class="text-gray-700 py-1 text-md font-semibold">
                                 {{ $t('rsearch-p') }}
                             </label>
@@ -422,7 +422,7 @@
             </div>
         </div>
          <div class=" py-8 lg:px-16" v-else-if="(open.article) && (loading == 0)">
-            <div class="flex space-x-2 items-center">
+            <div class="md:flex space-x-2 items-center">
                 <div>
                     <div class="relative">
                         <div
@@ -453,7 +453,7 @@
                 <div>
                     <select
                         v-model="langArticle"
-                        class="form-select block w-full px-4 py-2 text-gray-700 bg-gray-50  border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
+                        class="form-select block w-full pr-8 pl-4 py-2 text-gray-700 bg-gray-50  border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
                     >
                         <option value="">Select Language</option>
                         <option value="fr">{{ $t('fr') }}</option>
@@ -499,17 +499,28 @@
                                 :to="{
                                     name: 'show.post',
                                     params: { id: post.id },
-                                }" class="text-sm font-bold text-primary-blue hover:underline">{{ $t('read-more') }}</router-link>
-                        <router-link
-                                v-if="user.id == loginUser.id"
+                                }" class="text-sm font-bold text-primary-blue hover:underline">{{ $t('read-more') }}
+                        </router-link>
+                        <div class="flex space-x-2" v-if="user.id == loginUser.id">
+                            <router-link
                                 :to="{
                                     name: 'edit.post',
                                     params: { id: post.id, type: post.type},
                                 }">
-                                        <PencilAltIcon
-                                            class="h-5 w-5 hover:text-gray-400 cursor-pointer text-primary-blue"
-                                        />
-                                        </router-link>
+                                <PencilAltIcon
+                                    class="h-5 w-5 hover:text-gray-400 cursor-pointer text-primary-blue"
+                                />
+                            </router-link>
+
+                            <button
+                                @click="deletePost(post.id)"
+                                class="text-red-600 dark:text-blue-500 hover:underline"
+                                >
+                                    <TrashIcon
+                                        class="h-5 w-5 hover:text-red-700 cursor-pointer text-red-400"
+                                    />
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -523,7 +534,7 @@
             </div>
         </div>
          <div class=" py-8 lg:px-16" v-else-if="(open.propau) && (loading == 0)">
-            <div class="flex space-x-2 items-center">
+            <div class="md:flex space-x-2 items-center">
                 <div>
                     <div class="relative">
                         <div
@@ -554,7 +565,7 @@
                 <div>
                     <select
                         v-model="langProp"
-                        class="form-select block w-full px-4 py-2 text-gray-700 bg-gray-50  border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
+                        class="form-select block w-full pr-8 pl-4 py-2 text-gray-700 bg-gray-50  border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
                     >
                         <option value="">Select Language</option>
                         <option value="fr">{{ $t('fr') }}</option>
@@ -591,7 +602,7 @@
                     <div class="flex mt-2 item-center space-x-1">
                         <ChatIcon class="h-4 w-4 text-gray-500" />
                         <a href="#" class="hover:text-primary-blue text-xs"
-                            >0</a
+                            >{{ post.comments }}</a
                         >
 
                     </div>
@@ -602,16 +613,26 @@
                                     name: 'show.post',
                                     params: { id: post.id },
                                 }" class="text-sm font-bold text-primary-blue hover:underline">Read More</router-link>
-                        <router-link
-                                v-if="user.id == loginUser.id"
+                        <div class="flex space-x-2" v-if="user.id == loginUser.id">
+                            <router-link
                                 :to="{
                                     name: 'edit.post',
                                     params: { id: post.id, type: post.type},
                                 }">
-                                        <PencilAltIcon
-                                            class="h-5 w-5 hover:text-gray-400 cursor-pointer text-primary-blue"
-                                        />
-                                        </router-link>
+                                <PencilAltIcon
+                                    class="h-5 w-5 hover:text-gray-400 cursor-pointer text-primary-blue"
+                                />
+                            </router-link>
+
+                            <button
+                                @click="deletePost(post.id)"
+                                class="text-red-600 dark:text-blue-500 hover:underline"
+                                >
+                                    <TrashIcon
+                                        class="h-5 w-5 hover:text-red-700 cursor-pointer text-red-400"
+                                    />
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -738,8 +759,7 @@
                                                 <TrashIcon
                                                     class="h-5 w-5 hover:text-red-700 cursor-pointer text-red-400"
                                                 />
-                                            </button
-                                        >
+                                        </button>
                                     </div>
                                 </td>
                             </tr>
@@ -1146,7 +1166,7 @@ export default {
     },
     setup(props) {
         const loginUser = localStorage.user ? JSON.parse(localStorage.user) : '';
-        const { articles, getPostsUser, propau } = usePosts();
+        const { articles, getPostsUser, propau, destroyPost } = usePosts();
         const { user, getUser } = useUsers();
         const { comments, getCommentsUser, destroyComment, updateComment} = useComments();
         const { jobOffers, getJobOffersUser, destroyJobOffer, markFilled} = useJobOffers();
@@ -1167,10 +1187,6 @@ export default {
         const langArticle = ref('');
         const langProp = ref('');
         const url = window.location.href;
-        // const openTooltip = reactive({
-        //     id: null,
-        //     state: false,
-        // });
         const openReport = ref(false);
         const open = reactive({
             profil: true,
@@ -1249,15 +1265,12 @@ export default {
             openReport.value = !openReport.value;
         };
 
-        // const showTooltip = (id) => {
-        //     openTooltip.id = id;
-        //     openTooltip.state = true;
-        // };
-
-        // const hideTooltip = () => {
-        //     openTooltip.id = null;
-        //     openTooltip.state = false;
-        // };
+        const deletePost = async (id) => {
+            if(confirm("I you Sure ?")){
+                await destroyPost(id)
+                await getPostsUser(props.id);
+            }
+        };
 
         const deleteComment = async (id) => {
             if(confirm("I you Sure ?")){
@@ -1375,9 +1388,7 @@ export default {
         return{
             toogleModal,
             openReport,
-            // openTooltip,
-            // hideTooltip,
-            // showTooltip,
+            deletePost,
             langProp,
             langArticle,
             searchProp,
