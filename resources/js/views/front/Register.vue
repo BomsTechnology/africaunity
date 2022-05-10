@@ -1,5 +1,4 @@
 <template>
-    <Header />
     <div
         class="lg:flex justify-center items-center md:space-x-6 md:px-12 px-2 py-8"
     >
@@ -46,19 +45,22 @@
 
             <p>
                 {{ $t("create-other-account") }}
-                <router-link v-if="type != 'ip'"
+                <router-link
+                    v-if="type != 'ip'"
                     :to="{ name: 'register', params: { type: 'ip' } }"
                     class="text-primary-blue hover:underline"
                 >
                     IP ({{ $t("pack") }} {{ $t("politic") }}) ?
                 </router-link>
-                <router-link v-if="type != 'business1'"
+                <router-link
+                    v-if="type != 'business1'"
                     :to="{ name: 'register', params: { type: 'business1' } }"
                     class="text-primary-blue hover:underline"
                 >
                     PB ({{ $t("pack") }} PRO) ?
                 </router-link>
-                <router-link v-if="type != 'particular'"
+                <router-link
+                    v-if="type != 'particular'"
                     :to="{ name: 'register', params: { type: 'particular' } }"
                     class="text-primary-blue hover:underline"
                 >
@@ -78,7 +80,7 @@
                             {{ $t("msg-a-register") }}
                         </p>
                     </div>
-                    <form v-else @submit.prevent="register()" class="py-7" >
+                    <form v-else @submit.prevent="register()" class="py-7">
                         <span v-if="type == 'particular'">
                             <div class="relative">
                                 <span
@@ -198,16 +200,37 @@
                         </div>
                         <div>
                             <button
-                            v-if="loading == 0"
+                                v-if="loading == 0"
                                 type="submit"
                                 class="text-white text-lg bg-primary-blue px-8 py-2 mt-6 w-full"
                             >
                                 {{ $t("register") }}
                             </button>
-                            <button v-if="loading == 1" disabled type="submit" class="inline-flex items-center justify-center text-white text-lg bg-blue-300 cursor-wait px-8 py-2 mt-6 w-full">
-                                <svg class="animate-spin mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            <button
+                                v-if="loading == 1"
+                                disabled
+                                type="submit"
+                                class="inline-flex items-center justify-center text-white text-lg bg-blue-300 cursor-wait px-8 py-2 mt-6 w-full"
+                            >
+                                <svg
+                                    class="animate-spin mr-3 h-5 w-5 text-white"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <circle
+                                        class="opacity-25"
+                                        cx="12"
+                                        cy="12"
+                                        r="10"
+                                        stroke="currentColor"
+                                        stroke-width="4"
+                                    ></circle>
+                                    <path
+                                        class="opacity-75"
+                                        fill="currentColor"
+                                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                                    ></path>
                                 </svg>
                                 {{ $t("register") }}...
                             </button>
@@ -228,17 +251,14 @@
             </div>
         </div>
     </div>
-    <Footer />
 </template>
 
 <script>
-import Header from "../../components/Header.vue";
-import Footer from "../../components/Footer.vue";
 import Error from "../../components/Error.vue";
 import { UserIcon, LockClosedIcon, MailIcon } from "@heroicons/vue/solid";
-import { reactive, ref, onMounted} from "vue";
+import { reactive, ref, onMounted } from "vue";
 import router from "../../router";
-import useAuth from "../../services/authServices.js"
+import useAuth from "../../services/authServices.js";
 export default {
     props: {
         type: {
@@ -247,25 +267,24 @@ export default {
         },
     },
     components: {
-        Header,
-        Footer,
         Error,
         UserIcon,
         LockClosedIcon,
         MailIcon,
     },
     setup(props) {
-        const cuser = localStorage.user ? JSON.parse(localStorage.user) : '';
-        onMounted(
-            () => {
-                if (!types.includes(props.type)) {
-                    router.push({ name: "pack" });
-                }
-                if (localStorage.token) {
-                    router.push({name:'compte',  params: {name: cuser.firstname, id : cuser.id }});
-                }
+        const cuser = localStorage.user ? JSON.parse(localStorage.user) : "";
+        onMounted(() => {
+            if (!types.includes(props.type)) {
+                router.push({ name: "pack" });
             }
-        );
+            if (localStorage.token) {
+                router.push({
+                    name: "compte",
+                    params: { name: cuser.firstname, id: cuser.id },
+                });
+            }
+        });
 
         const cpolitic = ref(false);
         const types = ["particular", "ip", "business1", "business2"];
@@ -277,14 +296,15 @@ export default {
             password_confirmation: "",
             type: props.type,
         });
-        const { createUser , errors, loading } = useAuth();
+        const { createUser, errors, loading } = useAuth();
 
         const register = async () => {
-                if(cpolitic){
-                    await createUser({...user});
-                }else{
-                    errors.value = "Veillez accepter notre politique de confidentialité";
-                }
+            if (cpolitic) {
+                await createUser({ ...user });
+            } else {
+                errors.value =
+                    "Veillez accepter notre politique de confidentialité";
+            }
         };
 
         return {
@@ -292,7 +312,7 @@ export default {
             errors,
             register,
             cpolitic,
-            loading
+            loading,
         };
     },
 };

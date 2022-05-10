@@ -13,18 +13,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _components_Header_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/Header.vue */ "./resources/js/components/Header.vue");
-/* harmony import */ var _components_Footer_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/Footer.vue */ "./resources/js/components/Footer.vue");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-/* harmony import */ var _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @heroicons/vue/solid */ "./node_modules/@heroicons/vue/solid/esm/UserCircleIcon.js");
-/* harmony import */ var _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @heroicons/vue/solid */ "./node_modules/@heroicons/vue/solid/esm/EmojiSadIcon.js");
-/* harmony import */ var _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @heroicons/vue/solid */ "./node_modules/@heroicons/vue/solid/esm/ChevronDownIcon.js");
-/* harmony import */ var _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @heroicons/vue/solid */ "./node_modules/@heroicons/vue/solid/esm/ChevronUpIcon.js");
-/* harmony import */ var _services_userServices_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../services/userServices.js */ "./resources/js/services/userServices.js");
-/* harmony import */ var _services_businessTypeServices_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../services/businessTypeServices.js */ "./resources/js/services/businessTypeServices.js");
-/* harmony import */ var _services_businessSizeServices_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../services/businessSizeServices.js */ "./resources/js/services/businessSizeServices.js");
-/* harmony import */ var _services_countryServices_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../services/countryServices.js */ "./resources/js/services/countryServices.js");
-/* harmony import */ var _services_activityAreaServices_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../services/activityAreaServices.js */ "./resources/js/services/activityAreaServices.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @heroicons/vue/solid */ "./node_modules/@heroicons/vue/solid/esm/UserCircleIcon.js");
+/* harmony import */ var _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @heroicons/vue/solid */ "./node_modules/@heroicons/vue/solid/esm/EmojiSadIcon.js");
+/* harmony import */ var _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @heroicons/vue/solid */ "./node_modules/@heroicons/vue/solid/esm/ChevronDownIcon.js");
+/* harmony import */ var _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @heroicons/vue/solid */ "./node_modules/@heroicons/vue/solid/esm/ChevronUpIcon.js");
+/* harmony import */ var _services_userServices_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../services/userServices.js */ "./resources/js/services/userServices.js");
+/* harmony import */ var _services_businessTypeServices_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/businessTypeServices.js */ "./resources/js/services/businessTypeServices.js");
+/* harmony import */ var _services_businessSizeServices_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../services/businessSizeServices.js */ "./resources/js/services/businessSizeServices.js");
+/* harmony import */ var _services_countryServices_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../services/countryServices.js */ "./resources/js/services/countryServices.js");
+/* harmony import */ var _services_activityAreaServices_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../services/activityAreaServices.js */ "./resources/js/services/activityAreaServices.js");
 
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
@@ -44,51 +42,47 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
-
-
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
-    UserCircleIcon: _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_9__["default"],
-    EmojiSadIcon: _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_10__["default"],
-    Header: _components_Header_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
-    Footer: _components_Footer_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-    ChevronDownIcon: _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_11__["default"],
-    ChevronUpIcon: _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_12__["default"]
+    UserCircleIcon: _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_7__["default"],
+    EmojiSadIcon: _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_8__["default"],
+    ChevronDownIcon: _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_9__["default"],
+    ChevronUpIcon: _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_10__["default"]
   },
   setup: function setup(props) {
-    var _useBusinessSizes = (0,_services_businessSizeServices_js__WEBPACK_IMPORTED_MODULE_6__["default"])(),
+    var _useBusinessSizes = (0,_services_businessSizeServices_js__WEBPACK_IMPORTED_MODULE_4__["default"])(),
         businessSizes = _useBusinessSizes.businessSizes,
         getBusinessSizes = _useBusinessSizes.getBusinessSizes;
 
-    var _useCountries = (0,_services_countryServices_js__WEBPACK_IMPORTED_MODULE_7__["default"])(),
+    var _useCountries = (0,_services_countryServices_js__WEBPACK_IMPORTED_MODULE_5__["default"])(),
         countries = _useCountries.countries,
         getCountries = _useCountries.getCountries;
 
-    var _useBusinessTypes = (0,_services_businessTypeServices_js__WEBPACK_IMPORTED_MODULE_5__["default"])(),
+    var _useBusinessTypes = (0,_services_businessTypeServices_js__WEBPACK_IMPORTED_MODULE_3__["default"])(),
         businessTypes = _useBusinessTypes.businessTypes,
         getBusinessTypes = _useBusinessTypes.getBusinessTypes;
 
-    var _useUsers = (0,_services_userServices_js__WEBPACK_IMPORTED_MODULE_4__["default"])(),
+    var _useUsers = (0,_services_userServices_js__WEBPACK_IMPORTED_MODULE_2__["default"])(),
         users = _useUsers.users,
         getUsersType = _useUsers.getUsersType,
         filterUsers = _useUsers.filterUsers,
         errors = _useUsers.errors,
         loading = _useUsers.loading;
 
-    var _useActivityAreas = (0,_services_activityAreaServices_js__WEBPACK_IMPORTED_MODULE_8__["default"])(),
+    var _useActivityAreas = (0,_services_activityAreaServices_js__WEBPACK_IMPORTED_MODULE_6__["default"])(),
         activityAreas = _useActivityAreas.activityAreas,
         getActivityAreas = _useActivityAreas.getActivityAreas;
 
-    (0,vue__WEBPACK_IMPORTED_MODULE_3__.onMounted)(getUsersType("business"), getBusinessSizes(), getCountries(), getBusinessTypes(), getActivityAreas());
-    var searchKey = (0,vue__WEBPACK_IMPORTED_MODULE_3__.ref)('');
-    var filter = (0,vue__WEBPACK_IMPORTED_MODULE_3__.reactive)({
+    (0,vue__WEBPACK_IMPORTED_MODULE_1__.onMounted)(getUsersType("business"), getBusinessSizes(), getCountries(), getBusinessTypes(), getActivityAreas());
+    var searchKey = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)('');
+    var filter = (0,vue__WEBPACK_IMPORTED_MODULE_1__.reactive)({
       residence_country: "",
       activity_area: "",
       business_size: "",
       business_type: "",
       type: "business"
     });
-    var showDetail = (0,vue__WEBPACK_IMPORTED_MODULE_3__.reactive)({
+    var showDetail = (0,vue__WEBPACK_IMPORTED_MODULE_1__.reactive)({
       id: "",
       state: false
     });
@@ -415,8 +409,6 @@ var _hoisted_72 = {
   "class": "text-2xl mt-2"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  var _component_Header = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Header");
-
   var _component_UserCircleIcon = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("UserCircleIcon");
 
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
@@ -427,9 +419,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   var _component_EmojiSadIcon = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("EmojiSadIcon");
 
-  var _component_Footer = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Footer");
-
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Header), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('establishment')), 1
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('establishment')), 1
   /* TEXT */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('key-words')), 1
   /* TEXT */
@@ -648,7 +638,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "h-16 w-16"
   }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_72, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t("no-content")), 1
   /* TEXT */
-  )]))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Footer)], 64
+  )]))])], 64
   /* STABLE_FRAGMENT */
   );
 }
@@ -2341,6 +2331,36 @@ function render(_ctx, _cache) {
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("path", {
       "fill-rule": "evenodd",
       d: "M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z",
+      "clip-rule": "evenodd"
+    })
+  ]))
+}
+
+/***/ }),
+
+/***/ "./node_modules/@heroicons/vue/solid/esm/EmojiSadIcon.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/@heroicons/vue/solid/esm/EmojiSadIcon.js ***!
+  \***************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ render)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+
+function render(_ctx, _cache) {
+  return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 20 20",
+    fill: "currentColor",
+    "aria-hidden": "true"
+  }, [
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("path", {
+      "fill-rule": "evenodd",
+      d: "M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 100-2 1 1 0 000 2zm7-1a1 1 0 11-2 0 1 1 0 012 0zm-7.536 5.879a1 1 0 001.415 0 3 3 0 014.242 0 1 1 0 001.415-1.415 5 5 0 00-7.072 0 1 1 0 000 1.415z",
       "clip-rule": "evenodd"
     })
   ]))

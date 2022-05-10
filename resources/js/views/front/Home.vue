@@ -1,5 +1,4 @@
 <template>
-    <Header />
     <Caroussel />
     <div class="lg:flex p-4 lg:space-x-2 space-y-4 md:space-y-0 text-lg">
         <div class="lg:w-[70%]">
@@ -958,21 +957,16 @@
             </div>
         </div>
     </div>
-    <Footer />
 </template>
 
 <script>
-import Header from "../../components/Header.vue";
 import FilterArticle from "../../components/FilterArticle.vue";
-import Footer from "../../components/Footer.vue";
 import Caroussel from "../../components/Caroussel.vue";
 import { CalendarIcon, UserIcon, ChatIcon, OfficeBuildingIcon } from "@heroicons/vue/solid";
 import { reactive, ref, onMounted } from "vue";
 export default {
     components: {
-        Header,
         Caroussel,
-        Footer,
         CalendarIcon,
         UserIcon,
         ChatIcon,

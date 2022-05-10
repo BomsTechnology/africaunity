@@ -1,12 +1,16 @@
 <template>
-    <Report :open="openReport" :toogleModal="toogleModal" :id="id" :type="'post'"/>
-    <Header />
+    <Report
+        :open="openReport"
+        :toogleModal="toogleModal"
+        :id="id"
+        :type="'post'"
+    />
     <div
         class="flex lg:flex-row flex-col p-4 lg:space-x-2 md:space-y-2 text-lg"
     >
         <div class="lg:w-[70%]">
             <div class="py-6 lg:px-4" v-if="post.length != 0">
-                <div 
+                <div
                     class="overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800"
                 >
                     <!-- Post -->
@@ -39,7 +43,9 @@
                             >
                                 {{ post.title }}
                             </h1>
-                            <div class="flex text-xs space-x-2 mt-2 text-gray-500">
+                            <div
+                                class="flex text-xs space-x-2 mt-2 text-gray-500"
+                            >
                                 <div class="flex space-x-1">
                                     <CalendarIcon class="h-4 w-4" />
                                     <a
@@ -50,15 +56,24 @@
                                 </div>
                                 <div class="flex space-x-1">
                                     <UserIcon class="h-4 w-4" />
-                                    <router-link :to="{name:'compte',  params: { name: post.user.firstname, id : post.user.id }}"
+                                    <router-link
+                                        :to="{
+                                            name: 'compte',
+                                            params: {
+                                                name: post.user.firstname,
+                                                id: post.user.id,
+                                            },
+                                        }"
                                         href="#"
                                         class="hover:text-primary-blue"
-                                        >{{ post.user.firstname }}</router-link 
+                                        >{{ post.user.firstname }}</router-link
                                     >
                                 </div>
                                 <div class="flex space-x-1">
                                     <ChatIcon class="h-4 w-4" />
-                                    <a href="#" class="hover:text-primary-blue"
+                                    <a
+                                        href="#"
+                                        class="hover:text-primary-blue"
                                         >{{ post.comments }}</a
                                     >
                                 </div>
@@ -67,8 +82,7 @@
                                 v-if="post.type == 'article'"
                                 class="mt-2 py-4 my-4 text-gray-600 dark:text-gray-400"
                                 v-html="displayHtml(post.content2)"
-                            >
-                            </p>
+                            ></p>
                             <p
                                 v-else
                                 class="mt-2 py-4 my-4 text-gray-600 dark:text-gray-400 break-words"
@@ -79,13 +93,22 @@
 
                         <div class="mt-4">
                             <div class="flex items-center justify-between">
-                                <router-link  :to="{name:'compte',  params: { name: post.user.firstname, id : post.user.id }}" class="flex items-center">
-                                        <img   
-                                            v-if="post.user.avatar"                       
-                                            class="object-cover h-16 w-16 shadow rounded-full"
-                                            :src="post.user.avatar"
-                                        />
-                                    
+                                <router-link
+                                    :to="{
+                                        name: 'compte',
+                                        params: {
+                                            name: post.user.firstname,
+                                            id: post.user.id,
+                                        },
+                                    }"
+                                    class="flex items-center"
+                                >
+                                    <img
+                                        v-if="post.user.avatar"
+                                        class="object-cover h-16 w-16 shadow rounded-full"
+                                        :src="post.user.avatar"
+                                    />
+
                                     <UserCircleIcon
                                         v-else
                                         class="h-10 w-10 text-gray-700"
@@ -94,30 +117,38 @@
                                         class="mx-2 font-semibold text-gray-700 dark:text-gray-200"
                                         >{{ post.user.firstname }}</span
                                     >
-                                    </router-link>
-                                
+                                </router-link>
+
                                 <div class="flex items-center">
                                     <div>
-                                        <button @click="toogleModal()" class="flex text-gray-400 cursor-pointer text-xs border-gray-400 border rounded-full px-2 py-1 items-center hover:bg-yellow-300 space-x-2 hover:text-white hover:border-white">
+                                        <button
+                                            @click="toogleModal()"
+                                            class="flex text-gray-400 cursor-pointer text-xs border-gray-400 border rounded-full px-2 py-1 items-center hover:bg-yellow-300 space-x-2 hover:text-white hover:border-white"
+                                        >
                                             <ExclamationCircleIcon
-                                            class="h-5 w-5 "
+                                                class="h-5 w-5"
                                             />
-                                            <span class="hidden lg:block">{{ $t('report') }}</span>
+                                            <span class="hidden lg:block">{{
+                                                $t("report")
+                                            }}</span>
                                         </button>
-                                        
                                     </div>
                                     <div
                                         class="ml-3"
                                         v-if="user.id == post.user.id"
                                     >
                                         <router-link
-                                :to="{
-                                    name: 'edit.post',
-                                    params: { id: post.id, type: post.type},
-                                }">
-                                        <PencilAltIcon
-                                            class="h-5 w-5 text-gray-400 cursor-pointer hover:text-primary-blue"
-                                        />
+                                            :to="{
+                                                name: 'edit.post',
+                                                params: {
+                                                    id: post.id,
+                                                    type: post.type,
+                                                },
+                                            }"
+                                        >
+                                            <PencilAltIcon
+                                                class="h-5 w-5 text-gray-400 cursor-pointer hover:text-primary-blue"
+                                            />
                                         </router-link>
                                     </div>
                                 </div>
@@ -129,8 +160,22 @@
                                 <svg fill="#3b5998" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 30 30" class="h-6 w-6"><path d="M27,15c0,6.627-5.373,12-12,12S3,21.627,3,15S8.373,3,15,3S27,8.373,27,15z M19.181,8.131C18.877,8.09,18.235,8,17.021,8 C14.486,8,13,9.339,13,12.389V14h-3v3h3v7.799C13.646,24.93,14.315,25,15,25c0.338,0,0.671-0.018,1-0.05V17h2.726l0.428-3H16 v-1.282C16,11.568,16.376,11,17.452,11h1.729V8.131z"/></svg>
                             </a> -->
                             <!-- wathsapp icons -->
-                            <a :href="'whatsapp://send?text=Hello, I have just published an publication on the AfricaUnity website. please go see, thank you '+url" >
-                                <svg fill="#25D366" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 30 30" class="h-6 w-6">    <path d="M 15 3 C 8.373 3 3 8.373 3 15 C 3 17.251208 3.6323415 19.350068 4.7109375 21.150391 L 3.1074219 27 L 9.0820312 25.431641 C 10.829354 26.425062 12.84649 27 15 27 C 21.627 27 27 21.627 27 15 C 27 8.373 21.627 3 15 3 z M 10.892578 9.4023438 C 11.087578 9.4023438 11.287937 9.4011562 11.460938 9.4101562 C 11.674938 9.4151563 11.907859 9.4308281 12.130859 9.9238281 C 12.395859 10.509828 12.972875 11.979906 13.046875 12.128906 C 13.120875 12.277906 13.173313 12.453437 13.070312 12.648438 C 12.972312 12.848437 12.921344 12.969484 12.777344 13.146484 C 12.628344 13.318484 12.465078 13.532109 12.330078 13.662109 C 12.181078 13.811109 12.027219 13.974484 12.199219 14.271484 C 12.371219 14.568484 12.968563 15.542125 13.851562 16.328125 C 14.986562 17.342125 15.944188 17.653734 16.242188 17.802734 C 16.540187 17.951734 16.712766 17.928516 16.884766 17.728516 C 17.061766 17.533516 17.628125 16.864406 17.828125 16.566406 C 18.023125 16.268406 18.222188 16.319969 18.492188 16.417969 C 18.766188 16.515969 20.227391 17.235766 20.525391 17.384766 C 20.823391 17.533766 21.01875 17.607516 21.09375 17.728516 C 21.17075 17.853516 21.170828 18.448578 20.923828 19.142578 C 20.676828 19.835578 19.463922 20.505734 18.919922 20.552734 C 18.370922 20.603734 17.858562 20.7995 15.351562 19.8125 C 12.327563 18.6215 10.420484 15.524219 10.271484 15.324219 C 10.122484 15.129219 9.0605469 13.713906 9.0605469 12.253906 C 9.0605469 10.788906 9.8286563 10.071437 10.097656 9.7734375 C 10.371656 9.4754375 10.692578 9.4023438 10.892578 9.4023438 z"/></svg>
+                            <a
+                                :href="
+                                    'whatsapp://send?text=Hello, I have just published an publication on the AfricaUnity website. please go see, thank you ' +
+                                    url
+                                "
+                            >
+                                <svg
+                                    fill="#25D366"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 30 30"
+                                    class="h-6 w-6"
+                                >
+                                    <path
+                                        d="M 15 3 C 8.373 3 3 8.373 3 15 C 3 17.251208 3.6323415 19.350068 4.7109375 21.150391 L 3.1074219 27 L 9.0820312 25.431641 C 10.829354 26.425062 12.84649 27 15 27 C 21.627 27 27 21.627 27 15 C 27 8.373 21.627 3 15 3 z M 10.892578 9.4023438 C 11.087578 9.4023438 11.287937 9.4011562 11.460938 9.4101562 C 11.674938 9.4151563 11.907859 9.4308281 12.130859 9.9238281 C 12.395859 10.509828 12.972875 11.979906 13.046875 12.128906 C 13.120875 12.277906 13.173313 12.453437 13.070312 12.648438 C 12.972312 12.848437 12.921344 12.969484 12.777344 13.146484 C 12.628344 13.318484 12.465078 13.532109 12.330078 13.662109 C 12.181078 13.811109 12.027219 13.974484 12.199219 14.271484 C 12.371219 14.568484 12.968563 15.542125 13.851562 16.328125 C 14.986562 17.342125 15.944188 17.653734 16.242188 17.802734 C 16.540187 17.951734 16.712766 17.928516 16.884766 17.728516 C 17.061766 17.533516 17.628125 16.864406 17.828125 16.566406 C 18.023125 16.268406 18.222188 16.319969 18.492188 16.417969 C 18.766188 16.515969 20.227391 17.235766 20.525391 17.384766 C 20.823391 17.533766 21.01875 17.607516 21.09375 17.728516 C 21.17075 17.853516 21.170828 18.448578 20.923828 19.142578 C 20.676828 19.835578 19.463922 20.505734 18.919922 20.552734 C 18.370922 20.603734 17.858562 20.7995 15.351562 19.8125 C 12.327563 18.6215 10.420484 15.524219 10.271484 15.324219 C 10.122484 15.129219 9.0605469 13.713906 9.0605469 12.253906 C 9.0605469 10.788906 9.8286563 10.071437 10.097656 9.7734375 C 10.371656 9.4754375 10.692578 9.4023438 10.892578 9.4023438 z"
+                                    />
+                                </svg>
                             </a>
                             <!-- twitter icon -->
                             <!-- <a :href="'https://twitter.com/intent/tweet?text=Hello, I have just published an publication on the AfricaUnity website. please go see, thank you&url='+url" data-network="twitter" target="_blank">
@@ -140,18 +185,48 @@
                     </div>
                     <!-- Comments -->
                     <div class="mt-4 px-8 py-4" v-if="comments.length != 0">
-                        <div class="flex border-b py-4" v-for="comment in comments" :key="comment.id">
+                        <div
+                            class="flex border-b py-4"
+                            v-for="comment in comments"
+                            :key="comment.id"
+                        >
                             <div>
-                                <router-link  :to="{name:'compte',  params: { name: comment.user.firstname, id : comment.user.id }}">
-                                <div class="md:w-20 md:h-20 w-10 h-10 rounded-full shadow overflow-hidden">
-                                    <img :src="comment.user.avatar" class="w-full h-full bg-cover object-cover" alt="" v-if="comment.user.avatar">
-                                    <UserCircleIcon v-else class="w-full h-full text-gray-500"/>
-                                </div>
-                                <h1 class="mt-2 text-center text-xs lg:text-sm font-bold hover:underline">{{ comment.user.firstname }}</h1>
+                                <router-link
+                                    :to="{
+                                        name: 'compte',
+                                        params: {
+                                            name: comment.user.firstname,
+                                            id: comment.user.id,
+                                        },
+                                    }"
+                                >
+                                    <div
+                                        class="md:w-20 md:h-20 w-10 h-10 rounded-full shadow overflow-hidden"
+                                    >
+                                        <img
+                                            :src="comment.user.avatar"
+                                            class="w-full h-full bg-cover object-cover"
+                                            alt=""
+                                            v-if="comment.user.avatar"
+                                        />
+                                        <UserCircleIcon
+                                            v-else
+                                            class="w-full h-full text-gray-500"
+                                        />
+                                    </div>
+                                    <h1
+                                        class="mt-2 text-center text-xs lg:text-sm font-bold hover:underline"
+                                    >
+                                        {{ comment.user.firstname }}
+                                    </h1>
                                 </router-link>
-                                <h3 class="font-light text-center text-xs lg:text-sm">{{ comment.date }}</h3>
+                                <h3
+                                    class="font-light text-center text-xs lg:text-sm"
+                                >
+                                    {{ comment.date }}
+                                </h3>
                             </div>
-                            
+
                             <div class="ml-2 w-full p-2 lg:text-lg text-xs">
                                 {{ comment.content }}
                             </div>
@@ -161,24 +236,64 @@
                     <Error v-if="errors != ''">{{ errors }}</Error>
                     <form @submit.prevent="storeComment()">
                         <div class="mt-4 px-8 py-4">
-                            <label class="text-gray-700 dark:text-gray-200" for="pt">Laisser un Commentaire <span class="text-red-500">*</span></label>
-                            <textarea v-model="comment.content" required type="text"  id="pt" class="block w-full px-4 py-2 mt-2 text-gray-700 h-60 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:ring-primary-blue focus:border-primary-blue focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+                            <label
+                                class="text-gray-700 dark:text-gray-200"
+                                for="pt"
+                                >Laisser un Commentaire
+                                <span class="text-red-500">*</span></label
+                            >
+                            <textarea
+                                v-model="comment.content"
+                                required
+                                type="text"
+                                id="pt"
+                                class="block w-full px-4 py-2 mt-2 text-gray-700 h-60 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:ring-primary-blue focus:border-primary-blue focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                            >
                             </textarea>
                             <div class="mt-6">
-                                <input type="hidden" v-model="comment.post_id">
-                                <button v-if="loadingC == 0" type="submit" class="px-6 py-4 text-md leading-5 w-full text-white rounded bg-primary-blue focus:outline-none">{{ $t('save') }}</button>
-                                <button v-if="loadingC == 1" type="submit" disabled class="px-6 py-4 text-md leading-5 flex justify-center items-center w-full text-white rounded bg-blue-300 focus:outline-none">
-                                    {{ $t('save') }}...
-                                    <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                        </svg>
+                                <input
+                                    type="hidden"
+                                    v-model="comment.post_id"
+                                />
+                                <button
+                                    v-if="loadingC == 0"
+                                    type="submit"
+                                    class="px-6 py-4 text-md leading-5 w-full text-white rounded bg-primary-blue focus:outline-none"
+                                >
+                                    {{ $t("save") }}
+                                </button>
+                                <button
+                                    v-if="loadingC == 1"
+                                    type="submit"
+                                    disabled
+                                    class="px-6 py-4 text-md leading-5 flex justify-center items-center w-full text-white rounded bg-blue-300 focus:outline-none"
+                                >
+                                    {{ $t("save") }}...
+                                    <svg
+                                        class="animate-spin h-5 w-5 text-white"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <circle
+                                            class="opacity-25"
+                                            cx="12"
+                                            cy="12"
+                                            r="10"
+                                            stroke="currentColor"
+                                            stroke-width="4"
+                                        ></circle>
+                                        <path
+                                            class="opacity-75"
+                                            fill="currentColor"
+                                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                                        ></path>
+                                    </svg>
                                 </button>
                             </div>
                         </div>
                     </form>
                 </div>
-                
             </div>
             <div v-else-if="loading == 1" class="p-28">
                 <svg
@@ -207,21 +322,18 @@
                 class="p-28 flex justify-center text-gray-500 flex-col items-center animate-pulse"
             >
                 <EmojiSadIcon class="h-16 w-16" />
-                <span class="text-2xl mt-2">{{ $t('no-content') }}</span>
+                <span class="text-2xl mt-2">{{ $t("no-content") }}</span>
             </div>
         </div>
         <div class="lg:w-[30%] bg-white">
             <FilterArticle />
         </div>
     </div>
-    <Footer />
 </template>
 
 <script>
 import router from "../../router";
 import { reactive, ref, onMounted } from "vue";
-import Header from "../../components/Header.vue";
-import Footer from "../../components/Footer.vue";
 import FilterArticle from "../../components/FilterArticle.vue";
 import Report from "../../components/Report.vue";
 import {
@@ -253,40 +365,36 @@ export default {
         EmojiSadIcon,
         ExclamationCircleIcon,
         PencilAltIcon,
-        Header,
-        Footer,
         Report,
         FilterArticle,
-        Error
+        Error,
     },
-    created(){
+    created() {
         if (!localStorage.token) {
-                router.push({ name: "login", params: { redirect: 'not-login' }, });
+            router.push({ name: "login", params: { redirect: "not-login" } });
         }
     },
     setup(props) {
         const url = window.location.href;
         const { post, getPost2, loading } = usePosts();
-        const { createComment, errors, comments, getCommentsPost } = useComments();
-        const user = localStorage.user ? JSON.parse(localStorage.user) : '';
+        const { createComment, errors, comments, getCommentsPost } =
+            useComments();
+        const user = localStorage.user ? JSON.parse(localStorage.user) : "";
         const comment = reactive({
             user_id: user.id,
-            post_id: '',
-            content: '',
+            post_id: "",
+            content: "",
         });
-        onMounted(
-            async () => {
-                await getPost2(props.id);
-                await getCommentsPost(props.id);
-                comment.post_id = post.value.id;
-            },  
-        );
+        onMounted(async () => {
+            await getPost2(props.id);
+            await getCommentsPost(props.id);
+            comment.post_id = post.value.id;
+        });
         const openReport = ref(false);
 
         const toogleModal = () => {
             openReport.value = !openReport.value;
         };
-
 
         const displayHtml = (str) => {
             const parser = new DOMParser();
@@ -294,17 +402,16 @@ export default {
             // convert html string into DOM
             const document = parser.parseFromString(str, "text/html");
             return document.body.innerHTML;
-        }
-        
-        
+        };
+
         const loadingC = ref(0);
         const storeComment = async () => {
             loadingC.value = 1;
-            await createComment({...comment});
+            await createComment({ ...comment });
             loadingC.value = 0;
             comment.content = "";
             await getCommentsPost(props.id);
-        }
+        };
         return {
             displayHtml,
             url,
