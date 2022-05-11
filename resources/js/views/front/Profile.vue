@@ -1642,7 +1642,12 @@ export default {
                 await getCountries();
             } catch (e) {
                 if (e.response.status == 401) {
-                    location.href = location.origin + "/login/not-login";
+                    router.push({
+                        name: login,
+                        params: {
+                            redirect: "not-login",
+                        },
+                    });
                     window.localStorage.removeItem("token");
                     window.localStorage.removeItem("user");
                 }
@@ -1669,7 +1674,12 @@ export default {
                 await getAnnouncementsUser(currentValue.id);
             } catch (e) {
                 if (e.response.status == 401) {
-                    location.href = location.origin + "/login/not-login";
+                    router.push({
+                        name: login,
+                        params: {
+                            redirect: "not-login",
+                        },
+                    });
                     window.localStorage.removeItem("token");
                     window.localStorage.removeItem("user");
                 }

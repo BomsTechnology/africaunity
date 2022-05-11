@@ -3215,6 +3215,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var _router_index_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../router/index.js */ "./resources/js/router/index.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -3223,10 +3224,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
+
 function useBusinessSizes() {
   var businessSizes = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)([]);
   var businessSize = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)([]);
-  var errorsBS = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)('');
+  var errorsBS = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)("");
   var loading = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(0);
 
   var getBusinessSizes = /*#__PURE__*/function () {
@@ -3236,12 +3238,12 @@ function useBusinessSizes() {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              errorsBS.value = '';
+              errorsBS.value = "";
               loading.value = 1;
               _context.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/businessSizes', {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/businessSizes", {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -3270,12 +3272,12 @@ function useBusinessSizes() {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              errorsBS.value = '';
+              errorsBS.value = "";
               loading.value = 1;
               _context2.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/businessSizes/' + id, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/businessSizes/" + id, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -3304,13 +3306,13 @@ function useBusinessSizes() {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
-              errorsBS.value = '';
+              errorsBS.value = "";
               _context3.prev = 1;
               loading.value = 1;
               _context3.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/businessSizes', data, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/businessSizes", data, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -3351,13 +3353,13 @@ function useBusinessSizes() {
         while (1) {
           switch (_context4.prev = _context4.next) {
             case 0:
-              errorsBS.value = '';
+              errorsBS.value = "";
               _context4.prev = 1;
               loading.value = 1;
               _context4.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().put('/api/businessSizes/' + id, data, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/businessSizes/" + id, data, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -3373,7 +3375,7 @@ function useBusinessSizes() {
 
               if (_context4.t0.response.status == 422) {
                 for (key in _context4.t0.response.data.errors) {
-                  errorsBS.value += _context4.t0.response.data.errors[key][0] + '\t\n';
+                  errorsBS.value += _context4.t0.response.data.errors[key][0] + "\t\n";
                 }
               }
 
@@ -3396,13 +3398,13 @@ function useBusinessSizes() {
         while (1) {
           switch (_context5.prev = _context5.next) {
             case 0:
-              errorsBS.value = '';
+              errorsBS.value = "";
               _context5.prev = 1;
               loading.value = 1;
               _context5.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]('/api/businessSizes/' + id, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]("/api/businessSizes/" + id, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -3414,7 +3416,7 @@ function useBusinessSizes() {
               _context5.prev = 9;
               _context5.t0 = _context5["catch"](1);
               loading.value = 0;
-              errorsBS.value = 'Impossible de supprimer ce businessSize';
+              errorsBS.value = "Impossible de supprimer ce businessSize";
 
             case 13:
             case "end":
@@ -3459,6 +3461,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var _router_index_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../router/index.js */ "./resources/js/router/index.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -3467,10 +3470,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
+
+;
 function useBusinessTypes() {
   var businessTypes = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)([]);
   var businessType = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)([]);
-  var errorsBT = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)('');
+  var errorsBT = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)("");
   var loading = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(0);
 
   var getBusinessTypes = /*#__PURE__*/function () {
@@ -3480,12 +3485,12 @@ function useBusinessTypes() {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              errorsBT.value = '';
+              errorsBT.value = "";
               loading.value = 1;
               _context.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/businessTypes', {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/businessTypes", {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -3514,12 +3519,12 @@ function useBusinessTypes() {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              errorsBT.value = '';
+              errorsBT.value = "";
               loading.value = 1;
               _context2.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/businessTypes/' + id, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/businessTypes/" + id, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -3548,13 +3553,13 @@ function useBusinessTypes() {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
-              errorsBT.value = '';
+              errorsBT.value = "";
               _context3.prev = 1;
               loading.value = 1;
               _context3.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/businessTypes', data, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/businessTypes", data, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -3595,13 +3600,13 @@ function useBusinessTypes() {
         while (1) {
           switch (_context4.prev = _context4.next) {
             case 0:
-              errorsBT.value = '';
+              errorsBT.value = "";
               _context4.prev = 1;
               loading.value = 1;
               _context4.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().put('/api/businessTypes/' + id, data, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/businessTypes/" + id, data, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -3617,7 +3622,7 @@ function useBusinessTypes() {
 
               if (_context4.t0.response.status == 422) {
                 for (key in _context4.t0.response.data.errors) {
-                  errorsBT.value += _context4.t0.response.data.errors[key][0] + '\t\n';
+                  errorsBT.value += _context4.t0.response.data.errors[key][0] + "\t\n";
                 }
               }
 
@@ -3640,13 +3645,13 @@ function useBusinessTypes() {
         while (1) {
           switch (_context5.prev = _context5.next) {
             case 0:
-              errorsBT.value = '';
+              errorsBT.value = "";
               _context5.prev = 1;
               loading.value = 1;
               _context5.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]('/api/businessTypes/' + id, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]("/api/businessTypes/" + id, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -3658,7 +3663,7 @@ function useBusinessTypes() {
               _context5.prev = 9;
               _context5.t0 = _context5["catch"](1);
               loading.value = 0;
-              errorsBT.value = 'Impossible de supprimer ce businessType';
+              errorsBT.value = "Impossible de supprimer ce businessType";
 
             case 13:
             case "end":
@@ -3703,6 +3708,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var _router_index_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../router/index.js */ "./resources/js/router/index.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -3711,10 +3717,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
+
 function useLanguages() {
   var languages = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)([]);
   var language = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)([]);
-  var errorsLang = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)('');
+  var errorsLang = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)("");
   var loading = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(0);
 
   var getLanguages = /*#__PURE__*/function () {
@@ -3724,12 +3731,12 @@ function useLanguages() {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              errorsLang.value = '';
+              errorsLang.value = "";
               loading.value = 1;
               _context.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/languages', {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/languages", {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -3758,12 +3765,12 @@ function useLanguages() {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              errorsLang.value = '';
+              errorsLang.value = "";
               loading.value = 1;
               _context2.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/languages/' + id, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/languages/" + id, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -3792,13 +3799,13 @@ function useLanguages() {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
-              errorsLang.value = '';
+              errorsLang.value = "";
               _context3.prev = 1;
               loading.value = 1;
               _context3.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/languages', data, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/languages", data, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -3839,13 +3846,13 @@ function useLanguages() {
         while (1) {
           switch (_context4.prev = _context4.next) {
             case 0:
-              errorsLang.value = '';
+              errorsLang.value = "";
               _context4.prev = 1;
               loading.value = 1;
               _context4.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().put('/api/languages/' + id, data, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/languages/" + id, data, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -3861,7 +3868,7 @@ function useLanguages() {
 
               if (_context4.t0.response.status == 422) {
                 for (key in _context4.t0.response.data.errors) {
-                  errorsLang.value += _context4.t0.response.data.errors[key][0] + '\t\n';
+                  errorsLang.value += _context4.t0.response.data.errors[key][0] + "\t\n";
                 }
               }
 
@@ -3884,13 +3891,13 @@ function useLanguages() {
         while (1) {
           switch (_context5.prev = _context5.next) {
             case 0:
-              errorsLang.value = '';
+              errorsLang.value = "";
               _context5.prev = 1;
               loading.value = 1;
               _context5.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]('/api/languages/' + id, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]("/api/languages/" + id, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -3902,7 +3909,7 @@ function useLanguages() {
               _context5.prev = 9;
               _context5.t0 = _context5["catch"](1);
               loading.value = 0;
-              errorsLang.value = 'Impossible de supprimer ce language';
+              errorsLang.value = "Impossible de supprimer ce language";
 
             case 13:
             case "end":
@@ -3947,6 +3954,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var _router_index_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../router/index.js */ "./resources/js/router/index.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -3955,10 +3963,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
+
 function useLegalStatuses() {
   var legalStatuses = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)([]);
   var legalStatus = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)([]);
-  var errorsLegal = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)('');
+  var errorsLegal = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)("");
   var loading = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(0);
 
   var getLegalStatuses = /*#__PURE__*/function () {
@@ -3968,12 +3977,12 @@ function useLegalStatuses() {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              errorsLegal.value = '';
+              errorsLegal.value = "";
               loading.value = 1;
               _context.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/legalStatuses', {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/legalStatuses", {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -4002,12 +4011,12 @@ function useLegalStatuses() {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              errorsLegal.value = '';
+              errorsLegal.value = "";
               loading.value = 1;
               _context2.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/legalStatuses/' + id, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/legalStatuses/" + id, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -4036,13 +4045,13 @@ function useLegalStatuses() {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
-              errorsLegal.value = '';
+              errorsLegal.value = "";
               _context3.prev = 1;
               loading.value = 1;
               _context3.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/legalStatuses', data, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/legalStatuses", data, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -4083,13 +4092,13 @@ function useLegalStatuses() {
         while (1) {
           switch (_context4.prev = _context4.next) {
             case 0:
-              errorsLegal.value = '';
+              errorsLegal.value = "";
               _context4.prev = 1;
               loading.value = 1;
               _context4.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().put('/api/legalStatuses/' + id, data, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/legalStatuses/" + id, data, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -4105,7 +4114,7 @@ function useLegalStatuses() {
 
               if (_context4.t0.response.status == 422) {
                 for (key in _context4.t0.response.data.errors) {
-                  errorsLegal.value += _context4.t0.response.data.errors[key][0] + '\t\n';
+                  errorsLegal.value += _context4.t0.response.data.errors[key][0] + "\t\n";
                 }
               }
 
@@ -4128,13 +4137,13 @@ function useLegalStatuses() {
         while (1) {
           switch (_context5.prev = _context5.next) {
             case 0:
-              errorsLegal.value = '';
+              errorsLegal.value = "";
               _context5.prev = 1;
               loading.value = 1;
               _context5.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]('/api/legalStatuses/' + id, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]("/api/legalStatuses/" + id, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -4146,7 +4155,7 @@ function useLegalStatuses() {
               _context5.prev = 9;
               _context5.t0 = _context5["catch"](1);
               loading.value = 0;
-              errorsLegal.value = 'Impossible de supprimer ce legalStatus';
+              errorsLegal.value = "Impossible de supprimer ce legalStatus";
 
             case 13:
             case "end":
@@ -4191,6 +4200,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var _router_index_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../router/index.js */ "./resources/js/router/index.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -4199,10 +4209,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
+
 function useLevelStudies() {
   var levelStudies = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)([]);
   var levelStudy = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)([]);
-  var errorsLS = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)('');
+  var errorsLS = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)("");
   var loading = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(0);
 
   var getLevelStudies = /*#__PURE__*/function () {
@@ -4212,12 +4223,12 @@ function useLevelStudies() {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              errorsLS.value = '';
+              errorsLS.value = "";
               loading.value = 1;
               _context.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/levelStudies', {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/levelStudies", {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -4246,12 +4257,12 @@ function useLevelStudies() {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              errorsLS.value = '';
+              errorsLS.value = "";
               loading.value = 1;
               _context2.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/levelStudies/' + id, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/levelStudies/" + id, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -4280,13 +4291,13 @@ function useLevelStudies() {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
-              errorsLS.value = '';
+              errorsLS.value = "";
               _context3.prev = 1;
               loading.value = 1;
               _context3.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/levelStudies', data, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/levelStudies", data, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -4327,13 +4338,13 @@ function useLevelStudies() {
         while (1) {
           switch (_context4.prev = _context4.next) {
             case 0:
-              errorsLS.value = '';
+              errorsLS.value = "";
               _context4.prev = 1;
               loading.value = 1;
               _context4.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().put('/api/levelStudies/' + id, data, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/levelStudies/" + id, data, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -4349,7 +4360,7 @@ function useLevelStudies() {
 
               if (_context4.t0.response.status == 422) {
                 for (key in _context4.t0.response.data.errorsLS) {
-                  errorsLS.value += _context4.t0.response.data.errorsLS[key][0] + '\t\n';
+                  errorsLS.value += _context4.t0.response.data.errorsLS[key][0] + "\t\n";
                 }
               }
 
@@ -4372,13 +4383,13 @@ function useLevelStudies() {
         while (1) {
           switch (_context5.prev = _context5.next) {
             case 0:
-              errorsLS.value = '';
+              errorsLS.value = "";
               _context5.prev = 1;
               loading.value = 1;
               _context5.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]('/api/levelStudies/' + id, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]("/api/levelStudies/" + id, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -4392,8 +4403,8 @@ function useLevelStudies() {
               _context5.t0 = _context5["catch"](1);
               loading.value = 0;
 
-              if (_context5.t0.response.status == '500') {
-                errorsLS.value = 'Impossible de supprimer ce pays';
+              if (_context5.t0.response.status == "500") {
+                errorsLS.value = "Impossible de supprimer ce pays";
               }
 
             case 12:
@@ -4439,6 +4450,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var _router_index_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../router/index.js */ "./resources/js/router/index.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -4447,10 +4459,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
+
 function useOfferTypes() {
   var offerTypes = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)([]);
   var offerType = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)([]);
-  var errorsOT = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)('');
+  var errorsOT = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)("");
   var loading = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(0);
 
   var getOfferTypes = /*#__PURE__*/function () {
@@ -4460,12 +4473,12 @@ function useOfferTypes() {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              errorsOT.value = '';
+              errorsOT.value = "";
               loading.value = 1;
               _context.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/offerTypes', {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/offerTypes", {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -4494,12 +4507,12 @@ function useOfferTypes() {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              errorsOT.value = '';
+              errorsOT.value = "";
               loading.value = 1;
               _context2.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/offerTypes/' + id, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/offerTypes/" + id, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -4528,13 +4541,13 @@ function useOfferTypes() {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
-              errorsOT.value = '';
+              errorsOT.value = "";
               _context3.prev = 1;
               loading.value = 1;
               _context3.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/offerTypes', data, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/offerTypes", data, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -4575,13 +4588,13 @@ function useOfferTypes() {
         while (1) {
           switch (_context4.prev = _context4.next) {
             case 0:
-              errorsOT.value = '';
+              errorsOT.value = "";
               _context4.prev = 1;
               loading.value = 1;
               _context4.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().put('/api/offerTypes/' + id, data, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/offerTypes/" + id, data, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -4597,7 +4610,7 @@ function useOfferTypes() {
 
               if (_context4.t0.response.status == 422) {
                 for (key in _context4.t0.response.data.errorsOT) {
-                  errorsOT.value += _context4.t0.response.data.errorsOT[key][0] + '\t\n';
+                  errorsOT.value += _context4.t0.response.data.errorsOT[key][0] + "\t\n";
                 }
               }
 
@@ -4620,13 +4633,13 @@ function useOfferTypes() {
         while (1) {
           switch (_context5.prev = _context5.next) {
             case 0:
-              errorsOT.value = '';
+              errorsOT.value = "";
               _context5.prev = 1;
               loading.value = 1;
               _context5.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]('/api/offerTypes/' + id, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]("/api/offerTypes/" + id, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -4638,7 +4651,7 @@ function useOfferTypes() {
               _context5.prev = 9;
               _context5.t0 = _context5["catch"](1);
               loading.value = 0;
-              errorsOT.value = 'Impossible de supprimer ce offerType';
+              errorsOT.value = "Impossible de supprimer ce offerType";
 
             case 13:
             case "end":
@@ -4683,6 +4696,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var _router_index_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../router/index.js */ "./resources/js/router/index.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -4691,10 +4705,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
+
 function useSizeCompanies() {
   var sizeCompanies = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)([]);
   var sizeCompany = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)([]);
-  var errorsSC = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)('');
+  var errorsSC = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)("");
   var loading = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(0);
 
   var getSizeCompanies = /*#__PURE__*/function () {
@@ -4704,12 +4719,12 @@ function useSizeCompanies() {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              errorsSC.value = '';
+              errorsSC.value = "";
               loading.value = 1;
               _context.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/sizeCompanies', {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/sizeCompanies", {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -4738,12 +4753,12 @@ function useSizeCompanies() {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              errorsSC.value = '';
+              errorsSC.value = "";
               loading.value = 1;
               _context2.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/sizeCompanies/' + id, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/sizeCompanies/" + id, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -4772,13 +4787,13 @@ function useSizeCompanies() {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
-              errorsSC.value = '';
+              errorsSC.value = "";
               _context3.prev = 1;
               loading.value = 1;
               _context3.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/sizeCompanies', data, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/sizeCompanies", data, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -4819,13 +4834,13 @@ function useSizeCompanies() {
         while (1) {
           switch (_context4.prev = _context4.next) {
             case 0:
-              errorsSC.value = '';
+              errorsSC.value = "";
               _context4.prev = 1;
               loading.value = 1;
               _context4.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().put('/api/sizeCompanies/' + id, data, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/sizeCompanies/" + id, data, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -4841,7 +4856,7 @@ function useSizeCompanies() {
 
               if (_context4.t0.response.status == 422) {
                 for (key in _context4.t0.response.data.errorsSC) {
-                  errorsSC.value += _context4.t0.response.data.errorsSC[key][0] + '\t\n';
+                  errorsSC.value += _context4.t0.response.data.errorsSC[key][0] + "\t\n";
                 }
               }
 
@@ -4864,13 +4879,13 @@ function useSizeCompanies() {
         while (1) {
           switch (_context5.prev = _context5.next) {
             case 0:
-              errorsSC.value = '';
+              errorsSC.value = "";
               _context5.prev = 1;
               loading.value = 1;
               _context5.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]('/api/sizeCompanies/' + id, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]("/api/sizeCompanies/" + id, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -4884,8 +4899,8 @@ function useSizeCompanies() {
               _context5.t0 = _context5["catch"](1);
               loading.value = 0;
 
-              if (_context5.t0.response.status == '500') {
-                errorsSC.value = 'Impossible de supprimer ce pays';
+              if (_context5.t0.response.status == "500") {
+                errorsSC.value = "Impossible de supprimer ce pays";
               }
 
             case 12:
@@ -4931,6 +4946,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var _router_index_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../router/index.js */ "./resources/js/router/index.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -4939,10 +4955,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
+
 function useWorkDepartments() {
   var workDepartments = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)([]);
   var workDepartment = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)([]);
-  var errorsWD = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)('');
+  var errorsWD = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)("");
   var loading = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(0);
 
   var getWorkDepartments = /*#__PURE__*/function () {
@@ -4952,12 +4969,12 @@ function useWorkDepartments() {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              errorsWD.value = '';
+              errorsWD.value = "";
               loading.value = 1;
               _context.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/workDepartments', {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/workDepartments", {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -4986,12 +5003,12 @@ function useWorkDepartments() {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              errorsWD.value = '';
+              errorsWD.value = "";
               loading.value = 1;
               _context2.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/workDepartments/' + id, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/workDepartments/" + id, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -5020,13 +5037,13 @@ function useWorkDepartments() {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
-              errorsWD.value = '';
+              errorsWD.value = "";
               _context3.prev = 1;
               loading.value = 1;
               _context3.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/workDepartments', data, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/workDepartments", data, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -5067,13 +5084,13 @@ function useWorkDepartments() {
         while (1) {
           switch (_context4.prev = _context4.next) {
             case 0:
-              errorsWD.value = '';
+              errorsWD.value = "";
               _context4.prev = 1;
               loading.value = 1;
               _context4.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().put('/api/workDepartments/' + id, data, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/workDepartments/" + id, data, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -5089,7 +5106,7 @@ function useWorkDepartments() {
 
               if (_context4.t0.response.status == 422) {
                 for (key in _context4.t0.response.data.errorsWD) {
-                  errorsWD.value += _context4.t0.response.data.errorsWD[key][0] + '\t\n';
+                  errorsWD.value += _context4.t0.response.data.errorsWD[key][0] + "\t\n";
                 }
               }
 
@@ -5112,13 +5129,13 @@ function useWorkDepartments() {
         while (1) {
           switch (_context5.prev = _context5.next) {
             case 0:
-              errorsWD.value = '';
+              errorsWD.value = "";
               _context5.prev = 1;
               loading.value = 1;
               _context5.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]('/api/workDepartments/' + id, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]("/api/workDepartments/" + id, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -5130,7 +5147,7 @@ function useWorkDepartments() {
               _context5.prev = 9;
               _context5.t0 = _context5["catch"](1);
               loading.value = 0;
-              errorsWD.value = 'Impossible de supprimer ce workDepartment';
+              errorsWD.value = "Impossible de supprimer ce workDepartment";
 
             case 13:
             case "end":
@@ -5175,6 +5192,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var _router_index_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../router/index.js */ "./resources/js/router/index.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -5183,10 +5201,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
+
 function useWorkModes() {
   var workModes = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)([]);
   var workMode = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)([]);
-  var errorsWM = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)('');
+  var errorsWM = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)("");
   var loading = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(0);
 
   var getWorkModes = /*#__PURE__*/function () {
@@ -5196,12 +5215,12 @@ function useWorkModes() {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              errorsWM.value = '';
+              errorsWM.value = "";
               loading.value = 1;
               _context.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/workModes', {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/workModes", {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -5230,12 +5249,12 @@ function useWorkModes() {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              errorsWM.value = '';
+              errorsWM.value = "";
               loading.value = 1;
               _context2.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/workModes/' + id, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/workModes/" + id, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -5264,13 +5283,13 @@ function useWorkModes() {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
-              errorsWM.value = '';
+              errorsWM.value = "";
               _context3.prev = 1;
               loading.value = 1;
               _context3.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/workModes', data, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/workModes", data, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -5311,13 +5330,13 @@ function useWorkModes() {
         while (1) {
           switch (_context4.prev = _context4.next) {
             case 0:
-              errorsWM.value = '';
+              errorsWM.value = "";
               _context4.prev = 1;
               loading.value = 1;
               _context4.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().put('/api/workModes/' + id, data, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/workModes/" + id, data, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -5333,7 +5352,7 @@ function useWorkModes() {
 
               if (_context4.t0.response.status == 422) {
                 for (key in _context4.t0.response.data.errors) {
-                  errorsWM.value += _context4.t0.response.data.errors[key][0] + '\t\n';
+                  errorsWM.value += _context4.t0.response.data.errors[key][0] + "\t\n";
                 }
               }
 
@@ -5356,13 +5375,13 @@ function useWorkModes() {
         while (1) {
           switch (_context5.prev = _context5.next) {
             case 0:
-              errorsWM.value = '';
+              errorsWM.value = "";
               _context5.prev = 1;
               loading.value = 1;
               _context5.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]('/api/workModes/' + id, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]("/api/workModes/" + id, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -5374,7 +5393,7 @@ function useWorkModes() {
               _context5.prev = 9;
               _context5.t0 = _context5["catch"](1);
               loading.value = 0;
-              errorsWM.value = 'Impossible de supprimer ce workMode';
+              errorsWM.value = "Impossible de supprimer ce workMode";
 
             case 13:
             case "end":

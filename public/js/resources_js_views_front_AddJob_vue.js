@@ -2671,7 +2671,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 function useJobOffers() {
   var jobOffers = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)([]);
   var jobOffer = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)([]);
-  var errors = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)('');
+  var errors = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)("");
   var loading = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(0);
 
   var getJobOffers = /*#__PURE__*/function () {
@@ -2681,13 +2681,13 @@ function useJobOffers() {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              errors.value = '';
+              errors.value = "";
               _context.prev = 1;
               loading.value = 1;
               _context.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/jobOffers/', {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/jobOffers/", {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -2703,7 +2703,13 @@ function useJobOffers() {
               _context.t0 = _context["catch"](1);
 
               if (_context.t0.response.status == 401) {
-                location.href = 'login/not-login';
+                // router.push({
+                //     name: "login",
+                //     params: {
+                //         redirect: "not-login",
+                //     },
+                // });
+                location.href = window.location.origin;
                 window.localStorage.removeItem("token");
                 window.localStorage.removeItem("user");
               }
@@ -2728,13 +2734,13 @@ function useJobOffers() {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              errors.value = '';
+              errors.value = "";
               _context2.prev = 1;
               loading.value = 1;
               _context2.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/jobOffers-front/', {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/jobOffers-front/", {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -2750,7 +2756,13 @@ function useJobOffers() {
               _context2.t0 = _context2["catch"](1);
 
               if (_context2.t0.response.status == 401) {
-                location.href = 'login/not-login';
+                // router.push({
+                //     name: "login",
+                //     params: {
+                //         redirect: "not-login",
+                //     },
+                // });
+                location.href = window.location.origin;
                 window.localStorage.removeItem("token");
                 window.localStorage.removeItem("user");
               }
@@ -2775,13 +2787,13 @@ function useJobOffers() {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
-              errors.value = '';
+              errors.value = "";
               _context3.prev = 1;
               loading.value = 1;
               _context3.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/jobOffers-filter', data, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/jobOffers-filter", data, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -2797,7 +2809,13 @@ function useJobOffers() {
               _context3.t0 = _context3["catch"](1);
 
               if (_context3.t0.response.status == 401) {
-                location.href = 'login/not-login';
+                // router.push({
+                //     name: "login",
+                //     params: {
+                //         redirect: "not-login",
+                //     },
+                // });
+                location.href = window.location.origin;
                 window.localStorage.removeItem("token");
                 window.localStorage.removeItem("user");
               }
@@ -2822,13 +2840,13 @@ function useJobOffers() {
         while (1) {
           switch (_context4.prev = _context4.next) {
             case 0:
-              errors.value = '';
+              errors.value = "";
               _context4.prev = 1;
               loading.value = 1;
               _context4.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/jobOffers-user/' + id, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/jobOffers-user/" + id, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -2844,7 +2862,13 @@ function useJobOffers() {
               _context4.t0 = _context4["catch"](1);
 
               if (_context4.t0.response.status == 401) {
-                location.href = 'login/not-login';
+                // router.push({
+                //     name: "login",
+                //     params: {
+                //         redirect: "not-login",
+                //     },
+                // });
+                location.href = window.location.origin;
                 window.localStorage.removeItem("token");
                 window.localStorage.removeItem("user");
               }
@@ -2869,13 +2893,13 @@ function useJobOffers() {
         while (1) {
           switch (_context5.prev = _context5.next) {
             case 0:
-              errors.value = '';
+              errors.value = "";
               _context5.prev = 1;
               loading.value = 1;
               _context5.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/jobOffers/' + id, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/jobOffers/" + id, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -2891,7 +2915,13 @@ function useJobOffers() {
               _context5.t0 = _context5["catch"](1);
 
               if (_context5.t0.response.status == 401) {
-                location.href = 'login/not-login';
+                // router.push({
+                //     name: "login",
+                //     params: {
+                //         redirect: "not-login",
+                //     },
+                // });
+                location.href = window.location.origin;
                 window.localStorage.removeItem("token");
                 window.localStorage.removeItem("user");
               }
@@ -2916,12 +2946,12 @@ function useJobOffers() {
         while (1) {
           switch (_context6.prev = _context6.next) {
             case 0:
-              errors.value = '';
+              errors.value = "";
               loading.value = 1;
               _context6.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/jobOffers2/' + id, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/jobOffers2/" + id, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -2950,14 +2980,14 @@ function useJobOffers() {
         while (1) {
           switch (_context7.prev = _context7.next) {
             case 0:
-              errors.value = '';
+              errors.value = "";
               _context7.prev = 1;
               loading.value = 1;
               _context7.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/jobOffers', data, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/jobOffers", data, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token),
-                  'Content-Type': 'multipart/form-data'
+                  Authorization: "Bearer ".concat(localStorage.token),
+                  "Content-Type": "multipart/form-data"
                 }
               });
 
@@ -2998,14 +3028,14 @@ function useJobOffers() {
         while (1) {
           switch (_context8.prev = _context8.next) {
             case 0:
-              errors.value = '';
+              errors.value = "";
               _context8.prev = 1;
               loading.value = 1;
               _context8.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/jobOffers/' + jobOffer.value.id, data, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/jobOffers/" + jobOffer.value.id, data, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token),
-                  'Content-Type': 'multipart/form-data'
+                  Authorization: "Bearer ".concat(localStorage.token),
+                  "Content-Type": "multipart/form-data"
                 }
               });
 
@@ -3021,7 +3051,7 @@ function useJobOffers() {
 
               if (_context8.t0.response.status == 422) {
                 for (key in _context8.t0.response.data.errors) {
-                  errors.value += _context8.t0.response.data.errors[key][0] + '\t\n';
+                  errors.value += _context8.t0.response.data.errors[key][0] + "\t\n";
                 }
               }
 
@@ -3044,13 +3074,13 @@ function useJobOffers() {
         while (1) {
           switch (_context9.prev = _context9.next) {
             case 0:
-              errors.value = '';
+              errors.value = "";
               _context9.prev = 1;
               loading.value = 1;
               _context9.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]('/api/jobOffers/' + id, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]("/api/jobOffers/" + id, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -3064,8 +3094,8 @@ function useJobOffers() {
               _context9.t0 = _context9["catch"](1);
               loading.value = 0;
 
-              if (_context9.t0.response.status == '500') {
-                errors.value = 'Impossible de supprimer ce jobOffer';
+              if (_context9.t0.response.status == "500") {
+                errors.value = "Impossible de supprimer ce jobOffer";
               }
 
             case 12:
@@ -3087,13 +3117,13 @@ function useJobOffers() {
         while (1) {
           switch (_context10.prev = _context10.next) {
             case 0:
-              errors.value = '';
+              errors.value = "";
               _context10.prev = 1;
               loading.value = 1;
               _context10.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/jobOffers-mark-filled/' + id, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/jobOffers-mark-filled/" + id, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -3107,8 +3137,8 @@ function useJobOffers() {
               _context10.t0 = _context10["catch"](1);
               loading.value = 0;
 
-              if (_context10.t0.response.status == '500') {
-                errors.value = 'Impossible de supprimer ce jobOffer';
+              if (_context10.t0.response.status == "500") {
+                errors.value = "Impossible de supprimer ce jobOffer";
               }
 
             case 12:
@@ -3159,6 +3189,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var _router_index_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../router/index.js */ "./resources/js/router/index.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -3167,10 +3198,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
+
 function useLanguages() {
   var languages = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)([]);
   var language = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)([]);
-  var errorsLang = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)('');
+  var errorsLang = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)("");
   var loading = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(0);
 
   var getLanguages = /*#__PURE__*/function () {
@@ -3180,12 +3212,12 @@ function useLanguages() {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              errorsLang.value = '';
+              errorsLang.value = "";
               loading.value = 1;
               _context.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/languages', {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/languages", {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -3214,12 +3246,12 @@ function useLanguages() {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              errorsLang.value = '';
+              errorsLang.value = "";
               loading.value = 1;
               _context2.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/languages/' + id, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/languages/" + id, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -3248,13 +3280,13 @@ function useLanguages() {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
-              errorsLang.value = '';
+              errorsLang.value = "";
               _context3.prev = 1;
               loading.value = 1;
               _context3.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/languages', data, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/languages", data, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -3295,13 +3327,13 @@ function useLanguages() {
         while (1) {
           switch (_context4.prev = _context4.next) {
             case 0:
-              errorsLang.value = '';
+              errorsLang.value = "";
               _context4.prev = 1;
               loading.value = 1;
               _context4.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().put('/api/languages/' + id, data, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/languages/" + id, data, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -3317,7 +3349,7 @@ function useLanguages() {
 
               if (_context4.t0.response.status == 422) {
                 for (key in _context4.t0.response.data.errors) {
-                  errorsLang.value += _context4.t0.response.data.errors[key][0] + '\t\n';
+                  errorsLang.value += _context4.t0.response.data.errors[key][0] + "\t\n";
                 }
               }
 
@@ -3340,13 +3372,13 @@ function useLanguages() {
         while (1) {
           switch (_context5.prev = _context5.next) {
             case 0:
-              errorsLang.value = '';
+              errorsLang.value = "";
               _context5.prev = 1;
               loading.value = 1;
               _context5.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]('/api/languages/' + id, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]("/api/languages/" + id, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -3358,7 +3390,7 @@ function useLanguages() {
               _context5.prev = 9;
               _context5.t0 = _context5["catch"](1);
               loading.value = 0;
-              errorsLang.value = 'Impossible de supprimer ce language';
+              errorsLang.value = "Impossible de supprimer ce language";
 
             case 13:
             case "end":
@@ -3403,6 +3435,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var _router_index_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../router/index.js */ "./resources/js/router/index.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -3411,10 +3444,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
+
 function useLevelStudies() {
   var levelStudies = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)([]);
   var levelStudy = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)([]);
-  var errorsLS = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)('');
+  var errorsLS = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)("");
   var loading = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(0);
 
   var getLevelStudies = /*#__PURE__*/function () {
@@ -3424,12 +3458,12 @@ function useLevelStudies() {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              errorsLS.value = '';
+              errorsLS.value = "";
               loading.value = 1;
               _context.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/levelStudies', {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/levelStudies", {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -3458,12 +3492,12 @@ function useLevelStudies() {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              errorsLS.value = '';
+              errorsLS.value = "";
               loading.value = 1;
               _context2.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/levelStudies/' + id, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/levelStudies/" + id, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -3492,13 +3526,13 @@ function useLevelStudies() {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
-              errorsLS.value = '';
+              errorsLS.value = "";
               _context3.prev = 1;
               loading.value = 1;
               _context3.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/levelStudies', data, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/levelStudies", data, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -3539,13 +3573,13 @@ function useLevelStudies() {
         while (1) {
           switch (_context4.prev = _context4.next) {
             case 0:
-              errorsLS.value = '';
+              errorsLS.value = "";
               _context4.prev = 1;
               loading.value = 1;
               _context4.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().put('/api/levelStudies/' + id, data, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/levelStudies/" + id, data, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -3561,7 +3595,7 @@ function useLevelStudies() {
 
               if (_context4.t0.response.status == 422) {
                 for (key in _context4.t0.response.data.errorsLS) {
-                  errorsLS.value += _context4.t0.response.data.errorsLS[key][0] + '\t\n';
+                  errorsLS.value += _context4.t0.response.data.errorsLS[key][0] + "\t\n";
                 }
               }
 
@@ -3584,13 +3618,13 @@ function useLevelStudies() {
         while (1) {
           switch (_context5.prev = _context5.next) {
             case 0:
-              errorsLS.value = '';
+              errorsLS.value = "";
               _context5.prev = 1;
               loading.value = 1;
               _context5.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]('/api/levelStudies/' + id, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]("/api/levelStudies/" + id, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -3604,8 +3638,8 @@ function useLevelStudies() {
               _context5.t0 = _context5["catch"](1);
               loading.value = 0;
 
-              if (_context5.t0.response.status == '500') {
-                errorsLS.value = 'Impossible de supprimer ce pays';
+              if (_context5.t0.response.status == "500") {
+                errorsLS.value = "Impossible de supprimer ce pays";
               }
 
             case 12:
@@ -3651,6 +3685,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var _router_index_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../router/index.js */ "./resources/js/router/index.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -3659,10 +3694,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
+
 function useOfferTypes() {
   var offerTypes = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)([]);
   var offerType = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)([]);
-  var errorsOT = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)('');
+  var errorsOT = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)("");
   var loading = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(0);
 
   var getOfferTypes = /*#__PURE__*/function () {
@@ -3672,12 +3708,12 @@ function useOfferTypes() {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              errorsOT.value = '';
+              errorsOT.value = "";
               loading.value = 1;
               _context.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/offerTypes', {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/offerTypes", {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -3706,12 +3742,12 @@ function useOfferTypes() {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              errorsOT.value = '';
+              errorsOT.value = "";
               loading.value = 1;
               _context2.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/offerTypes/' + id, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/offerTypes/" + id, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -3740,13 +3776,13 @@ function useOfferTypes() {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
-              errorsOT.value = '';
+              errorsOT.value = "";
               _context3.prev = 1;
               loading.value = 1;
               _context3.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/offerTypes', data, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/offerTypes", data, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -3787,13 +3823,13 @@ function useOfferTypes() {
         while (1) {
           switch (_context4.prev = _context4.next) {
             case 0:
-              errorsOT.value = '';
+              errorsOT.value = "";
               _context4.prev = 1;
               loading.value = 1;
               _context4.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().put('/api/offerTypes/' + id, data, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/offerTypes/" + id, data, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -3809,7 +3845,7 @@ function useOfferTypes() {
 
               if (_context4.t0.response.status == 422) {
                 for (key in _context4.t0.response.data.errorsOT) {
-                  errorsOT.value += _context4.t0.response.data.errorsOT[key][0] + '\t\n';
+                  errorsOT.value += _context4.t0.response.data.errorsOT[key][0] + "\t\n";
                 }
               }
 
@@ -3832,13 +3868,13 @@ function useOfferTypes() {
         while (1) {
           switch (_context5.prev = _context5.next) {
             case 0:
-              errorsOT.value = '';
+              errorsOT.value = "";
               _context5.prev = 1;
               loading.value = 1;
               _context5.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]('/api/offerTypes/' + id, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]("/api/offerTypes/" + id, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -3850,7 +3886,7 @@ function useOfferTypes() {
               _context5.prev = 9;
               _context5.t0 = _context5["catch"](1);
               loading.value = 0;
-              errorsOT.value = 'Impossible de supprimer ce offerType';
+              errorsOT.value = "Impossible de supprimer ce offerType";
 
             case 13:
             case "end":
@@ -3895,6 +3931,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var _router_index_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../router/index.js */ "./resources/js/router/index.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -3903,10 +3940,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
+
 function useSizeCompanies() {
   var sizeCompanies = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)([]);
   var sizeCompany = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)([]);
-  var errorsSC = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)('');
+  var errorsSC = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)("");
   var loading = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(0);
 
   var getSizeCompanies = /*#__PURE__*/function () {
@@ -3916,12 +3954,12 @@ function useSizeCompanies() {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              errorsSC.value = '';
+              errorsSC.value = "";
               loading.value = 1;
               _context.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/sizeCompanies', {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/sizeCompanies", {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -3950,12 +3988,12 @@ function useSizeCompanies() {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              errorsSC.value = '';
+              errorsSC.value = "";
               loading.value = 1;
               _context2.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/sizeCompanies/' + id, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/sizeCompanies/" + id, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -3984,13 +4022,13 @@ function useSizeCompanies() {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
-              errorsSC.value = '';
+              errorsSC.value = "";
               _context3.prev = 1;
               loading.value = 1;
               _context3.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/sizeCompanies', data, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/sizeCompanies", data, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -4031,13 +4069,13 @@ function useSizeCompanies() {
         while (1) {
           switch (_context4.prev = _context4.next) {
             case 0:
-              errorsSC.value = '';
+              errorsSC.value = "";
               _context4.prev = 1;
               loading.value = 1;
               _context4.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().put('/api/sizeCompanies/' + id, data, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/sizeCompanies/" + id, data, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -4053,7 +4091,7 @@ function useSizeCompanies() {
 
               if (_context4.t0.response.status == 422) {
                 for (key in _context4.t0.response.data.errorsSC) {
-                  errorsSC.value += _context4.t0.response.data.errorsSC[key][0] + '\t\n';
+                  errorsSC.value += _context4.t0.response.data.errorsSC[key][0] + "\t\n";
                 }
               }
 
@@ -4076,13 +4114,13 @@ function useSizeCompanies() {
         while (1) {
           switch (_context5.prev = _context5.next) {
             case 0:
-              errorsSC.value = '';
+              errorsSC.value = "";
               _context5.prev = 1;
               loading.value = 1;
               _context5.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]('/api/sizeCompanies/' + id, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]("/api/sizeCompanies/" + id, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -4096,8 +4134,8 @@ function useSizeCompanies() {
               _context5.t0 = _context5["catch"](1);
               loading.value = 0;
 
-              if (_context5.t0.response.status == '500') {
-                errorsSC.value = 'Impossible de supprimer ce pays';
+              if (_context5.t0.response.status == "500") {
+                errorsSC.value = "Impossible de supprimer ce pays";
               }
 
             case 12:
@@ -4143,6 +4181,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var _router_index_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../router/index.js */ "./resources/js/router/index.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -4151,10 +4190,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
+
 function useWorkDepartments() {
   var workDepartments = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)([]);
   var workDepartment = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)([]);
-  var errorsWD = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)('');
+  var errorsWD = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)("");
   var loading = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(0);
 
   var getWorkDepartments = /*#__PURE__*/function () {
@@ -4164,12 +4204,12 @@ function useWorkDepartments() {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              errorsWD.value = '';
+              errorsWD.value = "";
               loading.value = 1;
               _context.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/workDepartments', {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/workDepartments", {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -4198,12 +4238,12 @@ function useWorkDepartments() {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              errorsWD.value = '';
+              errorsWD.value = "";
               loading.value = 1;
               _context2.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/workDepartments/' + id, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/workDepartments/" + id, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -4232,13 +4272,13 @@ function useWorkDepartments() {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
-              errorsWD.value = '';
+              errorsWD.value = "";
               _context3.prev = 1;
               loading.value = 1;
               _context3.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/workDepartments', data, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/workDepartments", data, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -4279,13 +4319,13 @@ function useWorkDepartments() {
         while (1) {
           switch (_context4.prev = _context4.next) {
             case 0:
-              errorsWD.value = '';
+              errorsWD.value = "";
               _context4.prev = 1;
               loading.value = 1;
               _context4.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().put('/api/workDepartments/' + id, data, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/workDepartments/" + id, data, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -4301,7 +4341,7 @@ function useWorkDepartments() {
 
               if (_context4.t0.response.status == 422) {
                 for (key in _context4.t0.response.data.errorsWD) {
-                  errorsWD.value += _context4.t0.response.data.errorsWD[key][0] + '\t\n';
+                  errorsWD.value += _context4.t0.response.data.errorsWD[key][0] + "\t\n";
                 }
               }
 
@@ -4324,13 +4364,13 @@ function useWorkDepartments() {
         while (1) {
           switch (_context5.prev = _context5.next) {
             case 0:
-              errorsWD.value = '';
+              errorsWD.value = "";
               _context5.prev = 1;
               loading.value = 1;
               _context5.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]('/api/workDepartments/' + id, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]("/api/workDepartments/" + id, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -4342,7 +4382,7 @@ function useWorkDepartments() {
               _context5.prev = 9;
               _context5.t0 = _context5["catch"](1);
               loading.value = 0;
-              errorsWD.value = 'Impossible de supprimer ce workDepartment';
+              errorsWD.value = "Impossible de supprimer ce workDepartment";
 
             case 13:
             case "end":
@@ -4387,6 +4427,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var _router_index_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../router/index.js */ "./resources/js/router/index.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -4395,10 +4436,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
+
 function useWorkModes() {
   var workModes = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)([]);
   var workMode = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)([]);
-  var errorsWM = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)('');
+  var errorsWM = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)("");
   var loading = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(0);
 
   var getWorkModes = /*#__PURE__*/function () {
@@ -4408,12 +4450,12 @@ function useWorkModes() {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              errorsWM.value = '';
+              errorsWM.value = "";
               loading.value = 1;
               _context.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/workModes', {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/workModes", {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -4442,12 +4484,12 @@ function useWorkModes() {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              errorsWM.value = '';
+              errorsWM.value = "";
               loading.value = 1;
               _context2.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/workModes/' + id, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/workModes/" + id, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -4476,13 +4518,13 @@ function useWorkModes() {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
-              errorsWM.value = '';
+              errorsWM.value = "";
               _context3.prev = 1;
               loading.value = 1;
               _context3.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/workModes', data, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/workModes", data, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -4523,13 +4565,13 @@ function useWorkModes() {
         while (1) {
           switch (_context4.prev = _context4.next) {
             case 0:
-              errorsWM.value = '';
+              errorsWM.value = "";
               _context4.prev = 1;
               loading.value = 1;
               _context4.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().put('/api/workModes/' + id, data, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/workModes/" + id, data, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -4545,7 +4587,7 @@ function useWorkModes() {
 
               if (_context4.t0.response.status == 422) {
                 for (key in _context4.t0.response.data.errors) {
-                  errorsWM.value += _context4.t0.response.data.errors[key][0] + '\t\n';
+                  errorsWM.value += _context4.t0.response.data.errors[key][0] + "\t\n";
                 }
               }
 
@@ -4568,13 +4610,13 @@ function useWorkModes() {
         while (1) {
           switch (_context5.prev = _context5.next) {
             case 0:
-              errorsWM.value = '';
+              errorsWM.value = "";
               _context5.prev = 1;
               loading.value = 1;
               _context5.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]('/api/workModes/' + id, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]("/api/workModes/" + id, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -4586,7 +4628,7 @@ function useWorkModes() {
               _context5.prev = 9;
               _context5.t0 = _context5["catch"](1);
               loading.value = 0;
-              errorsWM.value = 'Impossible de supprimer ce workMode';
+              errorsWM.value = "Impossible de supprimer ce workMode";
 
             case 13:
             case "end":

@@ -157,9 +157,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 2:
                 if (errors.value == "") {
-                  _router__WEBPACK_IMPORTED_MODULE_4__["default"].push({
-                    name: "home"
-                  });
+                  location.href = window.location.origin;
                 }
 
               case 3:

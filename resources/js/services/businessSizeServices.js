@@ -1,20 +1,19 @@
 import axios from "axios";
 import { ref } from "vue";
-
+import router from "../router/index.js";
 export default function useBusinessSizes() {
-
     const businessSizes = ref([]);
     const businessSize = ref([]);
-    const errorsBS = ref('');
+    const errorsBS = ref("");
     const loading = ref(0);
 
     const getBusinessSizes = async () => {
-        errorsBS.value = '';
+        errorsBS.value = "";
         loading.value = 1;
-        let response = await axios.get('/api/businessSizes',  {
-            headers:{
-                'Authorization': `Bearer ${localStorage.token}`
-            }
+        let response = await axios.get("/api/businessSizes", {
+            headers: {
+                Authorization: `Bearer ${localStorage.token}`,
+            },
         });
         businessSizes.value = response.data.data;
 
@@ -22,30 +21,30 @@ export default function useBusinessSizes() {
     };
 
     const getBusinessSize = async (id) => {
-        errorsBS.value = '';
+        errorsBS.value = "";
         loading.value = 1;
-        let response = await axios.get('/api/businessSizes/' + id, {
-            headers:{
-                'Authorization': `Bearer ${localStorage.token}`
-            }
+        let response = await axios.get("/api/businessSizes/" + id, {
+            headers: {
+                Authorization: `Bearer ${localStorage.token}`,
+            },
         });
         loading.value = 0;
         businessSize.value = response.data.data;
     };
 
     const createBusinessSize = async (data) => {
-        errorsBS.value = '';
+        errorsBS.value = "";
         try {
             loading.value = 1;
-            await axios.post('/api/businessSizes', data, {
-                headers:{
-                    'Authorization': `Bearer ${localStorage.token}`
-                }
+            await axios.post("/api/businessSizes", data, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.token}`,
+                },
             });
             loading.value = 0;
         } catch (e) {
-            if(e.response.status == 422){
-            loading.value = 0;
+            if (e.response.status == 422) {
+                loading.value = 0;
                 for (const key in e.response.data.errors)
                     errorsBS.value += e.response.data.errors[key][0] + "\n";
             }
@@ -53,40 +52,39 @@ export default function useBusinessSizes() {
     };
 
     const updateBusinessSize = async (id, data) => {
-        errorsBS.value = '';
+        errorsBS.value = "";
         try {
             loading.value = 1;
-            await axios.put('/api/businessSizes/' + id, data, {
-                headers:{
-                    'Authorization': `Bearer ${localStorage.token}`
-                }
+            await axios.put("/api/businessSizes/" + id, data, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.token}`,
+                },
             });
             loading.value = 2;
         } catch (e) {
             loading.value = 0;
-            if(e.response.status == 422){
-                for(const key in e.response.data.errors)
-                    errorsBS.value += e.response.data.errors[key][0] + '\t\n';
+            if (e.response.status == 422) {
+                for (const key in e.response.data.errors)
+                    errorsBS.value += e.response.data.errors[key][0] + "\t\n";
             }
         }
-        
     };
 
     const destroyBusinessSize = async (id) => {
-        errorsBS.value = '';
+        errorsBS.value = "";
         try {
             loading.value = 1;
-            await axios.delete('/api/businessSizes/' + id, {
-                headers:{
-                    'Authorization': `Bearer ${localStorage.token}`
-                }
+            await axios.delete("/api/businessSizes/" + id, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.token}`,
+                },
             });
             loading.value = 2;
             return true;
-    } catch (e) {
-        loading.value = 0;
-        errorsBS.value = 'Impossible de supprimer ce businessSize';
-    }
+        } catch (e) {
+            loading.value = 0;
+            errorsBS.value = "Impossible de supprimer ce businessSize";
+        }
     };
 
     return {
@@ -98,6 +96,6 @@ export default function useBusinessSizes() {
         getBusinessSize,
         createBusinessSize,
         updateBusinessSize,
-        destroyBusinessSize
+        destroyBusinessSize,
     };
-} 
+}

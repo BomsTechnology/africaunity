@@ -1109,7 +1109,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 function useJobOffers() {
   var jobOffers = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)([]);
   var jobOffer = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)([]);
-  var errors = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)('');
+  var errors = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)("");
   var loading = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(0);
 
   var getJobOffers = /*#__PURE__*/function () {
@@ -1119,13 +1119,13 @@ function useJobOffers() {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              errors.value = '';
+              errors.value = "";
               _context.prev = 1;
               loading.value = 1;
               _context.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/jobOffers/', {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/jobOffers/", {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -1141,7 +1141,13 @@ function useJobOffers() {
               _context.t0 = _context["catch"](1);
 
               if (_context.t0.response.status == 401) {
-                location.href = 'login/not-login';
+                // router.push({
+                //     name: "login",
+                //     params: {
+                //         redirect: "not-login",
+                //     },
+                // });
+                location.href = window.location.origin;
                 window.localStorage.removeItem("token");
                 window.localStorage.removeItem("user");
               }
@@ -1166,13 +1172,13 @@ function useJobOffers() {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              errors.value = '';
+              errors.value = "";
               _context2.prev = 1;
               loading.value = 1;
               _context2.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/jobOffers-front/', {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/jobOffers-front/", {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -1188,7 +1194,13 @@ function useJobOffers() {
               _context2.t0 = _context2["catch"](1);
 
               if (_context2.t0.response.status == 401) {
-                location.href = 'login/not-login';
+                // router.push({
+                //     name: "login",
+                //     params: {
+                //         redirect: "not-login",
+                //     },
+                // });
+                location.href = window.location.origin;
                 window.localStorage.removeItem("token");
                 window.localStorage.removeItem("user");
               }
@@ -1213,13 +1225,13 @@ function useJobOffers() {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
-              errors.value = '';
+              errors.value = "";
               _context3.prev = 1;
               loading.value = 1;
               _context3.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/jobOffers-filter', data, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/jobOffers-filter", data, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -1235,7 +1247,13 @@ function useJobOffers() {
               _context3.t0 = _context3["catch"](1);
 
               if (_context3.t0.response.status == 401) {
-                location.href = 'login/not-login';
+                // router.push({
+                //     name: "login",
+                //     params: {
+                //         redirect: "not-login",
+                //     },
+                // });
+                location.href = window.location.origin;
                 window.localStorage.removeItem("token");
                 window.localStorage.removeItem("user");
               }
@@ -1260,13 +1278,13 @@ function useJobOffers() {
         while (1) {
           switch (_context4.prev = _context4.next) {
             case 0:
-              errors.value = '';
+              errors.value = "";
               _context4.prev = 1;
               loading.value = 1;
               _context4.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/jobOffers-user/' + id, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/jobOffers-user/" + id, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -1282,7 +1300,13 @@ function useJobOffers() {
               _context4.t0 = _context4["catch"](1);
 
               if (_context4.t0.response.status == 401) {
-                location.href = 'login/not-login';
+                // router.push({
+                //     name: "login",
+                //     params: {
+                //         redirect: "not-login",
+                //     },
+                // });
+                location.href = window.location.origin;
                 window.localStorage.removeItem("token");
                 window.localStorage.removeItem("user");
               }
@@ -1307,13 +1331,13 @@ function useJobOffers() {
         while (1) {
           switch (_context5.prev = _context5.next) {
             case 0:
-              errors.value = '';
+              errors.value = "";
               _context5.prev = 1;
               loading.value = 1;
               _context5.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/jobOffers/' + id, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/jobOffers/" + id, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -1329,7 +1353,13 @@ function useJobOffers() {
               _context5.t0 = _context5["catch"](1);
 
               if (_context5.t0.response.status == 401) {
-                location.href = 'login/not-login';
+                // router.push({
+                //     name: "login",
+                //     params: {
+                //         redirect: "not-login",
+                //     },
+                // });
+                location.href = window.location.origin;
                 window.localStorage.removeItem("token");
                 window.localStorage.removeItem("user");
               }
@@ -1354,12 +1384,12 @@ function useJobOffers() {
         while (1) {
           switch (_context6.prev = _context6.next) {
             case 0:
-              errors.value = '';
+              errors.value = "";
               loading.value = 1;
               _context6.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/jobOffers2/' + id, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/jobOffers2/" + id, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -1388,14 +1418,14 @@ function useJobOffers() {
         while (1) {
           switch (_context7.prev = _context7.next) {
             case 0:
-              errors.value = '';
+              errors.value = "";
               _context7.prev = 1;
               loading.value = 1;
               _context7.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/jobOffers', data, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/jobOffers", data, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token),
-                  'Content-Type': 'multipart/form-data'
+                  Authorization: "Bearer ".concat(localStorage.token),
+                  "Content-Type": "multipart/form-data"
                 }
               });
 
@@ -1436,14 +1466,14 @@ function useJobOffers() {
         while (1) {
           switch (_context8.prev = _context8.next) {
             case 0:
-              errors.value = '';
+              errors.value = "";
               _context8.prev = 1;
               loading.value = 1;
               _context8.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/jobOffers/' + jobOffer.value.id, data, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/jobOffers/" + jobOffer.value.id, data, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token),
-                  'Content-Type': 'multipart/form-data'
+                  Authorization: "Bearer ".concat(localStorage.token),
+                  "Content-Type": "multipart/form-data"
                 }
               });
 
@@ -1459,7 +1489,7 @@ function useJobOffers() {
 
               if (_context8.t0.response.status == 422) {
                 for (key in _context8.t0.response.data.errors) {
-                  errors.value += _context8.t0.response.data.errors[key][0] + '\t\n';
+                  errors.value += _context8.t0.response.data.errors[key][0] + "\t\n";
                 }
               }
 
@@ -1482,13 +1512,13 @@ function useJobOffers() {
         while (1) {
           switch (_context9.prev = _context9.next) {
             case 0:
-              errors.value = '';
+              errors.value = "";
               _context9.prev = 1;
               loading.value = 1;
               _context9.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]('/api/jobOffers/' + id, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]("/api/jobOffers/" + id, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -1502,8 +1532,8 @@ function useJobOffers() {
               _context9.t0 = _context9["catch"](1);
               loading.value = 0;
 
-              if (_context9.t0.response.status == '500') {
-                errors.value = 'Impossible de supprimer ce jobOffer';
+              if (_context9.t0.response.status == "500") {
+                errors.value = "Impossible de supprimer ce jobOffer";
               }
 
             case 12:
@@ -1525,13 +1555,13 @@ function useJobOffers() {
         while (1) {
           switch (_context10.prev = _context10.next) {
             case 0:
-              errors.value = '';
+              errors.value = "";
               _context10.prev = 1;
               loading.value = 1;
               _context10.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/jobOffers-mark-filled/' + id, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/jobOffers-mark-filled/" + id, {
                 headers: {
-                  'Authorization': "Bearer ".concat(localStorage.token)
+                  Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
@@ -1545,8 +1575,8 @@ function useJobOffers() {
               _context10.t0 = _context10["catch"](1);
               loading.value = 0;
 
-              if (_context10.t0.response.status == '500') {
-                errors.value = 'Impossible de supprimer ce jobOffer';
+              if (_context10.t0.response.status == "500") {
+                errors.value = "Impossible de supprimer ce jobOffer";
               }
 
             case 12:

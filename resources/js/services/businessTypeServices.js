@@ -1,20 +1,19 @@
 import axios from "axios";
 import { ref } from "vue";
-
+import router from "../router/index.js";;
 export default function useBusinessTypes() {
-
     const businessTypes = ref([]);
     const businessType = ref([]);
-    const errorsBT = ref('');
+    const errorsBT = ref("");
     const loading = ref(0);
 
     const getBusinessTypes = async () => {
-        errorsBT.value = '';
+        errorsBT.value = "";
         loading.value = 1;
-        let response = await axios.get('/api/businessTypes',  {
-            headers:{
-                'Authorization': `Bearer ${localStorage.token}`
-            }
+        let response = await axios.get("/api/businessTypes", {
+            headers: {
+                Authorization: `Bearer ${localStorage.token}`,
+            },
         });
         businessTypes.value = response.data.data;
 
@@ -22,30 +21,30 @@ export default function useBusinessTypes() {
     };
 
     const getBusinessType = async (id) => {
-        errorsBT.value = '';
+        errorsBT.value = "";
         loading.value = 1;
-        let response = await axios.get('/api/businessTypes/' + id, {
-            headers:{
-                'Authorization': `Bearer ${localStorage.token}`
-            }
+        let response = await axios.get("/api/businessTypes/" + id, {
+            headers: {
+                Authorization: `Bearer ${localStorage.token}`,
+            },
         });
         loading.value = 0;
         businessType.value = response.data.data;
     };
 
     const createBusinessType = async (data) => {
-        errorsBT.value = '';
+        errorsBT.value = "";
         try {
             loading.value = 1;
-            await axios.post('/api/businessTypes', data, {
-                headers:{
-                    'Authorization': `Bearer ${localStorage.token}`
-                }
+            await axios.post("/api/businessTypes", data, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.token}`,
+                },
             });
             loading.value = 0;
         } catch (e) {
-            if(e.response.status == 422){
-            loading.value = 0;
+            if (e.response.status == 422) {
+                loading.value = 0;
                 for (const key in e.response.data.errors)
                     errorsBT.value += e.response.data.errors[key][0] + "\n";
             }
@@ -53,39 +52,38 @@ export default function useBusinessTypes() {
     };
 
     const updateBusinessType = async (id, data) => {
-        errorsBT.value = '';
+        errorsBT.value = "";
         try {
             loading.value = 1;
-            await axios.put('/api/businessTypes/' + id, data, {
-                headers:{
-                    'Authorization': `Bearer ${localStorage.token}`
-                }
+            await axios.put("/api/businessTypes/" + id, data, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.token}`,
+                },
             });
             loading.value = 2;
         } catch (e) {
             loading.value = 0;
-            if(e.response.status == 422){
-                for(const key in e.response.data.errors)
-                    errorsBT.value += e.response.data.errors[key][0] + '\t\n';
+            if (e.response.status == 422) {
+                for (const key in e.response.data.errors)
+                    errorsBT.value += e.response.data.errors[key][0] + "\t\n";
             }
         }
-        
     };
 
     const destroyBusinessType = async (id) => {
-        errorsBT.value = '';
+        errorsBT.value = "";
         try {
             loading.value = 1;
-            await axios.delete('/api/businessTypes/' + id, {
-                headers:{
-                    'Authorization': `Bearer ${localStorage.token}`
-                }
+            await axios.delete("/api/businessTypes/" + id, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.token}`,
+                },
             });
             loading.value = 2;
             return true;
         } catch (e) {
             loading.value = 0;
-            errorsBT.value = 'Impossible de supprimer ce businessType';
+            errorsBT.value = "Impossible de supprimer ce businessType";
         }
     };
 
@@ -98,6 +96,6 @@ export default function useBusinessTypes() {
         getBusinessType,
         createBusinessType,
         updateBusinessType,
-        destroyBusinessType
+        destroyBusinessType,
     };
-} 
+}

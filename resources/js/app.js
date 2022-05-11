@@ -2,12 +2,16 @@ require("./bootstrap");
 
 import { createApp } from "vue";
 import App from "./App.vue";
+import Admin from "./Admin.vue";
 import router from "./router";
 import i18n from "./locales/i18n";
 import Select2 from "v-select2-component";
 
 const app = createApp(App);
 app.use(i18n).use(router).use(Select2).mount("#app");
+
+const app2 = createApp(Admin);
+app2.use(i18n).use(router).use(Select2).mount("#app2");
 
 let deferredPrompt;
 const addBtn = document.querySelector(".download-app");

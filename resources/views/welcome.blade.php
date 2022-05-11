@@ -30,10 +30,16 @@
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sceditor@3/minified/themes/default.min.css" />
     </head>
-    <body class="bg-white py-3" style="background-image:url('/img/random-shapes.svg')">
-        <div id="app" class="bg-white  xl:w-[90%]  w-full mx-auto min-h-screen">
+    <body class="bg-white" style="background-image:url('/img/random-shapes.svg')">
+
+        {{-- <div id="app" class="bg-white  xl:w-[90%]  w-full mx-auto min-h-screen">
+            <App></App>
+        </div> --}}
+
+        <div id="app" class="bg-white">
             <App></App>
         </div>
+        
         @include('cookie-consent::index')
         <div class="fixed md:hidden z-50 bottom-0 inset-x-0 pb-2">
             <div class=" flex justify-center">

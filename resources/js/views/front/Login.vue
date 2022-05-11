@@ -193,7 +193,7 @@ export default {
         const login = async () => {
             await loginUser({ ...user });
             if (errors.value == "") {
-                router.push({ name: "home" });
+                location.href = window.location.origin;
             }
         };
 
