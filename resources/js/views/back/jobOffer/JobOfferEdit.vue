@@ -1,16 +1,17 @@
 <template>
-<div class="flex">
-  <Sidebar/>
-  <div class="w-full xl:mt-0 mt-[74px] relative h-auto xl:p-4">
-      <div class=" w-full z-0  p-4">
-        <div class="px-8 py-5 bg-white shadow-lg flex w-full justify-between">
-            <h1 class="text-4xl text-primary-blue font-bold capitalize">
-                Edit JobOffer
-            </h1>
-        </div>
+    <div class="flex">
+        <Sidebar />
+        <div class="w-full xl:mt-0 mt-[74px] relative h-auto xl:p-4">
+            <div class="w-full z-0 p-4">
+                <div
+                    class="px-8 py-5 bg-white shadow-lg flex w-full justify-between"
+                >
+                    <h1 class="text-4xl text-primary-blue font-bold capitalize">
+                        Edit JobOffer
+                    </h1>
+                </div>
 
-                
-    <section class="p-6 mx-auto bg-white shadow-md w-full">
+                <section class="p-6 mx-auto bg-white shadow-md w-full">
                     <Error v-if="errors != ''">{{ errors }}</Error>
                     <h2 class="text-md font-light text-gray-700">
                         Edit a JobOffer
@@ -41,6 +42,7 @@
                                 >
                                 <select
                                     required
+                                    @change="filteredZone"
                                     v-model="jobOffer.continent_id"
                                     class="form-select block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
                                 >
@@ -62,15 +64,20 @@
                                 >
                                 <select
                                     required
+                                    @change="filteredCountry"
                                     v-model="jobOffer.zone_id"
                                     class="form-select block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
                                 >
                                     <option
-                                        v-for="zone in zones"
+                                        v-if="zoneFiltered.length != 0"
+                                        v-for="zone in zoneFiltered"
                                         :key="zone.id"
                                         :value="zone.id"
                                     >
                                         {{ zone.name_en }}
+                                    </option>
+                                    <option v-else value="null">
+                                        Select {{ $t("continent") }}
                                     </option>
                                 </select>
                             </div>
@@ -83,15 +90,20 @@
                                 >
                                 <select
                                     required
+                                    @change="filteredCity"
                                     v-model="jobOffer.country_id"
                                     class="form-select block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
                                 >
                                     <option
-                                        v-for="country in countries"
+                                        v-if="countryFiltered.length != 0"
+                                        v-for="country in countryFiltered"
                                         :key="country.id"
                                         :value="country.id"
                                     >
                                         {{ country.name_en }}
+                                    </option>
+                                    <option v-else value="null">
+                                        Select {{ $t("zoned") }}
                                     </option>
                                 </select>
                             </div>
@@ -108,11 +120,15 @@
                                     class="form-select block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
                                 >
                                     <option
-                                        v-for="city in cities"
+                                        v-if="cityfiltered.length != 0"
+                                        v-for="city in cityfiltered"
                                         :key="city.id"
                                         :value="city.id"
                                     >
                                         {{ city.name_en }}
+                                    </option>
+                                    <option v-else value="null">
+                                        Select {{ $t("country") }}
                                     </option>
                                 </select>
                             </div>
@@ -176,9 +192,12 @@
                                 />
                             </div>
 
-                            <div class="col-span-2 grid grid-cols-1 gap-6 sm:grid-cols-3">
+                            <div
+                                class="col-span-2 grid grid-cols-1 gap-6 sm:grid-cols-3"
+                            >
                                 <div>
-                                    <label class="text-gray-700 dark:text-gray-200"
+                                    <label
+                                        class="text-gray-700 dark:text-gray-200"
                                         >Min Price</label
                                     >
                                     <input
@@ -190,7 +209,8 @@
                                 </div>
 
                                 <div>
-                                    <label class="text-gray-700 dark:text-gray-200"
+                                    <label
+                                        class="text-gray-700 dark:text-gray-200"
                                         >Max Price</label
                                     >
                                     <input
@@ -217,7 +237,11 @@
                                             :key="currency.id"
                                             :value="currency.id"
                                         >
-                                            {{ currency.symbol + ' ' + currency.name }}
+                                            {{
+                                                currency.symbol +
+                                                " " +
+                                                currency.name
+                                            }}
                                         </option>
                                     </select>
                                 </div>
@@ -393,8 +417,6 @@
                                 </select>
                             </div>
 
-                            
-
                             <div class="col-span-2">
                                 <label
                                     class="text-gray-700 dark:text-gray-200"
@@ -451,13 +473,13 @@
                     </form>
                 </section>
             </div>
-  </div>
-</div>
+        </div>
+    </div>
 </template>
 
 <script>
 import Sidebar from "../../../components/Sidebar.vue";
-import { reactive, ref, onMounted} from "vue";
+import { reactive, ref, onMounted } from "vue";
 import Error from "../../../components/Error.vue";
 import useJobOffers from "../../../services/jobOfferServices.js";
 import useCurrencies from "../../../services/currencyServices.js";
@@ -476,17 +498,18 @@ import useCities from "../../../services/cityServices.js";
 import router from "../../../router/index.js";
 export default {
     props: {
-          id : {
-              required: true,
-              type: String
-          }
-      },
+        id: {
+            required: true,
+            type: String,
+        },
+    },
     components: {
         Sidebar,
         Error,
     },
-     setup(props) {
-        const { updateJobOffer ,getJobOffer2, jobOffer, errors, loading } = useJobOffers();
+    setup(props) {
+        const { updateJobOffer, getJobOffer2, jobOffer, errors, loading } =
+            useJobOffers();
         const { currencies, getCurrencies } = useCurrencies();
         const { languages, getLanguages } = useLanguages();
         const { activityAreas, getActivityAreas } = useActivityAreas();
@@ -501,28 +524,65 @@ export default {
         const { continents, getContinents } = useContinents();
         const { cities, getCities } = useCities();
 
-         ;onMounted(
-                getJobOffer2(props.id),   
+        const zoneFiltered = ref([]);
+        const countryFiltered = ref([]);
+        const cityfiltered = ref([]);
+
+        const filteredCity = () => {
+            cityfiltered.value = cities.value.filter((city) => {
+                return city.country_id == jobOffer.value.country_id;
+            });
+        };
+
+        const filteredCountry = () => {
+            countryFiltered.value = countries.value.filter((country) => {
+                return country.zone_id == jobOffer.value.zone_id;
+            });
+        };
+
+        const filteredZone = () => {
+            zoneFiltered.value = zones.value.filter((zone) => {
+                return zone.continent_id == jobOffer.value.continent_id;
+            });
+            jobOffer.value.zone.id = "";
+            jobOffer.value.country.id = "";
+            jobOffer.value.city.id = "";
+            cityfiltered.value = [];
+            countryFiltered.value = [];
+            cityfiltered.value = [];
+        };
+
+        onMounted(async () => {
+            await getJobOffer2(props.id),
                 getCurrencies(),
-                getContinents(),
-                getZones(),
-                getYearExperiences(),
-                getWorkModes(),
-                getWorkDepartments(),
-                getLevelStudies(),
-                getSizeCompanies(),
-                getOfferTypes(),
-                getActivityAreas(),
-                getLanguages(),
-                getCountries(),
-                getCities(),                    
-        );
+                await getContinents(),
+                await getZones(),
+                await getYearExperiences(),
+                await getWorkModes(),
+                await getWorkDepartments(),
+                await getLevelStudies(),
+                await getSizeCompanies(),
+                await getOfferTypes(),
+                await getActivityAreas(),
+                await getLanguages(),
+                await getCountries(),
+                await getCities(),
+                (zoneFiltered.value = zones.value.filter((zone) => {
+                    return zone.continent_id == jobOffer.value.continent_id;
+                }));
+            countryFiltered.value = countries.value.filter((country) => {
+                return country.zone_id == jobOffer.value.zone_id;
+            });
+            cityfiltered.value = cities.value.filter((city) => {
+                return city.country_id == jobOffer.value.country_id;
+            });
+        });
 
         const clanguages = ref([]);
         const cactivityAreas = ref([]);
-        
+
         const saveJobOffer = async () => {
-            let  formData = new FormData();
+            let formData = new FormData();
             formData.append("title", jobOffer.value.title);
             formData.append("description", jobOffer.value.description);
             formData.append("location", jobOffer.value.location);
@@ -534,8 +594,14 @@ export default {
             formData.append("max_price", jobOffer.value.max_price);
             formData.append("user_id", jobOffer.value.user_id);
             formData.append("currency_id", jobOffer.value.currency_id);
-            formData.append("year_experience_id", jobOffer.value.year_experience_id);
-            formData.append("work_department_id", jobOffer.value.work_department_id);
+            formData.append(
+                "year_experience_id",
+                jobOffer.value.year_experience_id
+            );
+            formData.append(
+                "work_department_id",
+                jobOffer.value.work_department_id
+            );
             formData.append("work_mode_id", jobOffer.value.work_mode_id);
             formData.append("size_company_id", jobOffer.value.size_company_id);
             formData.append("offer_type_id", jobOffer.value.offer_type_id);
@@ -546,16 +612,21 @@ export default {
             formData.append("country_id", jobOffer.value.country_id);
             formData.append("languages", clanguages.value);
             formData.append("activityAreas", cactivityAreas.value);
-            formData.append('_method', 'PUT');
+            formData.append("_method", "PUT");
 
             await updateJobOffer(formData, props.id);
-            if(errors.value == ''){
-                router.push({ name: 'admin.jobOffer.index' });
+            if (errors.value == "") {
+                router.push({ name: "admin.jobOffer.index" });
             }
+        };
 
-        }
-
-        return{
+        return {
+            cityfiltered,
+            zoneFiltered,
+            countryFiltered,
+            filteredZone,
+            filteredCountry,
+            filteredCity,
             clanguages,
             cactivityAreas,
             jobOffer,
@@ -574,15 +645,13 @@ export default {
             cities,
             saveJobOffer,
             errors,
-            loading
-        }
-
+            loading,
+        };
     },
     methods: {
         handelFileObject() {
             this.jobOffer.company_logo = this.$refs.file.files[0];
-        }
+        },
     },
-
-}
+};
 </script>

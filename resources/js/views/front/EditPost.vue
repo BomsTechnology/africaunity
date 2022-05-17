@@ -94,6 +94,7 @@
                         <select
                             required
                             v-model="post.continent_id"
+                            @change="filteredZone"
                             class="form-select block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
                         >
                             <option
@@ -123,12 +124,12 @@
                         <select
                             required
                             v-model="post.zone_id"
-                            name=""
-                            id=""
+                            @change="filteredCountry"
                             class="form-select block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
                         >
                             <option
-                                v-for="zone in zones"
+                                v-if="zoneFiltered.length != 0"
+                                v-for="zone in zoneFiltered"
                                 :key="zone.id"
                                 :value="zone.id"
                             >
@@ -143,6 +144,9 @@
                                 }}</span>
                                 <span v-else>{{ zone.name_pt }}</span>
                             </option>
+                            <option v-else value="null">
+                                Select {{ $t("continent") }}
+                            </option>
                         </select>
                     </div>
                     <div class="lg:col-span-1 col-span-2">
@@ -156,7 +160,8 @@
                             class="form-select block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
                         >
                             <option
-                                v-for="country in countries"
+                                v-if="countryFiltered.length != 0"
+                                v-for="country in countryFiltered"
                                 :key="country.id"
                                 :value="country.id"
                             >
@@ -170,6 +175,9 @@
                                     country.name_es
                                 }}</span>
                                 <span v-else>{{ country.name_pt }}</span>
+                            </option>
+                            <option v-else value="null">
+                                Select {{ $t("zoned") }}
                             </option>
                         </select>
                     </div>
@@ -330,8 +338,40 @@ export default {
         const { countries, getCountries } = useCountries();
         const { ministries, getMinistries } = useMinistries();
         const textarea = ref("");
+
+        const zoneFiltered = ref([]);
+        const countryFiltered = ref([]);
+
+        const filteredZone = () => {
+            zoneFiltered.value = zones.value.filter((zone) => {
+                return zone.continent_id == post.value.continent_id;
+            });
+            post.value.country_id = "";
+            post.value.zone_id = "";
+            countryFiltered.value = [];
+        };
+        const filteredCountry = () => {
+            countryFiltered.value = countries.value.filter((country) => {
+                return country.zone_id == post.value.zone_id;
+            });
+        };
         onMounted(async () => {
             await getPost(props.id);
+
+            if (!types.includes(props.type)) {
+                router.push({ name: "home" });
+            }
+
+            await getContinents();
+            await getZones();
+            await getCountries();
+            await getMinistries();
+            zoneFiltered.value = zones.value.filter((zone) => {
+                return zone.continent_id == post.value.continent_id;
+            });
+            countryFiltered.value = countries.value.filter((country) => {
+                return country.zone_id == post.value.zone_id;
+            });
 
             if (props.type == "article") {
                 textarea.value.value = post.value.content;
@@ -344,17 +384,9 @@ export default {
                     icons: "material",
                 });
             }
-
-            if (!types.includes(props.type)) {
-                router.push({ name: "home" });
-            }
-
-            await getContinents();
-            await getZones();
-            await getCountries();
-            await getMinistries();
         });
         post.value.image = "";
+
         const savePost = async () => {
             if (props.type == "article") {
                 if (post.value.content == textarea.value.value) {
@@ -403,6 +435,10 @@ export default {
             }
         };
         return {
+            zoneFiltered,
+            countryFiltered,
+            filteredZone,
+            filteredCountry,
             textarea,
             post,
             continents,

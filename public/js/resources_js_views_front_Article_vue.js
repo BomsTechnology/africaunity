@@ -176,6 +176,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       errors: errors,
       posts: posts
     };
+  },
+  changeLocale: function changeLocale(lang) {
+    this.$i18n.locale = lang;
+    localStorage.lang = this.$i18n.locale;
+    location.reload();
   }
 });
 

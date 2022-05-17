@@ -36,6 +36,7 @@ class UniversityController extends Controller
             'continent_id' => 'integer|required',
             'country_id' => 'integer|required',
             'city_id' => 'integer|required',
+            'zone_id' => 'integer|required',
         ]);
         $filename = '/uploads/'.time().'.'. $request->file('image')->extension();
         $request->file('image')->storePubliclyAs('public', $filename);
@@ -45,6 +46,7 @@ class UniversityController extends Controller
             'continent_id' => $fileds['continent_id'],
             'country_id' => $fileds['country_id'],
             'city_id' => $fileds['city_id'],
+            'zone_id' => $fileds['zone_id'],
             'image' => $filename
         ];
 
@@ -84,6 +86,7 @@ class UniversityController extends Controller
             'continent_id' => 'integer|required',
             'country_id' => 'integer|required',
             'city_id' => 'integer|required',
+            'zone_id' => 'integer|required',
         ]);
 
         $data = [
@@ -92,6 +95,7 @@ class UniversityController extends Controller
             'continent_id' => $fileds['continent_id'],
             'country_id' => $fileds['country_id'],
             'city_id' => $fileds['city_id'],
+            'zone_id' => $fileds['zone_id'],
         ];
 
         if($request->file('image')){

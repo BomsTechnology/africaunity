@@ -14,6 +14,7 @@ class Zone extends Model
         'name_en',
         'name_es',
         'name_pt',
+        'continent_id'
     ];
 
     public function posts(){

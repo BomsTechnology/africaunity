@@ -2,9 +2,7 @@
     <div class="flex">
         <Sidebar />
         <div class="w-full xl:mt-0 mt-[74px] relative h-auto xl:p-4">
-            <div
-                class=" w-full z-0 h-full p-4"
-            >
+            <div class="w-full z-0 h-full p-4">
                 <div class="px-8 py-5 bg-white shadow-lg flex justify-between">
                     <h1 class="text-4xl text-primary-blue font-bold">
                         Continent
@@ -64,26 +62,9 @@
                                                 scope="col"
                                                 class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
                                             >
-                                                French Name
-                                            </th>
-                                            <th
-                                                scope="col"
-                                                class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
-                                            >
                                                 English Name
                                             </th>
-                                            <th
-                                                scope="col"
-                                                class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
-                                            >
-                                                Espanol Name
-                                            </th>
-                                            <th
-                                                scope="col"
-                                                class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
-                                            >
-                                                Portugues Name
-                                            </th>
+
                                             <th scope="col" class="p-4">
                                                 <span class="sr-only"
                                                     >Edit</span
@@ -103,33 +84,29 @@
                                             <td
                                                 class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
                                             >
-                                                {{ continent.name_fr }}
-                                            </td>
-                                            <td
-                                                class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                                            >
                                                 {{ continent.name_en }}
                                             </td>
-                                            <td
-                                                class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                                            >
-                                                {{ continent.name_es }}
-                                            </td>
-                                            <td
-                                                class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                                            >
-                                                {{ continent.name_pt }}
-                                            </td>
+
                                             <td
                                                 class="py-4 px-6 text-sm font-medium text-right whitespace-nowrap"
                                             >
-                                                <router-link :to="{name:'admin.continent.edit', params: { id: continent.id }}"
+                                                <router-link
+                                                    :to="{
+                                                        name: 'admin.continent.edit',
+                                                        params: {
+                                                            id: continent.id,
+                                                        },
+                                                    }"
                                                     href="#"
                                                     class="text-primary-blue dark:text-blue-500 hover:underline"
                                                     >Edit</router-link
                                                 >
                                                 <a
-                                                    @click="deleteContinent(continent.id)"
+                                                    @click="
+                                                        deleteContinent(
+                                                            continent.id
+                                                        )
+                                                    "
                                                     href="#"
                                                     class="text-red-600 ml-3 dark:text-blue-500 hover:underline"
                                                     >Delete</a
@@ -142,16 +119,31 @@
                                         v-else-if="loading == 1"
                                     >
                                         <tr
-                                            
-                                            class="hover:bg-gray-100 dark:hover:bg-gray-700 "
+                                            class="hover:bg-gray-100 dark:hover:bg-gray-700"
                                         >
                                             <td
                                                 colspan="5"
-                                                class=" text-sm w-full font-medium border text-gray-900 whitespace-nowrap  p-16 dark:text-white"
+                                                class="text-sm w-full font-medium border text-gray-900 whitespace-nowrap p-16 dark:text-white"
                                             >
-                                                <svg class="animate-spin h-16 w-16 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                                <svg
+                                                    class="animate-spin h-16 w-16 mx-auto"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    fill="none"
+                                                    viewBox="0 0 24 24"
+                                                >
+                                                    <circle
+                                                        class="opacity-25"
+                                                        cx="12"
+                                                        cy="12"
+                                                        r="10"
+                                                        stroke="currentColor"
+                                                        stroke-width="4"
+                                                    ></circle>
+                                                    <path
+                                                        class="opacity-75"
+                                                        fill="currentColor"
+                                                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                                                    ></path>
                                                 </svg>
                                             </td>
                                         </tr>
@@ -161,7 +153,6 @@
                                         v-else
                                     >
                                         <tr
-                                            
                                             class="hover:bg-gray-100 dark:hover:bg-gray-700"
                                         >
                                             <td
@@ -169,7 +160,7 @@
                                                 class="py-4 px-6 text-xl font-medium text-gray-900 text-center whitespace-nowrap dark:text-white"
                                             >
                                                 NO CONTINENT
-                                                </td>
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -192,7 +183,7 @@ export default {
     components: {
         PlusCircleIcon,
         Sidebar,
-        Error
+        Error,
     },
     setup() {
         const { continents, getContinents, destroyContinent, loading, errors } =
@@ -202,9 +193,9 @@ export default {
         onMounted(getContinents());
 
         const deleteContinent = async (id) => {
-            if(confirm("I you Sure ?")){
-                await destroyContinent(id)
-                if(errors.value == ''){
+            if (confirm("I you Sure ?")) {
+                await destroyContinent(id);
+                if (errors.value == "") {
                     await getContinents();
                 }
             }

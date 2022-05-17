@@ -1186,7 +1186,7 @@ var _hoisted_1 = {
   "class": "relative"
 };
 
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"h-screen w-full bg-cover object-cover\" style=\"background-image:url(&#39;/img/bg_maintenance.jpg&#39;);\"></div><div class=\"bg-black/50 absolute top-0 h-screen w-full flex flex-col text-white py-8 justify-between items-center\"><div><h1 class=\"text-4xl font-bold mt-10\">AfricaUnity</h1></div><div><p class=\"md:w-1/2 px-8 md:mx-auto mx-10 font-light text-center\"><span class=\"text-3xl font-semibold block my-2\">We’ll be back soon!</span> Sorry for the inconvenience. We’re performing some maintenance at the moment. If you need to you can always contact us for updates, otherwise we’ll be back up shortly! </p></div><div>© AficaUnity 2022</div></div>", 2);
+var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"h-screen w-full bg-cover object-cover\" style=\"background-image:url(&#39;/img/bg_maintenance.jpg&#39;);\"></div><div class=\"bg-black/50 absolute top-0 h-screen w-full flex flex-col text-white py-8 justify-between items-center\"><div><h1 class=\"text-4xl font-bold mt-10\">AfricaUnity</h1></div><div><p class=\"md:w-1/2 px-8 md:mx-auto mx-10 font-light text-center\"><span class=\"text-3xl font-semibold block my-2\">We’ll be back soon!</span> Sorry for the inconvenience. We’re performing some maintenance at the moment. If you need to you can always contact us for updates, otherwise we’ll be back up shortly! </p></div><div>© AfricaUnity 2022</div></div>", 2);
 
 var _hoisted_4 = {
   key: 0,

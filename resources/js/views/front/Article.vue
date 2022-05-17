@@ -425,5 +425,10 @@ export default {
             posts,
         };
     },
+    changeLocale(lang) {
+        this.$i18n.locale = lang;
+        localStorage.lang = this.$i18n.locale;
+        location.reload();
+    },
 };
 </script>

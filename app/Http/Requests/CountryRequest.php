@@ -29,6 +29,7 @@ class CountryRequest extends FormRequest
             'name_en' => 'required|string',
             'name_es' => 'required|string',
             'name_pt' => 'required|string',
+            'zone_id' => 'required|integer',
         ];
     }
 }

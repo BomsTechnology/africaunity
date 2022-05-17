@@ -15,7 +15,8 @@ class University extends Model
         'image',
         'continent_id',
         'country_id',
-        'city_id'
+        'city_id',
+        'zone_id'
     ];
 
     public function continent(){

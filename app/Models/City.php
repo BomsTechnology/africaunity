@@ -14,6 +14,7 @@ class City extends Model
         'name_en',
         'name_es',
         'name_pt',
+        'country_id'
     ];
 
     public function universities(){

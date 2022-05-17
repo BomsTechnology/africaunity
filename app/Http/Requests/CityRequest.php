@@ -28,6 +28,7 @@ class CityRequest extends FormRequest
             'name_en' => 'required|string',
             'name_es' => 'required|string',
             'name_pt' => 'required|string',
+            'country_id' => 'required|integer',
         ];
     }
 }

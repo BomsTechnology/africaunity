@@ -41,6 +41,7 @@
                                 >
                                 <select
                                     required
+                                    @change="filteredZone"
                                     v-model="university.continent_id"
                                     class="form-select block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
                                 >
@@ -58,24 +59,55 @@
                                 <label
                                     class="text-gray-700 dark:text-gray-200"
                                     for="es"
+                                    >Zone</label
+                                >
+                                <select
+                                    required
+                                    v-model="university.zone_id"
+                                    @change="filteredCountry"
+                                    class="form-select block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
+                                >
+                                    <option
+                                        v-if="zoneFiltered.length != 0"
+                                        v-for="zone in zoneFiltered"
+                                        :key="zone.id"
+                                        :value="zone.id"
+                                    >
+                                        {{ zone.name_en }}
+                                    </option>
+                                    <option v-else value="null">
+                                        Select {{ $t("continent") }}
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label
+                                    class="text-gray-700 dark:text-gray-200"
+                                    for="es"
                                     >Country</label
                                 >
                                 <select
                                     required
+                                    @change="filteredCity"
                                     v-model="university.country_id"
                                     class="form-select block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
                                 >
                                     <option
-                                        v-for="country in countries"
+                                        v-if="countryFiltered.length != 0"
+                                        v-for="country in countryFiltered"
                                         :key="country.id"
                                         :value="country.id"
                                     >
                                         {{ country.name_en }}
                                     </option>
+                                    <option v-else value="null">
+                                        Select {{ $t("zoned") }}
+                                    </option>
                                 </select>
                             </div>
 
-                            <div class="col-span-2">
+                            <div class="">
                                 <label
                                     class="text-gray-700 dark:text-gray-200"
                                     for="pt"
@@ -87,11 +119,15 @@
                                     class="form-select block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
                                 >
                                     <option
-                                        v-for="city in cities"
+                                        v-if="cityfiltered.length != 0"
+                                        v-for="city in cityfiltered"
                                         :key="city.id"
                                         :value="city.id"
                                     >
                                         {{ city.name_en }}
+                                    </option>
+                                    <option v-else value="null">
+                                        Select {{ $t("country") }}
                                     </option>
                                 </select>
                             </div>
@@ -180,6 +216,7 @@ import useContinents from "../../../services/continentServices.js";
 import useCountries from "../../../services/countryServices.js";
 import useCities from "../../../services/cityServices.js";
 import router from "../../../router/index.js";
+import useZones from "../../../services/zoneServices.js";
 export default {
     components: {
         Sidebar,
@@ -189,19 +226,45 @@ export default {
         const { continents, getContinents } = useContinents();
         const { countries, getCountries } = useCountries();
         const { cities, getCities } = useCities();
-        onMounted(
-            getContinents(),
-            getCountries(),
-            getCities()
-        );
+        const { zones, getZones } = useZones();
+        onMounted(getZones(), getContinents(), getCountries(), getCities());
         const university = reactive({
             name: "",
             description: "",
             image: "",
-            continent_id: 1,
-            country_id: 1,
-            city_id: 1,
+            continent_id: "",
+            country_id: "",
+            city_id: "",
+            zone_id: "",
         });
+
+        const zoneFiltered = ref([]);
+        const countryFiltered = ref([]);
+        const cityfiltered = ref([]);
+
+        const filteredCity = () => {
+            cityfiltered.value = cities.value.filter((city) => {
+                return city.country_id == university.country_id;
+            });
+        };
+
+        const filteredCountry = () => {
+            countryFiltered.value = countries.value.filter((country) => {
+                return country.zone_id == university.zone_id;
+            });
+        };
+
+        const filteredZone = () => {
+            zoneFiltered.value = zones.value.filter((zone) => {
+                return zone.continent_id == university.continent_id;
+            });
+            university.zone_id = "";
+            university.country_id = "";
+            university.city_id = "";
+            cityfiltered.value = [];
+            countryFiltered.value = [];
+            cityfiltered.value = [];
+        };
         const { createUniversity, errors, loading } = useUniversities();
 
         const storeUniversity = async () => {
@@ -212,14 +275,20 @@ export default {
             formData.append("continent_id", university.continent_id);
             formData.append("country_id", university.country_id);
             formData.append("city_id", university.city_id);
+            formData.append("zone_id", university.zone_id);
 
             await createUniversity(formData);
             router.push({
                 name: "admin.university.index",
             });
-
         };
         return {
+            cityfiltered,
+            zoneFiltered,
+            countryFiltered,
+            filteredZone,
+            filteredCountry,
+            filteredCity,
             university,
             loading,
             errors,

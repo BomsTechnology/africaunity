@@ -61,6 +61,7 @@
                                 <select
                                     required
                                     v-model="post.continent_id"
+                                    @change="filteredZone"
                                     class="form-select block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
                                 >
                                     <option
@@ -82,16 +83,19 @@
                                 <select
                                     required
                                     v-model="post.zone_id"
-                                    name=""
-                                    id=""
+                                    @change="filteredCountry"
                                     class="form-select block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
                                 >
                                     <option
-                                        v-for="zone in zones"
+                                        v-if="zoneFiltered.length != 0"
+                                        v-for="zone in zoneFiltered"
                                         :key="zone.id"
                                         :value="zone.id"
                                     >
                                         {{ zone.name_en }}
+                                    </option>
+                                    <option v-else value="null">
+                                        Select {{ $t("continent") }}
                                     </option>
                                 </select>
                             </div>
@@ -107,11 +111,14 @@
                                     class="form-select block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
                                 >
                                     <option
-                                        v-for="country in countries"
-                                        :key="country.id"
+                                        v-if="countryFiltered.length != 0"
+                                        v-for="country in countryFiltered"
                                         :value="country.id"
                                     >
                                         {{ country.name_en }}
+                                    </option>
+                                    <option v-else value="null">
+                                        Select {{ $t("zoned") }}
                                     </option>
                                 </select>
                             </div>
@@ -240,6 +247,8 @@ export default {
         const { zones, getZones } = useZones();
         const { countries, getCountries } = useCountries();
         const { ministries, getMinistries } = useMinistries();
+        const zoneFiltered = ref([]);
+        const countryFiltered = ref([]);
         onMounted(
             () => {
                 if (!types.includes(props.type)) {
@@ -263,6 +272,20 @@ export default {
             country_id: 1,
             ministry_id: 1,
         });
+
+        const filteredZone = () => {
+            zoneFiltered.value = zones.value.filter((zone) => {
+                return zone.continent_id == post.continent_id;
+            });
+            post.country_id = "";
+            post.zone_id = "";
+            countryFiltered.value = [];
+        };
+        const filteredCountry = () => {
+            countryFiltered.value = countries.value.filter((country) => {
+                return country.zone_id == post.zone_id;
+            });
+        };
         const { createPost, errors, loading } = usePosts();
 
         const storePost = async () => {
@@ -292,6 +315,10 @@ export default {
             }
         };
         return {
+            zoneFiltered,
+            countryFiltered,
+            filteredZone,
+            filteredCountry,
             post,
             loading,
             errors,

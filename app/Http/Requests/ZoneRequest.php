@@ -28,6 +28,7 @@ class ZoneRequest extends FormRequest
             'name_en' => 'required|string',
             'name_es' => 'required|string',
             'name_pt' => 'required|string',
+            'continent_id' => 'required|integer',
         ];
     }
 }

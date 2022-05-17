@@ -120,7 +120,7 @@
                                     <PlusCircleIcon class="w-5 h-5" />
                                     <span class="lg:block hidden"
                                         >{{ $t("add") }}
-                                        {{ $t("articles") }}</span
+                                        {{ $t("article") }}</span
                                     >
                                 </router-link>
                                 <button

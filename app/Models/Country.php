@@ -15,6 +15,7 @@ class Country extends Model
         'name_en',
         'name_es',
         'name_pt',
+        'zone_id'
     ];
 
     public function posts(){

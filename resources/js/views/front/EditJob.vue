@@ -49,6 +49,7 @@
                             <select
                                 v-if="jobOffer.continent"
                                 required
+                                @change="filteredZone"
                                 v-model="jobOffer.continent.id"
                                 class="form-select block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
                             >
@@ -81,11 +82,13 @@
                             <select
                                 required
                                 v-if="jobOffer.zone"
+                                @change="filteredCountry"
                                 v-model="jobOffer.zone.id"
                                 class="form-select block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
                             >
                                 <option
-                                    v-for="zone in zones"
+                                    v-if="zoneFiltered.length != 0"
+                                    v-for="zone in zoneFiltered"
                                     :key="zone.id"
                                     :value="zone.id"
                                 >
@@ -100,6 +103,9 @@
                                     }}</span>
                                     <span v-else>{{ zone.name_pt }}</span>
                                 </option>
+                                <option v-else value="null">
+                                    Select {{ $t("continent") }}
+                                </option>
                             </select>
                         </div>
 
@@ -113,11 +119,13 @@
                             <select
                                 required
                                 v-if="jobOffer.country"
+                                @change="filteredCity"
                                 v-model="jobOffer.country.id"
                                 class="form-select block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
                             >
                                 <option
-                                    v-for="country in countries"
+                                    v-if="countryFiltered.length != 0"
+                                    v-for="country in countryFiltered"
                                     :key="country.id"
                                     :value="country.id"
                                 >
@@ -131,6 +139,9 @@
                                         country.name_es
                                     }}</span>
                                     <span v-else>{{ country.name_pt }}</span>
+                                </option>
+                                <option v-else value="null">
+                                    Select {{ $t("zoned") }}
                                 </option>
                             </select>
                         </div>
@@ -149,7 +160,8 @@
                                 class="form-select block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
                             >
                                 <option
-                                    v-for="city in cities"
+                                    v-if="cityfiltered.length != 0"
+                                    v-for="city in cityfiltered"
                                     :key="city.id"
                                     :value="city.id"
                                 >
@@ -163,6 +175,9 @@
                                         city.name_es
                                     }}</span>
                                     <span v-else>{{ city.name_pt }}</span>
+                                </option>
+                                <option v-else value="null">
+                                    Select {{ $t("country") }}
                                 </option>
                             </select>
                         </div>
@@ -663,6 +678,34 @@ export default {
         const clanguages = ref([]);
         const cactivityAreas = ref([]);
 
+        const zoneFiltered = ref([]);
+        const countryFiltered = ref([]);
+        const cityfiltered = ref([]);
+
+        const filteredCity = () => {
+            cityfiltered.value = cities.value.filter((city) => {
+                return city.country_id == jobOffer.value.country.id;
+            });
+        };
+
+        const filteredCountry = () => {
+            countryFiltered.value = countries.value.filter((country) => {
+                return country.zone_id == jobOffer.value.zone.id;
+            });
+        };
+
+        const filteredZone = () => {
+            zoneFiltered.value = zones.value.filter((zone) => {
+                return zone.continent_id == jobOffer.value.continent.id;
+            });
+            jobOffer.value.zone.id = "";
+            jobOffer.value.country.id = "";
+            jobOffer.value.city.id = "";
+            cityfiltered.value = [];
+            countryFiltered.value = [];
+            cityfiltered.value = [];
+        };
+
         onMounted(async () => {
             await getJobOffer(props.id);
 
@@ -686,6 +729,15 @@ export default {
             await getLanguages();
             await getCountries();
             await getCities();
+            zoneFiltered.value = zones.value.filter((zone) => {
+                return zone.continent_id == jobOffer.value.continent.id;
+            });
+            countryFiltered.value = countries.value.filter((country) => {
+                return country.zone_id == jobOffer.value.zone.id;
+            });
+            cityfiltered.value = cities.value.filter((city) => {
+                return city.country_id == jobOffer.value.country.id;
+            });
         });
 
         const saveJobOffer = async () => {
@@ -730,6 +782,12 @@ export default {
             }
         };
         return {
+            cityfiltered,
+            zoneFiltered,
+            countryFiltered,
+            filteredZone,
+            filteredCountry,
+            filteredCity,
             clanguages,
             cactivityAreas,
             jobOffer,

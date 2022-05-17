@@ -18,7 +18,7 @@
                 </p>
             </div>
 
-            <div>© AficaUnity 2022</div>
+            <div>© AfricaUnity 2022</div>
         </div>
         <button type="button" @click="toogleLogMaint = !toogleLogMaint " :class="[ toogleLogMaint ? 'h-10 w-10 bg-white absolute md:right-96 right-2/3 p-2 top-36 rounded-l-lg' : 'h-10 w-10 bg-white absolute right-0 p-2 top-36 rounded-l-lg']">
                 <LockClosedIcon />
