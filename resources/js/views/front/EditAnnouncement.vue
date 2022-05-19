@@ -43,7 +43,7 @@
                         >
                     </div>
                     <div
-                        class="col-span-2 grid grid-cols-1 gap-6 sm:grid-cols-2 mt-4"
+                        class="col-span-2 grid grid-cols-1 gap-6 sm:grid-cols-2 mt-4 divSelect2"
                     >
                         <div>
                             <label
@@ -52,19 +52,14 @@
                                 >{{ $t("university") }}
                                 <span class="text-red-500">*</span>
                             </label>
-                            <select
-                                required
+                            <Select2
                                 v-model="announcement.university_id"
-                                class="form-select block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
-                            >
-                                <option
-                                    v-for="university in universities"
-                                    :key="university.id"
-                                    :value="university.id"
-                                >
-                                    {{ university.name }}
-                                </option>
-                            </select>
+                                :options="universities"
+                                :id="'select2'"
+                                :settings="{
+                                    width: '100%',
+                                }"
+                            />
                         </div>
 
                         <div>

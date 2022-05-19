@@ -2,3 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+.divSelect2 .select2-container--default .select2-selection--single {
+    @apply !px-3 !py-1  mt-2 !h-10 !text-gray-700 !bg-white !border !border-gray-200 !rounded-md focus:!outline-none focus:!ring-primary-blue focus:!border-primary-blue;
+}
+
+.divSelect2
+    .select2-container--default
+    .select2-selection--single
+    .select2-selection__arrow {
+    top: 20% !important;
+    right: 10px !important;
+}

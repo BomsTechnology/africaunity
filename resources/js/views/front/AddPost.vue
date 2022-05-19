@@ -289,6 +289,21 @@
                             ></path>
                         </svg>
                     </button>
+                    <Transition
+                        enter-active-class=" transition-all  "
+                        enter-from-class=" opacity-0  -translate-y-10"
+                        enter-to-class="  opacity-1 translate-y-0"
+                        leave-active-class=""
+                        leave-from-class=""
+                        leave-to-class=""
+                    >
+                        <span
+                            v-if="msgClick != ''"
+                            class="font-light text-xs italic"
+                        >
+                            {{ msgClick }}
+                        </span>
+                    </Transition>
                 </div>
             </form>
         </section>
@@ -327,8 +342,10 @@ export default {
         const { countries, getCountries } = useCountries();
         const { ministries, getMinistries } = useMinistries();
         const textarea = ref("");
+        const msgClick = ref("");
         const zoneFiltered = ref([]);
         const countryFiltered = ref([]);
+        const nbClick = ref(0);
         const post = reactive({
             title: "",
             type: props.type,
@@ -363,6 +380,7 @@ export default {
                 });
                 textarea.value.value == "";
             }
+            nbClick.value++;
         });
 
         const filteredZone = () => {
@@ -384,14 +402,11 @@ export default {
 
         const storePost = async () => {
             if (props.type == "article") {
-                if (
-                    textarea.value.value == "" ||
-                    post.content == textarea.value.value
-                ) {
-                    console.log("click again");
+                post.content = textarea.value.value;
+                if (nbClick.value == 1) {
+                    nbClick.value++;
+                    msgClick.value = "please click again";
                     return;
-                } else {
-                    post.content = textarea.value.value;
                 }
             }
             let formData = new FormData();
@@ -430,6 +445,7 @@ export default {
             }
         };
         return {
+            msgClick,
             zoneFiltered,
             countryFiltered,
             filteredZone,

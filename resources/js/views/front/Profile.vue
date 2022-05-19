@@ -17,7 +17,7 @@
                 />
             </div>
             <div
-                class="h-1/2 bg-white z-10 flex lg:justify-end items-center justify-center lg:space-x-3 relative"
+                class="h-1/2 bg-white flex lg:justify-end items-center justify-center lg:space-x-3 relative"
             >
                 <router-link
                     :to="{
@@ -25,7 +25,7 @@
                         params: { name: user.firstname, id: user.id },
                     }"
                     v-if="user.id == loginUser.id"
-                    class="lg:w-60 lg:h-60 overflow-hidden absolute h-40 w-40 text-center shadow lg:left-4 mb-40 lg:mt-0 -mt-28 bg-white z-10 rounded-full"
+                    class="lg:w-60 lg:h-60 overflow-hidden absolute h-40 w-40 text-center shadow lg:left-4 mb-40 lg:mt-0 -mt-28 bg-white rounded-full"
                 >
                     <img
                         :src="user.avatar"
@@ -40,7 +40,7 @@
                 </router-link>
                 <div
                     v-else
-                    class="lg:w-60 lg:h-60 overflow-hidden absolute h-40 w-40 text-center shadow lg:left-4 mb-40 lg:mt-0 -mt-28 bg-white z-10 rounded-full"
+                    class="lg:w-60 lg:h-60 overflow-hidden absolute h-40 w-40 text-center shadow lg:left-4 mb-40 lg:mt-0 -mt-28 bg-white rounded-full"
                 >
                     <img
                         :src="user.avatar"

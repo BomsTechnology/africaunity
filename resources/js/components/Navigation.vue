@@ -209,13 +209,14 @@
             </div>
         </nav>
 
-        <nav class="lg:hidden flex z-40">
-            <router-link
-                :to="{ name: 'home' }"
+        <nav class="lg:hidden flex z-50">
+            <button
+                type="button"
+                @click.prevent="changeRoute('home')"
                 class="text-white transition-colors duration-200 hover:bg-primary-blue px-3 py-2 flex items-center justify-center"
             >
                 <HomeIcon class="h-6 w-6" />
-            </router-link>
+            </button>
             <button
                 type="button"
                 @click="open.menu = !open.menu"
@@ -227,12 +228,13 @@
                 v-show="open.menu"
                 class="bg-white absolute mt-12 w-[90%] mx-auto border border-menu shadow-md flex flex-col justify-center"
             >
-                <router-link
-                    :to="{ name: 'articles' }"
+                <a
+                    href="#"
+                    @click.prevent="changeRoute('articles')"
                     class="text-menu hover:text-white transition-colors duration-200 hover:bg-primary-blue px-3 py-2 uppercase"
                 >
                     {{ $t("articles") }}
-                </router-link>
+                </a>
 
                 <div class="text-menu pl-6 py-2 uppercase relative">
                     <label class="flex items-center cursor-pointer">
@@ -240,61 +242,69 @@
                         <ChevronDownIcon class="h-5 w-5 ml-2" />
                     </label>
                     <div class="flex flex-col py-2 mt-2">
-                        <router-link
-                            :to="{ name: 'particular' }"
+                        <a
+                            href="#"
+                            @click.prevent="changeRoute('particular')"
                             class="text-menu transition-colors duration-200 hover:text-white text-sm hover:bg-primary-blue px-3 py-2 uppercase"
                         >
                             {{ $t("particular") }}
-                        </router-link>
-                        <router-link
-                            :to="{ name: 'establishment' }"
+                        </a>
+                        <a
+                            href="#"
+                            @click.prevent="changeRoute('establishment')"
                             class="text-menu transition-colors duration-200 hover:text-white text-sm hover:bg-primary-blue px-3 py-2 uppercase"
                         >
                             {{ $t("establishment") }}
-                        </router-link>
-                        <router-link
-                            :to="{ name: 'ip' }"
+                        </a>
+                        <a
+                            href="#"
+                            type="button"
+                            @click.prevent="changeRoute('ip')"
                             class="text-menu transition-colors duration-200 hover:text-white text-sm hover:bg-primary-blue px-3 py-2 uppercase"
                         >
                             {{ $t("ip") }}
-                        </router-link>
+                        </a>
                     </div>
                 </div>
 
-                <router-link
-                    :to="{ name: 'propau' }"
+                <a
+                    href="#"
+                    @click.prevent="changeRoute('propau')"
                     class="text-menu transition-colors duration-200 hover:text-white hover:bg-primary-blue px-3 py-2 uppercase"
                 >
                     {{ $t("propau") }}
-                </router-link>
+                </a>
 
-                <router-link
-                    :to="{ name: 'universities' }"
+                <a
+                    href="#"
+                    @click.prevent="changeRoute('universities')"
                     class="text-menu transition-colors duration-200 hover:text-white hover:bg-primary-blue px-3 py-2 uppercase"
                 >
                     {{ $t("univerities") }}
-                </router-link>
+                </a>
 
-                <router-link
-                    :to="{ name: 'jobs' }"
+                <a
+                    href="#"
+                    @click.prevent="changeRoute('jobs')"
                     class="text-menu transition-colors duration-200 hover:text-white hover:bg-primary-blue px-3 py-2 uppercase"
                 >
                     {{ $t("jobs") }}
-                </router-link>
+                </a>
 
-                <router-link
-                    :to="{ name: 'contact' }"
+                <a
+                    href="#"
+                    @click.prevent="changeRoute('contact')"
                     class="text-menu transition-colors duration-200 hover:text-white hover:bg-primary-blue px-3 py-2 uppercase"
                 >
                     {{ $t("contact") }}
-                </router-link>
+                </a>
 
-                <router-link
+                <a
+                    href="#"
                     v-if="token"
-                    :to="{
-                        name: 'compte',
-                        params: { name: user.firstname, id: user.id },
-                    }"
+                    @click.prevent="
+                        changeRoute('compte', user.firstname, user.id)
+                    "
                 >
                     <div
                         class="flex space-x-2 items-center text-white transition-colors duration-200 text-sm bg-primary-blue px-3 py-2 uppercase"
@@ -339,14 +349,15 @@
                             </svg>
                         </a>
                     </div>
-                </router-link>
-                <router-link
+                </a>
+                <a
+                    href="#"
+                    @click.prevent="changeRoute('login')"
                     v-else
-                    :to="{ name: 'login' }"
                     class="text-white transition-colors duration-200 bg-primary-blue px-3 py-2 uppercase"
                 >
                     {{ $t("login") }} / {{ $t("register") }}
-                </router-link>
+                </a>
 
                 <div class="text-menu pl-6 py-2 uppercase relative">
                     <label class="flex items-center cursor-pointer">
@@ -444,6 +455,7 @@ import {
 } from "@heroicons/vue/solid";
 import { reactive, ref, onMounted, watch } from "vue";
 import axios from "axios";
+import router from "../router";
 export default {
     components: {
         HomeIcon,
@@ -498,7 +510,23 @@ export default {
             }
         };
 
+        const changeRoute = (route, firstname = "", id = "") => {
+            if (firstname != "" && id != "") {
+                router.push({
+                    name: route,
+                    params: {
+                        name: firstname.toLocaleLowerCase,
+                        id: id,
+                    },
+                });
+            } else {
+                router.push({ name: route });
+            }
+            open.menu = false;
+        };
+
         return {
+            changeRoute,
             url,
             open,
             user,

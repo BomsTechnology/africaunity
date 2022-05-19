@@ -299,6 +299,21 @@
                             ></path>
                         </svg>
                     </button>
+                    <Transition
+                        enter-active-class=" transition-all  "
+                        enter-from-class=" opacity-0  -translate-y-10"
+                        enter-to-class="  opacity-1 translate-y-0"
+                        leave-active-class=""
+                        leave-from-class=""
+                        leave-to-class=""
+                    >
+                        <span
+                            v-if="msgClick != ''"
+                            class="font-light text-xs italic"
+                        >
+                            {{ msgClick }}
+                        </span>
+                    </Transition>
                 </div>
             </form>
         </section>
@@ -339,6 +354,8 @@ export default {
         const { ministries, getMinistries } = useMinistries();
         const textarea = ref("");
 
+        const nbClick = ref(0);
+        const msgClick = ref("");
         const zoneFiltered = ref([]);
         const countryFiltered = ref([]);
 
@@ -385,17 +402,17 @@ export default {
                     icons: "material",
                 });
             }
+            nbClick.value++;
         });
         post.value.image = "";
 
         const savePost = async () => {
             if (props.type == "article") {
-                if (post.value.content == textarea.value.value) {
-                    console.log("click again");
+                post.value.content = textarea.value.value;
+                if (nbClick.value == 1) {
+                    nbClick.value++;
+                    msgClick.value = "please click again";
                     return;
-                } else {
-                    post.value.content = textarea.value.value;
-                    console.log(post.content);
                 }
             }
 
@@ -436,6 +453,7 @@ export default {
             }
         };
         return {
+            msgClick,
             zoneFiltered,
             countryFiltered,
             filteredZone,

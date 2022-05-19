@@ -9,17 +9,17 @@ export default function useUniversities() {
     const errors = ref("");
     const loading = ref(0);
 
-    const getUniversities = async () => {
+    const getUniversities = async (page = 1) => {
         errors.value = "";
         try {
             loading.value = 1;
-            let response = await axios.get("/api/universities", {
+            let response = await axios.get("/api/universities?page=" + page, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
                 },
             });
             universities.value = response.data.data;
-
+            console.log(universities.value);
             minUniversities.value = universities.value.slice(0, 8);
 
             loading.value = 2;

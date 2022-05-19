@@ -2,9 +2,7 @@
     <div class="flex">
         <Sidebar />
         <div class="w-full xl:mt-0 mt-[74px] relative h-auto xl:p-4">
-            <div
-                class=" w-full z-0 h-full p-4"
-            >
+            <div class="w-full z-0 h-full p-4">
                 <div class="px-8 py-5 bg-white shadow-lg flex justify-between">
                     <h1 class="text-4xl text-primary-blue font-bold capitalize">
                         University
@@ -55,6 +53,10 @@
                                     />
                                 </div>
                             </div>
+                            <Pagination
+                                :data="universities"
+                                @pagination-change-page="getUniversities()"
+                            />
                             <div class="overflow-hidden">
                                 <table
                                     class="min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-700"
@@ -116,22 +118,40 @@
                                             <td
                                                 class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
                                             >
-                                                <img :src="university.image" alt="" class="w-16 rounded-full h-16 object-cover">
+                                                <img
+                                                    :src="university.image"
+                                                    alt=""
+                                                    class="w-16 rounded-full h-16 object-cover"
+                                                />
                                             </td>
                                             <td
                                                 class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
                                             >
-                                                {{  university.name.length <= 20 ? university.name : university.name.substring(0, 19) + "..." }}
+                                                {{
+                                                    university.name.length <= 20
+                                                        ? university.name
+                                                        : university.name.substring(
+                                                              0,
+                                                              19
+                                                          ) + "..."
+                                                }}
                                             </td>
                                             <td
                                                 class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
                                             >
-                                                {{ university.description.substring(0, 19) + "..." }}
+                                                {{
+                                                    university.description.substring(
+                                                        0,
+                                                        19
+                                                    ) + "..."
+                                                }}
                                             </td>
                                             <td
                                                 class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
                                             >
-                                                {{ university.continent.name_en }}
+                                                {{
+                                                    university.continent.name_en
+                                                }}
                                             </td>
                                             <td
                                                 class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
@@ -143,16 +163,26 @@
                                             >
                                                 {{ university.city.name_en }}
                                             </td>
-                                           <td
+                                            <td
                                                 class="py-4 px-6 text-sm font-medium text-right whitespace-nowrap"
                                             >
-                                                <router-link :to="{name:'admin.university.edit', params: {id: university.id }}"
+                                                <router-link
+                                                    :to="{
+                                                        name: 'admin.university.edit',
+                                                        params: {
+                                                            id: university.id,
+                                                        },
+                                                    }"
                                                     href="#"
                                                     class="text-primary-blue dark:text-blue-500 hover:underline"
                                                     >Edit</router-link
                                                 >
                                                 <a
-                                                    @click="deleteUniversity(university.id)"
+                                                    @click="
+                                                        deleteUniversity(
+                                                            university.id
+                                                        )
+                                                    "
                                                     href="#"
                                                     class="text-red-600 ml-3 dark:text-blue-500 hover:underline"
                                                     >Delete</a
@@ -171,9 +201,25 @@
                                                 colspan="7"
                                                 class="text-sm w-full font-medium border text-gray-900 whitespace-nowrap p-16"
                                             >
-                                                <svg class="animate-spin h-16 w-16 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                                <svg
+                                                    class="animate-spin h-16 w-16 mx-auto"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    fill="none"
+                                                    viewBox="0 0 24 24"
+                                                >
+                                                    <circle
+                                                        class="opacity-25"
+                                                        cx="12"
+                                                        cy="12"
+                                                        r="10"
+                                                        stroke="currentColor"
+                                                        stroke-width="4"
+                                                    ></circle>
+                                                    <path
+                                                        class="opacity-75"
+                                                        fill="currentColor"
+                                                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                                                    ></path>
                                                 </svg>
                                             </td>
                                         </tr>
@@ -213,19 +259,24 @@ export default {
     components: {
         PlusCircleIcon,
         Sidebar,
-        Error
+        Error,
     },
     setup() {
-        const { universities, getUniversities, destroyUniversity, loading, errors } =
-            useUniversities();
+        const {
+            universities,
+            getUniversities,
+            destroyUniversity,
+            loading,
+            errors,
+        } = useUniversities();
         const searchKey = ref("");
 
         onMounted(getUniversities());
 
         const deleteUniversity = async (id) => {
-            if(confirm("I you Sure ?")){
-                await destroyUniversity(id)
-                if(errors.value == ''){
+            if (confirm("I you Sure ?")) {
+                await destroyUniversity(id);
+                if (errors.value == "") {
                     await getUniversities();
                 }
             }
@@ -233,6 +284,7 @@ export default {
 
         return {
             universities,
+            getUniversities,
             deleteUniversity,
             loading,
             errors,

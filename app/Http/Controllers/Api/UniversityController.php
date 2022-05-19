@@ -38,7 +38,7 @@ class UniversityController extends Controller
             'city_id' => 'integer|required',
             'zone_id' => 'integer|required',
         ]);
-        $filename = '/uploads/'.time().'.'. $request->file('image')->extension();
+        $filename = '/uploads/' . time() . '.' . $request->file('image')->extension();
         $request->file('image')->storePubliclyAs('public', $filename);
         $data = [
             'name' => $fileds['name'],
@@ -51,7 +51,7 @@ class UniversityController extends Controller
         ];
 
         $university = University::create($data);
-        
+
         return new UniversityResource($university);
     }
 
@@ -98,15 +98,15 @@ class UniversityController extends Controller
             'zone_id' => $fileds['zone_id'],
         ];
 
-        if($request->file('image')){
+        if ($request->file('image')) {
             $request->validate([
                 'image' => 'required|mimes:png,jpg,jpeg,gif|dimensions:max_width=2048,max_height=2048'
             ]);
-            $filename = '/uploads/'.time().'.'. $request->file('image')->extension();
+            $filename = '/uploads/' . time() . '.' . $request->file('image')->extension();
             $request->file('image')->storePubliclyAs('public', $filename);
             $data['image'] = $filename;
         }
-        
+
         $university->update($data);
 
         return new UniversityResource($university);

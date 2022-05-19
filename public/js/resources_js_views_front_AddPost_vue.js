@@ -89,8 +89,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         getMinistries = _useMinistries.getMinistries;
 
     var textarea = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)("");
+    var msgClick = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)("");
     var zoneFiltered = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)([]);
     var countryFiltered = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)([]);
+    var nbClick = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(0);
     var post = (0,vue__WEBPACK_IMPORTED_MODULE_1__.reactive)({
       title: "",
       type: props.type,
@@ -141,7 +143,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 textarea.value.value == "";
               }
 
-            case 10:
+              nbClick.value++;
+
+            case 11:
             case "end":
               return _context.stop();
           }
@@ -178,22 +182,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context2.prev = _context2.next) {
               case 0:
                 if (!(props.type == "article")) {
-                  _context2.next = 7;
-                  break;
-                }
-
-                if (!(textarea.value.value == "" || post.content == textarea.value.value)) {
                   _context2.next = 6;
                   break;
                 }
 
-                console.log("click again");
+                post.content = textarea.value.value;
+
+                if (!(nbClick.value == 1)) {
+                  _context2.next = 6;
+                  break;
+                }
+
+                nbClick.value++;
+                msgClick.value = "please click again";
                 return _context2.abrupt("return");
 
               case 6:
-                post.content = textarea.value.value;
-
-              case 7:
                 formData = new FormData();
                 formData.append("image", post.image);
                 formData.append("title", post.title);
@@ -205,10 +209,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 formData.append("zone_id", post.zone_id);
                 formData.append("country_id", post.country_id);
                 formData.append("ministry_id", post.ministry_id);
-                _context2.next = 20;
+                _context2.next = 19;
                 return createPost(formData);
 
-              case 20:
+              case 19:
                 if (errors.value == "") {
                   if (props.type == "article") {
                     _router_index_js__WEBPACK_IMPORTED_MODULE_8__["default"].push({
@@ -231,7 +235,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 }
 
-              case 21:
+              case 20:
               case "end":
                 return _context2.stop();
             }
@@ -245,6 +249,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }();
 
     return {
+      msgClick: msgClick,
       zoneFiltered: zoneFiltered,
       countryFiltered: countryFiltered,
       filteredZone: filteredZone,
@@ -566,6 +571,10 @@ var _hoisted_62 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
+var _hoisted_63 = {
+  key: 0,
+  "class": "font-light text-xs italic"
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Error = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Error");
 
@@ -791,7 +800,23 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* TEXT */
   )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.loading == 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", _hoisted_61, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t("save")) + "... ", 1
   /* TEXT */
-  ), _hoisted_62])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])], 32
+  ), _hoisted_62])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(vue__WEBPACK_IMPORTED_MODULE_0__.Transition, {
+    "enter-active-class": " transition-all  ",
+    "enter-from-class": " opacity-0  -translate-y-10",
+    "enter-to-class": "  opacity-1 translate-y-0",
+    "leave-active-class": "",
+    "leave-from-class": "",
+    "leave-to-class": ""
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [$setup.msgClick != '' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_63, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.msgClick), 1
+      /* TEXT */
+      )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)];
+    }),
+    _: 1
+    /* STABLE */
+
+  })])], 32
   /* HYDRATE_EVENTS */
   )])]);
 }

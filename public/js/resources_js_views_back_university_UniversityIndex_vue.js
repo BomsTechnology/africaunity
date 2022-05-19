@@ -283,7 +283,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return destroyUniversity(id);
 
               case 3:
-                if (!(errors.value == '')) {
+                if (!(errors.value == "")) {
                   _context.next = 6;
                   break;
                 }
@@ -306,6 +306,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
     return {
       universities: universities,
+      getUniversities: getUniversities,
       deleteUniversity: deleteUniversity,
       loading: loading,
       errors: errors,
@@ -1489,6 +1490,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
 
+  var _component_Pagination = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Pagination");
+
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Sidebar), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     to: {
       name: 'admin.university.create'
@@ -1515,7 +1518,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     placeholder: "Search for items"
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.searchKey]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_15, [_hoisted_16, $options.filteredUniversity.length != 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tbody", _hoisted_17, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($options.filteredUniversity, function (university) {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.searchKey]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Pagination, {
+    data: $setup.universities,
+    onPaginationChangePage: _cache[1] || (_cache[1] = function ($event) {
+      return $setup.getUniversities();
+    })
+  }, null, 8
+  /* PROPS */
+  , ["data"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_15, [_hoisted_16, $options.filteredUniversity.length != 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tbody", _hoisted_17, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($options.filteredUniversity, function (university) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", {
       key: university.id,
       "class": "hover:bg-gray-100 dark:hover:bg-gray-700"
@@ -1603,32 +1613,36 @@ function useUniversities() {
 
   var getUniversities = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-      var response;
+      var page,
+          response,
+          _args = arguments;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
+              page = _args.length > 0 && _args[0] !== undefined ? _args[0] : 1;
               errors.value = "";
-              _context.prev = 1;
+              _context.prev = 2;
               loading.value = 1;
-              _context.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/universities", {
+              _context.next = 6;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/universities?page=" + page, {
                 headers: {
                   Authorization: "Bearer ".concat(localStorage.token)
                 }
               });
 
-            case 5:
+            case 6:
               response = _context.sent;
               universities.value = response.data.data;
+              console.log(universities.value);
               minUniversities.value = universities.value.slice(0, 8);
               loading.value = 2;
-              _context.next = 14;
+              _context.next = 16;
               break;
 
-            case 11:
-              _context.prev = 11;
-              _context.t0 = _context["catch"](1);
+            case 13:
+              _context.prev = 13;
+              _context.t0 = _context["catch"](2);
 
               if (_context.t0.response.status == 401) {
                 _router_index_js__WEBPACK_IMPORTED_MODULE_3__["default"].push({
@@ -1641,12 +1655,12 @@ function useUniversities() {
                 window.localStorage.removeItem("user");
               }
 
-            case 14:
+            case 16:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[1, 11]]);
+      }, _callee, null, [[2, 13]]);
     }));
 
     return function getUniversities() {

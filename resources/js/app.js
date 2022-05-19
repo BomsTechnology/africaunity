@@ -5,13 +5,24 @@ import App from "./App.vue";
 import Admin from "./Admin.vue";
 import router from "./router";
 import i18n from "./locales/i18n";
-import Select2 from "v-select2-component";
+import Select2 from "vue3-select2-component";
+import LaravelVuePagination from "laravel-vue-pagination";
 
-const app = createApp(App);
-app.use(i18n).use(router).use(Select2).mount("#app");
-
-const app2 = createApp(Admin);
-app2.use(i18n).use(router).use(Select2).mount("#app2");
+if (!window.location.href.includes("admin")) {
+    const app = createApp(App);
+    app.use(i18n)
+        .use(router)
+        .component("Select2", Select2)
+        .component("Pagination", LaravelVuePagination)
+        .mount("#app");
+} else {
+    const app2 = createApp(Admin);
+    app2.use(i18n)
+        .use(router)
+        .component("Pagination", LaravelVuePagination)
+        .component("Select2", Select2)
+        .mount("#app2");
+}
 
 let deferredPrompt;
 const addBtn = document.querySelector(".download-app");

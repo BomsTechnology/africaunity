@@ -22,6 +22,7 @@ class UniversityResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'text' => $this->name,
             'description' => $this->description,
             'image' => $this->image,
             'continent' => new ContinentResource(Continent::find($this->continent_id)),
