@@ -376,12 +376,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       cityfiltered.value = cities.value.filter(function (city) {
         return city.country_id == jobOffer.country_id;
       });
+      jobOffer.city_id = "";
     };
 
     var filteredCountry = function filteredCountry() {
       countryFiltered.value = countries.value.filter(function (country) {
         return country.zone_id == jobOffer.zone_id;
       });
+      jobOffer.country_id = "";
+      jobOffer.city_id = "";
+      cityfiltered.value = [];
     };
 
     var filteredZone = function filteredZone() {
@@ -393,7 +397,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       jobOffer.city_id = "";
       cityfiltered.value = [];
       countryFiltered.value = [];
-      cityfiltered.value = [];
     };
 
     var storeJobOffer = /*#__PURE__*/function () {
@@ -3429,13 +3432,12 @@ function useJobOffers() {
               _context.t0 = _context["catch"](1);
 
               if (_context.t0.response.status == 401) {
-                // router.push({
-                //     name: "login",
-                //     params: {
-                //         redirect: "not-login",
-                //     },
-                // });
-                location.href = window.location.origin;
+                _router_index_js__WEBPACK_IMPORTED_MODULE_3__["default"].push({
+                  name: "login",
+                  params: {
+                    redirect: "not-login"
+                  }
+                });
                 window.localStorage.removeItem("token");
                 window.localStorage.removeItem("user");
               }
@@ -3482,13 +3484,12 @@ function useJobOffers() {
               _context2.t0 = _context2["catch"](1);
 
               if (_context2.t0.response.status == 401) {
-                // router.push({
-                //     name: "login",
-                //     params: {
-                //         redirect: "not-login",
-                //     },
-                // });
-                location.href = window.location.origin;
+                _router_index_js__WEBPACK_IMPORTED_MODULE_3__["default"].push({
+                  name: "login",
+                  params: {
+                    redirect: "not-login"
+                  }
+                });
                 window.localStorage.removeItem("token");
                 window.localStorage.removeItem("user");
               }
@@ -3535,13 +3536,12 @@ function useJobOffers() {
               _context3.t0 = _context3["catch"](1);
 
               if (_context3.t0.response.status == 401) {
-                // router.push({
-                //     name: "login",
-                //     params: {
-                //         redirect: "not-login",
-                //     },
-                // });
-                location.href = window.location.origin;
+                _router_index_js__WEBPACK_IMPORTED_MODULE_3__["default"].push({
+                  name: "login",
+                  params: {
+                    redirect: "not-login"
+                  }
+                });
                 window.localStorage.removeItem("token");
                 window.localStorage.removeItem("user");
               }
@@ -3588,13 +3588,12 @@ function useJobOffers() {
               _context4.t0 = _context4["catch"](1);
 
               if (_context4.t0.response.status == 401) {
-                // router.push({
-                //     name: "login",
-                //     params: {
-                //         redirect: "not-login",
-                //     },
-                // });
-                location.href = window.location.origin;
+                _router_index_js__WEBPACK_IMPORTED_MODULE_3__["default"].push({
+                  name: "login",
+                  params: {
+                    redirect: "not-login"
+                  }
+                });
                 window.localStorage.removeItem("token");
                 window.localStorage.removeItem("user");
               }
@@ -3641,13 +3640,12 @@ function useJobOffers() {
               _context5.t0 = _context5["catch"](1);
 
               if (_context5.t0.response.status == 401) {
-                // router.push({
-                //     name: "login",
-                //     params: {
-                //         redirect: "not-login",
-                //     },
-                // });
-                location.href = window.location.origin;
+                _router_index_js__WEBPACK_IMPORTED_MODULE_3__["default"].push({
+                  name: "login",
+                  params: {
+                    redirect: "not-login"
+                  }
+                });
                 window.localStorage.removeItem("token");
                 window.localStorage.removeItem("user");
               }

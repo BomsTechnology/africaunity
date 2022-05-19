@@ -579,12 +579,16 @@ export default {
             cityfiltered.value = cities.value.filter((city) => {
                 return city.country_id == jobOffer.country_id;
             });
+            jobOffer.city_id = "";
         };
 
         const filteredCountry = () => {
             countryFiltered.value = countries.value.filter((country) => {
                 return country.zone_id == jobOffer.zone_id;
             });
+            jobOffer.country_id = "";
+            jobOffer.city_id = "";
+            cityfiltered.value = [];
         };
 
         const filteredZone = () => {
@@ -596,7 +600,6 @@ export default {
             jobOffer.city_id = "";
             cityfiltered.value = [];
             countryFiltered.value = [];
-            cityfiltered.value = [];
         };
         const storeJobOffer = async () => {
             let formData = new FormData();

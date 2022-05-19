@@ -377,6 +377,7 @@ export default {
             countryFiltered.value = countries.value.filter((country) => {
                 return country.zone_id == post.zone_id;
             });
+            post.country_id = "";
         };
 
         const { createPost, errors, loading } = usePosts();

@@ -1,5 +1,5 @@
 <template>
-<section class="relative" v-if="!token">
+<!-- <section class="relative" v-if="!token">
         <div
             class="h-screen w-full bg-cover object-cover"
             style="background-image: url('/img/bg_maintenance.jpg')"
@@ -100,19 +100,19 @@
                             </button>
                         </div>
 
-                        <!-- <div class="pt-6 text-center">
+                         <div class="pt-6 text-center">
                             <router-link
                                 class="text-gray-400 hover:underline"
                                 :to="{ name: 'forgot.password' }"
                             >
                                 {{ $t("password-forgot") }} ?
                             </router-link>
-                        </div> -->
+                        </div> 
                     </form>
             </div>
         </Transition>
-</section>
-<div v-else>
+</section> -->
+<div >
     <Caroussel />
     <div class="lg:flex p-4 lg:space-x-2 space-y-4 md:space-y-0 text-lg">
         <div class="lg:w-[70%]">
@@ -1053,7 +1053,7 @@
                     class="border-t-2 w-full border-primary-blue text-justify py-4"
                 >
                     <p class="p-4">
-                        <iframe class="w-full h-60" src="https://www.youtube.com/embed/TBikbn5XJhg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe class="w-full h-60" src="https://www.youtube.com/embed/N2WKfyIbr68" title="AfricaUnity" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </p>
                 </div>
             </div>
@@ -1065,7 +1065,7 @@
                     class="border-t-2 w-full border-primary-blue text-justify py-4"
                 >
                     <p class="p-4">
-                        <iframe class="w-full h-60" src="https://www.youtube.com/embed/3gb2do8F6Q0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe class="w-full h-60" src="https://www.youtube.com/embed/7mtO5fdzO_8" title="AfricaUnity" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </p>
                 </div>
             </div>

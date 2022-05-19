@@ -243,12 +243,16 @@ export default {
             cityfiltered.value = cities.value.filter((city) => {
                 return city.country_id == university.value.country_id;
             });
+            university.value.city_id = "";
         };
 
         const filteredCountry = () => {
             countryFiltered.value = countries.value.filter((country) => {
                 return country.zone_id == university.value.zone_id;
             });
+            university.value.country_id = "";
+            university.value.city_id = "";
+            cityfiltered.value = [];
         };
 
         const filteredZone = () => {
@@ -260,7 +264,6 @@ export default {
             university.value.city_id = "";
             cityfiltered.value = [];
             countryFiltered.value = [];
-            cityfiltered.value = [];
         };
         onMounted(async () => {
             await getUniversity(props.id);
@@ -287,6 +290,7 @@ export default {
             formData.append("continent_id", university.value.continent_id);
             formData.append("country_id", university.value.country_id);
             formData.append("city_id", university.value.city_id);
+            formData.append("zone_id", university.value.zone_id);
             formData.append("_method", "PUT");
 
             await updateUniversity(formData, props.id);

@@ -32,11 +32,7 @@
     </head>
     <body class="bg-white" style="background-image:url('/img/random-shapes.svg')">
 
-        {{-- <div id="app" class="bg-white  xl:w-[90%]  w-full mx-auto min-h-screen">
-            <App></App>
-        </div> --}}
-
-        <div id="app" class="bg-white">
+        <div id="app" class="bg-white  xl:w-[90%]  w-full mx-auto min-h-screen">
             <App></App>
         </div>
         

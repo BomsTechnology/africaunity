@@ -266,6 +266,7 @@ export default {
             countryFiltered.value = countries.value.filter((country) => {
                 return country.zone_id == post.value.zone_id;
             });
+            post.value.country_id = "";
         };
         onMounted(async () => {
             await getPost(props.id),

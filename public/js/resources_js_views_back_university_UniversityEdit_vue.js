@@ -302,12 +302,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       cityfiltered.value = cities.value.filter(function (city) {
         return city.country_id == university.value.country_id;
       });
+      university.value.city_id = "";
     };
 
     var filteredCountry = function filteredCountry() {
       countryFiltered.value = countries.value.filter(function (country) {
         return country.zone_id == university.value.zone_id;
       });
+      university.value.country_id = "";
+      university.value.city_id = "";
+      cityfiltered.value = [];
     };
 
     var filteredZone = function filteredZone() {
@@ -319,7 +323,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       university.value.city_id = "";
       cityfiltered.value = [];
       countryFiltered.value = [];
-      cityfiltered.value = [];
     };
 
     (0,vue__WEBPACK_IMPORTED_MODULE_2__.onMounted)( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
@@ -379,16 +382,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 formData.append("continent_id", university.value.continent_id);
                 formData.append("country_id", university.value.country_id);
                 formData.append("city_id", university.value.city_id);
+                formData.append("zone_id", university.value.zone_id);
                 formData.append("_method", "PUT");
-                _context2.next = 10;
+                _context2.next = 11;
                 return updateUniversity(formData, props.id);
 
-              case 10:
+              case 11:
                 _router_index_js__WEBPACK_IMPORTED_MODULE_9__["default"].push({
                   name: "admin.university.index"
                 });
 
-              case 11:
+              case 12:
               case "end":
                 return _context2.stop();
             }
@@ -2525,13 +2529,12 @@ function useUniversities() {
               _context.t0 = _context["catch"](1);
 
               if (_context.t0.response.status == 401) {
-                // router.push({
-                //     name: "login",
-                //     params: {
-                //         redirect: "not-login",
-                //     },
-                // });
-                location.href = window.location.origin;
+                _router_index_js__WEBPACK_IMPORTED_MODULE_3__["default"].push({
+                  name: "login",
+                  params: {
+                    redirect: "not-login"
+                  }
+                });
                 window.localStorage.removeItem("token");
                 window.localStorage.removeItem("user");
               }
@@ -2578,13 +2581,12 @@ function useUniversities() {
               _context2.t0 = _context2["catch"](1);
 
               if (_context2.t0.response.status == 401) {
-                // router.push({
-                //     name: "login",
-                //     params: {
-                //         redirect: "not-login",
-                //     },
-                // });
-                location.href = window.location.origin;
+                _router_index_js__WEBPACK_IMPORTED_MODULE_3__["default"].push({
+                  name: "login",
+                  params: {
+                    redirect: "not-login"
+                  }
+                });
                 window.localStorage.removeItem("token");
                 window.localStorage.removeItem("user");
               }
@@ -2631,13 +2633,12 @@ function useUniversities() {
               _context3.t0 = _context3["catch"](1);
 
               if (_context3.t0.response.status == 401) {
-                // router.push({
-                //     name: "login",
-                //     params: {
-                //         redirect: "not-login",
-                //     },
-                // });
-                location.href = window.location.origin;
+                _router_index_js__WEBPACK_IMPORTED_MODULE_3__["default"].push({
+                  name: "login",
+                  params: {
+                    redirect: "not-login"
+                  }
+                });
                 window.localStorage.removeItem("token");
                 window.localStorage.removeItem("user");
               }

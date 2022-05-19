@@ -246,12 +246,16 @@ export default {
             cityfiltered.value = cities.value.filter((city) => {
                 return city.country_id == university.country_id;
             });
+            university.city_id = "";
         };
 
         const filteredCountry = () => {
             countryFiltered.value = countries.value.filter((country) => {
                 return country.zone_id == university.zone_id;
             });
+            university.country_id = "";
+            university.city_id = "";
+            cityfiltered.value = [];
         };
 
         const filteredZone = () => {
@@ -263,7 +267,6 @@ export default {
             university.city_id = "";
             cityfiltered.value = [];
             countryFiltered.value = [];
-            cityfiltered.value = [];
         };
         const { createUniversity, errors, loading } = useUniversities();
 

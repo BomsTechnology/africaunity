@@ -686,12 +686,16 @@ export default {
             cityfiltered.value = cities.value.filter((city) => {
                 return city.country_id == jobOffer.value.country.id;
             });
+            jobOffer.value.city.id = "";
         };
 
         const filteredCountry = () => {
             countryFiltered.value = countries.value.filter((country) => {
                 return country.zone_id == jobOffer.value.zone.id;
             });
+            jobOffer.value.country.id = "";
+            jobOffer.value.city.id = "";
+            cityfiltered.value = [];
         };
 
         const filteredZone = () => {
@@ -703,7 +707,6 @@ export default {
             jobOffer.value.city.id = "";
             cityfiltered.value = [];
             countryFiltered.value = [];
-            cityfiltered.value = [];
         };
 
         onMounted(async () => {
