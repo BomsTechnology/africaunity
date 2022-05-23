@@ -5,6 +5,14 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 
+Route::get('/storage-link', function () {
+    $targetFolder = base_path() . '/storage/app/public/uploads';
+    $linkFolder = $_SERVER['DOCUMENT_ROOT'] . '/uploads';
+    if (symlink($targetFolder, $linkFolder)) {
+        echo 'Symlink process successfully completed';
+    }
+});
+
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
@@ -16,4 +24,3 @@ Route::get('admin', function () {
 
 Route::view('admin/{any}', 'administration')->where('any', '.*');
 Route::view('{any}', 'welcome')->where('any', '.*');
-

@@ -23,6 +23,7 @@
                     $t("continent")
                 }}</label>
                 <select
+                    @change="filteredZoneU()"
                     v-model="filterUniversity.continent"
                     class="form-select block w-full px-4 py-2 mt-1 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
                 >
@@ -46,16 +47,48 @@
                 </select>
             </div>
             <div class="lg:text-sm text-xs">
+                <label class="text-gray-700" for="es">{{ $t("zoned") }}</label>
+                <select
+                    v-model="filterUniversity.zone"
+                    @change="filteredCountryU()"
+                    class="form-select block w-full px-4 py-2 mt-1 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
+                >
+                    <option value="">--------------</option>
+                    <option
+                        v-if="zoneFilteredU.length != 0"
+                        v-for="zone in zoneFilteredU"
+                        :key="zone.id"
+                        :value="zone.id"
+                    >
+                        <span v-if="$i18n.locale == 'en'">{{
+                            zone.name_en
+                        }}</span>
+                        <span v-else-if="$i18n.locale == 'fr'">{{
+                            zone.name_fr
+                        }}</span>
+                        <span v-else-if="$i18n.locale == 'es'">{{
+                            zone.name_es
+                        }}</span>
+                        <span v-else>{{ zone.name_pt }}</span>
+                    </option>
+                    <option v-else value="null">
+                        Select {{ $t("continent") }}
+                    </option>
+                </select>
+            </div>
+            <div class="lg:text-sm text-xs">
                 <label class="text-gray-700" for="es">{{
                     $t("country")
                 }}</label>
                 <select
                     v-model="filterUniversity.country"
+                    @change="filteredCityU()"
                     class="form-select block w-full px-4 py-2 mt-1 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
                 >
                     <option value="">--------------</option>
                     <option
-                        v-for="country in countries"
+                        v-if="countryFilteredU.length != 0"
+                        v-for="country in countryFilteredU"
                         :key="country.id"
                         :value="country.id"
                     >
@@ -70,6 +103,9 @@
                         }}</span>
                         <span v-else>{{ country.name_pt }}</span>
                     </option>
+                    <option v-else value="null">
+                        Select {{ $t("zoned") }}
+                    </option>
                 </select>
             </div>
             <div class="lg:text-sm text-xs">
@@ -80,7 +116,8 @@
                 >
                     <option value="">--------------</option>
                     <option
-                        v-for="city in cities"
+                        v-if="cityfilteredU.length != 0"
+                        v-for="city in cityfilteredU"
                         :key="city.id"
                         :value="city.id"
                     >
@@ -94,6 +131,9 @@
                             city.name_es
                         }}</span>
                         <span v-else>{{ city.name_pt }}</span>
+                    </option>
+                    <option v-else value="null">
+                        Select {{ $t("country") }}
                     </option>
                 </select>
             </div>
@@ -255,24 +295,6 @@
             </div>
             <div class="lg:text-sm text-xs">
                 <label class="text-gray-700" for="es">{{
-                    $t("univerities")
-                }}</label>
-                <select
-                    v-model="filterAds.university"
-                    class="form-select block w-full px-4 py-2 mt-1 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
-                >
-                    <option value="">--------------</option>
-                    <option
-                        v-for="university in universities"
-                        :key="university.id"
-                        :value="university.id"
-                    >
-                        {{ university.name }}
-                    </option>
-                </select>
-            </div>
-            <div class="lg:text-sm text-xs">
-                <label class="text-gray-700" for="es">{{
                     $t("category")
                 }}</label>
                 <select
@@ -289,12 +311,39 @@
                     </option>
                 </select>
             </div>
+            <div class="lg:text-sm text-xs divSelect2">
+                <label class="text-gray-700" for="es">{{
+                    $t("university")
+                }}</label>
+                <Select2
+                    v-model="filterAds.university"
+                    :options="universityfilteredA"
+                    :id="'select2'"
+                    :settings="{
+                        width: '100%',
+                    }"
+                />
+                <!-- <select
+                    v-model="filterAds.category"
+                    class="form-select block w-full px-4 py-2 mt-1 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
+                >
+                    <option value="">--------------</option>
+                    <option
+                        v-for="category_announcement in categoryAnnouncements"
+                        :key="category_announcement.id"
+                        :value="category_announcement.id"
+                    >
+                        {{ category_announcement.name }}
+                    </option>
+                </select> -->
+            </div>
             <div class="lg:text-sm text-xs">
                 <label class="text-gray-700" for="es">{{
                     $t("continent")
                 }}</label>
                 <select
                     v-model="filterAds.continent"
+                    @change="filteredZoneA()"
                     class="form-select block w-full px-4 py-2 mt-1 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
                 >
                     <option value="">--------------</option>
@@ -317,16 +366,16 @@
                 </select>
             </div>
             <div class="lg:text-sm text-xs">
-                <label class="text-gray-700" for="es">{{
-                    $t("country")
-                }}</label>
+                <label class="text-gray-700" for="es">{{ $t("zoned") }}</label>
                 <select
-                    v-model="filterAds.country"
+                    v-model="filterAds.zone"
+                    @change="filteredCountryA()"
                     class="form-select block w-full px-4 py-2 mt-1 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
                 >
                     <option value="">--------------</option>
                     <option
-                        v-for="country in countries"
+                        v-if="zoneFilteredA.length != 0"
+                        v-for="country in zoneFilteredA"
                         :key="country.id"
                         :value="country.id"
                     >
@@ -341,17 +390,54 @@
                         }}</span>
                         <span v-else>{{ country.name_pt }}</span>
                     </option>
+                    <option v-else value="null">
+                        Select {{ $t("continent") }}
+                    </option>
+                </select>
+            </div>
+            <div class="lg:text-sm text-xs">
+                <label class="text-gray-700" for="es">{{
+                    $t("country")
+                }}</label>
+                <select
+                    v-model="filterAds.country"
+                    @change="filteredCityA()"
+                    class="form-select block w-full px-4 py-2 mt-1 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
+                >
+                    <option value="">--------------</option>
+                    <option
+                        v-if="countryFilteredA.length != 0"
+                        v-for="country in countryFilteredA"
+                        :key="country.id"
+                        :value="country.id"
+                    >
+                        <span v-if="$i18n.locale == 'en'">{{
+                            country.name_en
+                        }}</span>
+                        <span v-else-if="$i18n.locale == 'fr'">{{
+                            country.name_fr
+                        }}</span>
+                        <span v-else-if="$i18n.locale == 'es'">{{
+                            country.name_es
+                        }}</span>
+                        <span v-else>{{ country.name_pt }}</span>
+                    </option>
+                    <option v-else value="null">
+                        Select {{ $t("zoned") }}
+                    </option>
                 </select>
             </div>
             <div class="lg:text-sm text-xs">
                 <label class="text-gray-700" for="es">{{ $t("city") }}</label>
                 <select
                     v-model="filterAds.city"
+                    @change="filteredUnivCityA()"
                     class="form-select block w-full px-4 py-2 mt-1 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
                 >
                     <option value="">--------------</option>
                     <option
-                        v-for="city in cities"
+                        v-if="cityfilteredA.length != 0"
+                        v-for="city in cityfilteredA"
                         :key="city.id"
                         :value="city.id"
                     >
@@ -365,6 +451,9 @@
                             city.name_es
                         }}</span>
                         <span v-else>{{ city.name_pt }}</span>
+                    </option>
+                    <option v-else value="null">
+                        Select {{ $t("country") }}
                     </option>
                 </select>
             </div>
@@ -527,6 +616,7 @@ import usecategoryAnnouncements from "../../services/categoryAnnouncementService
 import useContinents from "../../services/continentServices.js";
 import useCountries from "../../services/countryServices.js";
 import useCities from "../../services/cityServices.js";
+import useZones from "../../services/zoneServices.js";
 export default {
     components: {
         EmojiSadIcon,
@@ -550,44 +640,162 @@ export default {
         const { countries, getCountries } = useCountries();
         const { categoryAnnouncements, getCategoryAnnouncements } =
             usecategoryAnnouncements();
+        const { zones, getZones } = useZones();
         const { cities, getCities } = useCities();
         const user = localStorage.user ? JSON.parse(localStorage.user) : "";
         const showAllU = ref(false);
+        const zoneFilteredU = ref([]);
+        const countryFilteredU = ref([]);
+        const cityfilteredU = ref([]);
+        const zoneFilteredA = ref([]);
+        const countryFilteredA = ref([]);
+        const cityfilteredA = ref([]);
+        const universityfilteredA = ref([]);
         onMounted(
             getUniversities(),
             getAnnouncements(),
             getContinents(),
+            getZones(),
             getCountries(),
             getCategoryAnnouncements(),
             getCities()
         );
+
         const filterAds = reactive({
             searchKey: "",
-            university: "",
             category: "",
             country: "",
             continent: "",
+            university: "",
             city: "",
+            zone: "",
         });
+
         const filterUniversity = reactive({
             country: "",
             continent: "",
             city: "",
+            zone: "",
             searchKey: "",
         });
+
+        const filteredCityU = () => {
+            cityfilteredU.value = cities.value.filter((city) => {
+                return city.country_id == filterUniversity.country;
+            });
+            filterUniversity.city = "";
+        };
+
+        const filteredCountryU = () => {
+            countryFilteredU.value = countries.value.filter((country) => {
+                return country.zone_id == filterUniversity.zone;
+            });
+            filterUniversity.country = "";
+            filterUniversity.city = "";
+            cityfilteredU.value = [];
+        };
+
+        const filteredZoneU = () => {
+            zoneFilteredU.value = zones.value.filter((zone) => {
+                return zone.continent_id == filterUniversity.continent;
+            });
+
+            filterUniversity.zone = "";
+            filterUniversity.country = "";
+            filterUniversity.city = "";
+            cityfilteredU.value = [];
+            countryFilteredU.value = [];
+        };
+
+        // ----------------------------
+
+        const filteredUnivCityA = () => {
+            universityfilteredA.value = universities.value.filter(
+                (university) => {
+                    return (
+                        university.continent.id == filterAds.continent &&
+                        university.zone.id == filterAds.zone &&
+                        university.country.id == filterAds.country &&
+                        university.city.id == filterAds.city
+                    );
+                }
+            );
+        };
+
+        const filteredCityA = () => {
+            cityfilteredA.value = cities.value.filter((city) => {
+                return city.country_id == filterAds.country;
+            });
+            universityfilteredA.value = universities.value.filter(
+                (university) => {
+                    return (
+                        university.continent.id == filterAds.continent &&
+                        university.zone.id == filterAds.zone &&
+                        university.country.id == filterAds.country
+                    );
+                }
+            );
+            filterAds.city = "";
+        };
+
+        const filteredCountryA = () => {
+            countryFilteredA.value = countries.value.filter((country) => {
+                return country.zone_id == filterAds.zone;
+            });
+            universityfilteredA.value = universities.value.filter(
+                (university) => {
+                    return (
+                        university.continent.id == filterAds.continent &&
+                        university.zone.id == filterAds.zone
+                    );
+                }
+            );
+            filterAds.country = "";
+            filterAds.city = "";
+            cityfilteredA.value = [];
+        };
+
+        const filteredZoneA = () => {
+            zoneFilteredA.value = zones.value.filter((zone) => {
+                return zone.continent_id == filterAds.continent;
+            });
+            universityfilteredA.value = universities.value.filter(
+                (university) => {
+                    return university.continent.id == filterAds.continent;
+                }
+            );
+            filterAds.zone = "";
+            filterAds.country = "";
+            filterAds.city = "";
+            cityfilteredA.value = [];
+            countryFilteredA.value = [];
+        };
+
         const toogleShowAllU = () => {
             showAllU.value = !showAllU.value;
         };
 
         return {
+            filteredUnivCityA,
+            universityfilteredA,
+            cityfilteredA,
+            zoneFilteredA,
+            countryFilteredA,
+            cityfilteredU,
+            zoneFilteredU,
+            countryFilteredU,
+            filteredZoneU,
+            filteredCountryU,
+            filteredCityU,
+            filteredZoneA,
+            filteredCountryA,
+            filteredCityA,
             showAllU,
             toogleShowAllU,
             minUniversities,
-            cities,
-            continents,
-            countries,
             categoryAnnouncements,
             filterUniversity,
+            continents,
             filterAds,
             user,
             universities,
@@ -602,8 +810,9 @@ export default {
             return this.announcements.filter((announcement) => {
                 let data = "";
                 if (
-                    this.filterAds.country != "" &&
                     this.filterAds.continent != "" &&
+                    this.filterAds.zone != "" &&
+                    this.filterAds.country != "" &&
                     this.filterAds.city != "" &&
                     this.filterAds.university != "" &&
                     this.filterAds.category != ""
@@ -618,11 +827,15 @@ export default {
                             this.filterAds.country &&
                         announcement.university.continent.id ==
                             this.filterAds.continent &&
-                        announcement.category.id == this.filterAds.category &&
-                        announcement.university.id == this.filterAds.university;
+                        announcement.university.zone.id ==
+                            this.filterAds.zone &&
+                        announcement.university.id ==
+                            this.filterAds.university &&
+                        announcement.category.id == this.filterAds.category;
                 else if (
-                    this.filterAds.country != "" &&
                     this.filterAds.continent != "" &&
+                    this.filterAds.zone != "" &&
+                    this.filterAds.country != "" &&
                     this.filterAds.city != "" &&
                     this.filterAds.university != ""
                 )
@@ -636,10 +849,13 @@ export default {
                             this.filterAds.country &&
                         announcement.university.continent.id ==
                             this.filterAds.continent &&
+                        announcement.university.zone.id ==
+                            this.filterAds.zone &&
                         announcement.university.id == this.filterAds.university;
                 else if (
                     this.filterAds.continent != "" &&
-                    this.filterAds.city != "" &&
+                    this.filterAds.zone != "" &&
+                    this.filterAds.country != "" &&
                     this.filterAds.university != "" &&
                     this.filterAds.category != ""
                 )
@@ -647,29 +863,19 @@ export default {
                         announcement.title
                             .toLowerCase()
                             .includes(this.filterAds.searchKey.toLowerCase()) &&
-                        announcement.university.city.id ==
-                            this.filterAds.city &&
+                        announcement.university.zone.id ==
+                            this.filterAds.zone &&
+                        announcement.university.country.id ==
+                            this.filterAds.country &&
                         announcement.university.continent.id ==
                             this.filterAds.continent &&
-                        announcement.category.id == this.filterAds.category &&
-                        announcement.university.id == this.filterAds.university;
+                        announcement.university.id ==
+                            this.filterAds.university &&
+                        announcement.category.id == this.filterAds.category;
                 else if (
                     this.filterAds.continent != "" &&
-                    this.filterAds.city != "" &&
-                    this.filterAds.university != ""
-                )
-                    data =
-                        announcement.title
-                            .toLowerCase()
-                            .includes(this.filterAds.searchKey.toLowerCase()) &&
-                        announcement.university.city.id ==
-                            this.filterAds.city &&
-                        announcement.university.continent.id ==
-                            this.filterAds.continent &&
-                        announcement.university.id == this.filterAds.university;
-                else if (
+                    this.filterAds.zone != "" &&
                     this.filterAds.country != "" &&
-                    this.filterAds.continent != "" &&
                     this.filterAds.city != ""
                 )
                     data =
@@ -681,9 +887,11 @@ export default {
                         announcement.university.country.id ==
                             this.filterAds.country &&
                         announcement.university.continent.id ==
-                            this.filterAds.continent;
+                            this.filterAds.continent &&
+                        announcement.university.zone.id == this.filterAds.zone;
                 else if (
-                    this.filterAds.city != "" &&
+                    this.filterAds.continent != "" &&
+                    this.filterAds.zone != "" &&
                     this.filterAds.university != "" &&
                     this.filterAds.category != ""
                 )
@@ -691,24 +899,18 @@ export default {
                         announcement.title
                             .toLowerCase()
                             .includes(this.filterAds.searchKey.toLowerCase()) &&
-                        announcement.university.city.id ==
-                            this.filterAds.city &&
-                        announcement.category.id == this.filterAds.category &&
-                        announcement.university.id == this.filterAds.university;
+                        announcement.university.zone.id ==
+                            this.filterAds.zone &&
+                        announcement.university.continent.id ==
+                            this.filterAds.continent &&
+                        announcement.university.id ==
+                            this.filterAds.university &&
+                        announcement.category.id == this.filterAds.category;
                 else if (
-                    this.filterAds.city != "" &&
-                    this.filterAds.university != ""
-                )
-                    data =
-                        announcement.title
-                            .toLowerCase()
-                            .includes(this.filterAds.searchKey.toLowerCase()) &&
-                        announcement.university.city.id ==
-                            this.filterAds.city &&
-                        announcement.university.id == this.filterAds.university;
-                else if (
+                    this.filterAds.continent != "" &&
+                    this.filterAds.zone != "" &&
                     this.filterAds.country != "" &&
-                    this.filterAds.continent != ""
+                    this.filterAds.university != ""
                 )
                     data =
                         announcement.title
@@ -717,20 +919,26 @@ export default {
                         announcement.university.country.id ==
                             this.filterAds.country &&
                         announcement.university.continent.id ==
-                            this.filterAds.continent;
+                            this.filterAds.continent &&
+                        announcement.university.zone.id ==
+                            this.filterAds.zone &&
+                        announcement.university.id == this.filterAds.university;
                 else if (
                     this.filterAds.continent != "" &&
-                    this.filterAds.city != ""
+                    this.filterAds.zone != "" &&
+                    this.filterAds.country != ""
                 )
                     data =
                         announcement.title
                             .toLowerCase()
                             .includes(this.filterAds.searchKey.toLowerCase()) &&
-                        announcement.university.city.id ==
-                            this.filterAds.city &&
+                        announcement.university.country.id ==
+                            this.filterAds.country &&
                         announcement.university.continent.id ==
-                            this.filterAds.continent;
+                            this.filterAds.continent &&
+                        announcement.university.zone.id == this.filterAds.zone;
                 else if (
+                    this.filterAds.continent != "" &&
                     this.filterAds.university != "" &&
                     this.filterAds.category != ""
                 )
@@ -739,20 +947,58 @@ export default {
                             .toLowerCase()
                             .includes(this.filterAds.searchKey.toLowerCase()) &&
                         announcement.category.id == this.filterAds.category &&
+                        announcement.university.id ==
+                            this.filterAds.university &&
+                        announcement.university.continent.id ==
+                            this.filterAds.continent;
+                else if (
+                    this.filterAds.continent != "" &&
+                    this.filterAds.zone != "" &&
+                    this.filterAds.university != ""
+                )
+                    data =
+                        announcement.title
+                            .toLowerCase()
+                            .includes(this.filterAds.searchKey.toLowerCase()) &&
+                        announcement.university.continent.id ==
+                            this.filterAds.continent &&
+                        announcement.university.zone.id ==
+                            this.filterAds.zone &&
                         announcement.university.id == this.filterAds.university;
-                else if (this.filterAds.country != "")
+                else if (
+                    this.filterAds.continent != "" &&
+                    this.filterAds.category != ""
+                )
                     data =
                         announcement.title
                             .toLowerCase()
                             .includes(this.filterAds.searchKey.toLowerCase()) &&
-                        announcement.university.country.id ==
-                            this.filterAds.country;
-                else if (this.filterAds.city != "")
+                        announcement.category.id == this.filterAds.category &&
+                        announcement.university.continent.id ==
+                            this.filterAds.continent;
+                else if (
+                    this.filterAds.continent != "" &&
+                    this.filterAds.university != ""
+                )
                     data =
                         announcement.title
                             .toLowerCase()
                             .includes(this.filterAds.searchKey.toLowerCase()) &&
-                        announcement.university.city.id == this.filterAds.city;
+                        announcement.university.id ==
+                            this.filterAds.university &&
+                        announcement.university.continent.id ==
+                            this.filterAds.continent;
+                else if (
+                    this.filterAds.continent != "" &&
+                    this.filterAds.zone != ""
+                )
+                    data =
+                        announcement.title
+                            .toLowerCase()
+                            .includes(this.filterAds.searchKey.toLowerCase()) &&
+                        announcement.university.continent.id ==
+                            this.filterAds.continent &&
+                        announcement.university.zone.id == this.filterAds.zone;
                 else if (this.filterAds.continent != "")
                     data =
                         announcement.title
@@ -760,12 +1006,6 @@ export default {
                             .includes(this.filterAds.searchKey.toLowerCase()) &&
                         announcement.university.continent.id ==
                             this.filterAds.continent;
-                else if (this.filterAds.university != "")
-                    data =
-                        announcement.title
-                            .toLowerCase()
-                            .includes(this.filterAds.searchKey.toLowerCase()) &&
-                        announcement.university.id == this.filterAds.university;
                 else if (this.filterAds.category != "")
                     data =
                         announcement.title
@@ -784,6 +1024,7 @@ export default {
                 this.filterUniversity.searchKey != "" ||
                 this.filterUniversity.country != "" ||
                 this.filterUniversity.continent != "" ||
+                this.filterUniversity.zone != "" ||
                 this.filterUniversity.city != ""
             ) {
                 return this.universities.filter((university) => {
@@ -791,6 +1032,7 @@ export default {
                     if (
                         this.filterUniversity.country != "" &&
                         this.filterUniversity.continent != "" &&
+                        this.filterUniversity.zone != "" &&
                         this.filterUniversity.city != ""
                     )
                         data =
@@ -804,36 +1046,10 @@ export default {
                             university.continent.id ==
                                 this.filterUniversity.continent &&
                             university.city.id == this.filterUniversity.city;
-                    else if (
-                        this.filterUniversity.country != "" &&
-                        this.filterUniversity.continent != ""
-                    )
-                        data =
-                            university.name
-                                .toLowerCase()
-                                .includes(
-                                    this.filterUniversity.searchKey.toLowerCase()
-                                ) &&
-                            university.country.id ==
-                                this.filterUniversity.country &&
-                            university.continent.id ==
-                                this.filterUniversity.continent;
                     else if (
                         this.filterUniversity.continent != "" &&
-                        this.filterUniversity.city != ""
-                    )
-                        data =
-                            university.name
-                                .toLowerCase()
-                                .includes(
-                                    this.filterUniversity.searchKey.toLowerCase()
-                                ) &&
-                            university.continent.id ==
-                                this.filterUniversity.continent &&
-                            university.city.id == this.filterUniversity.city;
-                    else if (
-                        this.filterUniversity.country != "" &&
-                        this.filterUniversity.city != ""
+                        this.filterUniversity.zone != "" &&
+                        this.filterUniversity.country != ""
                     )
                         data =
                             university.name
@@ -843,24 +1059,22 @@ export default {
                                 ) &&
                             university.country.id ==
                                 this.filterUniversity.country &&
-                            university.city.id == this.filterUniversity.city;
-                    else if (this.filterUniversity.country != "")
+                            university.continent.id ==
+                                this.filterUniversity.continent &&
+                            university.zone.id == this.filterUniversity.zone;
+                    else if (
+                        this.filterUniversity.continent != "" &&
+                        this.filterUniversity.zone != ""
+                    )
                         data =
                             university.name
                                 .toLowerCase()
                                 .includes(
                                     this.filterUniversity.searchKey.toLowerCase()
                                 ) &&
-                            university.country.id ==
-                                this.filterUniversity.country;
-                    else if (this.filterUniversity.city != "")
-                        data =
-                            university.name
-                                .toLowerCase()
-                                .includes(
-                                    this.filterUniversity.searchKey.toLowerCase()
-                                ) &&
-                            university.city.id == this.filterUniversity.city;
+                            university.continent.id ==
+                                this.filterUniversity.continent &&
+                            university.zone.id == this.filterUniversity.zone;
                     else if (this.filterUniversity.continent != "")
                         data =
                             university.name
@@ -883,9 +1097,27 @@ export default {
                 return this.universities.filter((university) => {
                     let data = "";
                     if (
-                        this.filterUniversity.country != "" &&
                         this.filterUniversity.continent != "" &&
+                        this.filterUniversity.zone != "" &&
+                        this.filterUniversity.country != "" &&
                         this.filterUniversity.city != ""
+                    )
+                        data =
+                            university.name
+                                .toLowerCase()
+                                .includes(
+                                    this.filterUniversity.searchKey.toLowerCase()
+                                ) &&
+                            university.country.id ==
+                                this.filterUniversity.country &&
+                            university.zone.id == this.filterUniversity.zone &&
+                            university.continent.id ==
+                                this.filterUniversity.continent &&
+                            university.city.id == this.filterUniversity.city;
+                    else if (
+                        this.filterUniversity.continent != "" &&
+                        this.filterUniversity.zone != "" &&
+                        this.filterUniversity.country != ""
                     )
                         data =
                             university.name
@@ -897,24 +1129,10 @@ export default {
                                 this.filterUniversity.country &&
                             university.continent.id ==
                                 this.filterUniversity.continent &&
-                            university.city.id == this.filterUniversity.city;
-                    else if (
-                        this.filterUniversity.country != "" &&
-                        this.filterUniversity.continent != ""
-                    )
-                        data =
-                            university.name
-                                .toLowerCase()
-                                .includes(
-                                    this.filterUniversity.searchKey.toLowerCase()
-                                ) &&
-                            university.country.id ==
-                                this.filterUniversity.country &&
-                            university.continent.id ==
-                                this.filterUniversity.continent;
+                            university.zone.id == this.filterUniversity.zone;
                     else if (
                         this.filterUniversity.continent != "" &&
-                        this.filterUniversity.city != ""
+                        this.filterUniversity.zone != ""
                     )
                         data =
                             university.name
@@ -924,37 +1142,7 @@ export default {
                                 ) &&
                             university.continent.id ==
                                 this.filterUniversity.continent &&
-                            university.city.id == this.filterUniversity.city;
-                    else if (
-                        this.filterUniversity.country != "" &&
-                        this.filterUniversity.city != ""
-                    )
-                        data =
-                            university.name
-                                .toLowerCase()
-                                .includes(
-                                    this.filterUniversity.searchKey.toLowerCase()
-                                ) &&
-                            university.country.id ==
-                                this.filterUniversity.country &&
-                            university.city.id == this.filterUniversity.city;
-                    else if (this.filterUniversity.country != "")
-                        data =
-                            university.name
-                                .toLowerCase()
-                                .includes(
-                                    this.filterUniversity.searchKey.toLowerCase()
-                                ) &&
-                            university.country.id ==
-                                this.filterUniversity.country;
-                    else if (this.filterUniversity.city != "")
-                        data =
-                            university.name
-                                .toLowerCase()
-                                .includes(
-                                    this.filterUniversity.searchKey.toLowerCase()
-                                ) &&
-                            university.city.id == this.filterUniversity.city;
+                            university.zone.id == this.filterUniversity.zone;
                     else if (this.filterUniversity.continent != "")
                         data =
                             university.name
@@ -977,8 +1165,9 @@ export default {
                 return this.minUniversities.filter((university) => {
                     let data = "";
                     if (
-                        this.filterUniversity.country != "" &&
                         this.filterUniversity.continent != "" &&
+                        this.filterUniversity.zone != "" &&
+                        this.filterUniversity.country != "" &&
                         this.filterUniversity.city != ""
                     )
                         data =
@@ -991,10 +1180,12 @@ export default {
                                 this.filterUniversity.country &&
                             university.continent.id ==
                                 this.filterUniversity.continent &&
+                            university.zone.id == this.filterUniversity.zone &&
                             university.city.id == this.filterUniversity.city;
                     else if (
-                        this.filterUniversity.country != "" &&
-                        this.filterUniversity.continent != ""
+                        this.filterUniversity.continent != "" &&
+                        this.filterUniversity.zone != "" &&
+                        this.filterUniversity.country != ""
                     )
                         data =
                             university.name
@@ -1005,10 +1196,11 @@ export default {
                             university.country.id ==
                                 this.filterUniversity.country &&
                             university.continent.id ==
-                                this.filterUniversity.continent;
+                                this.filterUniversity.continent &&
+                            university.zone.id == this.filterUniversity.zone;
                     else if (
                         this.filterUniversity.continent != "" &&
-                        this.filterUniversity.city != ""
+                        this.filterUniversity.zone != ""
                     )
                         data =
                             university.name
@@ -1018,37 +1210,7 @@ export default {
                                 ) &&
                             university.continent.id ==
                                 this.filterUniversity.continent &&
-                            university.city.id == this.filterUniversity.city;
-                    else if (
-                        this.filterUniversity.country != "" &&
-                        this.filterUniversity.city != ""
-                    )
-                        data =
-                            university.name
-                                .toLowerCase()
-                                .includes(
-                                    this.filterUniversity.searchKey.toLowerCase()
-                                ) &&
-                            university.country.id ==
-                                this.filterUniversity.country &&
-                            university.city.id == this.filterUniversity.city;
-                    else if (this.filterUniversity.country != "")
-                        data =
-                            university.name
-                                .toLowerCase()
-                                .includes(
-                                    this.filterUniversity.searchKey.toLowerCase()
-                                ) &&
-                            university.country.id ==
-                                this.filterUniversity.country;
-                    else if (this.filterUniversity.city != "")
-                        data =
-                            university.name
-                                .toLowerCase()
-                                .includes(
-                                    this.filterUniversity.searchKey.toLowerCase()
-                                ) &&
-                            university.city.id == this.filterUniversity.city;
+                            university.zone.id == this.filterUniversity.zone;
                     else if (this.filterUniversity.continent != "")
                         data =
                             university.name

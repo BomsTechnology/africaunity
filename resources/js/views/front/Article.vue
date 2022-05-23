@@ -201,6 +201,7 @@
                             }}</label>
                             <select
                                 v-model="filter.continent"
+                                @change="filteredZone()"
                                 class="form-select px-3 py-2 w-full mt-1 text-xs border-gray-300 focus:ring-primary-blue focus:border-primary-blue block"
                             >
                                 <option value="">--------------</option>
@@ -228,11 +229,13 @@
                             }}</label>
                             <select
                                 v-model="filter.zone"
+                                @change="filteredCountry()"
                                 class="form-select px-3 py-2 w-full mt-1 text-xs border-gray-300 focus:ring-primary-blue focus:border-primary-blue block"
                             >
                                 <option value="">--------------</option>
                                 <option
-                                    v-for="zone in zones"
+                                    v-if="zoneFiltered.length != 0"
+                                    v-for="zone in zoneFiltered"
                                     :key="zone.id"
                                     :value="zone.id"
                                 >
@@ -247,6 +250,9 @@
                                     }}</span>
                                     <span v-else>{{ zone.name_pt }}</span>
                                 </option>
+                                <option v-else value="null">
+                                    Select {{ $t("continent") }}
+                                </option>
                             </select>
                         </div>
                         <div>
@@ -259,7 +265,8 @@
                             >
                                 <option value="">--------------</option>
                                 <option
-                                    v-for="country in countries"
+                                    v-if="countryFiltered.length != 0"
+                                    v-for="country in countryFiltered"
                                     :key="country.id"
                                     :value="country.id"
                                 >
@@ -273,6 +280,9 @@
                                         country.name_es
                                     }}</span>
                                     <span v-else>{{ country.name_pt }}</span>
+                                </option>
+                                <option v-else value="null">
+                                    Select {{ $t("zoned") }}
                                 </option>
                             </select>
                         </div>
@@ -380,6 +390,8 @@ export default {
         const { zones, getZones } = useZones();
         const { continents, getContinents } = useContinents();
         const { ministries, getMinistries } = useMinistries();
+        const zoneFiltered = ref([]);
+        const countryFiltered = ref([]);
         const user = localStorage.user ? JSON.parse(localStorage.user) : "";
         const filter = reactive({
             country: "",
@@ -407,12 +419,30 @@ export default {
             await getCountries();
             await getMinistries();
         });
+        const filteredZone = () => {
+            zoneFiltered.value = zones.value.filter((zone) => {
+                return zone.continent_id == filter.continent;
+            });
+            filter.country = "";
+            filter.zone = "";
+            countryFiltered.value = [];
+        };
+        const filteredCountry = () => {
+            countryFiltered.value = countries.value.filter((country) => {
+                return country.zone_id == filter.zone;
+            });
+            filter.country = "";
+        };
 
         const PostsFilter = async () => {
             await filterPost({ ...filter });
         };
 
         return {
+            zoneFiltered,
+            countryFiltered,
+            filteredZone,
+            filteredCountry,
             PostsFilter,
             ministries,
             countries,

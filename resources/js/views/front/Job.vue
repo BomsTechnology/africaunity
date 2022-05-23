@@ -213,7 +213,7 @@
                         $t("continent")
                     }}</label>
                     <select
-                        @change="jobsFilter()"
+                        @change="filteredZone()"
                         v-model="filterJob.continent"
                         class="form-select block w-full px-4 py-2 mt-1 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
                     >
@@ -241,13 +241,14 @@
                         $t("zoned")
                     }}</label>
                     <select
-                        @change="jobsFilter()"
+                        @change="filteredCountry()"
                         v-model="filterJob.zone"
                         class="form-select block w-full px-4 py-2 mt-1 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
                     >
                         <option value="">--------------</option>
                         <option
-                            v-for="zone in zones"
+                            v-if="zoneFiltered.length != 0"
+                            v-for="zone in zoneFiltered"
                             :key="zone.id"
                             :value="zone.id"
                         >
@@ -262,6 +263,9 @@
                             }}</span>
                             <span v-else>{{ zone.name_pt }}</span>
                         </option>
+                        <option v-else value="null">
+                            Select {{ $t("continent") }}
+                        </option>
                     </select>
                 </div>
                 <div class="">
@@ -269,13 +273,14 @@
                         $t("country")
                     }}</label>
                     <select
-                        @change="jobsFilter()"
+                        @change="filteredCity()"
                         v-model="filterJob.country"
                         class="form-select block w-full px-4 py-2 mt-1 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
                     >
                         <option value="">--------------</option>
                         <option
-                            v-for="country in countries"
+                            v-if="countryFiltered.length != 0"
+                            v-for="country in countryFiltered"
                             :key="country.id"
                             :value="country.id"
                         >
@@ -290,6 +295,9 @@
                             }}</span>
                             <span v-else>{{ country.name_pt }}</span>
                         </option>
+                        <option v-else value="null">
+                            Select {{ $t("zoned") }}
+                        </option>
                     </select>
                 </div>
                 <div class="">
@@ -303,7 +311,8 @@
                     >
                         <option value="">--------------</option>
                         <option
-                            v-for="city in cities"
+                            v-if="cityfiltered.length != 0"
+                            v-for="city in cityfiltered"
                             :key="city.id"
                             :value="city.id"
                         >
@@ -317,6 +326,9 @@
                                 city.name_es
                             }}</span>
                             <span v-else>{{ city.name_pt }}</span>
+                        </option>
+                        <option v-else value="null">
+                            Select {{ $t("country") }}
                         </option>
                     </select>
                 </div>
@@ -534,6 +546,9 @@ export default {
         const { jobOffers, filterJobs, getJobOffersFront, loading, errors } =
             useJobOffers();
         const user = localStorage.user ? JSON.parse(localStorage.user) : "";
+        const zoneFiltered = ref([]);
+        const countryFiltered = ref([]);
+        const cityfiltered = ref([]);
         onMounted(
             getJobOffersFront(),
             getCurrencies(),
@@ -573,7 +588,42 @@ export default {
         const jobsFilter = async () => {
             await filterJobs({ ...filterJob });
         };
+        const filteredCity = async () => {
+            cityfiltered.value = cities.value.filter((city) => {
+                return city.country_id == filterJob.country;
+            });
+            filterJob.city = "";
+            await jobsFilter();
+        };
+
+        const filteredCountry = async () => {
+            countryFiltered.value = countries.value.filter((country) => {
+                return country.zone_id == filterJob.zone;
+            });
+            filterJob.country = "";
+            filterJob.city = "";
+            cityfiltered.value = [];
+            await jobsFilter();
+        };
+
+        const filteredZone = async () => {
+            zoneFiltered.value = zones.value.filter((zone) => {
+                return zone.continent_id == filterJob.continent;
+            });
+            filterJob.zone = "";
+            filterJob.country = "";
+            filterJob.city = "";
+            cityfiltered.value = [];
+            countryFiltered.value = [];
+            await jobsFilter();
+        };
         return {
+            cityfiltered,
+            zoneFiltered,
+            countryFiltered,
+            filteredZone,
+            filteredCountry,
+            filteredCity,
             jobsFilter,
             toogleFilter,
             showFilter,

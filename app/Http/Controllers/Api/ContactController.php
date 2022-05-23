@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Notifications\ContactNotification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
+
 
 class ContactController extends Controller
 {
@@ -16,7 +18,6 @@ class ContactController extends Controller
      */
     public function index()
     {
-
     }
 
     /**
@@ -35,22 +36,22 @@ class ContactController extends Controller
             'content' => 'required|string',
         ]);
 
-        switch($fields['about']){
+        switch ($fields['about']) {
             case 1:
                 $about = 'Invitation to a conference';
-            break;
+                break;
             case 2:
                 $about = 'Commercial proposition';
-            break;
+                break;
             case 3:
                 $about = 'Proposition of collaboration';
-            break;
+                break;
             case 4:
                 $about = 'Propose a university';
-            break;
+                break;
             case 5:
                 $about = 'Others';
-            break;
+                break;
         }
 
         $data = [
@@ -61,19 +62,19 @@ class ContactController extends Controller
             'content' => $fields['content'],
         ];
 
-        $admins = User::where('type', 'admin')->get();
+        // $admins = User::where('type', 'admin')->get();
 
-        foreach($admins as $admin){
-            $admin->notify(new ContactNotification($data));
-        }
+        // foreach($admins as $admin){
+        //     $admin->notify(new ContactNotification($data));
+        // }
 
+        Notification::route('mail', 'contact@africaunity.net')->notify(new ContactNotification($data));
 
         $response = [
-            'status'=>true,
-            'message'=>'Contact Send successfully!',
+            'status' => true,
+            'message' => 'Contact Send successfully!',
         ];
-        return response($response,201);
-        
+        return response($response, 201);
     }
 
     /**

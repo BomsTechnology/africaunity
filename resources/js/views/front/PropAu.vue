@@ -159,12 +159,12 @@
                         class="border-t-2 space-y-2 border-primary-blue text-md p-4"
                     >
                         <div>
-                            <label class="text-gray-500">{{
+                            <label class="text-gray-500 text-xs">{{
                                 $t("language")
                             }}</label>
                             <select
                                 v-model="filter.lang"
-                                class="form-select px-3 py-2 w-full mt-2 border-gray-300 focus:ring-primary-blue focus:border-primary-blue block"
+                                class="form-select px-3 text-xs py-2 w-full mt-2 border-gray-300 focus:ring-primary-blue focus:border-primary-blue block"
                             >
                                 <option value="fr">{{ $t("fr") }}</option>
                                 <option value="en">{{ $t("en") }}</option>
@@ -173,23 +173,24 @@
                             </select>
                         </div>
                         <div>
-                            <label class="text-gray-500">{{
+                            <label class="text-gray-500 text-xs">{{
                                 $t("key-words")
                             }}</label>
                             <input
                                 type="text"
                                 v-model="filter.keywords"
                                 :placeholder="$t('key-words')"
-                                class="form-input px-3 py-2 w-full mt-2 border-gray-300 focus:ring-primary-blue focus:border-primary-blue block"
+                                class="form-input px-3 py-2 w-full mt-2 text-xs border-gray-300 focus:ring-primary-blue focus:border-primary-blue block"
                             />
                         </div>
                         <div>
-                            <label class="text-gray-500">{{
+                            <label class="text-gray-500 text-xs">{{
                                 $t("continent")
                             }}</label>
                             <select
                                 v-model="filter.continent"
-                                class="form-select px-3 py-2 w-full mt-2 border-gray-300 focus:ring-primary-blue focus:border-primary-blue block"
+                                @change="filteredZone()"
+                                class="form-select px-3 text-xs py-2 w-full mt-2 border-gray-300 focus:ring-primary-blue focus:border-primary-blue block"
                             >
                                 <option value="">--------------</option>
                                 <option
@@ -211,16 +212,18 @@
                             </select>
                         </div>
                         <div>
-                            <label class="text-gray-500">{{
+                            <label class="text-gray-500 text-xs">{{
                                 $t("zoned")
                             }}</label>
                             <select
                                 v-model="filter.zone"
-                                class="form-select px-3 py-2 w-full mt-2 border-gray-300 focus:ring-primary-blue focus:border-primary-blue block"
+                                @change="filteredCountry()"
+                                class="form-select text-xs px-3 py-2 w-full mt-2 border-gray-300 focus:ring-primary-blue focus:border-primary-blue block"
                             >
                                 <option value="">--------------</option>
                                 <option
-                                    v-for="zone in zones"
+                                    v-if="zoneFiltered.length != 0"
+                                    v-for="zone in zoneFiltered"
                                     :key="zone.id"
                                     :value="zone.id"
                                 >
@@ -235,19 +238,23 @@
                                     }}</span>
                                     <span v-else>{{ zone.name_pt }}</span>
                                 </option>
+                                <option v-else value="null">
+                                    Select {{ $t("continent") }}
+                                </option>
                             </select>
                         </div>
                         <div>
-                            <label class="text-gray-500">{{
+                            <label class="text-gray-500 text-xs">{{
                                 $t("country")
                             }}</label>
                             <select
                                 v-model="filter.country"
-                                class="form-select px-3 py-2 w-full mt-2 border-gray-300 focus:ring-primary-blue focus:border-primary-blue block"
+                                class="form-select text-xs px-3 py-2 w-full mt-2 border-gray-300 focus:ring-primary-blue focus:border-primary-blue block"
                             >
                                 <option value="">--------------</option>
                                 <option
-                                    v-for="country in countries"
+                                    v-if="countryFiltered.length != 0"
+                                    v-for="country in countryFiltered"
                                     :key="country.id"
                                     :value="country.id"
                                 >
@@ -262,15 +269,18 @@
                                     }}</span>
                                     <span v-else>{{ country.name_pt }}</span>
                                 </option>
+                                <option v-else value="null">
+                                    Select {{ $t("zoned") }}
+                                </option>
                             </select>
                         </div>
                         <div>
-                            <label class="text-gray-500">{{
+                            <label class="text-gray-500 text-xs">{{
                                 $t("ministry")
                             }}</label>
                             <select
                                 v-model="filter.ministry"
-                                class="form-select px-3 py-2 w-full mt-2 border-gray-300 focus:ring-primary-blue focus:border-primary-blue block"
+                                class="form-select text-xs px-3 py-2 w-full mt-2 border-gray-300 focus:ring-primary-blue focus:border-primary-blue block"
                             >
                                 <option value="">--------------</option>
                                 <option
@@ -366,6 +376,8 @@ export default {
         const { zones, getZones } = useZones();
         const { continents, getContinents } = useContinents();
         const { ministries, getMinistries } = useMinistries();
+        const zoneFiltered = ref([]);
+        const countryFiltered = ref([]);
         const user = localStorage.user ? JSON.parse(localStorage.user) : "";
         const filter = reactive({
             country: "",
@@ -382,12 +394,30 @@ export default {
             await getCountries();
             await getMinistries();
         });
+        const filteredZone = () => {
+            zoneFiltered.value = zones.value.filter((zone) => {
+                return zone.continent_id == filter.continent;
+            });
+            filter.country = "";
+            filter.zone = "";
+            countryFiltered.value = [];
+        };
+        const filteredCountry = () => {
+            countryFiltered.value = countries.value.filter((country) => {
+                return country.zone_id == filter.zone;
+            });
+            filter.country = "";
+        };
 
         const PostsFilter = async () => {
             await filterPost({ ...filter });
         };
 
         return {
+            zoneFiltered,
+            countryFiltered,
+            filteredZone,
+            filteredCountry,
             PostsFilter,
             ministries,
             countries,

@@ -91,6 +91,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   for (key in _context.t0.response.data.errors) {
                     errors.value += _context.t0.response.data.errors[key][0] + "\n";
                   }
+                } else {
+                  errors.value = _context.t0.response.data.message;
                 }
 
               case 11:

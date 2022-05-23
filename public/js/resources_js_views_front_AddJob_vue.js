@@ -994,8 +994,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
       return $setup.jobOffer.continent_id = $event;
     }),
-    onChange: _cache[2] || (_cache[2] = function () {
-      return $setup.filteredZone && $setup.filteredZone.apply($setup, arguments);
+    onChange: _cache[2] || (_cache[2] = function ($event) {
+      return $setup.filteredZone();
     }),
     "class": "form-select block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
   }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.continents, function (continent) {
@@ -1024,8 +1024,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
       return $setup.jobOffer.zone_id = $event;
     }),
-    onChange: _cache[4] || (_cache[4] = function () {
-      return $setup.filteredCountry && $setup.filteredCountry.apply($setup, arguments);
+    onChange: _cache[4] || (_cache[4] = function ($event) {
+      return $setup.filteredCountry();
     }),
     "class": "form-select block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
   }, [$setup.zoneFiltered.length != 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
@@ -1055,8 +1055,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* TEXT */
   ), _hoisted_29]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
     required: "",
-    onChange: _cache[5] || (_cache[5] = function () {
-      return $setup.filteredCity && $setup.filteredCity.apply($setup, arguments);
+    onChange: _cache[5] || (_cache[5] = function ($event) {
+      return $setup.filteredCity();
     }),
     "onUpdate:modelValue": _cache[6] || (_cache[6] = function ($event) {
       return $setup.jobOffer.country_id = $event;
