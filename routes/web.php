@@ -4,6 +4,9 @@ use App\Mail\TestMail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
+// if (env('APP_ENV') === 'production') {
+//     URL::forceSchema('https');
+// }
 
 Route::get('/storage-link', function () {
     $targetFolder = base_path() . '/storage/app/public/uploads';

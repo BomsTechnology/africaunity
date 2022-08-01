@@ -68,7 +68,8 @@ class ContactController extends Controller
         //     $admin->notify(new ContactNotification($data));
         // }
 
-        Notification::route('mail', 'contact@africaunity.net')->notify(new ContactNotification($data));
+        // Notification::route('mail', 'contact@africaunity.net')->notify(new ContactNotification($data));
+        Notification::route('mail', 'msigha.megasoft@gmail.com')->notify(new ContactNotification($data));
 
         $response = [
             'status' => true,

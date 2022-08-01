@@ -43,14 +43,14 @@ class ContactNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('New Contact From User.')
-                    ->line('Name: '. $this->data['name'])
-                    ->line('Email: '. $this->data['email'])
-                    ->line('About: '. $this->data['about'])
-                    ->line('City: '. $this->data['city'])
-                    ->line('Content: '. $this->data['content'])
-                    ->action('Login to manage', url('/admin'))
-                    ->line('Thank you for using our application!');
+            ->line('New Contact From User.')
+            ->line('Name: ' . $this->data['name'])
+            ->line('Email: ' . $this->data['email'])
+            ->line('About: ' . $this->data['about'])
+            ->line('City: ' . $this->data['city'])
+            ->line('Content: ' . $this->data['content'])
+            ->action('Login to manage', url('/admin'))
+            ->line('Thank you for using our application!');
     }
 
     /**
