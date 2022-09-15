@@ -5,13 +5,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\URL;
 
-<<<<<<< HEAD
-// if (env('APP_ENV') === 'production') {
-//     URL::forceSchema('https');
-// }
-=======
-use Illuminate\Routing\UrlGenerator;
->>>>>>> 363908a (migrate to laravel 9.19 and vite)
+
 
 /*if (env('APP_ENV') === 'production') {
     Illuminate\Routing\UrlGenerator::forceSchema('https');
