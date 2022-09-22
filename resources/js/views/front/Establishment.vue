@@ -1,4 +1,5 @@
 <template>
+    <div class="mx-auto min-h-screen w-full bg-white xl:w-[90%]">
     <h1 class="text-5xl text-primary-blue text-center py-2 capitalize font-bold">{{ $t('establishment') }}</h1>
         <div class="pb-8 lg:px-16">
         <div class="grid lg:grid-cols-3 grid-cols-1 gap-2 px-10 pb-8 pt-4 bg-gray-50 shadow mt-4">
@@ -220,79 +221,56 @@
             <span class="text-2xl mt-2">{{ $t("no-content") }} </span>
         </div>
     </div>
+    </div>
 </template>
 
-<script>
+<script setup>
 import { reactive, ref, onMounted } from "vue";
 import { EmojiSadIcon, UserCircleIcon, ChevronDownIcon, ChevronUpIcon } from "@heroicons/vue/solid";
-import useUsers from "../../services/userServices.js";
-import useBusinessTypes from "../../services/businessTypeServices.js";
-import useBusinessSizes from "../../services/businessSizeServices.js";
-import useCountries from "../../services/countryServices.js";
-import useActivityAreas from "../../services/activityAreaServices.js";
-export default {
-    components: {
-        UserCircleIcon,
-        EmojiSadIcon, ChevronDownIcon, ChevronUpIcon
-    },
-    setup(props) {
-        const { businessSizes, getBusinessSizes } = useBusinessSizes();
-        const { countries, getCountries } = useCountries();
-        const { businessTypes, getBusinessTypes } = useBusinessTypes();
-        const { users, getUsersType, filterUsers, errors, loading } = useUsers();
-        const { activityAreas, getActivityAreas } = useActivityAreas();
-        onMounted(getUsersType("business"), getBusinessSizes(), getCountries(), getBusinessTypes(), getActivityAreas());
-        const searchKey = ref('');
-        const filter = reactive({
-            residence_country:"",
-            activity_area: "",
-            business_size:"",
-            business_type:"",
-            type: "business"
-        });
-        const showDetail = reactive({
-            id: "",
-            state: false
-        });
-        const changeShowDetail = (id) => {
-            showDetail.id = id;
-            showDetail.state = true;
-        };
-        const removeShowDetail = () => {
-            showDetail.id = '';
-            showDetail.state = false;
-        };
-        const usersFilter = async () => {
-            await filterUsers({...filter});
-        }
+import useUsers from "@/services/userServices.js";
+import useBusinessTypes from "@/services/businessTypeServices.js";
+import useBusinessSizes from "@/services/businessSizeServices.js";
+import useCountries from "@/services/countryServices.js";
+import useActivityAreas from "@/services/activityAreaServices.js";
 
-        return {
-            usersFilter,
-            filter,
-            removeShowDetail,
-            changeShowDetail,
-            showDetail,
-            businessSizes,
-            countries,
-            businessTypes,
-            searchKey,
-            users,
-            errors,
-            loading,
-            activityAreas,
-        };
-    },
-
-    computed: {
-        filteredUser() {
-            return this.users.filter((user) => {
-                return user.firstname
-                    .toLowerCase()
-                    .includes(this.searchKey.toLowerCase());
-            });
-        },
-    },
-    
+const { businessSizes, getBusinessSizes } = useBusinessSizes();
+const { countries, getCountries } = useCountries();
+const { businessTypes, getBusinessTypes } = useBusinessTypes();
+const { users, getUsersType, filterUsers, errors, loading } = useUsers();
+const { activityAreas, getActivityAreas } = useActivityAreas();
+onMounted(getUsersType("business"), getBusinessSizes(), getCountries(), getBusinessTypes(), getActivityAreas());
+const searchKey = ref('');
+const filter = reactive({
+    residence_country:"",
+    activity_area: "",
+    business_size:"",
+    business_type:"",
+    type: "business"
+});
+const showDetail = reactive({
+    id: "",
+    state: false
+});
+const changeShowDetail = (id) => {
+    showDetail.id = id;
+    showDetail.state = true;
 };
+const removeShowDetail = () => {
+    showDetail.id = '';
+    showDetail.state = false;
+};
+const usersFilter = async () => {
+    await filterUsers({...filter});
+}
+
+
+
+const filteredUser= computed(() => {
+    users.value.filter((user) => {
+        return user.firstname
+            .toLowerCase()
+            .includes(searchKey.value.toLowerCase());
+    });
+});
 </script>
 

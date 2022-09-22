@@ -1,12 +1,12 @@
 <template>
-    <div class="w-full lg:px-20 py-4">
-        <div class="py-5 text-center w-full space-y-4">
-            <h1 class="text-4xl text-primary-blue font-bold capitalize">
+    <div class="mx-auto min-h-screen w-full bg-white py-4 lg:px-20 xl:w-[90%]">
+        <div class="w-full space-y-4 py-5 text-center">
+            <h1 class="text-4xl font-bold capitalize text-primary-blue">
                 {{ $t("edit") }} {{ $t("ads") }}
             </h1>
         </div>
 
-        <section class="p-6 bg-white shadow-xl rounded-md mx-auto w-full">
+        <section class="mx-auto w-full rounded-md bg-white p-6 shadow-xl">
             <Error v-if="errors != ''">{{ errors }}</Error>
             <h1 class="text-xl font-semibold">
                 {{ $t("edit") }} {{ $t("ads") }}
@@ -22,7 +22,7 @@
             >
                 <div class="mt-4">
                     <div class="col-span-2">
-                        <label class="text-gray-700 dark:text-gray-200">
+                        <label class="dark:text-gray-200 text-gray-700">
                             {{ $t("title") }}
                             <span class="text-red-500">*</span>
                         </label>
@@ -31,7 +31,7 @@
                             v-model="announcement.title"
                             maxlength="50"
                             type="text"
-                            class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                            class="dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 dark:focus:border-blue-300 mt-2 block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"
                         />
                         <span class="text-xs font-light text-gray-400"
                             >{{
@@ -43,11 +43,11 @@
                         >
                     </div>
                     <div
-                        class="col-span-2 grid grid-cols-1 gap-6 sm:grid-cols-2 mt-4 divSelect2"
+                        class="divSelect2 col-span-2 mt-4 grid grid-cols-1 gap-6 sm:grid-cols-2"
                     >
                         <div>
                             <label
-                                class="text-gray-700 dark:text-gray-200"
+                                class="dark:text-gray-200 text-gray-700"
                                 for="pt"
                                 >{{ $t("university") }}
                                 <span class="text-red-500">*</span>
@@ -64,7 +64,7 @@
 
                         <div>
                             <label
-                                class="text-gray-700 dark:text-gray-200"
+                                class="dark:text-gray-200 text-gray-700"
                                 for="pt"
                                 >{{ $t("category") }}
                                 <span class="text-red-500">*</span></label
@@ -74,7 +74,7 @@
                                 v-model="announcement.category_announcement_id"
                                 name=""
                                 id=""
-                                class="form-select block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
+                                class="form-select mt-2 block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-primary-blue focus:outline-none focus:ring-primary-blue"
                             >
                                 <option
                                     v-for="category_announcement in categoryAnnouncements"
@@ -87,7 +87,7 @@
                         </div>
 
                         <div>
-                            <label class="text-gray-700 dark:text-gray-200"
+                            <label class="dark:text-gray-200 text-gray-700"
                                 >{{ $t("contact-phone") }}
                                 <span class="text-red-500">*</span>
                             </label>
@@ -95,12 +95,12 @@
                                 required
                                 v-model="announcement.phone"
                                 type="text"
-                                class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                                class="dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 dark:focus:border-blue-300 mt-2 block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"
                             />
                         </div>
 
                         <div>
-                            <label class="text-gray-700 dark:text-gray-200"
+                            <label class="dark:text-gray-200 text-gray-700"
                                 >{{ $t("contact-email") }}
                                 <span class="text-red-500">*</span>
                             </label>
@@ -108,12 +108,12 @@
                                 required
                                 v-model="announcement.email"
                                 type="email"
-                                class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                                class="dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 dark:focus:border-blue-300 mt-2 block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"
                             />
                         </div>
 
                         <div v-if="announcement.category_announcement_id != 10">
-                            <label class="text-gray-700 dark:text-gray-200"
+                            <label class="dark:text-gray-200 text-gray-700"
                                 >{{ $t("price") }}
                                 <span class="text-red-500">*</span>
                             </label>
@@ -121,13 +121,13 @@
                                 required
                                 v-model="announcement.price"
                                 type="text"
-                                class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                                class="dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 dark:focus:border-blue-300 mt-2 block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"
                             />
                         </div>
 
                         <div v-if="announcement.category_announcement_id != 10">
                             <label
-                                class="text-gray-700 dark:text-gray-200"
+                                class="dark:text-gray-200 text-gray-700"
                                 for="es"
                                 >{{ $t("currency") }}
                                 <span class="text-red-500">*</span>
@@ -135,7 +135,7 @@
                             <select
                                 required
                                 v-model="announcement.currency_id"
-                                class="form-select block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
+                                class="form-select mt-2 block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-primary-blue focus:outline-none focus:ring-primary-blue"
                             >
                                 <option
                                     v-for="currency in currencies"
@@ -148,31 +148,31 @@
                         </div>
 
                         <div>
-                            <label class="text-gray-700 dark:text-gray-200">{{
+                            <label class="dark:text-gray-200 text-gray-700">{{
                                 $t("adresse")
                             }}</label>
                             <input
                                 v-model="announcement.adress"
                                 placeholder="Douala Cameroon"
                                 type="text"
-                                class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                                class="dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 dark:focus:border-blue-300 mt-2 block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"
                             />
                         </div>
 
                         <div>
-                            <label class="text-gray-700 dark:text-gray-200">{{
+                            <label class="dark:text-gray-200 text-gray-700">{{
                                 $t("website")
                             }}</label>
                             <input
                                 v-model="announcement.website"
                                 type="text"
-                                class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                                class="dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 dark:focus:border-blue-300 mt-2 block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"
                             />
                         </div>
                     </div>
                     <div class="col-span-2 mt-4">
                         <label
-                            class="text-gray-700 dark:text-gray-200"
+                            class="dark:text-gray-200 text-gray-700"
                             for="fr"
                             >{{ $t("thumbnails") }}</label
                         >
@@ -187,13 +187,13 @@
                                 ref="file"
                                 @change="handelFileObject()"
                                 type="file"
-                                class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                                class="dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 dark:focus:border-blue-300 mt-2 block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"
                             />
                         </div>
                     </div>
 
                     <div class="col-span-2 mt-4">
-                        <label class="text-gray-700 dark:text-gray-200" for="pt"
+                        <label class="dark:text-gray-200 text-gray-700" for="pt"
                             >{{ $t("description") }}
                             <span class="text-red-500">*</span>
                         </label>
@@ -202,7 +202,7 @@
                             type="text"
                             v-model="announcement.description"
                             id="pt"
-                            class="block w-full px-4 py-2 h-32 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:ring-primary-blue focus:border-primary-blue focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                            class="dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 dark:focus:border-blue-300 mt-2 block h-32 w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-primary-blue focus:outline-none focus:ring focus:ring-primary-blue focus:ring-opacity-40"
                         >
                         </textarea>
                     </div>
@@ -211,7 +211,7 @@
                     <button
                         v-if="loading == 0"
                         type="submit"
-                        class="px-6 py-4 text-md leading-5 w-full text-white rounded bg-primary-blue focus:outline-none"
+                        class="text-md w-full rounded bg-primary-blue px-6 py-4 leading-5 text-white focus:outline-none"
                     >
                         {{ $t("save") }}
                     </button>
@@ -219,11 +219,11 @@
                         v-if="loading == 1"
                         type="submit"
                         disabled
-                        class="px-6 py-4 text-md leading-5 flex justify-center items-center w-full text-white rounded bg-blue-300 focus:outline-none"
+                        class="text-md flex w-full items-center justify-center rounded bg-blue-300 px-6 py-4 leading-5 text-white focus:outline-none"
                     >
                         {{ $t("save") }}...
                         <svg
-                            class="animate-spin h-5 w-5 text-white"
+                            class="h-5 w-5 animate-spin text-white"
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
                             viewBox="0 0 24 24"
@@ -249,89 +249,64 @@
     </div>
 </template>
 
-<script>
+<script setup>
 import { reactive, ref, onMounted } from "vue";
-import Error from "../../components/Error.vue";
-import useAnnouncements from "../../services/announcementServices.js";
-import usecategoryAnnouncements from "../../services/categoryAnnouncementServices.js";
-import useCurrencies from "../../services/currencyServices.js";
-import useUniversities from "../../services/universityServices.js";
-import router from "../../router/index.js";
-export default {
-    props: {
-        id: {
-            required: true,
-            type: String,
-        },
-    },
-    components: {
-        Error,
-    },
-    created() {
-        if (!localStorage.token) {
-            router.push({ name: "login", params: { redirect: "not-login" } });
-        }
-    },
-    setup(props) {
-        const {
-            updateAnnouncement,
-            getAnnouncement,
-            announcement,
-            errors,
-            loading,
-        } = useAnnouncements();
-        const { categoryAnnouncements, getCategoryAnnouncements } =
-            usecategoryAnnouncements();
-        const { currencies, getCurrencies } = useCurrencies();
-        const { universities, getUniversities } = useUniversities();
+import Error from "@/components/Error.vue";
+import useAnnouncements from "@/services/announcementServices.js";
+import usecategoryAnnouncements from "@/services/categoryAnnouncementServices.js";
+import useCurrencies from "@/services/currencyServices.js";
+import useUniversities from "@/services/universityServices.js";
+import router from "@/router/index.js";
 
-        onMounted(
-            getAnnouncement(props.id),
-            getCategoryAnnouncements(),
-            getCurrencies(),
-            getUniversities()
-        );
-        announcement.value.image = "";
-        const saveAnnouncement = async () => {
-            let formData = new FormData();
-            formData.append("image", announcement.value.image);
-            formData.append("title", announcement.value.title);
-            formData.append("description", announcement.value.description);
-            formData.append("price", announcement.value.price);
-            formData.append("adress", announcement.value.adress);
-            formData.append("website", announcement.value.website);
-            formData.append("email", announcement.value.email);
-            formData.append("phone", announcement.value.phone);
-            formData.append("user_id", announcement.value.user_id);
-            formData.append(
-                "category_announcement_id",
-                announcement.value.category_announcement_id
-            );
-            formData.append("currency_id", announcement.value.currency_id);
-            formData.append("university_id", announcement.value.university_id);
-            formData.append("_method", "PUT");
+const props = defineProps({
+    id: {
+        required: true,
+        type: String,
+    },
+});
+const file = ref(null);
+const { updateAnnouncement, getAnnouncement, announcement, errors, loading } =
+    useAnnouncements();
+const { categoryAnnouncements, getCategoryAnnouncements } =
+    usecategoryAnnouncements();
+const { currencies, getCurrencies } = useCurrencies();
+const { universities, getUniversities } = useUniversities();
 
-            await updateAnnouncement(formData, props.id);
-            if (errors.value == "") {
-                router.push({
-                    name: "universities",
-                });
-            }
-        };
-        return {
-            announcement,
-            universities,
-            categoryAnnouncements,
-            currencies,
-            saveAnnouncement,
-            errors,
-            loading,
-        };
-    },
-    methods: {
-        handelFileObject() {
-            this.announcement.image = this.$refs.file.files[0];
-        },
-    },
+onMounted(
+    getAnnouncement(props.id),
+    getCategoryAnnouncements(),
+    getCurrencies(),
+    getUniversities()
+);
+announcement.value.image = "";
+const saveAnnouncement = async () => {
+    let formData = new FormData();
+    formData.append("image", announcement.value.image);
+    formData.append("title", announcement.value.title);
+    formData.append("description", announcement.value.description);
+    formData.append("price", announcement.value.price);
+    formData.append("adress", announcement.value.adress);
+    formData.append("website", announcement.value.website);
+    formData.append("email", announcement.value.email);
+    formData.append("phone", announcement.value.phone);
+    formData.append("user_id", announcement.value.user_id);
+    formData.append(
+        "category_announcement_id",
+        announcement.value.category_announcement_id
+    );
+    formData.append("currency_id", announcement.value.currency_id);
+    formData.append("university_id", announcement.value.university_id);
+    formData.append("_method", "PUT");
+
+    await updateAnnouncement(formData, props.id);
+    if (errors.value == "") {
+        router.push({
+            name: "universities",
+        });
+    }
+};
+
+const handelFileObject = () => {
+    announcement.image = file.value.files[0];
 };
 </script>

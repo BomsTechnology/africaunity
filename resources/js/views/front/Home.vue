@@ -112,7 +112,7 @@
             </div>
         </Transition>
 </section> -->
-<div >
+<div class="bg-white  xl:w-[90%]  w-full mx-auto min-h-screen">
     <Caroussel />
     <div class="lg:flex p-4 lg:space-x-2 space-y-4 md:space-y-0 text-lg">
         <div class="lg:w-[70%]">
@@ -1075,121 +1075,90 @@
     
 </template>
 
-<script>
-import Error from "../../components/Error.vue";
-import useAuth from "../../services/authServices.js";
-import FilterArticle from "../../components/FilterArticle.vue";
-import Caroussel from "../../components/Caroussel.vue";
+<script setup>
+import Error from "@/components/Error.vue";
+import useAuth from "@/services/authServices.js";
+import FilterArticle from "@/components/FilterArticle.vue";
+import Caroussel from "@/components/Caroussel.vue";
 import { CalendarIcon, UserIcon, MailIcon, ChatIcon, OfficeBuildingIcon, LockClosedIcon } from "@heroicons/vue/solid";
 import { reactive, ref, onMounted } from "vue";
-export default {
-    components: {
-        MailIcon,
-        Error,
-        LockClosedIcon,
-        Caroussel,
-        CalendarIcon,
-        UserIcon,
-        ChatIcon,
-        FilterArticle,
-        OfficeBuildingIcon,
-    },
-    setup(props) {
-        const toogleLogMaint = ref(false);
-        const token = localStorage.token;
-        const ministries = ref([]);
-        // const errors = ref("");
-        const loading = ref(0);
-        const loadingL = ref(0);
-        const articles1 = ref([]);
-        const articles2 = ref([]);
-        const articles3 = ref([]);
-        const articles4 = ref([]);
-        const ministry1 = ref("");
-        const ministry2 = ref("");
-        const ministry3 = ref("");
-        const ministry4 = ref("");
-        const jobOffersHome = ref([]);
-        const user = reactive({
-            email: "",
-            password: "",
-        });
-        const { loginUser, errors } = useAuth();
 
-        onMounted(async () => {
-            loading.value = 1;
-            let response = await axios.get("/api/ministries-home");
-            ministries.value = response.data.data;
-            ministry1.value = ministries.value[0];
-            ministry2.value = ministries.value[1];
-            ministry3.value = ministries.value[2];
-            ministry4.value = ministries.value[3];
+const toogleLogMaint = ref(false);
+const token = localStorage.token;
+const ministries = ref([]);
+// const errors = ref("");
+const loading = ref(0);
+const loadingL = ref(0);
+const articles1 = ref([]);
+const articles2 = ref([]);
+const articles3 = ref([]);
+const articles4 = ref([]);
+const ministry1 = ref("");
+const ministry2 = ref("");
+const ministry3 = ref("");
+const ministry4 = ref("");
+const jobOffersHome = ref([]);
+const user = reactive({
+    email: "",
+    password: "",
+});
+const { loginUser, errors } = useAuth();
 
-            response = await axios.get(
-                "/api/posts-home/" +
-                    localStorage.lang +
-                    "/" +
-                    ministry1.value.id
-            );
-            articles1.value = response.data.data;
+onMounted(async () => {
+    loading.value = 1;
+    let response = await axios.get("/api/ministries-home");
+    ministries.value = response.data.data;
+    ministry1.value = ministries.value[0];
+    ministry2.value = ministries.value[1];
+    ministry3.value = ministries.value[2];
+    ministry4.value = ministries.value[3];
 
-            response = await axios.get(
-                "/api/posts-home/" +
-                    localStorage.lang +
-                    "/" +
-                    ministry2.value.id
-            );
-            articles2.value = response.data.data;
+    response = await axios.get(
+        "/api/posts-home/" +
+            localStorage.lang +
+            "/" +
+            ministry1.value.id
+    );
+    articles1.value = response.data.data;
 
-            response = await axios.get(
-                "/api/posts-home/" +
-                    localStorage.lang +
-                    "/" +
-                    ministry3.value.id
-            );
-            articles3.value = response.data.data;
+    response = await axios.get(
+        "/api/posts-home/" +
+            localStorage.lang +
+            "/" +
+            ministry2.value.id
+    );
+    articles2.value = response.data.data;
 
-            response = await axios.get(
-                "/api/posts-home/" +
-                    localStorage.lang +
-                    "/" +
-                    ministry4.value.id
-            );
-            articles4.value = response.data.data;
+    response = await axios.get(
+        "/api/posts-home/" +
+            localStorage.lang +
+            "/" +
+            ministry3.value.id
+    );
+    articles3.value = response.data.data;
 
-            response = await axios.get('/api/jobOffers-home/');
-            jobOffersHome.value = response.data.data;
+    response = await axios.get(
+        "/api/posts-home/" +
+            localStorage.lang +
+            "/" +
+            ministry4.value.id
+    );
+    articles4.value = response.data.data;
 
-            loading.value = 2;
-        });
+    response = await axios.get('/api/jobOffers-home/');
+    jobOffersHome.value = response.data.data;
 
-        const login = async () => {
-            loadingL.value = 1;
-            await loginUser({ ...user });
-            if (errors.value == "") {
-                location.href = window.location.origin;
-            }
-            loadingL.value = 0;
-        };
+    loading.value = 2;
+});
 
-        return {
-            loadingL,
-            user,
-            login,
-            toogleLogMaint,
-            jobOffersHome,
-            loading,
-            errors,
-            articles4,
-            articles2,
-            articles3,
-            articles1,
-            ministry1,
-            ministry2,
-            ministry3,
-            ministry4,
-            token
-        };
-    },
+const login = async () => {
+    loadingL.value = 1;
+    await loginUser({ ...user });
+    if (errors.value == "") {
+        location.href = window.location.origin;
+    }
+    loadingL.value = 0;
 };
+
+
 </script>

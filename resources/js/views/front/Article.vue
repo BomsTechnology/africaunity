@@ -1,10 +1,10 @@
 <template>
     <div
-        class="flex lg:flex-row flex-col-reverse p-4 lg:space-x-2 md:space-y-2 text-lg"
+        class="mx-auto flex min-h-screen w-full flex-col-reverse bg-white p-4 text-lg md:space-y-2 lg:flex-row lg:space-x-2 xl:w-[90%]"
     >
         <div class="lg:w-[70%]">
             <h1
-                class="text-5xl text-primary-blue text-center capitalize font-bold"
+                class="text-center text-5xl font-bold capitalize text-primary-blue"
             >
                 {{ $t("articles") }}
             </h1>
@@ -15,18 +15,18 @@
                         params: { type: 'article' },
                     }"
                     v-if="user.type != 'business1'"
-                    class="flex justify-start items-center space-x-3 text-white bg-primary-blue rounded px-3 py-2"
+                    class="flex items-center justify-start space-x-3 rounded bg-primary-blue px-3 py-2 text-white"
                 >
-                    <PlusCircleIcon class="w-6 h-6" />
+                    <PlusCircleIcon class="h-6 w-6" />
                     <p class="text-base leading-4">{{ $t("add") }} Article</p>
                 </router-link>
             </div>
             <div
-                class="grid lg:grid-cols-2 gap-8 lg:px-10 py-8"
+                class="grid gap-8 py-8 lg:grid-cols-2 lg:px-10"
                 v-if="posts.length != 0"
             >
                 <div
-                    class="overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800"
+                    class="dark:bg-gray-800 overflow-hidden rounded-lg bg-white shadow-md"
                     v-for="post in posts"
                     :key="post.id"
                 >
@@ -37,7 +37,7 @@
                         }"
                     >
                         <img
-                            class="object-cover w-full h-44"
+                            class="h-44 w-full object-cover"
                             :src="post.image"
                             alt=""
                         />
@@ -46,7 +46,7 @@
                         <div>
                             <a
                                 href="#"
-                                class="text-xs py-1 px-2 rounded capitalize text-white"
+                                class="rounded py-1 px-2 text-xs capitalize text-white"
                                 :style="'background:' + post.ministry.color"
                             >
                                 <span v-if="$i18n.locale == 'en'">{{
@@ -66,7 +66,7 @@
                                     params: { id: post.id },
                                 }"
                                 href="#"
-                                class="block mt-2 text-2xl font-semibold text-gray-800 transition-colors duration-200 transform dark:text-white hover:text-gray-600 hover:underline"
+                                class="dark:text-white mt-2 block transform text-2xl font-semibold text-gray-800 transition-colors duration-200 hover:text-gray-600 hover:underline"
                                 >{{
                                     post.title.length <= 20
                                         ? post.title
@@ -81,19 +81,19 @@
                         </div>
 
                         <div
-                            class="flex items-center justify-between mt-4 text-sm"
+                            class="mt-4 flex items-center justify-between text-sm"
                         >
                             <router-link
                                 :to="{
                                     name: 'show.post',
                                     params: { id: post.id },
                                 }"
-                                class="text-blue-600 dark:text-blue-400 hover:underline"
+                                class="dark:text-blue-400 text-blue-600 hover:underline"
                                 >{{ $t("read-more") }}</router-link
                             >
 
                             <div
-                                class="flex items-center text-xs space-x-2 text-gray-500"
+                                class="flex items-center space-x-2 text-xs text-gray-500"
                             >
                                 <div class="flex space-x-1">
                                     <UserIcon class="h-4 w-4" />
@@ -110,7 +110,7 @@
                                         >{{ post.user.firstname }}</router-link
                                     >
                                 </div>
-                                <div class="hidden lg:flex space-x-1">
+                                <div class="hidden space-x-1 lg:flex">
                                     <CalendarIcon class="h-4 w-4" />
                                     <a
                                         href="#"
@@ -118,11 +118,11 @@
                                         >{{ post.date }}</a
                                     >
                                 </div>
-                                <div class="flex item-center space-x-1">
+                                <div class="item-center flex space-x-1">
                                     <ChatIcon class="h-4 w-4 text-gray-500" />
                                     <a
                                         href="#"
-                                        class="hover:text-primary-blue text-xs"
+                                        class="text-xs hover:text-primary-blue"
                                         >{{ post.comments }}</a
                                     >
                                 </div>
@@ -133,7 +133,7 @@
             </div>
             <div v-else-if="loading == 1" class="p-28">
                 <svg
-                    class="animate-spin h-16 w-16 mx-auto"
+                    class="mx-auto h-16 w-16 animate-spin"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -155,28 +155,28 @@
             </div>
             <div
                 v-else
-                class="p-28 flex justify-center text-gray-500 flex-col items-center animate-pulse"
+                class="flex animate-pulse flex-col items-center justify-center p-28 text-gray-500"
             >
                 <EmojiSadIcon class="h-16 w-16" />
-                <span class="text-2xl mt-2">{{ $t("no-content") }} </span>
+                <span class="mt-2 text-2xl">{{ $t("no-content") }} </span>
             </div>
         </div>
-        <div class="lg:w-[30%] bg-white">
-            <div class="w-full z-0 bg-white">
-                <h1 class="text-white px-2 py-1 bg-primary-blue inline-block">
+        <div class="bg-white lg:w-[30%]">
+            <div class="z-0 w-full bg-white">
+                <h1 class="inline-block bg-primary-blue px-2 py-1 text-white">
                     {{ $t("filter-article") }}
                 </h1>
                 <form @submit.prevent="PostsFilter()">
                     <div
-                        class="border-t-2 space-y-1 border-primary-blue text-md p-4"
+                        class="text-md space-y-1 border-t-2 border-primary-blue p-4"
                     >
                         <div>
-                            <label class="text-gray-500 text-xs">{{
+                            <label class="text-xs text-gray-500">{{
                                 $t("language")
                             }}</label>
                             <select
                                 v-model="filter.lang"
-                                class="form-select px-3 text-xs py-2 w-full mt-1 border-gray-300 focus:ring-primary-blue focus:border-primary-blue block"
+                                class="form-select mt-1 block w-full border-gray-300 px-3 py-2 text-xs focus:border-primary-blue focus:ring-primary-blue"
                             >
                                 <option value="fr">{{ $t("fr") }}</option>
                                 <option value="en">{{ $t("en") }}</option>
@@ -185,24 +185,24 @@
                             </select>
                         </div>
                         <div>
-                            <label class="text-gray-500 text-xs">{{
+                            <label class="text-xs text-gray-500">{{
                                 $t("key-words")
                             }}</label>
                             <input
                                 type="text"
                                 v-model="filter.keywords"
                                 :placeholder="$t('key-words')"
-                                class="form-input px-3 py-2 w-full text-xs mt-1 border-gray-300 focus:ring-primary-blue focus:border-primary-blue block"
+                                class="form-input mt-1 block w-full border-gray-300 px-3 py-2 text-xs focus:border-primary-blue focus:ring-primary-blue"
                             />
                         </div>
                         <div>
-                            <label class="text-gray-500 text-xs">{{
+                            <label class="text-xs text-gray-500">{{
                                 $t("continent")
                             }}</label>
                             <select
                                 v-model="filter.continent"
                                 @change="filteredZone()"
-                                class="form-select px-3 py-2 w-full mt-1 text-xs border-gray-300 focus:ring-primary-blue focus:border-primary-blue block"
+                                class="form-select mt-1 block w-full border-gray-300 px-3 py-2 text-xs focus:border-primary-blue focus:ring-primary-blue"
                             >
                                 <option value="">--------------</option>
                                 <option
@@ -224,13 +224,13 @@
                             </select>
                         </div>
                         <div>
-                            <label class="text-gray-500 text-xs">{{
+                            <label class="text-xs text-gray-500">{{
                                 $t("zoned")
                             }}</label>
                             <select
                                 v-model="filter.zone"
                                 @change="filteredCountry()"
-                                class="form-select px-3 py-2 w-full mt-1 text-xs border-gray-300 focus:ring-primary-blue focus:border-primary-blue block"
+                                class="form-select mt-1 block w-full border-gray-300 px-3 py-2 text-xs focus:border-primary-blue focus:ring-primary-blue"
                             >
                                 <option value="">--------------</option>
                                 <option
@@ -256,12 +256,12 @@
                             </select>
                         </div>
                         <div>
-                            <label class="text-gray-500 text-xs">{{
+                            <label class="text-xs text-gray-500">{{
                                 $t("country")
                             }}</label>
                             <select
                                 v-model="filter.country"
-                                class="form-select px-3 py-2 w-full mt-1 text-xs border-gray-300 focus:ring-primary-blue focus:border-primary-blue block"
+                                class="form-select mt-1 block w-full border-gray-300 px-3 py-2 text-xs focus:border-primary-blue focus:ring-primary-blue"
                             >
                                 <option value="">--------------</option>
                                 <option
@@ -287,12 +287,12 @@
                             </select>
                         </div>
                         <div>
-                            <label class="text-gray-500 text-xs">{{
+                            <label class="text-xs text-gray-500">{{
                                 $t("ministry")
                             }}</label>
                             <select
                                 v-model="filter.ministry"
-                                class="form-select px-3 py-2 w-full mt-1 text-xs border-gray-300 focus:ring-primary-blue focus:border-primary-blue block"
+                                class="form-select mt-1 block w-full border-gray-300 px-3 py-2 text-xs focus:border-primary-blue focus:ring-primary-blue"
                             >
                                 <option value="">--------------</option>
                                 <option
@@ -317,7 +317,7 @@
                             <button
                                 type="submit"
                                 v-if="loading == 0 || loading == 2"
-                                class="text-white text-lg bg-primary-blue px-8 py-2 mt-3 w-full"
+                                class="mt-3 w-full bg-primary-blue px-8 py-2 text-lg text-white"
                             >
                                 {{ $t("filter") }}
                             </button>
@@ -325,10 +325,10 @@
                                 disabled
                                 type="submit"
                                 v-if="loading == 1"
-                                class="inline-flex items-center justify-center text-white text-lg bg-blue-300 cursor-wait px-8 py-2 mt-3 w-full"
+                                class="mt-3 inline-flex w-full cursor-wait items-center justify-center bg-blue-300 px-8 py-2 text-lg text-white"
                             >
                                 <svg
-                                    class="animate-spin mr-3 h-5 w-5 text-white"
+                                    class="mr-3 h-5 w-5 animate-spin text-white"
                                     xmlns="http://www.w3.org/2000/svg"
                                     fill="none"
                                     viewBox="0 0 24 24"
@@ -357,15 +357,16 @@
     </div>
 </template>
 
-<script>
-import router from "../../router";
+<script setup>
+import router from "@/router";
 
 import { reactive, ref, onMounted, computed } from "vue";
-import useCountries from "../../services/countryServices.js";
-import useZones from "../../services/zoneServices.js";
-import useContinents from "../../services/continentServices.js";
-import useMinistries from "../../services/ministryServices.js";
+import useCountries from "@/services/countryServices.js";
+import useZones from "@/services/zoneServices.js";
+import useContinents from "@/services/continentServices.js";
+import useMinistries from "@/services/ministryServices.js";
 import { useRoute } from "vue-router";
+import { useI18n } from "vue-i18n";
 import {
     PlusCircleIcon,
     CalendarIcon,
@@ -374,91 +375,65 @@ import {
     ChatIcon,
 } from "@heroicons/vue/solid";
 
-import usePosts from "../../services/postServices.js";
-export default {
-    components: {
-        ChatIcon,
-        PlusCircleIcon,
-        UserIcon,
-        CalendarIcon,
-        EmojiSadIcon,
-    },
-    setup(props) {
-        const route = useRoute();
-        const { posts, getPosts, filterPost, loading, errors } = usePosts();
-        const { countries, getCountries } = useCountries();
-        const { zones, getZones } = useZones();
-        const { continents, getContinents } = useContinents();
-        const { ministries, getMinistries } = useMinistries();
-        const zoneFiltered = ref([]);
-        const countryFiltered = ref([]);
-        const user = localStorage.user ? JSON.parse(localStorage.user) : "";
-        const filter = reactive({
-            country: "",
-            continent: "",
-            ministry: "",
-            zone: "",
-            keywords: "",
-            lang: localStorage.lang,
-            type: "article",
-        });
-        onMounted(async () => {
-            if ("lang" in route.query) {
-                filter.continent = route.query.continent;
-                filter.zone = route.query.zone;
-                filter.ministry = route.query.ministry;
-                filter.keywords = route.query.keywords;
-                filter.country = route.query.country;
-                filter.lang = route.query.lang;
-                await filterPost({ ...filter });
-            } else {
-                await getPosts("article", localStorage.lang);
-            }
-            await getContinents();
-            await getZones();
-            await getCountries();
-            await getMinistries();
-        });
-        const filteredZone = () => {
-            zoneFiltered.value = zones.value.filter((zone) => {
-                return zone.continent_id == filter.continent;
-            });
-            filter.country = "";
-            filter.zone = "";
-            countryFiltered.value = [];
-        };
-        const filteredCountry = () => {
-            countryFiltered.value = countries.value.filter((country) => {
-                return country.zone_id == filter.zone;
-            });
-            filter.country = "";
-        };
+import usePosts from "@/services/postServices.js";
+const { locale } = useI18n();
+const route = useRoute();
+const { posts, getPosts, filterPost, loading, errors } = usePosts();
+const { countries, getCountries } = useCountries();
+const { zones, getZones } = useZones();
+const { continents, getContinents } = useContinents();
+const { ministries, getMinistries } = useMinistries();
+const zoneFiltered = ref([]);
+const countryFiltered = ref([]);
+const user = localStorage.user ? JSON.parse(localStorage.user) : "";
+const filter = reactive({
+    country: "",
+    continent: "",
+    ministry: "",
+    zone: "",
+    keywords: "",
+    lang: localStorage.lang,
+    type: "article",
+});
+onMounted(async () => {
+    if ("lang" in route.query) {
+        filter.continent = route.query.continent;
+        filter.zone = route.query.zone;
+        filter.ministry = route.query.ministry;
+        filter.keywords = route.query.keywords;
+        filter.country = route.query.country;
+        filter.lang = route.query.lang;
+        await filterPost({ ...filter });
+    } else {
+        await getPosts("article", localStorage.lang);
+    }
+    await getContinents();
+    await getZones();
+    await getCountries();
+    await getMinistries();
+});
+const filteredZone = () => {
+    zoneFiltered.value = zones.value.filter((zone) => {
+        return zone.continent_id == filter.continent;
+    });
+    filter.country = "";
+    filter.zone = "";
+    countryFiltered.value = [];
+};
+const filteredCountry = () => {
+    countryFiltered.value = countries.value.filter((country) => {
+        return country.zone_id == filter.zone;
+    });
+    filter.country = "";
+};
 
-        const PostsFilter = async () => {
-            await filterPost({ ...filter });
-        };
+const PostsFilter = async () => {
+    await filterPost({ ...filter });
+};
 
-        return {
-            zoneFiltered,
-            countryFiltered,
-            filteredZone,
-            filteredCountry,
-            PostsFilter,
-            ministries,
-            countries,
-            zones,
-            continents,
-            filter,
-            user,
-            loading,
-            errors,
-            posts,
-        };
-    },
-    changeLocale(lang) {
-        this.$i18n.locale = lang;
-        localStorage.lang = this.$i18n.locale;
-        location.reload();
-    },
+const changeLocale = async (lang) => {
+    locale = lang;
+    localStorage.lang = locale;
+    location.reload();
 };
 </script>

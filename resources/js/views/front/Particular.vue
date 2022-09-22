@@ -1,4 +1,5 @@
 <template>
+    <div class="mx-auto min-h-screen w-full bg-white xl:w-[90%]">
     <h1
         class="text-5xl text-primary-blue py-2 text-center capitalize font-bold"
     >
@@ -259,77 +260,54 @@
             <span class="text-2xl mt-2">{{ $t("no-content") }} </span>
         </div>
     </div>
+    </div>
 </template>
 
-<script>
-import { reactive, ref, onMounted } from "vue";
+<script setup>
+import { reactive, ref, onMounted, computed } from "vue";
 import { EmojiSadIcon, UserCircleIcon, ChevronDownIcon, ChevronUpIcon } from "@heroicons/vue/solid";
-import useUsers from "../../services/userServices.js";
-import useLanguages from "../../services/languageServices.js";
-import useActivityAreas from "../../services/activityAreaServices.js";
-import useCountries from "../../services/countryServices.js";
-export default {
-    components: {
-        UserCircleIcon,
-        EmojiSadIcon, ChevronDownIcon, ChevronUpIcon
-    },
-    setup(props) {
-        const { languages, getLanguages } = useLanguages();
-        const { countries, getCountries } = useCountries();
-        const { activityAreas, getActivityAreas } = useActivityAreas();
-        const { users, getUsersType, filterUsers, errors, loading } = useUsers();
-        onMounted(getUsersType("particular"), getLanguages(), getCountries(), getActivityAreas());
-        const searchKey = ref('');
-        const filter = reactive({
-            native_country:"",
-            status: "",
-            residence_country:"",
-            language:"",
-            activity_area:"",
-            type: "particular"
-        });
-        const showDetail = reactive({
-            id: "",
-            state: false
-        });
-        const changeShowDetail = (id) => {
-            showDetail.id = id;
-            showDetail.state = true;
-        };
-        const removeShowDetail = () => {
-            showDetail.id = '';
-            showDetail.state = false;
-        };
-        const usersFilter = async () => {
-            await filterUsers({...filter});
-        }
-        
+import useUsers from "@/services/userServices.js";
+import useLanguages from "@/services/languageServices.js";
+import useActivityAreas from "@/services/activityAreaServices.js";
+import useCountries from "@/services/countryServices.js";
 
-        return {
-            usersFilter,
-            filter,
-            removeShowDetail,
-            changeShowDetail,
-            showDetail,
-            languages,
-            countries,
-            activityAreas,
-            searchKey,
-            users,
-            errors,
-            loading,
-        };
-    },
-
-    computed: {
-        filteredUser() {
-            return this.users.filter((user) => {
-                return user.firstname
-                    .toLowerCase()
-                    .includes(this.searchKey.toLowerCase());
-            });
-        },
-    },
-    
+const { languages, getLanguages } = useLanguages();
+const { countries, getCountries } = useCountries();
+const { activityAreas, getActivityAreas } = useActivityAreas();
+const { users, getUsersType, filterUsers, errors, loading } = useUsers();
+onMounted(getUsersType("particular"), getLanguages(), getCountries(), getActivityAreas());
+const searchKey = ref('');
+const filter = reactive({
+    native_country:"",
+    status: "",
+    residence_country:"",
+    language:"",
+    activity_area:"",
+    type: "particular"
+});
+const showDetail = reactive({
+    id: "",
+    state: false
+});
+const changeShowDetail = (id) => {
+    showDetail.id = id;
+    showDetail.state = true;
 };
+const removeShowDetail = () => {
+    showDetail.id = '';
+    showDetail.state = false;
+};
+const usersFilter = async () => {
+    await filterUsers({...filter});
+}
+
+
+
+const filteredUser = computed(() =>{
+    return users.value.filter((user) => {
+        return user.firstname
+            .toLowerCase()
+            .includes(searchKey.value.toLowerCase());
+    });
+});
 </script>

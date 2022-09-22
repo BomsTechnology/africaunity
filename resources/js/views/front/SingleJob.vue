@@ -9,24 +9,24 @@
         :id="id"
     />
     <div
-        class="flex lg:flex-row flex-col p-4 lg:space-x-2 md:space-y-2 text-lg"
+        class="mx-auto flex min-h-screen w-full flex-col bg-white p-4 text-lg md:space-y-2 lg:flex-row lg:space-x-2 xl:w-[90%]"
     >
         <div class="lg:w-[65%]">
             <div class="py-6 px-4" v-if="jobOffer.length != 0">
                 <div
-                    class="overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800"
+                    class="dark:bg-gray-800 overflow-hidden rounded-lg bg-white shadow-md"
                 >
                     <!-- Job -->
-                    <div class="px-4 flex space-x-4 items-center">
+                    <div class="flex items-center space-x-4 px-4">
                         <img
                             v-if="jobOffer.company_logo"
                             :src="jobOffer.company_logo"
                             alt=""
-                            class="w-28 h-28 object-cover"
+                            class="h-28 w-28 object-cover"
                         />
                         <OfficeBuildingIcon
                             v-else
-                            class="w-28 h-28 text-gray-500"
+                            class="h-28 w-28 text-gray-500"
                         />
                         <span class="text-4xl font-bold text-gray-700">
                             {{ jobOffer.company_name }}
@@ -36,7 +36,7 @@
                         <div>
                             <a
                                 href="#"
-                                class="text-sm py-1 px-2 rounded capitalize text-white bg-primary-blue"
+                                class="rounded bg-primary-blue py-1 px-2 text-sm capitalize text-white"
                             >
                                 <span v-if="$i18n.locale == 'en'">{{
                                     jobOffer.offer_type.name_en
@@ -52,12 +52,12 @@
                                 }}</span>
                             </a>
                             <h1
-                                class="block mt-2 text-3xl font-semibold text-gray-800 transition-colors duration-200 transform dark:text-white hover:text-gray-600"
+                                class="dark:text-white mt-2 block transform text-3xl font-semibold text-gray-800 transition-colors duration-200 hover:text-gray-600"
                             >
                                 {{ jobOffer.title }}
                             </h1>
                             <div
-                                class="flex text-xs space-x-2 mt-2 text-gray-500"
+                                class="mt-2 flex space-x-2 text-xs text-gray-500"
                             >
                                 <div class="flex space-x-1">
                                     <CalendarIcon class="h-4 w-4" />
@@ -86,7 +86,7 @@
                                 </div>
                             </div>
                             <p
-                                class="mt-2 py-4 my-4 text-gray-600 dark:text-gray-400"
+                                class="dark:text-gray-400 my-4 mt-2 py-4 text-gray-600"
                             >
                                 {{ jobOffer.description }}
                             </p>
@@ -106,7 +106,7 @@
                                 >
                                     <img
                                         v-if="jobOffer.user.avatar"
-                                        class="object-cover h-16 w-16 shadow rounded-full"
+                                        class="h-16 w-16 rounded-full object-cover shadow"
                                         :src="jobOffer.user.avatar"
                                     />
 
@@ -115,7 +115,7 @@
                                         class="h-10 w-10 text-gray-700"
                                     />
                                     <span
-                                        class="mx-2 font-semibold text-gray-700 dark:text-gray-200"
+                                        class="dark:text-gray-200 mx-2 font-semibold text-gray-700"
                                         >{{ jobOffer.user.firstname }}</span
                                     >
                                 </router-link>
@@ -132,7 +132,7 @@
                                             }"
                                         >
                                             <PencilAltIcon
-                                                class="h-5 w-5 text-gray-400 cursor-pointer hover:text-primary-blue"
+                                                class="h-5 w-5 cursor-pointer text-gray-400 hover:text-primary-blue"
                                             />
                                         </router-link>
                                     </div>
@@ -140,7 +140,7 @@
                             </div>
                         </div>
 
-                        <div class="px-2 flex items-center space-x-3 py-4">
+                        <div class="flex items-center space-x-3 px-2 py-4">
                             <!-- facebook icons -->
                             <!-- <a :href="'https://www.facebook.com/sharer/sharer.php?u='+url" data-network="facebook" target="_blank" rel="noopener noreferrer">
                                 <svg fill="#3b5998" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 30 30" class="h-6 w-6"><path d="M27,15c0,6.627-5.373,12-12,12S3,21.627,3,15S8.373,3,15,3S27,8.373,27,15z M19.181,8.131C18.877,8.09,18.235,8,17.021,8 C14.486,8,13,9.339,13,12.389V14h-3v3h3v7.799C13.646,24.93,14.315,25,15,25c0.338,0,0.671-0.018,1-0.05V17h2.726l0.428-3H16 v-1.282C16,11.568,16.376,11,17.452,11h1.729V8.131z"/></svg>
@@ -173,7 +173,7 @@
             </div>
             <div v-else-if="loading == 1" class="p-28">
                 <svg
-                    class="animate-spin h-16 w-16 mx-auto"
+                    class="mx-auto h-16 w-16 animate-spin"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -195,26 +195,26 @@
             </div>
             <div
                 v-else
-                class="p-28 flex justify-center text-gray-500 flex-col items-center animate-pulse"
+                class="flex animate-pulse flex-col items-center justify-center p-28 text-gray-500"
             >
                 <EmojiSadIcon class="h-16 w-16" />
-                <span class="text-2xl mt-2">{{ $t("no-content") }}</span>
+                <span class="mt-2 text-2xl">{{ $t("no-content") }}</span>
             </div>
         </div>
-        <div class="lg:w-[35%] bg-white py-5">
-            <div class="shadow rounded-md py-5 px-10 space-y-3">
-                <h1 class="text-2xl text-primary-blue font-bold">
+        <div class="bg-white py-5 lg:w-[35%]">
+            <div class="space-y-3 rounded-md py-5 px-10 shadow">
+                <h1 class="text-2xl font-bold text-primary-blue">
                     Job {{ $t("details") }}
                 </h1>
-                <div class="text-gray-500 flex items-center space-x-2 text-sm">
+                <div class="flex items-center space-x-2 text-sm text-gray-500">
                     <MailIcon class="h-6 w-6" />
                     <span>
                         {{ jobOffer.company_email }}
                     </span>
                 </div>
-                <div class="grid lg:grid-cols-2 gap-2 text-sm">
+                <div class="grid gap-2 text-sm lg:grid-cols-2">
                     <div
-                        class="text-gray-500 flex items-center space-x-2"
+                        class="flex items-center space-x-2 text-gray-500"
                         v-if="jobOffer.continent"
                     >
                         <GlobeIcon class="h-6 w-6" />
@@ -232,7 +232,7 @@
                         </span>
                     </div>
                     <div
-                        class="text-gray-500 flex items-center space-x-2"
+                        class="flex items-center space-x-2 text-gray-500"
                         v-if="jobOffer.zone"
                     >
                         <MapIcon class="h-6 w-6" />
@@ -250,7 +250,7 @@
                         </span>
                     </div>
                     <div
-                        class="text-gray-500 flex items-center space-x-2"
+                        class="flex items-center space-x-2 text-gray-500"
                         v-if="jobOffer.country"
                     >
                         <FlagIcon class="h-6 w-6" />
@@ -268,7 +268,7 @@
                         </span>
                     </div>
                     <div
-                        class="text-gray-500 flex items-center space-x-2"
+                        class="flex items-center space-x-2 text-gray-500"
                         v-if="jobOffer.city"
                     >
                         <OfficeBuildingIcon class="h-6 w-6" />
@@ -286,7 +286,7 @@
                         </span>
                     </div>
                     <div
-                        class="text-gray-500 flex items-center space-x-2"
+                        class="flex items-center space-x-2 text-gray-500"
                         v-if="jobOffer.work_department"
                     >
                         <BriefcaseIcon class="h-6 w-6" />
@@ -306,7 +306,7 @@
                         </span>
                     </div>
                     <div
-                        class="text-gray-500 flex items-center space-x-2"
+                        class="flex items-center space-x-2 text-gray-500"
                         v-if="jobOffer.work_mode"
                     >
                         <DesktopComputerIcon class="h-6 w-6" />
@@ -323,14 +323,14 @@
                             <span v-else>{{ jobOffer.work_mode.name_pt }}</span>
                         </span>
                     </div>
-                    <div class="text-gray-500 flex items-center space-x-2">
+                    <div class="flex items-center space-x-2 text-gray-500">
                         <LocationMarkerIcon class="h-6 w-6" />
                         <span>
                             {{ jobOffer.location }}
                         </span>
                     </div>
                     <div
-                        class="text-gray-500 flex items-center space-x-2"
+                        class="flex items-center space-x-2 text-gray-500"
                         v-if="jobOffer.year_experience"
                     >
                         <AcademicCapIcon class="h-6 w-6" />
@@ -350,7 +350,7 @@
                         </span>
                     </div>
                     <div
-                        class="text-gray-500 flex items-center space-x-2"
+                        class="flex items-center space-x-2 text-gray-500"
                         v-if="jobOffer.size_company"
                     >
                         <TemplateIcon class="h-6 w-6" />
@@ -370,7 +370,7 @@
                         </span>
                     </div>
                     <div
-                        class="text-gray-500 flex items-center space-x-2"
+                        class="flex items-center space-x-2 text-gray-500"
                         v-if="
                             jobOffer.company_website &&
                             jobOffer.company_website != 'null'
@@ -382,24 +382,22 @@
                         </span>
                     </div>
                     <div
-                        class="text-gray-500 flex items-center space-x-2"
+                        class="flex items-center space-x-2 text-gray-500"
                         v-if="jobOffer.currency"
                     >
                         <CashIcon class="h-6 w-6" />
                         <span>
-                            {{
-                                jobOffer.min_price + jobOffer.currency.symbol
-                            }}
+                            {{ jobOffer.min_price + jobOffer.currency.symbol }}
                             -
                             {{ jobOffer.max_price + jobOffer.currency.symbol }}
                         </span>
                     </div>
                 </div>
 
-                <div class="text-gray-500 flex items-center space-x-2 text-sm">
+                <div class="flex items-center space-x-2 text-sm text-gray-500">
                     <TranslateIcon class="h-6 w-6" />
                     <span>
-                        <ul class="py-1 flex space-x-2">
+                        <ul class="flex space-x-2 py-1">
                             <li
                                 v-for="lang in jobOffer.languages"
                                 :key="lang.id"
@@ -422,7 +420,7 @@
                     <button
                         type="button"
                         @click="toogleModal()"
-                        class="px-3 py-2 bg-primary-blue w-full text-white rounded"
+                        class="w-full rounded bg-primary-blue px-3 py-2 text-white"
                     >
                         {{ $t("apply") }}
                     </button>

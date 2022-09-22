@@ -1,13 +1,13 @@
 <template>
-    <div class="px-20 text-lg">
+    <div class="mx-auto min-h-screen w-full bg-white px-20 text-lg xl:w-[90%]">
         <div>
             <div class="py-6 px-4" v-if="university.length != 0">
                 <div
-                    class="overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800"
+                    class="dark:bg-gray-800 overflow-hidden rounded-lg bg-white shadow-md"
                 >
                     <!-- University -->
                     <img
-                        class="object-cover w-full h-96"
+                        class="h-96 w-full object-cover"
                         :src="university.image"
                         alt=""
                     />
@@ -15,7 +15,7 @@
                         <div>
                             <a
                                 href="#"
-                                class="text-xs py-1 px-2 rounded capitalize text-white bg-primary-blue"
+                                class="rounded bg-primary-blue py-1 px-2 text-xs capitalize text-white"
                             >
                                 <span v-if="$i18n.locale == 'en'">{{
                                     university.city.name_en +
@@ -39,13 +39,13 @@
                                 }}</span>
                             </a>
                             <h1
-                                class="block mt-2 text-3xl font-semibold text-gray-800 transition-colors duration-200 transform dark:text-white hover:text-gray-600"
+                                class="dark:text-white mt-2 block transform text-3xl font-semibold text-gray-800 transition-colors duration-200 hover:text-gray-600"
                             >
                                 {{ university.name }}
                             </h1>
 
                             <p
-                                class="mt-2 py-4 my-4 text-gray-600 dark:text-gray-400"
+                                class="dark:text-gray-400 my-4 mt-2 py-4 text-gray-600"
                             >
                                 {{ university.description }}
                             </p>
@@ -55,7 +55,7 @@
             </div>
             <div v-else-if="loading == 1" class="p-28">
                 <svg
-                    class="animate-spin h-16 w-16 mx-auto"
+                    class="mx-auto h-16 w-16 animate-spin"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -77,12 +77,12 @@
             </div>
             <div
                 v-else
-                class="p-28 flex justify-center text-gray-500 flex-col items-center animate-pulse"
+                class="flex animate-pulse flex-col items-center justify-center p-28 text-gray-500"
             >
                 <EmojiSadIcon class="h-16 w-16" />
-                <span class="text-2xl mt-2">{{ $t("no-content") }}</span>
+                <span class="mt-2 text-2xl">{{ $t("no-content") }}</span>
             </div>
-            <h1 class="text-3xl text-primary-blue text-center py-2 font-bold">
+            <h1 class="py-2 text-center text-3xl font-bold text-primary-blue">
                 {{ $t("ads-university") }} {{ university.name }}
             </h1>
             <div class="flex justify-end px-6">
@@ -91,34 +91,34 @@
                     :to="{
                         name: 'add.ads',
                     }"
-                    class="flex justify-start items-center space-x-3 text-white bg-primary-blue rounded px-3 py-2"
+                    class="flex items-center justify-start space-x-3 rounded bg-primary-blue px-3 py-2 text-white"
                 >
-                    <PlusCircleIcon class="w-6 h-6" />
+                    <PlusCircleIcon class="h-6 w-6" />
                     <p class="text-base leading-4">
                         {{ $t("add") }} {{ $t("ads") }}
                     </p>
                 </router-link>
             </div>
             <div
-                class="grid lg:grid-cols-3 grid-cols-1 gap-2 px-10 pb-8 pt-4 bg-gray-50 shadow mt-4"
+                class="mt-4 grid grid-cols-1 gap-2 bg-gray-50 px-10 pb-8 pt-4 shadow lg:grid-cols-3"
             >
-                <div class="lg:text-sm text-xs">
-                    <label class="text-gray-700 dark:text-gray-200">{{
+                <div class="text-xs lg:text-sm">
+                    <label class="dark:text-gray-200 text-gray-700">{{
                         $t("key-words")
                     }}</label>
                     <input
                         type="text"
                         v-model="filterAds.searchKey"
-                        class="form-input px-3 pr-2 w-full text-gray-700 bg-white border border-gray-200 rounded-md mt-2 placeholder:text-gray-400 focus:ring-primary-blue focus:border-primary-blue block"
+                        class="form-input mt-2 block w-full rounded-md border border-gray-200 bg-white px-3 pr-2 text-gray-700 placeholder:text-gray-400 focus:border-primary-blue focus:ring-primary-blue"
                     />
                 </div>
-                <div class="lg:text-sm text-xs">
+                <div class="text-xs lg:text-sm">
                     <label class="text-gray-700" for="es">{{
                         $t("category")
                     }}</label>
                     <select
                         v-model="filterAds.category"
-                        class="form-select block w-full px-4 py-2 mt-1 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
+                        class="form-select mt-1 block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-primary-blue focus:outline-none focus:ring-primary-blue"
                     >
                         <option value="">--------------</option>
                         <option
@@ -131,14 +131,14 @@
                     </select>
                 </div>
             </div>
-            <div class="p-2 bg-primary-blue shadow"></div>
+            <div class="bg-primary-blue p-2 shadow"></div>
             <div class="py-8">
                 <div
-                    class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8 lg:px-10 py-8"
+                    class="grid grid-cols-1 gap-8 py-8 md:grid-cols-2 lg:grid-cols-3 lg:px-10"
                     v-if="filteredAnnouncement.length != 0"
                 >
                     <div
-                        class="overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800"
+                        class="dark:bg-gray-800 overflow-hidden rounded-lg bg-white shadow-lg"
                         v-for="announcement in filteredAnnouncement"
                         :key="announcement.id"
                     >
@@ -149,24 +149,24 @@
                             }"
                         >
                             <img
-                                class="object-cover w-full h-48 mt-2 rounded-t-lg"
+                                class="mt-2 h-48 w-full rounded-t-lg object-cover"
                                 v-if="announcement.image"
                                 :src="announcement.image"
                                 :alt="announcement.title"
                             />
                             <div
                                 v-else
-                                class="overflow-hidden w-full h-48 mt-2 rounded-t-lg bg-gray-50 py-10"
+                                class="mt-2 h-48 w-full overflow-hidden rounded-t-lg bg-gray-50 py-10"
                             >
                                 <SpeakerphoneIcon
                                     class="h-full w-full text-gray-500"
                                 />
                             </div>
                         </router-link>
-                        <div class="px-4 py-2 space-y-2">
+                        <div class="space-y-2 px-4 py-2">
                             <a
                                 href="#"
-                                class="text-xs py-1 px-2 mt-2 rounded capitalize text-white bg-primary-blue"
+                                class="mt-2 rounded bg-primary-blue py-1 px-2 text-xs capitalize text-white"
                             >
                                 {{ announcement.category.name }}
                             </a>
@@ -177,14 +177,14 @@
                                 }"
                             >
                                 <h1
-                                    class="text-2xl font-bold text-gray-800 capitalize hover:underline"
+                                    class="text-2xl font-bold capitalize text-gray-800 hover:underline"
                                 >
                                     {{ announcement.title }}
                                 </h1>
                             </router-link>
 
                             <p
-                                class="mt-2 text-sm text-gray-600 dark:text-gray-400"
+                                class="dark:text-gray-400 mt-2 text-sm text-gray-600"
                             >
                                 {{
                                     announcement.description.substring(0, 19) +
@@ -193,7 +193,7 @@
                             </p>
                         </div>
                         <div
-                            class="flex items-center justify-between px-4 py-2 bg-gray-900 h-10"
+                            class="flex h-10 items-center justify-between bg-gray-900 px-4 py-2"
                         >
                             <h1
                                 class="text-lg font-bold text-white"
@@ -206,7 +206,7 @@
                                 {{ announcement.currency.symbol }}
                             </h1>
                             <div
-                                class="flex items-center text-xs space-x-2 text-white"
+                                class="flex items-center space-x-2 text-xs text-white"
                             >
                                 <div class="flex space-x-1">
                                     <UserIcon class="h-4 w-4" />
@@ -226,7 +226,7 @@
                                         }}</router-link
                                     >
                                 </div>
-                                <div class="hidden lg:flex space-x-1">
+                                <div class="hidden space-x-1 lg:flex">
                                     <CalendarIcon class="h-4 w-4" />
                                     <a
                                         href="#"
@@ -240,19 +240,19 @@
                 </div>
                 <div
                     v-else
-                    class="p-28 flex justify-center text-gray-500 flex-col items-center animate-pulse"
+                    class="flex animate-pulse flex-col items-center justify-center p-28 text-gray-500"
                 >
                     <EmojiSadIcon class="h-16 w-16" />
-                    <span class="text-2xl mt-2">{{ $t("no-content") }} </span>
+                    <span class="mt-2 text-2xl">{{ $t("no-content") }} </span>
                 </div>
             </div>
         </div>
     </div>
 </template>
 
-<script>
+<script setup>
 import router from "../../router";
-import { reactive, ref, onMounted } from "vue";
+import { reactive, ref, onMounted, computed } from "vue";
 import {
     EmojiSadIcon,
     PlusCircleIcon,
@@ -264,70 +264,43 @@ import useUniversities from "../../services/universityServices.js";
 import useAnnouncements from "../../services/announcementServices.js";
 import usecategoryAnnouncements from "../../services/categoryAnnouncementServices.js";
 import Error from "../../components/Error.vue";
-export default {
-    props: {
-        id: {
-            required: true,
-            type: String,
-        },
-    },
-    components: {
-        EmojiSadIcon,
-        PlusCircleIcon,
-        SpeakerphoneIcon,
-        Error,
-        CalendarIcon,
-        UserIcon,
-    },
-    created() {
-        if (!localStorage.token) {
-            router.push({ name: "login", params: { redirect: "not-login" } });
-        }
-    },
-    setup(props) {
-        const { university, getUniversity2, loading } = useUniversities();
-        const { categoryAnnouncements, getCategoryAnnouncements } =
-            usecategoryAnnouncements();
-        const user = localStorage.user ? JSON.parse(localStorage.user) : "";
-        const { announcements, getAnnouncementsUniversity } =
-            useAnnouncements();
-        onMounted(async () => {
-            await getUniversity2(props.id);
-            await getAnnouncementsUniversity(props.id);
-            await getCategoryAnnouncements();
-        });
-        const filterAds = reactive({
-            searchKey: "",
-            category: "",
-        });
 
-        return {
-            filterAds,
-            categoryAnnouncements,
-            loading,
-            university,
-            announcements,
-            user,
-        };
+const props = defineProps({
+    id: {
+        required: true,
+        type: String,
     },
+});
 
-    computed: {
-        filteredAnnouncement() {
-            return this.announcements.filter((announcement) => {
-                let data = "";
-                if (this.filterAds.category != "")
-                    data =
-                        announcement.title
-                            .toLowerCase()
-                            .includes(this.filterAds.searchKey.toLowerCase()) &&
-                        announcement.category.id == this.filterAds.category;
-                else
-                    data = announcement.title
-                        .toLowerCase()
-                        .includes(this.filterAds.searchKey.toLowerCase());
-                return data;
-            });
-        },
-    },
-};
+const { university, getUniversity2, loading } = useUniversities();
+const { categoryAnnouncements, getCategoryAnnouncements } =
+    usecategoryAnnouncements();
+const user = localStorage.user ? JSON.parse(localStorage.user) : "";
+const { announcements, getAnnouncementsUniversity } = useAnnouncements();
+onMounted(async () => {
+    await getUniversity2(props.id);
+    await getAnnouncementsUniversity(props.id);
+    await getCategoryAnnouncements();
+});
+const filterAds = reactive({
+    searchKey: "",
+    category: "",
+});
+
+const filteredAnnouncement = computed(() => {
+    return announcements.value.filter((announcement) => {
+        let data = "";
+        if (filterAds.category != "")
+            data =
+                announcement.title
+                    .toLowerCase()
+                    .includes(filterAds.searchKey.toLowerCase()) &&
+                announcement.category.id == filterAds.category;
+        else
+            data = announcement.title
+                .toLowerCase()
+                .includes(filterAds.searchKey.toLowerCase());
+        return data;
+    });
+});
 </script>

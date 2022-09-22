@@ -1,22 +1,22 @@
 <template>
-    <div class="w-full lg:px-20 py-4">
-        <div class="py-5 text-center w-full space-y-4">
-            <h1 class="text-4xl text-primary-blue font-bold capitalize">
+    <div class="mx-auto min-h-screen w-full bg-white py-4 lg:px-20 xl:w-[90%]">
+        <div class="w-full space-y-4 py-5 text-center">
+            <h1 class="text-4xl font-bold capitalize text-primary-blue">
                 {{ $t("edit") }} {{ type }}
             </h1>
             <h2 class="text-md text-gray-700">
                 {{ $t("your") }} {{ type }} {{ $t("add-desc-1") }}
             </h2>
             <div
-                class="flex lg:flex-row flex-col justify-center items-center lg:space-x-3"
+                class="flex flex-col items-center justify-center lg:flex-row lg:space-x-3"
             >
                 <h1 class="font-semibold">{{ $t("select-lang") }} :</h1>
-                <div class="flex space-x-3 lg:mt-0 mt-3">
+                <div class="mt-3 flex space-x-3 lg:mt-0">
                     <button
                         :class="[
                             $i18n.locale != 'fr'
-                                ? 'px-3 py-1 rounded-md bg-menu text-white'
-                                : 'px-3 py-1 rounded-md bg-primary-blue text-white',
+                                ? 'rounded-md bg-menu px-3 py-1 text-white'
+                                : 'rounded-md bg-primary-blue px-3 py-1 text-white',
                         ]"
                         @click.prevent="changeLocale('fr')"
                     >
@@ -25,8 +25,8 @@
                     <button
                         :class="[
                             $i18n.locale != 'en'
-                                ? 'px-3 py-1 rounded-md bg-menu text-white'
-                                : 'px-3 py-1 rounded-md bg-primary-blue text-white',
+                                ? 'rounded-md bg-menu px-3 py-1 text-white'
+                                : 'rounded-md bg-primary-blue px-3 py-1 text-white',
                         ]"
                         @click.prevent="changeLocale('en')"
                     >
@@ -35,8 +35,8 @@
                     <button
                         :class="[
                             $i18n.locale != 'es'
-                                ? 'px-3 py-1 rounded-md bg-menu text-white'
-                                : 'px-3 py-1 rounded-md bg-primary-blue text-white',
+                                ? 'rounded-md bg-menu px-3 py-1 text-white'
+                                : 'rounded-md bg-primary-blue px-3 py-1 text-white',
                         ]"
                         @click.prevent="changeLocale('es')"
                     >
@@ -45,8 +45,8 @@
                     <button
                         :class="[
                             $i18n.locale != 'pt'
-                                ? 'px-3 py-1 rounded-md bg-menu text-white'
-                                : 'px-3 py-1 rounded-md bg-primary-blue text-white',
+                                ? 'rounded-md bg-menu px-3 py-1 text-white'
+                                : 'rounded-md bg-primary-blue px-3 py-1 text-white',
                         ]"
                         @click.prevent="changeLocale('pt')"
                     >
@@ -56,7 +56,7 @@
             </div>
         </div>
 
-        <section class="p-6 bg-white shadow-xl rounded-md mx-auto w-full">
+        <section class="mx-auto w-full rounded-md bg-white p-6 shadow-xl">
             <Error v-if="errors != ''">{{ errors }}</Error>
             <h1 class="text-xl font-semibold">{{ $t("edit") }} {{ type }}</h1>
             <h2 class="text-md font-light text-gray-700">
@@ -67,9 +67,9 @@
                 id="postform"
                 enctype="multipart/form-data"
             >
-                <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
+                <div class="mt-4 grid grid-cols-1 gap-6 sm:grid-cols-2">
                     <div class="col-span-2">
-                        <label class="text-gray-700 dark:text-gray-200"
+                        <label class="dark:text-gray-200 text-gray-700"
                             >{{ $t("title") }}
                             <span class="text-red-500">*</span></label
                         >
@@ -78,7 +78,7 @@
                             v-model="post.title"
                             maxlength="50"
                             type="text"
-                            class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                            class="dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 dark:focus:border-blue-300 mt-2 block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"
                         />
                         <span class="text-xs font-light text-gray-400"
                             >{{ post.title ? post.title.length : 0 }} of 50
@@ -86,8 +86,8 @@
                         >
                     </div>
 
-                    <div class="lg:col-span-1 col-span-2">
-                        <label class="text-gray-700 dark:text-gray-200" for="es"
+                    <div class="col-span-2 lg:col-span-1">
+                        <label class="dark:text-gray-200 text-gray-700" for="es"
                             >{{ $t("continent") }}
                             <span class="text-red-500">*</span></label
                         >
@@ -95,7 +95,7 @@
                             required
                             v-model="post.continent_id"
                             @change="filteredZone"
-                            class="form-select block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
+                            class="form-select mt-2 block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-primary-blue focus:outline-none focus:ring-primary-blue"
                         >
                             <option
                                 v-for="continent in continents"
@@ -116,8 +116,8 @@
                         </select>
                     </div>
 
-                    <div class="lg:col-span-1 col-span-2">
-                        <label class="text-gray-700 dark:text-gray-200" for="pt"
+                    <div class="col-span-2 lg:col-span-1">
+                        <label class="dark:text-gray-200 text-gray-700" for="pt"
                             >{{ $t("zoned") }}
                             <span class="text-red-500">*</span></label
                         >
@@ -125,7 +125,7 @@
                             required
                             v-model="post.zone_id"
                             @change="filteredCountry"
-                            class="form-select block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
+                            class="form-select mt-2 block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-primary-blue focus:outline-none focus:ring-primary-blue"
                         >
                             <option
                                 v-if="zoneFiltered.length != 0"
@@ -149,15 +149,15 @@
                             </option>
                         </select>
                     </div>
-                    <div class="lg:col-span-1 col-span-2">
-                        <label class="text-gray-700 dark:text-gray-200" for="es"
+                    <div class="col-span-2 lg:col-span-1">
+                        <label class="dark:text-gray-200 text-gray-700" for="es"
                             >{{ $t("country") }}
                             <span class="text-red-500">*</span></label
                         >
                         <select
                             required
                             v-model="post.country_id"
-                            class="form-select block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
+                            class="form-select mt-2 block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-primary-blue focus:outline-none focus:ring-primary-blue"
                         >
                             <option
                                 v-if="countryFiltered.length != 0"
@@ -182,15 +182,15 @@
                         </select>
                     </div>
 
-                    <div class="lg:col-span-1 col-span-2">
-                        <label class="text-gray-700 dark:text-gray-200" for="pt"
+                    <div class="col-span-2 lg:col-span-1">
+                        <label class="dark:text-gray-200 text-gray-700" for="pt"
                             >{{ $t("ministry") }}
                             <span class="text-red-500">*</span></label
                         >
                         <select
                             required
                             v-model="post.ministry_id"
-                            class="form-select block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
+                            class="form-select mt-2 block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-primary-blue focus:outline-none focus:ring-primary-blue"
                         >
                             <option
                                 v-for="ministry in ministries"
@@ -212,7 +212,7 @@
                     </div>
 
                     <div class="col-span-2" v-if="type == 'article'">
-                        <label class="text-gray-700 dark:text-gray-200" for="fr"
+                        <label class="dark:text-gray-200 text-gray-700" for="fr"
                             >{{ $t("thumbnails") }}
                             <span class="text-red-500">*</span></label
                         >
@@ -226,13 +226,13 @@
                                 ref="file"
                                 @change="handelFileObject()"
                                 type="file"
-                                class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                                class="dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 dark:focus:border-blue-300 mt-2 block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"
                             />
                         </div>
                     </div>
 
                     <div class="col-span-2">
-                        <label class="text-gray-700 dark:text-gray-200" for="pt"
+                        <label class="dark:text-gray-200 text-gray-700" for="pt"
                             >{{ $t("content") }}
                             <span class="text-red-500">*</span></label
                         >
@@ -240,7 +240,7 @@
                             required
                             v-if="type == 'article'"
                             ref="textarea"
-                            class="w-full h-96"
+                            class="h-96 w-full"
                         >
                         </textarea>
 
@@ -250,7 +250,7 @@
                                 v-if="post.content"
                                 v-model="post.content"
                                 maxlength="2000"
-                                class="block w-full px-4 py-2 h-32 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:ring-primary-blue focus:border-primary-blue focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                                class="dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 dark:focus:border-blue-300 mt-2 block h-32 w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-primary-blue focus:outline-none focus:ring focus:ring-primary-blue focus:ring-opacity-40"
                             >
                             </textarea>
                             <span
@@ -267,7 +267,7 @@
                     <button
                         v-if="loading == 0"
                         type="submit"
-                        class="px-6 py-4 text-md leading-5 w-full text-white rounded bg-primary-blue focus:outline-none"
+                        class="text-md w-full rounded bg-primary-blue px-6 py-4 leading-5 text-white focus:outline-none"
                     >
                         {{ $t("save") }}
                     </button>
@@ -275,11 +275,11 @@
                         v-if="loading == 1"
                         type="submit"
                         disabled
-                        class="px-6 py-4 text-md leading-5 flex justify-center items-center w-full text-white rounded bg-blue-300 focus:outline-none"
+                        class="text-md flex w-full items-center justify-center rounded bg-blue-300 px-6 py-4 leading-5 text-white focus:outline-none"
                     >
                         {{ $t("save") }}...
                         <svg
-                            class="animate-spin h-5 w-5 text-white"
+                            class="h-5 w-5 animate-spin text-white"
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
                             viewBox="0 0 24 24"
@@ -309,7 +309,7 @@
                     >
                         <span
                             v-if="msgClick != ''"
-                            class="font-light text-xs italic"
+                            class="text-xs font-light italic"
                         >
                             {{ msgClick }}
                         </span>
@@ -320,163 +320,142 @@
     </div>
 </template>
 
-<script>
+<script setup>
 import { reactive, ref, onMounted } from "vue";
-import Error from "../../components/Error.vue";
-import usePosts from "../../services/postServices.js";
-import useContinents from "../../services/continentServices.js";
-import useZones from "../../services/zoneServices.js";
-import useCountries from "../../services/countryServices.js";
-import useMinistries from "../../services/ministryServices.js";
-import router from "../../router/index.js";
+import Error from "@/components/Error.vue";
+import usePosts from "@/services/postServices.js";
+import useContinents from "@/services/continentServices.js";
+import useZones from "@/services/zoneServices.js";
+import useCountries from "@/services/countryServices.js";
+import useMinistries from "@/services/ministryServices.js";
+import router from "@/router/index.js";
+import { useI18n } from "vue-i18n";
 
-export default {
-    props: {
-        type: {
-            required: true,
-            type: String,
-        },
-        id: {
-            required: true,
-            type: String,
-        },
+const props = defineProps({
+    type: {
+        required: true,
+        type: String,
     },
-    components: {
-        Error,
+    id: {
+        required: true,
+        type: String,
     },
-    setup(props) {
-        const types = ["article", "propau"];
-        const user = localStorage.user ? JSON.parse(localStorage.user) : "";
-        const { updatePost, getPost, post, errors, loading } = usePosts();
-        const { continents, getContinents } = useContinents();
-        const { zones, getZones } = useZones();
-        const { countries, getCountries } = useCountries();
-        const { ministries, getMinistries } = useMinistries();
-        const textarea = ref("");
+});
+const file = ref(null);
+const { locale } = useI18n();
+const types = ["article", "propau"];
+const user = localStorage.user ? JSON.parse(localStorage.user) : "";
+const { updatePost, getPost, post, errors, loading } = usePosts();
+const { continents, getContinents } = useContinents();
+const { zones, getZones } = useZones();
+const { countries, getCountries } = useCountries();
+const { ministries, getMinistries } = useMinistries();
+const textarea = ref("");
 
-        const nbClick = ref(0);
-        const msgClick = ref("");
-        const zoneFiltered = ref([]);
-        const countryFiltered = ref([]);
+const nbClick = ref(0);
+const msgClick = ref("");
+const zoneFiltered = ref([]);
+const countryFiltered = ref([]);
 
-        const filteredZone = () => {
-            zoneFiltered.value = zones.value.filter((zone) => {
-                return zone.continent_id == post.value.continent_id;
-            });
-            post.value.country_id = "";
-            post.value.zone_id = "";
-            countryFiltered.value = [];
-        };
-        const filteredCountry = () => {
-            countryFiltered.value = countries.value.filter((country) => {
-                return country.zone_id == post.value.zone_id;
-            });
-            post.value.country_id = "";
-        };
-        onMounted(async () => {
-            await getPost(props.id);
+const filteredZone = () => {
+    zoneFiltered.value = zones.value.filter((zone) => {
+        return zone.continent_id == post.value.continent_id;
+    });
+    post.value.country_id = "";
+    post.value.zone_id = "";
+    countryFiltered.value = [];
+};
+const filteredCountry = () => {
+    countryFiltered.value = countries.value.filter((country) => {
+        return country.zone_id == post.value.zone_id;
+    });
+    post.value.country_id = "";
+};
+onMounted(async () => {
+    await getPost(props.id);
 
-            if (!types.includes(props.type)) {
-                router.push({ name: "home" });
-            }
+    if (!types.includes(props.type)) {
+        router.push({ name: "home" });
+    }
 
-            await getContinents();
-            await getZones();
-            await getCountries();
-            await getMinistries();
-            zoneFiltered.value = zones.value.filter((zone) => {
-                return zone.continent_id == post.value.continent_id;
-            });
-            countryFiltered.value = countries.value.filter((country) => {
-                return country.zone_id == post.value.zone_id;
-            });
+    await getContinents();
+    await getZones();
+    await getCountries();
+    await getMinistries();
+    zoneFiltered.value = zones.value.filter((zone) => {
+        return zone.continent_id == post.value.continent_id;
+    });
+    countryFiltered.value = countries.value.filter((country) => {
+        return country.zone_id == post.value.zone_id;
+    });
 
-            if (props.type == "article") {
-                textarea.value.value = post.value.content;
-                sceditor.create(textarea.value, {
-                    format: "bbcode",
-                    style: "https://cdn.jsdelivr.net/npm/sceditor@3/minified/themes/content/default.min.css",
-                    height: 400,
-                    toolbarExclude:
-                        "indent,outdent,email,date,time,ltr,rtl,print,subscript,superscript,table,code,quote,emoticon",
-                    icons: "material",
-                });
-            }
-            nbClick.value++;
+    if (props.type == "article") {
+        textarea.value.value = post.value.content;
+        sceditor.create(textarea.value, {
+            format: "bbcode",
+            style: "https://cdn.jsdelivr.net/npm/sceditor@3/minified/themes/content/default.min.css",
+            height: 400,
+            toolbarExclude:
+                "indent,outdent,email,date,time,ltr,rtl,print,subscript,superscript,table,code,quote,emoticon",
+            icons: "material",
         });
-        post.value.image = "";
+    }
+    nbClick.value++;
+});
+post.value.image = "";
 
-        const savePost = async () => {
-            if (props.type == "article") {
-                post.value.content = textarea.value.value;
-                if (nbClick.value == 1) {
-                    nbClick.value++;
-                    msgClick.value = "please click again";
-                    return;
-                }
-            }
+const savePost = async () => {
+    if (props.type == "article") {
+        post.value.content = textarea.value.value;
+        if (nbClick.value == 1) {
+            nbClick.value++;
+            msgClick.value = "please click again";
+            return;
+        }
+    }
 
-            let formData = new FormData();
-            formData.append("image", post.value.image);
-            formData.append("title", post.value.title);
-            formData.append("type", post.value.type);
-            formData.append("user_id", post.value.user_id);
-            formData.append("language", post.value.language);
-            formData.append("content", post.value.content);
-            formData.append("continent_id", post.value.continent_id);
-            formData.append("zone_id", post.value.zone_id);
-            formData.append("country_id", post.value.country_id);
-            formData.append("ministry_id", post.value.ministry_id);
-            formData.append("_method", "PUT");
+    let formData = new FormData();
+    formData.append("image", post.value.image);
+    formData.append("title", post.value.title);
+    formData.append("type", post.value.type);
+    formData.append("user_id", post.value.user_id);
+    formData.append("language", post.value.language);
+    formData.append("content", post.value.content);
+    formData.append("continent_id", post.value.continent_id);
+    formData.append("zone_id", post.value.zone_id);
+    formData.append("country_id", post.value.country_id);
+    formData.append("ministry_id", post.value.ministry_id);
+    formData.append("_method", "PUT");
 
-            await updatePost(formData, props.id);
-            if (errors.value == "") {
-                if (props.type == "article") {
-                    router.push({
-                        name: "compte",
-                        params: {
-                            name: user.firstname,
-                            id: user.id,
-                            redirect: "article",
-                        },
-                    });
-                } else {
-                    router.push({
-                        name: "compte",
-                        params: {
-                            name: user.firstname,
-                            id: user.id,
-                            redirect: "propau",
-                        },
-                    });
-                }
-            }
-        };
-        return {
-            msgClick,
-            zoneFiltered,
-            countryFiltered,
-            filteredZone,
-            filteredCountry,
-            textarea,
-            post,
-            continents,
-            zones,
-            countries,
-            ministries,
-            savePost,
-            errors,
-            loading,
-        };
-    },
-    methods: {
-        handelFileObject() {
-            this.post.image = this.$refs.file.files[0];
-        },
-        changeLocale(lang) {
-            this.$i18n.locale = lang;
-            localStorage.lang = this.$i18n.locale;
-        },
-    },
+    await updatePost(formData, props.id);
+    if (errors.value == "") {
+        if (props.type == "article") {
+            router.push({
+                name: "compte",
+                params: {
+                    name: user.firstname,
+                    id: user.id,
+                    redirect: "article",
+                },
+            });
+        } else {
+            router.push({
+                name: "compte",
+                params: {
+                    name: user.firstname,
+                    id: user.id,
+                    redirect: "propau",
+                },
+            });
+        }
+    }
+};
+
+const handelFileObject = () => {
+    post.image = file.value.files[0];
+};
+const changeLocale = (lang) => {
+    locale = lang;
+    localStorage.lang = locale;
 };
 </script>

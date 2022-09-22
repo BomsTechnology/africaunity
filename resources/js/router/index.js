@@ -1,90 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
-const Home = () => import("../views/front/Home.vue");
-const Article = () => import("../views/front/Article.vue");
-const Contact = () => import("../views/front/Contact.vue");
-const Establishment = () => import("../views/front/Establishment.vue");
-const Job = () => import("../views/front/Job.vue");
-const Login = () => import("../views/front/Login.vue");
-const ForgotPassword = () => import("../views/front/ForgotPassword.vue");
-const ResetPassword = () => import("../views/front/ResetPassword.vue");
-const Pack = () => import("../views/front/Pack.vue");
-const AddPost = () => import("../views/front/AddPost.vue");
-const AddJob = () => import("../views/front/AddJob.vue");
-const SingleJob = () => import("../views/front/SingleJob.vue");
-const EditJob = () => import("../views/front/EditJob.vue");
-const SinglePost = () => import("../views/front/SinglePost.vue");
-const SingleUniversity = () => import("../views/front/SingleUniversity.vue");
-const SingleAnnouncement = () =>
-    import("../views/front/SingleAnnouncement.vue");
-const EditPost = () => import("../views/front/EditPost.vue");
-const EditAnnouncement = () => import("../views/front/EditAnnouncement.vue");
-const AddAnnouncement = () => import("../views/front/AddAnnouncement.vue");
-const Particular = () => import("../views/front/Particular.vue");
-const PoliticalInstitution = () =>
-    import("../views/front/PoliticalInstitution.vue");
-const PropAu = () => import("../views/front/PropAu.vue");
-const Universities = () => import("../views/front/Universities.vue");
-const Register = () => import("../views/front/Register.vue");
-const NotFound = () => import("../views/front/NotFound.vue");
-const Profile = () => import("../views/front/Profile.vue");
-const SettingAccount = () => import("../views/front/SettingAccount.vue");
-const LoginAdmin = () => import("../views/back/Login.vue");
-const Dashboard = () => import("../views/back/Dashboard.vue");
-const OtherTools = () => import("../views/back/OtherTools.vue");
-const PostIndex = () => import("../views/back/posts/PostIndex.vue");
-const PostCreate = () => import("../views/back/posts/PostCreate.vue");
-const PostEdit = () => import("../views/back/posts/PostEdit.vue");
-const UserIndex = () => import("../views/back/user/UserIndex.vue");
-const UserCreate = () => import("../views/back/user/UserCreate.vue");
-const UserEdit = () => import("../views/back/user/UserEdit.vue");
-const ContinentIndex = () =>
-    import("../views/back/continent/ContinentIndex.vue");
-const ContinentCreate = () =>
-    import("../views/back/continent/ContinentCreate.vue");
-const ContinentEdit = () => import("../views/back/continent/ContinentEdit.vue");
-const CommentIndex = () => import("../views/back/comment/CommentIndex.vue");
-const CommentCreate = () => import("../views/back/comment/CommentCreate.vue");
-const ZoneIndex = () => import("../views/back/zone/ZoneIndex.vue");
-const ZoneCreate = () => import("../views/back/zone/ZoneCreate.vue");
-const ZoneEdit = () => import("../views/back/zone/ZoneEdit.vue");
-const CountryIndex = () => import("../views/back/country/CountryIndex.vue");
-const CountryCreate = () => import("../views/back/country/CountryCreate.vue");
-const CountryEdit = () => import("../views/back/country/CountryEdit.vue");
-const CurrencyIndex = () => import("../views/back/currency/CurrencyIndex.vue");
-const CurrencyCreate = () =>
-    import("../views/back/currency/CurrencyCreate.vue");
-const CurrencyEdit = () => import("../views/back/currency/CurrencyEdit.vue");
-const CategoryAnnouncementIndex = () =>
-    import("../views/back/category_announcement/CategoryAnnouncementIndex.vue");
-const CategoryAnnouncementCreate = () =>
-    import(
-        "../views/back/category_announcement/CategoryAnnouncementCreate.vue"
-    );
-const CategoryAnnouncementEdit = () =>
-    import("../views/back/category_announcement/CategoryAnnouncementEdit.vue");
-const AnnouncementIndex = () =>
-    import("../views/back/announcement/AnnouncementIndex.vue");
-const AnnouncementCreate = () =>
-    import("../views/back/announcement/AnnouncementCreate.vue");
-const AnnouncementEdit = () =>
-    import("../views/back/announcement/AnnouncementEdit.vue");
-const JobOfferIndex = () => import("../views/back/jobOffer/JobOfferIndex.vue");
-const JobOfferCreate = () =>
-    import("../views/back/jobOffer/JobOfferCreate.vue");
-const JobOfferEdit = () => import("../views/back/jobOffer/JobOfferEdit.vue");
-const CityIndex = () => import("../views/back/city/CityIndex.vue");
-const CityCreate = () => import("../views/back/city/CityCreate.vue");
-const CityEdit = () => import("../views/back/city/CityEdit.vue");
-const UniversityIndex = () =>
-    import("../views/back/university/UniversityIndex.vue");
-const UniversityCreate = () =>
-    import("../views/back/university/UniversityCreate.vue");
-const UniversityEdit = () =>
-    import("../views/back/university/UniversityEdit.vue");
-const MinistryIndex = () => import("../views/back/ministry/MinistryIndex.vue");
-const MinistryCreate = () =>
-    import("../views/back/ministry/MinistryCreate.vue");
-const MinistryEdit = () => import("../views/back/ministry/MinistryEdit.vue");
+
+const Header = () => import("@/components/Header.vue");
+const Footer = () => import("@/components/Footer.vue");
+
 const siteName = "AfricaUnity";
 
 const routes = [
@@ -92,7 +10,11 @@ const routes = [
     {
         path: "/",
         name: "home",
-        component: Home,
+        components: {
+            default: () => import("@/views/front/Home.vue"),
+            header: Header,
+            footer: Footer,
+        },
         meta: {
             title: siteName + " - Accueil",
         },
@@ -100,153 +22,242 @@ const routes = [
     {
         path: "/articles",
         name: "articles",
-        component: Article,
+        components: {
+            default: () => import("@/views/front/Article.vue"),
+            header: Header,
+            footer: Footer,
+        },
         meta: {
             title: siteName + " - Articles",
+            requiresAuth: true,
         },
     },
     {
         path: "/prop-au",
         name: "propau",
-        component: PropAu,
+        components: {
+            default: () => import("@/views/front/PropAu.vue"),
+            header: Header,
+            footer: Footer,
+        },
         meta: {
             title: siteName + " - PropAU",
+            requiresAuth: true,
         },
     },
     {
         path: "/add/:type",
         name: "add.post",
         props: true,
-        component: AddPost,
+        components: {
+            default: () => import("@/views/front/AddPost.vue"),
+            header: Header,
+            footer: Footer,
+        },
         meta: {
             title: siteName + " - Ajouter",
+            requiresAuth: true,
         },
     },
     {
         path: "/post/:id",
         name: "show.post",
         props: true,
-        component: SinglePost,
+        components: {
+            default: () => import("@/views/front/SinglePost.vue"),
+            header: Header,
+            footer: Footer,
+        },
         meta: {
             title: siteName,
+            requiresAuth: true,
         },
     },
     {
         path: "/ads/:id",
         name: "show.ads",
         props: true,
-        component: SingleAnnouncement,
+        components: {
+            default: () => import("@/views/front/SingleAnnouncement.vue"),
+            header: Header,
+            footer: Footer,
+        },
         meta: {
             title: siteName,
+            requiresAuth: true,
         },
     },
     {
         path: "/ads/:id/edit",
         name: "edit.ads",
         props: true,
-        component: EditAnnouncement,
+        components: {
+            default: () => import("@/views/front/EditAnnouncement.vue"),
+            header: Header,
+            footer: Footer,
+        },
         meta: {
             title: siteName,
+            requiresAuth: true,
         },
     },
     {
         path: "/add/ads",
         name: "add.ads",
         props: true,
-        component: AddAnnouncement,
+        components: {
+            default: () => import("@/views/front/AddAnnouncement.vue"),
+            header: Header,
+            footer: Footer,
+        },
         meta: {
             title: siteName,
+            requiresAuth: true,
         },
     },
     {
         path: "/add/job/:duplicate?",
         name: "add.job",
         props: true,
-        component: AddJob,
+        components: {
+            default: () => import("@/views/front/AddJob.vue"),
+            header: Header,
+            footer: Footer,
+        },
         meta: {
             title: siteName,
+            requiresAuth: true,
         },
     },
     {
         path: "/job/:id",
         name: "show.job",
         props: true,
-        component: SingleJob,
+        components: {
+            default: () => import("@/views/front/SingleJob.vue"),
+            header: Header,
+            footer: Footer,
+        },
         meta: {
             title: siteName,
+            requiresAuth: true,
         },
     },
     {
         path: "/job/:id/edit",
         name: "edit.job",
         props: true,
-        component: EditJob,
+        components: {
+            default: () => import("@/views/front/EditJob.vue"),
+            header: Header,
+            footer: Footer,
+        },
         meta: {
             title: siteName,
+            requiresAuth: true,
         },
     },
     {
         path: "/:type/:id/edit",
         name: "edit.post",
         props: true,
-        component: EditPost,
+        components: {
+            default: () => import("@/views/front/EditPost.vue"),
+            header: Header,
+            footer: Footer,
+        },
         meta: {
             title: siteName,
+            requiresAuth: true,
         },
     },
     {
         path: "/profiles/establishment",
         name: "establishment",
-        component: Establishment,
+        components: {
+            default: () => import("@/views/front/Establishment.vue"),
+            header: Header,
+            footer: Footer,
+        },
         meta: {
             title: siteName + " - Etablissement",
+            requiresAuth: true,
         },
     },
     {
         path: "/profiles/particular",
         name: "particular",
-        component: Particular,
+        components: {
+            default: () => import("@/views/front/Particular.vue"),
+            header: Header,
+            footer: Footer,
+        },
         meta: {
             title: siteName + " - Particulier",
+            requiresAuth: true,
         },
     },
     {
         path: "/profiles/political-institution",
         name: "ip",
-        component: PoliticalInstitution,
+        components: {
+            default: () => import("@/views/front/PoliticalInstitution.vue"),
+            header: Header,
+            footer: Footer,
+        },
         meta: {
             title: siteName + " - Institutions Politiques",
+            requiresAuth: true,
         },
     },
     {
         path: "/jobs",
         name: "jobs",
-        component: Job,
+        components: {
+            default: () => import("@/views/front/Job.vue"),
+            header: Header,
+            footer: Footer,
+        },
         meta: {
             title: siteName + " - Jobs",
+            requiresAuth: true,
         },
     },
     {
         path: "/universities",
         name: "universities",
-        component: Universities,
+        components: {
+            default: () => import("@/views/front/Universities.vue"),
+            header: Header,
+            footer: Footer,
+        },
         meta: {
             title: siteName + " - Universités",
+            requiresAuth: true,
         },
     },
     {
         path: "/university/:id",
         name: "show.university",
         props: true,
-        component: SingleUniversity,
+        components: {
+            default: () => import("@/views/front/SingleUniversity.vue"),
+            header: Header,
+            footer: Footer,
+        },
         meta: {
             title: siteName,
+            requiresAuth: true,
         },
     },
     {
         path: "/contact",
         name: "contact",
-        component: Contact,
+        components: {
+            default: () => import("@/views/front/Contact.vue"),
+            header: Header,
+            footer: Footer,
+        },
         meta: {
             title: siteName + " - Contact",
         },
@@ -254,7 +265,11 @@ const routes = [
     {
         path: "/forgot-password",
         name: "forgot.password",
-        component: ForgotPassword,
+        components: {
+            default: () => import("@/views/front/ForgotPassword.vue"),
+            header: Header,
+            footer: Footer,
+        },
         meta: {
             title: siteName + " - Mot de passe oublié",
         },
@@ -262,7 +277,11 @@ const routes = [
     {
         path: "/reset-password/:token",
         name: "reset.password",
-        component: ResetPassword,
+        components: {
+            default: () => import("@/views/front/ResetPassword.vue"),
+            header: Header,
+            footer: Footer,
+        },
         props: true,
         meta: {
             title: siteName + " - Modifié Le Mot de passe",
@@ -272,7 +291,11 @@ const routes = [
         path: "/login/:redirect?",
         name: "login",
         props: true,
-        component: Login,
+        components: {
+            default: () => import("@/views/front/Login.vue"),
+            header: Header,
+            footer: Footer,
+        },
         meta: {
             title: siteName + " - Se Connecter",
         },
@@ -280,7 +303,11 @@ const routes = [
     {
         path: "/pack",
         name: "pack",
-        component: Pack,
+        components: {
+            default: () => import("@/views/front/Pack.vue"),
+            header: Header,
+            footer: Footer,
+        },
         meta: {
             title: siteName + " - Pack",
         },
@@ -289,7 +316,11 @@ const routes = [
         path: "/register/:type",
         name: "register",
         props: true,
-        component: Register,
+        components: {
+            default: () => import("@/views/front/Register.vue"),
+            header: Header,
+            footer: Footer,
+        },
         meta: {
             title: siteName + " - S'inscrire",
         },
@@ -298,26 +329,48 @@ const routes = [
         path: "/account/:name/:id/:redirect?",
         name: "compte",
         props: true,
-        component: Profile,
+        components: {
+            default: () => import("@/views/front/Profile.vue"),
+            header: Header,
+            footer: Footer,
+        },
         meta: {
             title: siteName + " - Compte",
+            requiresAuth: true,
         },
     },
     {
         path: "/setting/:name/:id",
         name: "setting.account",
         props: true,
-        component: SettingAccount,
+        components: {
+            default: () => import("@/views/front/SettingAccount.vue"),
+            header: Header,
+            footer: Footer,
+        },
         meta: {
             title: siteName + " - Parametre du Compte",
+            requiresAuth: true,
         },
     },
     {
         path: "/:pathMatch(.*)",
         name: "not.found",
-        component: NotFound,
+        components: {
+            default: () => import("@/views/front/NotFound.vue"),
+            header: Header,
+            footer: Footer,
+        },
         meta: {
             title: siteName + " - Page Introuvable",
+        },
+    },
+    {
+        path: "/login/admin",
+        component: () => import("@/views/back/Login.vue"),
+        name: "login.admin",
+        meta: {
+            title: siteName + " - Admin Panel",
         },
     },
 
@@ -325,21 +378,19 @@ const routes = [
     {
         path: "/admin",
         name: "admin",
-        component: LoginAdmin,
+        components: {
+            default: () => import("@/views/back/DashHome.vue"),
+            sidebar: () => import("@/components/Sidebar.vue"),
+        },
+        meta: {
+            requiresAuth: true,
+            isAdmin: true,
+        },
         name: "admin",
         children: [
             {
                 path: "",
-                component: LoginAdmin,
-                name: "admin.login",
-                meta: {
-                    title: siteName + " - Admin Panel",
-                },
-            },
-
-            {
-                path: "dashboard",
-                component: Dashboard,
+                component: () => import("@/views/back/Dashboard.vue"),
                 name: "admin.dash",
                 meta: {
                     title: siteName + " - Dashboard",
@@ -348,7 +399,7 @@ const routes = [
 
             {
                 path: "other",
-                component: OtherTools,
+                component: () => import("@/views/back/OtherTools.vue"),
                 name: "admin.other",
                 meta: {
                     title: siteName + " - Other",
@@ -357,7 +408,7 @@ const routes = [
 
             {
                 path: "post/:type",
-                component: PostIndex,
+                component: () => import("@/views/back/posts/PostIndex.vue"),
                 props: true,
                 name: "admin.post.index",
                 meta: {
@@ -366,7 +417,7 @@ const routes = [
             },
             {
                 path: "post/create/:type",
-                component: PostCreate,
+                component: () => import("@/views/back/posts/PostCreate.vue"),
                 props: true,
                 name: "admin.post.create",
                 meta: {
@@ -375,7 +426,7 @@ const routes = [
             },
             {
                 path: "post/edit/:type/:id",
-                component: PostEdit,
+                component: () => import("@/views/back/posts/PostEdit.vue"),
                 props: true,
                 name: "admin.post.edit",
                 meta: {
@@ -384,7 +435,8 @@ const routes = [
             },
             {
                 path: "continent",
-                component: ContinentIndex,
+                component: () =>
+                    import("@/views/back/continent/ContinentIndex.vue"),
                 name: "admin.continent.index",
                 meta: {
                     title: siteName + " - Continent",
@@ -392,7 +444,8 @@ const routes = [
             },
             {
                 path: "continent/create",
-                component: ContinentCreate,
+                component: () =>
+                    import("@/views/back/continent/ContinentCreate.vue"),
                 name: "admin.continent.create",
                 meta: {
                     title: siteName + " - Create Continent",
@@ -400,7 +453,8 @@ const routes = [
             },
             {
                 path: "continent/edit/:id",
-                component: ContinentEdit,
+                component: () =>
+                    import("@/views/back/continent/ContinentEdit.vue"),
                 props: true,
                 name: "admin.continent.edit",
                 meta: {
@@ -409,7 +463,7 @@ const routes = [
             },
             {
                 path: "user",
-                component: UserIndex,
+                component: () => import("@/views/back/user/UserIndex.vue"),
                 name: "admin.user.index",
                 meta: {
                     title: siteName + " - User",
@@ -417,7 +471,7 @@ const routes = [
             },
             {
                 path: "user/create",
-                component: UserCreate,
+                component: () => import("@/views/back/user/UserCreate.vue"),
                 name: "admin.user.create",
                 meta: {
                     title: siteName + " - Create User",
@@ -425,7 +479,7 @@ const routes = [
             },
             {
                 path: "user/edit/:id",
-                component: UserEdit,
+                component: () => import("@/views/back/user/UserEdit.vue"),
                 props: true,
                 name: "admin.user.edit",
                 meta: {
@@ -434,7 +488,8 @@ const routes = [
             },
             {
                 path: "job",
-                component: JobOfferIndex,
+                component: () =>
+                    import("@/views/back/jobOffer/JobOfferIndex.vue"),
                 name: "admin.jobOffer.index",
                 meta: {
                     title: siteName + " - Job",
@@ -442,7 +497,8 @@ const routes = [
             },
             {
                 path: "job/create",
-                component: JobOfferCreate,
+                component: () =>
+                    import("@/views/back/jobOffer/JobOfferCreate.vue"),
                 name: "admin.jobOffer.create",
                 meta: {
                     title: siteName + " - Create Job",
@@ -450,7 +506,8 @@ const routes = [
             },
             {
                 path: "job/edit/:id",
-                component: JobOfferEdit,
+                component: () =>
+                    import("@/views/back/jobOffer/JobOfferEdit.vue"),
                 props: true,
                 name: "admin.jobOffer.edit",
                 meta: {
@@ -459,7 +516,8 @@ const routes = [
             },
             {
                 path: "comment",
-                component: CommentIndex,
+                component: () =>
+                    import("@/views/back/comment/CommentIndex.vue"),
                 name: "admin.comment.index",
                 meta: {
                     title: siteName + " - Comment",
@@ -467,7 +525,8 @@ const routes = [
             },
             {
                 path: "comment/create",
-                component: CommentCreate,
+                component: () =>
+                    import("@/views/back/comment/CommentCreate.vue"),
                 name: "admin.comment.create",
                 meta: {
                     title: siteName + " - Create Comment",
@@ -475,7 +534,7 @@ const routes = [
             },
             {
                 path: "zone",
-                component: ZoneIndex,
+                component: () => import("@/views/back/zone/ZoneIndex.vue"),
                 name: "admin.zone.index",
                 meta: {
                     title: siteName + " - Zone",
@@ -483,7 +542,7 @@ const routes = [
             },
             {
                 path: "zone/create",
-                component: ZoneCreate,
+                component: () => import("@/views/back/zone/ZoneCreate.vue"),
                 name: "admin.zone.create",
                 meta: {
                     title: siteName + " - Create Zone",
@@ -491,7 +550,7 @@ const routes = [
             },
             {
                 path: "zone/edit/:id",
-                component: ZoneEdit,
+                component: () => import("@/views/back/zone/ZoneEdit.vue"),
                 props: true,
                 name: "admin.zone.edit",
                 meta: {
@@ -500,7 +559,8 @@ const routes = [
             },
             {
                 path: "country",
-                component: CountryIndex,
+                component: () =>
+                    import("@/views/back/country/CountryIndex.vue"),
                 name: "admin.country.index",
                 meta: {
                     title: siteName + " - Country",
@@ -508,7 +568,8 @@ const routes = [
             },
             {
                 path: "country/create",
-                component: CountryCreate,
+                component: () =>
+                    import("@/views/back/country/CountryCreate.vue"),
                 name: "admin.country.create",
                 meta: {
                     title: siteName + " - Create Country",
@@ -516,7 +577,7 @@ const routes = [
             },
             {
                 path: "country/edit/:id",
-                component: CountryEdit,
+                component: () => import("@/views/back/country/CountryEdit.vue"),
                 props: true,
                 name: "admin.country.edit",
                 meta: {
@@ -525,7 +586,8 @@ const routes = [
             },
             {
                 path: "ads",
-                component: AnnouncementIndex,
+                component: () =>
+                    import("@/views/back/announcement/AnnouncementIndex.vue"),
                 name: "admin.announcement.index",
                 meta: {
                     title: siteName + " - Ads",
@@ -533,7 +595,8 @@ const routes = [
             },
             {
                 path: "ads/create",
-                component: AnnouncementCreate,
+                component: () =>
+                    import("@/views/back/announcement/AnnouncementCreate.vue"),
                 name: "admin.announcement.create",
                 meta: {
                     title: siteName + " - Create Ads",
@@ -541,7 +604,8 @@ const routes = [
             },
             {
                 path: "ads/edit/:id",
-                component: AnnouncementEdit,
+                component: () =>
+                    import("@/views/back/announcement/AnnouncementEdit.vue"),
                 props: true,
                 name: "admin.announcement.edit",
                 meta: {
@@ -550,7 +614,8 @@ const routes = [
             },
             {
                 path: "currency",
-                component: CurrencyIndex,
+                component: () =>
+                    import("@/views/back/currency/CurrencyIndex.vue"),
                 name: "admin.currency.index",
                 meta: {
                     title: siteName + " - Currency",
@@ -558,7 +623,8 @@ const routes = [
             },
             {
                 path: "currency/create",
-                component: CurrencyCreate,
+                component: () =>
+                    import("@/views/back/currency/CurrencyCreate.vue"),
                 name: "admin.currency.create",
                 meta: {
                     title: siteName + " - Create Currency",
@@ -566,7 +632,8 @@ const routes = [
             },
             {
                 path: "currency/edit/:id",
-                component: CurrencyEdit,
+                component: () =>
+                    import("@/views/back/currency/CurrencyEdit.vue"),
                 props: true,
                 name: "admin.currency.edit",
                 meta: {
@@ -575,7 +642,10 @@ const routes = [
             },
             {
                 path: "category",
-                component: CategoryAnnouncementIndex,
+                component: () =>
+                    import(
+                        "@/views/back/category_announcement/CategoryAnnouncementIndex.vue"
+                    ),
                 name: "admin.category.index",
                 meta: {
                     title: siteName + " - Category",
@@ -583,7 +653,10 @@ const routes = [
             },
             {
                 path: "category/create",
-                component: CategoryAnnouncementCreate,
+                component: () =>
+                    import(
+                        "@/views/back/category_announcement/CategoryAnnouncementCreate.vue"
+                    ),
                 name: "admin.category.create",
                 meta: {
                     title: siteName + " - Create Category",
@@ -591,7 +664,10 @@ const routes = [
             },
             {
                 path: "category/edit/:id",
-                component: CategoryAnnouncementEdit,
+                component: () =>
+                    import(
+                        "@/views/back/category_announcement/CategoryAnnouncementEdit.vue"
+                    ),
                 props: true,
                 name: "admin.category.edit",
                 meta: {
@@ -600,7 +676,7 @@ const routes = [
             },
             {
                 path: "city",
-                component: CityIndex,
+                component: () => import("@/views/back/city/CityIndex.vue"),
                 name: "admin.city.index",
                 meta: {
                     title: siteName + " - City",
@@ -608,7 +684,7 @@ const routes = [
             },
             {
                 path: "city/create",
-                component: CityCreate,
+                component: () => import("@/views/back/city/CityCreate.vue"),
                 name: "admin.city.create",
                 meta: {
                     title: siteName + " - Create City",
@@ -616,7 +692,7 @@ const routes = [
             },
             {
                 path: "city/edit/:id",
-                component: CityEdit,
+                component: () => import("@/views/back/city/CityEdit.vue"),
                 props: true,
                 name: "admin.city.edit",
                 meta: {
@@ -625,7 +701,8 @@ const routes = [
             },
             {
                 path: "university",
-                component: UniversityIndex,
+                component: () =>
+                    import("@/views/back/university/UniversityIndex.vue"),
                 name: "admin.university.index",
                 meta: {
                     title: siteName + " - University",
@@ -633,7 +710,8 @@ const routes = [
             },
             {
                 path: "university/create",
-                component: UniversityCreate,
+                component: () =>
+                    import("@/views/back/university/UniversityCreate.vue"),
                 name: "admin.university.create",
                 meta: {
                     title: siteName + " - Create University",
@@ -641,7 +719,8 @@ const routes = [
             },
             {
                 path: "university/edit/:id",
-                component: UniversityEdit,
+                component: () =>
+                    import("@/views/back/university/UniversityEdit.vue"),
                 props: true,
                 name: "admin.university.edit",
                 meta: {
@@ -650,7 +729,8 @@ const routes = [
             },
             {
                 path: "ministry",
-                component: MinistryIndex,
+                component: () =>
+                    import("@/views/back/ministry/MinistryIndex.vue"),
                 name: "admin.ministry.index",
                 meta: {
                     title: siteName + " - Ministry",
@@ -658,7 +738,8 @@ const routes = [
             },
             {
                 path: "ministry/create",
-                component: MinistryCreate,
+                component: () =>
+                    import("@/views/back/ministry/MinistryCreate.vue"),
                 name: "admin.ministry.create",
                 meta: {
                     title: siteName + " - Create Ministry",
@@ -666,7 +747,8 @@ const routes = [
             },
             {
                 path: "ministry/edit/:id",
-                component: MinistryEdit,
+                component: () =>
+                    import("@/views/back/ministry/MinistryEdit.vue"),
                 props: true,
                 name: "admin.ministry.edit",
                 meta: {
@@ -694,8 +776,31 @@ const router = createRouter({
     },
 });
 
-router.afterEach((to) => {
-    document.title = to.meta.title;
+// router.afterEach((to) => {
+//     document.title = to.meta.title;
+// });
+
+router.beforeEach((to, from, next) => {
+    if (to.params.slug) {
+        document.title =
+            `${to.params.slug[0].toUpperCase()}${to.params.slug
+                .replaceAll("-", " ")
+                .slice(1)} | ` + siteName;
+    } else {
+        document.title = to.meta.title;
+    }
+    if (to.meta.isAdmin && to.meta.requiresAuth && !localStorage.token) {
+        next({ name: "login.admin" });
+    } else if (to.meta.requiresAuth && !localStorage.token) {
+        router.push({
+            name: "login",
+            params: {
+                redirect: "not-login",
+            },
+        });
+    } else {
+        next();
+    }
 });
 
 export default router;

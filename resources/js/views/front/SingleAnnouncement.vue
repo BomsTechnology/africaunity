@@ -1,16 +1,16 @@
 <template>
     <div
-        class="flex lg:flex-row flex-col p-4 lg:space-x-2 md:space-y-2 text-lg"
+        class="mx-auto flex min-h-screen w-full flex-col bg-white p-4 text-lg md:space-y-2 lg:flex-row lg:space-x-2 xl:w-[90%]"
     >
         <div class="lg:w-[70%]">
             <div class="py-6 px-4" v-if="announcement.length != 0">
                 <div
-                    class="overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800"
+                    class="dark:bg-gray-800 overflow-hidden rounded-lg bg-white shadow-md"
                 >
                     <!-- Announcement -->
                     <img
                         v-if="announcement.image"
-                        class="object-cover w-full h-96"
+                        class="h-96 w-full object-cover"
                         :src="announcement.image"
                         alt=""
                     />
@@ -18,17 +18,17 @@
                         <div>
                             <a
                                 href="#"
-                                class="text-xs py-1 px-2 rounded capitalize text-white bg-primary-blue"
+                                class="rounded bg-primary-blue py-1 px-2 text-xs capitalize text-white"
                             >
                                 {{ announcement.category.name }}
                             </a>
                             <h1
-                                class="block mt-2 text-3xl font-semibold text-gray-800 transition-colors duration-200 transform dark:text-white hover:text-gray-600"
+                                class="dark:text-white mt-2 block transform text-3xl font-semibold text-gray-800 transition-colors duration-200 hover:text-gray-600"
                             >
                                 {{ announcement.title }}
                             </h1>
                             <div
-                                class="flex text-xs space-x-2 mt-2 text-gray-500"
+                                class="mt-2 flex space-x-2 text-xs text-gray-500"
                             >
                                 <div class="flex space-x-1">
                                     <CalendarIcon class="h-4 w-4" />
@@ -58,7 +58,7 @@
                                 </div>
                             </div>
                             <p
-                                class="mt-2 py-4 my-4 text-gray-600 dark:text-gray-400"
+                                class="dark:text-gray-400 my-4 mt-2 py-4 text-gray-600"
                             >
                                 {{ announcement.description }}
                             </p>
@@ -78,7 +78,7 @@
                                 >
                                     <img
                                         v-if="announcement.user.avatar"
-                                        class="object-cover h-16 w-16 shadow rounded-full"
+                                        class="h-16 w-16 rounded-full object-cover shadow"
                                         :src="announcement.user.avatar"
                                     />
 
@@ -87,7 +87,7 @@
                                         class="h-10 w-10 text-gray-700"
                                     />
                                     <span
-                                        class="mx-2 font-semibold text-gray-700 dark:text-gray-200"
+                                        class="dark:text-gray-200 mx-2 font-semibold text-gray-700"
                                         >{{ announcement.user.firstname }}</span
                                     >
                                 </router-link>
@@ -104,14 +104,14 @@
                                             }"
                                         >
                                             <PencilAltIcon
-                                                class="h-5 w-5 text-gray-400 cursor-pointer hover:text-primary-blue"
+                                                class="h-5 w-5 cursor-pointer text-gray-400 hover:text-primary-blue"
                                             />
                                         </router-link>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="px-2 flex items-center space-x-3 py-4">
+                        <div class="flex items-center space-x-3 px-2 py-4">
                             <!-- facebook icons -->
                             <!-- <a :href="'https://www.facebook.com/sharer/sharer.php?u='+url" data-network="facebook" target="_blank" rel="noopener noreferrer">
                                 <svg fill="#3b5998" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 30 30" class="h-6 w-6"><path d="M27,15c0,6.627-5.373,12-12,12S3,21.627,3,15S8.373,3,15,3S27,8.373,27,15z M19.181,8.131C18.877,8.09,18.235,8,17.021,8 C14.486,8,13,9.339,13,12.389V14h-3v3h3v7.799C13.646,24.93,14.315,25,15,25c0.338,0,0.671-0.018,1-0.05V17h2.726l0.428-3H16 v-1.282C16,11.568,16.376,11,17.452,11h1.729V8.131z"/></svg>
@@ -144,7 +144,7 @@
             </div>
             <div v-else-if="loading == 1" class="p-28">
                 <svg
-                    class="animate-spin h-16 w-16 mx-auto"
+                    class="mx-auto h-16 w-16 animate-spin"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -166,40 +166,40 @@
             </div>
             <div
                 v-else
-                class="p-28 flex justify-center text-gray-500 flex-col items-center animate-pulse"
+                class="flex animate-pulse flex-col items-center justify-center p-28 text-gray-500"
             >
                 <EmojiSadIcon class="h-16 w-16" />
-                <span class="text-2xl mt-2">{{ $t("no-content") }}</span>
+                <span class="mt-2 text-2xl">{{ $t("no-content") }}</span>
             </div>
         </div>
-        <div class="lg:w-[30%] bg-white py-5">
-            <div class="shadow rounded-md py-5 px-10 space-y-3">
-                <h1 class="text-2xl text-primary-blue font-bold">
+        <div class="bg-white py-5 lg:w-[30%]">
+            <div class="space-y-3 rounded-md py-5 px-10 shadow">
+                <h1 class="text-2xl font-bold text-primary-blue">
                     {{ $t("details") }}
                 </h1>
                 <div
-                    class="text-gray-500 flex items-center space-x-2"
+                    class="flex items-center space-x-2 text-gray-500"
                     v-if="announcement.university"
                 >
                     <LocationMarkerIcon class="h-8 w-8" />
                     <span>{{ announcement.university.name }}</span>
                 </div>
                 <div
-                    class="text-gray-500 flex items-center space-x-2"
+                    class="flex items-center space-x-2 text-gray-500"
                     v-if="announcement.email"
                 >
                     <MailIcon class="h-8 w-8" />
                     <span>{{ announcement.email }}</span>
                 </div>
                 <div
-                    class="text-gray-500 flex items-center space-x-2"
+                    class="flex items-center space-x-2 text-gray-500"
                     v-if="announcement.phone"
                 >
                     <PhoneIcon class="h-8 w-8" />
                     <span>{{ announcement.phone }} </span>
                 </div>
                 <div
-                    class="text-gray-500 flex items-center space-x-2"
+                    class="flex items-center space-x-2 text-gray-500"
                     v-if="
                         announcement.website && announcement.website != 'null'
                     "
@@ -208,14 +208,14 @@
                     <span>{{ announcement.website }} </span>
                 </div>
                 <div
-                    class="text-gray-500 flex items-center space-x-2"
+                    class="flex items-center space-x-2 text-gray-500"
                     v-if="announcement.adress && announcement.adress != 'null'"
                 >
                     <BriefcaseIcon class="h-8 w-8" />
                     <span>{{ announcement.adress }} </span>
                 </div>
                 <div
-                    class="text-gray-500 flex items-center space-x-2"
+                    class="flex items-center space-x-2 text-gray-500"
                     v-if="announcement.currency && announcement.price != 'null'"
                 >
                     <CashIcon class="h-8 w-8" />
@@ -225,11 +225,11 @@
                     </span>
                 </div>
             </div>
-            <div class="shadow rounded-md py-5 mt-4">
+            <div class="mt-4 rounded-md py-5 shadow">
                 <Error v-if="errors != ''">{{ errors }}</Error>
                 <div
                     v-if="loadingC == 2"
-                    class="py-4 px-2 bg-green-50 text-green-700"
+                    class="bg-green-50 py-4 px-2 text-green-700"
                 >
                     <p>
                         {{ $t("msg-contact-sucess") }}
@@ -238,7 +238,7 @@
                 <form v-else @submit.prevent="sendContact()">
                     <div class="px-8">
                         <label
-                            class="text-xl text-primary-blue font-bold"
+                            class="text-xl font-bold text-primary-blue"
                             for="pt"
                             >{{ $t("contact-ads") }}
                             <span class="text-red-500">*</span></label
@@ -248,7 +248,7 @@
                             required
                             type="text"
                             id="pt"
-                            class="block w-full px-4 py-2 mt-2 text-gray-700 h-60 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:ring-primary-blue focus:border-primary-blue focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                            class="dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 dark:focus:border-blue-300 mt-2 block h-60 w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-primary-blue focus:outline-none focus:ring focus:ring-primary-blue focus:ring-opacity-40"
                         >
                         </textarea>
 
@@ -257,7 +257,7 @@
                             <button
                                 v-if="loadingC == 0"
                                 type="submit"
-                                class="px-6 py-4 text-md leading-5 w-full text-white rounded bg-primary-blue focus:outline-none"
+                                class="text-md w-full rounded bg-primary-blue px-6 py-4 leading-5 text-white focus:outline-none"
                             >
                                 {{ $t("send") }}
                             </button>
@@ -265,11 +265,11 @@
                                 v-if="loadingC == 1"
                                 type="submit"
                                 disabled
-                                class="px-6 py-4 text-md leading-5 flex justify-center items-center w-full text-white rounded bg-blue-300 focus:outline-none"
+                                class="text-md flex w-full items-center justify-center rounded bg-blue-300 px-6 py-4 leading-5 text-white focus:outline-none"
                             >
                                 {{ $t("send") }}...
                                 <svg
-                                    class="animate-spin h-5 w-5 text-white"
+                                    class="h-5 w-5 animate-spin text-white"
                                     xmlns="http://www.w3.org/2000/svg"
                                     fill="none"
                                     viewBox="0 0 24 24"
@@ -297,7 +297,7 @@
     </div>
 </template>
 
-<script>
+<script setup>
 import router from "../../router";
 import { reactive, ref, onMounted } from "vue";
 import Error from "../../components/Error.vue";
@@ -316,76 +316,42 @@ import {
     BriefcaseIcon,
 } from "@heroicons/vue/solid";
 import useAnnouncements from "../../services/announcementServices.js";
-export default {
-    props: {
-        id: {
-            required: true,
-            type: String,
-        },
-    },
-    components: {
-        UserIcon,
-        PlusCircleIcon,
-        LocationMarkerIcon,
-        CalendarIcon,
-        EmojiSadIcon,
-        UserCircleIcon,
-        PencilAltIcon,
-        Error,
-        MailIcon,
-        PhoneIcon,
-        GlobeIcon,
-        CashIcon,
-        BriefcaseIcon,
-    },
-    created() {
-        if (!localStorage.token) {
-            router.push({ name: "login", params: { redirect: "not-login" } });
-        }
-    },
-    setup(props) {
-        const url = window.location.href;
-        const { announcement, getAnnouncement2, loading, errors } =
-            useAnnouncements();
-        const user = localStorage.user ? JSON.parse(localStorage.user) : "";
-        const loadingC = ref(0);
-        onMounted(getAnnouncement2(props.id));
 
-        const contact = reactive({
-            user: user.id,
-            ads: props.id,
-            content: "",
+const props = {
+    id: {
+        required: true,
+        type: String,
+    },
+};
+
+const url = window.location.href;
+const { announcement, getAnnouncement2, loading, errors } = useAnnouncements();
+const user = localStorage.user ? JSON.parse(localStorage.user) : "";
+const loadingC = ref(0);
+onMounted(getAnnouncement2(props.id));
+
+const contact = reactive({
+    user: user.id,
+    ads: props.id,
+    content: "",
+});
+
+const sendContact = async () => {
+    errors.value = "";
+    try {
+        loadingC.value = 1;
+        await axios.post("/api/announcement-send-contact", contact, {
+            headers: {
+                Authorization: `Bearer ${localStorage.token}`,
+            },
         });
-
-        const sendContact = async () => {
-            errors.value = "";
-            try {
-                loadingC.value = 1;
-                await axios.post("/api/announcement-send-contact", contact, {
-                    headers: {
-                        Authorization: `Bearer ${localStorage.token}`,
-                    },
-                });
-                loadingC.value = 2;
-            } catch (e) {
-                if (e.response.status == 422) {
-                    loadingC.value = 0;
-                    for (const key in e.response.data.errors)
-                        errors.value += e.response.data.errors[key][0] + "\n";
-                }
-            }
-        };
-
-        return {
-            url,
-            contact,
-            sendContact,
-            loading,
-            errors,
-            announcement,
-            user,
-            loadingC,
-        };
-    },
+        loadingC.value = 2;
+    } catch (e) {
+        if (e.response.status == 422) {
+            loadingC.value = 0;
+            for (const key in e.response.data.errors)
+                errors.value += e.response.data.errors[key][0] + "\n";
+        }
+    }
 };
 </script>

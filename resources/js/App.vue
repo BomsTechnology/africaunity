@@ -1,18 +1,48 @@
+<script setup></script>
+
 <template>
-    <Header />
-    <router-view></router-view>
-    <Footer />
+    <div class="flex h-full">
+        <div class="h-full">
+            <router-view name="sidebar"></router-view>
+        </div>
+
+        <div class="h-full w-full">
+            <div>
+                <router-view name="header"></router-view>
+            </div>
+            <div>
+                <router-view v-slot="{ Component, route }">
+                    <template v-if="Component">
+                        <KeepAlive>
+                            <Suspense>
+                                <Transition
+                                    enter-active-class="transition duration-1000"
+                                    enter-from-class="opacity-0 "
+                                    enter-to-class="opacity-1"
+                                    leave-active-class="transition duration-500 "
+                                    leave-from-class="opacity-1 "
+                                    leave-to-class="opacity-0 "
+                                >
+                                    <div
+                                        :key="route.name"
+                                        class="h-full w-full"
+                                    >
+                                        <component :is="Component" />
+                                    </div>
+                                </Transition>
+                                <template #fallback>
+                                    <div class="h-screen bg-red-50 text-center">
+                                        Loading...
+                                    </div>
+                                </template>
+                            </Suspense>
+                        </KeepAlive>
+                    </template>
+                </router-view>
+            </div>
+            <div>
+                <router-view name="footer"></router-view>
+            </div>
+        </div>
+    </div>
 </template>
-
-<script>
-import Header from "./components/Header.vue";
-import Footer from "./components/Footer.vue";
-export default {
-    components: {
-        Header,
-        Footer,
-    },
-
-    setup() {},
-};
-</script>

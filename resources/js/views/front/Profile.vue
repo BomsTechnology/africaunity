@@ -6,18 +6,20 @@
         :type="'account'"
     />
 
-    <section class="lg:py-10 p-4 lg:px-20">
-        <div class="h-96 relative">
-            <div class="h-1/2 bg-gray-50 z-0 shadow">
+    <section
+        class="mx-auto min-h-screen w-full bg-white p-4 lg:py-10 lg:px-20 xl:w-[90%]"
+    >
+        <div class="relative h-96">
+            <div class="z-0 h-1/2 bg-gray-50 shadow">
                 <img
                     :src="user.cover"
-                    class="w-full h-full bg-cover object-cover"
+                    class="h-full w-full bg-cover object-cover"
                     alt=""
                     v-if="user.cover"
                 />
             </div>
             <div
-                class="h-1/2 bg-white flex lg:justify-end items-center justify-center lg:space-x-3 relative"
+                class="relative flex h-1/2 items-center justify-center bg-white lg:justify-end lg:space-x-3"
             >
                 <router-link
                     :to="{
@@ -25,40 +27,40 @@
                         params: { name: user.firstname, id: user.id },
                     }"
                     v-if="user.id == loginUser.id"
-                    class="lg:w-60 lg:h-60 overflow-hidden absolute h-40 w-40 text-center shadow lg:left-4 mb-40 lg:mt-0 -mt-28 bg-white rounded-full"
+                    class="absolute mb-40 -mt-28 h-40 w-40 overflow-hidden rounded-full bg-white text-center shadow lg:left-4 lg:mt-0 lg:h-60 lg:w-60"
                 >
                     <img
                         :src="user.avatar"
-                        class="w-full h-full bg-cover object-cover"
+                        class="h-full w-full bg-cover object-cover"
                         alt=""
                         v-if="user.avatar"
                     />
                     <UserCircleIcon
                         v-else
-                        class="w-full h-full text-gray-500"
+                        class="h-full w-full text-gray-500"
                     />
                 </router-link>
                 <div
                     v-else
-                    class="lg:w-60 lg:h-60 overflow-hidden absolute h-40 w-40 text-center shadow lg:left-4 mb-40 lg:mt-0 -mt-28 bg-white rounded-full"
+                    class="absolute mb-40 -mt-28 h-40 w-40 overflow-hidden rounded-full bg-white text-center shadow lg:left-4 lg:mt-0 lg:h-60 lg:w-60"
                 >
                     <img
                         :src="user.avatar"
-                        class="w-full h-full bg-cover object-cover"
+                        class="h-full w-full bg-cover object-cover"
                         alt=""
                         v-if="user.avatar"
                     />
                     <UserCircleIcon
                         v-else
-                        class="w-full h-full text-gray-500"
+                        class="h-full w-full text-gray-500"
                     />
                 </div>
                 <div
-                    class="xl:w-[75%] lg:w-[65%] w-full px-8 py-2 h-full overflow-y-auto lg:mt-0 mt-20"
+                    class="mt-20 h-full w-full overflow-y-auto px-8 py-2 lg:mt-0 lg:w-[65%] xl:w-[75%]"
                 >
                     <div v-if="loading == 1" class="p-28">
                         <svg
-                            class="animate-spin h-16 w-16 mx-auto"
+                            class="mx-auto h-16 w-16 animate-spin"
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
                             viewBox="0 0 24 24"
@@ -80,11 +82,11 @@
                     </div>
                     <div v-else>
                         <div
-                            class="flex lg:justify-between items-center lg:flex-row flex-col lg:mt-0 mt-20"
+                            class="mt-20 flex flex-col items-center lg:mt-0 lg:flex-row lg:justify-between"
                         >
                             <div>
                                 <h1
-                                    class="lg:text-3xl text-2xl lg:text-left text-center font-semibold capitalize text-gray-700"
+                                    class="text-center text-2xl font-semibold capitalize text-gray-700 lg:text-left lg:text-3xl"
                                 >
                                     <span>{{ user.firstname }}</span>
                                     <span v-if="user.type == 'particular'">{{
@@ -92,7 +94,7 @@
                                     }}</span>
                                 </h1>
                                 <div
-                                    class="flex items-center space-x-2 text-sm mt-2"
+                                    class="mt-2 flex items-center space-x-2 text-sm"
                                 >
                                     <h2
                                         class="text-primary-blue"
@@ -106,7 +108,7 @@
                                 </div>
                             </div>
                             <div
-                                class="space-x-2 flex items-center lg:py-0 py-1"
+                                class="flex items-center space-x-2 py-1 lg:py-0"
                                 v-if="user.id == loginUser.id"
                             >
                                 <router-link
@@ -114,21 +116,21 @@
                                         name: 'add.post',
                                         params: { type: 'article' },
                                     }"
-                                    class="py-2 lg:px-4 px-2 shadow-md flex items-center text-sm space-x-2 text-white rounded-xl bg-primary-blue"
+                                    class="flex items-center space-x-2 rounded-xl bg-primary-blue py-2 px-2 text-sm text-white shadow-md lg:px-4"
                                     v-if="user.type != 'business1'"
                                 >
-                                    <PlusCircleIcon class="w-5 h-5" />
-                                    <span class="lg:block hidden"
+                                    <PlusCircleIcon class="h-5 w-5" />
+                                    <span class="hidden lg:block"
                                         >{{ $t("add") }}
                                         {{ $t("article") }}</span
                                     >
                                 </router-link>
                                 <button
                                     @click="changeTab('edit')"
-                                    class="py-2 lg:px-4 px-2 shadow-md flex items-center text-sm space-x-2 text-white rounded-xl bg-primary-blue"
+                                    class="flex items-center space-x-2 rounded-xl bg-primary-blue py-2 px-2 text-sm text-white shadow-md lg:px-4"
                                 >
-                                    <PencilIcon class="w-5 h-5" />
-                                    <span class="lg:block hidden"
+                                    <PencilIcon class="h-5 w-5" />
+                                    <span class="hidden lg:block"
                                         >{{ $t("edit") }}
                                         {{ $t("profile") }}</span
                                     >
@@ -149,7 +151,7 @@
                             </div>
                         </div>
                         <div
-                            class="text-sm font-light text-gray-500 lg:w-full break-words overflow-y-auto lg:h-24 h-20 my-2 mx-auto"
+                            class="my-2 mx-auto h-20 overflow-y-auto break-words text-sm font-light text-gray-500 lg:h-24 lg:w-full"
                         >
                             {{ detail.presentation }}
                         </div>
@@ -158,82 +160,82 @@
             </div>
         </div>
         <div
-            class="px-5 py-3 space-x-2 bg-menu flex items-center lg:mt-0 mt-20"
+            class="mt-20 flex items-center space-x-2 bg-menu px-5 py-3 lg:mt-0"
         >
             <button
                 @click="changeTab('profil')"
                 :class="[
                     open.profil
-                        ? 'text-white bg-primary-blue flex items-center space-x-2 px-2 py-1 text-md rounded-md'
-                        : 'text-white flex items-center space-x-2 hover:bg-white/25 px-2 py-1 text-md rounded-md',
+                        ? 'text-md flex items-center space-x-2 rounded-md bg-primary-blue px-2 py-1 text-white'
+                        : 'text-md flex items-center space-x-2 rounded-md px-2 py-1 text-white hover:bg-white/25',
                 ]"
             >
-                <IdentificationIcon class="w-5 h-5" />
-                <span class="lg:block hidden">{{ $t("profile") }}</span>
+                <IdentificationIcon class="h-5 w-5" />
+                <span class="hidden lg:block">{{ $t("profile") }}</span>
             </button>
             <button
                 v-if="user.type != 'business1'"
                 @click="changeTab('article')"
                 :class="[
                     open.article
-                        ? 'text-white bg-primary-blue flex items-center space-x-2 px-2 py-1 text-md rounded-md'
-                        : 'text-white flex items-center space-x-2 hover:bg-white/25 px-2 py-1 text-md rounded-md',
+                        ? 'text-md flex items-center space-x-2 rounded-md bg-primary-blue px-2 py-1 text-white'
+                        : 'text-md flex items-center space-x-2 rounded-md px-2 py-1 text-white hover:bg-white/25',
                 ]"
             >
-                <NewspaperIcon class="w-5 h-5" />
-                <span class="lg:block hidden">{{ $t("articles") }}</span>
+                <NewspaperIcon class="h-5 w-5" />
+                <span class="hidden lg:block">{{ $t("articles") }}</span>
             </button>
             <button
                 v-if="user.type != 'business1'"
                 @click="changeTab('propau')"
                 :class="[
                     open.propau
-                        ? 'text-white bg-primary-blue flex items-center space-x-2 px-2 py-1 text-md rounded-md'
-                        : 'text-white flex items-center space-x-2 hover:bg-white/25 px-2 py-1 text-md rounded-md',
+                        ? 'text-md flex items-center space-x-2 rounded-md bg-primary-blue px-2 py-1 text-white'
+                        : 'text-md flex items-center space-x-2 rounded-md px-2 py-1 text-white hover:bg-white/25',
                 ]"
             >
-                <BookOpenIcon class="w-5 h-5" />
-                <span class="lg:block hidden">{{ $t("propau") }}</span>
+                <BookOpenIcon class="h-5 w-5" />
+                <span class="hidden lg:block">{{ $t("propau") }}</span>
             </button>
             <button
                 @click="changeTab('comment')"
                 :class="[
                     open.comment
-                        ? 'text-white bg-primary-blue flex items-center space-x-2 px-2 py-1 text-md rounded-md'
-                        : 'text-white flex items-center space-x-2 hover:bg-white/25 px-2 py-1 text-md rounded-md',
+                        ? 'text-md flex items-center space-x-2 rounded-md bg-primary-blue px-2 py-1 text-white'
+                        : 'text-md flex items-center space-x-2 rounded-md px-2 py-1 text-white hover:bg-white/25',
                 ]"
             >
-                <ChatIcon class="w-5 h-5" />
-                <span class="lg:block hidden">{{ $t("comments") }}</span>
+                <ChatIcon class="h-5 w-5" />
+                <span class="hidden lg:block">{{ $t("comments") }}</span>
             </button>
             <button
                 v-if="user.type != 'particular' && user.type != 'business1'"
                 @click="changeTab('job')"
                 :class="[
                     open.job
-                        ? 'text-white bg-primary-blue flex items-center space-x-2 px-2 py-1 text-md rounded-md'
-                        : 'text-white flex items-center space-x-2 hover:bg-white/25 px-2 py-1 text-md rounded-md',
+                        ? 'text-md flex items-center space-x-2 rounded-md bg-primary-blue px-2 py-1 text-white'
+                        : 'text-md flex items-center space-x-2 rounded-md px-2 py-1 text-white hover:bg-white/25',
                 ]"
             >
-                <ChatAltIcon class="w-5 h-5" />
-                <span class="lg:block hidden">{{ $t("my-jobs") }}</span>
+                <ChatAltIcon class="h-5 w-5" />
+                <span class="hidden lg:block">{{ $t("my-jobs") }}</span>
             </button>
             <button
                 v-if="user.type == 'particular' || user.type == 'admin'"
                 @click="changeTab('ads')"
                 :class="[
                     open.ads
-                        ? 'text-white bg-primary-blue flex items-center space-x-2 px-2 py-1 text-md rounded-md'
-                        : 'text-white flex items-center space-x-2 hover:bg-white/25 px-2 py-1 text-md rounded-md',
+                        ? 'text-md flex items-center space-x-2 rounded-md bg-primary-blue px-2 py-1 text-white'
+                        : 'text-md flex items-center space-x-2 rounded-md px-2 py-1 text-white hover:bg-white/25',
                 ]"
             >
-                <SpeakerphoneIcon class="w-5 h-5" />
-                <span class="lg:block hidden">{{ $t("my-ads") }}</span>
+                <SpeakerphoneIcon class="h-5 w-5" />
+                <span class="hidden lg:block">{{ $t("my-ads") }}</span>
             </button>
         </div>
         <div v-if="loading == 1" class="p-28">
             <svg
-                class="animate-spin h-16 w-16 mx-auto"
+                class="mx-auto h-16 w-16 animate-spin"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -254,26 +256,26 @@
             </svg>
         </div>
         <div class="py-8 lg:px-16" v-if="open.profil && loading == 0">
-            <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
+            <div class="mt-4 grid grid-cols-1 gap-6 sm:grid-cols-2">
                 <div
                     v-if="user.type == 'particular'"
-                    class="grid grid-cols-1 gap-6 sm:grid-cols-2 col-span-2"
+                    class="col-span-2 grid grid-cols-1 gap-6 sm:grid-cols-2"
                 >
                     <div class="relative border-b py-2">
                         <label
-                            class="text-gray-700 py-1 text-md font-semibold"
+                            class="text-md py-1 font-semibold text-gray-700"
                             >{{ $t("firstname") }}</label
                         >
-                        <p class="p-2 rounded-lg mt-1 shadow border">
+                        <p class="mt-1 rounded-lg border p-2 shadow">
                             {{ user.firstname }}
                         </p>
                     </div>
                     <div class="relative border-b py-2">
                         <label
-                            class="text-gray-700 py-1 text-md font-semibold"
+                            class="text-md py-1 font-semibold text-gray-700"
                             >{{ $t("lastname") }}</label
                         >
-                        <p class="p-2 rounded-lg mt-1 shadow border">
+                        <p class="mt-1 rounded-lg border p-2 shadow">
                             {{ user.lastname }}
                         </p>
                     </div>
@@ -284,18 +286,18 @@
                     "
                     class="relative col-span-2 border-b py-2"
                 >
-                    <label class="text-gray-700 py-1 text-md font-semibold">{{
+                    <label class="text-md py-1 font-semibold text-gray-700">{{
                         $t("social-reason")
                     }}</label>
-                    <p class="p-2 rounded-lg mt-1 shadow border">
+                    <p class="mt-1 rounded-lg border p-2 shadow">
                         {{ user.firstname }}
                     </p>
                 </div>
                 <div v-else class="relative col-span-2 border-b py-2">
-                    <label class="text-gray-700 py-1 text-md font-semibold"
+                    <label class="text-md py-1 font-semibold text-gray-700"
                         >{{ $t("denomination") }}
                     </label>
-                    <p class="p-2 rounded-lg mt-1 shadow border">
+                    <p class="mt-1 rounded-lg border p-2 shadow">
                         {{ user.firstname }}
                     </p>
                 </div>
@@ -303,10 +305,10 @@
                     v-if="user.type == 'particular'"
                     class="relative col-span-2"
                 >
-                    <label class="text-gray-700 py-1 text-md font-semibold">{{
+                    <label class="text-md py-1 font-semibold text-gray-700">{{
                         $t("status")
                     }}</label>
-                    <p class="p-2 rounded-lg mt-1 shadow border">
+                    <p class="mt-1 rounded-lg border p-2 shadow">
                         <span v-if="detail.status == 1">{{ $t("actif") }}</span>
                         <span v-else>{{ $t("no-actif") }}</span>
                     </p>
@@ -317,10 +319,10 @@
                     "
                     class="relative col-span-2 border-b py-2"
                 >
-                    <label class="text-gray-700 py-1 text-md font-semibold">{{
+                    <label class="text-md py-1 font-semibold text-gray-700">{{
                         $t("social-object")
                     }}</label>
-                    <p class="p-2 rounded-lg mt-1 shadow border">
+                    <p class="mt-1 rounded-lg border p-2 shadow">
                         {{ detail.social_object }}
                     </p>
                 </div>
@@ -328,10 +330,10 @@
                     v-else-if="user.type == 'ip'"
                     class="relative col-span-2 border-b py-2"
                 >
-                    <label class="text-gray-700 py-1 text-md font-semibold">{{
+                    <label class="text-md py-1 font-semibold text-gray-700">{{
                         $t("goal-attribution")
                     }}</label>
-                    <p class="p-2 rounded-lg mt-1 shadow border">
+                    <p class="mt-1 rounded-lg border p-2 shadow">
                         {{ detail.goal_attribution }}
                     </p>
                 </div>
@@ -339,10 +341,10 @@
                     class="relative col-span-2 border-b py-2"
                     v-if="!user.hide_email"
                 >
-                    <label class="text-gray-700 py-1 text-md font-semibold">{{
+                    <label class="text-md py-1 font-semibold text-gray-700">{{
                         $t("adresse") + " " + $t("email")
                     }}</label>
-                    <p class="p-2 rounded-lg mt-1 shadow border">
+                    <p class="mt-1 rounded-lg border p-2 shadow">
                         {{ user.email }}
                     </p>
                 </div>
@@ -350,10 +352,10 @@
                     v-if="user.type == 'particular'"
                     class="relative col-span-2 border-b py-2"
                 >
-                    <label class="text-gray-700 py-1 text-md font-semibold">{{
+                    <label class="text-md py-1 font-semibold text-gray-700">{{
                         $t("diplome-certification")
                     }}</label>
-                    <p class="p-2 rounded-lg mt-1 shadow border">
+                    <p class="mt-1 rounded-lg border p-2 shadow">
                         {{ detail.goal_attribution }}
                     </p>
                 </div>
@@ -365,10 +367,10 @@
                     "
                     class="relative col-span-2 border-b py-2"
                 >
-                    <label class="text-gray-700 py-1 text-md font-semibold">{{
+                    <label class="text-md py-1 font-semibold text-gray-700">{{
                         $t("name-responsable")
                     }}</label>
-                    <p class="p-2 rounded-lg mt-1 shadow border">
+                    <p class="mt-1 rounded-lg border p-2 shadow">
                         {{ detail.name_responsible }}
                     </p>
                 </div>
@@ -380,33 +382,33 @@
                     "
                     class="relative col-span-2 border-b py-2"
                 >
-                    <label class="text-gray-700 py-1 text-md font-semibold">{{
+                    <label class="text-md py-1 font-semibold text-gray-700">{{
                         $t("adresse")
                     }}</label>
-                    <p class="p-2 rounded-lg mt-1 shadow border">
+                    <p class="mt-1 rounded-lg border p-2 shadow">
                         {{ detail.adress }}
                     </p>
                 </div>
-                <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 col-span-2">
+                <div class="col-span-2 grid grid-cols-1 gap-6 sm:grid-cols-2">
                     <div
                         v-if="user.type == 'particular'"
                         class="relative border-b py-2"
                     >
                         <label
-                            class="text-gray-700 py-1 text-md font-semibold"
+                            class="text-md py-1 font-semibold text-gray-700"
                             >{{ $t("sex") }}</label
                         >
-                        <p class="p-2 rounded-lg mt-1 shadow border">
+                        <p class="mt-1 rounded-lg border p-2 shadow">
                             <span v-if="detail.sex == 1">{{ $t("male") }}</span>
                             <span v-else>{{ $t("female") }}</span>
                         </p>
                     </div>
                     <div class="relative border-b py-2">
                         <label
-                            class="text-gray-700 py-1 text-md font-semibold"
+                            class="text-md py-1 font-semibold text-gray-700"
                             >{{ $t("phone-number") }}</label
                         >
-                        <p class="p-2 rounded-lg mt-1 shadow border">
+                        <p class="mt-1 rounded-lg border p-2 shadow">
                             {{ detail.phone_number }}
                         </p>
                     </div>
@@ -414,23 +416,23 @@
                         v-if="user.type != 'particular'"
                         class="relative border-b py-2"
                     >
-                        <label class="text-gray-700 py-1 text-md font-semibold"
+                        <label class="text-md py-1 font-semibold text-gray-700"
                             >{{ $t("phone-number") }} 2</label
                         >
-                        <p class="p-2 rounded-lg mt-1 shadow border">
+                        <p class="mt-1 rounded-lg border p-2 shadow">
                             {{ detail.phone_number_2 }}
                         </p>
                     </div>
                 </div>
-                <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 col-span-2">
+                <div class="col-span-2 grid grid-cols-1 gap-6 sm:grid-cols-2">
                     <div
                         class="relative border-b py-2"
                         v-if="user.type == 'particular' || user.type == 'ip'"
                     >
-                        <label class="text-gray-700 py-1 text-md font-semibold">
+                        <label class="text-md py-1 font-semibold text-gray-700">
                             <span>{{ $t("native-country") }}</span>
                         </label>
-                        <ul class="p-2 rounded-lg mt-1 shadow border">
+                        <ul class="mt-1 rounded-lg border p-2 shadow">
                             <li v-if="detail.country_native">
                                 <span v-if="$i18n.locale == 'en'">{{
                                     detail.country_native.name_en
@@ -454,7 +456,7 @@
                                 : 'col-span-2 border-b py-2',
                         ]"
                     >
-                        <label class="text-gray-700 py-1 text-md font-semibold">
+                        <label class="text-md py-1 font-semibold text-gray-700">
                             <span
                                 v-if="
                                     user.type == 'particular' ||
@@ -464,7 +466,7 @@
                             >
                             <span v-else>{{ $t("social-country") }}</span>
                         </label>
-                        <ul class="p-2 rounded-lg mt-1 shadow border">
+                        <ul class="mt-1 rounded-lg border p-2 shadow">
                             <li v-if="detail.country_residence">
                                 <span v-if="$i18n.locale == 'en'">{{
                                     detail.country_residence.name_en
@@ -484,16 +486,16 @@
                 </div>
                 <div
                     v-if="user.type != 'particular'"
-                    class="grid grid-cols-1 gap-6 sm:grid-cols-2 col-span-2"
+                    class="col-span-2 grid grid-cols-1 gap-6 sm:grid-cols-2"
                 >
                     <div class="relative border-b py-2">
-                        <label class="text-gray-700 py-1 text-md font-semibold">
+                        <label class="text-md py-1 font-semibold text-gray-700">
                             <span v-if="user.type == 'ip'">{{
                                 $t("perimetre")
                             }}</span>
                             <span v-else>{{ $t("type-company") }}</span>
                         </label>
-                        <ul class="p-2 rounded-lg mt-1 shadow border">
+                        <ul class="mt-1 rounded-lg border p-2 shadow">
                             <li v-if="detail.business_type">
                                 <span v-if="$i18n.locale == 'en'">{{
                                     detail.business_type.name_en
@@ -511,13 +513,13 @@
                         </ul>
                     </div>
                     <div class="relative border-b py-2">
-                        <label class="text-gray-700 py-1 text-md font-semibold">
+                        <label class="text-md py-1 font-semibold text-gray-700">
                             <span v-if="user.type == 'ip'">{{
                                 $t("size-institution")
                             }}</span>
                             <span v-else>{{ $t("size-company") }}</span>
                         </label>
-                        <ul class="p-2 rounded-lg mt-1 shadow border">
+                        <ul class="mt-1 rounded-lg border p-2 shadow">
                             <li v-if="detail.business_size">
                                 <span v-if="$i18n.locale == 'en'">{{
                                     detail.business_size.name_en
@@ -539,10 +541,10 @@
                     v-if="user.type == 'particular'"
                     class="relative col-span-2 border-b py-2"
                 >
-                    <label class="text-gray-700 py-1 text-md font-semibold">{{
+                    <label class="text-md py-1 font-semibold text-gray-700">{{
                         $t("speak-language")
                     }}</label>
-                    <ul class="p-2 rounded-lg mt-1 shadow border">
+                    <ul class="mt-1 rounded-lg border p-2 shadow">
                         <li v-for="language in languages" :key="language.id">
                             <span
                                 v-for="lang in detail.languages"
@@ -568,10 +570,10 @@
                     v-if="user.type == 'business1' || user.type == 'business2'"
                     class="relative col-span-2 border-b py-2"
                 >
-                    <label class="text-gray-700 py-1 text-md font-semibold">{{
+                    <label class="text-md py-1 font-semibold text-gray-700">{{
                         $t("legal-status")
                     }}</label>
-                    <ul class="p-2 rounded-lg mt-1 shadow border">
+                    <ul class="mt-1 rounded-lg border p-2 shadow">
                         <li v-if="detail.legal_status">
                             <span v-if="$i18n.locale == 'en'">{{
                                 detail.legal_status.name_en
@@ -589,38 +591,38 @@
                     </ul>
                 </div>
                 <div class="relative col-span-2 border-b py-2">
-                    <label class="text-gray-700 py-1 text-md font-semibold">
+                    <label class="text-md py-1 font-semibold text-gray-700">
                         <span v-if="user.type == 'particular'">{{
                             $t("birth-date")
                         }}</span>
                         <span v-else>{{ $t("create-date") }}</span>
                     </label>
-                    <p class="p-2 rounded-lg mt-1 shadow border">
+                    <p class="mt-1 rounded-lg border p-2 shadow">
                         {{ detail.navite_date }}
                     </p>
                 </div>
-                <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 col-span-2">
+                <div class="col-span-2 grid grid-cols-1 gap-6 sm:grid-cols-2">
                     <div class="relative border-b py-2">
-                        <label class="text-gray-700 py-1 text-md font-semibold">
+                        <label class="text-md py-1 font-semibold text-gray-700">
                             {{ $t("website") }}
                         </label>
-                        <p class="p-2 rounded-lg mt-1 shadow border">
+                        <p class="mt-1 rounded-lg border p-2 shadow">
                             <a
                                 target="_blank"
-                                class="py-1 text-primary-blue block italic hover:underline"
+                                class="block py-1 italic text-primary-blue hover:underline"
                                 :href="detail.website"
                                 >{{ detail.website }}</a
                             >
                         </p>
                     </div>
                     <div class="relative border-b py-2">
-                        <label class="text-gray-700 py-1 text-md font-semibold">
+                        <label class="text-md py-1 font-semibold text-gray-700">
                             Youtube
                         </label>
-                        <p class="p-2 rounded-lg mt-1 shadow border">
+                        <p class="mt-1 rounded-lg border p-2 shadow">
                             <a
                                 target="_blank"
-                                class="py-1 hover:underline block italic"
+                                class="block py-1 italic hover:underline"
                                 :href="detail.youtube"
                                 >Youtube</a
                             >
@@ -631,10 +633,10 @@
                     v-if="user.type != 'ip'"
                     class="relative col-span-2 border-b py-2"
                 >
-                    <label class="text-gray-700 py-1 text-md font-semibold">
+                    <label class="text-md py-1 font-semibold text-gray-700">
                         {{ $t("activity-area") }}
                     </label>
-                    <ul class="p-2 rounded-lg mt-1 shadow border">
+                    <ul class="mt-1 rounded-lg border p-2 shadow">
                         <li
                             v-for="activityArea in activityAreas"
                             :key="activityArea.id"
@@ -667,10 +669,10 @@
                     v-if="user.type == 'particular'"
                     class="relative col-span-2 border-b py-2"
                 >
-                    <label class="text-gray-700 py-1 text-md font-semibold">
+                    <label class="text-md py-1 font-semibold text-gray-700">
                         {{ $t("o-activity") }}
                     </label>
-                    <p class="p-2 rounded-lg mt-1 shadow border">
+                    <p class="mt-1 rounded-lg border p-2 shadow">
                         {{ detail.other_activity }}
                     </p>
                 </div>
@@ -678,14 +680,14 @@
                     v-if="user.type == 'particular'"
                     class="relative col-span-2 border-b py-2"
                 >
-                    <label class="text-gray-700 py-1 text-md font-semibold">
+                    <label class="text-md py-1 font-semibold text-gray-700">
                         {{ $t("rsearch-p") }}
                     </label>
-                    <p class="p-2 rounded-lg mt-1 shadow border">
+                    <p class="mt-1 rounded-lg border p-2 shadow">
                         {{ detail.search_partner }}
                     </p>
                 </div>
-                <div class="px-2 flex items-center space-x-3 py-4">
+                <div class="flex items-center space-x-3 px-2 py-4">
                     <!-- facebook icons -->
                     <!-- <a :href="'https://www.facebook.com/sharer/sharer.php?u='+url" data-network="facebook" target="_blank" rel="noopener noreferrer">
                                 <svg fill="#3b5998" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 30 30" class="h-6 w-6"><path d="M27,15c0,6.627-5.373,12-12,12S3,21.627,3,15S8.373,3,15,3S27,8.373,27,15z M19.181,8.131C18.877,8.09,18.235,8,17.021,8 C14.486,8,13,9.339,13,12.389V14h-3v3h3v7.799C13.646,24.93,14.315,25,15,25c0.338,0,0.671-0.018,1-0.05V17h2.726l0.428-3H16 v-1.282C16,11.568,16.376,11,17.452,11h1.729V8.131z"/></svg>
@@ -712,7 +714,7 @@
                     <div>
                         <button
                             @click="toogleModal()"
-                            class="flex text-gray-400 cursor-pointer text-xs border-gray-400 border rounded-full px-2 py-1 items-center hover:bg-yellow-300 space-x-2 hover:text-white hover:border-white"
+                            class="flex cursor-pointer items-center space-x-2 rounded-full border border-gray-400 px-2 py-1 text-xs text-gray-400 hover:border-white hover:bg-yellow-300 hover:text-white"
                         >
                             <ExclamationCircleIcon class="h-5 w-5" />
                             <span class="hidden lg:block">{{
@@ -728,14 +730,14 @@
             </div>
         </div>
         <div class="py-8 lg:px-16" v-else-if="open.article && loading == 0">
-            <div class="md:flex space-x-2 items-center">
+            <div class="items-center space-x-2 md:flex">
                 <div>
                     <div class="relative">
                         <div
-                            class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none"
+                            class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"
                         >
                             <svg
-                                class="w-5 h-5 text-gray-500 dark:text-gray-400"
+                                class="dark:text-gray-400 h-5 w-5 text-gray-500"
                                 fill="currentColor"
                                 viewBox="0 0 20 20"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -751,7 +753,7 @@
                             type="text"
                             id="table-search"
                             v-model="searchArticle"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            class="dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 block w-80 rounded-lg border border-gray-300 bg-gray-50 p-2.5 pl-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
                             placeholder="Search"
                         />
                     </div>
@@ -759,7 +761,7 @@
                 <div>
                     <select
                         v-model="langArticle"
-                        class="form-select block w-full pr-8 pl-4 py-2 text-gray-700 bg-gray-50 border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
+                        class="form-select block w-full rounded-md border border-gray-200 bg-gray-50 py-2 pr-8 pl-4 text-gray-700 focus:border-primary-blue focus:outline-none focus:ring-primary-blue"
                     >
                         <option value="">Select Language</option>
                         <option value="fr">{{ $t("fr") }}</option>
@@ -770,15 +772,15 @@
                 </div>
             </div>
             <div
-                class="grid lg:grid-cols-2 gap-8 px-6 py-8"
+                class="grid gap-8 px-6 py-8 lg:grid-cols-2"
                 v-if="filteredArticles.length != 0"
             >
                 <div
                     v-for="post in filteredArticles"
                     :key="post.id"
-                    class="flex max-w-md mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800"
+                    class="dark:bg-gray-800 mx-auto flex max-w-md overflow-hidden rounded-lg bg-white shadow-lg"
                 >
-                    <div class="w-1/3 bg-cover overflow-hidden">
+                    <div class="w-1/3 overflow-hidden bg-cover">
                         <router-link
                             :to="{
                                 name: 'show.post',
@@ -786,7 +788,7 @@
                             }"
                             ><img
                                 :src="post.image"
-                                class="w-full h-full bg-cover object-cover"
+                                class="h-full w-full bg-cover object-cover"
                                 :alt="post.title"
                         /></router-link>
                     </div>
@@ -797,7 +799,7 @@
                                 name: 'show.post',
                                 params: { id: post.id },
                             }"
-                            class="text-2xl font-bold text-gray-800 dark:text-white"
+                            class="dark:text-white text-2xl font-bold text-gray-800"
                         >
                             {{
                                 post.title.length <= 20
@@ -808,16 +810,16 @@
 
                         <!-- <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">{{ post.content.substring(0, 19) + "..." }}</p> -->
 
-                        <div class="flex mt-2 item-center space-x-1">
+                        <div class="item-center mt-2 flex space-x-1">
                             <ChatIcon class="h-4 w-4 text-gray-500" />
                             <a
                                 href="#"
-                                class="hover:text-primary-blue text-xs"
+                                class="text-xs hover:text-primary-blue"
                                 >{{ post.comments }}</a
                             >
                         </div>
 
-                        <div class="flex justify-between mt-3 item-center">
+                        <div class="item-center mt-3 flex justify-between">
                             <router-link
                                 :to="{
                                     name: 'show.post',
@@ -840,16 +842,16 @@
                                     }"
                                 >
                                     <PencilAltIcon
-                                        class="h-5 w-5 hover:text-gray-400 cursor-pointer text-primary-blue"
+                                        class="h-5 w-5 cursor-pointer text-primary-blue hover:text-gray-400"
                                     />
                                 </router-link>
 
                                 <button
                                     @click="deletePost(post.id)"
-                                    class="text-red-600 dark:text-blue-500 hover:underline"
+                                    class="dark:text-blue-500 text-red-600 hover:underline"
                                 >
                                     <TrashIcon
-                                        class="h-5 w-5 hover:text-red-700 cursor-pointer text-red-400"
+                                        class="h-5 w-5 cursor-pointer text-red-400 hover:text-red-700"
                                     />
                                 </button>
                             </div>
@@ -859,21 +861,21 @@
             </div>
             <div
                 v-else
-                class="p-28 flex justify-center text-gray-500 flex-col items-center animate-pulse"
+                class="flex animate-pulse flex-col items-center justify-center p-28 text-gray-500"
             >
                 <EmojiSadIcon class="h-16 w-16" />
-                <span class="text-2xl mt-2">{{ $t("no-content") }} </span>
+                <span class="mt-2 text-2xl">{{ $t("no-content") }} </span>
             </div>
         </div>
         <div class="py-8 lg:px-16" v-else-if="open.propau && loading == 0">
-            <div class="md:flex space-x-2 items-center">
+            <div class="items-center space-x-2 md:flex">
                 <div>
                     <div class="relative">
                         <div
-                            class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none"
+                            class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"
                         >
                             <svg
-                                class="w-5 h-5 text-gray-500 dark:text-gray-400"
+                                class="dark:text-gray-400 h-5 w-5 text-gray-500"
                                 fill="currentColor"
                                 viewBox="0 0 20 20"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -889,7 +891,7 @@
                             type="text"
                             id="table-search"
                             v-model="searchProp"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            class="dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 block w-80 rounded-lg border border-gray-300 bg-gray-50 p-2.5 pl-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
                             placeholder="Search"
                         />
                     </div>
@@ -897,7 +899,7 @@
                 <div>
                     <select
                         v-model="langProp"
-                        class="form-select block w-full pr-8 pl-4 py-2 text-gray-700 bg-gray-50 border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
+                        class="form-select block w-full rounded-md border border-gray-200 bg-gray-50 py-2 pr-8 pl-4 text-gray-700 focus:border-primary-blue focus:outline-none focus:ring-primary-blue"
                     >
                         <option value="">Select Language</option>
                         <option value="fr">{{ $t("fr") }}</option>
@@ -908,22 +910,22 @@
                 </div>
             </div>
             <div
-                class="grid lg:grid-cols-2 gap-8 px-10 py-8"
+                class="grid gap-8 px-10 py-8 lg:grid-cols-2"
                 v-if="filteredPropAu.length != 0"
             >
                 <div
                     v-for="post in filteredPropAu"
                     :key="post.id"
-                    class="flex max-w-md mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800"
+                    class="dark:bg-gray-800 mx-auto flex max-w-md overflow-hidden rounded-lg bg-white shadow-lg"
                 >
-                    <div class="w-1/3 bg-cover overflow-hidden">
+                    <div class="w-1/3 overflow-hidden bg-cover">
                         <router-link
                             :to="{
                                 name: 'show.post',
                                 params: { id: post.id },
                             }"
                         >
-                            <BookOpenIcon class="w-full h-full text-gray-400" />
+                            <BookOpenIcon class="h-full w-full text-gray-400" />
                         </router-link>
                     </div>
 
@@ -933,7 +935,7 @@
                                 name: 'show.post',
                                 params: { id: post.id },
                             }"
-                            class="text-2xl font-bold text-gray-800 dark:text-white"
+                            class="dark:text-white text-2xl font-bold text-gray-800"
                             >{{
                                 post.title.length <= 20
                                     ? post.title
@@ -942,21 +944,21 @@
                         >
 
                         <p
-                            class="mt-2 text-sm text-gray-600 dark:text-gray-400"
+                            class="dark:text-gray-400 mt-2 text-sm text-gray-600"
                         >
                             {{ post.content.substring(0, 19) + "..." }}
                         </p>
 
-                        <div class="flex mt-2 item-center space-x-1">
+                        <div class="item-center mt-2 flex space-x-1">
                             <ChatIcon class="h-4 w-4 text-gray-500" />
                             <a
                                 href="#"
-                                class="hover:text-primary-blue text-xs"
+                                class="text-xs hover:text-primary-blue"
                                 >{{ post.comments }}</a
                             >
                         </div>
 
-                        <div class="flex justify-between mt-3 item-center">
+                        <div class="item-center mt-3 flex justify-between">
                             <router-link
                                 :to="{
                                     name: 'show.post',
@@ -979,16 +981,16 @@
                                     }"
                                 >
                                     <PencilAltIcon
-                                        class="h-5 w-5 hover:text-gray-400 cursor-pointer text-primary-blue"
+                                        class="h-5 w-5 cursor-pointer text-primary-blue hover:text-gray-400"
                                     />
                                 </router-link>
 
                                 <button
                                     @click="deletePost(post.id)"
-                                    class="text-red-600 dark:text-blue-500 hover:underline"
+                                    class="dark:text-blue-500 text-red-600 hover:underline"
                                 >
                                     <TrashIcon
-                                        class="h-5 w-5 hover:text-red-700 cursor-pointer text-red-400"
+                                        class="h-5 w-5 cursor-pointer text-red-400 hover:text-red-700"
                                     />
                                 </button>
                             </div>
@@ -998,10 +1000,10 @@
             </div>
             <div
                 v-else
-                class="p-28 flex justify-center text-gray-500 flex-col items-center animate-pulse"
+                class="flex animate-pulse flex-col items-center justify-center p-28 text-gray-500"
             >
                 <EmojiSadIcon class="h-16 w-16" />
-                <span class="text-2xl mt-2">{{ $t("no-content") }} </span>
+                <span class="mt-2 text-2xl">{{ $t("no-content") }} </span>
             </div>
         </div>
         <div class="py-8 lg:px-16" v-else-if="open.comment && loading == 0">
@@ -1009,10 +1011,10 @@
                 <label for="table-search" class="sr-only">Search</label>
                 <div class="relative mt-1">
                     <div
-                        class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none"
+                        class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"
                     >
                         <svg
-                            class="w-5 h-5 text-gray-500 dark:text-gray-400"
+                            class="dark:text-gray-400 h-5 w-5 text-gray-500"
                             fill="currentColor"
                             viewBox="0 0 20 20"
                             xmlns="http://www.w3.org/2000/svg"
@@ -1028,26 +1030,26 @@
                         type="text"
                         id="table-search"
                         v-model="searchComment"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        class="dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 block w-80 rounded-lg border border-gray-300 bg-gray-50 p-2.5 pl-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
                         placeholder="Search"
                     />
                 </div>
             </div>
             <div class="overflow-x-auto">
                 <table
-                    class="min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-700"
+                    class="dark:divide-gray-700 min-w-full table-fixed divide-y divide-gray-200"
                 >
-                    <thead class="bg-gray-100 dark:bg-gray-700">
+                    <thead class="dark:bg-gray-700 bg-gray-100">
                         <tr>
                             <th
                                 scope="col"
-                                class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
+                                class="dark:text-gray-400 py-3 px-6 text-left text-xs font-medium uppercase tracking-wider text-gray-700"
                             >
                                 {{ $t("articles") }} & {{ $t("propau") }}
                             </th>
                             <th
                                 scope="col"
-                                class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
+                                class="dark:text-gray-400 py-3 px-6 text-left text-xs font-medium uppercase tracking-wider text-gray-700"
                             >
                                 {{ $t("comments") }}
                             </th>
@@ -1061,16 +1063,16 @@
                         </tr>
                     </thead>
                     <tbody
-                        class="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700"
+                        class="dark:bg-gray-800 dark:divide-gray-700 divide-y divide-gray-200 bg-white"
                         v-if="filteredComment.length != 0"
                     >
                         <tr
                             v-for="comment in filteredComment"
                             :key="comment.id"
-                            class="hover:bg-gray-100 dark:hover:bg-gray-700"
+                            class="dark:hover:bg-gray-700 hover:bg-gray-100"
                         >
                             <td
-                                class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                                class="dark:text-white whitespace-nowrap py-4 px-6 text-sm font-medium text-gray-900"
                             >
                                 <router-link
                                     :to="{
@@ -1082,7 +1084,7 @@
                                 >
                             </td>
                             <td
-                                class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                                class="dark:text-white whitespace-nowrap py-4 px-6 text-sm font-medium text-gray-900"
                             >
                                 <span
                                     v-if="
@@ -1103,13 +1105,13 @@
                                         v-model="modifyComment.content"
                                         type="text"
                                         id="pt"
-                                        class="block w-full px-4 py-2 h-32 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:ring-primary-blue focus:border-primary-blue focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                                        class="dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 dark:focus:border-blue-300 mt-2 block h-32 w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-primary-blue focus:outline-none focus:ring focus:ring-primary-blue focus:ring-opacity-40"
                                     >
                                     </textarea>
-                                    <div class="flex justify-end mt-6">
+                                    <div class="mt-6 flex justify-end">
                                         <button
                                             type="submit"
-                                            class="px-6 py-2 leading-5 text-white rounded bg-primary-blue focus:outline-none"
+                                            class="rounded bg-primary-blue px-6 py-2 leading-5 text-white focus:outline-none"
                                         >
                                             {{ $t("save") }}
                                         </button>
@@ -1118,23 +1120,23 @@
                             </td>
                             <td
                                 v-if="user.id == loginUser.id"
-                                class="py-4 px-6 text-sm font-medium text-right whitespace-nowrap"
+                                class="whitespace-nowrap py-4 px-6 text-right text-sm font-medium"
                             >
                                 <div class="flex">
                                     <button
                                         @click="selectComment(comment)"
-                                        class="text-primary-blue dark:text-blue-500 hover:underline"
+                                        class="dark:text-blue-500 text-primary-blue hover:underline"
                                     >
                                         <PencilAltIcon
-                                            class="h-5 w-5 hover:text-blue-700 cursor-pointer text-blue-400"
+                                            class="h-5 w-5 cursor-pointer text-blue-400 hover:text-blue-700"
                                         />
                                     </button>
                                     <button
                                         @click="deleteComment(comment.id)"
-                                        class="text-red-600 ml-3 dark:text-blue-500 hover:underline"
+                                        class="dark:text-blue-500 ml-3 text-red-600 hover:underline"
                                     >
                                         <TrashIcon
-                                            class="h-5 w-5 hover:text-red-700 cursor-pointer text-red-400"
+                                            class="h-5 w-5 cursor-pointer text-red-400 hover:text-red-700"
                                         />
                                     </button>
                                 </div>
@@ -1142,19 +1144,19 @@
                         </tr>
                     </tbody>
                     <tbody
-                        class="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700"
+                        class="dark:bg-gray-800 dark:divide-gray-700 divide-y divide-gray-200 bg-white"
                         v-else
                     >
-                        <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
+                        <tr class="dark:hover:bg-gray-700 hover:bg-gray-100">
                             <td
                                 colspan="5"
-                                class="py-4 px-6 text-xl font-medium text-gray-900 text-center whitespace-nowrap dark:text-white"
+                                class="dark:text-white whitespace-nowrap py-4 px-6 text-center text-xl font-medium text-gray-900"
                             >
                                 <div
-                                    class="p-28 flex justify-center text-gray-500 flex-col items-center animate-pulse"
+                                    class="flex animate-pulse flex-col items-center justify-center p-28 text-gray-500"
                                 >
                                     <EmojiSadIcon class="h-16 w-16" />
-                                    <span class="text-2xl mt-2"
+                                    <span class="mt-2 text-2xl"
                                         >{{ $t("no-content") }}
                                     </span>
                                 </div>
@@ -1166,16 +1168,16 @@
         </div>
         <div class="py-8 lg:px-16" v-else-if="open.job && loading == 0">
             <div
-                class="flex justify-between lg:flex-row flex-col-reverse items-center px-6 py-2"
+                class="flex flex-col-reverse items-center justify-between px-6 py-2 lg:flex-row"
             >
                 <div class="p-4">
                     <label for="table-search" class="sr-only">Search</label>
                     <div class="relative mt-1">
                         <div
-                            class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none"
+                            class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"
                         >
                             <svg
-                                class="w-5 h-5 text-gray-500 dark:text-gray-400"
+                                class="dark:text-gray-400 h-5 w-5 text-gray-500"
                                 fill="currentColor"
                                 viewBox="0 0 20 20"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -1191,7 +1193,7 @@
                             type="text"
                             id="table-search"
                             v-model="searchJob"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            class="dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 block w-80 rounded-lg border border-gray-300 bg-gray-50 p-2.5 pl-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
                             placeholder="Search"
                         />
                     </div>
@@ -1200,27 +1202,27 @@
                     :to="{
                         name: 'add.job',
                     }"
-                    class="flex justify-start items-center space-x-3 text-white bg-primary-blue rounded px-3 py-2 lg:mb-0 mb-2"
+                    class="mb-2 flex items-center justify-start space-x-3 rounded bg-primary-blue px-3 py-2 text-white lg:mb-0"
                 >
-                    <PlusCircleIcon class="w-6 h-6" />
+                    <PlusCircleIcon class="h-6 w-6" />
                     <p class="text-base leading-4">{{ $t("add") }} Job</p>
                 </router-link>
             </div>
             <div class="overflow-x-auto">
                 <table
-                    class="min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-700"
+                    class="dark:divide-gray-700 min-w-full table-fixed divide-y divide-gray-200"
                 >
-                    <thead class="bg-gray-100 dark:bg-gray-700">
+                    <thead class="dark:bg-gray-700 bg-gray-100">
                         <tr>
                             <th
                                 scope="col"
-                                class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
+                                class="dark:text-gray-400 py-3 px-6 text-left text-xs font-medium uppercase tracking-wider text-gray-700"
                             >
                                 {{ $t("my-jobs") }}
                             </th>
                             <th
                                 scope="col"
-                                class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
+                                class="dark:text-gray-400 py-3 px-6 text-left text-xs font-medium uppercase tracking-wider text-gray-700"
                             >
                                 {{ $t("status") }}
                             </th>
@@ -1234,16 +1236,16 @@
                         </tr>
                     </thead>
                     <tbody
-                        class="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700"
+                        class="dark:bg-gray-800 dark:divide-gray-700 divide-y divide-gray-200 bg-white"
                         v-if="filteredJob.length != 0"
                     >
                         <tr
                             v-for="jobOffer in filteredJob"
                             :key="jobOffer.id"
-                            class="hover:bg-gray-100 dark:hover:bg-gray-700"
+                            class="dark:hover:bg-gray-700 hover:bg-gray-100"
                         >
                             <td
-                                class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                                class="dark:text-white whitespace-nowrap py-4 px-6 text-sm font-medium text-gray-900"
                             >
                                 <router-link
                                     :to="{
@@ -1255,22 +1257,22 @@
                                 >
                             </td>
                             <td
-                                class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                                class="dark:text-white whitespace-nowrap py-4 px-6 text-sm font-medium text-gray-900"
                             >
                                 <span
                                     v-if="jobOffer.status == 3"
-                                    class="text-xs px-2 py-1 bg-green-50 text-green-700 rounded-full"
+                                    class="rounded-full bg-green-50 px-2 py-1 text-xs text-green-700"
                                     >{{ $t("provided") }}</span
                                 >
                                 <span
                                     v-else-if="jobOffer.status == 1"
-                                    class="text-xs px-2 py-1 bg-yellow-50 text-yellow-700 rounded-full"
+                                    class="rounded-full bg-yellow-50 px-2 py-1 text-xs text-yellow-700"
                                     >{{ $t("in-progress") }}</span
                                 >
                             </td>
                             <td
                                 v-if="user.id == loginUser.id"
-                                class="py-4 px-6 text-sm font-medium text-right whitespace-nowrap"
+                                class="whitespace-nowrap py-4 px-6 text-right text-sm font-medium"
                             >
                                 <div class="flex">
                                     <router-link
@@ -1278,7 +1280,7 @@
                                             name: 'edit.job',
                                             params: { id: jobOffer.id },
                                         }"
-                                        class="text-primary-blue dark:text-blue-500 hover:underline"
+                                        class="dark:text-blue-500 text-primary-blue hover:underline"
                                     >
                                         <!-- <PencilAltIcon
                                                     class="h-5 w-5 hover:text-blue-700 cursor-pointer text-blue-400"
@@ -1287,7 +1289,7 @@
                                     </router-link>
                                     <button
                                         @click="deleteJobOffer(jobOffer.id)"
-                                        class="text-red-600 ml-3 dark:text-blue-500 hover:underline"
+                                        class="dark:text-blue-500 ml-3 text-red-600 hover:underline"
                                     >
                                         <!-- <TrashIcon
                                                     class="h-5 w-5 hover:text-red-700 cursor-pointer text-red-400"
@@ -1298,7 +1300,7 @@
                                     </button>
                                     <button
                                         @click="mark(jobOffer.id)"
-                                        class="text-purple-600 relative ml-3 dark:text-blue-500 hover:underline"
+                                        class="dark:text-blue-500 relative ml-3 text-purple-600 hover:underline"
                                     >
                                         <!-- <CheckCircleIcon
                                                     class="h-5 w-5 hover:text-purple-700 cursor-pointer text-purple-400"
@@ -1318,7 +1320,7 @@
                                                     JSON.stringify(jobOffer),
                                             },
                                         }"
-                                        class="text-pink-600 relative ml-3 dark:text-blue-500 hover:underline"
+                                        class="dark:text-blue-500 relative ml-3 text-pink-600 hover:underline"
                                     >
                                         <span>
                                             {{ $t("duplicate") }}
@@ -1329,19 +1331,19 @@
                         </tr>
                     </tbody>
                     <tbody
-                        class="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700"
+                        class="dark:bg-gray-800 dark:divide-gray-700 divide-y divide-gray-200 bg-white"
                         v-else
                     >
-                        <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
+                        <tr class="dark:hover:bg-gray-700 hover:bg-gray-100">
                             <td
                                 colspan="3"
-                                class="py-4 px-6 text-xl font-medium text-gray-900 text-center whitespace-nowrap dark:text-white"
+                                class="dark:text-white whitespace-nowrap py-4 px-6 text-center text-xl font-medium text-gray-900"
                             >
                                 <div
-                                    class="p-28 flex justify-center text-gray-500 flex-col items-center animate-pulse"
+                                    class="flex animate-pulse flex-col items-center justify-center p-28 text-gray-500"
                                 >
                                     <EmojiSadIcon class="h-16 w-16" />
-                                    <span class="text-2xl mt-2"
+                                    <span class="mt-2 text-2xl"
                                         >{{ $t("no-content") }}
                                     </span>
                                 </div>
@@ -1353,16 +1355,16 @@
         </div>
         <div class="py-8 lg:px-16" v-else-if="open.ads && loading == 0">
             <div
-                class="flex justify-between lg:flex-row flex-col-reverse items-center px-6 py-2"
+                class="flex flex-col-reverse items-center justify-between px-6 py-2 lg:flex-row"
             >
                 <div>
                     <label for="table-search" class="sr-only">Search</label>
                     <div class="relative mt-1">
                         <div
-                            class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none"
+                            class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"
                         >
                             <svg
-                                class="w-5 h-5 text-gray-500 dark:text-gray-400"
+                                class="dark:text-gray-400 h-5 w-5 text-gray-500"
                                 fill="currentColor"
                                 viewBox="0 0 20 20"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -1378,7 +1380,7 @@
                             type="text"
                             id="table-search"
                             v-model="searchAds"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            class="dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 block w-80 rounded-lg border border-gray-300 bg-gray-50 p-2.5 pl-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
                             placeholder="Search"
                         />
                     </div>
@@ -1387,9 +1389,9 @@
                     :to="{
                         name: 'add.ads',
                     }"
-                    class="flex items-center space-x-3 text-white bg-primary-blue rounded px-3 py-2 lg:mb-0 mb-2"
+                    class="mb-2 flex items-center space-x-3 rounded bg-primary-blue px-3 py-2 text-white lg:mb-0"
                 >
-                    <PlusCircleIcon class="w-6 h-6" />
+                    <PlusCircleIcon class="h-6 w-6" />
                     <p class="text-base leading-4">
                         {{ $t("add") }} {{ $t("ads") }}
                     </p>
@@ -1397,13 +1399,13 @@
             </div>
             <div class="overflow-x-auto">
                 <table
-                    class="min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-700"
+                    class="dark:divide-gray-700 min-w-full table-fixed divide-y divide-gray-200"
                 >
-                    <thead class="bg-gray-100 dark:bg-gray-700">
+                    <thead class="dark:bg-gray-700 bg-gray-100">
                         <tr>
                             <th
                                 scope="col"
-                                class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
+                                class="dark:text-gray-400 py-3 px-6 text-left text-xs font-medium uppercase tracking-wider text-gray-700"
                             >
                                 {{ $t("my-ads") }}
                             </th>
@@ -1417,16 +1419,16 @@
                         </tr>
                     </thead>
                     <tbody
-                        class="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700"
+                        class="dark:bg-gray-800 dark:divide-gray-700 divide-y divide-gray-200 bg-white"
                         v-if="filteredAnnouncement.length != 0"
                     >
                         <tr
                             v-for="announcement in filteredAnnouncement"
                             :key="announcement.id"
-                            class="hover:bg-gray-100 dark:hover:bg-gray-700"
+                            class="dark:hover:bg-gray-700 hover:bg-gray-100"
                         >
                             <td
-                                class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                                class="dark:text-white whitespace-nowrap py-4 px-6 text-sm font-medium text-gray-900"
                             >
                                 <router-link
                                     :to="{
@@ -1439,7 +1441,7 @@
                             </td>
                             <td
                                 v-if="user.id == loginUser.id"
-                                class="py-4 px-6 text-sm font-medium text-right whitespace-nowrap"
+                                class="whitespace-nowrap py-4 px-6 text-right text-sm font-medium"
                             >
                                 <div class="flex">
                                     <router-link
@@ -1447,20 +1449,20 @@
                                             name: 'edit.ads',
                                             params: { id: announcement.id },
                                         }"
-                                        class="text-primary-blue dark:text-blue-500 hover:underline"
+                                        class="dark:text-blue-500 text-primary-blue hover:underline"
                                     >
                                         <PencilAltIcon
-                                            class="h-5 w-5 hover:text-blue-700 cursor-pointer text-blue-400"
+                                            class="h-5 w-5 cursor-pointer text-blue-400 hover:text-blue-700"
                                         />
                                     </router-link>
                                     <button
                                         @click="
                                             deleteAnnouncement(announcement.id)
                                         "
-                                        class="text-red-600 ml-3 dark:text-blue-500 hover:underline"
+                                        class="dark:text-blue-500 ml-3 text-red-600 hover:underline"
                                     >
                                         <TrashIcon
-                                            class="h-5 w-5 hover:text-red-700 cursor-pointer text-red-400"
+                                            class="h-5 w-5 cursor-pointer text-red-400 hover:text-red-700"
                                         />
                                     </button>
                                 </div>
@@ -1468,19 +1470,19 @@
                         </tr>
                     </tbody>
                     <tbody
-                        class="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700"
+                        class="dark:bg-gray-800 dark:divide-gray-700 divide-y divide-gray-200 bg-white"
                         v-else
                     >
-                        <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
+                        <tr class="dark:hover:bg-gray-700 hover:bg-gray-100">
                             <td
                                 colspan="5"
-                                class="py-4 px-6 text-xl font-medium text-gray-900 text-center whitespace-nowrap dark:text-white"
+                                class="dark:text-white whitespace-nowrap py-4 px-6 text-center text-xl font-medium text-gray-900"
                             >
                                 <div
-                                    class="p-28 flex justify-center text-gray-500 flex-col items-center animate-pulse"
+                                    class="flex animate-pulse flex-col items-center justify-center p-28 text-gray-500"
                                 >
                                     <EmojiSadIcon class="h-16 w-16" />
-                                    <span class="text-2xl mt-2"
+                                    <span class="mt-2 text-2xl"
                                         >{{ $t("no-content") }}
                                     </span>
                                 </div>
@@ -1491,7 +1493,7 @@
             </div>
         </div>
         <div class="py-8 lg:px-16" v-else-if="open.edit && loading == 0">
-            <h1 class="text-center text-2xl text-gray-500 font-bold">
+            <h1 class="text-center text-2xl font-bold text-gray-500">
                 {{ $t("edit") }} {{ $t("your") }} {{ $t("profile") }}
             </h1>
             <EditProfile
@@ -1508,21 +1510,21 @@
     </section>
 </template>
 
-<script>
-import { reactive, ref, onMounted, watch } from "vue";
-import Report from "../../components/Report.vue";
-import usePosts from "../../services/postServices.js";
-import EditProfile from "../../components/EditProfile.vue";
-import useUsers from "../../services/userServices.js";
-import useComments from "../../services/commentServices.js";
-import useAnnouncements from "../../services/announcementServices.js";
-import useLanguages from "../../services/languageServices.js";
-import useBusinessTypes from "../../services/businessTypeServices.js";
-import useBusinessSizes from "../../services/businessSizeServices.js";
-import useActivityAreas from "../../services/activityAreaServices.js";
-import useJobOffers from "../../services/jobOfferServices.js";
-import useLegalStatuses from "../../services/legalStatusServices.js";
-import useCountries from "../../services/countryServices.js";
+<script setup>
+import { reactive, ref, onMounted, watch, computed } from "vue";
+import Report from "@/components/Report.vue";
+import usePosts from "@/services/postServices.js";
+import EditProfile from "@/components/EditProfile.vue";
+import useUsers from "@/services/userServices.js";
+import useComments from "@/services/commentServices.js";
+import useAnnouncements from "@/services/announcementServices.js";
+import useLanguages from "@/services/languageServices.js";
+import useBusinessTypes from "@/services/businessTypeServices.js";
+import useBusinessSizes from "@/services/businessSizeServices.js";
+import useActivityAreas from "@/services/activityAreaServices.js";
+import useJobOffers from "@/services/jobOfferServices.js";
+import useLegalStatuses from "@/services/legalStatusServices.js";
+import useCountries from "@/services/countryServices.js";
 import {
     CogIcon,
     ExclamationCircleIcon,
@@ -1540,369 +1542,303 @@ import {
     IdentificationIcon,
     UserCircleIcon,
 } from "@heroicons/vue/solid";
-export default {
-    props: {
-        name: {
-            required: true,
-            type: String,
-        },
-        id: {
-            required: true,
-            type: String,
-        },
-        redirect: {
-            required: false,
-            type: String,
-        },
+
+const props = defineProps({
+    name: {
+        required: true,
+        type: String,
     },
-    components: {
-        ExclamationCircleIcon,
-        Report,
-        EmojiSadIcon,
-        EditProfile,
-        PencilAltIcon,
-        TrashIcon,
-        BookOpenIcon,
-        ChatAltIcon,
-        ChatIcon,
-        NewspaperIcon,
-        PencilIcon,
-        IdentificationIcon,
-        SpeakerphoneIcon,
-        CheckCircleIcon,
-        CogIcon,
-        PlusCircleIcon,
-        UserCircleIcon,
+    id: {
+        required: true,
+        type: String,
     },
-    setup(props) {
-        const loginUser = localStorage.user
-            ? JSON.parse(localStorage.user)
-            : "";
-        const { articles, getPostsUser, propau, destroyPost } = usePosts();
-        const { user, getUser } = useUsers();
-        const { comments, getCommentsUser, destroyComment, updateComment } =
-            useComments();
-        const { jobOffers, getJobOffersUser, destroyJobOffer, markFilled } =
-            useJobOffers();
-        const { announcements, getAnnouncementsUser, destroyAnnouncement } =
-            useAnnouncements();
-        const { languages, getLanguages } = useLanguages();
-        const { businessTypes, getBusinessTypes } = useBusinessTypes();
-        const { businessSizes, getBusinessSizes } = useBusinessSizes();
-        const { activityAreas, getActivityAreas } = useActivityAreas();
-        const { legalStatuses, getLegalStatuses } = useLegalStatuses();
-        const { countries, getCountries } = useCountries();
-        const detail = ref([]);
-        const loading = ref(0);
-        const searchArticle = ref("");
-        const searchAds = ref("");
-        const searchJob = ref("");
-        const searchComment = ref("");
-        const searchProp = ref("");
-        const langArticle = ref("");
-        const langProp = ref("");
-        const url = window.location.href;
-        const openReport = ref(false);
-        const open = reactive({
-            profil: true,
-            article: false,
-            propau: false,
-            comment: false,
-            job: false,
-            ads: false,
-            edit: false,
-        });
-        onMounted(async () => {
-            try {
-                loading.value = 1;
-                if (props.redirect == "article") {
-                    open.profil = false;
-                    open.article = true;
-                } else if (props.redirect == "propau") {
-                    open.profil = false;
-                    open.propau = true;
-                }
-                await getUser(props.id);
-                let response = await axios.get("/api/details/" + props.id, {
-                    headers: {
-                        Authorization: `Bearer ${localStorage.token}`,
-                    },
-                });
-                detail.value = response.data.data;
-                loading.value = 0;
-                await getPostsUser(props.id);
-                await getCommentsUser(props.id);
-                await getJobOffersUser(props.id);
-                await getAnnouncementsUser(props.id);
-                await getLanguages();
-                await getBusinessTypes();
-                await getBusinessSizes();
-                await getActivityAreas();
-                await getLegalStatuses();
-                await getCountries();
-            } catch (e) {
-                if (e.response.status == 401) {
-                    router.push({
-                        name: login,
-                        params: {
-                            redirect: "not-login",
-                        },
-                    });
-                    window.localStorage.removeItem("token");
-                    window.localStorage.removeItem("user");
-                }
-            }
-        });
-
-        watch(props, async (currentValue, oldValue) => {
-            try {
-                loading.value = 1;
-                await getUser(currentValue.id);
-                let response = await axios.get(
-                    "/api/details/" + currentValue.id,
-                    {
-                        headers: {
-                            Authorization: `Bearer ${localStorage.token}`,
-                        },
-                    }
-                );
-                detail.value = response.data.data;
-                loading.value = 0;
-                await getPostsUser(currentValue.id);
-                await getCommentsUser(currentValue.id);
-                await getJobOffersUser(currentValue.id);
-                await getAnnouncementsUser(currentValue.id);
-            } catch (e) {
-                if (e.response.status == 401) {
-                    router.push({
-                        name: login,
-                        params: {
-                            redirect: "not-login",
-                        },
-                    });
-                    window.localStorage.removeItem("token");
-                    window.localStorage.removeItem("user");
-                }
-            }
-        });
-
-        const toogleModal = () => {
-            openReport.value = !openReport.value;
-        };
-
-        const deletePost = async (id) => {
-            if (confirm("I you Sure ?")) {
-                await destroyPost(id);
-                await getPostsUser(props.id);
-            }
-        };
-
-        const deleteComment = async (id) => {
-            if (confirm("I you Sure ?")) {
-                await destroyComment(id);
-                await getCommentsUser(props.id);
-            }
-        };
-
-        const deleteAnnouncement = async (id) => {
-            if (confirm("I you Sure ?")) {
-                await destroyAnnouncement(id);
-                await getAnnouncementsUser(props.id);
-            }
-        };
-
-        const deleteJobOffer = async (id) => {
-            if (confirm("I you Sure ?")) {
-                await destroyJobOffer(id);
-                await getJobOffersUser(props.id);
-            }
-        };
-
-        const mark = async (id) => {
-            if (confirm("I you Sure ?")) {
-                await markFilled(id);
-                await getJobOffersUser(props.id);
-            }
-        };
-
-        const modifyComment = reactive({
-            id: "",
-            user_id: "",
-            post_id: "",
-            content: "",
-        });
-
-        const selectComment = (comment) => {
-            modifyComment.id = comment.id;
-            modifyComment.content = comment.content;
-            modifyComment.user_id = comment.user.id;
-            modifyComment.post_id = comment.post.id;
-        };
-
-        const saveComment = async () => {
-            await updateComment(modifyComment);
-            modifyComment.id = "";
-            modifyComment.content = "";
-            modifyComment.user_id = "";
-            modifyComment.post_id = "";
-            await getCommentsUser(props.id);
-        };
-
-        const changeTab = (type) => {
-            switch (type) {
-                case "profil":
-                    open.ads = false;
-                    open.job = false;
-                    open.comment = false;
-                    open.propau = false;
-                    open.article = false;
-                    open.profil = true;
-                    break;
-                case "article":
-                    open.ads = false;
-                    open.job = false;
-                    open.comment = false;
-                    open.propau = false;
-                    open.profil = false;
-                    open.article = true;
-                    break;
-                case "propau":
-                    open.ads = false;
-                    open.job = false;
-                    open.comment = false;
-                    open.article = false;
-                    open.profil = false;
-                    open.propau = true;
-                    break;
-                case "comment":
-                    open.ads = false;
-                    open.job = false;
-                    open.propau = false;
-                    open.article = false;
-                    open.profil = false;
-                    open.comment = true;
-                    break;
-                case "job":
-                    open.ads = false;
-                    open.comment = false;
-                    open.propau = false;
-                    open.article = false;
-                    open.profil = false;
-                    open.job = true;
-                    break;
-                case "ads":
-                    open.job = false;
-                    open.comment = false;
-                    open.propau = false;
-                    open.article = false;
-                    open.profil = false;
-                    open.ads = true;
-                    break;
-                case "edit":
-                    open.job = false;
-                    open.comment = false;
-                    open.propau = false;
-                    open.article = false;
-                    open.profil = false;
-                    open.ads = false;
-                    open.edit = true;
-                    break;
-            }
-        };
-
-        return {
-            toogleModal,
-            openReport,
-            deletePost,
-            langProp,
-            langArticle,
-            searchProp,
-            searchComment,
-            searchJob,
-            searchAds,
-            searchArticle,
-            url,
-            mark,
-            detail,
-            open,
-            deleteAnnouncement,
-            changeTab,
-            deleteComment,
-            deleteJobOffer,
-            announcements,
-            jobOffers,
-            user,
-            loginUser,
-            propau,
-            articles,
-            loading,
-            comments,
-            modifyComment,
-            languages,
-            businessTypes,
-            businessSizes,
-            activityAreas,
-            legalStatuses,
-            countries,
-            selectComment,
-            saveComment,
-        };
+    redirect: {
+        required: false,
+        type: String,
     },
+});
 
-    computed: {
-        filteredAnnouncement() {
-            return this.announcements.filter((announcement) => {
-                return announcement.title
-                    .toLowerCase()
-                    .includes(this.searchAds.toLowerCase());
+const loginUser = localStorage.user ? JSON.parse(localStorage.user) : "";
+const { articles, getPostsUser, propau, destroyPost } = usePosts();
+const { user, getUser } = useUsers();
+const { comments, getCommentsUser, destroyComment, updateComment } =
+    useComments();
+const { jobOffers, getJobOffersUser, destroyJobOffer, markFilled } =
+    useJobOffers();
+const { announcements, getAnnouncementsUser, destroyAnnouncement } =
+    useAnnouncements();
+const { languages, getLanguages } = useLanguages();
+const { businessTypes, getBusinessTypes } = useBusinessTypes();
+const { businessSizes, getBusinessSizes } = useBusinessSizes();
+const { activityAreas, getActivityAreas } = useActivityAreas();
+const { legalStatuses, getLegalStatuses } = useLegalStatuses();
+const { countries, getCountries } = useCountries();
+const detail = ref([]);
+const loading = ref(0);
+const searchArticle = ref("");
+const searchAds = ref("");
+const searchJob = ref("");
+const searchComment = ref("");
+const searchProp = ref("");
+const langArticle = ref("");
+const langProp = ref("");
+const url = window.location.href;
+const openReport = ref(false);
+const open = reactive({
+    profil: true,
+    article: false,
+    propau: false,
+    comment: false,
+    job: false,
+    ads: false,
+    edit: false,
+});
+onMounted(async () => {
+    try {
+        loading.value = 1;
+        if (props.redirect == "article") {
+            open.profil = false;
+            open.article = true;
+        } else if (props.redirect == "propau") {
+            open.profil = false;
+            open.propau = true;
+        }
+        await getUser(props.id);
+        let response = await axios.get("/api/details/" + props.id, {
+            headers: {
+                Authorization: `Bearer ${localStorage.token}`,
+            },
+        });
+        detail.value = response.data.data;
+        loading.value = 0;
+        await getPostsUser(props.id);
+        await getCommentsUser(props.id);
+        await getJobOffersUser(props.id);
+        await getAnnouncementsUser(props.id);
+        await getLanguages();
+        await getBusinessTypes();
+        await getBusinessSizes();
+        await getActivityAreas();
+        await getLegalStatuses();
+        await getCountries();
+    } catch (e) {
+        if (e.response.status == 401) {
+            router.push({
+                name: login,
+                params: {
+                    redirect: "not-login",
+                },
             });
-        },
-        filteredJob() {
-            return this.jobOffers.filter((jobOffer) => {
-                return jobOffer.title
-                    .toLowerCase()
-                    .includes(this.searchJob.toLowerCase());
+            window.localStorage.removeItem("token");
+            window.localStorage.removeItem("user");
+        }
+    }
+});
+
+watch(props, async (currentValue, oldValue) => {
+    try {
+        loading.value = 1;
+        await getUser(currentValue.id);
+        let response = await axios.get("/api/details/" + currentValue.id, {
+            headers: {
+                Authorization: `Bearer ${localStorage.token}`,
+            },
+        });
+        detail.value = response.data.data;
+        loading.value = 0;
+        await getPostsUser(currentValue.id);
+        await getCommentsUser(currentValue.id);
+        await getJobOffersUser(currentValue.id);
+        await getAnnouncementsUser(currentValue.id);
+    } catch (e) {
+        if (e.response.status == 401) {
+            router.push({
+                name: login,
+                params: {
+                    redirect: "not-login",
+                },
             });
-        },
-        filteredComment() {
-            return this.comments.filter((comment) => {
-                return comment.post.title
-                    .toLowerCase()
-                    .includes(this.searchComment.toLowerCase());
-            });
-        },
-        filteredPropAu() {
-            return this.propau.filter((prop) => {
-                if (this.langProp != "") {
-                    return (
-                        prop.title
-                            .toLowerCase()
-                            .includes(this.searchProp.toLowerCase()) &&
-                        prop.language == this.langProp
-                    );
-                } else {
-                    return prop.title
-                        .toLowerCase()
-                        .includes(this.searchProp.toLowerCase());
-                }
-            });
-        },
-        filteredArticles() {
-            return this.articles.filter((article) => {
-                if (this.langArticle != "") {
-                    return (
-                        article.title
-                            .toLowerCase()
-                            .includes(this.searchArticle.toLowerCase()) &&
-                        article.language == this.langArticle
-                    );
-                } else {
-                    return article.title
-                        .toLowerCase()
-                        .includes(this.searchArticle.toLowerCase());
-                }
-            });
-        },
-    },
+            window.localStorage.removeItem("token");
+            window.localStorage.removeItem("user");
+        }
+    }
+});
+
+const toogleModal = () => {
+    openReport.value = !openReport.value;
 };
+
+const deletePost = async (id) => {
+    if (confirm("I you Sure ?")) {
+        await destroyPost(id);
+        await getPostsUser(props.id);
+    }
+};
+
+const deleteComment = async (id) => {
+    if (confirm("I you Sure ?")) {
+        await destroyComment(id);
+        await getCommentsUser(props.id);
+    }
+};
+
+const deleteAnnouncement = async (id) => {
+    if (confirm("I you Sure ?")) {
+        await destroyAnnouncement(id);
+        await getAnnouncementsUser(props.id);
+    }
+};
+
+const deleteJobOffer = async (id) => {
+    if (confirm("I you Sure ?")) {
+        await destroyJobOffer(id);
+        await getJobOffersUser(props.id);
+    }
+};
+
+const mark = async (id) => {
+    if (confirm("I you Sure ?")) {
+        await markFilled(id);
+        await getJobOffersUser(props.id);
+    }
+};
+
+const modifyComment = reactive({
+    id: "",
+    user_id: "",
+    post_id: "",
+    content: "",
+});
+
+const selectComment = (comment) => {
+    modifyComment.id = comment.id;
+    modifyComment.content = comment.content;
+    modifyComment.user_id = comment.user.id;
+    modifyComment.post_id = comment.post.id;
+};
+
+const saveComment = async () => {
+    await updateComment(modifyComment);
+    modifyComment.id = "";
+    modifyComment.content = "";
+    modifyComment.user_id = "";
+    modifyComment.post_id = "";
+    await getCommentsUser(props.id);
+};
+
+const changeTab = (type) => {
+    switch (type) {
+        case "profil":
+            open.ads = false;
+            open.job = false;
+            open.comment = false;
+            open.propau = false;
+            open.article = false;
+            open.profil = true;
+            break;
+        case "article":
+            open.ads = false;
+            open.job = false;
+            open.comment = false;
+            open.propau = false;
+            open.profil = false;
+            open.article = true;
+            break;
+        case "propau":
+            open.ads = false;
+            open.job = false;
+            open.comment = false;
+            open.article = false;
+            open.profil = false;
+            open.propau = true;
+            break;
+        case "comment":
+            open.ads = false;
+            open.job = false;
+            open.propau = false;
+            open.article = false;
+            open.profil = false;
+            open.comment = true;
+            break;
+        case "job":
+            open.ads = false;
+            open.comment = false;
+            open.propau = false;
+            open.article = false;
+            open.profil = false;
+            open.job = true;
+            break;
+        case "ads":
+            open.job = false;
+            open.comment = false;
+            open.propau = false;
+            open.article = false;
+            open.profil = false;
+            open.ads = true;
+            break;
+        case "edit":
+            open.job = false;
+            open.comment = false;
+            open.propau = false;
+            open.article = false;
+            open.profil = false;
+            open.ads = false;
+            open.edit = true;
+            break;
+    }
+};
+
+const filteredAnnouncement = computed(() => {
+    return announcements.value.filter((announcement) => {
+        return announcement.title
+            .toLowerCase()
+            .includes(searchAds.value.toLowerCase());
+    });
+});
+const filteredJob = computed(() => {
+    return jobOffers.value.filter((jobOffer) => {
+        return jobOffer.title
+            .toLowerCase()
+            .includes(searchJob.value.toLowerCase());
+    });
+});
+const filteredComment = computed(() => {
+    return comments.value.filter((comment) => {
+        return comment.post.title
+            .toLowerCase()
+            .includes(searchComment.value.toLowerCase());
+    });
+});
+const filteredPropAu = computed(() => {
+    return propau.value.filter((prop) => {
+        if (langProp.value != "") {
+            return (
+                prop.title
+                    .toLowerCase()
+                    .includes(searchProp.value.toLowerCase()) &&
+                prop.language == langProp.value
+            );
+        } else {
+            return prop.title
+                .toLowerCase()
+                .includes(searchProp.value.toLowerCase());
+        }
+    });
+});
+const filteredArticles = computed(() => {
+    return articles.value.filter((article) => {
+        if (langArticle.value != "") {
+            return (
+                article.title
+                    .toLowerCase()
+                    .includes(searchArticle.value.toLowerCase()) &&
+                article.language == langArticle.value
+            );
+        } else {
+            return article.title
+                .toLowerCase()
+                .includes(searchArticle.value.toLowerCase());
+        }
+    });
+});
 </script>

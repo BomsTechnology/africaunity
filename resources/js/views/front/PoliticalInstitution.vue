@@ -1,4 +1,5 @@
 <template>
+    <div class="mx-auto min-h-screen w-full bg-white xl:w-[90%]">
     <h1 class="text-5xl text-primary-blue text-center py-2 capitalize font-bold">{{ $t('ip') }}</h1>
         <div class="pb-8 lg:px-16">
         <div class="grid lg:grid-cols-3 grid-cols-1 gap-2 px-10 pb-8 pt-4 bg-gray-50 shadow mt-4">
@@ -231,22 +232,18 @@
             <span class="text-2xl mt-2">{{ $t("no-content") }} </span>
         </div>
     </div>
+    </div>
 </template>
 
-<script>
-import { reactive, ref, onMounted } from "vue";
+<script setup>
+import { reactive, ref, onMounted , computed} from "vue";
 import { EmojiSadIcon, UserCircleIcon, ChevronDownIcon, ChevronUpIcon } from "@heroicons/vue/solid";
-import useUsers from "../../services/userServices.js";
-import useBusinessTypes from "../../services/businessTypeServices.js";
-import useBusinessSizes from "../../services/businessSizeServices.js";
-import useCountries from "../../services/countryServices.js";
-import router from "../../router";
-export default {
-    components: {
-        UserCircleIcon,
-        EmojiSadIcon, ChevronDownIcon, ChevronUpIcon
-    },
-    setup(props) {
+import useUsers from "@/services/userServices.js";
+import useBusinessTypes from "@/services/businessTypeServices.js";
+import useBusinessSizes from "@/services/businessSizeServices.js";
+import useCountries from "@/services/countryServices.js";
+import router from "@/router";
+
         const { businessSizes, getBusinessSizes } = useBusinessSizes();
         const { countries, getCountries } = useCountries();
         const { businessTypes, getBusinessTypes } = useBusinessTypes();
@@ -276,32 +273,13 @@ export default {
             await filterUsers({...filter});
         }
 
-        return {
-            usersFilter,
-            filter,
-            removeShowDetail,
-            changeShowDetail,
-            showDetail,
-            businessTypes,
-            countries,
-            businessSizes,
-            searchKey,
-            users,
-            errors,
-            loading,
-        };
-    },
 
-    computed: {
-        filteredUser() {
-            return this.users.filter((user) => {
+        const filteredUser = computed(() => {
+            return users.value.filter((user) => {
                 return user.firstname
                     .toLowerCase()
-                    .includes(this.searchKey.toLowerCase());
+                    .includes(searchKey.value.toLowerCase());
             });
-        },
-    },
-    
-};
+        });
 </script>
 

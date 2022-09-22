@@ -2,17 +2,11 @@ import "./bootstrap";
 import "../css/app.css";
 import { createApp } from "vue";
 import App from "./App.vue";
-import Admin from "./Admin.vue";
 import router from "./router";
 import i18n from "./locales/i18n";
 
-if (!window.location.href.includes("admin")) {
-    const app = createApp(App);
-    app.use(i18n).use(router).mount("#app");
-} else {
-    const app2 = createApp(Admin);
-    app2.use(i18n).use(router).mount("#app2");
-}
+const app = createApp(App);
+app.use(i18n).use(router).mount("#app");
 
 let deferredPrompt;
 const addBtn = document.querySelector(".download-app");

@@ -2,15 +2,15 @@
     <NotLogin :open="openNotLogin" :toogleModal="toogleModal" />
     <VerifyOK :open="openVerifyOK" :toogleModal="toogleModal" />
     <div
-        class="lg:flex justify-center items-center md:space-x-6 md:px-12 px-2 py-8"
+        class="mx-auto min-h-screen w-full items-center justify-center bg-white px-2 py-8 md:space-x-6 md:px-12 lg:flex xl:w-[90%]"
     >
-        <div class="space-y-6 lg:w-[60%] lg:text-left text-center">
-            <h1 class="lg:text-5xl text-4xl font-bold text-primary-blue">
+        <div class="space-y-6 text-center lg:w-[60%] lg:text-left">
+            <h1 class="text-4xl font-bold text-primary-blue lg:text-5xl">
                 <span
                     >{{ $t("login-welcome-msg") }}
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        class="w-10 h-10 inline"
+                        class="inline h-10 w-10"
                         viewBox="0 0 36 36"
                     >
                         <circle fill="#FFCC4D" cx="18" cy="18" r="18" />
@@ -37,10 +37,10 @@
             </h1>
             <p>{{ $t("login-desc") }}</p>
         </div>
-        <div class="lg:w-[40%] p-6">
+        <div class="p-6 lg:w-[40%]">
             <div class="border-t-8 border-primary-blue shadow">
                 <div class="px-6 py-6">
-                    <h1 class="text-[#242A56] text-3xl text-center font-bold">
+                    <h1 class="text-center text-3xl font-bold text-[#242A56]">
                         {{ $t("login") }}
                     </h1>
                     <Error v-if="errors != ''">{{ errors }}</Error>
@@ -48,27 +48,27 @@
                         <div class="relative">
                             <span
                                 ><MailIcon
-                                    class="absolute h-6 w-6 mt-2 ml-2 text-gray-400"
+                                    class="absolute mt-2 ml-2 h-6 w-6 text-gray-400"
                             /></span>
                             <input
                                 type="email"
                                 required
                                 v-model="user.email"
                                 :placeholder="$t('adresse') + ' ' + $t('email')"
-                                class="form-input px-3 pr-2 pl-10 w-full border-gray-400 mt-2 placeholder:text-gray-400 focus:ring-primary-blue focus:border-primary-blue block"
+                                class="form-input mt-2 block w-full border-gray-400 px-3 pr-2 pl-10 placeholder:text-gray-400 focus:border-primary-blue focus:ring-primary-blue"
                             />
                         </div>
                         <div class="relative">
                             <span
                                 ><LockClosedIcon
-                                    class="absolute h-6 w-6 mt-2 ml-2 text-gray-400"
+                                    class="absolute mt-2 ml-2 h-6 w-6 text-gray-400"
                             /></span>
                             <input
                                 type="password"
                                 required
                                 v-model="user.password"
                                 :placeholder="$t('password')"
-                                class="form-input px-3 pr-2 pl-10 w-full mt-3 placeholder:text-gray-400 border-gray-400 focus:ring-primary-blue focus:border-primary-blue block"
+                                class="form-input mt-3 block w-full border-gray-400 px-3 pr-2 pl-10 placeholder:text-gray-400 focus:border-primary-blue focus:ring-primary-blue"
                             />
                         </div>
 
@@ -76,7 +76,7 @@
                             <button
                                 v-if="loading == 0"
                                 type="submit"
-                                class="text-white text-lg bg-primary-blue px-8 py-2 mt-6 w-full"
+                                class="mt-6 w-full bg-primary-blue px-8 py-2 text-lg text-white"
                             >
                                 {{ $t("login") }}
                             </button>
@@ -84,10 +84,10 @@
                                 v-if="loading == 1"
                                 disabled
                                 type="submit"
-                                class="inline-flex items-center justify-center text-white text-lg bg-blue-300 cursor-wait px-8 py-2 mt-6 w-full"
+                                class="mt-6 inline-flex w-full cursor-wait items-center justify-center bg-blue-300 px-8 py-2 text-lg text-white"
                             >
                                 <svg
-                                    class="animate-spin mr-3 h-5 w-5 text-white"
+                                    class="mr-3 h-5 w-5 animate-spin text-white"
                                     xmlns="http://www.w3.org/2000/svg"
                                     fill="none"
                                     viewBox="0 0 24 24"
@@ -121,7 +121,7 @@
                     </form>
                 </div>
                 <div
-                    class="h-16 bg-primary-blue p-4 text-center md:text-md text-sm text-white"
+                    class="md:text-md h-16 bg-primary-blue p-4 text-center text-sm text-white"
                 >
                     {{ $t("no-signup") }}
                     <router-link
@@ -136,76 +136,57 @@
     </div>
 </template>
 
-<script>
+<script setup>
 import { reactive, ref, onMounted } from "vue";
-import Error from "../../components/Error.vue";
-import useAuth from "../../services/authServices.js";
-import router from "../../router";
+import Error from "@/components/Error.vue";
+import useAuth from "@/services/authServices.js";
+import router from "@/router";
 import { MailIcon, LockClosedIcon } from "@heroicons/vue/solid";
-import NotLogin from "../../components/NotLogin.vue";
-import VerifyOK from "../../components/VerifyOK.vue";
-export default {
-    components: {
-        MailIcon,
-        Error,
-        LockClosedIcon,
-        NotLogin,
-        VerifyOK,
-    },
-    props: {
-        redirect: {
-            required: false,
-            type: String,
-        },
-    },
-    setup(props) {
-        const cuser = localStorage.user ? JSON.parse(localStorage.user) : "";
-        const openNotLogin = ref(false);
-        const openVerifyOK = ref(false);
+import NotLogin from "@/components/NotLogin.vue";
+import VerifyOK from "@/components/VerifyOK.vue";
 
-        const user = reactive({
-            email: "",
-            password: "",
+const props = defineProps({
+    redirect: {
+        required: false,
+        type: String,
+    },
+});
+
+const cuser = localStorage.user ? JSON.parse(localStorage.user) : "";
+const openNotLogin = ref(false);
+const openVerifyOK = ref(false);
+
+const user = reactive({
+    email: "",
+    password: "",
+});
+
+const toogleModal = () => {
+    openNotLogin.value = false;
+    openVerifyOK.value = false;
+};
+
+const { loginUser, errors, loading } = useAuth();
+
+onMounted(() => {
+    if (props.redirect == "not-login") {
+        openNotLogin.value = true;
+    } else if (props.redirect == "verif-ok") {
+        openVerifyOK.value = true;
+    }
+
+    if (localStorage.token) {
+        router.push({
+            name: "compte",
+            params: { name: cuser.firstname, id: cuser.id },
         });
+    }
+});
 
-        const toogleModal = () => {
-            openNotLogin.value = false;
-            openVerifyOK.value = false;
-        };
-
-        const { loginUser, errors, loading } = useAuth();
-
-        onMounted(() => {
-            if (props.redirect == "not-login") {
-                openNotLogin.value = true;
-            } else if (props.redirect == "verif-ok") {
-                openVerifyOK.value = true;
-            }
-
-            if (localStorage.token) {
-                router.push({
-                    name: "compte",
-                    params: { name: cuser.firstname, id: cuser.id },
-                });
-            }
-        });
-
-        const login = async () => {
-            await loginUser({ ...user });
-            if (errors.value == "") {
-                location.href = window.location.origin;
-            }
-        };
-
-        return {
-            user,
-            errors,
-            login,
-            loading,
-            openNotLogin,
-            openVerifyOK,
-            toogleModal,
-        };
-    },
+const login = async () => {
+    await loginUser({ ...user });
+    if (errors.value == "") {
+        location.href = window.location.origin;
+    }
 };
 </script>

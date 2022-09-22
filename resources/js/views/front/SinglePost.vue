@@ -6,16 +6,16 @@
         :type="'post'"
     />
     <div
-        class="flex lg:flex-row flex-col p-4 lg:space-x-2 md:space-y-2 text-lg"
+        class="mx-auto flex min-h-screen w-full flex-col bg-white p-4 text-lg md:space-y-2 lg:flex-row lg:space-x-2 xl:w-[90%]"
     >
         <div class="lg:w-[70%]">
             <div class="py-6 lg:px-4" v-if="post.length != 0">
                 <div
-                    class="overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800"
+                    class="dark:bg-gray-800 overflow-hidden rounded-lg bg-white shadow-md"
                 >
                     <!-- Post -->
                     <img
-                        class="object-cover w-full h-96"
+                        class="h-96 w-full object-cover"
                         :src="post.image"
                         v-if="post.type == 'article'"
                         alt=""
@@ -24,7 +24,7 @@
                         <div>
                             <a
                                 href="#"
-                                class="text-xs py-1 px-2 rounded capitalize text-white"
+                                class="rounded py-1 px-2 text-xs capitalize text-white"
                                 :style="'background:' + post.ministry.color"
                             >
                                 <span v-if="$i18n.locale == 'en'">{{
@@ -39,12 +39,12 @@
                                 <span v-else>{{ post.country.name_pt }}</span>
                             </a>
                             <h1
-                                class="block mt-2 text-3xl font-semibold text-gray-800 transition-colors duration-200 transform dark:text-white hover:text-gray-600"
+                                class="dark:text-white mt-2 block transform text-3xl font-semibold text-gray-800 transition-colors duration-200 hover:text-gray-600"
                             >
                                 {{ post.title }}
                             </h1>
                             <div
-                                class="flex text-xs space-x-2 mt-2 text-gray-500"
+                                class="mt-2 flex space-x-2 text-xs text-gray-500"
                             >
                                 <div class="flex space-x-1">
                                     <CalendarIcon class="h-4 w-4" />
@@ -80,12 +80,12 @@
                             </div>
                             <p
                                 v-if="post.type == 'article'"
-                                class="mt-2 py-4 my-4 text-gray-600 dark:text-gray-400"
+                                class="dark:text-gray-400 my-4 mt-2 py-4 text-gray-600"
                                 v-html="displayHtml(post.content2)"
                             ></p>
                             <p
                                 v-else
-                                class="mt-2 py-4 my-4 text-gray-600 dark:text-gray-400 break-words"
+                                class="dark:text-gray-400 my-4 mt-2 break-words py-4 text-gray-600"
                             >
                                 {{ post.content }}
                             </p>
@@ -105,7 +105,7 @@
                                 >
                                     <img
                                         v-if="post.user.avatar"
-                                        class="object-cover h-16 w-16 shadow rounded-full"
+                                        class="h-16 w-16 rounded-full object-cover shadow"
                                         :src="post.user.avatar"
                                     />
 
@@ -114,7 +114,7 @@
                                         class="h-10 w-10 text-gray-700"
                                     />
                                     <span
-                                        class="mx-2 font-semibold text-gray-700 dark:text-gray-200"
+                                        class="dark:text-gray-200 mx-2 font-semibold text-gray-700"
                                         >{{ post.user.firstname }}</span
                                     >
                                 </router-link>
@@ -123,7 +123,7 @@
                                     <div>
                                         <button
                                             @click="toogleModal()"
-                                            class="flex text-gray-400 cursor-pointer text-xs border-gray-400 border rounded-full px-2 py-1 items-center hover:bg-yellow-300 space-x-2 hover:text-white hover:border-white"
+                                            class="flex cursor-pointer items-center space-x-2 rounded-full border border-gray-400 px-2 py-1 text-xs text-gray-400 hover:border-white hover:bg-yellow-300 hover:text-white"
                                         >
                                             <ExclamationCircleIcon
                                                 class="h-5 w-5"
@@ -147,14 +147,14 @@
                                             }"
                                         >
                                             <PencilAltIcon
-                                                class="h-5 w-5 text-gray-400 cursor-pointer hover:text-primary-blue"
+                                                class="h-5 w-5 cursor-pointer text-gray-400 hover:text-primary-blue"
                                             />
                                         </router-link>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="px-2 flex items-center space-x-3 py-4">
+                        <div class="flex items-center space-x-3 px-2 py-4">
                             <!-- facebook icons -->
                             <!-- <a :href="'https://www.facebook.com/sharer/sharer.php?u='+url" data-network="facebook" target="_blank" rel="noopener noreferrer">
                                 <svg fill="#3b5998" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 30 30" class="h-6 w-6"><path d="M27,15c0,6.627-5.373,12-12,12S3,21.627,3,15S8.373,3,15,3S27,8.373,27,15z M19.181,8.131C18.877,8.09,18.235,8,17.021,8 C14.486,8,13,9.339,13,12.389V14h-3v3h3v7.799C13.646,24.93,14.315,25,15,25c0.338,0,0.671-0.018,1-0.05V17h2.726l0.428-3H16 v-1.282C16,11.568,16.376,11,17.452,11h1.729V8.131z"/></svg>
@@ -201,33 +201,33 @@
                                     }"
                                 >
                                     <div
-                                        class="md:w-20 md:h-20 w-10 h-10 rounded-full shadow overflow-hidden"
+                                        class="h-10 w-10 overflow-hidden rounded-full shadow md:h-20 md:w-20"
                                     >
                                         <img
                                             :src="comment.user.avatar"
-                                            class="w-full h-full bg-cover object-cover"
+                                            class="h-full w-full bg-cover object-cover"
                                             alt=""
                                             v-if="comment.user.avatar"
                                         />
                                         <UserCircleIcon
                                             v-else
-                                            class="w-full h-full text-gray-500"
+                                            class="h-full w-full text-gray-500"
                                         />
                                     </div>
                                     <h1
-                                        class="mt-2 text-center text-xs lg:text-sm font-bold hover:underline"
+                                        class="mt-2 text-center text-xs font-bold hover:underline lg:text-sm"
                                     >
                                         {{ comment.user.firstname }}
                                     </h1>
                                 </router-link>
                                 <h3
-                                    class="font-light text-center text-xs lg:text-sm"
+                                    class="text-center text-xs font-light lg:text-sm"
                                 >
                                     {{ comment.date }}
                                 </h3>
                             </div>
 
-                            <div class="ml-2 w-full p-2 lg:text-lg text-xs">
+                            <div class="ml-2 w-full p-2 text-xs lg:text-lg">
                                 {{ comment.content }}
                             </div>
                         </div>
@@ -237,7 +237,7 @@
                     <form @submit.prevent="storeComment()">
                         <div class="mt-4 px-8 py-4">
                             <label
-                                class="text-gray-700 dark:text-gray-200"
+                                class="dark:text-gray-200 text-gray-700"
                                 for="pt"
                                 >Laisser un Commentaire
                                 <span class="text-red-500">*</span></label
@@ -247,7 +247,7 @@
                                 required
                                 type="text"
                                 id="pt"
-                                class="block w-full px-4 py-2 mt-2 text-gray-700 h-60 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:ring-primary-blue focus:border-primary-blue focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                                class="dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 dark:focus:border-blue-300 mt-2 block h-60 w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-primary-blue focus:outline-none focus:ring focus:ring-primary-blue focus:ring-opacity-40"
                             >
                             </textarea>
                             <div class="mt-6">
@@ -258,7 +258,7 @@
                                 <button
                                     v-if="loadingC == 0"
                                     type="submit"
-                                    class="px-6 py-4 text-md leading-5 w-full text-white rounded bg-primary-blue focus:outline-none"
+                                    class="text-md w-full rounded bg-primary-blue px-6 py-4 leading-5 text-white focus:outline-none"
                                 >
                                     {{ $t("save") }}
                                 </button>
@@ -266,11 +266,11 @@
                                     v-if="loadingC == 1"
                                     type="submit"
                                     disabled
-                                    class="px-6 py-4 text-md leading-5 flex justify-center items-center w-full text-white rounded bg-blue-300 focus:outline-none"
+                                    class="text-md flex w-full items-center justify-center rounded bg-blue-300 px-6 py-4 leading-5 text-white focus:outline-none"
                                 >
                                     {{ $t("save") }}...
                                     <svg
-                                        class="animate-spin h-5 w-5 text-white"
+                                        class="h-5 w-5 animate-spin text-white"
                                         xmlns="http://www.w3.org/2000/svg"
                                         fill="none"
                                         viewBox="0 0 24 24"
@@ -297,7 +297,7 @@
             </div>
             <div v-else-if="loading == 1" class="p-28">
                 <svg
-                    class="animate-spin h-16 w-16 mx-auto"
+                    class="mx-auto h-16 w-16 animate-spin"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -319,19 +319,19 @@
             </div>
             <div
                 v-else
-                class="p-28 flex justify-center text-gray-500 flex-col items-center animate-pulse"
+                class="flex animate-pulse flex-col items-center justify-center p-28 text-gray-500"
             >
                 <EmojiSadIcon class="h-16 w-16" />
-                <span class="text-2xl mt-2">{{ $t("no-content") }}</span>
+                <span class="mt-2 text-2xl">{{ $t("no-content") }}</span>
             </div>
         </div>
-        <div class="lg:w-[30%] bg-white">
+        <div class="bg-white lg:w-[30%]">
             <FilterArticle />
         </div>
     </div>
 </template>
 
-<script>
+<script setup>
 import router from "../../router";
 import { reactive, ref, onMounted } from "vue";
 import FilterArticle from "../../components/FilterArticle.vue";
@@ -349,83 +349,48 @@ import {
 import usePosts from "../../services/postServices.js";
 import useComments from "../../services/commentServices.js";
 import Error from "../../components/Error.vue";
-export default {
-    props: {
-        id: {
-            required: true,
-            type: String,
-        },
-    },
-    components: {
-        ChatIcon,
-        UserIcon,
-        PlusCircleIcon,
-        UserCircleIcon,
-        CalendarIcon,
-        EmojiSadIcon,
-        ExclamationCircleIcon,
-        PencilAltIcon,
-        Report,
-        FilterArticle,
-        Error,
-    },
-    created() {
-        if (!localStorage.token) {
-            router.push({ name: "login", params: { redirect: "not-login" } });
-        }
-    },
-    setup(props) {
-        const url = window.location.href;
-        const { post, getPost2, loading } = usePosts();
-        const { createComment, errors, comments, getCommentsPost } =
-            useComments();
-        const user = localStorage.user ? JSON.parse(localStorage.user) : "";
-        const comment = reactive({
-            user_id: user.id,
-            post_id: "",
-            content: "",
-        });
-        onMounted(async () => {
-            await getPost2(props.id);
-            await getCommentsPost(props.id);
-            comment.post_id = post.value.id;
-        });
-        const openReport = ref(false);
 
-        const toogleModal = () => {
-            openReport.value = !openReport.value;
-        };
-
-        const displayHtml = (str) => {
-            const parser = new DOMParser();
-
-            // convert html string into DOM
-            const document = parser.parseFromString(str, "text/html");
-            return document.body.innerHTML;
-        };
-
-        const loadingC = ref(0);
-        const storeComment = async () => {
-            loadingC.value = 1;
-            await createComment({ ...comment });
-            loadingC.value = 0;
-            comment.content = "";
-            await getCommentsPost(props.id);
-        };
-        return {
-            displayHtml,
-            url,
-            openReport,
-            toogleModal,
-            loading,
-            loadingC,
-            storeComment,
-            comments,
-            errors,
-            post,
-            comment,
-            user,
-        };
+const props = defineProps({
+    id: {
+        required: true,
+        type: String,
     },
+});
+
+const url = window.location.href;
+const { post, getPost2, loading } = usePosts();
+const { createComment, errors, comments, getCommentsPost } = useComments();
+const user = localStorage.user ? JSON.parse(localStorage.user) : "";
+const comment = reactive({
+    user_id: user.id,
+    post_id: "",
+    content: "",
+});
+onMounted(async () => {
+    await getPost2(props.id);
+    await getCommentsPost(props.id);
+    comment.post_id = post.value.id;
+});
+const openReport = ref(false);
+
+const toogleModal = () => {
+    openReport.value = !openReport.value;
+};
+
+const displayHtml = (str) => {
+    const parser = new DOMParser();
+
+    // convert html string into DOM
+    const document = parser.parseFromString(str, "text/html");
+    return document.body.innerHTML;
+};
+
+const loadingC = ref(0);
+const storeComment = async () => {
+    loadingC.value = 1;
+    await createComment({ ...comment });
+    loadingC.value = 0;
+    comment.content = "";
+    await getCommentsPost(props.id);
 };
 </script>
