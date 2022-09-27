@@ -1,52 +1,52 @@
 <template>
     <div
-        class="bg-menu border-t-4 text-md font-semibold border-primary-blue px-4 pb-2 flex justify-between relative w-full z-10"
+        class="text-md relative z-10 flex w-full justify-between border-t-4 border-primary-blue bg-menu px-4 pb-2 font-semibold"
     >
         <nav class="hidden lg:flex">
             <router-link
                 :to="{ name: 'home' }"
-                class="text-white transition-colors duration-200 hover:bg-primary-blue px-3 py-2 flex justify-center items-start"
+                class="flex items-start justify-center px-3 py-2 text-white transition-colors duration-200 hover:bg-primary-blue"
             >
                 <HomeIcon class="h-6 w-6" />
             </router-link>
 
             <router-link
                 :to="{ name: 'articles' }"
-                class="text-white transition-colors duration-200 hover:bg-primary-blue px-3 py-2 uppercase"
+                class="px-3 py-2 uppercase text-white transition-colors duration-200 hover:bg-primary-blue"
             >
                 {{ $t("articles") }}
             </router-link>
 
             <div
                 @mouseleave="open.profile = false"
-                class="text-white transition-colors duration-200 hover:bg-primary-blue px-3 py-2 uppercase relative"
+                class="relative px-3 py-2 uppercase text-white transition-colors duration-200 hover:bg-primary-blue"
             >
                 <label
                     @mouseover="open.profile = true"
-                    class="flex items-center justify-center cursor-pointer"
+                    class="flex cursor-pointer items-center justify-center"
                 >
                     {{ $t("profile") }}
-                    <ChevronDownIcon class="h-5 w-5 ml-2" />
+                    <ChevronDownIcon class="ml-2 h-5 w-5" />
                 </label>
                 <div
                     v-show="open.profile"
-                    class="absolute left-0 w-60 flex flex-col py-2 mt-2 bg-menu z-40"
+                    class="absolute left-0 z-40 mt-2 flex w-60 flex-col bg-menu py-2"
                 >
                     <router-link
                         :to="{ name: 'particular' }"
-                        class="text-white transition-colors duration-200 text-sm hover:bg-primary-blue px-3 py-2 uppercase"
+                        class="px-3 py-2 text-sm uppercase text-white transition-colors duration-200 hover:bg-primary-blue"
                     >
                         {{ $t("particular") }}
                     </router-link>
                     <router-link
                         :to="{ name: 'establishment' }"
-                        class="text-white transition-colors duration-200 text-sm hover:bg-primary-blue px-3 py-2 uppercase"
+                        class="px-3 py-2 text-sm uppercase text-white transition-colors duration-200 hover:bg-primary-blue"
                     >
                         {{ $t("establishment") }}
                     </router-link>
                     <router-link
                         :to="{ name: 'ip' }"
-                        class="text-white transition-colors duration-200 text-sm hover:bg-primary-blue px-3 py-2 uppercase"
+                        class="px-3 py-2 text-sm uppercase text-white transition-colors duration-200 hover:bg-primary-blue"
                     >
                         {{ $t("ip") }}
                     </router-link>
@@ -55,28 +55,28 @@
 
             <router-link
                 :to="{ name: 'propau' }"
-                class="text-white transition-colors duration-200 hover:bg-primary-blue px-3 py-2 uppercase"
+                class="px-3 py-2 uppercase text-white transition-colors duration-200 hover:bg-primary-blue"
             >
                 {{ $t("propau") }}
             </router-link>
 
             <router-link
                 :to="{ name: 'universities' }"
-                class="text-white transition-colors duration-200 hover:bg-primary-blue px-3 py-2 uppercase"
+                class="px-3 py-2 uppercase text-white transition-colors duration-200 hover:bg-primary-blue"
             >
                 {{ $t("univerities") }}
             </router-link>
 
             <router-link
                 :to="{ name: 'jobs' }"
-                class="text-white transition-colors duration-200 hover:bg-primary-blue px-3 py-2 uppercase"
+                class="px-3 py-2 uppercase text-white transition-colors duration-200 hover:bg-primary-blue"
             >
                 {{ $t("jobs") }}
             </router-link>
 
             <router-link
                 :to="{ name: 'contact' }"
-                class="text-white transition-colors duration-200 hover:bg-primary-blue px-3 py-2 uppercase"
+                class="px-3 py-2 uppercase text-white transition-colors duration-200 hover:bg-primary-blue"
             >
                 {{ $t("contact") }}
             </router-link>
@@ -88,7 +88,7 @@
                     name: 'compte',
                     params: { name: user.firstname, id: user.id },
                 }"
-                class="text-white relative transition-colors duration-200 bg-primary-blue px-3 py-2 mx-2 uppercase"
+                class="relative mx-2 bg-primary-blue px-3 py-2 uppercase text-white transition-colors duration-200"
             >
                 <div
                     @mouseover="open.logout = true"
@@ -98,7 +98,7 @@
                         <img
                             :src="user.avatar"
                             alt=""
-                            class="h-7 w-7 border rounded-full object-cover shadow"
+                            class="h-7 w-7 rounded-full border object-cover shadow"
                         />
                     </span>
                     <UserCircleIcon v-else class="h-8 w-8 text-white" />
@@ -107,17 +107,17 @@
                 </div>
                 <div
                     v-show="open.logout"
-                    class="absolute left-0 w-48 flex flex-col py-2 mt-2 bg-menu z-40"
+                    class="absolute left-0 z-40 mt-2 flex w-48 flex-col bg-menu py-2"
                 >
                     <a
                         href="#"
                         @click.prevent="logout()"
-                        class="text-white flex items-center transition-colors duration-200 text-sm hover:bg-primary-blue px-3 py-2 uppercase"
+                        class="flex items-center px-3 py-2 text-sm uppercase text-white transition-colors duration-200 hover:bg-primary-blue"
                     >
                         {{ $t("logout") }}
                         <svg
                             v-if="loading == 1"
-                            class="animate-spin ml-3 h-5 w-5 text-white"
+                            class="ml-3 h-5 w-5 animate-spin text-white"
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
                             viewBox="0 0 24 24"
@@ -142,18 +142,18 @@
             <router-link
                 v-else
                 :to="{ name: 'login' }"
-                class="text-white flex transition-colors duration-200 bg-primary-blue px-3 py-2 mx-2 uppercase"
+                class="mx-2 flex bg-primary-blue px-3 py-2 uppercase text-white transition-colors duration-200"
             >
                 {{ $t("login") }} / {{ $t("register") }}
             </router-link>
 
             <div
                 @mouseleave="open.lang = false"
-                class="text-white transition-colors duration-200 hover:bg-primary-blue px-3 py-2 uppercase relative"
+                class="relative px-3 py-2 uppercase text-white transition-colors duration-200 hover:bg-primary-blue"
             >
                 <label
                     @mouseover="open.lang = true"
-                    class="flex items-center justify-center cursor-pointer"
+                    class="flex cursor-pointer items-center justify-center"
                 >
                     <span v-if="$i18n.locale == 'fr'">
                         {{ $t("fr") }}
@@ -167,17 +167,17 @@
                     <span v-else>
                         {{ $t("pt") }}
                     </span>
-                    <ChevronDownIcon class="h-5 w-5 ml-2" />
+                    <ChevronDownIcon class="ml-2 h-5 w-5" />
                 </label>
                 <div
                     v-show="open.lang"
-                    class="absolute left-0 w-48 flex flex-col py-2 mt-2 bg-menu z-40"
+                    class="absolute left-0 z-40 mt-2 flex w-48 flex-col bg-menu py-2"
                 >
                     <a
                         href="#"
                         v-if="$i18n.locale != 'fr'"
                         @click.prevent="changeLocale('fr')"
-                        class="text-white transition-colors duration-200 text-sm hover:bg-primary-blue px-3 py-2 uppercase"
+                        class="px-3 py-2 text-sm uppercase text-white transition-colors duration-200 hover:bg-primary-blue"
                     >
                         {{ $t("fr") }}
                     </a>
@@ -185,7 +185,7 @@
                         href="#"
                         v-if="$i18n.locale != 'en'"
                         @click.prevent="changeLocale('en')"
-                        class="text-white transition-colors duration-200 text-sm hover:bg-primary-blue px-3 py-2 uppercase"
+                        class="px-3 py-2 text-sm uppercase text-white transition-colors duration-200 hover:bg-primary-blue"
                     >
                         {{ $t("en") }}
                     </a>
@@ -193,7 +193,7 @@
                         href="#"
                         v-if="$i18n.locale != 'es'"
                         @click.prevent="changeLocale('es')"
-                        class="text-white transition-colors duration-200 text-sm hover:bg-primary-blue px-3 py-2 uppercase"
+                        class="px-3 py-2 text-sm uppercase text-white transition-colors duration-200 hover:bg-primary-blue"
                     >
                         {{ $t("es") }}
                     </a>
@@ -201,7 +201,7 @@
                         href="#"
                         v-if="$i18n.locale != 'pt'"
                         @click.prevent="changeLocale('pt')"
-                        class="text-white transition-colors duration-200 text-sm hover:bg-primary-blue px-3 py-2 uppercase"
+                        class="px-3 py-2 text-sm uppercase text-white transition-colors duration-200 hover:bg-primary-blue"
                     >
                         {{ $t("pt") }}
                     </a>
@@ -209,50 +209,50 @@
             </div>
         </nav>
 
-        <nav class="lg:hidden flex z-50">
+        <nav class="z-50 flex lg:hidden">
             <button
                 type="button"
                 @click.prevent="changeRoute('home')"
-                class="text-white transition-colors duration-200 hover:bg-primary-blue px-3 py-2 flex items-center justify-center"
+                class="flex items-center justify-center px-3 py-2 text-white transition-colors duration-200 hover:bg-primary-blue"
             >
                 <HomeIcon class="h-6 w-6" />
             </button>
             <button
                 type="button"
                 @click="open.menu = !open.menu"
-                class="text-white transition-colors duration-200 hover:bg-primary-blue px-3 py-2 flex items-center justify-center"
+                class="flex items-center justify-center px-3 py-2 text-white transition-colors duration-200 hover:bg-primary-blue"
             >
                 <MenuIcon class="h-6 w-6" />
             </button>
             <div
                 v-show="open.menu"
-                class="bg-white absolute mt-12 w-[90%] mx-auto border border-menu shadow-md flex flex-col justify-center"
+                class="absolute mx-auto mt-12 flex w-[90%] flex-col justify-center border border-menu bg-white shadow-md"
             >
                 <a
                     href="#"
                     @click.prevent="changeRoute('articles')"
-                    class="text-menu hover:text-white transition-colors duration-200 hover:bg-primary-blue px-3 py-2 uppercase"
+                    class="px-3 py-2 uppercase text-menu transition-colors duration-200 hover:bg-primary-blue hover:text-white"
                 >
                     {{ $t("articles") }}
                 </a>
 
-                <div class="text-menu pl-6 py-2 uppercase relative">
-                    <label class="flex items-center cursor-pointer">
+                <div class="relative py-2 pl-6 uppercase text-menu">
+                    <label class="flex cursor-pointer items-center">
                         {{ $t("profile") }}
-                        <ChevronDownIcon class="h-5 w-5 ml-2" />
+                        <ChevronDownIcon class="ml-2 h-5 w-5" />
                     </label>
-                    <div class="flex flex-col py-2 mt-2">
+                    <div class="mt-2 flex flex-col py-2">
                         <a
                             href="#"
                             @click.prevent="changeRoute('particular')"
-                            class="text-menu transition-colors duration-200 hover:text-white text-sm hover:bg-primary-blue px-3 py-2 uppercase"
+                            class="px-3 py-2 text-sm uppercase text-menu transition-colors duration-200 hover:bg-primary-blue hover:text-white"
                         >
                             {{ $t("particular") }}
                         </a>
                         <a
                             href="#"
                             @click.prevent="changeRoute('establishment')"
-                            class="text-menu transition-colors duration-200 hover:text-white text-sm hover:bg-primary-blue px-3 py-2 uppercase"
+                            class="px-3 py-2 text-sm uppercase text-menu transition-colors duration-200 hover:bg-primary-blue hover:text-white"
                         >
                             {{ $t("establishment") }}
                         </a>
@@ -260,7 +260,7 @@
                             href="#"
                             type="button"
                             @click.prevent="changeRoute('ip')"
-                            class="text-menu transition-colors duration-200 hover:text-white text-sm hover:bg-primary-blue px-3 py-2 uppercase"
+                            class="px-3 py-2 text-sm uppercase text-menu transition-colors duration-200 hover:bg-primary-blue hover:text-white"
                         >
                             {{ $t("ip") }}
                         </a>
@@ -270,7 +270,7 @@
                 <a
                     href="#"
                     @click.prevent="changeRoute('propau')"
-                    class="text-menu transition-colors duration-200 hover:text-white hover:bg-primary-blue px-3 py-2 uppercase"
+                    class="px-3 py-2 uppercase text-menu transition-colors duration-200 hover:bg-primary-blue hover:text-white"
                 >
                     {{ $t("propau") }}
                 </a>
@@ -278,7 +278,7 @@
                 <a
                     href="#"
                     @click.prevent="changeRoute('universities')"
-                    class="text-menu transition-colors duration-200 hover:text-white hover:bg-primary-blue px-3 py-2 uppercase"
+                    class="px-3 py-2 uppercase text-menu transition-colors duration-200 hover:bg-primary-blue hover:text-white"
                 >
                     {{ $t("univerities") }}
                 </a>
@@ -286,7 +286,7 @@
                 <a
                     href="#"
                     @click.prevent="changeRoute('jobs')"
-                    class="text-menu transition-colors duration-200 hover:text-white hover:bg-primary-blue px-3 py-2 uppercase"
+                    class="px-3 py-2 uppercase text-menu transition-colors duration-200 hover:bg-primary-blue hover:text-white"
                 >
                     {{ $t("jobs") }}
                 </a>
@@ -294,7 +294,7 @@
                 <a
                     href="#"
                     @click.prevent="changeRoute('contact')"
-                    class="text-menu transition-colors duration-200 hover:text-white hover:bg-primary-blue px-3 py-2 uppercase"
+                    class="px-3 py-2 uppercase text-menu transition-colors duration-200 hover:bg-primary-blue hover:text-white"
                 >
                     {{ $t("contact") }}
                 </a>
@@ -307,12 +307,12 @@
                     "
                 >
                     <div
-                        class="flex space-x-2 items-center text-white transition-colors duration-200 text-sm bg-primary-blue px-3 py-2 uppercase"
+                        class="flex items-center space-x-2 bg-primary-blue px-3 py-2 text-sm uppercase text-white transition-colors duration-200"
                     >
                         <span v-if="user.avatar">
                             <img
                                 :src="user.avatar"
-                                class="h-16 w-16 border rounded-full shadow"
+                                class="h-16 w-16 rounded-full border shadow"
                                 alt=""
                             />
                         </span>
@@ -323,12 +323,12 @@
                         <a
                             href="#"
                             @click.prevent="logout()"
-                            class="hover:text-white text-menu flex items-center transition-colors duration-200 text-sm hover:bg-primary-blue px-3 py-2 uppercase"
+                            class="flex items-center px-3 py-2 text-sm uppercase text-menu transition-colors duration-200 hover:bg-primary-blue hover:text-white"
                         >
                             {{ $t("logout") }}
                             <svg
                                 v-if="loading == 1"
-                                class="animate-spin ml-3 h-5 w-5"
+                                class="ml-3 h-5 w-5 animate-spin"
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
                                 viewBox="0 0 24 24"
@@ -354,13 +354,13 @@
                     href="#"
                     @click.prevent="changeRoute('login')"
                     v-else
-                    class="text-white transition-colors duration-200 bg-primary-blue px-3 py-2 uppercase"
+                    class="bg-primary-blue px-3 py-2 uppercase text-white transition-colors duration-200"
                 >
                     {{ $t("login") }} / {{ $t("register") }}
                 </a>
 
-                <div class="text-menu pl-6 py-2 uppercase relative">
-                    <label class="flex items-center cursor-pointer">
+                <div class="relative py-2 pl-6 uppercase text-menu">
+                    <label class="flex cursor-pointer items-center">
                         <span v-if="$i18n.locale == 'fr'">
                             {{ $t("fr") }}
                         </span>
@@ -373,14 +373,14 @@
                         <span v-else>
                             {{ $t("pt") }}
                         </span>
-                        <ChevronDownIcon class="h-5 w-5 ml-2" />
+                        <ChevronDownIcon class="ml-2 h-5 w-5" />
                     </label>
-                    <div class="flex flex-col py-2 mt-2">
+                    <div class="mt-2 flex flex-col py-2">
                         <a
                             href="#"
                             v-if="$i18n.locale != 'fr'"
                             @click.prevent="changeLocale('fr')"
-                            class="text-menu transition-colors duration-200 hover:text-white text-sm hover:bg-primary-blue px-3 py-2 uppercase"
+                            class="px-3 py-2 text-sm uppercase text-menu transition-colors duration-200 hover:bg-primary-blue hover:text-white"
                         >
                             {{ $t("fr") }}
                         </a>
@@ -388,7 +388,7 @@
                             href="#"
                             v-if="$i18n.locale != 'en'"
                             @click.prevent="changeLocale('en')"
-                            class="text-menu transition-colors duration-200 hover:text-white text-sm hover:bg-primary-blue px-3 py-2 uppercase"
+                            class="px-3 py-2 text-sm uppercase text-menu transition-colors duration-200 hover:bg-primary-blue hover:text-white"
                         >
                             {{ $t("en") }}
                         </a>
@@ -396,7 +396,7 @@
                             href="#"
                             v-if="$i18n.locale != 'es'"
                             @click.prevent="changeLocale('es')"
-                            class="text-menu transition-colors duration-200 hover:text-white text-sm hover:bg-primary-blue px-3 py-2 uppercase"
+                            class="px-3 py-2 text-sm uppercase text-menu transition-colors duration-200 hover:bg-primary-blue hover:text-white"
                         >
                             {{ $t("es") }}
                         </a>
@@ -404,7 +404,7 @@
                             href="#"
                             v-if="$i18n.locale != 'pt'"
                             @click.prevent="changeLocale('pt')"
-                            class="text-menu transition-colors duration-200hover:text-white text-sm hover:bg-primary-blue px-3 py-2 uppercase"
+                            class="duration-200hover:text-white px-3 py-2 text-sm uppercase text-menu transition-colors hover:bg-primary-blue"
                         >
                             {{ $t("pt") }}
                         </a>
@@ -417,24 +417,24 @@
             <button
                 type="button"
                 @click="open.search = !open.search"
-                class="text-white hover:bg-primary-blue px-3 py-2 flex items-center justify-center"
+                class="flex items-center justify-center px-3 py-2 text-white hover:bg-primary-blue"
             >
                 <SearchIcon class="h-6 w-6" />
             </button>
             <div
                 v-show="open.search"
-                class="absolute right-0 w-48 flex flex-col p-2 mt-2 bg-white lg:bg-menu lg:border-0 border border-menu shadow-md lg:shadow-none z-40"
+                class="absolute right-0 z-40 mt-2 flex w-48 flex-col border border-menu bg-white p-2 shadow-md lg:border-0 lg:bg-menu lg:shadow-none"
             >
                 <form>
                     <div class="flex">
                         <input
                             type="search"
-                            class="px-3 py-2 w-32"
+                            class="w-32 px-3 py-2"
                             placeholder="Recherche"
                         />
                         <button
                             type="submit"
-                            class="text-white bg-primary-blue px-3 py-2 flex items-center justify-center"
+                            class="flex items-center justify-center bg-primary-blue px-3 py-2 text-white"
                         >
                             <SearchIcon class="h-6 w-6" />
                         </button>
@@ -445,7 +445,7 @@
     </div>
 </template>
 
-<script>
+<script setup>
 import {
     HomeIcon,
     ChevronDownIcon,
@@ -456,101 +456,80 @@ import {
 import { reactive, ref, onMounted, watch } from "vue";
 import axios from "axios";
 import router from "../router";
-export default {
-    components: {
-        HomeIcon,
-        ChevronDownIcon,
-        SearchIcon,
-        UserCircleIcon,
-        MenuIcon,
-    },
-    setup() {
-        const user = ref("");
-        const token = ref("");
-        const errors = ref("");
-        const loading = ref(0);
-        const url = window.location.origin;
-        onMounted(() => {
-            if (localStorage.token) {
-                user.value = JSON.parse(localStorage.user);
-                token.value = localStorage.token;
-            }
-        });
-        const open = reactive({
-            lang: false,
-            profile: false,
-            search: false,
-            menu: false,
-            logout: false,
-        });
+import { useI18n } from "vue-i18n";
+const { locale } = useI18n();
+const user = ref("");
+const token = ref("");
+const errors = ref("");
+const loading = ref(0);
+const url = window.location.origin;
+onMounted(async () => {
+    if (localStorage.token) {
+        user.value = JSON.parse(localStorage.user);
+        token.value = localStorage.token;
+    }
+});
+const open = reactive({
+    lang: false,
+    profile: false,
+    search: false,
+    menu: false,
+    logout: false,
+});
 
-        const logout = async () => {
-            try {
-                loading.value = 1;
-                let response = await axios.post(
-                    "/api/logout",
-                    {},
-                    {
-                        headers: {
-                            Authorization: `Bearer ${localStorage.token}`,
-                        },
-                    }
-                );
-                window.localStorage.removeItem("token");
-                window.localStorage.removeItem("user");
-                loading.value = 2;
-                location.href = "/";
-            } catch (e) {
-                loading.value = 0;
-                if (e.response.status == 401) {
-                    location.href = "/";
-                    window.localStorage.removeItem("token");
-                    window.localStorage.removeItem("user");
-                }
+const logout = async () => {
+    try {
+        loading.value = 1;
+        let response = await axios.post(
+            "/api/logout",
+            {},
+            {
+                headers: {
+                    Authorization: `Bearer ${localStorage.token}`,
+                },
             }
-        };
-
-        const changeRoute = (route, firstname = "", id = "") => {
-            if (firstname != "" && id != "") {
-                router.push({
-                    name: route,
-                    params: {
-                        name: firstname.toLocaleLowerCase,
-                        id: id,
-                    },
-                });
-            } else {
-                router.push({ name: route });
-            }
-            open.menu = false;
-        };
-
-        return {
-            changeRoute,
-            url,
-            open,
-            user,
-            token,
-            logout,
-            loading,
-        };
-    },
-    computed: {},
-    methods: {
-        changeLocale(lang) {
-            this.$i18n.locale = lang;
-            localStorage.lang = this.$i18n.locale;
-            location.reload();
-        },
-    },
-    mounted() {
-        if (localStorage.lang) {
-            this.$i18n.locale = localStorage.lang;
-        } else {
-            localStorage.lang = this.$i18n.locale;
+        );
+        window.localStorage.removeItem("token");
+        window.localStorage.removeItem("user");
+        loading.value = 2;
+        location.href = "/";
+    } catch (e) {
+        loading.value = 0;
+        if (e.response.status == 401) {
+            location.href = "/";
+            window.localStorage.removeItem("token");
+            window.localStorage.removeItem("user");
         }
-    },
+    }
 };
+
+const changeRoute = (route, firstname = "", id = "") => {
+    if (firstname != "" && id != "") {
+        router.push({
+            name: route,
+            params: {
+                name: firstname.toLocaleLowerCase,
+                id: id,
+            },
+        });
+    } else {
+        router.push({ name: route });
+    }
+    open.menu = false;
+};
+
+const changeLocale = async (lang) => {
+    locale.value = lang;
+    localStorage.lang = locale.value;
+    location.reload();
+};
+onMounted(async () => {
+    if (localStorage.lang) {
+        locale.value = localStorage.lang;
+    } else {
+        localStorage.lang = locale.value;
+    }
+});
 </script>
 
 <style scoped>

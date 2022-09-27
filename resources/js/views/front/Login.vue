@@ -2,7 +2,7 @@
     <NotLogin :open="openNotLogin" :toogleModal="toogleModal" />
     <VerifyOK :open="openVerifyOK" :toogleModal="toogleModal" />
     <div
-        class="mx-auto min-h-screen w-full items-center justify-center bg-white px-2 py-8 md:space-x-6 md:px-12 lg:flex xl:w-[90%]"
+        class="mx-auto w-full items-center justify-center bg-white px-2 py-8 md:space-x-6 md:px-12 lg:flex xl:w-[90%]"
     >
         <div class="space-y-6 text-center lg:w-[60%] lg:text-left">
             <h1 class="text-4xl font-bold text-primary-blue lg:text-5xl">
@@ -168,7 +168,7 @@ const toogleModal = () => {
 
 const { loginUser, errors, loading } = useAuth();
 
-onMounted(() => {
+onMounted(async () => {
     if (props.redirect == "not-login") {
         openNotLogin.value = true;
     } else if (props.redirect == "verif-ok") {

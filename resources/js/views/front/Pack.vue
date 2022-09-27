@@ -415,18 +415,15 @@ const publishableKey =
     "pk_test_51KtYynFJTg08EEU2sYHLN0LKrnZTuJCazai8jmokQ2096V7IXYjX2XsdGi7xh5jOgSCz5nnn7YfJS5afTtEHRSxk00EUEcmhsj";
 const sessionId = ref(null);
 
-onMounted(
-    // console.log('yo')
-    async () => {
-        try {
-            let response = await axios.get("api/getSession");
-            sessionId.value = response.data.id;
-            console.log(response.data);
-        } catch (e) {
-            console.log("error");
-        }
+onMounted(async () => {
+    try {
+        let response = await axios.get("api/getSession");
+        sessionId.value = response.data.id;
+        console.log(response.data);
+    } catch (e) {
+        console.log("error");
     }
-);
+});
 
 const submit = () => {
     // checkoutRef.redirectToCheckout();

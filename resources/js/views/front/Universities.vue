@@ -327,14 +327,14 @@
                     <label class="text-gray-700" for="es">{{
                         $t("university")
                     }}</label>
-                    <Select2
+                    <!-- <Select2
                         v-model="filterAds.university"
                         :options="universityfilteredA"
                         :id="'select2'"
                         :settings="{
                             width: '100%',
                         }"
-                    />
+                    /> -->
                     <!-- <select
                     v-model="filterAds.category"
                     class="form-select block w-full px-4 py-2 mt-1 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
@@ -658,15 +658,15 @@ const zoneFilteredA = ref([]);
 const countryFilteredA = ref([]);
 const cityfilteredA = ref([]);
 const universityfilteredA = ref([]);
-onMounted(
-    getUniversities(),
-    getAnnouncements(),
-    getContinents(),
-    getZones(),
-    getCountries(),
-    getCategoryAnnouncements(),
-    getCities()
-);
+onMounted(async () => {
+    await getUniversities();
+    await getAnnouncements();
+    await getContinents();
+    await getZones();
+    await getCountries();
+    await getCategoryAnnouncements();
+    await getCities();
+});
 
 const filterAds = reactive({
     searchKey: "",
@@ -775,7 +775,7 @@ const toogleShowAllU = () => {
 };
 
 const filteredAnnouncement = computed(() => {
-    return announcements.filter((announcement) => {
+    return announcements.value.filter((announcement) => {
         let data = "";
         if (
             filterAds.continent != "" &&
@@ -953,7 +953,7 @@ const filteredUniversity = computed(() => {
         filterUniversity.zone != "" ||
         filterUniversity.city != ""
     ) {
-        return universities.filter((university) => {
+        return universities.value.filter((university) => {
             let data = "";
             if (
                 filterUniversity.country != "" &&
@@ -1005,7 +1005,7 @@ const filteredUniversity = computed(() => {
             return data;
         });
     } else if (showAllU) {
-        return universities.filter((university) => {
+        return universities.value.filter((university) => {
             let data = "";
             if (
                 filterUniversity.continent != "" &&

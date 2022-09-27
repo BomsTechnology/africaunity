@@ -248,7 +248,9 @@ import router from "@/router";
         const { countries, getCountries } = useCountries();
         const { businessTypes, getBusinessTypes } = useBusinessTypes();
         const { users, getUsersType, filterUsers, errors, loading } = useUsers();
-        onMounted(getUsersType("ip"), getBusinessSizes(), getCountries(), getBusinessTypes());
+        onMounted(async () => {
+            await getUsersType("ip"); await getBusinessSizes(); await getCountries(); await getBusinessTypes();}
+        );
         const searchKey = ref('');
         const filter = reactive({
             native_country:"",

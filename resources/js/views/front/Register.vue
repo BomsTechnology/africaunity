@@ -268,7 +268,7 @@ const props = defineProps({
 });
 
 const cuser = localStorage.user ? JSON.parse(localStorage.user) : "";
-onMounted(() => {
+onMounted(async () => {
     if (!types.includes(props.type)) {
         router.push({ name: "pack" });
     }

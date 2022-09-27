@@ -1,15 +1,15 @@
 <template>
-    <div class="w-full z-0 bg-white">
-        <h1 class="text-white px-2 py-1 bg-primary-blue inline-block">
+    <div class="z-0 w-full bg-white">
+        <h1 class="inline-block bg-primary-blue px-2 py-1 text-white">
             {{ $t("filter-article") }}
         </h1>
         <form>
-            <div class="border-t-2 space-y-2 border-primary-blue text-sm p-4">
+            <div class="space-y-2 border-t-2 border-primary-blue p-4 text-sm">
                 <div>
                     <label class="text-gray-500">{{ $t("language") }}</label>
                     <select
                         v-model="filter.lang"
-                        class="form-select px-3 text-xs w-full mt-2 border-gray-300 focus:ring-primary-blue focus:border-primary-blue block"
+                        class="form-select mt-2 block w-full border-gray-300 px-3 text-xs focus:border-primary-blue focus:ring-primary-blue"
                     >
                         <option value="fr">{{ $t("fr") }}</option>
                         <option value="en">{{ $t("en") }}</option>
@@ -23,7 +23,7 @@
                         type="text"
                         v-model="filter.keywords"
                         :placeholder="$t('key-words')"
-                        class="form-input px-3 text-xs w-full mt-2 border-gray-300 focus:ring-primary-blue focus:border-primary-blue block"
+                        class="form-input mt-2 block w-full border-gray-300 px-3 text-xs focus:border-primary-blue focus:ring-primary-blue"
                     />
                 </div>
                 <div>
@@ -31,7 +31,7 @@
                     <select
                         v-model="filter.continent"
                         @change="filteredZone()"
-                        class="form-select px-3 text-xs w-full mt-2 border-gray-300 focus:ring-primary-blue focus:border-primary-blue block"
+                        class="form-select mt-2 block w-full border-gray-300 px-3 text-xs focus:border-primary-blue focus:ring-primary-blue"
                     >
                         <option value="">--------------</option>
                         <option
@@ -57,7 +57,7 @@
                     <select
                         v-model="filter.zone"
                         @change="filteredCountry()"
-                        class="form-select px-3 text-xs w-full mt-2 border-gray-300 focus:ring-primary-blue focus:border-primary-blue block"
+                        class="form-select mt-2 block w-full border-gray-300 px-3 text-xs focus:border-primary-blue focus:ring-primary-blue"
                     >
                         <option value="">--------------</option>
                         <option
@@ -86,7 +86,7 @@
                     <label class="text-gray-500">{{ $t("country") }}</label>
                     <select
                         v-model="filter.country"
-                        class="form-select px-3 text-xs w-full mt-2 border-gray-300 focus:ring-primary-blue focus:border-primary-blue block"
+                        class="form-select mt-2 block w-full border-gray-300 px-3 text-xs focus:border-primary-blue focus:ring-primary-blue"
                     >
                         <option value="">--------------</option>
                         <option
@@ -115,7 +115,7 @@
                     <label class="text-gray-500">{{ $t("ministry") }}</label>
                     <select
                         v-model="filter.ministry"
-                        class="form-select px-3 text-xs w-full mt-1 border-gray-300 focus:ring-primary-blue focus:border-primary-blue block"
+                        class="form-select mt-1 block w-full border-gray-300 px-3 text-xs focus:border-primary-blue focus:ring-primary-blue"
                     >
                         <option value="">--------------</option>
                         <option
@@ -140,7 +140,7 @@
                     <button
                         type="button"
                         @click="sendFilter()"
-                        class="text-white text-lg bg-primary-blue px-8 py-2 mt-3 w-full"
+                        class="mt-3 w-full bg-primary-blue px-8 py-2 text-lg text-white"
                     >
                         {{ $t("filter") }}
                     </button>
@@ -150,86 +150,69 @@
     </div>
 </template>
 
-<script>
+<script setup>
 import { reactive, ref, onMounted } from "vue";
 import router from "../router/index.js";
-export default {
-    setup() {
-        const continents = ref([]);
-        const zones = ref([]);
-        const countries = ref([]);
-        const ministries = ref([]);
-        const zoneFiltered = ref([]);
-        const countryFiltered = ref([]);
-        onMounted(async () => {
-            let response = await axios.get("/api/continents");
-            continents.value = response.data.data;
+import { useI18n } from "vue-i18n";
+const { locale } = useI18n();
+const continents = ref([]);
+const zones = ref([]);
+const countries = ref([]);
+const ministries = ref([]);
+const zoneFiltered = ref([]);
+const countryFiltered = ref([]);
+onMounted(async () => {
+    let response = await axios.get("/api/continents");
+    continents.value = response.data.data;
 
-            response = await axios.get("/api/zones");
-            zones.value = response.data.data;
+    response = await axios.get("/api/zones");
+    zones.value = response.data.data;
 
-            response = await axios.get("/api/countries");
-            countries.value = response.data.data;
+    response = await axios.get("/api/countries");
+    countries.value = response.data.data;
 
-            response = await axios.get("/api/ministries");
-            ministries.value = response.data.data;
-        });
+    response = await axios.get("/api/ministries");
+    ministries.value = response.data.data;
+});
 
-        const filter = reactive({
-            country: "",
-            continent: "",
-            ministry: "",
-            zone: "",
-            lang: "",
-            keywords: "",
-            type: "article",
-        });
-        const filteredZone = () => {
-            zoneFiltered.value = zones.value.filter((zone) => {
-                return zone.continent_id == filter.continent;
-            });
-            filter.country = "";
-            filter.zone = "";
-            countryFiltered.value = [];
-        };
-        const filteredCountry = () => {
-            countryFiltered.value = countries.value.filter((country) => {
-                return country.zone_id == filter.zone;
-            });
-            filter.country = "";
-        };
-        const sendFilter = () => {
-            router.replace({
-                name: "articles",
-                query: {
-                    lang: filter.lang,
-                    continent: filter.continent,
-                    zone: filter.zone,
-                    country: filter.country,
-                    ministry: filter.ministry,
-                    keywords: filter.keywords,
-                },
-            });
-            location.reload;
-        };
-
-        return {
-            zoneFiltered,
-            countryFiltered,
-            filteredZone,
-            filteredCountry,
-            sendFilter,
-            filter,
-            continents,
-            zones,
-            countries,
-            ministries,
-        };
-    },
-    mounted() {
-        this.filter.lang = localStorage.lang
-            ? localStorage.lang
-            : this.$i18n.locale;
-    },
+const filter = reactive({
+    country: "",
+    continent: "",
+    ministry: "",
+    zone: "",
+    lang: "",
+    keywords: "",
+    type: "article",
+});
+const filteredZone = () => {
+    zoneFiltered.value = zones.value.filter((zone) => {
+        return zone.continent_id == filter.continent;
+    });
+    filter.country = "";
+    filter.zone = "";
+    countryFiltered.value = [];
 };
+const filteredCountry = () => {
+    countryFiltered.value = countries.value.filter((country) => {
+        return country.zone_id == filter.zone;
+    });
+    filter.country = "";
+};
+const sendFilter = () => {
+    router.replace({
+        name: "articles",
+        query: {
+            lang: filter.lang,
+            continent: filter.continent,
+            zone: filter.zone,
+            country: filter.country,
+            ministry: filter.ministry,
+            keywords: filter.keywords,
+        },
+    });
+    location.reload;
+};
+onMounted(async () => {
+    filter.lang = localStorage.lang ? localStorage.lang : locale.value;
+});
 </script>

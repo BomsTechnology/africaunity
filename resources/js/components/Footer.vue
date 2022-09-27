@@ -40,13 +40,6 @@
     </footer>
 </template>
 
-<script>
-export default {
-    data() {
-        return {
-            path: window.location.origin,
-        };
-    },
-    setup() {},
-};
+<script setup>
+const path = window.location.origin;
 </script>

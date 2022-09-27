@@ -21,43 +21,42 @@ class ForgotPasswordController extends Controller
      */
     public function index(Request $request)
     {
+        dd('yo');
         $fields = $request->validate([
-            'email'=>'required|string|email',
+            'email' => 'required|string|email',
         ]);
+        dd($fields['email']);
 
         //check email
-        $user = User::where('email',$fields['email'])->first();
+        $user = User::where('email', $fields['email'])->first();
 
-        if(!$user){
-            return response(['status'=>false,'message'=>'This email address does not exist'],401);
+        if (!$user) {
+            return response(['status' => false, 'message' => 'This email address does not exist'], 401);
         }
 
         $status = Password::sendResetLink(
             $request->only('email')
         );
-     
+
         return $status === Password::RESET_LINK_SENT
-                    ? back()->with(['status' => __($status)])
-                    : back()->withErrors(['email' => __($status)]);
-
-
-        
+            ? back()->with(['status' => __($status)])
+            : back()->withErrors(['email' => __($status)]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
+    public function yo()
+    {
+        dd('yo;');
+    }
+
     public function verif(Request $request)
     {
         $verif = DB::table('password_resets')->select('*')->where('email', htmlspecialchars($request->email))->get();
 
-        if(!$verif || !Hash::check($request->token,$verif[0]->token)){
+        if (!$verif || !Hash::check($request->token, $verif[0]->token)) {
             return redirect('/');
-        }else{
-            return redirect("/reset-password/$request->token?email=".$_GET['email']);
+        } else {
+            return redirect("/reset-password/$request->token?email=" . $_GET['email']);
         }
     }
 
@@ -103,12 +102,12 @@ class ForgotPasswordController extends Controller
 
         if ($status == Password::PASSWORD_RESET) {
             return response([
-                'message'=> 'Password reset successfully'
+                'message' => 'Password reset successfully'
             ]);
         }
 
         return response([
-            'message'=> __($status)
+            'message' => __($status)
         ], 500);
     }
 

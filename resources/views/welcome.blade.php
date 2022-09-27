@@ -39,12 +39,6 @@
     </div>
 
     @include('cookie-consent::index')
-    <div class="fixed md:hidden z-50 bottom-0 inset-x-0 pb-2">
-        <div class=" flex justify-center">
-            <button class="px-2 py-1 bg-primary-blue text-white shadow-xl rounded download-app">Télécharger
-                AfricaUnity</button>
-        </div>
-    </div>
     <script src="https://cdn.jsdelivr.net/npm/sceditor@3/minified/sceditor.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sceditor@3/minified/formats/bbcode.min.js"></script>
     <script src="{{ asset('js/app.js') }}"></script>

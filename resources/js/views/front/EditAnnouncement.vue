@@ -272,12 +272,12 @@ const { categoryAnnouncements, getCategoryAnnouncements } =
 const { currencies, getCurrencies } = useCurrencies();
 const { universities, getUniversities } = useUniversities();
 
-onMounted(
-    getAnnouncement(props.id),
-    getCategoryAnnouncements(),
-    getCurrencies(),
-    getUniversities()
-);
+onMounted(async () => {
+    await getAnnouncement(props.id);
+    await getCategoryAnnouncements();
+    await getCurrencies();
+    await getUniversities();
+});
 announcement.value.image = "";
 const saveAnnouncement = async () => {
     let formData = new FormData();

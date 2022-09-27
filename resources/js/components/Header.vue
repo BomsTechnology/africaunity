@@ -60,40 +60,23 @@
     </div>
 </template>
 
-<script>
+<script setup>
 import Navigation from "../components/Navigation.vue";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { EffectFade, Autoplay } from "swiper";
 import { reactive, ref, onMounted } from "vue";
 import "swiper/css";
 import "swiper/css/effect-fade";
-export default {
-    components: {
-        Navigation,
-        Swiper,
-        SwiperSlide,
-    },
-    data() {
-        return {
-            now: new Date().toUTCString().substr(0, 16),
-        };
-    },
-    setup() {
-        const token = localStorage.token;
-        const posts = ref([]);
-        const download_app = ref(null);
-        onMounted(async () => {
-            let response = await axios.get(
-                "/api/posts-caroussel/" + localStorage.lang
-            );
-            posts.value = response.data.data;
-        });
-        return {
-            modules: [Autoplay],
-            download_app,
-            posts,
-            token,
-        };
-    },
-};
+
+const now = new Date().toUTCString().substr(0, 16);
+
+const token = localStorage.token;
+const posts = ref([]);
+const download_app = ref(null);
+onMounted(async () => {
+    let response = await axios.get("/api/posts-caroussel/" + localStorage.lang);
+    posts.value = response.data.data;
+});
+
+const modules = [Autoplay];
 </script>

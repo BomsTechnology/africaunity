@@ -1,15 +1,15 @@
 <template>
     <div class="w-full">
-        <h1 class="text-white px-2 py-1 bg-primary-blue inline-block">
+        <h1 class="inline-block bg-primary-blue px-2 py-1 text-white">
             {{ $t("filter-propau") }}
         </h1>
         <form>
-            <div class="border-t-2 space-y-2 border-primary-blue text-md p-4">
+            <div class="text-md space-y-2 border-t-2 border-primary-blue p-4">
                 <div>
                     <label class="text-gray-500">{{ $t("language") }}</label>
                     <select
                         v-model="lang"
-                        class="form-select px-3 py-2 w-full mt-2 border-gray-300 focus:ring-primary-blue focus:border-primary-blue block"
+                        class="form-select mt-2 block w-full border-gray-300 px-3 py-2 focus:border-primary-blue focus:ring-primary-blue"
                     >
                         <option value="fr">{{ $t("fr") }}</option>
                         <option value="en">{{ $t("en") }}</option>
@@ -22,13 +22,13 @@
                     <input
                         type="text"
                         :placeholder="$t('key-words')"
-                        class="form-input px-3 py-2 w-full mt-2 border-gray-300 focus:ring-primary-blue focus:border-primary-blue block"
+                        class="form-input mt-2 block w-full border-gray-300 px-3 py-2 focus:border-primary-blue focus:ring-primary-blue"
                     />
                 </div>
                 <div>
                     <label class="text-gray-500">{{ $t("continent") }}</label>
                     <select
-                        class="form-select px-3 py-2 w-full mt-2 border-gray-300 focus:ring-primary-blue focus:border-primary-blue block"
+                        class="form-select mt-2 block w-full border-gray-300 px-3 py-2 focus:border-primary-blue focus:ring-primary-blue"
                     >
                         <option value="*">All {{ $t("continent") }}</option>
                         <option
@@ -52,7 +52,7 @@
                 <div>
                     <label class="text-gray-500">{{ $t("zoned") }}</label>
                     <select
-                        class="form-select px-3 py-2 w-full mt-2 border-gray-300 focus:ring-primary-blue focus:border-primary-blue block"
+                        class="form-select mt-2 block w-full border-gray-300 px-3 py-2 focus:border-primary-blue focus:ring-primary-blue"
                     >
                         <option value="*">All {{ $t("zoned") }}</option>
                         <option
@@ -76,7 +76,7 @@
                 <div>
                     <label class="text-gray-500">{{ $t("country") }}</label>
                     <select
-                        class="form-select px-3 py-2 w-full mt-2 border-gray-300 focus:ring-primary-blue focus:border-primary-blue block"
+                        class="form-select mt-2 block w-full border-gray-300 px-3 py-2 focus:border-primary-blue focus:ring-primary-blue"
                     >
                         <option value="*">All {{ $t("country") }}</option>
                         <option
@@ -100,7 +100,7 @@
                 <div>
                     <label class="text-gray-500">{{ $t("ministry") }}</label>
                     <select
-                        class="form-select px-3 py-2 w-full mt-2 border-gray-300 focus:ring-primary-blue focus:border-primary-blue block"
+                        class="form-select mt-2 block w-full border-gray-300 px-3 py-2 focus:border-primary-blue focus:ring-primary-blue"
                     >
                         <option value="*">All {{ $t("ministry") }}</option>
                         <option
@@ -124,7 +124,7 @@
                 <div>
                     <button
                         type="submit"
-                        class="text-white text-lg bg-primary-blue px-8 py-2 mt-6 w-full"
+                        class="mt-6 w-full bg-primary-blue px-8 py-2 text-lg text-white"
                     >
                         {{ $t("filter") }}
                     </button>
@@ -141,60 +141,47 @@
     </div>
 </template>
 
-<script>
+<script setup>
 import { reactive, ref, onMounted } from "vue";
-export default {
-    setup() {
-        const continents = ref([]);
-        const zones = ref([]);
-        const countries = ref([]);
-        const ministries = ref([]);
-        const zoneFiltered = ref([]);
-        const countryFiltered = ref([]);
-        const lang = ref("");
-        onMounted(async () => {
-            let response = await axios.get("/api/continents");
-            continents.value = response.data.data;
+import { useI18n } from "vue-i18n";
+const { locale } = useI18n();
+const continents = ref([]);
+const zones = ref([]);
+const countries = ref([]);
+const ministries = ref([]);
+const zoneFiltered = ref([]);
+const countryFiltered = ref([]);
+const lang = ref("");
+onMounted(async () => {
+    let response = await axios.get("/api/continents");
+    continents.value = response.data.data;
 
-            response = await axios.get("/api/zones");
-            zones.value = response.data.data;
+    response = await axios.get("/api/zones");
+    zones.value = response.data.data;
 
-            response = await axios.get("/api/countries");
-            countries.value = response.data.data;
+    response = await axios.get("/api/countries");
+    countries.value = response.data.data;
 
-            response = await axios.get("/api/ministries");
-            ministries.value = response.data.data;
-        });
+    response = await axios.get("/api/ministries");
+    ministries.value = response.data.data;
+});
 
-        const filteredZone = () => {
-            zoneFiltered.value = zones.value.filter((zone) => {
-                return zone.continent_id == post.continent_id;
-            });
-            post.country_id = "";
-            post.zone_id = "";
-            countryFiltered.value = [];
-        };
-        const filteredCountry = () => {
-            countryFiltered.value = countries.value.filter((country) => {
-                return country.zone_id == post.zone_id;
-            });
-            post.country_id = "";
-        };
-
-        return {
-            zoneFiltered,
-            countryFiltered,
-            filteredZone,
-            filteredCountry,
-            lang,
-            continents,
-            zones,
-            countries,
-            ministries,
-        };
-    },
-    mounted() {
-        this.lang = localStorage.lang ? localStorage.lang : this.$i18n.locale;
-    },
+const filteredZone = () => {
+    zoneFiltered.value = zones.value.filter((zone) => {
+        return zone.continent_id == post.continent_id;
+    });
+    post.country_id = "";
+    post.zone_id = "";
+    countryFiltered.value = [];
 };
+const filteredCountry = () => {
+    countryFiltered.value = countries.value.filter((country) => {
+        return country.zone_id == post.zone_id;
+    });
+    post.country_id = "";
+};
+
+onMounted(async () => {
+    lang.value = localStorage.lang ? localStorage.lang : locale.value;
+});
 </script>

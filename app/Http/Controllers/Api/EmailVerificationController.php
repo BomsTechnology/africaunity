@@ -30,7 +30,7 @@ class EmailVerificationController extends Controller
         $user = User::findOrFail($request->id);
 
         if ($user->email_verified_at) {
-            return redirect('/?verif-ok');
+            return redirect('?verif-ok');
         }
 
         if ($user->markEmailAsVerified()) {
@@ -40,6 +40,5 @@ class EmailVerificationController extends Controller
         $user->notify(new WelcomeNotification());
 
         return redirect('/login/verif-ok');
-        
     }
 }

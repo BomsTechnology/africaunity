@@ -1,4 +1,15 @@
-<script setup></script>
+<script setup>
+import { onMounted, ref, watch } from "vue";
+import { useRoute } from "vue-router";
+const route = useRoute();
+const currentRoute = ref("home");
+onMounted(async () => {
+    currentRoute.value = route.name;
+});
+watch(route, (nR, oR) => {
+    currentRoute.value = nR.name;
+});
+</script>
 
 <template>
     <div class="flex h-full">
@@ -10,6 +21,7 @@
             <div>
                 <router-view name="header"></router-view>
             </div>
+            <!-- <div class="w-full overflow-x-auto"> -->
             <div>
                 <router-view v-slot="{ Component, route }">
                     <template v-if="Component">
@@ -39,6 +51,15 @@
                         </KeepAlive>
                     </template>
                 </router-view>
+                <div class="fixed inset-x-0 bottom-0 z-50 pb-2 md:hidden">
+                    <div class="flex justify-center">
+                        <button
+                            class="download-app rounded bg-primary-blue px-2 py-1 text-white shadow-xl"
+                        >
+                            Télécharger AfricaUnity
+                        </button>
+                    </div>
+                </div>
             </div>
             <div>
                 <router-view name="footer"></router-view>

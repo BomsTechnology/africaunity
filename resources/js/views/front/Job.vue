@@ -539,22 +539,22 @@ const user = localStorage.user ? JSON.parse(localStorage.user) : "";
 const zoneFiltered = ref([]);
 const countryFiltered = ref([]);
 const cityfiltered = ref([]);
-onMounted(
-    getJobOffersFront(),
-    getCurrencies(),
-    getContinents(),
-    getZones(),
-    getYearExperiences(),
-    getWorkModes(),
-    // getWorkDepartments(),
-    getLevelStudies(),
-    // getSizeCompanies(),
-    getOfferTypes(),
-    getActivityAreas(),
-    getLanguages(),
-    getCountries(),
-    getCities()
-);
+onMounted(async () => {
+    await getJobOffersFront();
+    await getCurrencies();
+    await getContinents();
+    await getZones();
+    await getYearExperiences();
+    await getWorkModes();
+    // await getWorkDepartments();
+    await getLevelStudies();
+    // await getSizeCompanies();
+    await getOfferTypes();
+    await getActivityAreas();
+    await getLanguages();
+    await getCountries();
+    await getCities();
+});
 const searchKey = ref("");
 const showFilter = ref(true);
 const filterJob = reactive({

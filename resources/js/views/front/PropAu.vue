@@ -380,7 +380,8 @@ const filter = reactive({
     type: "propau",
 });
 onMounted(async () => {
-    await getPosts("propau", localStorage.lang), await getContinents();
+    await getPosts("propau", localStorage.lang);
+    await getContinents();
     await getZones();
     await getCountries();
     await getMinistries();

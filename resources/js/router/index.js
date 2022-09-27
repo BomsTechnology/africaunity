@@ -789,7 +789,11 @@ router.beforeEach((to, from, next) => {
     } else {
         document.title = to.meta.title;
     }
-    if (to.meta.isAdmin && to.meta.requiresAuth && !localStorage.token) {
+    if (
+        to.meta.isAdmin &&
+        to.meta.requiresAuth &&
+        (!localStorage.token || JSON.parse(localStorage.user).type != "admin")
+    ) {
         next({ name: "login.admin" });
     } else if (to.meta.requiresAuth && !localStorage.token) {
         router.push({

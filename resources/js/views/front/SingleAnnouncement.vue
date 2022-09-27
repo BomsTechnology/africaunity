@@ -328,7 +328,9 @@ const url = window.location.href;
 const { announcement, getAnnouncement2, loading, errors } = useAnnouncements();
 const user = localStorage.user ? JSON.parse(localStorage.user) : "";
 const loadingC = ref(0);
-onMounted(getAnnouncement2(props.id));
+onMounted(async () => {
+    await getAnnouncement2(props.id);
+});
 
 const contact = reactive({
     user: user.id,

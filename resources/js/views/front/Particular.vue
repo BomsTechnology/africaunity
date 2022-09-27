@@ -275,7 +275,7 @@ const { languages, getLanguages } = useLanguages();
 const { countries, getCountries } = useCountries();
 const { activityAreas, getActivityAreas } = useActivityAreas();
 const { users, getUsersType, filterUsers, errors, loading } = useUsers();
-onMounted(getUsersType("particular"), getLanguages(), getCountries(), getActivityAreas());
+onMounted(async () => {await getUsersType("particular"); await getLanguages(); await getCountries(); await getActivityAreas();});
 const searchKey = ref('');
 const filter = reactive({
     native_country:"",

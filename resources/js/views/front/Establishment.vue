@@ -225,7 +225,7 @@
 </template>
 
 <script setup>
-import { reactive, ref, onMounted } from "vue";
+import { reactive, ref, onMounted, computed } from "vue";
 import { EmojiSadIcon, UserCircleIcon, ChevronDownIcon, ChevronUpIcon } from "@heroicons/vue/solid";
 import useUsers from "@/services/userServices.js";
 import useBusinessTypes from "@/services/businessTypeServices.js";
@@ -238,7 +238,7 @@ const { countries, getCountries } = useCountries();
 const { businessTypes, getBusinessTypes } = useBusinessTypes();
 const { users, getUsersType, filterUsers, errors, loading } = useUsers();
 const { activityAreas, getActivityAreas } = useActivityAreas();
-onMounted(getUsersType("business"), getBusinessSizes(), getCountries(), getBusinessTypes(), getActivityAreas());
+onMounted(async () => { await getUsersType("business"); await getBusinessSizes(); await getCountries(); await getBusinessTypes(); await getActivityAreas();});
 const searchKey = ref('');
 const filter = reactive({
     residence_country:"",
@@ -265,8 +265,8 @@ const usersFilter = async () => {
 
 
 
-const filteredUser= computed(() => {
-    users.value.filter((user) => {
+const filteredUser = computed(() => {
+  return  users.value.filter((user) => {
         return user.firstname
             .toLowerCase()
             .includes(searchKey.value.toLowerCase());

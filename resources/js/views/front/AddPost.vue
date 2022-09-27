@@ -312,13 +312,13 @@
 
 <script setup>
 import { reactive, ref, onMounted, computed } from "vue";
-import Error from "@/components/Error.vue";
-import usePosts from "@/services/postServices.js";
-import useContinents from "@/services/continentServices.js";
-import useZones from "@/services/zoneServices.js";
-import useCountries from "@/services/countryServices.js";
-import useMinistries from "@/services/ministryServices.js";
-import router from "@/router/index.js";
+import Error from "../../components/Error.vue";
+import usePosts from "../../services/postServices.js";
+import useContinents from "../../services/continentServices.js";
+import useZones from "../../services/zoneServices.js";
+import useCountries from "../../services/countryServices.js";
+import useMinistries from "../../services/ministryServices.js";
+import router from "../../router/index.js";
 import { useI18n } from "vue-i18n";
 
 const props = defineProps({
@@ -449,7 +449,7 @@ const handelFileObject = () => {
 };
 
 const changeLocale = (lang) => {
-    locale = lang;
-    localStorage.lang = locale;
+    locale.value = lang;
+    localStorage.lang = locale.value;
 };
 </script>

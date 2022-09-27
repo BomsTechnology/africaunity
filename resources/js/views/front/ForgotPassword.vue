@@ -1,6 +1,6 @@
 <template>
     <div
-        class="mx-auto min-h-screen w-full items-center justify-center bg-white px-2 py-8 md:space-x-6 md:px-12 lg:flex xl:w-[90%]"
+        class="mx-auto w-full items-center justify-center bg-white px-2 py-8 md:space-x-6 md:px-12 lg:flex xl:w-[90%]"
     >
         <div class="p-6">
             <div class="shadow">
@@ -88,9 +88,10 @@ import { ref, onMounted, reactive } from "vue";
 import Error from "@/components/Error.vue";
 import router from "@/router";
 import { MailIcon } from "@heroicons/vue/solid";
+import axios from "axios";
 
 const cuser = localStorage.user ? JSON.parse(localStorage.user) : "";
-onMounted(() => {
+onMounted(async () => {
     if (localStorage.token) {
         router.push({
             name: "compte",
@@ -105,10 +106,12 @@ const errors = ref("");
 const loading = ref(0);
 
 const sendMailForgot = async () => {
+    // console.log(email);
     try {
         errors.value = "";
         loading.value = 1;
-        await axios.post("/api/forgot-password/", email);
+        let respose = await axios.post("/api/send-reset-password/", email);
+
         loading.value = 2;
     } catch (e) {
         loading.value = 0;
