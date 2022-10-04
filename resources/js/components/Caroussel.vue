@@ -47,7 +47,14 @@
                             <div class="flex space-x-1">
                                 <CalendarIcon class="h-4 w-4" />
                                 <a href="#" class="hover:text-primary-blue">{{
-                                    post.date
+                                    new Date(post.date).toLocaleDateString(
+                                        "fr-FR",
+                                        {
+                                            day: "numeric",
+                                            year: "numeric",
+                                            month: "long",
+                                        }
+                                    )
                                 }}</a>
                             </div>
                             <div class="flex space-x-1">
@@ -111,7 +118,14 @@
                             <div class="flex space-x-1">
                                 <CalendarIcon class="h-4 w-4" />
                                 <a href="#" class="hover:text-primary-blue">{{
-                                    post.date
+                                    new Date(post.date).toLocaleDateString(
+                                        "fr-FR",
+                                        {
+                                            day: "numeric",
+                                            year: "numeric",
+                                            month: "long",
+                                        }
+                                    )
                                 }}</a>
                             </div>
                             <div class="flex space-x-1">
@@ -165,7 +179,14 @@
                             <div class="flex space-x-1">
                                 <CalendarIcon class="h-4 w-4" />
                                 <a href="#" class="hover:text-primary-blue">{{
-                                    post.date
+                                    new Date(post.date).toLocaleDateString(
+                                        "fr-FR",
+                                        {
+                                            day: "numeric",
+                                            year: "numeric",
+                                            month: "long",
+                                        }
+                                    )
                                 }}</a>
                             </div>
                             <div class="flex space-x-1">
@@ -205,7 +226,14 @@
                             <div class="flex space-x-1">
                                 <CalendarIcon class="h-4 w-4" />
                                 <a href="#" class="hover:text-primary-blue">{{
-                                    post.date
+                                    new Date(post.date).toLocaleDateString(
+                                        "fr-FR",
+                                        {
+                                            day: "numeric",
+                                            year: "numeric",
+                                            month: "long",
+                                        }
+                                    )
                                 }}</a>
                             </div>
                             <div class="flex space-x-1">

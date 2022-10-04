@@ -100,11 +100,16 @@
                                 </div>
                                 <div class="hidden space-x-1 lg:flex">
                                     <CalendarIcon class="h-4 w-4" />
-                                    <a
-                                        href="#"
-                                        class="hover:text-primary-blue"
-                                        >{{ post.date }}</a
-                                    >
+                                    <a href="#" class="hover:text-primary-blue">{{
+                                        new Date(post.date).toLocaleDateString(
+                                            "fr-FR",
+                                            {
+                                                day: "numeric",
+                                                year: "numeric",
+                                                month: "long",
+                                            }
+                                        )
+                                    }}</a>
                                 </div>
                                 <div class="item-center flex space-x-1">
                                     <ChatIcon class="h-4 w-4 text-gray-500" />

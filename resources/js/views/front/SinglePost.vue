@@ -48,11 +48,17 @@
                             >
                                 <div class="flex space-x-1">
                                     <CalendarIcon class="h-4 w-4" />
-                                    <a
-                                        href="#"
-                                        class="hover:text-primary-blue"
-                                        >{{ post.date }}</a
-                                    >
+                                    <a href="#" class="hover:text-primary-blue">
+                                        {{
+                                            new Date(
+                                                post.date
+                                            ).toLocaleDateString(locale, {
+                                                day: "numeric",
+                                                year: "numeric",
+                                                month: "long",
+                                            })
+                                        }}
+                                    </a>
                                 </div>
                                 <div class="flex space-x-1">
                                     <UserIcon class="h-4 w-4" />
@@ -350,6 +356,8 @@ import usePosts from "../../services/postServices.js";
 import useComments from "../../services/commentServices.js";
 import Error from "../../components/Error.vue";
 
+import { useI18n } from "vue-i18n";
+const { locale } = useI18n();
 const props = defineProps({
     id: {
         required: true,

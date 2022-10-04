@@ -219,6 +219,7 @@
                             required
                             ref="file"
                             @change="handelFileObject()"
+                            accept="image/*"
                             type="file"
                             class="dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 dark:focus:border-blue-300 mt-2 block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"
                         />
@@ -370,7 +371,7 @@ onMounted(async () => {
 
     if (props.type == "article") {
         sceditor.create(textarea.value, {
-            format: "bbcode",
+            format: "xhtml",
             style: "https://cdn.jsdelivr.net/npm/sceditor@3/minified/themes/content/default.min.css",
             height: 400,
             toolbarExclude:
@@ -419,7 +420,7 @@ const storePost = async () => {
     formData.append("zone_id", post.zone_id);
     formData.append("country_id", post.country_id);
     formData.append("ministry_id", post.ministry_id);
-
+    console.log(post.image);
     await createPost(formData);
     if (errors.value == "") {
         if (props.type == "article") {

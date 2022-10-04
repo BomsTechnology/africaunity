@@ -40,7 +40,7 @@
 
     @include('cookie-consent::index')
     <script src="https://cdn.jsdelivr.net/npm/sceditor@3/minified/sceditor.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sceditor@3/minified/formats/bbcode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sceditor@3/minified/formats/xhtml.min.js"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <!--Start of Tawk.to Script-->
     <script type="text/javascript">

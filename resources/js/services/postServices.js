@@ -33,6 +33,8 @@ export default function usePosts() {
 
                 window.localStorage.removeItem("token");
                 window.localStorage.removeItem("user");
+            } else {
+                errors.value = e.response.data.message;
             }
         }
     };
@@ -66,6 +68,8 @@ export default function usePosts() {
                 });
                 window.localStorage.removeItem("token");
                 window.localStorage.removeItem("user");
+            } else {
+                errors.value = e.response.data.message;
             }
         }
     };
@@ -94,6 +98,8 @@ export default function usePosts() {
                 });
                 window.localStorage.removeItem("token");
                 window.localStorage.removeItem("user");
+            } else {
+                errors.value = e.response.data.message;
             }
         }
     };
@@ -119,6 +125,8 @@ export default function usePosts() {
                 });
                 window.localStorage.removeItem("token");
                 window.localStorage.removeItem("user");
+            } else {
+                errors.value = e.response.data.message;
             }
         }
     };
@@ -144,6 +152,8 @@ export default function usePosts() {
                 });
                 window.localStorage.removeItem("token");
                 window.localStorage.removeItem("user");
+            } else {
+                errors.value = e.response.data.message;
             }
         }
     };
@@ -169,6 +179,8 @@ export default function usePosts() {
                 });
                 window.localStorage.removeItem("token");
                 window.localStorage.removeItem("user");
+            } else {
+                errors.value = e.response.data.message;
             }
         }
     };
@@ -185,10 +197,12 @@ export default function usePosts() {
             });
             loading.value = 2;
         } catch (e) {
+            loading.value = 0;
             if (e.response.status == 422) {
-                loading.value = 0;
                 for (const key in e.response.data.errors)
                     errors.value += e.response.data.errors[key][0] + "\n";
+            } else {
+                errors.value = e.response.data.message;
             }
         }
     };
@@ -214,6 +228,8 @@ export default function usePosts() {
                 });
                 window.localStorage.removeItem("token");
                 window.localStorage.removeItem("user");
+            } else {
+                errors.value = e.response.data.message;
             }
         }
     };
@@ -234,6 +250,8 @@ export default function usePosts() {
             if (e.response.status == 422) {
                 for (const key in e.response.data.errors)
                     errors.value += e.response.data.errors[key][0] + "\t\n";
+            } else {
+                errors.value = e.response.data.message;
             }
         }
     };
@@ -252,6 +270,8 @@ export default function usePosts() {
             loading.value = 0;
             if (e.response.status == "500") {
                 errors.value = "Impossible de supprimer ce post";
+            } else {
+                errors.value = e.response.data.message;
             }
         }
     };

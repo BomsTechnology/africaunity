@@ -599,10 +599,16 @@
                                 </div>
                                 <div class="hidden space-x-1 lg:flex">
                                     <CalendarIcon class="h-4 w-4" />
-                                    <a
-                                        href="#"
-                                        class="hover:text-primary-blue"
-                                        >{{ announcement.date }}</a
+                                    <a href="#" class="hover:text-primary-blue">
+                                        {{
+                                            new Date(
+                                                announcement.date
+                                            ).toLocaleDateString("fr-FR", {
+                                                day: "numeric",
+                                                year: "numeric",
+                                                month: "long",
+                                            })
+                                        }}</a
                                     >
                                 </div>
                             </div>
