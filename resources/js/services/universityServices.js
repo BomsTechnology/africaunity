@@ -4,25 +4,61 @@ import router from "../router/index.js";
 
 export default function useUniversities() {
     const universities = ref([]);
-    const minUniversities = ref([]);
     const university = ref([]);
     const errors = ref("");
     const loading = ref(0);
+    const isAll = ref(false);
+    const page = ref(1);
 
-    const getUniversities = async (page = 1) => {
+    const getAllUniversities = async () => {
         errors.value = "";
         try {
             loading.value = 1;
-            let response = await axios.get("/api/universities?page=" + page, {
+            let response = await axios.get("/api/university/all", {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
                 },
             });
             universities.value = response.data.data;
-            console.log(universities.value);
-            minUniversities.value = universities.value.slice(0, 8);
 
             loading.value = 2;
+        } catch (e) {
+            if (e.response.status == 401) {
+                router.push({
+                    name: "login",
+                    params: {
+                        redirect: "not-login",
+                    },
+                });
+                window.localStorage.removeItem("token");
+                window.localStorage.removeItem("user");
+            }
+        }
+    };
+
+    const getUniversities = async () => {
+        errors.value = "";
+        try {
+            loading.value = 1;
+            let response = await axios.get(
+                "/api/universities?page=" + page.value,
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.token}`,
+                    },
+                }
+            );
+            if (page.value == 1) {
+                universities.value = response.data.data;
+            } else {
+                universities.value = universities.value.concat(
+                    response.data.data
+                );
+            }
+            loading.value = 2;
+            if (response.data.data.length == 0) {
+                isAll.value = true;
+            }
         } catch (e) {
             if (e.response.status == 401) {
                 router.push({
@@ -146,12 +182,14 @@ export default function useUniversities() {
     };
 
     return {
-        minUniversities,
+        isAll,
+        page,
         universities,
         university,
         errors,
         loading,
         getUniversities,
+        getAllUniversities,
         getUniversity,
         createUniversity,
         updateUniversity,

@@ -51,13 +51,13 @@
                                 >{{ $t("university") }}
                                 <span class="text-red-500">*</span>
                             </label>
-                            <Select2
+                            <SelectFilter
                                 v-model="announcement.university_id"
-                                :options="universities"
-                                :id="'select2'"
-                                :settings="{
-                                    width: '100%',
-                                }"
+                                :data="universities"
+                                :placeholder="'Select University'"
+                                :required="false"
+                                :resetField="true"
+                                :className="'w-full h-full mt-1 block rounded-md border bg-white  border-gray-300 p-2.5 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-sm'"
                             />
                         </div>
 
@@ -247,18 +247,19 @@ import useAnnouncements from "@/services/announcementServices.js";
 import usecategoryAnnouncements from "@/services/categoryAnnouncementServices.js";
 import useCurrencies from "@/services/currencyServices.js";
 import useUniversities from "@/services/universityServices.js";
-import router from "@/router/index.js";
-
+import { useRouter } from "vue-router";
+import SelectFilter from "@/components/SelectFilter.vue";
+const router = useRouter();
 const user = localStorage.user ? JSON.parse(localStorage.user) : "";
 const { categoryAnnouncements, getCategoryAnnouncements } =
     usecategoryAnnouncements();
 const { currencies, getCurrencies } = useCurrencies();
-const { universities, getUniversities } = useUniversities();
-
+const { universities, getAllUniversities } = useUniversities();
+const file = ref(null);
 onMounted(async () => {
     await getCategoryAnnouncements();
     await getCurrencies();
-    await getUniversities();
+    await getAllUniversities();
 });
 
 const announcement = reactive({
@@ -298,7 +299,7 @@ const storeAnnouncement = async () => {
     await createAnnouncement(formData);
     if (errors.value == "") {
         router.push({
-            name: "universities",
+            name: "ads",
         });
     }
 };

@@ -7,7 +7,8 @@ export default function useUsers() {
     const user = ref([]);
     const errors = ref("");
     const loading = ref(0);
-
+    const isAll = ref(false);
+    const page = ref(1);
     const getUsers = async () => {
         try {
             errors.value = "";
@@ -18,6 +19,7 @@ export default function useUsers() {
                 },
             });
             users.value = response.data.data;
+
             loading.value = 2;
         } catch (e) {
             if (e.response.status == 401) {
@@ -37,13 +39,23 @@ export default function useUsers() {
         try {
             errors.value = "";
             loading.value = 1;
-            let response = await axios.get("/api/users-type/" + type, {
-                headers: {
-                    Authorization: `Bearer ${localStorage.token}`,
-                },
-            });
-            users.value = response.data.data;
+            let response = await axios.get(
+                "/api/users-type/" + type + "?page=" + page.value,
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.token}`,
+                    },
+                }
+            );
+            if (page.value == 1) {
+                users.value = response.data.data;
+            } else {
+                users.value = users.value.concat(response.data.data);
+            }
             loading.value = 2;
+            if (response.data.data.length == 0) {
+                isAll.value = true;
+            }
         } catch (e) {
             if (e.response.status == 401) {
                 router.push({
@@ -277,6 +289,8 @@ export default function useUsers() {
     };
 
     return {
+        isAll,
+        page,
         users,
         user,
         errors,

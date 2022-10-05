@@ -23,6 +23,7 @@
             </div>
             <div
                 class="grid gap-8 py-8 lg:grid-cols-2 lg:px-10"
+                ref="postsContainer"
                 v-if="posts.length != 0"
             >
                 <div
@@ -136,30 +137,11 @@
                     </div>
                 </div>
             </div>
-            <div v-else-if="loading == 1" class="p-28">
-                <svg
-                    class="mx-auto h-16 w-16 animate-spin"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                >
-                    <circle
-                        class="opacity-25"
-                        cx="12"
-                        cy="12"
-                        r="10"
-                        stroke="currentColor"
-                        stroke-width="4"
-                    ></circle>
-                    <path
-                        class="opacity-75"
-                        fill="currentColor"
-                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                    ></path>
-                </svg>
+            <div v-if="loading == 1">
+                <Article />
             </div>
             <div
-                v-else
+                v-if="posts.length == 0 && loading != 1"
                 class="flex animate-pulse flex-col items-center justify-center p-28 text-gray-500"
             >
                 <EmojiSadIcon class="h-16 w-16" />
@@ -365,7 +347,7 @@
 <script setup>
 import router from "@/router";
 
-import { reactive, ref, onMounted, computed } from "vue";
+import { reactive, ref, onMounted, computed, onUnmounted } from "vue";
 import useCountries from "@/services/countryServices.js";
 import useZones from "@/services/zoneServices.js";
 import useContinents from "@/services/continentServices.js";
@@ -381,9 +363,10 @@ import {
 } from "@heroicons/vue/solid";
 
 import usePosts from "@/services/postServices.js";
+import Article from "@/components/skeleton/Article.vue";
 const { locale } = useI18n();
 const route = useRoute();
-const { posts, getPosts, filterPost, loading, errors } = usePosts();
+const { posts, getPosts, filterPost, loading, page, isAll } = usePosts();
 const { countries, getCountries } = useCountries();
 const { zones, getZones } = useZones();
 const { continents, getContinents } = useContinents();
@@ -391,6 +374,8 @@ const { ministries, getMinistries } = useMinistries();
 const zoneFiltered = ref([]);
 const countryFiltered = ref([]);
 const user = localStorage.user ? JSON.parse(localStorage.user) : "";
+const postsContainer = ref(null);
+const toGet = ref(true);
 const filter = reactive({
     country: "",
     continent: "",
@@ -401,6 +386,7 @@ const filter = reactive({
     type: "article",
 });
 onMounted(async () => {
+    window.addEventListener("scroll", handleScroll);
     if ("lang" in route.query) {
         filter.continent = route.query.continent;
         filter.zone = route.query.zone;
@@ -412,11 +398,30 @@ onMounted(async () => {
     } else {
         await getPosts("article", localStorage.lang);
     }
+
     await getContinents();
     await getZones();
     await getCountries();
     await getMinistries();
 });
+
+onUnmounted(async () => {
+    page.value = 1;
+    window.removeEventListener("scroll", handleScroll);
+});
+const handleScroll = async (e) => {
+    let element = postsContainer.value;
+    if (
+        element.getBoundingClientRect().bottom < window.innerHeight &&
+        toGet.value &&
+        !isAll.value
+    ) {
+        toGet.value = false;
+        page.value++;
+        await getPosts();
+        toGet.value = true;
+    }
+};
 const filteredZone = () => {
     zoneFiltered.value = zones.value.filter((zone) => {
         return zone.continent_id == filter.continent;

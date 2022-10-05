@@ -66,6 +66,12 @@
             >
                 {{ $t("univerities") }}
             </router-link>
+            <router-link
+                :to="{ name: 'ads' }"
+                class="px-3 py-2 uppercase text-white transition-colors duration-200 hover:bg-primary-blue"
+            >
+                {{ $t("ads") }}
+            </router-link>
 
             <router-link
                 :to="{ name: 'jobs' }"
@@ -281,6 +287,14 @@
                     class="px-3 py-2 uppercase text-menu transition-colors duration-200 hover:bg-primary-blue hover:text-white"
                 >
                     {{ $t("univerities") }}
+                </a>
+
+                <a
+                    href="#"
+                    @click.prevent="changeRoute('ads')"
+                    class="px-3 py-2 uppercase text-menu transition-colors duration-200 hover:bg-primary-blue hover:text-white"
+                >
+                    {{ $t("ads") }}
                 </a>
 
                 <a

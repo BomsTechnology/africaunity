@@ -251,6 +251,19 @@ const routes = [
         },
     },
     {
+        path: "/ads",
+        name: "ads",
+        components: {
+            default: () => import("@/views/front/Announcement.vue"),
+            header: Header,
+            footer: Footer,
+        },
+        meta: {
+            title: siteName + " - Ads",
+            requiresAuth: true,
+        },
+    },
+    {
         path: "/contact",
         name: "contact",
         components: {

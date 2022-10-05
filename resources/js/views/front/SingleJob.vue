@@ -431,10 +431,10 @@
 </template>
 
 <script setup>
-import router from "../../router";
+import router from "@/router";
 import { reactive, ref, onMounted, onBeforeMount } from "vue";
-import Error from "../../components/Error.vue";
-import Apply from "../../components/Apply.vue";
+import Error from "@/components/Error.vue";
+import Apply from "@/components/Apply.vue";
 import {
     DesktopComputerIcon,
     GlobeAltIcon,
@@ -457,7 +457,7 @@ import {
     BriefcaseIcon,
     OfficeBuildingIcon,
 } from "@heroicons/vue/solid";
-import useJobOffers from "../../services/jobOfferServices.js";
+import useJobOffers from "@/services/jobOfferServices.js";
 
 const openApply = ref(false);
 const { jobOffer, getJobOffer, loading, errors } = useJobOffers();

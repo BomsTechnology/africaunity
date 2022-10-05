@@ -31,97 +31,96 @@ class UserController extends Controller
 
     public function usersType($type)
     {
-        if($type == 'business'){
-            $users = User::where('status', '<>', 3)->where(function($query) {
+        if ($type == 'business') {
+            $users = User::where('status', '<>', 3)->where(function ($query) {
                 $query->where('type', 'business1')->orWhere('type', 'business2');
             });
-        }else{
+        } else {
             $users = User::where([
                 ['type', $type],
                 ['status', '<>', 3]
             ]);
         }
-        return UserResource2::collection($users->get());
+        return UserResource2::collection($users->paginate(9));
     }
 
     public function filter(Request $request)
     {
-        if($request->type == 'business'){
-            $users = User::where('status', '<>', 3)->where(function($query) {
+        if ($request->type == 'business') {
+            $users = User::where('status', '<>', 3)->where(function ($query) {
                 $query->where('type', 'business1')->orWhere('type', 'business2');
             });
-        }else{
+        } else {
             $users = User::where([
                 ['type', $request->type],
                 ['status', '<>', 3]
             ]);
         }
 
-        if($request->status != ""){
+        if ($request->status != "") {
             $status = $request->status;
-            $users = $users->with(['detail' => function ($query) use($status) {
+            $users = $users->with(['detail' => function ($query) use ($status) {
                 $query->where('status',  $status);
-            }])->whereHas('detail', function (Builder $query) use($status) {
+            }])->whereHas('detail', function (Builder $query) use ($status) {
                 $query->where('status', $status);
             });
         }
 
-        if($request->native_country != ""){
+        if ($request->native_country != "") {
             $native_country = $request->native_country;
-            $users = $users->with(['detail' => function ($query) use($native_country) {
+            $users = $users->with(['detail' => function ($query) use ($native_country) {
                 $query->where('native_country', $native_country);
-            }])->whereHas('detail', function (Builder $query) use($native_country) {
+            }])->whereHas('detail', function (Builder $query) use ($native_country) {
                 $query->where('native_country', $native_country);
             });
         }
 
-        if($request->residence_country != ""){
+        if ($request->residence_country != "") {
             $residence_country = $request->residence_country;
-            $users = $users->with(['detail' => function ($query) use($residence_country) {
+            $users = $users->with(['detail' => function ($query) use ($residence_country) {
                 $query->where('residence_country', $residence_country);
-            }])->whereHas('detail', function (Builder $query) use($residence_country) {
+            }])->whereHas('detail', function (Builder $query) use ($residence_country) {
                 $query->where('residence_country', $residence_country);
             });
         }
 
-        if($request->activity_area != ""){
+        if ($request->activity_area != "") {
             $activity_area = $request->activity_area;
-            $users = $users->whereHas('detail', function (Builder $query) use($activity_area) {
-                $query->whereHas('activity_areas', function (Builder $query) use($activity_area) {
+            $users = $users->whereHas('detail', function (Builder $query) use ($activity_area) {
+                $query->whereHas('activity_areas', function (Builder $query) use ($activity_area) {
                     $query->where('activity_areas.id', $activity_area);
                 });
             });
         }
 
-        if($request->language != ""){
+        if ($request->language != "") {
             $language = $request->language;
-            $users = $users->whereHas('detail', function (Builder $query) use($language) {
-                $query->whereHas('languages', function (Builder $query) use($language) {
+            $users = $users->whereHas('detail', function (Builder $query) use ($language) {
+                $query->whereHas('languages', function (Builder $query) use ($language) {
                     $query->where('languages.id', $language);
                 });
             });
         }
 
-        if($request->business_size != ""){
+        if ($request->business_size != "") {
             $business_size = $request->business_size;
-            $users = $users->with(['detail' => function ($query) use($business_size) {
+            $users = $users->with(['detail' => function ($query) use ($business_size) {
                 $query->where('business_size_id', $business_size);
-            }])->whereHas('detail', function (Builder $query) use($business_size) {
+            }])->whereHas('detail', function (Builder $query) use ($business_size) {
                 $query->where('business_size_id', $business_size);
             });
         }
 
-        if($request->business_type != ""){
+        if ($request->business_type != "") {
             $business_type = $request->business_type;
-            $users = $users->with(['detail' => function ($query) use($business_type) {
+            $users = $users->with(['detail' => function ($query) use ($business_type) {
                 $query->where('business_type_id', $business_type);
-            }])->whereHas('detail', function (Builder $query) use($business_type) {
+            }])->whereHas('detail', function (Builder $query) use ($business_type) {
                 $query->where('business_type_id', $business_type);
             });
         }
 
         return UserResource2::collection($users->get());
-
     }
 
     public function user_report(Request $request)
@@ -133,21 +132,21 @@ class UserController extends Controller
         ]);
 
         $admins = User::where('type', 'admin')->get();
-        
+
         $user = User::find($request->reported);
         $url = "/account/$user->firstname/$user->id";
 
         $userReport = User::find($request->user);
-        
-        foreach($admins as $admin){
-            $admin->notify(new ReportNotification($url, $userReport , $request->content));
+
+        foreach ($admins as $admin) {
+            $admin->notify(new ReportNotification($url, $userReport, $request->content));
         }
 
         $response = [
-            'status'=>true,
-            'message'=>'Report Send successfully!',
+            'status' => true,
+            'message' => 'Report Send successfully!',
         ];
-        return response($response,201);
+        return response($response, 201);
     }
 
     /**
@@ -159,19 +158,19 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $fields = $request->validate([
-            'firstname' =>'required|string',
-            'lastname'=>'nullable|string',
-            'type' =>'required|string',
-            'email'=>'required|string|email|unique:users,email',
-            'password' =>'required|confirmed'
+            'firstname' => 'required|string',
+            'lastname' => 'nullable|string',
+            'type' => 'required|string',
+            'email' => 'required|string|email|unique:users,email',
+            'password' => 'required|confirmed'
         ]);
 
         $user = User::create([
-            'firstname'=>$fields['firstname'],
-            'lastname'=>$fields['lastname'],
-            'type'=>$fields['type'],
-            'email'=>$fields['email'],
-            'password'=>Hash::make($fields['password']),
+            'firstname' => $fields['firstname'],
+            'lastname' => $fields['lastname'],
+            'type' => $fields['type'],
+            'email' => $fields['email'],
+            'password' => Hash::make($fields['password']),
         ]);
 
         Detail::create([
@@ -187,13 +186,13 @@ class UserController extends Controller
     {
         $fileds = $request->validate([
             'user' => 'required|integer',
-            'password' =>'required|string'
+            'password' => 'required|string'
         ]);
 
         $user = User::find($fileds['user']);
 
-        if(!$user || !Hash::check($fileds['password'],$user->password)){
-            return response(['status'=>false,'message'=>'Your password is invalid'],401);
+        if (!$user || !Hash::check($fileds['password'], $user->password)) {
+            return response(['status' => false, 'message' => 'Your password is invalid'], 401);
         }
 
         Post::where('user_id', $user->id)->delete();
@@ -201,10 +200,10 @@ class UserController extends Controller
         Announcement::where('user_id', $user->id)->delete();
 
         $response = [
-            'status'=>true,
-            'message'=>'Data delete successfully!',
+            'status' => true,
+            'message' => 'Data delete successfully!',
         ];
-        return response($response,201);
+        return response($response, 201);
     }
 
     public function deleteUser(Request $request)
@@ -212,29 +211,29 @@ class UserController extends Controller
         $fileds = $request->validate([
             'user' => 'required|integer',
             'type' => 'required|integer|between:1,2',
-            'password' =>'required|string'
+            'password' => 'required|string'
         ]);
 
         $user = User::find($fileds['user']);
 
-        if(!$user || !Hash::check($fileds['password'],$user->password)){
-            return response(['status'=>false,'message'=>'Your password is invalid'],401);
+        if (!$user || !Hash::check($fileds['password'], $user->password)) {
+            return response(['status' => false, 'message' => 'Your password is invalid'], 401);
         }
 
-        if($fileds['type'] == 1){
+        if ($fileds['type'] == 1) {
             $user->status = 3;
             $user->save();
             $user->notify(new DesactivationAccountNotification());
-        }else{
+        } else {
             $user->notify(new DeleteAccountNotification());
             $user->delete();
         }
 
         $response = [
-            'status'=>true,
-            'message'=>'Account delete successfully!',
+            'status' => true,
+            'message' => 'Account delete successfully!',
         ];
-        return response($response,201);
+        return response($response, 201);
     }
 
     /**
@@ -260,21 +259,21 @@ class UserController extends Controller
     {
         $fileds = $request->validate([
             'old_password' => 'required|string',
-            'password' =>'required|confirmed'
+            'password' => 'required|confirmed'
         ]);
 
-        if(!$user || !Hash::check($fileds['old_password'],$user->password)){
-            return response(['status'=>false,'message'=>'Your old password is invalid'],401);
+        if (!$user || !Hash::check($fileds['old_password'], $user->password)) {
+            return response(['status' => false, 'message' => 'Your old password is invalid'], 401);
         }
 
         $user->password = Hash::make($fileds['password']);
         $user->save();
 
         $response = [
-            'status'=>true,
-            'message'=>'password update successfully!',
+            'status' => true,
+            'message' => 'password update successfully!',
         ];
-        return response($response,201);
+        return response($response, 201);
     }
 
     public function changeStatus(Request $request, User $user)
@@ -294,29 +293,29 @@ class UserController extends Controller
         $fileds = $request->validate([
             'firstname' => 'required|string',
             'lastname' => '',
-            'type' =>'required|string',
+            'type' => 'required|string',
             'email' => 'required|string|email',
         ]);
         $data = [
-                'firstname' => $fileds['firstname'],
-                'lastname' => $fileds['lastname'],
-                'type' => $fileds['type'],
-                'email' => $fileds['email'],
+            'firstname' => $fileds['firstname'],
+            'lastname' => $fileds['lastname'],
+            'type' => $fileds['type'],
+            'email' => $fileds['email'],
         ];
 
-        if($user->email != $fileds['email']){
+        if ($user->email != $fileds['email']) {
             $e = $request->validate([
                 'email' => 'unique:users,email'
             ]);
             $data['email'] = $e;
         }
 
-        if($request->password){
+        if ($request->password) {
             $user->password = Hash::make($request->password);
         }
 
         $user->update($data);
-        
+
         return new UserResource($user);
     }
 
@@ -328,38 +327,38 @@ class UserController extends Controller
             'email' => 'required|string|email',
         ]);
         $data = [
-                'firstname' => $fileds['firstname'],
-                'lastname' => $fileds['lastname'],
-                'email' => $fileds['email'],
+            'firstname' => $fileds['firstname'],
+            'lastname' => $fileds['lastname'],
+            'email' => $fileds['email'],
         ];
 
-        if($user->email != $fileds['email']){
+        if ($user->email != $fileds['email']) {
             $e = $request->validate([
                 'email' => 'unique:users,email'
             ]);
             $data['email'] = $e;
         }
 
-        if($request->file('avatar')){
+        if ($request->file('avatar')) {
             $request->validate([
                 'avatar' => 'required|mimes:png,jpg,jpeg,gif|dimensions:max_width=2048,max_height=2048'
             ]);
-            $filename = '/uploads/'.time().'.'. $request->file('avatar')->extension();
+            $filename = '/uploads/' . time() . '.' . $request->file('avatar')->extension();
             $request->file('avatar')->storePubliclyAs('public', $filename);
             $data['avatar'] = $filename;
         }
 
-        if($request->file('cover')){
+        if ($request->file('cover')) {
             $request->validate([
                 'cover' => 'required|mimes:png,jpg,jpeng,gif|dimensions:max_width=2048,max_height=2048'
             ]);
-            $filename = '/uploads/'.time().'.'. $request->file('cover')->extension();
+            $filename = '/uploads/' . time() . '.' . $request->file('cover')->extension();
             $request->file('cover')->storePubliclyAs('public', $filename);
             $data['cover'] = $filename;
         }
 
         $user->update($data);
-        
+
         return new UserResource($user);
     }
 

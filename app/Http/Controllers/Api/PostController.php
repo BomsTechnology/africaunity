@@ -30,7 +30,7 @@ class PostController extends Controller
             ['status', 1],
             ['type', $type],
             ['language', $lang]
-        ])->orderBy('id', 'desc')->get());
+        ])->orderBy('id', 'desc')->paginate(8));
     }
 
     public function filter(Request $request)

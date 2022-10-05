@@ -157,54 +157,6 @@
                 :key="post.id"
             >
                 <router-link
-                    v-if="!token"
-                    :to="{
-                        name: 'login',
-                        params: { redirect: 'not-login' },
-                    }"
-                >
-                    <div
-                        class="absolute flex h-full w-full flex-col justify-end space-y-1 bg-black/25 object-cover p-4 text-white"
-                    >
-                        <div>
-                            <a href="#" class="text-md hover:text-primary-blue">
-                                {{
-                                    post.title.length <= 20
-                                        ? post.title
-                                        : post.title.substring(0, 19) + "..."
-                                }}
-                            </a>
-                        </div>
-                        <div class="flex space-x-2 text-xs">
-                            <div class="flex space-x-1">
-                                <CalendarIcon class="h-4 w-4" />
-                                <a href="#" class="hover:text-primary-blue">{{
-                                    new Date(post.date).toLocaleDateString(
-                                        "fr-FR",
-                                        {
-                                            day: "numeric",
-                                            year: "numeric",
-                                            month: "long",
-                                        }
-                                    )
-                                }}</a>
-                            </div>
-                            <div class="flex space-x-1">
-                                <ChatIcon class="h-4 w-4" />
-                                <a href="#" class="hover:text-primary-blue">{{
-                                    post.comments
-                                }}</a>
-                            </div>
-                        </div>
-                    </div>
-                    <img
-                        :src="post.image"
-                        :alt="post.title"
-                        class="h-60 w-full object-cover md:h-full"
-                    />
-                </router-link>
-                <router-link
-                    v-else
                     :to="{
                         name: 'show.post',
                         params: { id: post.id },
@@ -253,27 +205,8 @@
             </div>
         </div>
     </div>
-    <div v-else-if="loading == 1" class="p-28">
-        <svg
-            class="mx-auto h-16 w-16 animate-spin text-primary-blue"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-        >
-            <circle
-                class="opacity-25"
-                cx="12"
-                cy="12"
-                r="10"
-                stroke="currentColor"
-                stroke-width="4"
-            ></circle>
-            <path
-                class="opacity-75"
-                fill="currentColor"
-                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-            ></path>
-        </svg>
+    <div v-else-if="loading == 1">
+        <Slider />
     </div>
     <div
         v-else
@@ -296,6 +229,7 @@ import { Swiper, SwiperSlide } from "swiper/vue";
 import { EffectFade, Autoplay } from "swiper";
 import "swiper/css";
 import "swiper/css/effect-fade";
+import Slider from "./skeleton/Slider.vue";
 
 const props = { posts: Array, loading: Number };
 

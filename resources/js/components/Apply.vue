@@ -154,7 +154,7 @@ import { ExclamationCircleIcon } from "@heroicons/vue/solid";
 import { reactive, ref, onMounted } from "vue";
 import Error from "../components/Error.vue";
 
-const props = { open: Boolean, toogleModal: Function, id: String };
+const props = defineProps({ open: Boolean, toogleModal: Function, id: String });
 
 const apply = reactive({
     user: JSON.parse(localStorage.user).id,

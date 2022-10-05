@@ -150,7 +150,6 @@
                                 >Image</label
                             >
                             <input
-                                required
                                 ref="file"
                                 @change="handelFileObject()"
                                 type="file"

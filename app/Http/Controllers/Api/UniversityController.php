@@ -18,9 +18,12 @@ class UniversityController extends Controller
      */
     public function index()
     {
+        return UniversityResource::collection(University::orderBy('id')->paginate(8));
+    }
+    public function all()
+    {
         return UniversityResource::collection(University::latest()->get());
     }
-
     /**
      * Store a newly created resource in storage.
      *

@@ -85,6 +85,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::apiResource('cities', CityController::class);
 
     Route::apiResource('universities', UniversityController::class);
+    Route::get('/university/all', [UniversityController::class, 'all']);
     Route::get("/universities2/{university}", [UniversityController::class, 'show2']);
 
     Route::apiResource('currencies', CurrencyController::class);

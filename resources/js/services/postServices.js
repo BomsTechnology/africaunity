@@ -10,7 +10,8 @@ export default function usePosts() {
     const loading = ref(0);
     const articles = ref([]);
     const propau = ref([]);
-
+    const isAll = ref(false);
+    const page = ref(1);
     const getPostsAll = async (type) => {
         errors.value = "";
         try {
@@ -79,15 +80,22 @@ export default function usePosts() {
         loading.value = 1;
         try {
             let response = await axios.get(
-                "/api/posts-type/" + type + "/" + lang,
+                "/api/posts-type/" + type + "/" + lang + "?page=" + page.value,
                 {
                     headers: {
                         Authorization: `Bearer ${localStorage.token}`,
                     },
                 }
             );
-            posts.value = response.data.data;
+            if (page.value == 1) {
+                posts.value = response.data.data;
+            } else {
+                posts.value = posts.value.concat(response.data.data);
+            }
             loading.value = 2;
+            if (response.data.data.length == 0) {
+                isAll.value = true;
+            }
         } catch (e) {
             if (e.response.status == 401) {
                 router.push({
@@ -277,6 +285,8 @@ export default function usePosts() {
     };
 
     return {
+        isAll,
+        page,
         filterPost,
         posts,
         post,

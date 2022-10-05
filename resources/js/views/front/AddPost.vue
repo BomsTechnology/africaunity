@@ -420,7 +420,7 @@ const storePost = async () => {
     formData.append("zone_id", post.zone_id);
     formData.append("country_id", post.country_id);
     formData.append("ministry_id", post.ministry_id);
-    console.log(post.image);
+
     await createPost(formData);
     if (errors.value == "") {
         if (props.type == "article") {

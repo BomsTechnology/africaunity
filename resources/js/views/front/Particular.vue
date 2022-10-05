@@ -106,7 +106,9 @@
 
         </div>
         <div class="p-2 bg-primary-blue shadow"></div>
+        
         <div
+            ref="userContainer"
             class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8 px-10 py-8"
             v-if="filteredUser.length != 0"
         >
@@ -230,30 +232,11 @@
 
             </div>
         </div>
-        <div v-else-if="loading == 1" class="p-28">
-            <svg
-                class="animate-spin h-16 w-16 mx-auto"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-            >
-                <circle
-                    class="opacity-25"
-                    cx="12"
-                    cy="12"
-                    r="10"
-                    stroke="currentColor"
-                    stroke-width="4"
-                ></circle>
-                <path
-                    class="opacity-75"
-                    fill="currentColor"
-                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                ></path>
-            </svg>
+        <div v-else-if="loading == 1">
+            <Profile />
         </div>
         <div
-            v-else
+           v-if="filteredUser.length == 0 && loading != 1"
             class="p-28 flex justify-center text-gray-500 flex-col items-center animate-pulse"
         >
             <EmojiSadIcon class="h-16 w-16" />
@@ -264,18 +247,45 @@
 </template>
 
 <script setup>
-import { reactive, ref, onMounted, computed } from "vue";
+import { reactive, ref, onMounted, computed, onUnmounted } from "vue";
 import { EmojiSadIcon, UserCircleIcon, ChevronDownIcon, ChevronUpIcon } from "@heroicons/vue/solid";
 import useUsers from "@/services/userServices.js";
 import useLanguages from "@/services/languageServices.js";
 import useActivityAreas from "@/services/activityAreaServices.js";
 import useCountries from "@/services/countryServices.js";
+import Profile from "@/components/skeleton/Profile.vue";
 
 const { languages, getLanguages } = useLanguages();
 const { countries, getCountries } = useCountries();
 const { activityAreas, getActivityAreas } = useActivityAreas();
-const { users, getUsersType, filterUsers, errors, loading } = useUsers();
-onMounted(async () => {await getUsersType("particular"); await getLanguages(); await getCountries(); await getActivityAreas();});
+const { users, getUsersType, filterUsers, page, isAll, loading } = useUsers();
+ const userContainer = ref(null);
+const toGet = ref(true);
+onMounted(async () => {
+    window.addEventListener("scroll", handleScroll);
+    await getUsersType("particular"); 
+    await getLanguages(); 
+    await getCountries(); 
+    await getActivityAreas();
+});
+onUnmounted(async () => {
+    page.value = 1;
+    window.removeEventListener("scroll", handleScroll);
+});
+
+const handleScroll = async (e) => {
+    let element = userContainer.value;
+    if (
+        element.getBoundingClientRect().bottom < window.innerHeight &&
+        toGet.value &&
+        !isAll.value
+    ) {
+        toGet.value = false;
+        page.value++;
+        await getUsersType("particular");
+        toGet.value = true;
+    }
+};
 const searchKey = ref('');
 const filter = reactive({
     native_country:"",

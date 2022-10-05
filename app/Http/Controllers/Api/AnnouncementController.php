@@ -19,17 +19,17 @@ class AnnouncementController extends Controller
      */
     public function index()
     {
-        return AnnouncementResource::collection(Announcement::latest()->get());
+        return AnnouncementResource::collection(Announcement::orderBy('id')->paginate(8));
     }
 
     public function announcements_user($user)
     {
-        return AnnouncementResource::collection(Announcement::where('user_id',$user)->orderBy('id', 'desc')->get());
+        return AnnouncementResource::collection(Announcement::where('user_id', $user)->orderBy('id', 'desc')->get());
     }
 
     public function announcements_university($university)
     {
-        return AnnouncementResource::collection(Announcement::where('university_id',$university)->orderBy('id', 'desc')->get());
+        return AnnouncementResource::collection(Announcement::where('university_id', $university)->orderBy('id', 'desc')->get());
     }
 
     public function contact(Request $request)
@@ -46,10 +46,10 @@ class AnnouncementController extends Controller
         $authorUser->notify(new ContactAnnouncementNotification($announcement, $contactUser, $fileds['content']));
 
         $response = [
-            'status'=>true,
-            'message'=>'Contact Send successfully!',
+            'status' => true,
+            'message' => 'Contact Send successfully!',
         ];
-        return response($response,201);
+        return response($response, 201);
     }
 
     /**
@@ -87,17 +87,17 @@ class AnnouncementController extends Controller
             'email' => $fileds['email'],
         ];
 
-        if($request->file('image')){
+        if ($request->file('image')) {
             $request->validate([
                 'image' => 'required|mimes:png,jpg,jpeg,gif|dimensions:max_width=2048,max_height=2048'
             ]);
-            $filename = '/uploads/'.time().'.'. $request->file('image')->extension();
+            $filename = '/uploads/' . time() . '.' . $request->file('image')->extension();
             $request->file('image')->storePubliclyAs('public', $filename);
             $data['image'] = $filename;
         }
-        
+
         $announcement = Announcement::create($data);
-    
+
         return new AnnouncementResource($announcement);
     }
 
@@ -148,31 +148,31 @@ class AnnouncementController extends Controller
             'email' => $fileds['email'],
         ];
 
-        if($request->has('currency_id') && $request->currency_id != 'null'){
+        if ($request->has('currency_id') && $request->currency_id != 'null') {
             $fileds = $request->validate([
                 'currency_id' => 'integer|required'
             ]);
             $data['currency_id'] = $fileds['currency_id'];
         }
 
-        if($request->has('price') && $request->price != 'null'){
+        if ($request->has('price') && $request->price != 'null') {
             $fileds = $request->validate([
                 'price' => 'integer|required'
             ]);
             $data['price'] = $fileds['price'];
         }
 
-        if($request->file('image')){
+        if ($request->file('image')) {
             $request->validate([
                 'image' => 'required|mimes:png,jpg,jpeng,gif|dimensions:max_width=2048,max_height=2048'
             ]);
-            $filename = '/uploads/'.time().'.'. $request->file('image')->extension();
+            $filename = '/uploads/' . time() . '.' . $request->file('image')->extension();
             $request->file('image')->storePubliclyAs('public', $filename);
             $data['image'] = $filename;
         }
 
         $announcement->update($data);
-        
+
         return new AnnouncementResource($announcement);
     }
 

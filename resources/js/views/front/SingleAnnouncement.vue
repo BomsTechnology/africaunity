@@ -298,9 +298,9 @@
 </template>
 
 <script setup>
-import router from "../../router";
+import router from "@/router";
 import { reactive, ref, onMounted } from "vue";
-import Error from "../../components/Error.vue";
+import Error from "@/components/Error.vue";
 import {
     PlusCircleIcon,
     CalendarIcon,
@@ -315,14 +315,14 @@ import {
     CashIcon,
     BriefcaseIcon,
 } from "@heroicons/vue/solid";
-import useAnnouncements from "../../services/announcementServices.js";
+import useAnnouncements from "@/services/announcementServices.js";
 
-const props = {
+const props = defineProps({
     id: {
         required: true,
         type: String,
     },
-};
+});
 
 const url = window.location.href;
 const { announcement, getAnnouncement2, loading, errors } = useAnnouncements();
