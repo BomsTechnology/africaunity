@@ -1,13 +1,10 @@
-import { defineConfig } from 'vite';
-import laravel from 'laravel-vite-plugin';
-import vue from '@vitejs/plugin-vue';
+import { defineConfig } from "vite";
+import laravel from "laravel-vite-plugin";
+import vue from "@vitejs/plugin-vue";
 
 export default defineConfig({
     plugins: [
-        laravel([
-            'resources/css/app.css',
-            'resources/js/app.js',
-        ]),
+        laravel(["resources/js/app.js"]),
         vue({
             template: {
                 transformAssetUrls: {
@@ -17,9 +14,9 @@ export default defineConfig({
             },
         }),
     ],
-        resolve: {
+    resolve: {
         alias: {
-            '@': '/resources/js',
+            "@": "/resources/js",
         },
     },
 });

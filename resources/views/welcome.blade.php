@@ -28,7 +28,7 @@
     <meta property="twitter:image" content="{{ asset('/img/logo_au.png') }}">
 
     <link rel="icon" type="image/x-icon" href="{{ asset('/img/ico.png') }}">
-    @vite(['resources/js/app.js'])
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sceditor@3/minified/themes/default.min.css" />
 </head>
 
@@ -37,7 +37,7 @@
     <div id="app" class="">
 
     </div>
-
+    @vite(['resources/js/app.js'])
     @include('cookie-consent::index')
     <script src="https://cdn.jsdelivr.net/npm/sceditor@3/minified/sceditor.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sceditor@3/minified/formats/xhtml.min.js"></script>
