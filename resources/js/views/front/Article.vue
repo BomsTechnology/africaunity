@@ -21,10 +21,13 @@
                     <p class="text-base leading-4">{{ $t("add") }} Article</p>
                 </router-link>
             </div>
+            <div v-if="loading == 3">
+                <Article />
+            </div>
             <div
                 class="grid gap-8 py-8 lg:grid-cols-2 lg:px-10"
                 ref="postsContainer"
-                v-if="posts.length != 0"
+                v-else-if="posts.length != 0"
             >
                 <div
                     class="dark:bg-gray-800 overflow-hidden rounded-lg bg-white shadow-md"
@@ -410,16 +413,23 @@ onUnmounted(async () => {
     window.removeEventListener("scroll", handleScroll);
 });
 const handleScroll = async (e) => {
-    let element = postsContainer.value;
-    if (
-        element.getBoundingClientRect().bottom < window.innerHeight &&
-        toGet.value &&
-        !isAll.value
-    ) {
-        toGet.value = false;
-        page.value++;
-        await getPosts();
-        toGet.value = true;
+    if (postsContainer.value) {
+        let element = postsContainer.value;
+        if (
+            element.getBoundingClientRect().bottom < window.innerHeight &&
+            toGet.value &&
+            !isAll.value &&
+            filter.country == "" &&
+            filter.continent == "" &&
+            filter.ministry == "" &&
+            filter.zone == "" &&
+            filter.keywords == ""
+        ) {
+            toGet.value = false;
+            page.value++;
+            await getPosts("article", localStorage.lang);
+            toGet.value = true;
+        }
     }
 };
 const filteredZone = () => {
@@ -438,7 +448,19 @@ const filteredCountry = () => {
 };
 
 const PostsFilter = async () => {
-    await filterPost({ ...filter });
+    if (
+        filter.country != "" ||
+        filter.continent != "" ||
+        filter.ministry != "" ||
+        filter.zone != "" ||
+        filter.keywords != ""
+    ) {
+        await filterPost({ ...filter });
+    } else {
+        page.value = 1;
+        isAll.value = false;
+        await getPosts("article", localStorage.lang);
+    }
 };
 
 const changeLocale = async (lang) => {

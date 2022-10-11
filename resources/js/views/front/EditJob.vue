@@ -643,7 +643,8 @@ import useCountries from "@/services/countryServices.js";
 import useZones from "@/services/zoneServices.js";
 import useContinents from "@/services/continentServices.js";
 import useCities from "@/services/cityServices.js";
-import router from "@/router/index.js";
+import { useRouter } from "vue-router";
+const router = useRouter();
 
 const props = defineProps({
     id: {

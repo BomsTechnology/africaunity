@@ -24,19 +24,23 @@ class Announcement extends Model
         'university_id',
     ];
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function university(){
+    public function university()
+    {
         return $this->belongsTo(University::class);
     }
 
-    public function currency(){
+    public function currency()
+    {
         return $this->belongsTo(Currency::class);
     }
 
-    public function category_annoucement(){
-        return $this->belongsTo(CategoryAnnoucement::class);
+    public function CategoryAnnouncement()
+    {
+        return $this->belongsTo(CategoryAnnouncement::class);
     }
 }

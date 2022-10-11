@@ -224,7 +224,8 @@ import useContinents from "@/services/continentServices.js";
 import useZones from "@/services/zoneServices.js";
 import useCountries from "@/services/countryServices.js";
 import useMinistries from "@/services/ministryServices.js";
-import router from "@/router/index.js";
+import { useRouter } from "vue-router";
+const router = useRouter();
 
 const props = defineProps({
     type: {

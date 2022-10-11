@@ -256,7 +256,8 @@ import useAnnouncements from "@/services/announcementServices.js";
 import usecategoryAnnouncements from "@/services/categoryAnnouncementServices.js";
 import useCurrencies from "@/services/currencyServices.js";
 import useUniversities from "@/services/universityServices.js";
-import router from "@/router/index.js";
+import { useRouter } from "vue-router";
+const router = useRouter();
 
 const props = defineProps({
     id: {

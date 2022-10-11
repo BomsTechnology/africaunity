@@ -9,7 +9,7 @@ export default function useOfferTypes() {
 
     const getOfferTypes = async () => {
         errorsOT.value = "";
-        loading.value = 1;
+        loading.value = true;
         let response = await axios.get("/api/offerTypes", {
             headers: {
                 Authorization: `Bearer ${localStorage.token}`,
@@ -17,12 +17,12 @@ export default function useOfferTypes() {
         });
         offerTypes.value = response.data.data;
 
-        loading.value = 2;
+        loading.value = false;
     };
 
     const getOfferType = async (id) => {
         errorsOT.value = "";
-        loading.value = 1;
+        loading.value = true;
         let response = await axios.get("/api/offerTypes/" + id, {
             headers: {
                 Authorization: `Bearer ${localStorage.token}`,
@@ -35,13 +35,13 @@ export default function useOfferTypes() {
     const createOfferType = async (data) => {
         errorsOT.value = "";
         try {
-            loading.value = 1;
+            loading.value = true;
             await axios.post("/api/offerTypes", data, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
                 },
             });
-            loading.value = 2;
+            loading.value = false;
         } catch (e) {
             if (e.response.status == 422) {
                 loading.value = 0;
@@ -54,13 +54,13 @@ export default function useOfferTypes() {
     const updateOfferType = async (data) => {
         errorsOT.value = "";
         try {
-            loading.value = 1;
+            loading.value = true;
             await axios.put("/api/offerTypes/" + id, data, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
                 },
             });
-            loading.value = 2;
+            loading.value = false;
         } catch (e) {
             loading.value = 0;
             if (e.response.status == 422) {
@@ -73,13 +73,13 @@ export default function useOfferTypes() {
     const destroyOfferType = async (id) => {
         errorsOT.value = "";
         try {
-            loading.value = 1;
+            loading.value = true;
             await axios.delete("/api/offerTypes/" + id, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
                 },
             });
-            loading.value = 2;
+            loading.value = false;
             return true;
         } catch (e) {
             loading.value = 0;

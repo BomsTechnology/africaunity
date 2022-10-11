@@ -159,7 +159,8 @@
 import { reactive, ref, onMounted } from "vue";
 import Error from "@/components/Error.vue";
 import useUsers from "@/services/userServices.js";
-import router from "@/router/index.js";
+import { useRouter } from "vue-router";
+const router = useRouter();
 
 const user = reactive({
     firstname: "",

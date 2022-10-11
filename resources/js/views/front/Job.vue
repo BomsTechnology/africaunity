@@ -1,5 +1,5 @@
 <template>
-    <div class="mx-auto min-h-screen w-full bg-white py-4 lg:px-20 xl:w-[90%]">
+    <div class="mx-auto w-full bg-white py-4 xl:w-[90%]">
         <h1
             class="py-4 text-center text-5xl font-bold capitalize text-primary-blue"
         >
@@ -28,7 +28,8 @@
                         }}</label>
                         <input
                             type="text"
-                            v-model="searchKey"
+                            @change="jobsFilter()"
+                            v-model="filterJob.searchKey"
                             class="form-input mt-1 block w-full rounded-md border border-gray-200 bg-white px-3 pr-2 text-gray-700 placeholder:text-gray-400 focus:border-primary-blue focus:ring-primary-blue"
                         />
                     </div>
@@ -341,6 +342,7 @@
                         </label>
                         <input
                             v-model="filterJob.min_price"
+                            @change="jobsFilter()"
                             type="text"
                             class="dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 dark:focus:border-blue-300 mt-1 block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"
                         />
@@ -382,8 +384,13 @@
                     <p class="text-base leading-4">{{ $t("add") }} Job</p>
                 </router-link>
             </div>
-            <div v-if="filteredJobOffers.length != 0" class="text-lg">
-                <div v-for="jobOffer in filteredJobOffers" :key="jobOffer.id">
+            <Job v-if="loading == 3" />
+            <div
+                v-else-if="jobOffers.length != 0"
+                ref="jobContainer"
+                class="text-lg"
+            >
+                <div v-for="jobOffer in jobOffers" :key="jobOffer.id">
                     <router-link
                         :to="{
                             name: 'show.job',
@@ -455,36 +462,25 @@
                                 }}</span>
                             </h2>
                             <h1 class="capitalize">
-                                Publié le: {{ jobOffer.date }}
+                                Publié le:
+                                {{
+                                    new Date(jobOffer.date).toLocaleDateString(
+                                        "fr-FR",
+                                        {
+                                            day: "numeric",
+                                            year: "numeric",
+                                            month: "long",
+                                        }
+                                    )
+                                }}
                             </h1>
                         </div>
                     </router-link>
                 </div>
             </div>
-            <div v-else-if="loading == 1" class="p-28">
-                <svg
-                    class="mx-auto h-16 w-16 animate-spin"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                >
-                    <circle
-                        class="opacity-25"
-                        cx="12"
-                        cy="12"
-                        r="10"
-                        stroke="currentColor"
-                        stroke-width="4"
-                    ></circle>
-                    <path
-                        class="opacity-75"
-                        fill="currentColor"
-                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                    ></path>
-                </svg>
-            </div>
+            <Job v-if="loading == 1" />
             <div
-                v-else
+                v-if="jobOffers.length == 0 && loading != 1"
                 class="flex animate-pulse flex-col items-center justify-center p-28 text-gray-500"
             >
                 <EmojiSadIcon class="h-16 w-16" />
@@ -518,7 +514,8 @@ import useCountries from "@/services/countryServices.js";
 import useZones from "@/services/zoneServices.js";
 import useContinents from "@/services/continentServices.js";
 import useCities from "@/services/cityServices.js";
-import { reactive, ref, onMounted, computed } from "vue";
+import { reactive, ref, onMounted, computed, onUnmounted } from "vue";
+import Job from "@/components/skeleton/Job.vue";
 
 const { currencies, getCurrencies } = useCurrencies();
 const { languages, getLanguages } = useLanguages();
@@ -533,13 +530,16 @@ const { countries, getCountries } = useCountries();
 const { zones, getZones } = useZones();
 const { continents, getContinents } = useContinents();
 const { cities, getCities } = useCities();
-const { jobOffers, filterJobs, getJobOffersFront, loading, errors } =
+const { jobOffers, filterJobs, getJobOffersFront, loading, isAll, page } =
     useJobOffers();
 const user = localStorage.user ? JSON.parse(localStorage.user) : "";
 const zoneFiltered = ref([]);
 const countryFiltered = ref([]);
 const cityfiltered = ref([]);
+const jobContainer = ref(null);
+const toGet = ref(true);
 onMounted(async () => {
+    window.addEventListener("scroll", handleScroll);
     await getJobOffersFront();
     await getCurrencies();
     await getContinents();
@@ -555,7 +555,38 @@ onMounted(async () => {
     await getCountries();
     await getCities();
 });
-const searchKey = ref("");
+onUnmounted(async () => {
+    page.value = 1;
+    window.removeEventListener("scroll", handleScroll);
+});
+
+const handleScroll = async (e) => {
+    if (jobContainer.value) {
+        let element = jobContainer.value;
+        if (
+            element.getBoundingClientRect().bottom < window.innerHeight &&
+            toGet.value &&
+            !isAll.value &&
+            filterJob.country == "" &&
+            filterJob.continent == "" &&
+            filterJob.zone == "" &&
+            filterJob.activity_area == "" &&
+            filterJob.city == "" &&
+            filterJob.work_mode == "" &&
+            filterJob.offer_type == "" &&
+            filterJob.language == "" &&
+            filterJob.year_experience == "" &&
+            filterJob.level_study == "" &&
+            filterJob.min_price == "" &&
+            filterJob.currency == ""
+        ) {
+            toGet.value = false;
+            page.value++;
+            await getJobOffersFront();
+            toGet.value = true;
+        }
+    }
+};
 const showFilter = ref(true);
 const filterJob = reactive({
     country: "",
@@ -570,13 +601,34 @@ const filterJob = reactive({
     level_study: "",
     min_price: "",
     currency: "",
+    searchKey: "",
 });
 
 const toogleFilter = () => {
     showFilter.value = !showFilter.value;
 };
 const jobsFilter = async () => {
-    await filterJobs({ ...filterJob });
+    if (
+        filterJob.country != "" ||
+        filterJob.continent != "" ||
+        filterJob.zone != "" ||
+        filterJob.activity_area != "" ||
+        filterJob.city != "" ||
+        filterJob.work_mode != "" ||
+        filterJob.offer_type != "" ||
+        filterJob.language != "" ||
+        filterJob.year_experience != "" ||
+        filterJob.level_study != "" ||
+        filterJob.min_price != "" ||
+        filterJob.currency != "" ||
+        filterJob.searchKey != ""
+    ) {
+        await filterJobs({ ...filterJob });
+    } else {
+        page.value = 1;
+        isAll.value = false;
+        await getJobOffersFront();
+    }
 };
 const filteredCity = async () => {
     cityfiltered.value = cities.value.filter((city) => {
@@ -607,22 +659,4 @@ const filteredZone = async () => {
     countryFiltered.value = [];
     await jobsFilter();
 };
-
-const filteredJobOffers = computed(() => {
-    return jobOffers.value.filter((jobOffer) => {
-        let data = "";
-        if (filterJob.min_price != "")
-            data =
-                jobOffer.title
-                    .toLowerCase()
-                    .includes(searchKey.value.toLowerCase()) &&
-                parseFloat(jobOffer.max_price) >=
-                    parseFloat(filterJob.min_price);
-        else
-            data = jobOffer.title
-                .toLowerCase()
-                .includes(searchKey.value.toLowerCase());
-        return data;
-    });
-});
 </script>

@@ -12,7 +12,7 @@ export default function useUsers() {
     const getUsers = async () => {
         try {
             errors.value = "";
-            loading.value = 1;
+            loading.value = true;
             let response = await axios.get("/api/users", {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
@@ -20,7 +20,7 @@ export default function useUsers() {
             });
             users.value = response.data.data;
 
-            loading.value = 2;
+            loading.value = false;
         } catch (e) {
             if (e.response.status == 401) {
                 router.push({
@@ -38,7 +38,7 @@ export default function useUsers() {
     const getUsersType = async (type) => {
         try {
             errors.value = "";
-            loading.value = 1;
+            loading.value = true;
             let response = await axios.get(
                 "/api/users-type/" + type + "?page=" + page.value,
                 {
@@ -52,7 +52,7 @@ export default function useUsers() {
             } else {
                 users.value = users.value.concat(response.data.data);
             }
-            loading.value = 2;
+            loading.value = false;
             if (response.data.data.length == 0) {
                 isAll.value = true;
             }
@@ -73,14 +73,14 @@ export default function useUsers() {
     const filterUsers = async (data) => {
         errors.value = "";
         try {
-            loading.value = 1;
+            loading.value = 3;
             let response = await axios.post("/api/users-filter", data, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
                 },
             });
             users.value = response.data.data;
-            loading.value = 2;
+            loading.value = false;
         } catch (e) {
             if (e.response.status == 401) {
                 router.push({
@@ -98,7 +98,7 @@ export default function useUsers() {
     const getUser = async (id) => {
         errors.value = "";
         try {
-            loading.value = 1;
+            loading.value = true;
             let response = await axios.get("/api/users/" + id, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
@@ -123,13 +123,13 @@ export default function useUsers() {
     const createUser = async (data) => {
         errors.value = "";
         try {
-            loading.value = 1;
+            loading.value = true;
             await axios.post("/api/users", data, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
                 },
             });
-            loading.value = 2;
+            loading.value = false;
         } catch (e) {
             if (e.response.status == 422) {
                 loading.value = 0;
@@ -142,14 +142,14 @@ export default function useUsers() {
     const updateUser = async (id, data) => {
         errors.value = "";
         try {
-            loading.value = 1;
+            loading.value = true;
             let response = await axios.post("/api/users/" + id, data, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
                     "Content-Type": "multipart/form-data",
                 },
             });
-            loading.value = 2;
+            loading.value = false;
             localStorage.user = JSON.stringify(response.data.data);
             location.reload();
         } catch (e) {
@@ -164,7 +164,7 @@ export default function useUsers() {
     const updateUser2 = async () => {
         errors.value = "";
         try {
-            loading.value = 1;
+            loading.value = true;
             let response = await axios.put(
                 "/api/users-update/" + user.value.id,
                 user.value,
@@ -174,7 +174,7 @@ export default function useUsers() {
                     },
                 }
             );
-            loading.value = 2;
+            loading.value = false;
         } catch (e) {
             loading.value = 0;
             if (e.response.status == 422) {
@@ -187,7 +187,7 @@ export default function useUsers() {
     const updateStatusUser = async (id, data) => {
         errors.value = "";
         try {
-            loading.value = 1;
+            loading.value = true;
             let response = await axios.put(
                 "/api/users-change-status/" + id,
                 data,
@@ -197,7 +197,7 @@ export default function useUsers() {
                     },
                 }
             );
-            loading.value = 2;
+            loading.value = false;
             localStorage.user = JSON.stringify(response.data.data);
         } catch (e) {
             loading.value = 0;
@@ -211,13 +211,13 @@ export default function useUsers() {
     const deleteUserData = async (data) => {
         errors.value = "";
         try {
-            loading.value = 1;
+            loading.value = true;
             let response = await axios.post("/api/users-delete-data", data, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
                 },
             });
-            loading.value = 2;
+            loading.value = false;
         } catch (e) {
             loading.value = 0;
             if (e.response.status == 422) {
@@ -232,13 +232,13 @@ export default function useUsers() {
     const destroyUserFront = async (data) => {
         errors.value = "";
         try {
-            loading.value = 1;
+            loading.value = true;
             let response = await axios.post("/api/users-delete-user", data, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
                 },
             });
-            loading.value = 2;
+            loading.value = false;
         } catch (e) {
             loading.value = 0;
             if (e.response.status == 422) {
@@ -253,13 +253,13 @@ export default function useUsers() {
     const updatePasswordUser = async (id, data) => {
         errors.value = "";
         try {
-            loading.value = 1;
+            loading.value = true;
             await axios.put("/api/users-change-password/" + id, data, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
                 },
             });
-            loading.value = 2;
+            loading.value = false;
         } catch (e) {
             loading.value = 0;
             if (e.response.status == 422) {
@@ -274,13 +274,13 @@ export default function useUsers() {
     const destroyUser = async (id) => {
         errors.value = "";
         try {
-            loading.value = 1;
+            loading.value = true;
             await axios.delete("/api/users/" + id, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
                 },
             });
-            loading.value = 2;
+            loading.value = false;
             return true;
         } catch (e) {
             loading.value = 0;

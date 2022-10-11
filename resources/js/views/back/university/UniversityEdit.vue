@@ -150,18 +150,17 @@
                                 for="pt"
                                 >Description</label
                             >
+
                             <textarea
                                 required
-                                type="text"
-                                v-model="university.description"
-                                id="pt"
-                                class="dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 dark:focus:border-blue-300 mt-2 block h-32 w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-primary-blue focus:outline-none focus:ring focus:ring-primary-blue focus:ring-opacity-40"
+                                ref="textarea"
+                                class="h-96 w-full"
                             >
                             </textarea>
                         </div>
                     </div>
 
-                    <div class="mt-6 flex justify-end">
+                    <div class="mt-6 flex flex-col items-end justify-end">
                         <button
                             v-if="loading == 0"
                             type="submit"
@@ -196,6 +195,21 @@
                                 ></path>
                             </svg>
                         </button>
+                        <Transition
+                            enter-active-class=" transition-all  "
+                            enter-from-class=" opacity-0  -translate-y-10"
+                            enter-to-class="  opacity-1 translate-y-0"
+                            leave-active-class=""
+                            leave-from-class=""
+                            leave-to-class=""
+                        >
+                            <span
+                                v-if="msgClick != ''"
+                                class="text-xs font-light italic"
+                            >
+                                {{ msgClick }}
+                            </span>
+                        </Transition>
                     </div>
                 </form>
             </section>
@@ -211,8 +225,11 @@ import useContinents from "@/services/continentServices.js";
 import useCountries from "@/services/countryServices.js";
 import useZones from "@/services/zoneServices.js";
 import useCities from "@/services/cityServices.js";
-import router from "@/router/index.js";
-
+import { useRouter } from "vue-router";
+const router = useRouter();
+const textarea = ref("");
+const msgClick = ref("");
+const nbClick = ref(0);
 const props = defineProps({
     id: {
         required: true,
@@ -259,6 +276,16 @@ const filteredZone = () => {
 };
 onMounted(async () => {
     await getUniversity(props.id);
+    textarea.value.value = university.value.description;
+    sceditor.create(textarea.value, {
+        format: "bbcode",
+        style: "https://cdn.jsdelivr.net/npm/sceditor@3/minified/themes/content/default.min.css",
+        height: 400,
+        toolbarExclude:
+            "indent,outdent,email,date,time,ltr,rtl,print,subscript,superscript,table,code,quote,emoticon",
+        icons: "material",
+    });
+    nbClick.value++;
     await getContinents();
     await getCountries();
     await getCities();
@@ -275,6 +302,13 @@ onMounted(async () => {
 });
 
 const saveUniversity = async () => {
+    university.value.description = textarea.value.value;
+    if (nbClick.value == 1) {
+        nbClick.value++;
+        msgClick.value = "please click again";
+        return;
+    }
+
     let formData = new FormData();
     formData.append("image", university.value.image);
     formData.append("name", university.value.name);

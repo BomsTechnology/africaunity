@@ -9,7 +9,7 @@ export default function useWorkModes() {
 
     const getWorkModes = async () => {
         errorsWM.value = "";
-        loading.value = 1;
+        loading.value = true;
         let response = await axios.get("/api/workModes", {
             headers: {
                 Authorization: `Bearer ${localStorage.token}`,
@@ -17,12 +17,12 @@ export default function useWorkModes() {
         });
         workModes.value = response.data.data;
 
-        loading.value = 2;
+        loading.value = false;
     };
 
     const getWorkMode = async (id) => {
         errorsWM.value = "";
-        loading.value = 1;
+        loading.value = true;
         let response = await axios.get("/api/workModes/" + id, {
             headers: {
                 Authorization: `Bearer ${localStorage.token}`,
@@ -35,13 +35,13 @@ export default function useWorkModes() {
     const createWorkMode = async (data) => {
         errorsWM.value = "";
         try {
-            loading.value = 1;
+            loading.value = true;
             await axios.post("/api/workModes", data, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
                 },
             });
-            loading.value = 2;
+            loading.value = false;
         } catch (e) {
             if (e.response.status == 422) {
                 loading.value = 0;
@@ -54,13 +54,13 @@ export default function useWorkModes() {
     const updateWorkMode = async (id, data) => {
         errorsWM.value = "";
         try {
-            loading.value = 1;
+            loading.value = true;
             await axios.put("/api/workModes/" + id, data, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
                 },
             });
-            loading.value = 2;
+            loading.value = false;
         } catch (e) {
             loading.value = 0;
             if (e.response.status == 422) {
@@ -73,13 +73,13 @@ export default function useWorkModes() {
     const destroyWorkMode = async (id) => {
         errorsWM.value = "";
         try {
-            loading.value = 1;
+            loading.value = true;
             await axios.delete("/api/workModes/" + id, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
                 },
             });
-            loading.value = 2;
+            loading.value = false;
             return true;
         } catch (e) {
             loading.value = 0;

@@ -11,7 +11,7 @@ export default function useAnnouncements() {
     const page = ref(1);
     const getAnnouncements = async () => {
         errors.value = "";
-        loading.value = 1;
+        loading.value = true;
         let response = await axios.get(
             "/api/announcements?page=" + page.value,
             {
@@ -27,7 +27,7 @@ export default function useAnnouncements() {
                 response.data.data
             );
         }
-        loading.value = 2;
+        loading.value = false;
         if (response.data.data.length == 0) {
             isAll.value = true;
         }
@@ -35,7 +35,7 @@ export default function useAnnouncements() {
 
     const getAnnouncementsUser = async (id) => {
         errors.value = "";
-        loading.value = 1;
+        loading.value = true;
         let response = await axios.get("/api/announcements-user/" + id, {
             headers: {
                 Authorization: `Bearer ${localStorage.token}`,
@@ -43,12 +43,12 @@ export default function useAnnouncements() {
         });
         announcements.value = response.data.data;
 
-        loading.value = 2;
+        loading.value = false;
     };
 
     const getAnnouncementsUniversity = async (id) => {
         errors.value = "";
-        loading.value = 1;
+        loading.value = true;
         let response = await axios.get("/api/announcements-university/" + id, {
             headers: {
                 Authorization: `Bearer ${localStorage.token}`,
@@ -56,12 +56,12 @@ export default function useAnnouncements() {
         });
         announcements.value = response.data.data;
 
-        loading.value = 2;
+        loading.value = false;
     };
 
     const getAnnouncement = async (id) => {
         errors.value = "";
-        loading.value = 1;
+        loading.value = true;
         let response = await axios.get("/api/announcements/" + id, {
             headers: {
                 Authorization: `Bearer ${localStorage.token}`,
@@ -73,7 +73,7 @@ export default function useAnnouncements() {
 
     const getAnnouncement2 = async (id) => {
         errors.value = "";
-        loading.value = 1;
+        loading.value = true;
         let response = await axios.get("/api/announcements2/" + id, {
             headers: {
                 Authorization: `Bearer ${localStorage.token}`,
@@ -83,17 +83,42 @@ export default function useAnnouncements() {
         announcement.value = response.data.data;
     };
 
+    const filterAnnouncements = async (data) => {
+        errors.value = "";
+        try {
+            loading.value = 3;
+            let response = await axios.post("/api/announcements-filter", data, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.token}`,
+                },
+            });
+            announcements.value = response.data.data;
+            loading.value = false;
+        } catch (e) {
+            if (e.response.status == 401) {
+                router.push({
+                    name: "login",
+                    params: {
+                        redirect: "not-login",
+                    },
+                });
+                window.localStorage.removeItem("token");
+                window.localStorage.removeItem("user");
+            }
+        }
+    };
+
     const createAnnouncement = async (data) => {
         errors.value = "";
         try {
-            loading.value = 1;
+            loading.value = true;
             await axios.post("/api/announcements", data, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
                     "Content-Type": "multipart/form-data",
                 },
             });
-            loading.value = 2;
+            loading.value = false;
         } catch (e) {
             if (e.response.status == 422) {
                 loading.value = 0;
@@ -106,7 +131,7 @@ export default function useAnnouncements() {
     const updateAnnouncement = async (data) => {
         errors.value = "";
         try {
-            loading.value = 1;
+            loading.value = true;
             await axios.post(
                 "/api/announcements/" + announcement.value.id,
                 data,
@@ -117,7 +142,7 @@ export default function useAnnouncements() {
                     },
                 }
             );
-            loading.value = 2;
+            loading.value = false;
         } catch (e) {
             loading.value = 0;
             if (e.response.status == 422) {
@@ -130,13 +155,13 @@ export default function useAnnouncements() {
     const destroyAnnouncement = async (id) => {
         errors.value = "";
         try {
-            loading.value = 1;
+            loading.value = true;
             await axios.delete("/api/announcements/" + id, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
                 },
             });
-            loading.value = 2;
+            loading.value = false;
         } catch (e) {
             loading.value = 0;
             if (e.response.status == "500") {
@@ -146,6 +171,7 @@ export default function useAnnouncements() {
     };
 
     return {
+        filterAnnouncements,
         isAll,
         page,
         announcements,

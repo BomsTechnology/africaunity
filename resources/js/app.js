@@ -4,9 +4,15 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router";
 import i18n from "./locales/i18n";
-
+import SelectFilter from "@/components/SelectFilter.vue";
+import Vue3EasyDataTable from "vue3-easy-data-table";
+import "vue3-easy-data-table/dist/style.css";
 const app = createApp(App);
-app.use(i18n).use(router).mount("#app");
+app.use(i18n);
+app.use(router);
+app.component("SelectFilter", SelectFilter);
+app.component("EasyDataTable", Vue3EasyDataTable);
+app.mount("#app");
 
 let deferredPrompt;
 const addBtn = document.querySelector(".download-app");

@@ -7,7 +7,7 @@
     </h1>
     <div class="pb-8 lg:px-16">
         <div class="grid lg:grid-cols-3 grid-cols-1 gap-2 px-10 pb-8 pt-4 bg-gray-50 shadow mt-4">
-            <div
+            <!-- <div
                 class="lg:text-sm text-xs">
                 <label class="text-gray-700 dark:text-gray-200">{{ $t('key-words') }}</label>
                 <input
@@ -15,7 +15,7 @@
                     v-model="searchKey"
                     class="form-input px-3 pr-2  w-full text-gray-700 bg-white border border-gray-200 rounded-md  mt-2 placeholder:text-gray-400 focus:ring-primary-blue focus:border-primary-blue block"
                 />
-            </div>
+            </div> -->
             <div class="lg:text-sm text-xs">
                 <label class="text-gray-700 dark:text-gray-200">{{ $t('status') }}</label>
                 <select v-model="filter.status" @change.prevent="usersFilter()"  class="form-select block w-full px-4 py-2 mt-1 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
@@ -27,39 +27,29 @@
             </div>
             <div class="lg:text-sm text-xs">
                 <label class="text-gray-700" for="es">{{ $t('native-country') }}</label>
-                <select v-model="filter.native_country" @change.prevent="usersFilter()"  class="form-select block w-full px-4 py-2 mt-1 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue">
-                    <option value="">--------------</option>
-                    <option v-for="country in countries" :key="country.id" :value="country.id">
-                        <span v-if="$i18n.locale == 'en'">{{
-                            country.name_en
-                        }}</span>
-                        <span v-else-if="$i18n.locale == 'fr'">{{
-                            country.name_fr
-                        }}</span>
-                        <span v-else-if="$i18n.locale == 'es'">{{
-                            country.name_es
-                        }}</span>
-                        <span v-else>{{ country.name_pt }}</span>
-                    </option>
-                </select>
+                <SelectFilter
+                        v-model="filter.native_country"
+                        :data="countries"
+                        :placeholder="'Select Country'"
+                        :required="false"
+                        :resetField="true"
+                        :handled="true"
+                        @handle="usersFilter"
+                        :className="'form-select block w-full px-4 py-2 mt-1 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue'"
+                    />
             </div>
             <div class="lg:text-sm text-xs">
                 <label class="text-gray-700" for="es">{{ $t('residence-country') }}</label>
-                <select v-model="filter.residence_country" @change.prevent="usersFilter()"  class="form-select block w-full px-4 py-2 mt-1 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue">
-                    <option value="">--------------</option>
-                    <option v-for="country in countries" :key="country.id" :value="country.id">
-                        <span v-if="$i18n.locale == 'en'">{{
-                            country.name_en
-                        }}</span>
-                        <span v-else-if="$i18n.locale == 'fr'">{{
-                            country.name_fr
-                        }}</span>
-                        <span v-else-if="$i18n.locale == 'es'">{{
-                            country.name_es
-                        }}</span>
-                        <span v-else>{{ country.name_pt }}</span>
-                    </option>
-                </select>
+                 <SelectFilter
+                        v-model="filter.residence_country"
+                        :data="countries"
+                        :placeholder="'Select Country'"
+                        :required="false"
+                        :resetField="true"
+                        :handled="true"
+                        @handle="usersFilter"
+                        :className="'form-select block w-full px-4 py-2 mt-1 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue'"
+                    />
             </div>
             <div class="lg:text-sm text-xs">
                 <label class="text-gray-700 dark:text-gray-200">
@@ -106,11 +96,13 @@
 
         </div>
         <div class="p-2 bg-primary-blue shadow"></div>
-        
+        <div v-if="loading == 3">
+            <Profile />
+        </div>
         <div
             ref="userContainer"
             class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8 px-10 py-8"
-            v-if="filteredUser.length != 0"
+            v-else-if="filteredUser.length != 0"
         >
             <div
                 v-for="user in filteredUser"
@@ -232,7 +224,7 @@
 
             </div>
         </div>
-        <div v-else-if="loading == 1">
+        <div v-if="loading == 1">
             <Profile />
         </div>
         <div
@@ -274,17 +266,23 @@ onUnmounted(async () => {
 });
 
 const handleScroll = async (e) => {
-    let element = userContainer.value;
+    if(userContainer.value){let element = userContainer.value;
     if (
-        element.getBoundingClientRect().bottom < window.innerHeight &&
+        element.getBoundingClientRect().bottom < window.innerHeight  &&
         toGet.value &&
-        !isAll.value
+        !isAll.value && (
+    filter.native_country == "" &&
+    filter.status == "" &&
+    filter.residence_country == "" &&
+    filter.language == "" &&
+    filter.activity_area == "" 
+    )
     ) {
         toGet.value = false;
         page.value++;
         await getUsersType("particular");
         toGet.value = true;
-    }
+    }}
 };
 const searchKey = ref('');
 const filter = reactive({
@@ -308,7 +306,17 @@ const removeShowDetail = () => {
     showDetail.state = false;
 };
 const usersFilter = async () => {
-    await filterUsers({...filter});
+    if(
+    filter.native_country != "" ||
+    filter.status != "" ||
+    filter.residence_country != "" ||
+    filter.language != "" ||
+    filter.activity_area != "" 
+    ){await filterUsers({...filter});}else{
+        page.value = 1;
+        isAll.value = false;
+        await getUsersType("particular");
+    }
 }
 
 

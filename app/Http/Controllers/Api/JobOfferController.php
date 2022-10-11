@@ -25,101 +25,111 @@ class JobOfferController extends Controller
 
     public function filter(Request $request)
     {
-        $jobs = JobOffer::where('status','<>',3);
+        $jobs = JobOffer::where('status', '<>', 3);
 
-        if($request->offer_type != ""){
+        if ($request->searchKey != "") {
+            $searchKey = $request->searchKey;
+            $jobs = $jobs->where('title', 'like', "%$searchKey%");
+        }
+
+        if ($request->min_price != "") {
+            $price = $request->min_price;
+            $jobs = $jobs->where('min_price', '>=', $price)->where('max_price', '<=', $price);
+        }
+
+        if ($request->offer_type != "") {
             $offer_type = $request->offer_type;
-            $jobs = $jobs->with(['offer_type' => function ($query) use($offer_type) {
+            $jobs = $jobs->with(['offer_type' => function ($query) use ($offer_type) {
                 $query->where('id', $offer_type);
-            }])->whereHas('offer_type', function (Builder $query) use($offer_type) {
+            }])->whereHas('offer_type', function (Builder $query) use ($offer_type) {
                 $query->where('id', $offer_type);
             });
         }
 
-        if($request->work_mode != ""){
+        if ($request->work_mode != "") {
             $work_mode = $request->work_mode;
-            $jobs = $jobs->with(['work_mode' => function ($query) use($work_mode) {
+            $jobs = $jobs->with(['work_mode' => function ($query) use ($work_mode) {
                 $query->where('id', $work_mode);
-            }])->whereHas('work_mode', function (Builder $query) use($work_mode) {
+            }])->whereHas('work_mode', function (Builder $query) use ($work_mode) {
                 $query->where('id', $work_mode);
             });
         }
 
-        if($request->level_study != ""){
+        if ($request->level_study != "") {
             $level_study = $request->level_study;
-            $jobs = $jobs->with(['level_study' => function ($query) use($level_study) {
+            $jobs = $jobs->with(['level_study' => function ($query) use ($level_study) {
                 $query->where('id', $level_study);
-            }])->whereHas('level_study', function (Builder $query) use($level_study) {
+            }])->whereHas('level_study', function (Builder $query) use ($level_study) {
                 $query->where('id', $level_study);
             });
         }
 
-        if($request->year_experience != ""){
+        if ($request->year_experience != "") {
             $year_experience = $request->year_experience;
-            $jobs = $jobs->with(['year_experience' => function ($query) use($year_experience) {
+            $jobs = $jobs->with(['year_experience' => function ($query) use ($year_experience) {
                 $query->where('id', $year_experience);
-            }])->whereHas('year_experience', function (Builder $query) use($year_experience) {
+            }])->whereHas('year_experience', function (Builder $query) use ($year_experience) {
                 $query->where('id', $year_experience);
             });
         }
 
-        if($request->city != ""){
+        if ($request->city != "") {
             $city = $request->city;
-            $jobs = $jobs->with(['city' => function ($query) use($city) {
+            $jobs = $jobs->with(['city' => function ($query) use ($city) {
                 $query->where('id', $city);
-            }])->whereHas('city', function (Builder $query) use($city) {
+            }])->whereHas('city', function (Builder $query) use ($city) {
                 $query->where('id', $city);
             });
         }
 
-        if($request->zone != ""){
+        if ($request->zone != "") {
             $zone = $request->zone;
-            $jobs = $jobs->with(['zone' => function ($query) use($zone) {
+            $jobs = $jobs->with(['zone' => function ($query) use ($zone) {
                 $query->where('id', $zone);
-            }])->whereHas('zone', function (Builder $query) use($zone) {
+            }])->whereHas('zone', function (Builder $query) use ($zone) {
                 $query->where('id', $zone);
             });
         }
 
-        if($request->continent != ""){
+        if ($request->continent != "") {
             $continent = $request->continent;
-            $jobs = $jobs->with(['continent' => function ($query) use($continent) {
+            $jobs = $jobs->with(['continent' => function ($query) use ($continent) {
                 $query->where('id', $continent);
-            }])->whereHas('continent', function (Builder $query) use($continent) {
+            }])->whereHas('continent', function (Builder $query) use ($continent) {
                 $query->where('id', $continent);
             });
         }
 
-        if($request->country != ""){
+        if ($request->country != "") {
             $country = $request->country;
-            $jobs = $jobs->with(['country' => function ($query) use($country) {
+            $jobs = $jobs->with(['country' => function ($query) use ($country) {
                 $query->where('id', $country);
-            }])->whereHas('country', function (Builder $query) use($country) {
+            }])->whereHas('country', function (Builder $query) use ($country) {
                 $query->where('id', $country);
             });
         }
 
-        if($request->currency != ""){
+        if ($request->currency != "") {
             $currency = $request->currency;
-            $jobs = $jobs->with(['currency' => function ($query) use($currency) {
+            $jobs = $jobs->with(['currency' => function ($query) use ($currency) {
                 $query->where('id', $currency);
-            }])->whereHas('currency', function (Builder $query) use($currency) {
+            }])->whereHas('currency', function (Builder $query) use ($currency) {
                 $query->where('id', $currency);
             });
         }
 
-        if($request->activity_area != ""){
+        if ($request->activity_area != "") {
             $activity_area = $request->activity_area;
-            $jobs = $jobs->whereHas('activity_areas', function (Builder $query) use($activity_area) {
-                    $query->where('activity_areas.id', $activity_area);
-                });
+            $jobs = $jobs->whereHas('activity_areas', function (Builder $query) use ($activity_area) {
+                $query->where('activity_areas.id', $activity_area);
+            });
         }
 
-        if($request->language != ""){
+        if ($request->language != "") {
             $language = $request->language;
-            $jobs = $jobs->whereHas('languages', function (Builder $query) use($language) {
-                    $query->where('languages.id', $language);
-                });
+            $jobs = $jobs->whereHas('languages', function (Builder $query) use ($language) {
+                $query->where('languages.id', $language);
+            });
         }
 
 
@@ -128,17 +138,17 @@ class JobOfferController extends Controller
 
     public function jobOffers_front()
     {
-        return JobOfferResource::collection(JobOffer::where('status','<>',3)->orderBy('id', 'desc')->get());
+        return JobOfferResource::collection(JobOffer::where('status', '<>', 3)->orderBy('id', 'desc')->paginate(8));
     }
 
     public function jobOffers_home()
     {
-        return JobOfferResource::collection(JobOffer::where('status','<>',3)->limit(5)->orderBy('id', 'desc')->get());
+        return JobOfferResource::collection(JobOffer::where('status', '<>', 3)->limit(5)->orderBy('id', 'desc')->get());
     }
 
     public function jobOffers_user($user)
     {
-        return JobOfferResource::collection(JobOffer::where('user_id',$user)->orderBy('id', 'desc')->get());
+        return JobOfferResource::collection(JobOffer::where('user_id', $user)->orderBy('id', 'desc')->get());
     }
 
     public function jobOffers_apply(Request $request)
@@ -156,8 +166,8 @@ class JobOfferController extends Controller
         $applyUser = User::find($request->user);
         $authorUser = User::find($job->user_id);
 
-        $filename = '/uploads/'.$job->title.'_'.$applyUser->firstname.'_'.time().'.'. $request->file('cv')->extension();
-        $request->file('cv')->storePubliclyAs('public', $filename);       
+        $filename = '/uploads/' . $job->title . '_' . $applyUser->firstname . '_' . time() . '.' . $request->file('cv')->extension();
+        $request->file('cv')->storePubliclyAs('public', $filename);
 
 
         $data = [
@@ -169,10 +179,10 @@ class JobOfferController extends Controller
 
         $authorUser->notify(new ApplyJobNotification($job, $data));
         $response = [
-            'status'=>true,
-            'message'=>'Apply Send successfully!',
+            'status' => true,
+            'message' => 'Apply Send successfully!',
         ];
-        return response($response,201);
+        return response($response, 201);
     }
 
     /**
@@ -230,11 +240,11 @@ class JobOfferController extends Controller
             'country_id' => $fileds['country_id'],
         ];
 
-        if($request->file('company_logo')){
+        if ($request->file('company_logo')) {
             $request->validate([
                 'company_logo' => 'required|mimes:png,jpg,jpeg,gif|dimensions:max_width=2048,max_height=2048'
             ]);
-            $filename = '/uploads/'.time().'.'. $request->file('company_logo')->extension();
+            $filename = '/uploads/' . time() . '.' . $request->file('company_logo')->extension();
             $request->file('company_logo')->storePubliclyAs('public', $filename);
             $data['company_logo'] = $filename;
         }
@@ -243,7 +253,7 @@ class JobOfferController extends Controller
 
         $jobOffer->activity_areas()->toggle($request->activityAreas);
         $jobOffer->languages()->toggle($request->languages);
-        
+
         return new JobOfferResource($jobOffer);
     }
 
@@ -319,20 +329,20 @@ class JobOfferController extends Controller
             'country_id' => $fileds['country_id'],
         ];
 
-        if($request->file('company_logo')){
+        if ($request->file('company_logo')) {
             $request->validate([
                 'company_logo' => 'required|mimes:png,jpg,jpeng,gif|dimensions:max_width=2048,max_height=2048'
             ]);
-            $filename = '/uploads/'.time().'.'. $request->file('company_logo')->extension();
+            $filename = '/uploads/' . time() . '.' . $request->file('company_logo')->extension();
             $request->file('company_logo')->storePubliclyAs('public', $filename);
             $data['company_logo'] = $filename;
         }
 
         $jobOffer->update($data);
 
-        $jobOffer->activity_areas()->sync(explode(",",$request->activityAreas));
-        $jobOffer->languages()->sync(explode(",",$request->languages));
-        
+        $jobOffer->activity_areas()->sync(explode(",", $request->activityAreas));
+        $jobOffer->languages()->sync(explode(",", $request->languages));
+
         return new JobOfferResource($jobOffer);
     }
 

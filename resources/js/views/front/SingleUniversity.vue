@@ -46,9 +46,8 @@
 
                             <p
                                 class="dark:text-gray-400 my-4 mt-2 py-4 text-gray-600"
-                            >
-                                {{ university.description }}
-                            </p>
+                                v-html="university.description"
+                            ></p>
                         </div>
                     </div>
                 </div>

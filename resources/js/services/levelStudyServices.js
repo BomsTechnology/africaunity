@@ -9,7 +9,7 @@ export default function useLevelStudies() {
 
     const getLevelStudies = async () => {
         errorsLS.value = "";
-        loading.value = 1;
+        loading.value = true;
         let response = await axios.get("/api/levelStudies", {
             headers: {
                 Authorization: `Bearer ${localStorage.token}`,
@@ -17,12 +17,12 @@ export default function useLevelStudies() {
         });
         levelStudies.value = response.data.data;
 
-        loading.value = 2;
+        loading.value = false;
     };
 
     const getLevelStudy = async (id) => {
         errorsLS.value = "";
-        loading.value = 1;
+        loading.value = true;
         let response = await axios.get("/api/levelStudies/" + id, {
             headers: {
                 Authorization: `Bearer ${localStorage.token}`,
@@ -35,13 +35,13 @@ export default function useLevelStudies() {
     const createLevelStudy = async (data) => {
         errorsLS.value = "";
         try {
-            loading.value = 1;
+            loading.value = true;
             await axios.post("/api/levelStudies", data, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
                 },
             });
-            loading.value = 2;
+            loading.value = false;
         } catch (e) {
             if (e.response.status == 422) {
                 loading.value = 0;
@@ -54,13 +54,13 @@ export default function useLevelStudies() {
     const updateLevelStudy = async (id, data) => {
         errorsLS.value = "";
         try {
-            loading.value = 1;
+            loading.value = true;
             await axios.put("/api/levelStudies/" + id, data, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
                 },
             });
-            loading.value = 2;
+            loading.value = false;
         } catch (e) {
             loading.value = 0;
             if (e.response.status == 422) {
@@ -73,13 +73,13 @@ export default function useLevelStudies() {
     const destroyLevelStudy = async (id) => {
         errorsLS.value = "";
         try {
-            loading.value = 1;
+            loading.value = true;
             await axios.delete("/api/levelStudies/" + id, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
                 },
             });
-            loading.value = 2;
+            loading.value = false;
         } catch (e) {
             loading.value = 0;
             if (e.response.status == "500") {

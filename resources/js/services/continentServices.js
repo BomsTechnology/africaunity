@@ -1,53 +1,53 @@
 import axios from "axios";
 import { ref } from "vue";
-import router from "../router/index.js"
+import { useRouter } from "vue-router";
 
 export default function useContinents() {
-
+    const router = useRouter();
     const continents = ref([]);
     const continent = ref([]);
-    const errors = ref('');
+    const errors = ref("");
     const loading = ref(0);
 
     const getContinents = async () => {
-        errors.value = '';
-        loading.value = 1;
-        let response = await axios.get('/api/continents',  {
-            headers:{
-                'Authorization': `Bearer ${localStorage.token}`
-            }
+        errors.value = "";
+        loading.value = true;
+        let response = await axios.get("/api/continents", {
+            headers: {
+                Authorization: `Bearer ${localStorage.token}`,
+            },
         });
         continents.value = response.data.data;
 
-        loading.value = 2;
+        loading.value = false;
     };
 
     const getContinent = async (id) => {
-        errors.value = '';
-        loading.value = 1;
-        let response = await axios.get('/api/continents/' + id, {
-            headers:{
-                'Authorization': `Bearer ${localStorage.token}`
-            }
+        errors.value = "";
+        loading.value = true;
+        let response = await axios.get("/api/continents/" + id, {
+            headers: {
+                Authorization: `Bearer ${localStorage.token}`,
+            },
         });
         loading.value = 0;
         continent.value = response.data.data;
     };
 
     const createContinent = async (data) => {
-        errors.value = '';
+        errors.value = "";
         try {
-            loading.value = 1;
-            await axios.post('/api/continents', data, {
-                headers:{
-                    'Authorization': `Bearer ${localStorage.token}`
-                }
+            loading.value = true;
+            await axios.post("/api/continents", data, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.token}`,
+                },
             });
-            loading.value = 2;
-            router.push({ name: 'admin.continent.index' });
+            loading.value = false;
+            router.push({ name: "admin.continent.index" });
         } catch (e) {
-            if(e.response.status == 422){
-            loading.value = 0;
+            if (e.response.status == 422) {
+                loading.value = 0;
                 for (const key in e.response.data.errors)
                     errors.value += e.response.data.errors[key][0] + "\n";
             }
@@ -55,41 +55,40 @@ export default function useContinents() {
     };
 
     const updateContinent = async (id) => {
-        errors.value = '';
+        errors.value = "";
         try {
-            loading.value = 1;
-            await axios.put('/api/continents/' + id, continent.value, {
-                headers:{
-                    'Authorization': `Bearer ${localStorage.token}`
-                }
+            loading.value = true;
+            await axios.put("/api/continents/" + id, continent.value, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.token}`,
+                },
             });
-            loading.value = 2;
-            router.push({ name: 'admin.continent.index' });
+            loading.value = false;
+            router.push({ name: "admin.continent.index" });
         } catch (e) {
             loading.value = 0;
-            if(e.response.status == 422){
-                for(const key in e.response.data.errors)
-                errors.value += e.response.data.errors[key][0] + '\t\n';
+            if (e.response.status == 422) {
+                for (const key in e.response.data.errors)
+                    errors.value += e.response.data.errors[key][0] + "\t\n";
             }
         }
-        
     };
 
     const destroyContinent = async (id) => {
-        errors.value = '';
+        errors.value = "";
         try {
-            loading.value = 1;
-            await axios.delete('/api/continents/' + id, {
-                headers:{
-                    'Authorization': `Bearer ${localStorage.token}`
-                }
+            loading.value = true;
+            await axios.delete("/api/continents/" + id, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.token}`,
+                },
             });
-            loading.value = 2;
+            loading.value = false;
             return true;
-    } catch (e) {
-        loading.value = 0;
-            errors.value = 'Impossible de supprimer ce continent';
-    }
+        } catch (e) {
+            loading.value = 0;
+            errors.value = "Impossible de supprimer ce continent";
+        }
     };
 
     return {
@@ -101,6 +100,6 @@ export default function useContinents() {
         getContinent,
         createContinent,
         updateContinent,
-        destroyContinent
+        destroyContinent,
     };
-} 
+}

@@ -9,7 +9,7 @@ export default function useBusinessSizes() {
 
     const getBusinessSizes = async () => {
         errorsBS.value = "";
-        loading.value = 1;
+        loading.value = true;
         let response = await axios.get("/api/businessSizes", {
             headers: {
                 Authorization: `Bearer ${localStorage.token}`,
@@ -17,12 +17,12 @@ export default function useBusinessSizes() {
         });
         businessSizes.value = response.data.data;
 
-        loading.value = 2;
+        loading.value = false;
     };
 
     const getBusinessSize = async (id) => {
         errorsBS.value = "";
-        loading.value = 1;
+        loading.value = true;
         let response = await axios.get("/api/businessSizes/" + id, {
             headers: {
                 Authorization: `Bearer ${localStorage.token}`,
@@ -35,7 +35,7 @@ export default function useBusinessSizes() {
     const createBusinessSize = async (data) => {
         errorsBS.value = "";
         try {
-            loading.value = 1;
+            loading.value = true;
             await axios.post("/api/businessSizes", data, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
@@ -54,13 +54,13 @@ export default function useBusinessSizes() {
     const updateBusinessSize = async (id, data) => {
         errorsBS.value = "";
         try {
-            loading.value = 1;
+            loading.value = true;
             await axios.put("/api/businessSizes/" + id, data, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
                 },
             });
-            loading.value = 2;
+            loading.value = false;
         } catch (e) {
             loading.value = 0;
             if (e.response.status == 422) {
@@ -73,13 +73,13 @@ export default function useBusinessSizes() {
     const destroyBusinessSize = async (id) => {
         errorsBS.value = "";
         try {
-            loading.value = 1;
+            loading.value = true;
             await axios.delete("/api/businessSizes/" + id, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
                 },
             });
-            loading.value = 2;
+            loading.value = false;
             return true;
         } catch (e) {
             loading.value = 0;

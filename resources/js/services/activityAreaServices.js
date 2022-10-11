@@ -2,50 +2,49 @@ import axios from "axios";
 import { ref } from "vue";
 
 export default function useActivityAreas() {
-
     const activityAreas = ref([]);
     const activityArea = ref([]);
-    const errorsActivy = ref('');
+    const errorsActivy = ref("");
     const loading = ref(0);
 
     const getActivityAreas = async () => {
-        errorsActivy.value = '';
-        loading.value = 1;
-        let response = await axios.get('/api/activityAreas',  {
-            headers:{
-                'Authorization': `Bearer ${localStorage.token}`
-            }
+        errorsActivy.value = "";
+        loading.value = true;
+        let response = await axios.get("/api/activityAreas", {
+            headers: {
+                Authorization: `Bearer ${localStorage.token}`,
+            },
         });
         activityAreas.value = response.data.data;
 
-        loading.value = 2;
+        loading.value = false;
     };
 
     const getActivityArea = async (id) => {
-        errorsActivy.value = '';
-        loading.value = 1;
-        let response = await axios.get('/api/activityAreas/' + id, {
-            headers:{
-                'Authorization': `Bearer ${localStorage.token}`
-            }
+        errorsActivy.value = "";
+        loading.value = true;
+        let response = await axios.get("/api/activityAreas/" + id, {
+            headers: {
+                Authorization: `Bearer ${localStorage.token}`,
+            },
         });
         loading.value = 0;
         activityArea.value = response.data.data;
     };
 
     const createActivityArea = async (data) => {
-        errorsActivy.value = '';
+        errorsActivy.value = "";
         try {
-            loading.value = 1;
-            await axios.post('/api/activityAreas', data, {
-                headers:{
-                    'Authorization': `Bearer ${localStorage.token}`
-                }
+            loading.value = true;
+            await axios.post("/api/activityAreas", data, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.token}`,
+                },
             });
             loading.value = 0;
         } catch (e) {
-            if(e.response.status == 422){
-            loading.value = 0;
+            if (e.response.status == 422) {
+                loading.value = 0;
                 for (const key in e.response.data.errors)
                     errorsActivy.value += e.response.data.errors[key][0] + "\n";
             }
@@ -53,39 +52,39 @@ export default function useActivityAreas() {
     };
 
     const updateActivityArea = async (id, data) => {
-        errorsActivy.value = '';
+        errorsActivy.value = "";
         try {
-            loading.value = 1;
-            await axios.put('/api/activityAreas/' + id, data, {
-                headers:{
-                    'Authorization': `Bearer ${localStorage.token}`
-                }
+            loading.value = true;
+            await axios.put("/api/activityAreas/" + id, data, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.token}`,
+                },
             });
-            loading.value = 2;
+            loading.value = false;
         } catch (e) {
             loading.value = 0;
-            if(e.response.status == 422){
-                for(const key in e.response.data.errors)
-                    errorsActivy.value += e.response.data.errors[key][0] + '\t\n';
+            if (e.response.status == 422) {
+                for (const key in e.response.data.errors)
+                    errorsActivy.value +=
+                        e.response.data.errors[key][0] + "\t\n";
             }
         }
-        
     };
 
     const destroyActivityArea = async (id) => {
-        errorsActivy.value = '';
+        errorsActivy.value = "";
         try {
-            loading.value = 1;
-            await axios.delete('/api/activityAreas/' + id, {
-                headers:{
-                    'Authorization': `Bearer ${localStorage.token}`
-                }
+            loading.value = true;
+            await axios.delete("/api/activityAreas/" + id, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.token}`,
+                },
             });
-            loading.value = 2;
+            loading.value = false;
             return true;
         } catch (e) {
             loading.value = 0;
-            errorsActivy.value = 'Impossible de supprimer ce activityArea';
+            errorsActivy.value = "Impossible de supprimer ce activityArea";
         }
     };
 
@@ -98,6 +97,6 @@ export default function useActivityAreas() {
         getActivityArea,
         createActivityArea,
         updateActivityArea,
-        destroyActivityArea
+        destroyActivityArea,
     };
-} 
+}

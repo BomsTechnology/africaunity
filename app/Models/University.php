@@ -18,20 +18,27 @@ class University extends Model
         'city_id',
         'zone_id'
     ];
-
-    public function continent(){
+    public function zone()
+    {
+        return $this->belongsTo(Zone::class);
+    }
+    public function continent()
+    {
         return $this->belongsTo(Continent::class);
     }
 
-    public function country(){
+    public function country()
+    {
         return $this->belongsTo(Country::class);
     }
 
-    public function city(){
+    public function city()
+    {
         return $this->belongsTo(Ministry::class);
     }
 
-    public function announcements(){
+    public function announcements()
+    {
         return $this->hasMany(Announcement::class);
     }
 }

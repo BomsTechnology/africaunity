@@ -13,7 +13,7 @@ export default function useUniversities() {
     const getAllUniversities = async () => {
         errors.value = "";
         try {
-            loading.value = 1;
+            loading.value = true;
             let response = await axios.get("/api/university/all", {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
@@ -21,7 +21,7 @@ export default function useUniversities() {
             });
             universities.value = response.data.data;
 
-            loading.value = 2;
+            loading.value = false;
         } catch (e) {
             if (e.response.status == 401) {
                 router.push({
@@ -39,7 +39,7 @@ export default function useUniversities() {
     const getUniversities = async () => {
         errors.value = "";
         try {
-            loading.value = 1;
+            loading.value = true;
             let response = await axios.get(
                 "/api/universities?page=" + page.value,
                 {
@@ -55,7 +55,7 @@ export default function useUniversities() {
                     response.data.data
                 );
             }
-            loading.value = 2;
+            loading.value = false;
             if (response.data.data.length == 0) {
                 isAll.value = true;
             }
@@ -73,10 +73,35 @@ export default function useUniversities() {
         }
     };
 
+    const filterUniversities = async (data) => {
+        errors.value = "";
+        try {
+            loading.value = 3;
+            let response = await axios.post("/api/universities-filter", data, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.token}`,
+                },
+            });
+            universities.value = response.data.data;
+            loading.value = false;
+        } catch (e) {
+            if (e.response.status == 401) {
+                router.push({
+                    name: "login",
+                    params: {
+                        redirect: "not-login",
+                    },
+                });
+                window.localStorage.removeItem("token");
+                window.localStorage.removeItem("user");
+            }
+        }
+    };
+
     const getUniversity = async (id) => {
         errors.value = "";
         try {
-            loading.value = 1;
+            loading.value = true;
             let response = await axios.get("/api/universities/" + id, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
@@ -101,7 +126,7 @@ export default function useUniversities() {
     const getUniversity2 = async (id) => {
         errors.value = "";
         try {
-            loading.value = 1;
+            loading.value = true;
             let response = await axios.get("/api/universities2/" + id, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
@@ -126,13 +151,13 @@ export default function useUniversities() {
     const createUniversity = async (data) => {
         errors.value = "";
         try {
-            loading.value = 1;
+            loading.value = true;
             await axios.post("/api/universities", data, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
                 },
             });
-            loading.value = 2;
+            loading.value = false;
             router.push({ name: "admin.university.index" });
         } catch (e) {
             if (e.response.status == 422) {
@@ -146,13 +171,13 @@ export default function useUniversities() {
     const updateUniversity = async (data, id) => {
         errors.value = "";
         try {
-            loading.value = 1;
+            loading.value = true;
             await axios.post("/api/universities/" + id, data, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
                 },
             });
-            loading.value = 2;
+            loading.value = false;
             router.push({ name: "admin.university.index" });
         } catch (e) {
             loading.value = 0;
@@ -166,13 +191,13 @@ export default function useUniversities() {
     const destroyUniversity = async (id) => {
         errors.value = "";
         try {
-            loading.value = 1;
+            loading.value = true;
             await axios.delete("/api/universities/" + id, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
                 },
             });
-            loading.value = 2;
+            loading.value = false;
         } catch (e) {
             loading.value = 0;
             if (e.response.status == "500") {
@@ -182,6 +207,7 @@ export default function useUniversities() {
     };
 
     return {
+        filterUniversities,
         isAll,
         page,
         universities,

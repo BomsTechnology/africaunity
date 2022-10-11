@@ -87,6 +87,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::apiResource('universities', UniversityController::class);
     Route::get('/university/all', [UniversityController::class, 'all']);
     Route::get("/universities2/{university}", [UniversityController::class, 'show2']);
+    Route::post("/universities-filter", [UniversityController::class, 'filter']);
 
     Route::apiResource('currencies', CurrencyController::class);
 
@@ -134,6 +135,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::get("/announcements2/{announcement}", [AnnouncementController::class, 'show2']);
     Route::get("/announcements2/{announcement}", [AnnouncementController::class, 'show2']);
     Route::post("/announcement-send-contact", [AnnouncementController::class, 'contact']);
+    Route::post("/announcements-filter", [AnnouncementController::class, 'filter']);
 
     Route::post("/continents", [ContinentController::class, 'store']);
     Route::get("/continents/{continent}", [ContinentController::class, 'show']);

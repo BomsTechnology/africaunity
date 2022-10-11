@@ -30,9 +30,13 @@ const props = defineProps({
         type: Boolean,
         default: false,
     },
+    handled: {
+        type: Boolean,
+        default: false,
+    },
 });
 
-const emit = defineEmits(["update:modelValue", "resetValue"]);
+const emit = defineEmits(["update:modelValue", "resetValue", "handle"]);
 
 const open = ref(false);
 const search = ref("");
@@ -84,6 +88,7 @@ async function changeValue(item) {
     selectItem.name = item.name;
     emit("update:modelValue", `${item.id}`);
     open.value = false;
+    if (props.handled) emit("handle");
 }
 
 async function resetValue() {
@@ -92,6 +97,7 @@ async function resetValue() {
     selectItem.name = "";
     search.value = "";
     open.value = false;
+    if (props.handled) emit("handle");
 }
 
 watch(props, async (newProps, oldProps) => {
@@ -119,6 +125,7 @@ watch(props, async (newProps, oldProps) => {
                 }
             }
         }
+        if (props.handled) emit("handle");
     } else {
         resetValue();
     }
@@ -143,6 +150,7 @@ onClickOutside(itemModal, () => {
             :class="className + ' cursor-pointer'"
             :placeholder="placeholder"
             @click="open = !open"
+            @keydown.enter="changeValue(filteredData[0])"
         />
         <div
             ref="itemModal"

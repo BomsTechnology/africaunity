@@ -9,7 +9,7 @@ export default function useSizeCompanies() {
 
     const getSizeCompanies = async () => {
         errorsSC.value = "";
-        loading.value = 1;
+        loading.value = true;
         let response = await axios.get("/api/sizeCompanies", {
             headers: {
                 Authorization: `Bearer ${localStorage.token}`,
@@ -17,12 +17,12 @@ export default function useSizeCompanies() {
         });
         sizeCompanies.value = response.data.data;
 
-        loading.value = 2;
+        loading.value = false;
     };
 
     const getSizeCompany = async (id) => {
         errorsSC.value = "";
-        loading.value = 1;
+        loading.value = true;
         let response = await axios.get("/api/sizeCompanies/" + id, {
             headers: {
                 Authorization: `Bearer ${localStorage.token}`,
@@ -35,13 +35,13 @@ export default function useSizeCompanies() {
     const createSizeCompany = async (data) => {
         errorsSC.value = "";
         try {
-            loading.value = 1;
+            loading.value = true;
             await axios.post("/api/sizeCompanies", data, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
                 },
             });
-            loading.value = 2;
+            loading.value = false;
         } catch (e) {
             if (e.response.status == 422) {
                 loading.value = 0;
@@ -54,13 +54,13 @@ export default function useSizeCompanies() {
     const updateSizeCompany = async (id, data) => {
         errorsSC.value = "";
         try {
-            loading.value = 1;
+            loading.value = true;
             await axios.put("/api/sizeCompanies/" + id, data, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
                 },
             });
-            loading.value = 2;
+            loading.value = false;
         } catch (e) {
             loading.value = 0;
             if (e.response.status == 422) {
@@ -73,13 +73,13 @@ export default function useSizeCompanies() {
     const destroySizeCompany = async (id) => {
         errorsSC.value = "";
         try {
-            loading.value = 1;
+            loading.value = true;
             await axios.delete("/api/sizeCompanies/" + id, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
                 },
             });
-            loading.value = 2;
+            loading.value = false;
         } catch (e) {
             loading.value = 0;
             if (e.response.status == "500") {

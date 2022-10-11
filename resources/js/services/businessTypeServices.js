@@ -1,6 +1,6 @@
 import axios from "axios";
 import { ref } from "vue";
-import router from "../router/index.js";;
+import router from "../router/index.js";
 export default function useBusinessTypes() {
     const businessTypes = ref([]);
     const businessType = ref([]);
@@ -9,7 +9,7 @@ export default function useBusinessTypes() {
 
     const getBusinessTypes = async () => {
         errorsBT.value = "";
-        loading.value = 1;
+        loading.value = true;
         let response = await axios.get("/api/businessTypes", {
             headers: {
                 Authorization: `Bearer ${localStorage.token}`,
@@ -17,12 +17,12 @@ export default function useBusinessTypes() {
         });
         businessTypes.value = response.data.data;
 
-        loading.value = 2;
+        loading.value = false;
     };
 
     const getBusinessType = async (id) => {
         errorsBT.value = "";
-        loading.value = 1;
+        loading.value = true;
         let response = await axios.get("/api/businessTypes/" + id, {
             headers: {
                 Authorization: `Bearer ${localStorage.token}`,
@@ -35,7 +35,7 @@ export default function useBusinessTypes() {
     const createBusinessType = async (data) => {
         errorsBT.value = "";
         try {
-            loading.value = 1;
+            loading.value = true;
             await axios.post("/api/businessTypes", data, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
@@ -54,13 +54,13 @@ export default function useBusinessTypes() {
     const updateBusinessType = async (id, data) => {
         errorsBT.value = "";
         try {
-            loading.value = 1;
+            loading.value = true;
             await axios.put("/api/businessTypes/" + id, data, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
                 },
             });
-            loading.value = 2;
+            loading.value = false;
         } catch (e) {
             loading.value = 0;
             if (e.response.status == 422) {
@@ -73,13 +73,13 @@ export default function useBusinessTypes() {
     const destroyBusinessType = async (id) => {
         errorsBT.value = "";
         try {
-            loading.value = 1;
+            loading.value = true;
             await axios.delete("/api/businessTypes/" + id, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
                 },
             });
-            loading.value = 2;
+            loading.value = false;
             return true;
         } catch (e) {
             loading.value = 0;

@@ -19,14 +19,15 @@
     },
     "dependencies": {
         "@heroicons/vue": "^1.0.6",
+        "@vue-stripe/vue-stripe": "^4.4.2",
         "@vueuse/components": "^9.1.0",
         "@vueuse/core": "^9.1.0",
-        "@vue-stripe/vue-stripe": "^4.4.2",
         "swiper": "^8.0.7",
         "v-select2-component": "^0.4.7",
         "vue": "^3.2.31",
         "vue-i18n": "^9.2.2",
         "vue-router": "^4.0.13",
+        "vue3-easy-data-table": "^1.5.1",
         "vue3-select2-component": "^0.1.7"
     }
 }

@@ -98,13 +98,16 @@
                         v-if="open.article"
                         class="flex w-full flex-col items-start justify-start pb-1 md:w-auto"
                     >
-                        <a
-                            href="/admin/post/article"
+                        <router-link
+                            :to="{
+                                name: 'admin.post.index',
+                                params: { type: 'article' },
+                            }"
                             class="flex w-full items-center justify-start space-x-6 rounded px-3 py-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:text-white md:w-52"
                         >
                             <TableIcon class="h-6 w-6" />
                             <p class="text-base leading-4">All Articles</p>
-                        </a>
+                        </router-link>
                         <router-link
                             :to="{ name: 'admin.continent.index' }"
                             class="flex w-full items-center justify-start space-x-6 rounded px-3 py-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:text-white md:w-52"
@@ -159,13 +162,16 @@
                         v-if="open.propau"
                         class="flex w-full flex-col items-start justify-start pb-1 md:w-auto"
                     >
-                        <a
-                            href="/admin/post/propau"
+                        <router-link
+                            :to="{
+                                name: 'admin.post.index',
+                                params: { type: 'propau' },
+                            }"
                             class="flex w-full items-center justify-start space-x-6 rounded px-3 py-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:text-white md:w-52"
                         >
                             <TableIcon class="h-6 w-6" />
                             <p class="text-base leading-4">All PropAU</p>
-                        </a>
+                        </router-link>
                         <router-link
                             :to="{ name: 'admin.continent.index' }"
                             class="flex w-full items-center justify-start space-x-6 rounded px-3 py-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:text-white md:w-52"

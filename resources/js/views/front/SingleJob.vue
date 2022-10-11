@@ -61,10 +61,16 @@
                             >
                                 <div class="flex space-x-1">
                                     <CalendarIcon class="h-4 w-4" />
-                                    <a
-                                        href="#"
-                                        class="hover:text-primary-blue"
-                                        >{{ jobOffer.date }}</a
+                                    <a href="#" class="hover:text-primary-blue">
+                                        {{
+                                            new Date(
+                                                jobOffer.date
+                                            ).toLocaleDateString("fr-FR", {
+                                                day: "numeric",
+                                                year: "numeric",
+                                                month: "long",
+                                            })
+                                        }}</a
                                     >
                                 </div>
                                 <div class="flex space-x-1">

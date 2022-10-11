@@ -9,7 +9,7 @@ export default function useWorkDepartments() {
 
     const getWorkDepartments = async () => {
         errorsWD.value = "";
-        loading.value = 1;
+        loading.value = true;
         let response = await axios.get("/api/workDepartments", {
             headers: {
                 Authorization: `Bearer ${localStorage.token}`,
@@ -17,12 +17,12 @@ export default function useWorkDepartments() {
         });
         workDepartments.value = response.data.data;
 
-        loading.value = 2;
+        loading.value = false;
     };
 
     const getWorkDepartment = async (id) => {
         errorsWD.value = "";
-        loading.value = 1;
+        loading.value = true;
         let response = await axios.get("/api/workDepartments/" + id, {
             headers: {
                 Authorization: `Bearer ${localStorage.token}`,
@@ -35,13 +35,13 @@ export default function useWorkDepartments() {
     const createWorkDepartment = async (data) => {
         errorsWD.value = "";
         try {
-            loading.value = 1;
+            loading.value = true;
             await axios.post("/api/workDepartments", data, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
                 },
             });
-            loading.value = 2;
+            loading.value = false;
         } catch (e) {
             if (e.response.status == 422) {
                 loading.value = 0;
@@ -54,13 +54,13 @@ export default function useWorkDepartments() {
     const updateWorkDepartment = async (id, data) => {
         errorsWD.value = "";
         try {
-            loading.value = 1;
+            loading.value = true;
             await axios.put("/api/workDepartments/" + id, data, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
                 },
             });
-            loading.value = 2;
+            loading.value = false;
         } catch (e) {
             loading.value = 0;
             if (e.response.status == 422) {
@@ -73,13 +73,13 @@ export default function useWorkDepartments() {
     const destroyWorkDepartment = async (id) => {
         errorsWD.value = "";
         try {
-            loading.value = 1;
+            loading.value = true;
             await axios.delete("/api/workDepartments/" + id, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
                 },
             });
-            loading.value = 2;
+            loading.value = false;
             return true;
         } catch (e) {
             loading.value = 0;

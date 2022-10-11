@@ -9,14 +9,10 @@ use App\Models\Announcement;
 use App\Models\User;
 use App\Notifications\ContactAnnouncementNotification;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Builder;
 
 class AnnouncementController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         return AnnouncementResource::collection(Announcement::orderBy('id')->paginate(8));
@@ -30,6 +26,76 @@ class AnnouncementController extends Controller
     public function announcements_university($university)
     {
         return AnnouncementResource::collection(Announcement::where('university_id', $university)->orderBy('id', 'desc')->get());
+    }
+
+    public function filter(Request $request)
+    {
+        $announcements = Announcement::query();
+
+        if ($request->searchKey != "") {
+            $searchKey = $request->searchKey;
+            $announcements = $announcements->where('title', 'like', "%$searchKey%");
+        }
+
+        if ($request->category != "") {
+            $category = $request->category;
+            $announcements = $announcements->with(['CategoryAnnouncement' => function ($query) use ($category) {
+                $query->where('id', $category);
+            }])->whereHas('CategoryAnnouncement', function (Builder $query) use ($category) {
+                $query->where('id', $category);
+            });
+        }
+
+
+        if ($request->country != "") {
+            $country = $request->country;
+            $announcements = $announcements->with(['university' => function ($query) use ($country) {
+                $query->where('country_id', $country);
+            }])->whereHas('university', function (Builder $query) use ($country) {
+                $query->where('country_id', $country);
+            });
+        }
+
+
+
+        if ($request->continent != "") {
+            $continent = $request->continent;
+            $announcements = $announcements->with(['university' => function ($query) use ($continent) {
+                $query->where('continent_id', $continent);
+            }])->whereHas('university', function (Builder $query) use ($continent) {
+                $query->where('continent_id', $continent);
+            });
+        }
+
+        if ($request->zone != "") {
+            $zone = $request->zone;
+            $announcements = $announcements->with(['university' => function ($query) use ($zone) {
+                $query->where('zone_id', $zone);
+            }])->whereHas('university', function (Builder $query) use ($zone) {
+                $query->where('zone_id', $zone);
+            });
+        }
+
+        if ($request->city != "") {
+            $city = $request->city;
+            $announcements = $announcements->with(['university' => function ($query) use ($city) {
+                $query->where('city_id', $city);
+            }])->whereHas('university', function (Builder $query) use ($city) {
+                $query->where('city_id', $city);
+            });
+        }
+
+        if ($request->university != "") {
+            $university = $request->university;
+            $announcements = $announcements->with(['university' => function ($query) use ($university) {
+                $query->where('id', $university);
+            }])->whereHas('university', function (Builder $query) use ($university) {
+                $query->where('id', $university);
+            });
+        }
+
+
+        return AnnouncementResource::collection($announcements->get());
     }
 
     public function contact(Request $request)
@@ -52,12 +118,7 @@ class AnnouncementController extends Controller
         return response($response, 201);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
         $fileds = $request->validate([
@@ -101,12 +162,6 @@ class AnnouncementController extends Controller
         return new AnnouncementResource($announcement);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Announcement  $announcement
-     * @return \Illuminate\Http\Response
-     */
     public function show(Announcement $announcement)
     {
         return new AnnouncementResource2($announcement);
@@ -116,13 +171,7 @@ class AnnouncementController extends Controller
     {
         return new AnnouncementResource($announcement);
     }
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Announcement  $announcement
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, Announcement $announcement)
     {
         $fileds = $request->validate([
@@ -176,12 +225,6 @@ class AnnouncementController extends Controller
         return new AnnouncementResource($announcement);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Announcement  $announcement
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Announcement $announcement)
     {
         $announcement->delete();

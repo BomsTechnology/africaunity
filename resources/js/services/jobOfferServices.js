@@ -7,18 +7,19 @@ export default function useJobOffers() {
     const jobOffer = ref([]);
     const errors = ref("");
     const loading = ref(0);
-
+    const isAll = ref(false);
+    const page = ref(1);
     const getJobOffers = async () => {
         errors.value = "";
         try {
-            loading.value = 1;
+            loading.value = true;
             let response = await axios.get("/api/jobOffers/", {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
                 },
             });
             jobOffers.value = response.data.data;
-            loading.value = 2;
+            loading.value = false;
         } catch (e) {
             if (e.response.status == 401) {
                 router.push({
@@ -36,14 +37,24 @@ export default function useJobOffers() {
     const getJobOffersFront = async () => {
         errors.value = "";
         try {
-            loading.value = 1;
-            let response = await axios.get("/api/jobOffers-front/", {
-                headers: {
-                    Authorization: `Bearer ${localStorage.token}`,
-                },
-            });
-            jobOffers.value = response.data.data;
-            loading.value = 2;
+            loading.value = true;
+            let response = await axios.get(
+                "/api/jobOffers-front?page=" + page.value,
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.token}`,
+                    },
+                }
+            );
+            if (page.value == 1) {
+                jobOffers.value = response.data.data;
+            } else {
+                jobOffers.value = jobOffers.value.concat(response.data.data);
+            }
+            loading.value = false;
+            if (response.data.data.length == 0) {
+                isAll.value = true;
+            }
         } catch (e) {
             if (e.response.status == 401) {
                 router.push({
@@ -61,14 +72,14 @@ export default function useJobOffers() {
     const filterJobs = async (data) => {
         errors.value = "";
         try {
-            loading.value = 1;
+            loading.value = 3;
             let response = await axios.post("/api/jobOffers-filter", data, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
                 },
             });
             jobOffers.value = response.data.data;
-            loading.value = 2;
+            loading.value = false;
         } catch (e) {
             if (e.response.status == 401) {
                 router.push({
@@ -86,7 +97,7 @@ export default function useJobOffers() {
     const getJobOffersUser = async (id) => {
         errors.value = "";
         try {
-            loading.value = 1;
+            loading.value = true;
             let response = await axios.get("/api/jobOffers-user/" + id, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
@@ -94,7 +105,7 @@ export default function useJobOffers() {
             });
             jobOffers.value = response.data.data;
 
-            loading.value = 2;
+            loading.value = false;
         } catch (e) {
             if (e.response.status == 401) {
                 router.push({
@@ -112,7 +123,7 @@ export default function useJobOffers() {
     const getJobOffer = async (id) => {
         errors.value = "";
         try {
-            loading.value = 1;
+            loading.value = true;
             let response = await axios.get("/api/jobOffers/" + id, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
@@ -136,7 +147,7 @@ export default function useJobOffers() {
 
     const getJobOffer2 = async (id) => {
         errors.value = "";
-        loading.value = 1;
+        loading.value = true;
         let response = await axios.get("/api/jobOffers2/" + id, {
             headers: {
                 Authorization: `Bearer ${localStorage.token}`,
@@ -149,14 +160,14 @@ export default function useJobOffers() {
     const createJobOffer = async (data) => {
         errors.value = "";
         try {
-            loading.value = 1;
+            loading.value = true;
             await axios.post("/api/jobOffers", data, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
                     "Content-Type": "multipart/form-data",
                 },
             });
-            loading.value = 2;
+            loading.value = false;
         } catch (e) {
             if (e.response.status == 422) {
                 loading.value = 0;
@@ -169,14 +180,14 @@ export default function useJobOffers() {
     const updateJobOffer = async (data) => {
         errors.value = "";
         try {
-            loading.value = 1;
+            loading.value = true;
             await axios.post("/api/jobOffers/" + jobOffer.value.id, data, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
                     "Content-Type": "multipart/form-data",
                 },
             });
-            loading.value = 2;
+            loading.value = false;
         } catch (e) {
             loading.value = 0;
             if (e.response.status == 422) {
@@ -189,13 +200,13 @@ export default function useJobOffers() {
     const destroyJobOffer = async (id) => {
         errors.value = "";
         try {
-            loading.value = 1;
+            loading.value = true;
             await axios.delete("/api/jobOffers/" + id, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
                 },
             });
-            loading.value = 2;
+            loading.value = false;
         } catch (e) {
             loading.value = 0;
             if (e.response.status == "500") {
@@ -207,13 +218,13 @@ export default function useJobOffers() {
     const markFilled = async (id) => {
         errors.value = "";
         try {
-            loading.value = 1;
+            loading.value = true;
             await axios.get("/api/jobOffers-mark-filled/" + id, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
                 },
             });
-            loading.value = 2;
+            loading.value = false;
         } catch (e) {
             loading.value = 0;
             if (e.response.status == "500") {
@@ -223,6 +234,8 @@ export default function useJobOffers() {
     };
 
     return {
+        isAll,
+        page,
         jobOffers,
         jobOffer,
         errors,

@@ -5,16 +5,16 @@ const items = [1, 2, 3, 4];
 </script>
 <template>
     <div class="animate-pulse">
-        <div class="grid grid-cols-1 gap-4 py-8 px-10 md:grid-cols-3">
+        <div class="space-y-3 py-8">
             <div
                 v-for="item in items"
                 :key="item"
-                class="rounded bg-gray-100 shadow"
+                class="flex items-center rounded bg-gray-100 shadow"
             >
-                <div class="mx-auto h-44 w-32 overflow-hidden">
+                <div class="mx-auto h-16 w-16 overflow-hidden">
                     <PhotographIcon class="h-full w-full text-gray-200" />
                 </div>
-                <div class="flex flex-col items-start justify-center p-6">
+                <div class="flex w-5/6 flex-col items-start justify-center p-6">
                     <div class="mb-4 h-5 w-32 rounded-md bg-gray-200"></div>
                     <div
                         class="mb-4 h-2.5 w-5/6 rounded-full bg-gray-200"

@@ -117,6 +117,7 @@
                     }}</label>
                     <select
                         v-model="filterUniversity.city"
+                        @change="universitiesFilter()"
                         class="form-select mt-1 block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-primary-blue focus:outline-none focus:ring-primary-blue"
                     >
                         <option value="">--------------</option>
@@ -142,17 +143,28 @@
                         </option>
                     </select>
                 </div>
+                <div class="flex items-end text-xs lg:text-sm">
+                    <button
+                        type="button"
+                        @click="universitiesFilter()"
+                        class="w-full rounded-md bg-primary-blue px-4 py-2.5 text-white"
+                    >
+                        {{ $t("search") }}
+                    </button>
+                </div>
             </div>
             <div class="bg-primary-blue p-2 shadow"></div>
-
+            <div v-if="loading == 3">
+                <University />
+            </div>
             <div
                 class="grid grid-cols-1 gap-8 px-10 py-8 md:grid-cols-2 lg:grid-cols-4"
                 ref="universityContainer"
-                v-if="filteredUniversity.length != 0"
+                v-else-if="universities.length != 0"
             >
                 <div
                     class="dark:bg-gray-800 overflow-hidden rounded-lg bg-white shadow-md"
-                    v-for="university in filteredUniversity"
+                    v-for="university in universities"
                     :key="university.id"
                 >
                     <router-link
@@ -209,15 +221,6 @@
                                           "..."
                                 }}</router-link
                             >
-                            <p
-                                class="dark:text-gray-400 mt-2 text-sm text-gray-600"
-                                v-if="university.description"
-                            >
-                                {{
-                                    university.description.substring(0, 19) +
-                                    "..."
-                                }}
-                            </p>
                         </div>
 
                         <div
@@ -239,7 +242,7 @@
                 <University />
             </div>
             <div
-                v-if="filteredUniversity.length == 0 && loading != 1"
+                v-if="universities.length == 0 && loading != 1"
                 class="flex animate-pulse flex-col items-center justify-center p-28 text-gray-500"
             >
                 <EmojiSadIcon class="h-16 w-16" />
@@ -258,8 +261,14 @@ import useCountries from "@/services/countryServices.js";
 import useCities from "@/services/cityServices.js";
 import useZones from "@/services/zoneServices.js";
 import University from "../../components/skeleton/University.vue";
-const { universities, getUniversities, loading, page, isAll } =
-    useUniversities();
+const {
+    universities,
+    getUniversities,
+    loading,
+    page,
+    isAll,
+    filterUniversities,
+} = useUniversities();
 const { continents, getContinents } = useContinents();
 const { countries, getCountries } = useCountries();
 const { zones, getZones } = useZones();
@@ -284,16 +293,41 @@ onUnmounted(async () => {
 });
 
 const handleScroll = async (e) => {
-    let element = universityContainer.value;
+    if (universityContainer.value) {
+        let element = universityContainer.value;
+        if (
+            element.getBoundingClientRect().bottom < window.innerHeight &&
+            toGet.value &&
+            !isAll.value &&
+            filterUniversity.country == "" &&
+            filterUniversity.continent == "" &&
+            filterUniversity.city == "" &&
+            filterUniversity.zone == "" &&
+            filterUniversity.searchKey == ""
+        ) {
+            toGet.value = false;
+            page.value++;
+            await getUniversities();
+            toGet.value = true;
+        }
+    }
+};
+
+const universitiesFilter = async () => {
     if (
-        element.getBoundingClientRect().bottom < window.innerHeight &&
-        toGet.value &&
-        !isAll.value
+        filterUniversity.country != "" ||
+        filterUniversity.continent != "" ||
+        filterUniversity.city != "" ||
+        filterUniversity.zone != "" ||
+        filterUniversity.searchKey != ""
     ) {
-        toGet.value = false;
-        page.value++;
+        loading.value = 1;
+        await filterUniversities({ ...filterUniversity });
+        loading.value = 2;
+    } else {
+        page.value = 1;
+        isAll.value = false;
         await getUniversities();
-        toGet.value = true;
     }
 };
 
@@ -305,14 +339,14 @@ const filterUniversity = reactive({
     searchKey: "",
 });
 
-const filteredCityU = () => {
+const filteredCityU = async () => {
     cityfilteredU.value = cities.value.filter((city) => {
         return city.country_id == filterUniversity.country;
     });
     filterUniversity.city = "";
 };
 
-const filteredCountryU = () => {
+const filteredCountryU = async () => {
     countryFilteredU.value = countries.value.filter((country) => {
         return country.zone_id == filterUniversity.zone;
     });
@@ -321,7 +355,7 @@ const filteredCountryU = () => {
     cityfilteredU.value = [];
 };
 
-const filteredZoneU = () => {
+const filteredZoneU = async () => {
     zoneFilteredU.value = zones.value.filter((zone) => {
         return zone.continent_id == filterUniversity.continent;
     });
@@ -332,68 +366,4 @@ const filteredZoneU = () => {
     cityfilteredU.value = [];
     countryFilteredU.value = [];
 };
-
-const filteredUniversity = computed(() => {
-    if (
-        filterUniversity.searchKey != "" ||
-        filterUniversity.country != "" ||
-        filterUniversity.continent != "" ||
-        filterUniversity.zone != "" ||
-        filterUniversity.city != ""
-    ) {
-        return universities.value.filter((university) => {
-            let data = "";
-            if (
-                filterUniversity.country != "" &&
-                filterUniversity.continent != "" &&
-                filterUniversity.zone != "" &&
-                filterUniversity.city != ""
-            )
-                data =
-                    university.name
-                        .toLowerCase()
-                        .includes(filterUniversity.searchKey.toLowerCase()) &&
-                    university.country.id == filterUniversity.country &&
-                    university.continent.id == filterUniversity.continent &&
-                    university.city.id == filterUniversity.city;
-            else if (
-                filterUniversity.continent != "" &&
-                filterUniversity.zone != "" &&
-                filterUniversity.country != ""
-            )
-                data =
-                    university.name
-                        .toLowerCase()
-                        .includes(filterUniversity.searchKey.toLowerCase()) &&
-                    university.country.id == filterUniversity.country &&
-                    university.continent.id == filterUniversity.continent &&
-                    university.zone.id == filterUniversity.zone;
-            else if (
-                filterUniversity.continent != "" &&
-                filterUniversity.zone != ""
-            )
-                data =
-                    university.name
-                        .toLowerCase()
-                        .includes(filterUniversity.searchKey.toLowerCase()) &&
-                    university.continent.id == filterUniversity.continent &&
-                    university.zone.id == filterUniversity.zone;
-            else if (filterUniversity.continent != "")
-                data =
-                    university.name
-                        .toLowerCase()
-                        .includes(filterUniversity.searchKey.toLowerCase()) &&
-                    university.continent.id == filterUniversity.continent;
-            else
-                data =
-                    university.name
-                        .toLowerCase()
-                        .includes(filterUniversity.searchKey.toLowerCase()) &&
-                    university;
-            return data;
-        });
-    } else {
-        return universities.value;
-    }
-});
 </script>

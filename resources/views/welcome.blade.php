@@ -35,7 +35,7 @@
 <body class="bg-white" style="background-image:url('/img/random-shapes.svg')">
 
     <div id="app" class="">
-        <App></App>
+
     </div>
 
     @include('cookie-consent::index')

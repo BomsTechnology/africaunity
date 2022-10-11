@@ -152,8 +152,9 @@
 
 <script setup>
 import { reactive, ref, onMounted } from "vue";
-import router from "../router/index.js";
 import { useI18n } from "vue-i18n";
+import { useRouter } from "vue-router";
+const router = useRouter();
 const { locale } = useI18n();
 const continents = ref([]);
 const zones = ref([]);

@@ -15,14 +15,14 @@ export default function usePosts() {
     const getPostsAll = async (type) => {
         errors.value = "";
         try {
-            loading.value = 1;
+            loading.value = true;
             let response = await axios.get("/api/posts-all/" + type, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
                 },
             });
             posts.value = response.data.data;
-            loading.value = 2;
+            loading.value = false;
         } catch (e) {
             if (e.response.status == 401) {
                 router.push({
@@ -43,7 +43,7 @@ export default function usePosts() {
     const getPostsUser = async (id) => {
         errors.value = "";
         try {
-            loading.value = 1;
+            loading.value = true;
             let response = await axios.get("/api/posts-user/" + id, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
@@ -58,7 +58,7 @@ export default function usePosts() {
             propau.value = posts.value.filter((post) => {
                 return post.type == "propau";
             });
-            loading.value = 2;
+            loading.value = false;
         } catch (e) {
             if (e.response.status == 401) {
                 router.push({
@@ -77,7 +77,7 @@ export default function usePosts() {
 
     const getPosts = async (type, lang) => {
         errors.value = "";
-        loading.value = 1;
+        loading.value = true;
         try {
             let response = await axios.get(
                 "/api/posts-type/" + type + "/" + lang + "?page=" + page.value,
@@ -92,7 +92,7 @@ export default function usePosts() {
             } else {
                 posts.value = posts.value.concat(response.data.data);
             }
-            loading.value = 2;
+            loading.value = false;
             if (response.data.data.length == 0) {
                 isAll.value = true;
             }
@@ -115,14 +115,14 @@ export default function usePosts() {
     const getPostCarousssel = async (lang) => {
         errors.value = "";
         try {
-            loading.value = 1;
+            loading.value = true;
             let response = await axios.get("/api/posts-caroussel/" + lang, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
                 },
             });
             postCaroussel.value = response.data.data;
-            loading.value = 2;
+            loading.value = false;
         } catch (e) {
             if (e.response.status == 401) {
                 router.push({
@@ -142,7 +142,7 @@ export default function usePosts() {
     const getPost = async (id) => {
         errors.value = "";
         try {
-            loading.value = 1;
+            loading.value = true;
             let response = await axios.get("/api/posts/" + id, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
@@ -169,7 +169,7 @@ export default function usePosts() {
     const getPost2 = async (id) => {
         errors.value = "";
         try {
-            loading.value = 1;
+            loading.value = true;
             let response = await axios.get("/api/posts2/" + id, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
@@ -196,14 +196,14 @@ export default function usePosts() {
     const createPost = async (data) => {
         errors.value = "";
         try {
-            loading.value = 1;
+            loading.value = true;
             await axios.post("/api/posts", data, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
                     "Content-Type": "multipart/form-data",
                 },
             });
-            loading.value = 2;
+            loading.value = false;
         } catch (e) {
             loading.value = 0;
             if (e.response.status == 422) {
@@ -218,7 +218,7 @@ export default function usePosts() {
     const filterPost = async (data) => {
         errors.value = "";
         try {
-            loading.value = 1;
+            loading.value = 3;
             let response = await axios.post("/api/posts-filter", data, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
@@ -245,14 +245,14 @@ export default function usePosts() {
     const updatePost = async (data) => {
         errors.value = "";
         try {
-            loading.value = 1;
+            loading.value = true;
             await axios.post("/api/posts/" + post.value.id, data, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
                     "Content-Type": "multipart/form-data",
                 },
             });
-            loading.value = 2;
+            loading.value = false;
         } catch (e) {
             loading.value = 0;
             if (e.response.status == 422) {
@@ -267,13 +267,13 @@ export default function usePosts() {
     const destroyPost = async (id) => {
         errors.value = "";
         try {
-            loading.value = 1;
+            loading.value = true;
             await axios.delete("/api/posts/" + id, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
                 },
             });
-            loading.value = 2;
+            loading.value = false;
         } catch (e) {
             loading.value = 0;
             if (e.response.status == "500") {

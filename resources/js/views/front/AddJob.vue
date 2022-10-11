@@ -624,20 +624,14 @@ import useCountries from "@/services/countryServices.js";
 import useZones from "@/services/zoneServices.js";
 import useContinents from "@/services/continentServices.js";
 import useCities from "@/services/cityServices.js";
-import router from "@/router/index.js";
+import { useRouter } from "vue-router";
+const router = useRouter();
 
 const props = defineProps({
     duplicate: String,
 });
 
-// created() {
-// if (
-//         JSON.parse(localStorage.user).type == "business1" ||
-//         JSON.parse(localStorage.user).type == "particular"
-//     ) {
-//         router.push({ name: "home" });
-//     }
-// },
+
 
 const user = localStorage.user ? JSON.parse(localStorage.user) : "";
 const { currencies, getCurrencies } = useCurrencies();

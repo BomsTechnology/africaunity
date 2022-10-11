@@ -21,6 +21,7 @@ class CountryResource extends JsonResource
             "name_fr" => $this->name_fr,
             "text" => $this->name_fr,
             "name_en" => $this->name_en,
+            "name" => $this->name_fr,
             "name_es" => $this->name_es,
             "name_pt" => $this->name_pt,
             "zone_id" => $this->zone_id,

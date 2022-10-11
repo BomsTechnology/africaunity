@@ -9,7 +9,7 @@ export default function useLegalStatuses() {
 
     const getLegalStatuses = async () => {
         errorsLegal.value = "";
-        loading.value = 1;
+        loading.value = true;
         let response = await axios.get("/api/legalStatuses", {
             headers: {
                 Authorization: `Bearer ${localStorage.token}`,
@@ -17,12 +17,12 @@ export default function useLegalStatuses() {
         });
         legalStatuses.value = response.data.data;
 
-        loading.value = 2;
+        loading.value = false;
     };
 
     const getLegalStatus = async (id) => {
         errorsLegal.value = "";
-        loading.value = 1;
+        loading.value = true;
         let response = await axios.get("/api/legalStatuses/" + id, {
             headers: {
                 Authorization: `Bearer ${localStorage.token}`,
@@ -35,7 +35,7 @@ export default function useLegalStatuses() {
     const createLegalStatus = async (data) => {
         errorsLegal.value = "";
         try {
-            loading.value = 1;
+            loading.value = true;
             await axios.post("/api/legalStatuses", data, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
@@ -54,13 +54,13 @@ export default function useLegalStatuses() {
     const updateLegalStatus = async (id, data) => {
         errorsLegal.value = "";
         try {
-            loading.value = 1;
+            loading.value = true;
             await axios.put("/api/legalStatuses/" + id, data, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
                 },
             });
-            loading.value = 2;
+            loading.value = false;
         } catch (e) {
             loading.value = 0;
             if (e.response.status == 422) {
@@ -74,13 +74,13 @@ export default function useLegalStatuses() {
     const destroyLegalStatus = async (id) => {
         errorsLegal.value = "";
         try {
-            loading.value = 1;
+            loading.value = true;
             await axios.delete("/api/legalStatuses/" + id, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
                 },
             });
-            loading.value = 2;
+            loading.value = false;
             return true;
         } catch (e) {
             loading.value = 0;

@@ -15,10 +15,16 @@ import useCountries from "@/services/countryServices.js";
 import useCities from "@/services/cityServices.js";
 import useZones from "@/services/zoneServices.js";
 import SelectFilter from "@/components/SelectFilter.vue";
-import Ads from "../../components/skeleton/Ads.vue";
+import Ads from "@/components/skeleton/Ads.vue";
 const { universities, getAllUniversities } = useUniversities();
-const { announcements, getAnnouncements, loading, page, isAll } =
-    useAnnouncements();
+const {
+    announcements,
+    getAnnouncements,
+    loading,
+    page,
+    isAll,
+    filterAnnouncements,
+} = useAnnouncements();
 const { continents, getContinents } = useContinents();
 const { countries, getCountries } = useCountries();
 const { categoryAnnouncements, getCategoryAnnouncements } =
@@ -49,16 +55,45 @@ onUnmounted(async () => {
 });
 
 const handleScroll = async (e) => {
-    let element = adsContainer.value;
+    if (adsContainer.value) {
+        let element = adsContainer.value;
+        if (
+            element.getBoundingClientRect().bottom < window.innerHeight &&
+            toGet.value &&
+            !isAll.value &&
+            filterAds.searchKey == "" &&
+            filterAds.category == "" &&
+            filterAds.country == "" &&
+            filterAds.continent == "" &&
+            filterAds.university == "" &&
+            filterAds.city == "" &&
+            filterAds.zone == ""
+        ) {
+            toGet.value = false;
+            page.value++;
+            await getAnnouncements();
+            toGet.value = true;
+        }
+    }
+};
+
+const adsFilter = async () => {
     if (
-        element.getBoundingClientRect().bottom < window.innerHeight &&
-        toGet.value &&
-        !isAll.value
+        filterAds.searchKey != "" ||
+        filterAds.category != "" ||
+        filterAds.country != "" ||
+        filterAds.continent != "" ||
+        filterAds.university != "" ||
+        filterAds.city != "" ||
+        filterAds.zone != ""
     ) {
-        toGet.value = false;
-        page.value++;
+        loading.value = 1;
+        await filterAnnouncements({ ...filterAds });
+        loading.value = 2;
+    } else {
+        page.value = 1;
+        isAll.value = false;
         await getAnnouncements();
-        toGet.value = true;
     }
 };
 
@@ -125,178 +160,6 @@ const filteredZoneA = () => {
     cityfilteredA.value = [];
     countryFilteredA.value = [];
 };
-
-const filteredAnnouncement = computed(() => {
-    return announcements.value.filter((announcement) => {
-        let data = "";
-        if (
-            filterAds.continent != "" &&
-            filterAds.zone != "" &&
-            filterAds.country != "" &&
-            filterAds.city != "" &&
-            filterAds.university != "" &&
-            filterAds.category != ""
-        )
-            data =
-                announcement.title
-                    .toLowerCase()
-                    .includes(filterAds.searchKey.toLowerCase()) &&
-                announcement.university.city.id == filterAds.city &&
-                announcement.university.country.id == filterAds.country &&
-                announcement.university.continent.id == filterAds.continent &&
-                announcement.university.zone.id == filterAds.zone &&
-                announcement.university.id == filterAds.university &&
-                announcement.category.id == filterAds.category;
-        else if (
-            filterAds.continent != "" &&
-            filterAds.zone != "" &&
-            filterAds.country != "" &&
-            filterAds.city != "" &&
-            filterAds.university != ""
-        )
-            data =
-                announcement.title
-                    .toLowerCase()
-                    .includes(filterAds.searchKey.toLowerCase()) &&
-                announcement.university.city.id == filterAds.city &&
-                announcement.university.country.id == filterAds.country &&
-                announcement.university.continent.id == filterAds.continent &&
-                announcement.university.zone.id == filterAds.zone &&
-                announcement.university.id == filterAds.university;
-        else if (
-            filterAds.continent != "" &&
-            filterAds.zone != "" &&
-            filterAds.country != "" &&
-            filterAds.university != "" &&
-            filterAds.category != ""
-        )
-            data =
-                announcement.title
-                    .toLowerCase()
-                    .includes(filterAds.searchKey.toLowerCase()) &&
-                announcement.university.zone.id == filterAds.zone &&
-                announcement.university.country.id == filterAds.country &&
-                announcement.university.continent.id == filterAds.continent &&
-                announcement.university.id == filterAds.university &&
-                announcement.category.id == filterAds.category;
-        else if (
-            filterAds.continent != "" &&
-            filterAds.zone != "" &&
-            filterAds.country != "" &&
-            filterAds.city != ""
-        )
-            data =
-                announcement.title
-                    .toLowerCase()
-                    .includes(filterAds.searchKey.toLowerCase()) &&
-                announcement.university.city.id == filterAds.city &&
-                announcement.university.country.id == filterAds.country &&
-                announcement.university.continent.id == filterAds.continent &&
-                announcement.university.zone.id == filterAds.zone;
-        else if (
-            filterAds.continent != "" &&
-            filterAds.zone != "" &&
-            filterAds.university != "" &&
-            filterAds.category != ""
-        )
-            data =
-                announcement.title
-                    .toLowerCase()
-                    .includes(filterAds.searchKey.toLowerCase()) &&
-                announcement.university.zone.id == filterAds.zone &&
-                announcement.university.continent.id == filterAds.continent &&
-                announcement.university.id == filterAds.university &&
-                announcement.category.id == filterAds.category;
-        else if (
-            filterAds.continent != "" &&
-            filterAds.zone != "" &&
-            filterAds.country != "" &&
-            filterAds.university != ""
-        )
-            data =
-                announcement.title
-                    .toLowerCase()
-                    .includes(filterAds.searchKey.toLowerCase()) &&
-                announcement.university.country.id == filterAds.country &&
-                announcement.university.continent.id == filterAds.continent &&
-                announcement.university.zone.id == filterAds.zone &&
-                announcement.university.id == filterAds.university;
-        else if (
-            filterAds.continent != "" &&
-            filterAds.zone != "" &&
-            filterAds.country != ""
-        )
-            data =
-                announcement.title
-                    .toLowerCase()
-                    .includes(filterAds.searchKey.toLowerCase()) &&
-                announcement.university.country.id == filterAds.country &&
-                announcement.university.continent.id == filterAds.continent &&
-                announcement.university.zone.id == filterAds.zone;
-        else if (
-            filterAds.continent != "" &&
-            filterAds.university != "" &&
-            filterAds.category != ""
-        )
-            data =
-                announcement.title
-                    .toLowerCase()
-                    .includes(filterAds.searchKey.toLowerCase()) &&
-                announcement.category.id == filterAds.category &&
-                announcement.university.id == filterAds.university &&
-                announcement.university.continent.id == filterAds.continent;
-        else if (
-            filterAds.continent != "" &&
-            filterAds.zone != "" &&
-            filterAds.university != ""
-        )
-            data =
-                announcement.title
-                    .toLowerCase()
-                    .includes(filterAds.searchKey.toLowerCase()) &&
-                announcement.university.continent.id == filterAds.continent &&
-                announcement.university.zone.id == filterAds.zone &&
-                announcement.university.id == filterAds.university;
-        else if (filterAds.continent != "" && filterAds.category != "")
-            data =
-                announcement.title
-                    .toLowerCase()
-                    .includes(filterAds.searchKey.toLowerCase()) &&
-                announcement.category.id == filterAds.category &&
-                announcement.university.continent.id == filterAds.continent;
-        else if (filterAds.continent != "" && filterAds.university != "")
-            data =
-                announcement.title
-                    .toLowerCase()
-                    .includes(filterAds.searchKey.toLowerCase()) &&
-                announcement.university.id == filterAds.university &&
-                announcement.university.continent.id == filterAds.continent;
-        else if (filterAds.continent != "" && filterAds.zone != "")
-            data =
-                announcement.title
-                    .toLowerCase()
-                    .includes(filterAds.searchKey.toLowerCase()) &&
-                announcement.university.continent.id == filterAds.continent &&
-                announcement.university.zone.id == filterAds.zone;
-        else if (filterAds.continent != "")
-            data =
-                announcement.title
-                    .toLowerCase()
-                    .includes(filterAds.searchKey.toLowerCase()) &&
-                announcement.university.continent.id == filterAds.continent;
-        else if (filterAds.category != "")
-            data =
-                announcement.title
-                    .toLowerCase()
-                    .includes(filterAds.searchKey.toLowerCase()) &&
-                announcement.category.id == filterAds.category;
-        else
-            data = announcement.title
-                .toLowerCase()
-                .includes(filterAds.searchKey.toLowerCase());
-        return data;
-    });
-});
 </script>
 <template>
     <div class="mx-auto min-h-screen w-full bg-white xl:w-[90%]">
@@ -336,19 +199,6 @@ const filteredAnnouncement = computed(() => {
                             {{ category_announcement.name }}
                         </option>
                     </select>
-                </div>
-                <div class="divSelect2 text-xs lg:text-sm">
-                    <label class="text-gray-700" for="es">{{
-                        $t("university")
-                    }}</label>
-                    <SelectFilter
-                        v-model="filterAds.university"
-                        :data="universityfilteredA"
-                        :placeholder="'Select University'"
-                        :required="false"
-                        :resetField="true"
-                        :className="'w-full h-full mt-1 block rounded-md border bg-white  border-gray-300 p-2.5 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-sm'"
-                    />
                 </div>
                 <div class="text-xs lg:text-sm">
                     <label class="text-gray-700" for="es">{{
@@ -474,6 +324,28 @@ const filteredAnnouncement = computed(() => {
                         </option>
                     </select>
                 </div>
+                <div class="divSelect2 text-xs lg:text-sm">
+                    <label class="text-gray-700" for="es">{{
+                        $t("university")
+                    }}</label>
+                    <SelectFilter
+                        v-model="filterAds.university"
+                        :data="universityfilteredA"
+                        :placeholder="'Select University'"
+                        :required="false"
+                        :resetField="true"
+                        :className="'w-full h-full mt-1 block rounded-md border bg-white  border-gray-300 p-2.5 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-sm'"
+                    />
+                </div>
+                <div class="flex items-end text-xs lg:text-sm">
+                    <button
+                        type="button"
+                        @click="adsFilter()"
+                        class="w-full rounded-md bg-primary-blue px-4 py-2.5 text-white"
+                    >
+                        {{ $t("search") }}
+                    </button>
+                </div>
             </div>
             <div class="bg-primary-blue p-2 shadow"></div>
             <div class="flex justify-end py-4">
@@ -491,14 +363,17 @@ const filteredAnnouncement = computed(() => {
                 </router-link>
             </div>
             <div class="py-8">
+                <div v-if="loading == 3">
+                    <Ads />
+                </div>
                 <div
                     ref="adsContainer"
                     class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"
-                    v-if="filteredAnnouncement.length != 0"
+                    v-else-if="announcements.length != 0"
                 >
                     <div
                         class="dark:bg-gray-800 overflow-hidden rounded-lg bg-white shadow-lg"
-                        v-for="announcement in filteredAnnouncement"
+                        v-for="announcement in announcements"
                         :key="announcement.id"
                     >
                         <router-link
@@ -607,7 +482,7 @@ const filteredAnnouncement = computed(() => {
                     <Ads />
                 </div>
                 <div
-                    v-if="filteredAnnouncement.length == 0 && loading != 1"
+                    v-if="announcements.length == 0 && loading != 1"
                     class="flex animate-pulse flex-col items-center justify-center p-28 text-gray-500"
                 >
                     <EmojiSadIcon class="h-16 w-16" />

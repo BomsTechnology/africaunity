@@ -9,7 +9,7 @@ export default function useLanguages() {
 
     const getLanguages = async () => {
         errorsLang.value = "";
-        loading.value = 1;
+        loading.value = true;
         let response = await axios.get("/api/languages", {
             headers: {
                 Authorization: `Bearer ${localStorage.token}`,
@@ -17,12 +17,12 @@ export default function useLanguages() {
         });
         languages.value = response.data.data;
 
-        loading.value = 2;
+        loading.value = false;
     };
 
     const getLanguage = async (id) => {
         errorsLang.value = "";
-        loading.value = 1;
+        loading.value = true;
         let response = await axios.get("/api/languages/" + id, {
             headers: {
                 Authorization: `Bearer ${localStorage.token}`,
@@ -35,7 +35,7 @@ export default function useLanguages() {
     const createLanguage = async (data) => {
         errorsLang.value = "";
         try {
-            loading.value = 1;
+            loading.value = true;
             await axios.post("/api/languages", data, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
@@ -54,13 +54,13 @@ export default function useLanguages() {
     const updateLanguage = async (id, data) => {
         errorsLang.value = "";
         try {
-            loading.value = 1;
+            loading.value = true;
             await axios.put("/api/languages/" + id, data, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
                 },
             });
-            loading.value = 2;
+            loading.value = false;
         } catch (e) {
             loading.value = 0;
             if (e.response.status == 422) {
@@ -73,13 +73,13 @@ export default function useLanguages() {
     const destroyLanguage = async (id) => {
         errorsLang.value = "";
         try {
-            loading.value = 1;
+            loading.value = true;
             await axios.delete("/api/languages/" + id, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
                 },
             });
-            loading.value = 2;
+            loading.value = false;
             return true;
         } catch (e) {
             loading.value = 0;

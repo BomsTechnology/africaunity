@@ -284,12 +284,15 @@
                         <!-- <button @click="submit" class="w-full block text-center px-4 py-2 mt-10 font-medium tracking-wide text-primary-blue capitalize transition-colors duration-200 transform bg-white rounded-md hover:bg-white focus:outline-none focus:bg-white">
                             {{ $t("register") }}
                         </button> -->
-                        <button
-                            disabled
-                            class="mt-10 block w-full transform rounded-md bg-white px-4 py-2 text-center font-medium capitalize tracking-wide text-primary-blue transition-colors duration-200 hover:bg-white focus:bg-white focus:outline-none"
+                        <router-link
+                            :to="{
+                                name: 'register',
+                                params: { type: 'business2' },
+                            }"
+                            class="mt-10 block w-full transform rounded-md bg-primary-blue px-4 py-2 text-center font-medium capitalize tracking-wide text-white transition-colors duration-200 hover:bg-primary-blue focus:bg-primary-blue focus:outline-none"
                         >
                             {{ $t("register") }}
-                        </button>
+                        </router-link>
                         <!-- <router-link  :to="{name:'register', params: { type : 'business2' }}" class="w-full block text-center px-4 py-2 mt-10 font-medium tracking-wide text-primary-blue capitalize transition-colors duration-200 transform bg-white rounded-md hover:bg-white focus:outline-none focus:bg-white">
                             {{ $t("register") }}
                         </router-link> -->

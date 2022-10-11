@@ -8,14 +8,11 @@ use App\Http\Resources\UniversityResource;
 use App\Http\Resources\UniversityResource2;
 use App\Models\University;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Builder;
 
 class UniversityController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         return UniversityResource::collection(University::orderBy('id')->paginate(8));
@@ -24,12 +21,7 @@ class UniversityController extends Controller
     {
         return UniversityResource::collection(University::latest()->get());
     }
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
         $fileds = $request->validate([
@@ -58,12 +50,54 @@ class UniversityController extends Controller
         return new UniversityResource($university);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\University  $university
-     * @return \Illuminate\Http\Response
-     */
+    public function filter(Request $request)
+    {
+        $universities = University::query();
+
+        if ($request->keywords != "") {
+            $keywords = $request->keywords;
+            $universities = $universities->where('name', 'like', "%$keywords%");
+        }
+
+        if ($request->country != "") {
+            $country = $request->country;
+            $universities = $universities->with(['country' => function ($query) use ($country) {
+                $query->where('id', $country);
+            }])->whereHas('country', function (Builder $query) use ($country) {
+                $query->where('id', $country);
+            });
+        }
+
+        if ($request->continent != "") {
+            $continent = $request->continent;
+            $universities = $universities->with(['continent' => function ($query) use ($continent) {
+                $query->where('id', $continent);
+            }])->whereHas('continent', function (Builder $query) use ($continent) {
+                $query->where('id', $continent);
+            });
+        }
+
+        if ($request->city != "") {
+            $city = $request->city;
+            $universities = $universities->with(['city' => function ($query) use ($city) {
+                $query->where('id', $city);
+            }])->whereHas('city', function (Builder $query) use ($city) {
+                $query->where('id', $city);
+            });
+        }
+
+        if ($request->zone != "") {
+            $zone = $request->zone;
+            $universities = $universities->with(['zone' => function ($query) use ($zone) {
+                $query->where('id', $zone);
+            }])->whereHas('zone', function (Builder $query) use ($zone) {
+                $query->where('id', $zone);
+            });
+        }
+
+        return UniversityResource::collection($universities->get());
+    }
+
     public function show(University $university)
     {
         return new UniversityResource2($university);
@@ -74,13 +108,7 @@ class UniversityController extends Controller
         return new UniversityResource($university);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\University  $university
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, University $university)
     {
         $fileds = $request->validate([
@@ -115,12 +143,7 @@ class UniversityController extends Controller
         return new UniversityResource($university);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\University  $university
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy(University $university)
     {
         $university->delete();

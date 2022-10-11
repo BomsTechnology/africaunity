@@ -313,26 +313,22 @@
 
 <script setup>
 import { reactive, ref, onMounted, computed } from "vue";
-import Error from "../../components/Error.vue";
-import usePosts from "../../services/postServices.js";
-import useContinents from "../../services/continentServices.js";
-import useZones from "../../services/zoneServices.js";
-import useCountries from "../../services/countryServices.js";
-import useMinistries from "../../services/ministryServices.js";
-import router from "../../router/index.js";
-import { useI18n } from "vue-i18n";
+import Error from "@/components/Error.vue";
+import usePosts from "@/services/postServices.js";
+import useContinents from "@/services/continentServices.js";
+import useZones from "@/services/zoneServices.js";
+import useCountries from "@/services/countryServices.js";
+import useMinistries from "@/services/ministryServices.js";
 
+import { useI18n } from "vue-i18n";
+import { useRouter } from "vue-router";
+const router = useRouter();
 const props = defineProps({
     type: {
         type: String,
     },
 });
 const { locale } = useI18n();
-// created() {
-//     if (JSON.parse(localStorage.user).type == "business1") {
-//         router.push({ name: "home" });
-//     }
-// },
 
 const types = ["article", "propau"];
 const user = localStorage.user ? JSON.parse(localStorage.user) : "";
