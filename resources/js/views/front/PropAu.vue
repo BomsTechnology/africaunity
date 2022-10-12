@@ -348,10 +348,11 @@ import useCountries from "@/services/countryServices.js";
 import useZones from "@/services/zoneServices.js";
 import useContinents from "@/services/continentServices.js";
 import useMinistries from "@/services/ministryServices.js";
-import router from "@/router";
-import usePosts from "@/services/postServices.js";
-import PropAu from "../../components/skeleton/PropAu.vue";
 
+import usePosts from "@/services/postServices.js";
+import PropAu from "@/components/skeleton/PropAu.vue";
+import { useRouter } from "vue-router";
+const router = useRouter();
 const { posts, getPosts, filterPost, loading, page, isAll } = usePosts();
 const { countries, getCountries } = useCountries();
 const { zones, getZones } = useZones();

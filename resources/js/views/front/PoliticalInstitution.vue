@@ -217,9 +217,10 @@ import useUsers from "@/services/userServices.js";
 import useBusinessTypes from "@/services/businessTypeServices.js";
 import useBusinessSizes from "@/services/businessSizeServices.js";
 import useCountries from "@/services/countryServices.js";
-import router from "@/router";
-import Profile from "@/components/skeleton/Profile.vue";
 
+import Profile from "@/components/skeleton/Profile.vue";
+import { useRouter } from "vue-router";
+const router = useRouter();
         const { businessSizes, getBusinessSizes } = useBusinessSizes();
         const { countries, getCountries } = useCountries();
         const { businessTypes, getBusinessTypes } = useBusinessTypes();

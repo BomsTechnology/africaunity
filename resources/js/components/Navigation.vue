@@ -494,7 +494,7 @@ const open = reactive({
 const logout = async () => {
     try {
         loading.value = 1;
-        let response = await axios.post(
+        await axios.post(
             "/api/logout",
             {},
             {

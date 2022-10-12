@@ -437,7 +437,6 @@
 </template>
 
 <script setup>
-import router from "@/router";
 import { reactive, ref, onMounted, onBeforeMount } from "vue";
 import Error from "@/components/Error.vue";
 import Apply from "@/components/Apply.vue";
@@ -464,7 +463,8 @@ import {
     OfficeBuildingIcon,
 } from "@heroicons/vue/solid";
 import useJobOffers from "@/services/jobOfferServices.js";
-
+import { useRouter } from "vue-router";
+const router = useRouter();
 const openApply = ref(false);
 const { jobOffer, getJobOffer, loading, errors } = useJobOffers();
 const user = localStorage.user ? JSON.parse(localStorage.user) : "";

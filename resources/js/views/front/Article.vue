@@ -348,8 +348,6 @@
 </template>
 
 <script setup>
-import router from "@/router";
-
 import { reactive, ref, onMounted, computed, onUnmounted } from "vue";
 import useCountries from "@/services/countryServices.js";
 import useZones from "@/services/zoneServices.js";
@@ -367,6 +365,8 @@ import {
 
 import usePosts from "@/services/postServices.js";
 import Article from "@/components/skeleton/Article.vue";
+import { useRouter } from "vue-router";
+const router = useRouter();
 const { locale } = useI18n();
 const route = useRoute();
 const { posts, getPosts, filterPost, loading, page, isAll } = usePosts();

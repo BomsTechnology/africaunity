@@ -289,7 +289,7 @@
                                 name: 'register',
                                 params: { type: 'business2' },
                             }"
-                            class="mt-10 block w-full transform rounded-md bg-primary-blue px-4 py-2 text-center font-medium capitalize tracking-wide text-white transition-colors duration-200 hover:bg-primary-blue focus:bg-primary-blue focus:outline-none"
+                            class="mt-10 block w-full transform rounded-md bg-white px-4 py-2 text-center font-medium capitalize tracking-wide text-primary-blue transition-colors duration-200 hover:bg-gray-50 focus:bg-gray-50 focus:outline-none"
                         >
                             {{ $t("register") }}
                         </router-link>
@@ -419,13 +419,13 @@ const publishableKey =
 const sessionId = ref(null);
 
 onMounted(async () => {
-    try {
-        let response = await axios.get("api/getSession");
-        sessionId.value = response.data.id;
-        console.log(response.data);
-    } catch (e) {
-        console.log("error");
-    }
+    // try {
+    //     let response = await axios.get("api/getSession");
+    //     sessionId.value = response.data.id;
+    //     console.log(response.data);
+    // } catch (e) {
+    //     console.log("error");
+    // }
 });
 
 const submit = () => {

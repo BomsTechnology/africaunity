@@ -122,10 +122,11 @@
 <script setup>
 import { PlusCircleIcon } from "@heroicons/vue/solid";
 import { reactive, ref, onMounted, computed, watch } from "vue";
-import router from "@/router";
+
 import usePosts from "@/services/postServices.js";
 import Error from "@/components/Error.vue";
-
+import { useRouter } from "vue-router";
+const router = useRouter();
 const { posts, getPostsAll, destroyPost, loading, errors } = usePosts();
 const props = defineProps({
     type: {

@@ -86,10 +86,11 @@
 <script setup>
 import { ref, onMounted, reactive } from "vue";
 import Error from "@/components/Error.vue";
-import router from "@/router";
+
 import { MailIcon } from "@heroicons/vue/solid";
 import axios from "axios";
-
+import { useRouter } from "vue-router";
+const router = useRouter();
 const cuser = localStorage.user ? JSON.parse(localStorage.user) : "";
 onMounted(async () => {
     if (localStorage.token) {

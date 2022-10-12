@@ -1,18 +1,18 @@
 import axios from "axios";
 import { ref } from "vue";
-import router from "../router";
+import { useRouter } from "vue-router";
 
 export default function useAuth() {
     const user = ref([]);
     const errors = ref("");
     const loading = ref(0);
-
+    const router = useRouter();
     const createUser = async (data) => {
         errors.value = "";
         try {
             loading.value = true;
             await axios.post("/api/register", data);
-            loading.value = false;
+            loading.value = 2;
             //router.push({ name: "login" });
         } catch (e) {
             loading.value = 0;

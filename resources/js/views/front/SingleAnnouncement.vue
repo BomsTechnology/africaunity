@@ -298,7 +298,6 @@
 </template>
 
 <script setup>
-import router from "@/router";
 import { reactive, ref, onMounted } from "vue";
 import Error from "@/components/Error.vue";
 import {
@@ -316,7 +315,8 @@ import {
     BriefcaseIcon,
 } from "@heroicons/vue/solid";
 import useAnnouncements from "@/services/announcementServices.js";
-
+import { useRouter } from "vue-router";
+const router = useRouter();
 const props = defineProps({
     id: {
         required: true,

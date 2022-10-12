@@ -140,11 +140,11 @@
 import { reactive, ref, onMounted } from "vue";
 import Error from "@/components/Error.vue";
 import useAuth from "@/services/authServices.js";
-import router from "@/router";
 import { MailIcon, LockClosedIcon } from "@heroicons/vue/solid";
 import NotLogin from "@/components/NotLogin.vue";
 import VerifyOK from "@/components/VerifyOK.vue";
-
+import { useRouter } from "vue-router";
+const router = useRouter();
 const props = defineProps({
     redirect: {
         required: false,

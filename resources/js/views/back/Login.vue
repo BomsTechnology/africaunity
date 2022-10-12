@@ -92,9 +92,9 @@
 import { reactive, ref, onMounted } from "vue";
 import Error from "@/components/Error.vue";
 import useAuth from "@/services/authServices.js";
-import router from "@/router";
 import axios from "axios";
-
+import { useRouter } from "vue-router";
+const router = useRouter();
 const user = reactive({
     email: "",
     password: "",

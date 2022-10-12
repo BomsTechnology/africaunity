@@ -254,12 +254,13 @@
 </template>
 
 <script setup>
-import Error from "../../components/Error.vue";
+import Error from "@/components/Error.vue";
 import { UserIcon, LockClosedIcon, MailIcon } from "@heroicons/vue/solid";
 import { reactive, ref, onMounted } from "vue";
-import router from "../../router";
-import useAuth from "../../services/authServices.js";
 
+import useAuth from "@/services/authServices.js";
+import { useRouter } from "vue-router";
+const router = useRouter();
 const props = defineProps({
     type: {
         required: true,

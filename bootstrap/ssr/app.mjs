@@ -95,7 +95,7 @@ _sfc_main$1.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/App.vue");
   return _sfc_setup$1 ? _sfc_setup$1(props, ctx) : void 0;
 };
-const Header = () => import("./assets/Header.9879bda7.mjs");
+const Header = () => import("./assets/Header.795fabb9.mjs");
 const Footer = () => import("./assets/Footer.1ff1fe57.mjs");
 const siteName = "AfricaUnity";
 const routes = [
@@ -103,7 +103,7 @@ const routes = [
     path: "/",
     name: "home",
     components: {
-      default: () => import("./assets/Home.9cc1dbcd.mjs"),
+      default: () => import("./assets/Home.5a807f4c.mjs"),
       header: Header,
       footer: Footer
     },
@@ -115,7 +115,7 @@ const routes = [
     path: "/articles",
     name: "articles",
     components: {
-      default: () => import("./assets/Article.0d0367ae.mjs"),
+      default: () => import("./assets/Article.a96cf575.mjs"),
       header: Header,
       footer: Footer
     },
@@ -128,7 +128,7 @@ const routes = [
     path: "/prop-au",
     name: "propau",
     components: {
-      default: () => import("./assets/PropAu.0740e360.mjs"),
+      default: () => import("./assets/PropAu.f7f6b8be.mjs"),
       header: Header,
       footer: Footer
     },
@@ -142,7 +142,7 @@ const routes = [
     name: "add.post",
     props: true,
     components: {
-      default: () => import("./assets/AddPost.31bca2b9.mjs"),
+      default: () => import("./assets/AddPost.d756c101.mjs"),
       header: Header,
       footer: Footer
     },
@@ -156,7 +156,7 @@ const routes = [
     name: "show.post",
     props: true,
     components: {
-      default: () => import("./assets/SinglePost.210d35a3.mjs"),
+      default: () => import("./assets/SinglePost.dd535420.mjs"),
       header: Header,
       footer: Footer
     },
@@ -170,7 +170,7 @@ const routes = [
     name: "show.ads",
     props: true,
     components: {
-      default: () => import("./assets/SingleAnnouncement.c4e4997e.mjs"),
+      default: () => import("./assets/SingleAnnouncement.64e6a4c1.mjs"),
       header: Header,
       footer: Footer
     },
@@ -184,7 +184,7 @@ const routes = [
     name: "edit.ads",
     props: true,
     components: {
-      default: () => import("./assets/EditAnnouncement.46ebabbc.mjs"),
+      default: () => import("./assets/EditAnnouncement.374c10cd.mjs"),
       header: Header,
       footer: Footer
     },
@@ -198,7 +198,7 @@ const routes = [
     name: "add.ads",
     props: true,
     components: {
-      default: () => import("./assets/AddAnnouncement.c97d6de7.mjs"),
+      default: () => import("./assets/AddAnnouncement.6539d1a1.mjs"),
       header: Header,
       footer: Footer
     },
@@ -212,7 +212,7 @@ const routes = [
     name: "add.job",
     props: true,
     components: {
-      default: () => import("./assets/AddJob.af9f42f5.mjs"),
+      default: () => import("./assets/AddJob.d6ec8a6f.mjs"),
       header: Header,
       footer: Footer
     },
@@ -226,7 +226,7 @@ const routes = [
     name: "show.job",
     props: true,
     components: {
-      default: () => import("./assets/SingleJob.14fdc804.mjs"),
+      default: () => import("./assets/SingleJob.fb04532e.mjs"),
       header: Header,
       footer: Footer
     },
@@ -240,7 +240,7 @@ const routes = [
     name: "edit.job",
     props: true,
     components: {
-      default: () => import("./assets/EditJob.b876d30c.mjs"),
+      default: () => import("./assets/EditJob.bab8d842.mjs"),
       header: Header,
       footer: Footer
     },
@@ -254,7 +254,7 @@ const routes = [
     name: "edit.post",
     props: true,
     components: {
-      default: () => import("./assets/EditPost.d2c52bf2.mjs"),
+      default: () => import("./assets/EditPost.d2057064.mjs"),
       header: Header,
       footer: Footer
     },
@@ -267,7 +267,7 @@ const routes = [
     path: "/profiles/establishment",
     name: "establishment",
     components: {
-      default: () => import("./assets/Establishment.7266010e.mjs"),
+      default: () => import("./assets/Establishment.b03cf6ea.mjs"),
       header: Header,
       footer: Footer
     },
@@ -280,7 +280,7 @@ const routes = [
     path: "/profiles/particular",
     name: "particular",
     components: {
-      default: () => import("./assets/Particular.e0f65134.mjs"),
+      default: () => import("./assets/Particular.ddc26d18.mjs"),
       header: Header,
       footer: Footer
     },
@@ -293,7 +293,7 @@ const routes = [
     path: "/profiles/political-institution",
     name: "ip",
     components: {
-      default: () => import("./assets/PoliticalInstitution.df805a72.mjs"),
+      default: () => import("./assets/PoliticalInstitution.c12b7f21.mjs"),
       header: Header,
       footer: Footer
     },
@@ -306,7 +306,7 @@ const routes = [
     path: "/jobs",
     name: "jobs",
     components: {
-      default: () => import("./assets/Job.194949d5.mjs"),
+      default: () => import("./assets/Job.c94e856d.mjs"),
       header: Header,
       footer: Footer
     },
@@ -319,7 +319,7 @@ const routes = [
     path: "/universities",
     name: "universities",
     components: {
-      default: () => import("./assets/Universities.f1b0e46a.mjs"),
+      default: () => import("./assets/Universities.9ad05c9d.mjs"),
       header: Header,
       footer: Footer
     },
@@ -333,7 +333,7 @@ const routes = [
     name: "show.university",
     props: true,
     components: {
-      default: () => import("./assets/SingleUniversity.4f719903.mjs"),
+      default: () => import("./assets/SingleUniversity.f030ee9e.mjs"),
       header: Header,
       footer: Footer
     },
@@ -346,7 +346,7 @@ const routes = [
     path: "/ads",
     name: "ads",
     components: {
-      default: () => import("./assets/Announcement.ac4ee4de.mjs"),
+      default: () => import("./assets/Announcement.a128c103.mjs"),
       header: Header,
       footer: Footer
     },
@@ -359,7 +359,7 @@ const routes = [
     path: "/contact",
     name: "contact",
     components: {
-      default: () => import("./assets/Contact.5c761d9a.mjs"),
+      default: () => import("./assets/Contact.2ec3b9b5.mjs"),
       header: Header,
       footer: Footer
     },
@@ -371,7 +371,7 @@ const routes = [
     path: "/forgot-password",
     name: "forgot.password",
     components: {
-      default: () => import("./assets/ForgotPassword.f26f9ebf.mjs"),
+      default: () => import("./assets/ForgotPassword.2a536de0.mjs"),
       header: Header,
       footer: Footer
     },
@@ -383,7 +383,7 @@ const routes = [
     path: "/reset-password/:token",
     name: "reset.password",
     components: {
-      default: () => import("./assets/ResetPassword.9b62c223.mjs"),
+      default: () => import("./assets/ResetPassword.f0a90848.mjs"),
       header: Header,
       footer: Footer
     },
@@ -397,7 +397,7 @@ const routes = [
     name: "login",
     props: true,
     components: {
-      default: () => import("./assets/Login.b558c609.mjs"),
+      default: () => import("./assets/Login.3e4f0120.mjs"),
       header: Header,
       footer: Footer
     },
@@ -409,7 +409,7 @@ const routes = [
     path: "/pack",
     name: "pack",
     components: {
-      default: () => import("./assets/Pack.1b34534f.mjs"),
+      default: () => import("./assets/Pack.c1180580.mjs"),
       header: Header,
       footer: Footer
     },
@@ -422,7 +422,7 @@ const routes = [
     name: "register",
     props: true,
     components: {
-      default: () => import("./assets/Register.01cd2ae6.mjs"),
+      default: () => import("./assets/Register.c0f72ecc.mjs"),
       header: Header,
       footer: Footer
     },
@@ -435,7 +435,7 @@ const routes = [
     name: "compte",
     props: true,
     components: {
-      default: () => import("./assets/Profile.136300d9.mjs"),
+      default: () => import("./assets/Profile.0714ab42.mjs"),
       header: Header,
       footer: Footer
     },
@@ -449,7 +449,7 @@ const routes = [
     name: "setting.account",
     props: true,
     components: {
-      default: () => import("./assets/SettingAccount.78a285bc.mjs"),
+      default: () => import("./assets/SettingAccount.14a09525.mjs"),
       header: Header,
       footer: Footer
     },
@@ -472,7 +472,7 @@ const routes = [
   },
   {
     path: "/login/admin",
-    component: () => import("./assets/Login.ab6eb51f.mjs"),
+    component: () => import("./assets/Login.ac1ecdd6.mjs"),
     name: "login.admin",
     meta: {
       title: siteName + " - Admin Panel"
@@ -501,7 +501,7 @@ const routes = [
       },
       {
         path: "other",
-        component: () => import("./assets/OtherTools.65d9a96c.mjs"),
+        component: () => import("./assets/OtherTools.e48c0265.mjs"),
         name: "admin.other",
         meta: {
           title: siteName + " - Other"
@@ -509,7 +509,7 @@ const routes = [
       },
       {
         path: "post/:type",
-        component: () => import("./assets/PostIndex.8eb9de50.mjs"),
+        component: () => import("./assets/PostIndex.386c8cb7.mjs"),
         props: true,
         name: "admin.post.index",
         meta: {
@@ -518,7 +518,7 @@ const routes = [
       },
       {
         path: "post/create/:type",
-        component: () => import("./assets/PostCreate.a311d52f.mjs"),
+        component: () => import("./assets/PostCreate.b689109e.mjs"),
         props: true,
         name: "admin.post.create",
         meta: {
@@ -527,7 +527,7 @@ const routes = [
       },
       {
         path: "post/edit/:type/:id",
-        component: () => import("./assets/PostEdit.e2edcf85.mjs"),
+        component: () => import("./assets/PostEdit.8f30013b.mjs"),
         props: true,
         name: "admin.post.edit",
         meta: {
@@ -561,7 +561,7 @@ const routes = [
       },
       {
         path: "user",
-        component: () => import("./assets/UserIndex.cf623fd8.mjs"),
+        component: () => import("./assets/UserIndex.9faabdf5.mjs"),
         name: "admin.user.index",
         meta: {
           title: siteName + " - User"
@@ -569,7 +569,7 @@ const routes = [
       },
       {
         path: "user/create",
-        component: () => import("./assets/UserCreate.5468ea7f.mjs"),
+        component: () => import("./assets/UserCreate.0306b211.mjs"),
         name: "admin.user.create",
         meta: {
           title: siteName + " - Create User"
@@ -577,7 +577,7 @@ const routes = [
       },
       {
         path: "user/edit/:id",
-        component: () => import("./assets/UserEdit.84cd4fda.mjs"),
+        component: () => import("./assets/UserEdit.8d9477f9.mjs"),
         props: true,
         name: "admin.user.edit",
         meta: {
@@ -586,7 +586,7 @@ const routes = [
       },
       {
         path: "job",
-        component: () => import("./assets/JobOfferIndex.460c8496.mjs"),
+        component: () => import("./assets/JobOfferIndex.d6e61977.mjs"),
         name: "admin.jobOffer.index",
         meta: {
           title: siteName + " - Job"
@@ -594,7 +594,7 @@ const routes = [
       },
       {
         path: "job/create",
-        component: () => import("./assets/JobOfferCreate.7126e50d.mjs"),
+        component: () => import("./assets/JobOfferCreate.440b123c.mjs"),
         name: "admin.jobOffer.create",
         meta: {
           title: siteName + " - Create Job"
@@ -602,7 +602,7 @@ const routes = [
       },
       {
         path: "job/edit/:id",
-        component: () => import("./assets/JobOfferEdit.b2c9cb1f.mjs"),
+        component: () => import("./assets/JobOfferEdit.e706d1cf.mjs"),
         props: true,
         name: "admin.jobOffer.edit",
         meta: {
@@ -611,7 +611,7 @@ const routes = [
       },
       {
         path: "comment",
-        component: () => import("./assets/CommentIndex.66eabb03.mjs"),
+        component: () => import("./assets/CommentIndex.c3de654f.mjs"),
         name: "admin.comment.index",
         meta: {
           title: siteName + " - Comment"
@@ -677,7 +677,7 @@ const routes = [
       },
       {
         path: "ads",
-        component: () => import("./assets/AnnouncementIndex.ca240783.mjs"),
+        component: () => import("./assets/AnnouncementIndex.82fdd5ea.mjs"),
         name: "admin.announcement.index",
         meta: {
           title: siteName + " - Ads"
@@ -685,7 +685,7 @@ const routes = [
       },
       {
         path: "ads/create",
-        component: () => import("./assets/AnnouncementCreate.e12cba93.mjs"),
+        component: () => import("./assets/AnnouncementCreate.9d7421bf.mjs"),
         name: "admin.announcement.create",
         meta: {
           title: siteName + " - Create Ads"
@@ -693,7 +693,7 @@ const routes = [
       },
       {
         path: "ads/edit/:id",
-        component: () => import("./assets/AnnouncementEdit.9fd0798b.mjs"),
+        component: () => import("./assets/AnnouncementEdit.ba9295e2.mjs"),
         props: true,
         name: "admin.announcement.edit",
         meta: {
@@ -777,7 +777,7 @@ const routes = [
       },
       {
         path: "university",
-        component: () => import("./assets/UniversityIndex.2d563be3.mjs"),
+        component: () => import("./assets/UniversityIndex.c5cadd14.mjs"),
         name: "admin.university.index",
         meta: {
           title: siteName + " - University"
@@ -785,7 +785,7 @@ const routes = [
       },
       {
         path: "university/create",
-        component: () => import("./assets/UniversityCreate.157801a4.mjs"),
+        component: () => import("./assets/UniversityCreate.3824de77.mjs"),
         name: "admin.university.create",
         meta: {
           title: siteName + " - Create University"
@@ -793,7 +793,7 @@ const routes = [
       },
       {
         path: "university/edit/:id",
-        component: () => import("./assets/UniversityEdit.90540f85.mjs"),
+        component: () => import("./assets/UniversityEdit.b7ac1111.mjs"),
         props: true,
         name: "admin.university.edit",
         meta: {
