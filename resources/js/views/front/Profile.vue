@@ -89,9 +89,9 @@
                                     class="text-center text-2xl font-semibold capitalize text-gray-700 lg:text-left lg:text-3xl"
                                 >
                                     <span>{{ user.firstname }}</span>
-                                    <span v-if="user.type == 'particular'">{{
-                                        user.lastname
-                                    }}</span>
+                                    <span v-if="user.type == 'particular'"
+                                        >&nbsp;{{ user.lastname }}</span
+                                    >
                                 </h1>
                                 <div
                                     class="mt-2 flex items-center space-x-2 text-sm"

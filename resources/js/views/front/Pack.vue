@@ -221,9 +221,11 @@
                             <h4
                                 class="mt-2 animate-pulse text-5xl font-semibold text-white"
                             >
-                                $50.00
+                                {{ $t("free") }}
                             </h4>
-                            <p class="mt-4 text-gray-100">/ {{ $t("year") }}</p>
+                            <p class="mt-4 text-gray-100">
+                                / {{ $t("recruiter") }}
+                            </p>
                         </div>
 
                         <div class="mt-8 space-y-8">
@@ -275,15 +277,7 @@
                                 }}</span>
                             </div>
                         </div>
-                        <!-- <stripe-checkout
-                            ref="checkoutRef"
-                            mode="subscription"
-                            :pk="publishableKey"
-                            :sessionId="sessionId"
-                        /> -->
-                        <!-- <button @click="submit" class="w-full block text-center px-4 py-2 mt-10 font-medium tracking-wide text-primary-blue capitalize transition-colors duration-200 transform bg-white rounded-md hover:bg-white focus:outline-none focus:bg-white">
-                            {{ $t("register") }}
-                        </button> -->
+
                         <router-link
                             :to="{
                                 name: 'register',
@@ -293,9 +287,6 @@
                         >
                             {{ $t("register") }}
                         </router-link>
-                        <!-- <router-link  :to="{name:'register', params: { type : 'business2' }}" class="w-full block text-center px-4 py-2 mt-10 font-medium tracking-wide text-primary-blue capitalize transition-colors duration-200 transform bg-white rounded-md hover:bg-white focus:outline-none focus:bg-white">
-                            {{ $t("register") }}
-                        </router-link> -->
                     </div>
                     <div
                         class="transform rounded-lg bg-white px-6 py-4 shadow transition-colors duration-200 hover:bg-gray-50"
