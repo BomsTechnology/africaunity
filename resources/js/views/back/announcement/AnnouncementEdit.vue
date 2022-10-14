@@ -256,6 +256,7 @@ onMounted(async () => {
     await getCategoryAnnouncements();
     await getCurrencies();
     await getUniversities();
+    announcement.value.image = "";
 });
 
 const saveAnnouncement = async () => {
@@ -279,10 +280,12 @@ const saveAnnouncement = async () => {
 
     await updateAnnouncement(formData, props.id);
 
-    router.push({ name: "admin.announcement.index" });
+    if (errors.value == "") {
+        router.push({ name: "admin.announcement.index" });
+    }
 };
 
 const handelFileObject = async () => {
-    announcement.image = file.value.files[0];
+    announcement.value.image = file.value.files[0];
 };
 </script>

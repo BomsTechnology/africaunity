@@ -516,7 +516,11 @@
 
 <script setup>
 import Error from "./Error.vue";
-import { UserIcon, LockClosedIcon, MailIcon } from "@heroicons/vue/solid";
+import {
+    UserIcon,
+    LockClosedIcon,
+    EnvelopeIcon,
+} from "@heroicons/vue/24/solid";
 import { reactive, ref, onMounted } from "vue";
 
 const props = defineProps({

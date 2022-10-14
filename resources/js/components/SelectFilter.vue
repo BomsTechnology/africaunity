@@ -1,5 +1,5 @@
 <script setup>
-import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/vue/solid";
+import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/vue/24/solid";
 import { computed, reactive, ref, watch } from "vue";
 import { onClickOutside } from "@vueuse/core";
 
@@ -31,6 +31,10 @@ const props = defineProps({
         default: false,
     },
     handled: {
+        type: Boolean,
+        default: false,
+    },
+    loading: {
         type: Boolean,
         default: false,
     },
@@ -106,8 +110,10 @@ watch(props, async (newProps, oldProps) => {
             let currentData = newProps.data.find(
                 (item) => item.id == newProps.modelValue
             );
-            selectItem.id = currentData.id;
-            selectItem.name = currentData.name;
+            if (currentData) {
+                selectItem.id = currentData.id;
+                selectItem.name = currentData.name;
+            }
         } else {
             for (let i = 0; i < newProps.data.length; i++) {
                 if (newProps.data[i].id == newProps.modelValue) {

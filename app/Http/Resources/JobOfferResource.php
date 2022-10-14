@@ -16,6 +16,7 @@ use App\Models\WorkMode;
 use App\Models\YearExperience;
 use App\Models\Zone;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Str;
 
 class JobOfferResource extends JsonResource
 {
@@ -39,7 +40,7 @@ class JobOfferResource extends JsonResource
             'company_logo' => $this->company_logo,
             'min_price' => $this->min_price,
             'max_price' => $this->max_price,
-            'user' => new UserResource(User::find($this->user_id)),
+            'user' => new UserResource2(User::find($this->user_id)),
             'currency' => new CurrencyResource(Currency::find($this->currency_id)),
             'year_experience' => new YearExperienceResource(YearExperience::find($this->year_experience_id)),
             'work_department' => new WorkDepartmentResource(WorkDepartment::find($this->work_department_id)),
@@ -54,6 +55,7 @@ class JobOfferResource extends JsonResource
             'date' => $this->created_at->format('Y-m-d'),
             'activity_areas' => ActivityAreaResource::collection(JobOffer::find($this->id)->activity_areas()->orderBy('id')->get()),
             'languages' => LanguageResource::collection(JobOffer::find($this->id)->languages()->orderBy('id')->get()),
+            'slug' => Str::slug($this->title)
         ];
     }
 }

@@ -150,7 +150,7 @@
 </template>
 
 <script setup>
-import { ExclamationCircleIcon } from "@heroicons/vue/solid";
+import { ExclamationCircleIcon } from "@heroicons/vue/24/solid";
 import { reactive, ref, onMounted } from "vue";
 import Error from "../components/Error.vue";
 

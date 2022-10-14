@@ -24,7 +24,7 @@
                             alt=""
                             class="h-28 w-28 object-cover"
                         />
-                        <OfficeBuildingIcon
+                        <BuildingOffice2Icon
                             v-else
                             class="h-28 w-28 text-gray-500"
                         />
@@ -65,7 +65,7 @@
                                         {{
                                             new Date(
                                                 jobOffer.date
-                                            ).toLocaleDateString("fr-FR", {
+                                            ).toLocaleDateString(locale, {
                                                 day: "numeric",
                                                 year: "numeric",
                                                 month: "long",
@@ -79,11 +79,10 @@
                                         :to="{
                                             name: 'compte',
                                             params: {
-                                                name: jobOffer.user.firstname,
+                                                slug: jobOffer.user.slug,
                                                 id: jobOffer.user.id,
                                             },
                                         }"
-                                        href="#"
                                         class="hover:text-primary-blue"
                                         >{{
                                             jobOffer.user.firstname
@@ -104,7 +103,7 @@
                                     :to="{
                                         name: 'compte',
                                         params: {
-                                            name: jobOffer.user.firstname,
+                                            slug: jobOffer.user.slug,
                                             id: jobOffer.user.id,
                                         },
                                     }"
@@ -137,7 +136,7 @@
                                                 params: { id: jobOffer.id },
                                             }"
                                         >
-                                            <PencilAltIcon
+                                            <PencilSquareIcon
                                                 class="h-5 w-5 cursor-pointer text-gray-400 hover:text-primary-blue"
                                             />
                                         </router-link>
@@ -203,7 +202,7 @@
                 v-else
                 class="flex animate-pulse flex-col items-center justify-center p-28 text-gray-500"
             >
-                <EmojiSadIcon class="h-16 w-16" />
+                <FaceFrownIcon class="h-16 w-16" />
                 <span class="mt-2 text-2xl">{{ $t("no-content") }}</span>
             </div>
         </div>
@@ -213,7 +212,7 @@
                     Job {{ $t("details") }}
                 </h1>
                 <div class="flex items-center space-x-2 text-sm text-gray-500">
-                    <MailIcon class="h-6 w-6" />
+                    <EnvelopeIcon class="h-6 w-6" />
                     <span>
                         {{ jobOffer.company_email }}
                     </span>
@@ -223,7 +222,7 @@
                         class="flex items-center space-x-2 text-gray-500"
                         v-if="jobOffer.continent"
                     >
-                        <GlobeIcon class="h-6 w-6" />
+                        <GlobeEuropeAfricaIcon class="h-6 w-6" />
                         <span>
                             <span v-if="$i18n.locale == 'en'">{{
                                 jobOffer.continent.name_en
@@ -277,7 +276,7 @@
                         class="flex items-center space-x-2 text-gray-500"
                         v-if="jobOffer.city"
                     >
-                        <OfficeBuildingIcon class="h-6 w-6" />
+                        <BuildingOffice2Icon class="h-6 w-6" />
                         <span>
                             <span v-if="$i18n.locale == 'en'">{{
                                 jobOffer.city.name_en
@@ -315,7 +314,7 @@
                         class="flex items-center space-x-2 text-gray-500"
                         v-if="jobOffer.work_mode"
                     >
-                        <DesktopComputerIcon class="h-6 w-6" />
+                        <ComputerDesktopIcon class="h-6 w-6" />
                         <span>
                             <span v-if="$i18n.locale == 'en'">{{
                                 jobOffer.work_mode.name_en
@@ -330,7 +329,7 @@
                         </span>
                     </div>
                     <div class="flex items-center space-x-2 text-gray-500">
-                        <LocationMarkerIcon class="h-6 w-6" />
+                        <MapPinIcon class="h-6 w-6" />
                         <span>
                             {{ jobOffer.location }}
                         </span>
@@ -359,7 +358,7 @@
                         class="flex items-center space-x-2 text-gray-500"
                         v-if="jobOffer.size_company"
                     >
-                        <TemplateIcon class="h-6 w-6" />
+                        <Squares2X2Icon class="h-6 w-6" />
                         <span>
                             <span v-if="$i18n.locale == 'en'">{{
                                 jobOffer.size_company.name_en
@@ -391,7 +390,7 @@
                         class="flex items-center space-x-2 text-gray-500"
                         v-if="jobOffer.currency"
                     >
-                        <CashIcon class="h-6 w-6" />
+                        <BanknotesIcon class="h-6 w-6" />
                         <span>
                             {{ jobOffer.min_price + jobOffer.currency.symbol }}
                             -
@@ -401,7 +400,7 @@
                 </div>
 
                 <div class="flex items-center space-x-2 text-sm text-gray-500">
-                    <TranslateIcon class="h-6 w-6" />
+                    <LanguageIcon class="h-6 w-6" />
                     <span>
                         <ul class="flex space-x-2 py-1">
                             <li
@@ -441,29 +440,31 @@ import { reactive, ref, onMounted, onBeforeMount } from "vue";
 import Error from "@/components/Error.vue";
 import Apply from "@/components/Apply.vue";
 import {
-    DesktopComputerIcon,
+    ComputerDesktopIcon,
     GlobeAltIcon,
-    TemplateIcon,
+    Squares2X2Icon,
     AcademicCapIcon,
-    TranslateIcon,
+    LanguageIcon,
     MapIcon,
     FlagIcon,
     PlusCircleIcon,
     CalendarIcon,
     UserCircleIcon,
-    EmojiSadIcon,
-    LocationMarkerIcon,
-    PencilAltIcon,
+    FaceFrownIcon,
+    MapPinIcon,
+    PencilSquareIcon,
     UserIcon,
-    MailIcon,
+    EnvelopeIcon,
     PhoneIcon,
-    GlobeIcon,
-    CashIcon,
+    GlobeEuropeAfricaIcon,
+    BanknotesIcon,
     BriefcaseIcon,
-    OfficeBuildingIcon,
-} from "@heroicons/vue/solid";
+    BuildingOffice2Icon,
+} from "@heroicons/vue/24/solid";
 import useJobOffers from "@/services/jobOfferServices.js";
 import { useRouter } from "vue-router";
+import { useI18n } from "vue-i18n";
+const { locale } = useI18n();
 const router = useRouter();
 const openApply = ref(false);
 const { jobOffer, getJobOffer, loading, errors } = useJobOffers();
@@ -472,6 +473,10 @@ const loadingC = ref(0);
 const url = window.location.href;
 const props = defineProps({
     id: String,
+    slug: {
+        required: false,
+        type: String,
+    },
 });
 onBeforeMount(async () => {
     await getJobOffer(props.id);

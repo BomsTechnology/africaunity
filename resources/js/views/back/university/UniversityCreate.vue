@@ -311,9 +311,11 @@ const storeUniversity = async () => {
     formData.append("zone_id", university.zone_id);
 
     await createUniversity(formData);
-    router.push({
-        name: "admin.university.index",
-    });
+    if (errors.value == "") {
+        router.push({
+            name: "admin.university.index",
+        });
+    }
 };
 
 const handelFileObject = async () => {

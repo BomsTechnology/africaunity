@@ -37,7 +37,7 @@
                     <router-link
                         :to="{
                             name: 'show.post',
-                            params: { id: post.id },
+                            params: { id: post.id, slug: post.slug },
                         }"
                     >
                         <img
@@ -67,9 +67,8 @@
                             <router-link
                                 :to="{
                                     name: 'show.post',
-                                    params: { id: post.id },
+                                    params: { id: post.id, slug: post.slug },
                                 }"
-                                href="#"
                                 class="dark:text-white mt-2 block transform text-2xl font-semibold text-gray-800 transition-colors duration-200 hover:text-gray-600 hover:underline"
                                 >{{
                                     post.title.length <= 20
@@ -77,11 +76,6 @@
                                         : post.title.substring(0, 19) + "..."
                                 }}</router-link
                             >
-                            <!-- <p
-                                class="mt-2 text-sm text-gray-600 dark:text-gray-400"
-                            >
-                                {{ post.content.substring(0, 19) + "..." }}
-                            </p> -->
                         </div>
 
                         <div
@@ -90,7 +84,7 @@
                             <router-link
                                 :to="{
                                     name: 'show.post',
-                                    params: { id: post.id },
+                                    params: { id: post.id, slug: post.slug },
                                 }"
                                 class="dark:text-blue-400 text-blue-600 hover:underline"
                                 >{{ $t("read-more") }}</router-link
@@ -105,11 +99,10 @@
                                         :to="{
                                             name: 'compte',
                                             params: {
-                                                name: post.user.firstname,
+                                                slug: post.user.slug,
                                                 id: post.user.id,
                                             },
                                         }"
-                                        href="#"
                                         class="hover:text-primary-blue"
                                         >{{ post.user.firstname }}</router-link
                                     >
@@ -118,7 +111,7 @@
                                     <CalendarIcon class="h-4 w-4" />
                                     <a href="#" class="hover:text-primary-blue">{{
                                         new Date(post.date).toLocaleDateString(
-                                            "fr-FR",
+                                            locale,
                                             {
                                                 day: "numeric",
                                                 year: "numeric",
@@ -128,7 +121,9 @@
                                     }}</a>
                                 </div>
                                 <div class="item-center flex space-x-1">
-                                    <ChatIcon class="h-4 w-4 text-gray-500" />
+                                    <ChatBubbleOvalLeftEllipsisIcon
+                                        class="h-4 w-4 text-gray-500"
+                                    />
                                     <a
                                         href="#"
                                         class="text-xs hover:text-primary-blue"
@@ -147,7 +142,7 @@
                 v-if="posts.length == 0 && loading != 1"
                 class="flex animate-pulse flex-col items-center justify-center p-28 text-gray-500"
             >
-                <EmojiSadIcon class="h-16 w-16" />
+                <FaceFrownIcon class="h-16 w-16" />
                 <span class="mt-2 text-2xl">{{ $t("no-content") }} </span>
             </div>
         </div>
@@ -359,13 +354,14 @@ import {
     PlusCircleIcon,
     CalendarIcon,
     UserIcon,
-    EmojiSadIcon,
-    ChatIcon,
-} from "@heroicons/vue/solid";
+    FaceFrownIcon,
+    ChatBubbleOvalLeftEllipsisIcon,
+} from "@heroicons/vue/24/solid";
 
 import usePosts from "@/services/postServices.js";
 import Article from "@/components/skeleton/Article.vue";
 import { useRouter } from "vue-router";
+
 const router = useRouter();
 const { locale } = useI18n();
 const route = useRoute();
@@ -401,7 +397,7 @@ onMounted(async () => {
     } else {
         await getPosts("article", localStorage.lang);
     }
-
+    // console.log(posts.value[0].slug);
     await getContinents();
     await getZones();
     await getCountries();

@@ -47,7 +47,7 @@
                     <form @submit.prevent="login" class="py-7">
                         <div class="relative">
                             <span
-                                ><MailIcon
+                                ><EnvelopeIcon
                                     class="absolute mt-2 ml-2 h-6 w-6 text-gray-400"
                             /></span>
                             <input
@@ -140,7 +140,7 @@
 import { reactive, ref, onMounted } from "vue";
 import Error from "@/components/Error.vue";
 import useAuth from "@/services/authServices.js";
-import { MailIcon, LockClosedIcon } from "@heroicons/vue/solid";
+import { EnvelopeIcon, LockClosedIcon } from "@heroicons/vue/24/solid";
 import NotLogin from "@/components/NotLogin.vue";
 import VerifyOK from "@/components/VerifyOK.vue";
 import { useRouter } from "vue-router";
@@ -178,7 +178,7 @@ onMounted(async () => {
     if (localStorage.token) {
         router.push({
             name: "compte",
-            params: { name: cuser.firstname, id: cuser.id },
+            params: { slug: cuser.slug, id: cuser.id },
         });
     }
 });

@@ -32,10 +32,16 @@
                             >
                                 <div class="flex space-x-1">
                                     <CalendarIcon class="h-4 w-4" />
-                                    <a
-                                        href="#"
-                                        class="hover:text-primary-blue"
-                                        >{{ announcement.date }}</a
+                                    <a href="#" class="hover:text-primary-blue">
+                                        {{
+                                            new Date(
+                                                announcement.date
+                                            ).toLocaleDateString(locale, {
+                                                day: "numeric",
+                                                year: "numeric",
+                                                month: "long",
+                                            })
+                                        }}</a
                                     >
                                 </div>
                                 <div class="flex space-x-1">
@@ -44,12 +50,10 @@
                                         :to="{
                                             name: 'compte',
                                             params: {
-                                                name: announcement.user
-                                                    .firstname,
+                                                slug: announcement.user.slug,
                                                 id: announcement.user.id,
                                             },
                                         }"
-                                        href="#"
                                         class="hover:text-primary-blue"
                                         >{{
                                             announcement.user.firstname
@@ -70,7 +74,7 @@
                                     :to="{
                                         name: 'compte',
                                         params: {
-                                            name: announcement.user.firstname,
+                                            slug: announcement.user.slug,
                                             id: announcement.user.id,
                                         },
                                     }"
@@ -103,7 +107,7 @@
                                                 params: { id: announcement.id },
                                             }"
                                         >
-                                            <PencilAltIcon
+                                            <PencilSquareIcon
                                                 class="h-5 w-5 cursor-pointer text-gray-400 hover:text-primary-blue"
                                             />
                                         </router-link>
@@ -168,7 +172,7 @@
                 v-else
                 class="flex animate-pulse flex-col items-center justify-center p-28 text-gray-500"
             >
-                <EmojiSadIcon class="h-16 w-16" />
+                <FaceFrownIcon class="h-16 w-16" />
                 <span class="mt-2 text-2xl">{{ $t("no-content") }}</span>
             </div>
         </div>
@@ -181,14 +185,14 @@
                     class="flex items-center space-x-2 text-gray-500"
                     v-if="announcement.university"
                 >
-                    <LocationMarkerIcon class="h-8 w-8" />
+                    <MapPinIcon class="h-8 w-8" />
                     <span>{{ announcement.university.name }}</span>
                 </div>
                 <div
                     class="flex items-center space-x-2 text-gray-500"
                     v-if="announcement.email"
                 >
-                    <MailIcon class="h-8 w-8" />
+                    <EnvelopeIcon class="h-8 w-8" />
                     <span>{{ announcement.email }}</span>
                 </div>
                 <div
@@ -204,7 +208,7 @@
                         announcement.website && announcement.website != 'null'
                     "
                 >
-                    <GlobeIcon class="h-8 w-8" />
+                    <GlobeEuropeAfricaIcon class="h-8 w-8" />
                     <span>{{ announcement.website }} </span>
                 </div>
                 <div
@@ -218,7 +222,7 @@
                     class="flex items-center space-x-2 text-gray-500"
                     v-if="announcement.currency && announcement.price != 'null'"
                 >
-                    <CashIcon class="h-8 w-8" />
+                    <BanknotesIcon class="h-8 w-8" />
                     <span
                         >{{ announcement.price }}
                         {{ announcement.currency.symbol }}
@@ -304,22 +308,28 @@ import {
     PlusCircleIcon,
     CalendarIcon,
     UserCircleIcon,
-    EmojiSadIcon,
-    LocationMarkerIcon,
-    PencilAltIcon,
+    FaceFrownIcon,
+    MapPinIcon,
+    PencilSquareIcon,
     UserIcon,
-    MailIcon,
+    EnvelopeIcon,
     PhoneIcon,
-    GlobeIcon,
-    CashIcon,
+    GlobeEuropeAfricaIcon,
+    BanknotesIcon,
     BriefcaseIcon,
-} from "@heroicons/vue/solid";
+} from "@heroicons/vue/24/solid";
 import useAnnouncements from "@/services/announcementServices.js";
 import { useRouter } from "vue-router";
+import { useI18n } from "vue-i18n";
+const { locale } = useI18n();
 const router = useRouter();
 const props = defineProps({
     id: {
         required: true,
+        type: String,
+    },
+    slug: {
+        required: false,
         type: String,
     },
 });

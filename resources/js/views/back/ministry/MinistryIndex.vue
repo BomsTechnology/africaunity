@@ -96,7 +96,7 @@
 
 <script setup>
 import { onMounted, ref, computed } from "vue";
-import { PlusCircleIcon } from "@heroicons/vue/solid";
+import { PlusCircleIcon } from "@heroicons/vue/24/solid";
 import useMinistries from "@/services/ministryServices.js";
 import Error from "@/components/Error.vue";
 

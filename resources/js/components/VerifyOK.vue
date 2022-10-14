@@ -62,7 +62,7 @@
 </template>
 
 <script setup>
-import { EmojiHappyIcon } from "@heroicons/vue/solid";
+import { EmojiHappyIcon } from "@heroicons/vue/24/solid";
 const props = defineProps({
     open: Boolean,
     toogleModal: Function,

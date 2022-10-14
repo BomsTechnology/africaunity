@@ -52,13 +52,13 @@
                                 >{{ $t("university") }}
                                 <span class="text-red-500">*</span>
                             </label>
-                            <Select2
+                            <SelectFilter
                                 v-model="announcement.university_id"
-                                :options="universities"
-                                :id="'select2'"
-                                :settings="{
-                                    width: '100%',
-                                }"
+                                :data="universities"
+                                :placeholder="'Select University'"
+                                :required="false"
+                                :resetField="true"
+                                :className="'w-full h-full mt-1 block rounded-md border bg-white  border-gray-300 p-2.5 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-sm'"
                             />
                         </div>
 
@@ -179,7 +179,16 @@
                         <div class="flex items-center space-x-4 py-4">
                             <img
                                 v-if="announcement.image"
-                                :src="announcement.image"
+                                :src="
+                                    typeof announcement.image == 'string'
+                                        ? announcement.image
+                                        : previewImage(announcement.image)
+                                "
+                                @load="
+                                    typeof announcement.image == 'string'
+                                        ? ''
+                                        : loadImage(announcement.image)
+                                "
                                 class="h-16 w-16 rounded-full"
                                 :alt="announcement.title"
                             />
@@ -271,13 +280,16 @@ const { updateAnnouncement, getAnnouncement, announcement, errors, loading } =
 const { categoryAnnouncements, getCategoryAnnouncements } =
     usecategoryAnnouncements();
 const { currencies, getCurrencies } = useCurrencies();
-const { universities, getUniversities } = useUniversities();
+const { universities, getAllUniversities } = useUniversities();
 
 onMounted(async () => {
     await getAnnouncement(props.id);
+    let univId = announcement.value.university_id;
     await getCategoryAnnouncements();
+    await getAllUniversities();
+    announcement.value.university_id = "0";
+    announcement.value.university_id = univId;
     await getCurrencies();
-    await getUniversities();
 });
 announcement.value.image = "";
 const saveAnnouncement = async () => {
@@ -308,6 +320,12 @@ const saveAnnouncement = async () => {
 };
 
 const handelFileObject = () => {
-    announcement.image = file.value.files[0];
+    announcement.value.image = file.value.files[0];
 };
+function previewImage(file) {
+    return URL.createObjectURL(file);
+}
+function loadImage(file) {
+    return URL.revokeObjectURL(file);
+}
 </script>

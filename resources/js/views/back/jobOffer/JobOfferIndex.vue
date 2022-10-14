@@ -69,7 +69,7 @@
                                         alt=""
                                         class="h-12 w-12 rounded-full object-cover"
                                     />
-                                    <OfficeBuildingIcon
+                                    <BuildingOffice2Icon
                                         v-else
                                         class="h-12 w-12"
                                     />
@@ -119,7 +119,7 @@
 </template>
 
 <script setup>
-import { PlusCircleIcon, OfficeBuildingIcon } from "@heroicons/vue/solid";
+import { PlusCircleIcon, BuildingOffice2Icon } from "@heroicons/vue/24/solid";
 import { reactive, ref, onMounted, computed } from "vue";
 import useJobOffers from "@/services/jobOfferServices.js";
 import Error from "@/components/Error.vue";

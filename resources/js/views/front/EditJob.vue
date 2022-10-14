@@ -242,7 +242,18 @@
                             <div class="flex items-center space-x-4 py-4">
                                 <img
                                     v-if="jobOffer.company_logo"
-                                    :src="jobOffer.company_logo"
+                                    :src="
+                                        typeof jobOffer.company_logo == 'string'
+                                            ? jobOffer.company_logo
+                                            : previewImage(
+                                                  jobOffer.company_logo
+                                              )
+                                    "
+                                    @load="
+                                        typeof jobOffer.company_logo == 'string'
+                                            ? ''
+                                            : loadImage(jobOffer.company_logo)
+                                    "
                                     class="h-16 w-16 rounded-full"
                                     :alt="jobOffer.title"
                                 />
@@ -725,15 +736,19 @@ onMounted(async () => {
     await getLanguages();
     await getCountries();
     await getCities();
+
     zoneFiltered.value = zones.value.filter((zone) => {
         return zone.continent_id == jobOffer.value.continent.id;
     });
+
     countryFiltered.value = countries.value.filter((country) => {
         return country.zone_id == jobOffer.value.zone.id;
     });
+
     cityfiltered.value = cities.value.filter((city) => {
         return city.country_id == jobOffer.value.country.id;
     });
+    jobOffer.value.company_logo = "";
 });
 
 const saveJobOffer = async () => {
@@ -773,6 +788,12 @@ const saveJobOffer = async () => {
 };
 
 const handelFileObject = () => {
-    jobOffer.company_logo = file.value.files[0];
+    jobOffer.value.company_logo = file.value.files[0];
 };
+function previewImage(file) {
+    return URL.createObjectURL(file);
+}
+function loadImage(file) {
+    return URL.revokeObjectURL(file);
+}
 </script>

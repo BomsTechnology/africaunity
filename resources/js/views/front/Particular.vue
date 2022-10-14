@@ -109,7 +109,7 @@
                 :key="user.id"
                 class="flex flex-col items-center py-2 text-center space-y-5 dark:bg-gray-800 border"
             >
-                    <router-link   :to="{name:'compte',  params: { name: user.firstname, id : user.id }}" class="flex justify-center flex-col items-center">
+                    <router-link   :to="{name:'compte',  params: { slug: user.slug, id : user.id }}" class="flex justify-center flex-col items-center">
                     <img
                         class="object-cover lg:h-44 lg:w-44 rounded-full h-36 w-36"
                         :src="user.avatar"
@@ -231,7 +231,7 @@
            v-if="filteredUser.length == 0 && loading != 1"
             class="p-28 flex justify-center text-gray-500 flex-col items-center animate-pulse"
         >
-            <EmojiSadIcon class="h-16 w-16" />
+            <FaceFrownIcon class="h-16 w-16" />
             <span class="text-2xl mt-2">{{ $t("no-content") }} </span>
         </div>
     </div>
@@ -240,7 +240,7 @@
 
 <script setup>
 import { reactive, ref, onMounted, computed, onUnmounted } from "vue";
-import { EmojiSadIcon, UserCircleIcon, ChevronDownIcon, ChevronUpIcon } from "@heroicons/vue/solid";
+import { FaceFrownIcon, UserCircleIcon, ChevronDownIcon, ChevronUpIcon } from '@heroicons/vue/24/solid';
 import useUsers from "@/services/userServices.js";
 import useLanguages from "@/services/languageServices.js";
 import useActivityAreas from "@/services/activityAreaServices.js";

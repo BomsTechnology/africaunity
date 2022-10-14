@@ -7,6 +7,7 @@ use App\Models\Continent;
 use App\Models\Country;
 use App\Models\Zone;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Str;
 
 class UniversityResource extends JsonResource
 {
@@ -23,6 +24,7 @@ class UniversityResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'text' => $this->name,
+            'slug' => Str::slug($this->name),
             'description' => $this->description,
             'image' => $this->image,
             'continent' => new ContinentResource(Continent::find($this->continent_id)),

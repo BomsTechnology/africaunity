@@ -37,7 +37,7 @@
                     <form @submit.prevent="login" class="py-4">
                         <div class="relative">
                             <span
-                                ><MailIcon
+                                ><EnvelopeIcon
                                     class="absolute h-6 w-6 mt-2 ml-2 text-gray-400"
                             /></span>
                             <input
@@ -144,19 +144,10 @@
                             <div
                                 class="overflow-hidden shadow bg-white"
                                 v-if="index === 0"
-                            >
-                            <router-link  v-if="!token"
-                                :to="{
-                                    name: 'login', params: { redirect: 'not-login' },
-                                }"> <img
-                                        :src="article.image"
-                                        alt=""
-                                        class="object-cover w-full h-64"
-                                />  </router-link>
-                                <router-link v-else
+                            >   <router-link 
                                     :to="{
                                         name: 'show.post',
-                                        params: { id: article.id },
+                                        params: { id: article.id, slug: article.slug },
                                     }"
                                 >
                                     <img
@@ -203,14 +194,10 @@
                                             </a>
                                         </div>
                                         <div>
-                                            <router-link  v-if="!token"
-                                :to="{
-                                    name: 'login', params: { redirect: 'not-login' },
-                                }"> {{ article.title.length <= 20 ? article.title : article.title.substring(0, 19) + "..." }} </router-link>
-                                            <router-link v-else
+                                                 <router-link 
                                                 :to="{
                                                     name: 'show.post',
-                                                    params: { id: article.id },
+                                                    params: { id: article.id, slug: article.slug },
                                                 }"
                                                 class="text-xl font-semibold text-gray-600 hover:text-primary-blue"
                                                 >{{ article.title.length <= 20 ? article.title : article.title.substring(0, 19) + "..." }}
@@ -224,13 +211,21 @@
                                                 <a
                                                     href="#"
                                                     class="hover:text-primary-blue"
-                                                    >{{ article.date }}</a
+                                                    > {{
+                                        new Date(article.date).toLocaleDateString(
+                                            locale,
+                                            {
+                                                day: "numeric",
+                                                year: "numeric",
+                                                month: "long",
+                                            }
+                                        )
+                                    }}</a
                                                 >
                                             </div>
                                             <div class="flex space-x-1">
                                                 <UserIcon class="h-4 w-4" />
-                                                <router-link   :to="{name:'compte',  params: { name: article.user.firstname, id : article.user.id }}"
-                                                    href="#"
+                                                <router-link   :to="{name:'compte',  params: { slug: article.user.slug, id : article.user.id }}"
                                                     class="hover:text-primary-blue"
                                                     >{{
                                                         article.user.firstname
@@ -238,7 +233,7 @@
                                                 >
                                             </div>
                                             <div class="flex space-x-1">
-                                                <ChatIcon class="h-4 w-4" />
+                                                <ChatBubbleOvalLeftEllipsisIcon class="h-4 w-4" />
                                                 <a
                                                     href="#"
                                                     class="hover:text-primary-blue"
@@ -256,19 +251,10 @@
                                 class="overflow-hidden w-full h-32 flex space-x-2 shadow bg-white"
                                 v-if="index !== 0"
                             >
-                            <router-link  v-if="!token"
-                                :to="{
-                                    name: 'login', params: { redirect: 'not-login' },
-                                }" class=" w-36"> <img
-                                        :src="article.image"
-                                        alt=""
-                                        class="object-cover w-full h-64"
-                                />  </router-link>
-                                
-                                <router-link v-else
+                                <router-link 
                                     :to="{
                                         name: 'show.post',
-                                        params: { id: article.id },
+                                        params: { id: article.id, slug: article.slug },
                                     }"
                                     class=" w-36"
                                 >
@@ -279,14 +265,10 @@
                                 /></router-link>
                                 <div class="space-y-2 p-2">
                                     <div>
-                                        <router-link  v-if="!token"
-                                :to="{
-                                    name: 'login', params: { redirect: 'not-login' },
-                                }"> {{ article.title.length <= 20 ? article.title : article.title.substring(0, 19) + "..." }} </router-link>
-                                            <router-link v-else
+                                      <router-link
                                                 :to="{
                                                     name: 'show.post',
-                                                    params: { id: article.id },
+                                                    params: { id: article.id, slug: article.slug },
                                                 }"
                                                 class="text-xl font-semibold text-gray-600 hover:text-primary-blue"
                                                 >{{ article.title.length <= 20 ? article.title : article.title.substring(0, 19) + "..." }}
@@ -300,11 +282,20 @@
                                             <a
                                                 href="#"
                                                 class="hover:text-primary-blue"
-                                                >{{ article.date }}</a
+                                                >{{
+                                        new Date(article.date).toLocaleDateString(
+                                            locale,
+                                            {
+                                                day: "numeric",
+                                                year: "numeric",
+                                                month: "long",
+                                            }
+                                        )
+                                    }}</a
                                             >
                                         </div>
                                         <div class="flex space-x-1">
-                                            <ChatIcon class="h-4 w-4" />
+                                            <ChatBubbleOvalLeftEllipsisIcon class="h-4 w-4" />
                                             <a
                                                 href="#"
                                                 class="hover:text-primary-blue"
@@ -349,18 +340,11 @@
                                     class="overflow-hidden shadow bg-white"
                                     v-if="index === 0"
                                 >
-                                    <router-link  v-if="!token"
-                                :to="{
-                                    name: 'login', params: { redirect: 'not-login' },
-                                }"> <img
-                                        :src="article.image"
-                                        alt=""
-                                        class="object-cover w-full h-64"
-                                />  </router-link>
-                                <router-link v-else
+            
+                                <router-link 
                                     :to="{
                                         name: 'show.post',
-                                        params: { id: article.id },
+                                        params: { id: article.id, slug: article.slug },
                                     }"
                                 >
                                     <img
@@ -409,14 +393,10 @@
                                                 </a>
                                             </div>
                                             <div>
-                                                <router-link  v-if="!token"
-                                :to="{
-                                    name: 'login', params: { redirect: 'not-login' },
-                                }"> {{ article.title.length <= 20 ? article.title : article.title.substring(0, 19) + "..." }} </router-link>
-                                            <router-link v-else
+                                                   <router-link 
                                                 :to="{
                                                     name: 'show.post',
-                                                    params: { id: article.id },
+                                                    params: { id: article.id , slug: article.slug},
                                                 }"
                                                 class="text-xl font-semibold text-gray-600 hover:text-primary-blue"
                                                 >{{ article.title.length <= 20 ? article.title : article.title.substring(0, 19) + "..." }}
@@ -432,13 +412,22 @@
                                                     <a
                                                         href="#"
                                                         class="hover:text-primary-blue"
-                                                        >{{ article.date }}</a
+                                                        >{{
+                                        new Date(article.date).toLocaleDateString(
+                                            locale,
+                                            {
+                                                day: "numeric",
+                                                year: "numeric",
+                                                month: "long",
+                                            }
+                                        )
+                                    }}</a
                                                     >
                                                 </div>
                                                 <div class="flex space-x-1">
                                                     <UserIcon class="h-4 w-4" />
-                                                    <router-link   :to="{name:'compte',  params: { name: article.user.firstname, id : article.user.id }}"
-                                                        href="#"
+                                                    <router-link   :to="{name:'compte',  params: { slug: article.user.slug, id : article.user.id }}"
+                                                        
                                                         class="hover:text-primary-blue"
                                                         >{{
                                                             article.user
@@ -447,7 +436,7 @@
                                                     >
                                                 </div>
                                                 <div class="flex space-x-1">
-                                                    <ChatIcon class="h-4 w-4" />
+                                                    <ChatBubbleOvalLeftEllipsisIcon class="h-4 w-4" />
                                                     <a
                                                         href="#"
                                                         class="hover:text-primary-blue"
@@ -468,19 +457,11 @@
                                         class="overflow-hidden h-32 flex space-x-2 shadow bg-white w-full"
                                         v-if="index !== 0"
                                     >
-                                    <router-link  v-if="!token"
-                                :to="{
-                                    name: 'login', params: { redirect: 'not-login' },
-                                }" class=" w-36"> <img
-                                        :src="article.image"
-                                        alt=""
-                                        class="object-cover w-full h-64"
-                                />  </router-link>
                                 
-                                        <router-link v-else
+                                        <router-link 
                                     :to="{
                                         name: 'show.post',
-                                        params: { id: article.id },
+                                        params: { id: article.id, slug: article.slug },
                                     }"
                                     class="w-36"
                                 >
@@ -491,14 +472,10 @@
                                 /></router-link>
                                         <div class="space-y-2 p-2">
                                             <div>
-                                                <router-link  v-if="!token"
-                                :to="{
-                                    name: 'login', params: { redirect: 'not-login' },
-                                }"> {{ article.title.length <= 20 ? article.title : article.title.substring(0, 19) + "..." }} </router-link>
-                                            <router-link v-else
+                                             <router-link 
                                                 :to="{
                                                     name: 'show.post',
-                                                    params: { id: article.id },
+                                                    params: { id: article.id, slug: article.slug },
                                                 }"
                                                 class="text-xl font-semibold text-gray-600 hover:text-primary-blue"
                                                 >{{ article.title.length <= 20 ? article.title : article.title.substring(0, 19) + "..." }}
@@ -514,11 +491,20 @@
                                                     <a
                                                         href="#"
                                                         class="hover:text-primary-blue"
-                                                        >{{ article.date }}</a
+                                                        >{{
+                                        new Date(article.date).toLocaleDateString(
+                                            locale,
+                                            {
+                                                day: "numeric",
+                                                year: "numeric",
+                                                month: "long",
+                                            }
+                                        )
+                                    }}</a
                                                     >
                                                 </div>
                                                 <div class="flex space-x-1">
-                                                    <ChatIcon class="h-4 w-4" />
+                                                    <ChatBubbleOvalLeftEllipsisIcon class="h-4 w-4" />
                                                     <a
                                                         href="#"
                                                         class="hover:text-primary-blue"
@@ -562,18 +548,10 @@
                                     class="overflow-hidden shadow bg-white"
                                     v-if="index === 0"
                                 >
-                                   <router-link  v-if="!token"
-                                :to="{
-                                    name: 'login', params: { redirect: 'not-login' },
-                                }"> <img
-                                        :src="article.image"
-                                        alt=""
-                                        class="object-cover w-full h-64"
-                                />  </router-link>
-                                <router-link v-else
+                                <router-link 
                                     :to="{
                                         name: 'show.post',
-                                        params: { id: article.id },
+                                        params: { id: article.id, slug: article.slug },
                                     }"
                                 >
                                     <img
@@ -621,15 +599,10 @@
                                                     }}</span>
                                                 </a>
                                             </div>
-                                            <div>
-                                                <router-link  v-if="!token"
-                                :to="{
-                                    name: 'login', params: { redirect: 'not-login' },
-                                }"> {{ article.title.length <= 20 ? article.title : article.title.substring(0, 19) + "..." }} </router-link>
-                                            <router-link v-else
+                                            <div>    <router-link 
                                                 :to="{
                                                     name: 'show.post',
-                                                    params: { id: article.id },
+                                                    params: { id: article.id, slug: article.slug },
                                                 }"
                                                 class="text-xl font-semibold text-gray-600 hover:text-primary-blue"
                                                 >{{ article.title.length <= 20 ? article.title : article.title.substring(0, 19) + "..." }}
@@ -645,13 +618,22 @@
                                                     <a
                                                         href="#"
                                                         class="hover:text-primary-blue"
-                                                        >{{ article.date }}</a
+                                                        >{{
+                                        new Date(article.date).toLocaleDateString(
+                                            locale,
+                                            {
+                                                day: "numeric",
+                                                year: "numeric",
+                                                month: "long",
+                                            }
+                                        )
+                                    }}</a
                                                     >
                                                 </div>
                                                 <div class="flex space-x-1">
                                                     <UserIcon class="h-4 w-4" />
-                                                    <router-link   :to="{name:'compte',  params: { name: article.user.firstname, id : article.user.id }}"
-                                                        href="#"
+                                                    <router-link   :to="{name:'compte',  params: { slug: article.user.slug, id : article.user.id }}"
+                                                        
                                                         class="hover:text-primary-blue"
                                                         >{{
                                                             article.user
@@ -660,7 +642,7 @@
                                                     >
                                                 </div>
                                                 <div class="flex space-x-1">
-                                                    <ChatIcon class="h-4 w-4" />
+                                                    <ChatBubbleOvalLeftEllipsisIcon class="h-4 w-4" />
                                                     <a
                                                         href="#"
                                                         class="hover:text-primary-blue"
@@ -680,19 +662,10 @@
                                     <div
                                         class="overflow-hidden h-32 flex space-x-2 shadow bg-white w-full"
                                         v-if="index !== 0"
-                                    >
-                                    <router-link  v-if="!token"
-                                :to="{
-                                    name: 'login', params: { redirect: 'not-login' },
-                                }" class=" w-36"> <img
-                                        :src="article.image"
-                                        alt=""
-                                        class="object-cover w-full h-64"
-                                />  </router-link>
-                                        <router-link v-else
+                                    >     <router-link 
                                     :to="{
                                         name: 'show.post',
-                                        params: { id: article.id },
+                                        params: { id: article.id, slug: article.slug },
                                     }"
                                     class="w-36"
                                 >
@@ -702,15 +675,10 @@
                                         class="object-cover h-64"
                                 /></router-link>
                                         <div class="space-y-2 p-2">
-                                            <div>
-                                                <router-link  v-if="!token"
-                                :to="{
-                                    name: 'login', params: { redirect: 'not-login' },
-                                }"> {{ article.title.length <= 20 ? article.title : article.title.substring(0, 19) + "..." }} </router-link>
-                                            <router-link v-else
+                                            <div>     <router-link 
                                                 :to="{
                                                     name: 'show.post',
-                                                    params: { id: article.id },
+                                                    params: { id: article.id, slug: article.slug },
                                                 }"
                                                 class="text-xl font-semibold text-gray-600 hover:text-primary-blue"
                                                 >{{ article.title.length <= 20 ? article.title : article.title.substring(0, 19) + "..." }}
@@ -726,11 +694,20 @@
                                                     <a
                                                         href="#"
                                                         class="hover:text-primary-blue"
-                                                        >{{ article.date }}</a
+                                                        >{{
+                                        new Date(article.date).toLocaleDateString(
+                                            locale,
+                                            {
+                                                day: "numeric",
+                                                year: "numeric",
+                                                month: "long",
+                                            }
+                                        )
+                                    }}</a
                                                     >
                                                 </div>
                                                 <div class="flex space-x-1">
-                                                    <ChatIcon class="h-4 w-4" />
+                                                    <ChatBubbleOvalLeftEllipsisIcon class="h-4 w-4" />
                                                     <a
                                                         href="#"
                                                         class="hover:text-primary-blue"
@@ -776,18 +753,10 @@
                                 class="overflow-hidden shadow bg-white"
                                 v-if="index === 0"
                             >
-                                <router-link  v-if="!token"
-                                :to="{
-                                    name: 'login', params: { redirect: 'not-login' },
-                                }"> <img
-                                        :src="article.image"
-                                        alt=""
-                                        class="object-cover w-full h-64"
-                                />  </router-link>
-                                <router-link v-else
+                                <router-link 
                                     :to="{
                                         name: 'show.post',
-                                        params: { id: article.id },
+                                        params: { id: article.id, slug: article.slug },
                                     }"
                                 >
                                     <img
@@ -833,15 +802,10 @@
                                                 }}</span>
                                             </a>
                                         </div>
-                                        <div>
-                                            <router-link  v-if="!token"
-                                :to="{
-                                    name: 'login', params: { redirect: 'not-login' },
-                                }"> {{ article.title.length <= 20 ? article.title : article.title.substring(0, 19) + "..." }} </router-link>
-                                            <router-link v-else
+                                        <div>   <router-link 
                                                 :to="{
                                                     name: 'show.post',
-                                                    params: { id: article.id },
+                                                    params: { id: article.id, slug: article.slug },
                                                 }"
                                                 class="text-xl font-semibold text-gray-600 hover:text-primary-blue"
                                                 >{{ article.title.length <= 20 ? article.title : article.title.substring(0, 19) + "..." }}
@@ -855,13 +819,22 @@
                                                 <a
                                                     href="#"
                                                     class="hover:text-primary-blue"
-                                                    >{{ article.date }}</a
+                                                    >{{
+                                        new Date(article.date).toLocaleDateString(
+                                            locale,
+                                            {
+                                                day: "numeric",
+                                                year: "numeric",
+                                                month: "long",
+                                            }
+                                        )
+                                    }}</a
                                                 >
                                             </div>
                                             <div class="flex space-x-1">
                                                 <UserIcon class="h-4 w-4" />
-                                                <router-link   :to="{name:'compte',  params: { name: article.user.firstname, id : article.user.id }}"
-                                                    href="#"
+                                                <router-link   :to="{name:'compte',  params: { slug: article.user.slug, id : article.user.id }}"
+                                                   
                                                     class="hover:text-primary-blue"
                                                     >{{
                                                         article.user.firstname
@@ -869,7 +842,7 @@
                                                 >
                                             </div>
                                             <div class="flex space-x-1">
-                                                <ChatIcon class="h-4 w-4" />
+                                                <ChatBubbleOvalLeftEllipsisIcon class="h-4 w-4" />
                                                 <a
                                                     href="#"
                                                     class="hover:text-primary-blue"
@@ -887,20 +860,11 @@
                                 class="overflow-hidden h-32 flex space-x-2 shadow bg-white"
                                 v-if="index !== 0"
                             >
-                            <router-link  v-if="!token"
-                                :to="{
-                                    name: 'login', params: { redirect: 'not-login' },
-                                    
-                                }" class=" w-36"> <img
-                                        :src="article.image"
-                                        alt=""
-                                        class="object-cover w-full h-64"
-                                />  </router-link>
                                 
-                                <router-link v-else
+                                <router-link 
                                     :to="{
                                         name: 'show.post',
-                                        params: { id: article.id },
+                                        params: { id: article.id, slug: article.slug },
                                     }"
                                     class=" w-36"
                                 >
@@ -914,7 +878,7 @@
                                         <router-link
                                                 :to="{
                                                     name: 'show.post',
-                                                    params: { id: article.id },
+                                                    params: { id: article.id, slug: article.slug },
                                                 }"
                                                 class="text-xl font-semibold text-gray-600 hover:text-primary-blue"
                                                 >{{ article.title.length <= 20 ? article.title : article.title.substring(0, 19) + "..." }}
@@ -928,11 +892,20 @@
                                             <a
                                                 href="#"
                                                 class="hover:text-primary-blue"
-                                                >{{ article.date }}</a
+                                                >{{
+                                        new Date(article.date).toLocaleDateString(
+                                            locale,
+                                            {
+                                                day: "numeric",
+                                                year: "numeric",
+                                                month: "long",
+                                            }
+                                        )
+                                    }}</a
                                             >
                                         </div>
                                         <div class="flex space-x-1">
-                                            <ChatIcon class="h-4 w-4" />
+                                            <ChatBubbleOvalLeftEllipsisIcon class="h-4 w-4" />
                                             <a
                                                 href="#"
                                                 class="hover:text-primary-blue"
@@ -977,49 +950,18 @@
                         v-for="jobOffer in jobOffersHome"
                         :key="jobOffer.id"
                         >
-                        <router-link  v-if="!token"
-                                :to="{
-                                    name: 'login', params: { redirect: 'not-login' },
-                                }"
-                            class="flex px-2 py-4 justify-between items-center border-b border-gray-200 hover:bg-gray-100"
-                        >
-                            <div class="flex items-center space-x-4 ">
-                                <div class="hidden lg:block">
-                                    <img v-if="jobOffer.company_logo" :src="jobOffer.company_logo" alt="" class="w-10 h-10 object-cover">
-                                    <OfficeBuildingIcon v-else class="w-10 h-10 text-gray-500" />
-                                </div>
-                                <div>
-                                    <h1 class="capitalize text-sm">{{ jobOffer.title }}</h1>
-                                    <h2 class="font-bold capitalize text-gray-500 text-sm">{{ jobOffer.company_name }}</h2>
-                                </div>
-                            </div>
-                            <div class="">
-                                <h2 class="font-bold capitalize text-primary-blue text-sm">
-                                    <span v-if="$i18n.locale == 'en'">{{
-                                        jobOffer.offer_type.name_en
-                                    }}</span>
-                                    <span v-else-if="$i18n.locale == 'fr'">{{
-                                        jobOffer.offer_type.name_fr
-                                    }}</span>
-                                    <span v-else-if="$i18n.locale == 'es'">{{
-                                        jobOffer.offer_type.name_es
-                                    }}</span>
-                                    <span v-else>{{ jobOffer.offer_type.name_pt }}</span>
-                                </h2>
-                            </div>
-                        </router-link>
                         <router-link 
-                        v-else
+                    
                         :to="{
                             name: 'show.job',
-                            params: { id: jobOffer.id },
+                            params: { id: jobOffer.id, slug: jobOffer.slug },
                             }"
                             class="flex px-2 py-4 justify-between items-center border-b border-gray-200 hover:bg-gray-100"
                         >
                             <div class="flex items-center space-x-4 ">
                                 <div class="hidden lg:block">
                                     <img v-if="jobOffer.company_logo" :src="jobOffer.company_logo" alt="" class="w-10 h-10 object-cover">
-                                    <OfficeBuildingIcon v-else class="w-10 h-10 text-gray-500" />
+                                    <BuildingOffice2Icon v-else class="w-10 h-10 text-gray-500" />
                                 </div>
                                 <div>
                                     <h1 class="capitalize text-sm">{{ jobOffer.title }}</h1>
@@ -1080,9 +1022,10 @@ import Error from "@/components/Error.vue";
 import useAuth from "@/services/authServices.js";
 import FilterArticle from "@/components/FilterArticle.vue";
 import Caroussel from "@/components/Caroussel.vue";
-import { CalendarIcon, UserIcon, MailIcon, ChatIcon, OfficeBuildingIcon, LockClosedIcon } from "@heroicons/vue/solid";
+import { CalendarIcon, UserIcon, EnvelopeIcon, ChatBubbleOvalLeftEllipsisIcon, BuildingOffice2Icon, LockClosedIcon } from '@heroicons/vue/24/solid';
 import { reactive, ref, onMounted } from "vue";
-
+import { useI18n } from "vue-i18n";
+const { locale } = useI18n();
 const toogleLogMaint = ref(false);
 const token = localStorage.token;
 const ministries = ref([]);

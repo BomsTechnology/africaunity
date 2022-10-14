@@ -101,7 +101,7 @@ import { reactive, ref, onMounted } from "vue";
 import Error from "../../components/Error.vue";
 import useAuth from "../../services/authServices.js";
 import router from "../../router";
-import { LockClosedIcon } from "@heroicons/vue/solid";
+import { LockClosedIcon } from "@heroicons/vue/24/solid";
 import { useRoute } from "vue-router";
 
 const props = defineProps({

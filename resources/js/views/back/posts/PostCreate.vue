@@ -297,16 +297,18 @@ const storePost = async () => {
     formData.append("ministry_id", post.ministry_id);
 
     await createPost(formData);
-    if (props.type == "article") {
-        router.push({
-            name: "admin.post.index",
-            params: { type: "article" },
-        });
-    } else {
-        router.push({
-            name: "admin.post.index",
-            params: { type: "propau" },
-        });
+    if (errors.value == "") {
+        if (props.type == "article") {
+            router.push({
+                name: "admin.post.index",
+                params: { type: "article" },
+            });
+        } else {
+            router.push({
+                name: "admin.post.index",
+                params: { type: "propau" },
+            });
+        }
     }
 };
 const handelFileObject = () => {

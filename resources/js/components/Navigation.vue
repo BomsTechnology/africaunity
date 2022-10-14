@@ -92,7 +92,7 @@
                 v-if="token"
                 :to="{
                     name: 'compte',
-                    params: { name: user.firstname, id: user.id },
+                    params: { slug: user.slug, id: user.id },
                 }"
                 class="relative mx-2 bg-primary-blue px-3 py-2 uppercase text-white transition-colors duration-200"
             >
@@ -228,7 +228,7 @@
                 @click="open.menu = !open.menu"
                 class="flex items-center justify-center px-3 py-2 text-white transition-colors duration-200 hover:bg-primary-blue"
             >
-                <MenuIcon class="h-6 w-6" />
+                <Bars3Icon class="h-6 w-6" />
             </button>
             <div
                 v-show="open.menu"
@@ -433,7 +433,7 @@
                 @click="open.search = !open.search"
                 class="flex items-center justify-center px-3 py-2 text-white hover:bg-primary-blue"
             >
-                <SearchIcon class="h-6 w-6" />
+                <MagnifyingGlassIcon class="h-6 w-6" />
             </button>
             <div
                 v-show="open.search"
@@ -450,7 +450,7 @@
                             type="submit"
                             class="flex items-center justify-center bg-primary-blue px-3 py-2 text-white"
                         >
-                            <SearchIcon class="h-6 w-6" />
+                            <MagnifyingGlassIcon class="h-6 w-6" />
                         </button>
                     </div>
                 </form>
@@ -463,10 +463,10 @@
 import {
     HomeIcon,
     ChevronDownIcon,
-    SearchIcon,
-    MenuIcon,
+    MagnifyingGlassIcon,
+    Bars3Icon,
     UserCircleIcon,
-} from "@heroicons/vue/solid";
+} from "@heroicons/vue/24/solid";
 import { reactive, ref, onMounted, watch } from "vue";
 import axios from "axios";
 import router from "../router";
@@ -522,7 +522,7 @@ const changeRoute = (route, firstname = "", id = "") => {
         router.push({
             name: route,
             params: {
-                name: firstname.toLocaleLowerCase,
+                slug: firstname.toLocaleLowerCase,
                 id: id,
             },
         });

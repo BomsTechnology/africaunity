@@ -3,7 +3,7 @@ import { createRouter, createWebHistory } from "vue-router";
 const Header = () => import("@/components/Header.vue");
 const Footer = () => import("@/components/Footer.vue");
 
-const siteName = "AfricaUnity";
+const siteName = "AfricaUnity | The profesional and social network";
 
 const routes = [
     // front routes
@@ -55,12 +55,12 @@ const routes = [
             footer: Footer,
         },
         meta: {
-            title: siteName + " - Ajouter",
+            title: siteName + " - Ajouter une Publication",
             requiresAuth: true,
         },
     },
     {
-        path: "/post/:id",
+        path: "/post/:id/:slug?",
         name: "show.post",
         props: true,
         components: {
@@ -69,12 +69,12 @@ const routes = [
             footer: Footer,
         },
         meta: {
-            title: siteName,
+            title: "",
             requiresAuth: true,
         },
     },
     {
-        path: "/ads/:id",
+        path: "/ads/:id/:slug?",
         name: "show.ads",
         props: true,
         components: {
@@ -83,7 +83,7 @@ const routes = [
             footer: Footer,
         },
         meta: {
-            title: siteName,
+            title: "",
             requiresAuth: true,
         },
     },
@@ -97,7 +97,7 @@ const routes = [
             footer: Footer,
         },
         meta: {
-            title: siteName,
+            title: siteName + " - Editer une Annonce",
             requiresAuth: true,
         },
     },
@@ -111,7 +111,7 @@ const routes = [
             footer: Footer,
         },
         meta: {
-            title: siteName,
+            title: siteName + " - Ajouter une Annonce",
             requiresAuth: true,
         },
     },
@@ -125,12 +125,12 @@ const routes = [
             footer: Footer,
         },
         meta: {
-            title: siteName,
+            title: siteName + " - Ajouter une offre d'emploi",
             requiresAuth: true,
         },
     },
     {
-        path: "/job/:id",
+        path: "/job/:id/:slug?",
         name: "show.job",
         props: true,
         components: {
@@ -139,7 +139,7 @@ const routes = [
             footer: Footer,
         },
         meta: {
-            title: siteName,
+            title: "",
             requiresAuth: true,
         },
     },
@@ -153,7 +153,7 @@ const routes = [
             footer: Footer,
         },
         meta: {
-            title: siteName,
+            title: siteName + " - Editer une Offre d'emploi",
             requiresAuth: true,
         },
     },
@@ -167,7 +167,7 @@ const routes = [
             footer: Footer,
         },
         meta: {
-            title: siteName,
+            title: siteName + " - Editer une Publication",
             requiresAuth: true,
         },
     },
@@ -180,7 +180,7 @@ const routes = [
             footer: Footer,
         },
         meta: {
-            title: siteName + " - Etablissement",
+            title: siteName + " - Etablissements",
             requiresAuth: true,
         },
     },
@@ -193,7 +193,7 @@ const routes = [
             footer: Footer,
         },
         meta: {
-            title: siteName + " - Particulier",
+            title: siteName + " - Particuliers",
             requiresAuth: true,
         },
     },
@@ -237,7 +237,7 @@ const routes = [
         },
     },
     {
-        path: "/university/:id",
+        path: "/university/:id/:slug?",
         name: "show.university",
         props: true,
         components: {
@@ -246,7 +246,7 @@ const routes = [
             footer: Footer,
         },
         meta: {
-            title: siteName,
+            title: "",
             requiresAuth: true,
         },
     },
@@ -259,7 +259,7 @@ const routes = [
             footer: Footer,
         },
         meta: {
-            title: siteName + " - Ads",
+            title: siteName + " - Annonces",
             requiresAuth: true,
         },
     },
@@ -339,7 +339,7 @@ const routes = [
         },
     },
     {
-        path: "/account/:name/:id/:redirect?",
+        path: "/account/:id/:slug?/:redirect?",
         name: "compte",
         props: true,
         components: {
@@ -348,12 +348,12 @@ const routes = [
             footer: Footer,
         },
         meta: {
-            title: siteName + " - Compte",
+            title: "",
             requiresAuth: true,
         },
     },
     {
-        path: "/setting/:name/:id",
+        path: "/setting/:id/:slug?",
         name: "setting.account",
         props: true,
         components: {
@@ -362,7 +362,7 @@ const routes = [
             footer: Footer,
         },
         meta: {
-            title: siteName + " - Parametre du Compte",
+            title: "Parametre : ",
             requiresAuth: true,
         },
     },
@@ -796,9 +796,11 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
     if (to.params.slug) {
         document.title =
+            to.meta.title +
             `${to.params.slug[0].toUpperCase()}${to.params.slug
                 .replaceAll("-", " ")
-                .slice(1)} | ` + siteName;
+                .slice(1)} | ` +
+            siteName;
     } else {
         document.title = to.meta.title;
     }

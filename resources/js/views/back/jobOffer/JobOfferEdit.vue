@@ -564,12 +564,15 @@ onMounted(async () => {
         (zoneFiltered.value = zones.value.filter((zone) => {
             return zone.continent_id == jobOffer.value.continent_id;
         }));
+
     countryFiltered.value = countries.value.filter((country) => {
         return country.zone_id == jobOffer.value.zone_id;
     });
+
     cityfiltered.value = cities.value.filter((city) => {
         return city.country_id == jobOffer.value.country_id;
     });
+    jobOffer.value.company_logo = "";
 });
 
 const clanguages = ref([]);
@@ -609,6 +612,6 @@ const saveJobOffer = async () => {
 };
 
 const handelFileObject = () => {
-    jobOffer.company_logo = file.value.files[0];
+    jobOffer.value.company_logo = file.value.files[0];
 };
 </script>

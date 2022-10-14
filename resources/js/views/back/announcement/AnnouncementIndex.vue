@@ -69,10 +69,7 @@
                                         alt=""
                                         class="h-12 w-12 rounded-full object-cover"
                                     />
-                                    <SpeakerphoneIcon
-                                        v-else
-                                        class="h-12 w-12"
-                                    />
+                                    <MegaphoneIcon v-else class="h-12 w-12" />
                                 </div>
                             </template>
                             <template #item-title="item">
@@ -117,7 +114,7 @@
 </template>
 
 <script setup>
-import { PlusCircleIcon, SpeakerphoneIcon } from "@heroicons/vue/solid";
+import { PlusCircleIcon, MegaphoneIcon } from "@heroicons/vue/24/solid";
 import { reactive, ref, onMounted, computed } from "vue";
 import useAnnouncements from "@/services/announcementServices.js";
 import Error from "@/components/Error.vue";

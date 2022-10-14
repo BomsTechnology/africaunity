@@ -383,7 +383,7 @@
 
 <script setup>
 import { onMounted, ref, reactive, computed } from "vue";
-import { PlusCircleIcon } from "@heroicons/vue/solid";
+import { PlusCircleIcon } from "@heroicons/vue/24/solid";
 import Error from "@/components/Error.vue";
 import useLanguages from "@/services/languageServices.js";
 import useBusinessTypes from "@/services/businessTypeServices.js";

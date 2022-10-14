@@ -13,6 +13,7 @@ export default function useUniversities() {
     const getAllUniversities = async () => {
         errors.value = "";
         try {
+            universities.value = [];
             loading.value = true;
             let response = await axios.get("/api/university/all", {
                 headers: {

@@ -219,7 +219,7 @@
                                 {{ $t("advanced-features") }}
                             </p>
                             <h4
-                                class="mt-2 animate-pulse text-5xl font-semibold text-white"
+                                class="mt-2 animate-pulse text-5xl font-semibold uppercase text-white"
                             >
                                 {{ $t("free") }}
                             </h4>
@@ -399,7 +399,7 @@
 </template>
 
 <script setup>
-import { CheckCircleIcon, BanIcon } from "@heroicons/vue/solid";
+import { CheckCircleIcon, BanIcon } from "@heroicons/vue/24/solid";
 import { StripeCheckout } from "@vue-stripe/vue-stripe";
 import axios from "axios";
 import { onMounted, ref } from "vue";

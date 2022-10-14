@@ -145,7 +145,7 @@
                         </span>
                         <div class="relative">
                             <span
-                                ><MailIcon
+                                ><EnvelopeIcon
                                     class="absolute mt-2 ml-2 h-6 w-6 text-gray-400"
                             /></span>
                             <input
@@ -255,7 +255,11 @@
 
 <script setup>
 import Error from "@/components/Error.vue";
-import { UserIcon, LockClosedIcon, MailIcon } from "@heroicons/vue/solid";
+import {
+    UserIcon,
+    LockClosedIcon,
+    EnvelopeIcon,
+} from "@heroicons/vue/24/solid";
 import { reactive, ref, onMounted } from "vue";
 
 import useAuth from "@/services/authServices.js";
@@ -276,7 +280,7 @@ onMounted(async () => {
     if (localStorage.token) {
         router.push({
             name: "compte",
-            params: { name: cuser.firstname, id: cuser.id },
+            params: { slug: cuser.slug, id: cuser.id },
         });
     }
 });

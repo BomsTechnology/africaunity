@@ -170,7 +170,10 @@
                     <router-link
                         :to="{
                             name: 'show.university',
-                            params: { id: university.id },
+                            params: {
+                                id: university.id,
+                                slug: university.slug,
+                            },
                         }"
                     >
                         <img
@@ -210,9 +213,11 @@
                             <router-link
                                 :to="{
                                     name: 'show.university',
-                                    params: { id: university.id },
+                                    params: {
+                                        id: university.id,
+                                        slug: university.slug,
+                                    },
                                 }"
-                                href="#"
                                 class="dark:text-white mt-2 block transform text-2xl font-semibold text-gray-800 transition-colors duration-200 hover:text-gray-600 hover:underline"
                                 >{{
                                     university.name.length <= 30
@@ -229,7 +234,10 @@
                             <router-link
                                 :to="{
                                     name: 'show.university',
-                                    params: { id: university.id },
+                                    params: {
+                                        id: university.id,
+                                        slug: university.slug,
+                                    },
                                 }"
                                 class="dark:text-blue-400 text-blue-600 hover:underline"
                                 >{{ $t("read-more") }}</router-link
@@ -245,7 +253,7 @@
                 v-if="universities.length == 0 && loading != 1"
                 class="flex animate-pulse flex-col items-center justify-center p-28 text-gray-500"
             >
-                <EmojiSadIcon class="h-16 w-16" />
+                <FaceFrownIcon class="h-16 w-16" />
                 <span class="mt-2 text-2xl">{{ $t("no-content") }} </span>
             </div>
         </div>
@@ -254,7 +262,7 @@
 
 <script setup>
 import { reactive, ref, onMounted, computed, onUnmounted } from "vue";
-import { EmojiSadIcon } from "@heroicons/vue/solid";
+import { FaceFrownIcon } from "@heroicons/vue/24/solid";
 import useUniversities from "@/services/universityServices.js";
 import useContinents from "@/services/continentServices.js";
 import useCountries from "@/services/countryServices.js";

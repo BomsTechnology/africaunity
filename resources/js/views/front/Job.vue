@@ -394,7 +394,7 @@
                     <router-link
                         :to="{
                             name: 'show.job',
-                            params: { id: jobOffer.id },
+                            params: { id: jobOffer.id, slug: jobOffer.slug },
                         }"
                         class="flex items-center justify-between border-b border-gray-200 px-2 py-4 hover:bg-gray-100"
                     >
@@ -406,7 +406,7 @@
                                     alt=""
                                     class="h-16 w-16 object-cover"
                                 />
-                                <OfficeBuildingIcon
+                                <BuildingOffice2Icon
                                     v-else
                                     class="h-16 w-16 text-gray-500"
                                 />
@@ -423,7 +423,7 @@
                                 <h1
                                     class="flex items-center justify-center space-x-2"
                                 >
-                                    <LocationMarkerIcon class="h-5 w-5" />
+                                    <MapPinIcon class="h-5 w-5" />
                                     <span>
                                         {{ jobOffer.location }}
                                     </span>
@@ -431,7 +431,7 @@
                                 <h2
                                     class="flex items-center justify-start space-x-2"
                                 >
-                                    <CashIcon class="h-5 w-5" />
+                                    <BanknotesIcon class="h-5 w-5" />
                                     <span>
                                         {{
                                             jobOffer.min_price +
@@ -465,7 +465,7 @@
                                 Publié le:
                                 {{
                                     new Date(jobOffer.date).toLocaleDateString(
-                                        "fr-FR",
+                                        locale,
                                         {
                                             day: "numeric",
                                             year: "numeric",
@@ -483,7 +483,7 @@
                 v-if="jobOffers.length == 0 && loading != 1"
                 class="flex animate-pulse flex-col items-center justify-center p-28 text-gray-500"
             >
-                <EmojiSadIcon class="h-16 w-16" />
+                <FaceFrownIcon class="h-16 w-16" />
                 <span class="mt-2 text-2xl">{{ $t("no-content") }}</span>
             </div>
         </div>
@@ -492,14 +492,14 @@
 
 <script setup>
 import {
-    OfficeBuildingIcon,
-    EmojiSadIcon,
-    LocationMarkerIcon,
+    BuildingOffice2Icon,
+    FaceFrownIcon,
+    MapPinIcon,
     PlusCircleIcon,
-    CashIcon,
+    BanknotesIcon,
     ChevronUpIcon,
     ChevronDownIcon,
-} from "@heroicons/vue/solid";
+} from "@heroicons/vue/24/solid";
 import useJobOffers from "@/services/jobOfferServices.js";
 import useCurrencies from "@/services/currencyServices.js";
 import useActivityAreas from "@/services/activityAreaServices.js";
@@ -516,7 +516,8 @@ import useContinents from "@/services/continentServices.js";
 import useCities from "@/services/cityServices.js";
 import { reactive, ref, onMounted, computed, onUnmounted } from "vue";
 import Job from "@/components/skeleton/Job.vue";
-
+import { useI18n } from "vue-i18n";
+const { locale } = useI18n();
 const { currencies, getCurrencies } = useCurrencies();
 const { languages, getLanguages } = useLanguages();
 const { activityAreas, getActivityAreas } = useActivityAreas();

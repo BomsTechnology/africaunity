@@ -235,12 +235,31 @@
                             <label class="dark:text-gray-200 text-gray-700">{{
                                 $t("company-logo")
                             }}</label>
-                            <input
-                                ref="file"
-                                @change="handelFileObject()"
-                                type="file"
-                                class="dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 dark:focus:border-blue-300 mt-2 block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"
-                            />
+                            <div class="flex items-center space-x-4 py-4">
+                                <img
+                                    v-if="jobOffer.company_logo"
+                                    :src="
+                                        typeof jobOffer.company_logo == 'string'
+                                            ? jobOffer.company_logo
+                                            : previewImage(
+                                                  jobOffer.company_logo
+                                              )
+                                    "
+                                    @load="
+                                        typeof jobOffer.company_logo == 'string'
+                                            ? ''
+                                            : loadImage(jobOffer.company_logo)
+                                    "
+                                    class="h-16 w-16 rounded-full"
+                                    :alt="jobOffer.title"
+                                />
+                                <input
+                                    ref="file"
+                                    @change="handelFileObject()"
+                                    type="file"
+                                    class="dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 dark:focus:border-blue-300 mt-2 block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"
+                                />
+                            </div>
                         </div>
                     </div>
                     <div
@@ -631,8 +650,6 @@ const props = defineProps({
     duplicate: String,
 });
 
-
-
 const user = localStorage.user ? JSON.parse(localStorage.user) : "";
 const { currencies, getCurrencies } = useCurrencies();
 const { languages, getLanguages } = useLanguages();
@@ -793,4 +810,11 @@ const storeJobOffer = async () => {
 const handelFileObject = async () => {
     jobOffer.company_logo = file.value.files[0];
 };
+
+function previewImage(file) {
+    return URL.createObjectURL(file);
+}
+function loadImage(file) {
+    return URL.revokeObjectURL(file);
+}
 </script>

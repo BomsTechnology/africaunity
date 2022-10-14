@@ -1,6 +1,6 @@
 <script setup>
 import { useRoute } from "vue-router";
-import { PhotographIcon } from "@heroicons/vue/solid";
+import { PhotoIcon } from "@heroicons/vue/24/solid";
 
 const items = [1, 2, 3, 4, 5, 6];
 </script>
@@ -15,7 +15,7 @@ const items = [1, 2, 3, 4, 5, 6];
                 class="h-80 rounded bg-gray-100 shadow"
             >
                 <div class="mx-auto h-44 w-32 overflow-hidden">
-                    <PhotographIcon class="h-full w-full text-gray-200" />
+                    <PhotoIcon class="h-full w-full text-gray-200" />
                 </div>
                 <div class="flex flex-col items-start justify-center p-6">
                     <div class="mb-4 h-5 w-32 rounded-md bg-gray-200"></div>

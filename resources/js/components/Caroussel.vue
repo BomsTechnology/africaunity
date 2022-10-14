@@ -11,77 +11,9 @@
         >
             <SwiperSlide class="relative" v-for="post in posts" :key="post.id">
                 <router-link
-                    v-if="!token"
-                    :to="{
-                        name: 'login',
-                        params: { redirect: 'not-login' },
-                    }"
-                >
-                    <div
-                        class="absolute flex h-full w-full flex-col justify-end space-y-1 bg-black/25 object-cover px-8 py-6 text-white"
-                    >
-                        <div>
-                            <a
-                                href="#"
-                                class="rounded py-1 px-2 text-xs capitalize"
-                                :style="'background:' + post.ministry.color"
-                            >
-                                <span v-if="$i18n.locale == 'en'">{{
-                                    post.ministry.name_en
-                                }}</span>
-                                <span v-else-if="$i18n.locale == 'fr'">{{
-                                    post.ministry.name_fr
-                                }}</span>
-                                <span v-else-if="$i18n.locale == 'es'">{{
-                                    post.ministry.name_es
-                                }}</span>
-                                <span v-else>{{ post.country.name_pt }}</span>
-                            </a>
-                        </div>
-                        <div>
-                            <a href="#" class="text-lg hover:text-primary-blue">
-                                {{ post.title }}
-                            </a>
-                        </div>
-                        <div class="flex space-x-2 text-xs">
-                            <div class="flex space-x-1">
-                                <CalendarIcon class="h-4 w-4" />
-                                <a href="#" class="hover:text-primary-blue">{{
-                                    new Date(post.date).toLocaleDateString(
-                                        "fr-FR",
-                                        {
-                                            day: "numeric",
-                                            year: "numeric",
-                                            month: "long",
-                                        }
-                                    )
-                                }}</a>
-                            </div>
-                            <div class="flex space-x-1">
-                                <UserIcon class="h-4 w-4" />
-                                <a href="#" class="hover:text-primary-blue">{{
-                                    post.user.firstname
-                                }}</a>
-                            </div>
-                            <div class="flex space-x-1">
-                                <ChatIcon class="h-4 w-4" />
-                                <a href="#" class="hover:text-primary-blue">{{
-                                    post.comments
-                                }}</a>
-                            </div>
-                        </div>
-                    </div>
-                    <img
-                        :src="post.image"
-                        :alt="post.title"
-                        class="h-full w-full object-cover"
-                    />
-                </router-link>
-                <router-link
-                    v-else
                     :to="{
                         name: 'show.post',
-                        params: { id: post.id },
+                        params: { id: post.id, slug: post.slug },
                     }"
                 >
                     <div
@@ -135,7 +67,9 @@
                                 }}</a>
                             </div>
                             <div class="flex space-x-1">
-                                <ChatIcon class="h-4 w-4" />
+                                <ChatBubbleOvalLeftEllipsisIcon
+                                    class="h-4 w-4"
+                                />
                                 <a href="#" class="hover:text-primary-blue">{{
                                     post.comments
                                 }}</a>
@@ -159,7 +93,7 @@
                 <router-link
                     :to="{
                         name: 'show.post',
-                        params: { id: post.id },
+                        params: { id: post.id, slug: post.slug },
                     }"
                 >
                     <div
@@ -189,7 +123,9 @@
                                 }}</a>
                             </div>
                             <div class="flex space-x-1">
-                                <ChatIcon class="h-4 w-4" />
+                                <ChatBubbleOvalLeftEllipsisIcon
+                                    class="h-4 w-4"
+                                />
                                 <a href="#" class="hover:text-primary-blue">{{
                                     post.comments
                                 }}</a>
@@ -212,7 +148,7 @@
         v-else
         class="flex animate-pulse flex-col items-center justify-center p-28 text-gray-500"
     >
-        <EmojiSadIcon class="h-16 w-16" />
+        <FaceFrownIcon class="h-16 w-16" />
         <span class="mt-2 text-2xl">{{ $t("no-content") }} </span>
     </div>
 </template>
@@ -222,9 +158,9 @@ import { reactive, ref, onMounted } from "vue";
 import {
     CalendarIcon,
     UserIcon,
-    ChatIcon,
-    EmojiSadIcon,
-} from "@heroicons/vue/solid";
+    ChatBubbleOvalLeftEllipsisIcon,
+    FaceFrownIcon,
+} from "@heroicons/vue/24/solid";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { EffectFade, Autoplay } from "swiper";
 import "swiper/css";

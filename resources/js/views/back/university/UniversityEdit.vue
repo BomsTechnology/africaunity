@@ -299,6 +299,7 @@ onMounted(async () => {
     cityfiltered.value = cities.value.filter((city) => {
         return city.country_id == university.value.country_id;
     });
+    university.value.image = "";
 });
 
 const saveUniversity = async () => {
@@ -321,12 +322,14 @@ const saveUniversity = async () => {
 
     await updateUniversity(formData, props.id);
 
-    router.push({
-        name: "admin.university.index",
-    });
+    if (errors.value == "") {
+        router.push({
+            name: "admin.university.index",
+        });
+    }
 };
 
 const handelFileObject = async () => {
-    university.image = file.value.files[0];
+    university.value.image = file.value.files[0];
 };
 </script>

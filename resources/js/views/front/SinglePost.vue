@@ -22,9 +22,14 @@
                     />
                     <div class="p-6">
                         <div>
+                            <h1
+                                class="dark:text-white mt-2 block transform text-3xl font-semibold text-gray-800 transition-colors duration-200 hover:text-gray-600"
+                            >
+                                {{ post.title }}
+                            </h1>
                             <a
                                 href="#"
-                                class="rounded py-1 px-2 text-xs capitalize text-white"
+                                class="my-4 rounded py-1 px-2 text-xs capitalize text-white"
                                 :style="'background:' + post.ministry.color"
                             >
                                 <span v-if="$i18n.locale == 'en'">{{
@@ -38,11 +43,6 @@
                                 }}</span>
                                 <span v-else>{{ post.country.name_pt }}</span>
                             </a>
-                            <h1
-                                class="dark:text-white mt-2 block transform text-3xl font-semibold text-gray-800 transition-colors duration-200 hover:text-gray-600"
-                            >
-                                {{ post.title }}
-                            </h1>
                             <div
                                 class="mt-2 flex space-x-2 text-xs text-gray-500"
                             >
@@ -66,17 +66,18 @@
                                         :to="{
                                             name: 'compte',
                                             params: {
-                                                name: post.user.firstname,
+                                                slug: post.user.slug,
                                                 id: post.user.id,
                                             },
                                         }"
-                                        href="#"
                                         class="hover:text-primary-blue"
                                         >{{ post.user.firstname }}</router-link
                                     >
                                 </div>
                                 <div class="flex space-x-1">
-                                    <ChatIcon class="h-4 w-4" />
+                                    <ChatBubbleOvalLeftEllipsisIcon
+                                        class="h-4 w-4"
+                                    />
                                     <a
                                         href="#"
                                         class="hover:text-primary-blue"
@@ -87,14 +88,8 @@
                             <p
                                 v-if="post.type == 'article'"
                                 class="dark:text-gray-400 my-4 mt-2 py-4 text-gray-600"
-                                v-html="displayHtml(post.content2)"
+                                v-html="post.content"
                             ></p>
-                            <p
-                                v-else
-                                class="dark:text-gray-400 my-4 mt-2 break-words py-4 text-gray-600"
-                            >
-                                {{ post.content }}
-                            </p>
                         </div>
 
                         <div class="mt-4">
@@ -103,7 +98,7 @@
                                     :to="{
                                         name: 'compte',
                                         params: {
-                                            name: post.user.firstname,
+                                            slug: post.user.slug,
                                             id: post.user.id,
                                         },
                                     }"
@@ -152,7 +147,7 @@
                                                 },
                                             }"
                                         >
-                                            <PencilAltIcon
+                                            <PencilSquareIcon
                                                 class="h-5 w-5 cursor-pointer text-gray-400 hover:text-primary-blue"
                                             />
                                         </router-link>
@@ -161,10 +156,6 @@
                             </div>
                         </div>
                         <div class="flex items-center space-x-3 px-2 py-4">
-                            <!-- facebook icons -->
-                            <!-- <a :href="'https://www.facebook.com/sharer/sharer.php?u='+url" data-network="facebook" target="_blank" rel="noopener noreferrer">
-                                <svg fill="#3b5998" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 30 30" class="h-6 w-6"><path d="M27,15c0,6.627-5.373,12-12,12S3,21.627,3,15S8.373,3,15,3S27,8.373,27,15z M19.181,8.131C18.877,8.09,18.235,8,17.021,8 C14.486,8,13,9.339,13,12.389V14h-3v3h3v7.799C13.646,24.93,14.315,25,15,25c0.338,0,0.671-0.018,1-0.05V17h2.726l0.428-3H16 v-1.282C16,11.568,16.376,11,17.452,11h1.729V8.131z"/></svg>
-                            </a> -->
                             <!-- wathsapp icons -->
                             <a
                                 :href="
@@ -183,10 +174,6 @@
                                     />
                                 </svg>
                             </a>
-                            <!-- twitter icon -->
-                            <!-- <a :href="'https://twitter.com/intent/tweet?text=Hello, I have just published an publication on the AfricaUnity website. please go see, thank you&url='+url" data-network="twitter" target="_blank">
-                                <svg fill="#1DA1F2" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 30 30" class="h-6 w-6">    <path d="M28,6.937c-0.957,0.425-1.985,0.711-3.064,0.84c1.102-0.66,1.947-1.705,2.345-2.951c-1.03,0.611-2.172,1.055-3.388,1.295 c-0.973-1.037-2.359-1.685-3.893-1.685c-2.946,0-5.334,2.389-5.334,5.334c0,0.418,0.048,0.826,0.138,1.215 c-4.433-0.222-8.363-2.346-10.995-5.574C3.351,6.199,3.088,7.115,3.088,8.094c0,1.85,0.941,3.483,2.372,4.439 c-0.874-0.028-1.697-0.268-2.416-0.667c0,0.023,0,0.044,0,0.067c0,2.585,1.838,4.741,4.279,5.23 c-0.447,0.122-0.919,0.187-1.406,0.187c-0.343,0-0.678-0.034-1.003-0.095c0.679,2.119,2.649,3.662,4.983,3.705 c-1.825,1.431-4.125,2.284-6.625,2.284c-0.43,0-0.855-0.025-1.273-0.075c2.361,1.513,5.164,2.396,8.177,2.396 c9.812,0,15.176-8.128,15.176-15.177c0-0.231-0.005-0.461-0.015-0.69C26.38,8.945,27.285,8.006,28,6.937z"/></svg>
-                            </a> -->
                         </div>
                     </div>
                     <!-- Comments -->
@@ -201,7 +188,7 @@
                                     :to="{
                                         name: 'compte',
                                         params: {
-                                            name: comment.user.firstname,
+                                            slug: comment.user.slug,
                                             id: comment.user.id,
                                         },
                                     }"
@@ -229,7 +216,15 @@
                                 <h3
                                     class="text-center text-xs font-light lg:text-sm"
                                 >
-                                    {{ comment.date }}
+                                    {{
+                                        new Date(
+                                            comment.date
+                                        ).toLocaleDateString(locale, {
+                                            day: "numeric",
+                                            year: "numeric",
+                                            month: "long",
+                                        })
+                                    }}
                                 </h3>
                             </div>
 
@@ -327,7 +322,7 @@
                 v-else
                 class="flex animate-pulse flex-col items-center justify-center p-28 text-gray-500"
             >
-                <EmojiSadIcon class="h-16 w-16" />
+                <FaceFrownIcon class="h-16 w-16" />
                 <span class="mt-2 text-2xl">{{ $t("no-content") }}</span>
             </div>
         </div>
@@ -338,29 +333,32 @@
 </template>
 
 <script setup>
-import router from "../../router";
 import { reactive, ref, onMounted } from "vue";
-import FilterArticle from "../../components/FilterArticle.vue";
-import Report from "../../components/Report.vue";
+import FilterArticle from "@/components/FilterArticle.vue";
+import Report from "@/components/Report.vue";
 import {
     PlusCircleIcon,
     CalendarIcon,
     UserCircleIcon,
-    EmojiSadIcon,
+    FaceFrownIcon,
     ExclamationCircleIcon,
-    PencilAltIcon,
+    PencilSquareIcon,
     UserIcon,
-    ChatIcon,
-} from "@heroicons/vue/solid";
-import usePosts from "../../services/postServices.js";
-import useComments from "../../services/commentServices.js";
-import Error from "../../components/Error.vue";
+    ChatBubbleOvalLeftEllipsisIcon,
+} from "@heroicons/vue/24/solid";
+import usePosts from "@/services/postServices.js";
+import useComments from "@/services/commentServices.js";
+import Error from "@/components/Error.vue";
 
 import { useI18n } from "vue-i18n";
 const { locale } = useI18n();
 const props = defineProps({
     id: {
         required: true,
+        type: String,
+    },
+    slug: {
+        required: false,
         type: String,
     },
 });
@@ -383,14 +381,6 @@ const openReport = ref(false);
 
 const toogleModal = () => {
     openReport.value = !openReport.value;
-};
-
-const displayHtml = (str) => {
-    const parser = new DOMParser();
-
-    // convert html string into DOM
-    const document = parser.parseFromString(str, "text/html");
-    return document.body.innerHTML;
 };
 
 const loadingC = ref(0);

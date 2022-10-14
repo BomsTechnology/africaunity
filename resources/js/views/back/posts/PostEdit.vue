@@ -289,20 +289,22 @@ const savePost = async () => {
     formData.append("_method", "PUT");
 
     await updatePost(formData, props.id);
-    if (props.type == "article") {
-        router.push({
-            name: "admin.post.index",
-            params: { type: "article" },
-        });
-    } else {
-        router.push({
-            name: "admin.post.index",
-            params: { type: "propau" },
-        });
+    if (errors.value == "") {
+        if (props.type == "article") {
+            router.push({
+                name: "admin.post.index",
+                params: { type: "article" },
+            });
+        } else {
+            router.push({
+                name: "admin.post.index",
+                params: { type: "propau" },
+            });
+        }
     }
 };
 
 const handelFileObject = () => {
-    post.image = file.value.files[0];
+    post.value.image = file.value.files[0];
 };
 </script>

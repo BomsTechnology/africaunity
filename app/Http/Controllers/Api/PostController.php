@@ -253,7 +253,6 @@ class PostController extends Controller
             'country_id' => $fileds['country_id'],
             'ministry_id' => $fileds['ministry_id'],
         ];
-
         if ($request->file('image')) {
             $request->validate([
                 'image' => 'required|mimes:png,jpg,jpeng,gif|dimensions:max_width=2048,max_height=2048'

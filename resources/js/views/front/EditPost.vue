@@ -11,7 +11,7 @@
                 class="flex flex-col items-center justify-center lg:flex-row lg:space-x-3"
             >
                 <h1 class="font-semibold">{{ $t("select-lang") }} :</h1>
-                <div class="mt-3 flex space-x-3 lg:mt-0">
+                <div class="mt-3 flex space-x-3 text-xs lg:mt-0 lg:text-sm">
                     <button
                         :class="[
                             $i18n.locale != 'fr'
@@ -218,7 +218,17 @@
                         >
                         <div class="flex items-center space-x-4 py-4">
                             <img
-                                :src="post.image"
+                                v-if="post.image"
+                                :src="
+                                    typeof post.image == 'string'
+                                        ? post.image
+                                        : previewImage(post.image)
+                                "
+                                @load="
+                                    typeof post.image == 'string'
+                                        ? ''
+                                        : loadImage(post.image)
+                                "
                                 class="h-16 w-16 rounded-full"
                                 :alt="post.title"
                             />
@@ -403,7 +413,6 @@ onMounted(async () => {
     }
     nbClick.value++;
 });
-post.value.image = "";
 
 const savePost = async () => {
     if (props.type == "article") {
@@ -452,11 +461,18 @@ const savePost = async () => {
     }
 };
 
-const handelFileObject = () => {
-    post.image = file.value.files[0];
+const handelFileObject = async () => {
+    console.log(file.value.files[0]);
+    post.value.image = file.value.files[0];
 };
 const changeLocale = (lang) => {
     locale = lang;
     localStorage.lang = locale;
 };
+function previewImage(file) {
+    return URL.createObjectURL(file);
+}
+function loadImage(file) {
+    return URL.revokeObjectURL(file);
+}
 </script>

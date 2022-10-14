@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use App\Models\User;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Str;
 
 class UserResource2 extends JsonResource
 {
@@ -19,6 +20,7 @@ class UserResource2 extends JsonResource
             'id' => $this->id,
             'firstname' => $this->firstname,
             'lastname' => $this->lastname,
+            'slug' => Str::slug("$this->firstname  $this->lastname"),
             'status' => $this->status,
             'email' => $this->email,
             'type' => $this->type,

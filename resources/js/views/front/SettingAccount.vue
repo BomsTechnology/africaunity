@@ -706,10 +706,10 @@ import {
     TrashIcon,
     KeyIcon,
     LockClosedIcon,
-} from "@heroicons/vue/solid";
+} from "@heroicons/vue/24/solid";
 
 const props = {
-    name: {
+    slug: {
         required: true,
         type: String,
     },

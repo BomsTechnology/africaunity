@@ -36,6 +36,18 @@
                 >
                     <div class="p-6">
                         <div>
+                            <router-link
+                                :to="{
+                                    name: 'show.post',
+                                    params: { id: post.id, slug: post.slug },
+                                }"
+                                class="dark:text-white mt-2 block transform text-2xl font-semibold text-gray-800 transition-colors duration-200 hover:text-gray-600 hover:underline"
+                                >{{
+                                    post.title.length <= 20
+                                        ? post.title
+                                        : post.title.substring(0, 19) + "..."
+                                }}</router-link
+                            >
                             <a
                                 href="#"
                                 class="rounded py-1 px-2 text-xs capitalize text-white"
@@ -52,19 +64,6 @@
                                 }}</span>
                                 <span v-else>{{ post.country.name_pt }}</span>
                             </a>
-                            <router-link
-                                :to="{
-                                    name: 'show.post',
-                                    params: { id: post.id },
-                                }"
-                                href="#"
-                                class="dark:text-white mt-2 block transform text-2xl font-semibold text-gray-800 transition-colors duration-200 hover:text-gray-600 hover:underline"
-                                >{{
-                                    post.title.length <= 20
-                                        ? post.title
-                                        : post.title.substring(0, 19) + "..."
-                                }}</router-link
-                            >
                             <p
                                 class="dark:text-gray-400 mt-2 text-sm text-gray-600"
                             >
@@ -78,7 +77,7 @@
                             <router-link
                                 :to="{
                                     name: 'show.post',
-                                    params: { id: post.id },
+                                    params: { id: post.id, slug: post.slug },
                                 }"
                                 class="dark:text-blue-400 text-blue-600 hover:underline"
                                 >{{ $t("read-more") }}</router-link
@@ -93,11 +92,10 @@
                                         :to="{
                                             name: 'compte',
                                             params: {
-                                                name: post.user.firstname,
+                                                slug: post.user.slug,
                                                 id: post.user.id,
                                             },
                                         }"
-                                        href="#"
                                         class="hover:text-primary-blue"
                                         >{{ post.user.firstname }}</router-link
                                     >
@@ -106,7 +104,7 @@
                                     <CalendarIcon class="h-4 w-4" />
                                     <a href="#" class="hover:text-primary-blue">{{
                                         new Date(post.date).toLocaleDateString(
-                                            "fr-FR",
+                                            locale,
                                             {
                                                 day: "numeric",
                                                 year: "numeric",
@@ -116,7 +114,9 @@
                                     }}</a>
                                 </div>
                                 <div class="item-center flex space-x-1">
-                                    <ChatIcon class="h-4 w-4 text-gray-500" />
+                                    <ChatBubbleOvalLeftEllipsisIcon
+                                        class="h-4 w-4 text-gray-500"
+                                    />
                                     <a
                                         href="#"
                                         class="text-xs hover:text-primary-blue"
@@ -135,7 +135,7 @@
                 v-if="posts.length == 0 && loading != 1"
                 class="flex animate-pulse flex-col items-center justify-center p-28 text-gray-500"
             >
-                <EmojiSadIcon class="h-16 w-16" />
+                <FaceFrownIcon class="h-16 w-16" />
                 <span class="mt-2 text-2xl">{{ $t("no-content") }} </span>
             </div>
         </div>
@@ -340,9 +340,9 @@ import {
     PlusCircleIcon,
     CalendarIcon,
     UserIcon,
-    EmojiSadIcon,
-    ChatIcon,
-} from "@heroicons/vue/solid";
+    FaceFrownIcon,
+    ChatBubbleOvalLeftEllipsisIcon,
+} from "@heroicons/vue/24/solid";
 import { reactive, ref, onMounted, onUnmounted } from "vue";
 import useCountries from "@/services/countryServices.js";
 import useZones from "@/services/zoneServices.js";
@@ -352,6 +352,8 @@ import useMinistries from "@/services/ministryServices.js";
 import usePosts from "@/services/postServices.js";
 import PropAu from "@/components/skeleton/PropAu.vue";
 import { useRouter } from "vue-router";
+import { useI18n } from "vue-i18n";
+const { locale } = useI18n();
 const router = useRouter();
 const { posts, getPosts, filterPost, loading, page, isAll } = usePosts();
 const { countries, getCountries } = useCountries();
@@ -385,21 +387,23 @@ onUnmounted(async () => {
     window.removeEventListener("scroll", handleScroll);
 });
 const handleScroll = async (e) => {
-    let element = postsContainer.value;
-    if (
-        element.getBoundingClientRect().bottom < window.innerHeight &&
-        toGet.value &&
-        !isAll.value &&
-        filter.country == "" &&
-        filter.continent == "" &&
-        filter.ministry == "" &&
-        filter.zone == "" &&
-        filter.keywords == ""
-    ) {
-        toGet.value = false;
-        page.value++;
-        await getPosts("propau", localStorage.lang);
-        toGet.value = true;
+    if (postsContainer.value) {
+        let element = postsContainer.value;
+        if (
+            element.getBoundingClientRect().bottom < window.innerHeight &&
+            toGet.value &&
+            !isAll.value &&
+            filter.country == "" &&
+            filter.continent == "" &&
+            filter.ministry == "" &&
+            filter.zone == "" &&
+            filter.keywords == ""
+        ) {
+            toGet.value = false;
+            page.value++;
+            await getPosts("propau", localStorage.lang);
+            toGet.value = true;
+        }
     }
 };
 const filteredZone = () => {

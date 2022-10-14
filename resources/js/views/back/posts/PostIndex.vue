@@ -120,7 +120,7 @@
 </template>
 
 <script setup>
-import { PlusCircleIcon } from "@heroicons/vue/solid";
+import { PlusCircleIcon } from "@heroicons/vue/24/solid";
 import { reactive, ref, onMounted, computed, watch } from "vue";
 
 import usePosts from "@/services/postServices.js";

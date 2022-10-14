@@ -24,7 +24,7 @@
                 <router-link
                     :to="{
                         name: 'setting.account',
-                        params: { name: user.firstname, id: user.id },
+                        params: { slug: user.slug, id: user.id },
                     }"
                     v-if="user.id == loginUser.id"
                     class="absolute mb-40 -mt-28 h-40 w-40 overflow-hidden rounded-full bg-white text-center shadow lg:left-4 lg:mt-0 lg:h-60 lg:w-60"
@@ -58,7 +58,7 @@
                 <div
                     class="mt-20 h-full w-full overflow-y-auto px-8 py-2 lg:mt-0 lg:w-[65%] xl:w-[75%]"
                 >
-                    <div v-if="loading == 1" class="p-28">
+                    <div v-if="loading == 1" class="mt-4">
                         <svg
                             class="mx-auto h-16 w-16 animate-spin"
                             xmlns="http://www.w3.org/2000/svg"
@@ -139,7 +139,7 @@
                                     :to="{
                                         name: 'setting.account',
                                         params: {
-                                            name: user.firstname,
+                                            slug: user.firstname,
                                             id: user.id,
                                         },
                                     }"
@@ -205,7 +205,7 @@
                         : 'text-md flex items-center space-x-2 rounded-md px-2 py-1 text-white hover:bg-white/25',
                 ]"
             >
-                <ChatIcon class="h-5 w-5" />
+                <ChatBubbleOvalLeftEllipsisIcon class="h-5 w-5" />
                 <span class="hidden lg:block">{{ $t("comments") }}</span>
             </button>
             <button
@@ -217,7 +217,7 @@
                         : 'text-md flex items-center space-x-2 rounded-md px-2 py-1 text-white hover:bg-white/25',
                 ]"
             >
-                <ChatAltIcon class="h-5 w-5" />
+                <ChatBubbleLeftEllipsisIcon class="h-5 w-5" />
                 <span class="hidden lg:block">{{ $t("my-jobs") }}</span>
             </button>
             <button
@@ -229,7 +229,7 @@
                         : 'text-md flex items-center space-x-2 rounded-md px-2 py-1 text-white hover:bg-white/25',
                 ]"
             >
-                <SpeakerphoneIcon class="h-5 w-5" />
+                <MegaphoneIcon class="h-5 w-5" />
                 <span class="hidden lg:block">{{ $t("my-ads") }}</span>
             </button>
         </div>
@@ -811,7 +811,9 @@
                         <!-- <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">{{ post.content.substring(0, 19) + "..." }}</p> -->
 
                         <div class="item-center mt-2 flex space-x-1">
-                            <ChatIcon class="h-4 w-4 text-gray-500" />
+                            <ChatBubbleOvalLeftEllipsisIcon
+                                class="h-4 w-4 text-gray-500"
+                            />
                             <a
                                 href="#"
                                 class="text-xs hover:text-primary-blue"
@@ -841,7 +843,7 @@
                                         },
                                     }"
                                 >
-                                    <PencilAltIcon
+                                    <PencilSquareIcon
                                         class="h-5 w-5 cursor-pointer text-primary-blue hover:text-gray-400"
                                     />
                                 </router-link>
@@ -863,7 +865,7 @@
                 v-else
                 class="flex animate-pulse flex-col items-center justify-center p-28 text-gray-500"
             >
-                <EmojiSadIcon class="h-16 w-16" />
+                <FaceFrownIcon class="h-16 w-16" />
                 <span class="mt-2 text-2xl">{{ $t("no-content") }} </span>
             </div>
         </div>
@@ -950,7 +952,9 @@
                         </p>
 
                         <div class="item-center mt-2 flex space-x-1">
-                            <ChatIcon class="h-4 w-4 text-gray-500" />
+                            <ChatBubbleOvalLeftEllipsisIcon
+                                class="h-4 w-4 text-gray-500"
+                            />
                             <a
                                 href="#"
                                 class="text-xs hover:text-primary-blue"
@@ -980,7 +984,7 @@
                                         },
                                     }"
                                 >
-                                    <PencilAltIcon
+                                    <PencilSquareIcon
                                         class="h-5 w-5 cursor-pointer text-primary-blue hover:text-gray-400"
                                     />
                                 </router-link>
@@ -1002,7 +1006,7 @@
                 v-else
                 class="flex animate-pulse flex-col items-center justify-center p-28 text-gray-500"
             >
-                <EmojiSadIcon class="h-16 w-16" />
+                <FaceFrownIcon class="h-16 w-16" />
                 <span class="mt-2 text-2xl">{{ $t("no-content") }} </span>
             </div>
         </div>
@@ -1127,7 +1131,7 @@
                                         @click="selectComment(comment)"
                                         class="dark:text-blue-500 text-primary-blue hover:underline"
                                     >
-                                        <PencilAltIcon
+                                        <PencilSquareIcon
                                             class="h-5 w-5 cursor-pointer text-blue-400 hover:text-blue-700"
                                         />
                                     </button>
@@ -1155,7 +1159,7 @@
                                 <div
                                     class="flex animate-pulse flex-col items-center justify-center p-28 text-gray-500"
                                 >
-                                    <EmojiSadIcon class="h-16 w-16" />
+                                    <FaceFrownIcon class="h-16 w-16" />
                                     <span class="mt-2 text-2xl"
                                         >{{ $t("no-content") }}
                                     </span>
@@ -1282,7 +1286,7 @@
                                         }"
                                         class="dark:text-blue-500 text-primary-blue hover:underline"
                                     >
-                                        <!-- <PencilAltIcon
+                                        <!-- <PencilSquareIcon
                                                     class="h-5 w-5 hover:text-blue-700 cursor-pointer text-blue-400"
                                                 /> -->
                                         {{ $t("modify") }}
@@ -1342,7 +1346,7 @@
                                 <div
                                     class="flex animate-pulse flex-col items-center justify-center p-28 text-gray-500"
                                 >
-                                    <EmojiSadIcon class="h-16 w-16" />
+                                    <FaceFrownIcon class="h-16 w-16" />
                                     <span class="mt-2 text-2xl"
                                         >{{ $t("no-content") }}
                                     </span>
@@ -1451,7 +1455,7 @@
                                         }"
                                         class="dark:text-blue-500 text-primary-blue hover:underline"
                                     >
-                                        <PencilAltIcon
+                                        <PencilSquareIcon
                                             class="h-5 w-5 cursor-pointer text-blue-400 hover:text-blue-700"
                                         />
                                     </router-link>
@@ -1481,7 +1485,7 @@
                                 <div
                                     class="flex animate-pulse flex-col items-center justify-center p-28 text-gray-500"
                                 >
-                                    <EmojiSadIcon class="h-16 w-16" />
+                                    <FaceFrownIcon class="h-16 w-16" />
                                     <span class="mt-2 text-2xl"
                                         >{{ $t("no-content") }}
                                     </span>
@@ -1529,22 +1533,22 @@ import {
     CogIcon,
     ExclamationCircleIcon,
     TrashIcon,
-    EmojiSadIcon,
+    FaceFrownIcon,
     PlusCircleIcon,
-    SpeakerphoneIcon,
+    MegaphoneIcon,
     CheckCircleIcon,
     PencilIcon,
-    PencilAltIcon,
+    PencilSquareIcon,
     NewspaperIcon,
-    ChatIcon,
-    ChatAltIcon,
+    ChatBubbleOvalLeftEllipsisIcon,
+    ChatBubbleLeftEllipsisIcon,
     BookOpenIcon,
     IdentificationIcon,
     UserCircleIcon,
-} from "@heroicons/vue/solid";
+} from "@heroicons/vue/24/solid";
 
 const props = defineProps({
-    name: {
+    slug: {
         required: true,
         type: String,
     },

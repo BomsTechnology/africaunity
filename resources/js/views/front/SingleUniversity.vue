@@ -78,7 +78,7 @@
                 v-else
                 class="flex animate-pulse flex-col items-center justify-center p-28 text-gray-500"
             >
-                <EmojiSadIcon class="h-16 w-16" />
+                <FaceFrownIcon class="h-16 w-16" />
                 <span class="mt-2 text-2xl">{{ $t("no-content") }}</span>
             </div>
             <h1 class="py-2 text-center text-3xl font-bold text-primary-blue">
@@ -144,7 +144,10 @@
                         <router-link
                             :to="{
                                 name: 'show.ads',
-                                params: { id: announcement.id },
+                                params: {
+                                    id: announcement.id,
+                                    slug: announcement.slug,
+                                },
                             }"
                         >
                             <img
@@ -157,7 +160,7 @@
                                 v-else
                                 class="mt-2 h-48 w-full overflow-hidden rounded-t-lg bg-gray-50 py-10"
                             >
-                                <SpeakerphoneIcon
+                                <MegaphoneIcon
                                     class="h-full w-full text-gray-500"
                                 />
                             </div>
@@ -172,7 +175,10 @@
                             <router-link
                                 :to="{
                                     name: 'show.ads',
-                                    params: { id: announcement.id },
+                                    params: {
+                                        id: announcement.id,
+                                        slug: announcement.slug,
+                                    },
                                 }"
                             >
                                 <h1
@@ -213,12 +219,10 @@
                                         :to="{
                                             name: 'compte',
                                             params: {
-                                                name: announcement.user
-                                                    .firstname,
+                                                slug: announcement.user.slug,
                                                 id: announcement.user.id,
                                             },
                                         }"
-                                        href="#"
                                         class="hover:text-primary-blue"
                                         >{{
                                             announcement.user.firstname
@@ -227,10 +231,16 @@
                                 </div>
                                 <div class="hidden space-x-1 lg:flex">
                                     <CalendarIcon class="h-4 w-4" />
-                                    <a
-                                        href="#"
-                                        class="hover:text-primary-blue"
-                                        >{{ announcement.date }}</a
+                                    <a href="#" class="hover:text-primary-blue">
+                                        {{
+                                            new Date(
+                                                announcement.date
+                                            ).toLocaleDateString(locale, {
+                                                day: "numeric",
+                                                year: "numeric",
+                                                month: "long",
+                                            })
+                                        }}</a
                                     >
                                 </div>
                             </div>
@@ -241,7 +251,7 @@
                     v-else
                     class="flex animate-pulse flex-col items-center justify-center p-28 text-gray-500"
                 >
-                    <EmojiSadIcon class="h-16 w-16" />
+                    <FaceFrownIcon class="h-16 w-16" />
                     <span class="mt-2 text-2xl">{{ $t("no-content") }} </span>
                 </div>
             </div>
@@ -250,23 +260,28 @@
 </template>
 
 <script setup>
-import router from "../../router";
+import router from "@/router";
 import { reactive, ref, onMounted, computed } from "vue";
 import {
-    EmojiSadIcon,
+    FaceFrownIcon,
     PlusCircleIcon,
-    SpeakerphoneIcon,
+    MegaphoneIcon,
     CalendarIcon,
     UserIcon,
-} from "@heroicons/vue/solid";
-import useUniversities from "../../services/universityServices.js";
-import useAnnouncements from "../../services/announcementServices.js";
-import usecategoryAnnouncements from "../../services/categoryAnnouncementServices.js";
-import Error from "../../components/Error.vue";
-
+} from "@heroicons/vue/24/solid";
+import useUniversities from "@/services/universityServices.js";
+import useAnnouncements from "@/services/announcementServices.js";
+import usecategoryAnnouncements from "@/services/categoryAnnouncementServices.js";
+import Error from "@/components/Error.vue";
+import { useI18n } from "vue-i18n";
+const { locale } = useI18n();
 const props = defineProps({
     id: {
         required: true,
+        type: String,
+    },
+    slug: {
+        required: false,
         type: String,
     },
 });

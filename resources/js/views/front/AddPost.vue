@@ -11,7 +11,9 @@
                 class="flex flex-col items-center justify-center lg:flex-row lg:space-x-3"
             >
                 <h1 class="font-semibold">{{ $t("select-lang") }} :</h1>
-                <div class="mt-3 flex space-x-3 lg:mt-0">
+                <div
+                    class="mt-3 inline-flex w-full justify-center space-x-3 text-xs lg:mt-0 lg:text-sm"
+                >
                     <button
                         :class="[
                             $i18n.locale != 'fr'
@@ -215,14 +217,31 @@
                             >{{ $t("thumbnails") }}
                             <span class="text-red-500">*</span></label
                         >
-                        <input
-                            required
-                            ref="file"
-                            @change="handelFileObject()"
-                            accept="image/*"
-                            type="file"
-                            class="dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 dark:focus:border-blue-300 mt-2 block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"
-                        />
+                        <div class="flex items-center space-x-4 py-4">
+                            <img
+                                v-if="post.image"
+                                :src="
+                                    typeof post.image == 'string'
+                                        ? post.image
+                                        : previewImage(post.image)
+                                "
+                                @load="
+                                    typeof post.image == 'string'
+                                        ? ''
+                                        : loadImage(post.image)
+                                "
+                                class="h-16 w-16 rounded-full"
+                                :alt="post.title"
+                            />
+                            <input
+                                required
+                                ref="file"
+                                @change="handelFileObject()"
+                                accept="image/*"
+                                type="file"
+                                class="dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 dark:focus:border-blue-300 mt-2 block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"
+                            />
+                        </div>
                     </div>
 
                     <div class="col-span-2">
@@ -423,7 +442,7 @@ const storePost = async () => {
             router.push({
                 name: "compte",
                 params: {
-                    name: user.firstname,
+                    slug: user.slug,
                     id: user.id,
                     redirect: "article",
                 },
@@ -432,7 +451,7 @@ const storePost = async () => {
             router.push({
                 name: "compte",
                 params: {
-                    name: user.firstname,
+                    slug: user.slug,
                     id: user.id,
                     redirect: "propau",
                 },
@@ -449,4 +468,10 @@ const changeLocale = (lang) => {
     locale.value = lang;
     localStorage.lang = locale.value;
 };
+function previewImage(file) {
+    return URL.createObjectURL(file);
+}
+function loadImage(file) {
+    return URL.revokeObjectURL(file);
+}
 </script>

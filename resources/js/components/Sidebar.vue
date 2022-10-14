@@ -14,14 +14,14 @@
                 @click="open.menu = true"
                 class="bg-menu p-2 focus:outline-none focus:ring-2"
             >
-                <MenuIcon class="h-6 w-6 text-white" />
+                <Bars3Icon class="h-6 w-6 text-white" />
             </button>
             <button
                 v-if="open.menu"
                 @click="open.menu = false"
                 class="focus:outline-none focus:ring-2"
             >
-                <XIcon class="h-6 w-6 text-white" />
+                <XMarkIcon class="h-6 w-6 text-white" />
             </button>
         </div>
         <Transition
@@ -63,14 +63,14 @@
                         :to="{ name: 'admin.comment.index' }"
                         class="jusitfy-start flex w-full items-center space-x-6 rounded text-white focus:text-primary-blue focus:outline-none"
                     >
-                        <ChatIcon class="h-6 w-6" />
+                        <ChatBubbleOvalLeftEllipsisIcon class="h-6 w-6" />
                         <p class="text-base leading-4">Comments</p>
                     </router-link>
                     <router-link
                         :to="{ name: 'admin.other' }"
                         class="jusitfy-start flex w-full items-center space-x-6 rounded text-white focus:text-primary-blue focus:outline-none"
                     >
-                        <ColorSwatchIcon class="h-6 w-6" />
+                        <SwatchIcon class="h-6 w-6" />
                         <p class="text-base leading-4">Others</p>
                     </router-link>
                 </div>
@@ -105,14 +105,14 @@
                             }"
                             class="flex w-full items-center justify-start space-x-6 rounded px-3 py-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:text-white md:w-52"
                         >
-                            <TableIcon class="h-6 w-6" />
+                            <QueueListIcon class="h-6 w-6" />
                             <p class="text-base leading-4">All Articles</p>
                         </router-link>
                         <router-link
                             :to="{ name: 'admin.continent.index' }"
                             class="flex w-full items-center justify-start space-x-6 rounded px-3 py-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:text-white md:w-52"
                         >
-                            <GlobeIcon class="h-6 w-6" />
+                            <GlobeEuropeAfricaIcon class="h-6 w-6" />
                             <p class="text-base leading-4">Continent</p>
                         </router-link>
                         <router-link
@@ -133,7 +133,7 @@
                             :to="{ name: 'admin.ministry.index' }"
                             class="flex w-full items-center justify-start space-x-6 rounded px-3 py-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:text-white md:w-52"
                         >
-                            <OfficeBuildingIcon class="h-6 w-6" />
+                            <BuildingOffice2Icon class="h-6 w-6" />
                             <p class="text-base leading-4">Ministry</p>
                         </router-link>
                     </div>
@@ -169,14 +169,14 @@
                             }"
                             class="flex w-full items-center justify-start space-x-6 rounded px-3 py-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:text-white md:w-52"
                         >
-                            <TableIcon class="h-6 w-6" />
+                            <QueueListIcon class="h-6 w-6" />
                             <p class="text-base leading-4">All PropAU</p>
                         </router-link>
                         <router-link
                             :to="{ name: 'admin.continent.index' }"
                             class="flex w-full items-center justify-start space-x-6 rounded px-3 py-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:text-white md:w-52"
                         >
-                            <GlobeIcon class="h-6 w-6" />
+                            <GlobeEuropeAfricaIcon class="h-6 w-6" />
                             <p class="text-base leading-4">Continent</p>
                         </router-link>
                         <router-link
@@ -197,7 +197,7 @@
                             :to="{ name: 'admin.ministry.index' }"
                             class="flex w-full items-center justify-start space-x-6 rounded px-3 py-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:text-white md:w-52"
                         >
-                            <OfficeBuildingIcon class="h-6 w-6" />
+                            <BuildingOffice2Icon class="h-6 w-6" />
                             <p class="text-base leading-4">Ministry</p>
                         </router-link>
                     </div>
@@ -212,7 +212,7 @@
                         <p
                             class="jusitfy-start flex w-full items-center text-base leading-4"
                         >
-                            <LibraryIcon class="mr-6 h-6 w-6" />
+                            <BuildingLibraryIcon class="mr-6 h-6 w-6" />
                             University
                         </p>
 
@@ -233,14 +233,14 @@
                             :to="{ name: 'admin.university.index' }"
                             class="flex w-full items-center justify-start space-x-6 rounded px-3 py-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:text-white md:w-52"
                         >
-                            <TableIcon class="h-6 w-6" />
+                            <QueueListIcon class="h-6 w-6" />
                             <p class="text-base leading-4">All Universities</p>
                         </router-link>
                         <router-link
                             :to="{ name: 'admin.continent.index' }"
                             class="flex w-full items-center justify-start space-x-6 rounded px-3 py-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:text-white md:w-52"
                         >
-                            <GlobeIcon class="h-6 w-6" />
+                            <GlobeEuropeAfricaIcon class="h-6 w-6" />
                             <p class="text-base leading-4">Continent</p>
                         </router-link>
                         <router-link
@@ -254,7 +254,7 @@
                             :to="{ name: 'admin.city.index' }"
                             class="flex w-full items-center justify-start space-x-6 rounded px-3 py-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:text-white md:w-52"
                         >
-                            <TemplateIcon class="h-6 w-6" />
+                            <Squares2X2Icon class="h-6 w-6" />
                             <p class="text-base leading-4">City</p>
                         </router-link>
                     </div>
@@ -284,14 +284,14 @@
                             :to="{ name: 'admin.jobOffer.index' }"
                             class="flex w-full items-center justify-start space-x-6 rounded px-3 py-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:text-white md:w-52"
                         >
-                            <TableIcon class="h-6 w-6" />
+                            <QueueListIcon class="h-6 w-6" />
                             <p class="text-base leading-4">All Job</p>
                         </router-link>
                         <router-link
                             :to="{ name: 'admin.continent.index' }"
                             class="flex w-full items-center justify-start space-x-6 rounded px-3 py-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:text-white md:w-52"
                         >
-                            <GlobeIcon class="h-6 w-6" />
+                            <GlobeEuropeAfricaIcon class="h-6 w-6" />
                             <p class="text-base leading-4">Continent</p>
                         </router-link>
                         <router-link
@@ -312,7 +312,7 @@
                             :to="{ name: 'admin.city.index' }"
                             class="flex w-full items-center justify-start space-x-6 rounded px-3 py-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:text-white md:w-52"
                         >
-                            <TemplateIcon class="h-6 w-6" />
+                            <Squares2X2Icon class="h-6 w-6" />
                             <p class="text-base leading-4">City</p>
                         </router-link>
                         <router-link
@@ -337,7 +337,7 @@
                             <p
                                 class="jusitfy-start flex w-full items-center text-base leading-4"
                             >
-                                <SpeakerphoneIcon class="mr-6 h-6 w-6" />
+                                <MegaphoneIcon class="mr-6 h-6 w-6" />
                                 Ads
                             </p>
 
@@ -358,7 +358,7 @@
                                 :to="{ name: 'admin.announcement.index' }"
                                 class="flex w-full items-center justify-start space-x-6 rounded px-3 py-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:text-white md:w-52"
                             >
-                                <TableIcon class="h-6 w-6" />
+                                <QueueListIcon class="h-6 w-6" />
                                 <p class="text-base leading-4">
                                     All Announcement
                                 </p>
@@ -367,7 +367,7 @@
                                 :to="{ name: 'admin.university.index' }"
                                 class="flex w-full items-center justify-start space-x-6 rounded px-3 py-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:text-white md:w-52"
                             >
-                                <LibraryIcon class="h-6 w-6" />
+                                <BuildingLibraryIcon class="h-6 w-6" />
                                 <p class="text-base leading-4">University</p>
                             </router-link>
                             <router-link
@@ -421,7 +421,7 @@
                         </div>
                         <div>
                             <!-- <CogIcon class="w-6 h-6 text-white" /> -->
-                            <LogoutIcon
+                            <ArrowRightOnRectangleIcon
                                 v-if="loading == 0"
                                 @click="logout()"
                                 class="h-6 w-6 cursor-pointer text-white"
@@ -457,30 +457,30 @@
 
 <script setup>
 import {
-    XIcon,
-    MenuIcon,
+    XMarkIcon,
+    Bars3Icon,
     HomeIcon,
     UserGroupIcon,
     NewspaperIcon,
     ChevronDownIcon,
-    TableIcon,
-    GlobeIcon,
+    QueueListIcon,
+    GlobeEuropeAfricaIcon,
     MapIcon,
     UserCircleIcon,
     FlagIcon,
-    OfficeBuildingIcon,
+    BuildingOffice2Icon,
     ChevronUpIcon,
-    ChatIcon,
-    SpeakerphoneIcon,
-    LibraryIcon,
-    TemplateIcon,
+    ChatBubbleOvalLeftEllipsisIcon,
+    MegaphoneIcon,
+    BuildingLibraryIcon,
+    Squares2X2Icon,
     CogIcon,
     CurrencyDollarIcon,
     ChartPieIcon,
     BriefcaseIcon,
-    ColorSwatchIcon,
-    LogoutIcon,
-} from "@heroicons/vue/solid";
+    SwatchIcon,
+    ArrowRightOnRectangleIcon,
+} from "@heroicons/vue/24/solid";
 import axios from "axios";
 import { reactive, ref, onMounted } from "vue";
 

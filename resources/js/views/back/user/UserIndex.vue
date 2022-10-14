@@ -112,7 +112,7 @@
 </template>
 
 <script setup>
-import { PlusCircleIcon, UserCircleIcon } from "@heroicons/vue/solid";
+import { PlusCircleIcon, UserCircleIcon } from "@heroicons/vue/24/solid";
 import { reactive, ref, onMounted, computed } from "vue";
 
 import useUsers from "@/services/userServices.js";

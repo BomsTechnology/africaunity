@@ -7,6 +7,7 @@ use App\Models\Currency;
 use App\Models\University;
 use App\Models\User;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Str;
 
 class AnnouncementResource extends JsonResource
 {
@@ -22,6 +23,7 @@ class AnnouncementResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
+            'slug' => Str::slug($this->title),
             'description' => $this->description,
             'image' => $this->image,
             'status' => $this->status,
@@ -30,7 +32,9 @@ class AnnouncementResource extends JsonResource
             'phone' => $this->phone,
             'adress' => $this->adress,
             'website' => $this->website,
-            'user' => User::find($this->user_id),
+            'user' => new UserResource2(
+                User::find($this->user_id)
+            ),
             'currency' => $this->currency_id != null ? new CurrencyResource(Currency::find($this->currency_id)) : '',
             'category' => new CategoryAnnouncementResource(CategoryAnnouncement::find($this->category_announcement_id)),
             'university' => new UniversityResource(University::find($this->university_id)),

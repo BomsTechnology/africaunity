@@ -284,9 +284,11 @@ const storeAnnouncement = async () => {
     formData.append("university_id", announcement.university_id);
 
     await createAnnouncement(formData);
-    router.push({
-        name: "admin.announcement.index",
-    });
+    if (errors.value == "") {
+        router.push({
+            name: "admin.announcement.index",
+        });
+    }
 };
 const handelFileObject = async () => {
     announcement.image = file.value.files[0];

@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>AfricaUnity</title>
+    <title>AfricaUnity | The profesional and social network</title>
 
     @laravelPWA
 
@@ -32,7 +32,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sceditor@3/minified/themes/default.min.css" />
 </head>
 
-<body class="bg-white" style="background-image:url('/img/random-shapes.svg')">
+<body class="bg-white font-ubuntu" style="background-image:url('/img/random-shapes.svg')">
 
     <div id="app" class="">
 

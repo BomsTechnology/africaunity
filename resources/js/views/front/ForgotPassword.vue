@@ -27,7 +27,7 @@
                         </p>
                         <div class="relative">
                             <span
-                                ><MailIcon
+                                ><EnvelopeIcon
                                     class="absolute mt-2 ml-2 h-6 w-6 text-gray-400"
                             /></span>
                             <input
@@ -87,7 +87,7 @@
 import { ref, onMounted, reactive } from "vue";
 import Error from "@/components/Error.vue";
 
-import { MailIcon } from "@heroicons/vue/solid";
+import { EnvelopeIcon } from "@heroicons/vue/24/solid";
 import axios from "axios";
 import { useRouter } from "vue-router";
 const router = useRouter();
@@ -96,7 +96,7 @@ onMounted(async () => {
     if (localStorage.token) {
         router.push({
             name: "compte",
-            params: { name: cuser.firstname, id: cuser.id },
+            params: { slug: cuser.slug, id: cuser.id },
         });
     }
 });

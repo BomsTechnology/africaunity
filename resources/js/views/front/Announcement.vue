@@ -1,12 +1,12 @@
 <script setup>
 import { reactive, ref, onMounted, computed, onUnmounted } from "vue";
 import {
-    EmojiSadIcon,
+    FaceFrownIcon,
     UserIcon,
     CalendarIcon,
     PlusCircleIcon,
-    SpeakerphoneIcon,
-} from "@heroicons/vue/solid";
+    MegaphoneIcon,
+} from "@heroicons/vue/24/solid";
 import useAnnouncements from "@/services/announcementServices.js";
 import useUniversities from "@/services/universityServices.js";
 import usecategoryAnnouncements from "@/services/categoryAnnouncementServices.js";
@@ -379,7 +379,10 @@ const filteredZoneA = () => {
                         <router-link
                             :to="{
                                 name: 'show.ads',
-                                params: { id: announcement.id },
+                                params: {
+                                    id: announcement.id,
+                                    slug: announcement.slug,
+                                },
                             }"
                         >
                             <img
@@ -392,7 +395,7 @@ const filteredZoneA = () => {
                                 v-else
                                 class="mt-2 h-48 w-full overflow-hidden rounded-t-lg bg-gray-50 py-10"
                             >
-                                <SpeakerphoneIcon
+                                <MegaphoneIcon
                                     class="h-full w-full text-gray-500"
                                 />
                             </div>
@@ -414,7 +417,10 @@ const filteredZoneA = () => {
                             <router-link
                                 :to="{
                                     name: 'show.ads',
-                                    params: { id: announcement.id },
+                                    params: {
+                                        id: announcement.id,
+                                        slug: announcement.slug,
+                                    },
                                 }"
                             >
                                 <h1
@@ -462,12 +468,10 @@ const filteredZoneA = () => {
                                         :to="{
                                             name: 'compte',
                                             params: {
-                                                name: announcement.user
-                                                    .firstname,
+                                                slug: announcement.user.slug,
                                                 id: announcement.user.id,
                                             },
                                         }"
-                                        href="#"
                                         class="hover:text-primary-blue"
                                         >{{
                                             announcement.user.firstname
@@ -485,7 +489,7 @@ const filteredZoneA = () => {
                     v-if="announcements.length == 0 && loading != 1"
                     class="flex animate-pulse flex-col items-center justify-center p-28 text-gray-500"
                 >
-                    <EmojiSadIcon class="h-16 w-16" />
+                    <FaceFrownIcon class="h-16 w-16" />
                     <span class="mt-2 text-2xl">{{ $t("no-content") }} </span>
                 </div>
             </div>

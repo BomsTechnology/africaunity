@@ -175,12 +175,29 @@
                             for="fr"
                             >{{ $t("thumbnails") }}</label
                         >
-                        <input
-                            ref="file"
-                            @change="handelFileObject()"
-                            type="file"
-                            class="dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 dark:focus:border-blue-300 mt-2 block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"
-                        />
+                        <div class="flex items-center space-x-4 py-4">
+                            <img
+                                v-if="announcement.image"
+                                :src="
+                                    typeof announcement.image == 'string'
+                                        ? announcement.image
+                                        : previewImage(announcement.image)
+                                "
+                                @load="
+                                    typeof announcement.image == 'string'
+                                        ? ''
+                                        : loadImage(announcement.image)
+                                "
+                                class="h-16 w-16 rounded-full"
+                                :alt="announcement.title"
+                            />
+                            <input
+                                ref="file"
+                                @change="handelFileObject()"
+                                type="file"
+                                class="dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 dark:focus:border-blue-300 mt-2 block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"
+                            />
+                        </div>
                     </div>
 
                     <div class="col-span-2 mt-4">
@@ -307,4 +324,10 @@ const storeAnnouncement = async () => {
 const handelFileObject = () => {
     announcement.image = file.value.files[0];
 };
+function previewImage(file) {
+    return URL.createObjectURL(file);
+}
+function loadImage(file) {
+    return URL.revokeObjectURL(file);
+}
 </script>
