@@ -1,7 +1,7 @@
 <template>
-    <div class="relative h-auto w-full xl:mt-0 xl:p-4">
+    <div class="relative min-h-screen w-full bg-white xl:mt-0 xl:p-4">
         <div class="z-0 h-full w-full p-4">
-            <div class="flex justify-between bg-white px-8 py-5 shadow-lg">
+            <div class="flex justify-between bg-white px-8 py-5">
                 <h1 class="text-4xl font-bold capitalize text-primary-blue">
                     Announcement
                 </h1>
@@ -21,10 +21,7 @@
                     <div
                         class="dark:bg-gray-800 inline-block min-w-full align-middle"
                     >
-                        <div class="p-4">
-                            <label for="table-search" class="sr-only"
-                                >Search</label
-                            >
+                        <div class="items-center justify-between p-4 lg:flex">
                             <div class="relative mt-1">
                                 <div
                                     class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"
@@ -50,8 +47,23 @@
                                     placeholder="Search for items"
                                 />
                             </div>
+                            <div class="">
+                                <button
+                                    type="button"
+                                    title="delete"
+                                    @click="deleteAnnouncements()"
+                                    class="flex items-center justify-between space-x-2 rounded border border-red-500 p-2 text-red-500 hover:bg-red-500 hover:text-white"
+                                >
+                                    <TrashIcon class="h-6 w-6" />
+                                    <span
+                                        class="hidden text-sm font-thin lg:block"
+                                        >Delete</span
+                                    >
+                                </button>
+                            </div>
                         </div>
                         <EasyDataTable
+                            v-model:items-selected="itemsSelected"
                             :headers="headers"
                             :items="announcements"
                             alternating
@@ -89,20 +101,24 @@
                                         :to="{
                                             name: 'admin.announcement.edit',
                                             params: {
-                                                type: type,
                                                 id: item.id,
                                             },
                                         }"
                                         class="dark:text-blue-500 text-primary-blue hover:underline"
                                         >Edit</router-link
                                     >
-                                    <button
-                                        type="button"
-                                        @click="deleteAnnouncement(item.id)"
-                                        class="dark:text-blue-500 ml-3 text-red-600 hover:underline"
+                                    <router-link
+                                        :to="{
+                                            name: 'show.ads',
+                                            params: {
+                                                id: item.id,
+                                                slug: item.slug,
+                                            },
+                                        }"
+                                        class="dark:text-blue-500 ml-3 text-indigo-600 hover:underline"
                                     >
-                                        Delete
-                                    </button>
+                                        View
+                                    </router-link>
                                 </div>
                             </template>
                         </EasyDataTable>
@@ -114,11 +130,15 @@
 </template>
 
 <script setup>
-import { PlusCircleIcon, MegaphoneIcon } from "@heroicons/vue/24/solid";
+import {
+    PlusCircleIcon,
+    MegaphoneIcon,
+    TrashIcon,
+} from "@heroicons/vue/24/solid";
 import { reactive, ref, onMounted, computed } from "vue";
 import useAnnouncements from "@/services/announcementServices.js";
 import Error from "@/components/Error.vue";
-
+const itemsSelected = ref([]);
 const {
     announcements,
     getAnnouncements,
@@ -133,11 +153,18 @@ onMounted(async () => {
     getAnnouncements();
 });
 
-const deleteAnnouncement = async (id) => {
-    if (confirm("I you Sure ?")) {
-        await destroyAnnouncement(id);
-        if (errors.value == "") {
-            await getAnnouncements();
+const deleteAnnouncements = async (id) => {
+    if (itemsSelected.value.length != 0) {
+        const deleteIds = ref([]);
+        itemsSelected.value.forEach((d) => {
+            deleteIds.value.push(d.id);
+        });
+        if (confirm("I you Sure ?")) {
+            await destroyAnnouncement(deleteIds.value);
+            if (errors.value == "") {
+                await getAnnouncements();
+                itemsSelected.value = [];
+            }
         }
     }
 };

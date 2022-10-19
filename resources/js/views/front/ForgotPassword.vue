@@ -107,12 +107,10 @@ const errors = ref("");
 const loading = ref(0);
 
 const sendMailForgot = async () => {
-    // console.log(email);
     try {
         errors.value = "";
         loading.value = 1;
-        let respose = await axios.post("/api/send-reset-password/", email);
-
+        await axios.post("/api/forgot-password", email);
         loading.value = 2;
     } catch (e) {
         loading.value = 0;

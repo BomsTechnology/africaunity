@@ -29,7 +29,7 @@ class CategoryAnnouncementController extends Controller
     public function store(CategoryAnnouncementRequest $request)
     {
         $categoryAnnouncement = CategoryAnnouncement::create($request->validated());
-        
+
         return new CategoryAnnouncementResource($categoryAnnouncement);
     }
 
@@ -64,9 +64,12 @@ class CategoryAnnouncementController extends Controller
      * @param  \App\Models\CategoryAnnouncement  $categoryAnnouncement
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CategoryAnnouncement $categoryAnnouncement)
+    public function destroy($categoryAnnouncements)
     {
-        $categoryAnnouncement->delete();
+        $categoryAnnouncements = json_decode($categoryAnnouncements);
+        foreach ($categoryAnnouncements as  $categoryAnnouncement) {
+            CategoryAnnouncement::where('id', $categoryAnnouncement)->delete();
+        }
 
         return response()->noContent();
     }

@@ -29,7 +29,7 @@ class CountryController extends Controller
     public function store(CountryRequest $request)
     {
         $country = Country::create($request->validated());
-        
+
         return new CountryResource($country);
     }
 
@@ -58,15 +58,13 @@ class CountryController extends Controller
         return new CountryResource($country);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Country  $country
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Country $country)
+
+    public function destroy($countries)
     {
-        $country->delete();
+        $countries = json_decode($countries);
+        foreach ($countries as  $country) {
+            Country::where('id', $country)->delete();
+        }
 
         return response()->noContent();
     }

@@ -1,7 +1,7 @@
 <template>
-    <div class="relative h-auto w-full xl:mt-0 xl:p-4">
+    <div class="relative min-h-screen w-full bg-white xl:mt-0 xl:p-4">
         <div class="z-0 h-full w-full p-4">
-            <div class="flex justify-between bg-white px-8 py-5 shadow-lg">
+            <div class="flex justify-between bg-white px-8 py-5">
                 <h1 class="text-4xl font-bold text-primary-blue">
                     Other -
                     <span v-for="(other, index) in others" :key="index">
@@ -386,6 +386,7 @@ import { onMounted, ref, reactive, computed } from "vue";
 import { PlusCircleIcon } from "@heroicons/vue/24/solid";
 import Error from "@/components/Error.vue";
 import useLanguages from "@/services/languageServices.js";
+import useStatus from "@/services/statusServices.js";
 import useBusinessTypes from "@/services/businessTypeServices.js";
 import useBusinessSizes from "@/services/businessSizeServices.js";
 import useActivityAreas from "@/services/activityAreaServices.js";
@@ -405,6 +406,14 @@ const {
     updateLanguage,
     errorsLang,
 } = useLanguages();
+const {
+    status,
+    getStatus,
+    createStatus,
+    updateStatus,
+    destroyStatus,
+    errorsStatus,
+} = useStatus();
 const {
     businessTypes,
     getBusinessTypes,
@@ -504,6 +513,7 @@ const others = [
     "Level Studies",
     "Offer Type",
     "Size Company",
+    "Status",
 ];
 const item = reactive({
     name_fr: "",
@@ -611,6 +621,14 @@ const storeItem = async () => {
                 items.value = sizeCompanies.value;
             }
             break;
+        case 11:
+            await createStatus({ ...item });
+            errors.value = errorsStatus.value;
+            if (errors.value == "") {
+                await getStatus();
+                items.value = status.value;
+            }
+            break;
     }
     item.name_fr = "";
     item.name_en = "";
@@ -708,6 +726,14 @@ const saveItem = async () => {
             if (errors.value == "") {
                 await getSizeCompanies();
                 items.value = sizeCompanies.value;
+            }
+            break;
+        case 11:
+            await updateStatus(id.value, item);
+            errors.value = errorsStatus.value;
+            if (errors.value == "") {
+                await getStatus();
+                items.value = status.value;
             }
             break;
     }
@@ -812,6 +838,14 @@ const deleteItem = async (id) => {
                     items.value = sizeCompanies.value;
                 }
                 break;
+            case 11:
+                await destroyStatus(id);
+                errors.value = errorsStatus.value;
+                if (errors.value == "") {
+                    await getStatus();
+                    items.value = status.value;
+                }
+                break;
         }
         loading.value = 0;
     }
@@ -895,6 +929,13 @@ const changeOther = async () => {
             errors.value = errorsSC.value;
             if (errors.value == "") {
                 items.value = sizeCompanies.value;
+            }
+            break;
+        case 11:
+            await getStatus();
+            errors.value = errorsStatus.value;
+            if (errors.value == "") {
+                items.value = status.value;
             }
             break;
     }

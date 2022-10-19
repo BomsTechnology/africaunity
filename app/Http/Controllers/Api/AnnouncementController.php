@@ -10,12 +10,18 @@ use App\Models\User;
 use App\Notifications\ContactAnnouncementNotification;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\File;
 
 class AnnouncementController extends Controller
 {
     public function index()
     {
         return AnnouncementResource::collection(Announcement::orderBy('id')->paginate(8));
+    }
+
+    public function all()
+    {
+        return AnnouncementResource::collection(Announcement::orderBy('id')->get());
     }
 
     public function announcements_user($user)
@@ -217,6 +223,9 @@ class AnnouncementController extends Controller
             ]);
             $filename = '/uploads/' . time() . '.' . $request->file('image')->extension();
             $request->file('image')->storePubliclyAs('public', $filename);
+            if (File::exists(public_path(substr($announcement->image, 1, null)))) {
+                File::delete(public_path(substr($announcement->image, 1, null)));
+            }
             $data['image'] = $filename;
         }
 
@@ -225,9 +234,16 @@ class AnnouncementController extends Controller
         return new AnnouncementResource($announcement);
     }
 
-    public function destroy(Announcement $announcement)
+    public function destroy($announcements)
     {
-        $announcement->delete();
+        $announcements = json_decode($announcements);
+        foreach ($announcements as  $announcement) {
+            $announcement = Announcement::find($announcement);
+            if (File::exists(public_path(substr($announcement->image, 1, null)))) {
+                File::delete(public_path(substr($announcement->image, 1, null)));
+            }
+            $announcement->delete();
+        }
 
         return response()->noContent();
     }

@@ -197,11 +197,11 @@ export default function useJobOffers() {
         }
     };
 
-    const destroyJobOffer = async (id) => {
+    const destroyJobOffer = async (data) => {
         errors.value = "";
         try {
             loading.value = true;
-            await axios.delete("/api/jobOffers/" + id, {
+            await axios.delete("/api/jobOffers/" + `${JSON.stringify(data)}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
                 },

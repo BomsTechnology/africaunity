@@ -16,6 +16,7 @@ use App\Notifications\ReportNotification;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\File;
 
 class UserController extends Controller
 {
@@ -26,7 +27,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return UserResource::collection(User::latest()->get());
+        return UserResource2::collection(User::latest()->get());
     }
 
     public function usersType($type)
@@ -60,9 +61,9 @@ class UserController extends Controller
         if ($request->status != "") {
             $status = $request->status;
             $users = $users->with(['detail' => function ($query) use ($status) {
-                $query->where('status',  $status);
+                $query->where('status_id', $status);
             }])->whereHas('detail', function (Builder $query) use ($status) {
-                $query->where('status', $status);
+                $query->where('status_id', $status);
             });
         }
 
@@ -345,6 +346,9 @@ class UserController extends Controller
             ]);
             $filename = '/uploads/' . time() . '.' . $request->file('avatar')->extension();
             $request->file('avatar')->storePubliclyAs('public', $filename);
+            if (File::exists(public_path(substr($user->avatar, 1, null)))) {
+                File::delete(public_path(substr($user->avatar, 1, null)));
+            }
             $data['avatar'] = $filename;
         }
 
@@ -368,12 +372,19 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy($users)
     {
-        Post::where('user_id', $user->id)->delete();
-        JobOffer::where('user_id', $user->id)->delete();
-        Announcement::where('user_id', $user->id)->delete();
-        $user->delete();
+        $users = json_decode($users);
+        foreach ($users as  $user) {
+            $user = User::find($user);
+            Post::where('user_id', $user->id)->delete();
+            JobOffer::where('user_id', $user->id)->delete();
+            Announcement::where('user_id', $user->id)->delete();
+            if (File::exists(public_path(substr($user->avatar, 1, null)))) {
+                File::delete(public_path(substr($user->avatar, 1, null)));
+            }
+            $user->delete();
+        }
 
         return response()->noContent();
     }

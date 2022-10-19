@@ -57,6 +57,7 @@
                                 :placeholder="'Select University'"
                                 :required="false"
                                 :resetField="true"
+                                :loading="loadUniv"
                                 :className="'w-full h-full mt-1 block rounded-md border bg-white  border-gray-300 p-2.5 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-sm'"
                             />
                         </div>
@@ -274,11 +275,13 @@ const { currencies, getCurrencies } = useCurrencies();
 const { universities, getAllUniversities } = useUniversities();
 const file = ref(null);
 onMounted(async () => {
+    loadUniv.value = true;
     await getCategoryAnnouncements();
     await getCurrencies();
     await getAllUniversities();
+    loadUniv.value = false;
 });
-
+const loadUniv = ref(false);
 const announcement = reactive({
     title: "",
     user_id: user.id,

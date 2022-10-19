@@ -1,13 +1,13 @@
 <template>
-    <div class="relative h-auto w-full xl:mt-0 xl:p-4">
+    <div class="relative min-h-screen w-full bg-white xl:mt-0 xl:p-4">
         <div class="z-0 h-full w-full p-4">
-            <div class="flex justify-between bg-white px-8 py-5 shadow-lg">
+            <div class="flex justify-between bg-white px-8 py-5">
                 <h1 class="text-4xl font-bold text-primary-blue">
                     Edit Category Announcement
                 </h1>
             </div>
 
-            <section class="mx-auto bg-white p-6 shadow-md">
+            <section class="mx-auto bg-white p-6">
                 <Error v-if="errors != ''">{{ errors }}</Error>
                 <h2 class="text-md font-light text-gray-700">
                     Edit a categoryAnnouncement

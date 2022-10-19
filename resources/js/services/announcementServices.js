@@ -152,15 +152,18 @@ export default function useAnnouncements() {
         }
     };
 
-    const destroyAnnouncement = async (id) => {
+    const destroyAnnouncement = async (data) => {
         errors.value = "";
         try {
             loading.value = true;
-            await axios.delete("/api/announcements/" + id, {
-                headers: {
-                    Authorization: `Bearer ${localStorage.token}`,
-                },
-            });
+            await axios.delete(
+                "/api/announcements/" + `${JSON.stringify(data)}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.token}`,
+                    },
+                }
+            );
             loading.value = false;
         } catch (e) {
             loading.value = 0;

@@ -78,15 +78,18 @@ export default function useCategoryAnnouncements() {
         }
     };
 
-    const destroyCategoryAnnouncement = async (id) => {
+    const destroyCategoryAnnouncement = async (data) => {
         errors.value = "";
         try {
             loading.value = true;
-            await axios.delete("/api/categoryAnnouncements/" + id, {
-                headers: {
-                    Authorization: `Bearer ${localStorage.token}`,
-                },
-            });
+            await axios.delete(
+                "/api/categoryAnnouncements/" + `${JSON.stringify(data)}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.token}`,
+                    },
+                }
+            );
             loading.value = false;
         } catch (e) {
             loading.value = 0;

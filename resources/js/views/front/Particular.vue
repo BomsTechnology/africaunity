@@ -21,8 +21,16 @@
                 <select v-model="filter.status" @change.prevent="usersFilter()"  class="form-select block w-full px-4 py-2 mt-1 text-gray-700 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-primary-blue focus:border-primary-blue"
                 >
                     <option value="">--------------</option>
-                    <option value="1">{{ $t('actif') }}</option>
-                    <option value="0">{{ $t('no-actif') }}</option>
+                    <option v-for="st in status" :value="st.id" :key="st.id"><span v-if="$i18n.locale == 'en'">{{
+                                st.name_en
+                            }}</span>
+                            <span v-else-if="$i18n.locale == 'fr'">{{
+                                st.name_fr
+                            }}</span>
+                            <span v-else-if="$i18n.locale == 'es'">{{
+                                st.name_es
+                            }}</span>
+                            <span v-else>{{ st.name_pt }}</span></option>
                 </select>
             </div>
             <div class="lg:text-sm text-xs">
@@ -130,9 +138,17 @@
                 <div class="text-center border-t w-full py-3 space-y-3 text-xs" v-if="showDetail.id == user.id && showDetail.state == true">
                     <p class="leading-3">
                         <h1 class="font-semibold text-sm">{{ $t('status') }}</h1>
-                        <h2 class="font-light">
-                            <span v-if="user.detail.status == 1">{{ $t('actif') }}</span>
-                            <span v-else>{{ $t('no-actif') }}</span>
+                        <h2 class="font-light" v-if="user.detail.status">
+                           <span v-if="$i18n.locale == 'en'">{{
+                                user.detail.status.name_en
+                            }}</span>
+                            <span v-else-if="$i18n.locale == 'fr'">{{
+                                user.detail.status.name_fr
+                            }}</span>
+                            <span v-else-if="$i18n.locale == 'es'">{{
+                                user.detail.status.name_es
+                            }}</span>
+                            <span v-else>{{ user.detail.status.name_pt }}</span>
                         </h2>
                     </p>
 
@@ -244,9 +260,15 @@ import { FaceFrownIcon, UserCircleIcon, ChevronDownIcon, ChevronUpIcon } from '@
 import useUsers from "@/services/userServices.js";
 import useLanguages from "@/services/languageServices.js";
 import useActivityAreas from "@/services/activityAreaServices.js";
+
 import useCountries from "@/services/countryServices.js";
 import Profile from "@/components/skeleton/Profile.vue";
-
+import useStatus from "@/services/statusServices.js";
+const {
+    status,
+    getStatus,
+    errorsStatus,
+} = useStatus();
 const { languages, getLanguages } = useLanguages();
 const { countries, getCountries } = useCountries();
 const { activityAreas, getActivityAreas } = useActivityAreas();
@@ -256,6 +278,7 @@ const toGet = ref(true);
 onMounted(async () => {
     window.addEventListener("scroll", handleScroll);
     await getUsersType("particular"); 
+    await getStatus();
     await getLanguages(); 
     await getCountries(); 
     await getActivityAreas();

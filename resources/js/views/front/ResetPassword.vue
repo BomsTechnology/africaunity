@@ -1,6 +1,6 @@
 <template>
     <div
-        class="mx-auto min-h-screen w-full items-center justify-center bg-white px-2 py-8 md:space-x-6 md:px-12 lg:flex xl:w-[90%]"
+        class="mx-auto w-full items-center justify-center bg-white px-2 py-8 md:space-x-6 md:px-12 lg:flex xl:w-[90%]"
     >
         <div class="p-6">
             <div class="shadow">
@@ -98,9 +98,9 @@
 
 <script setup>
 import { reactive, ref, onMounted } from "vue";
-import Error from "../../components/Error.vue";
-import useAuth from "../../services/authServices.js";
-import router from "../../router";
+import Error from "@/components/Error.vue";
+import useAuth from "@/services/authServices.js";
+import router from "@/router";
 import { LockClosedIcon } from "@heroicons/vue/24/solid";
 import { useRoute } from "vue-router";
 
@@ -133,7 +133,7 @@ const resetPassword = async () => {
     try {
         errors.value = "";
         loading.value = 1;
-        await axios.post("/api/reset-password/", resetPass);
+        await axios.post("/api/reset-password", resetPass);
         loading.value = 2;
     } catch (e) {
         loading.value = 0;

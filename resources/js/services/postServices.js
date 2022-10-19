@@ -264,11 +264,11 @@ export default function usePosts() {
         }
     };
 
-    const destroyPost = async (id) => {
+    const destroyPost = async (data) => {
         errors.value = "";
         try {
             loading.value = true;
-            await axios.delete("/api/posts/" + id, {
+            await axios.delete("/api/posts/" + `${JSON.stringify(data)}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
                 },

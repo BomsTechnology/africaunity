@@ -28,15 +28,15 @@ class CommentController extends Controller
     {
         return CommentResource::collection(Comment::where([
             ['status', 1],
-            ['post_id',$id],
-            ])->get());
+            ['post_id', $id],
+        ])->get());
     }
 
     public function comment_user($id)
     {
         return CommentResource::collection(Comment::where([
-            ['user_id',$id],
-            ])->get());
+            ['user_id', $id],
+        ])->get());
     }
 
     /**
@@ -83,15 +83,13 @@ class CommentController extends Controller
         return new CommentResource($comment);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Comment  $comment
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Comment $comment)
+
+    public function destroy($comments)
     {
-        $comment->delete();
+        $comments = json_decode($comments);
+        foreach ($comments as  $comment) {
+            Comment::where('id', $comment)->delete();
+        }
 
         return response()->noContent();
     }

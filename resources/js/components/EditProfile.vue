@@ -11,12 +11,26 @@
                         <span class="text-red-500">*</span></label
                     >
                     <select
-                        v-model="detail.status"
+                        v-model="detail.status_id"
                         required
                         class="form-input mt-3 block w-full rounded-md border border-gray-200 bg-white px-3 pr-2 text-gray-700 placeholder:text-gray-400 focus:border-primary-blue focus:ring-primary-blue"
                     >
-                        <option value="1">{{ $t("actif") }}</option>
-                        <option value="0">{{ $t("no-actif") }}</option>
+                        <option
+                            v-for="st in status"
+                            :value="st.id"
+                            :key="st.id"
+                        >
+                            <span v-if="$i18n.locale == 'en'">{{
+                                st.name_en
+                            }}</span>
+                            <span v-else-if="$i18n.locale == 'fr'">{{
+                                st.name_fr
+                            }}</span>
+                            <span v-else-if="$i18n.locale == 'es'">{{
+                                st.name_es
+                            }}</span>
+                            <span v-else>{{ st.name_pt }}</span>
+                        </option>
                     </select>
                 </div>
                 <div
@@ -174,6 +188,7 @@
                             <span>{{ $t("native-country") }}</span>
                             <span class="text-red-500"> *</span>
                         </label>
+
                         <select
                             v-model="detail.native_country"
                             required
@@ -526,6 +541,7 @@ import { reactive, ref, onMounted } from "vue";
 const props = defineProps({
     user: Object,
     detail: Object,
+    status: Object,
     languages: Array,
     businessTypes: Array,
     businessSizes: Array,

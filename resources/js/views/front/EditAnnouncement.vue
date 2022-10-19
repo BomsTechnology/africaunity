@@ -58,6 +58,7 @@
                                 :placeholder="'Select University'"
                                 :required="false"
                                 :resetField="true"
+                                :loading="loadUniv"
                                 :className="'w-full h-full mt-1 block rounded-md border bg-white  border-gray-300 p-2.5 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-sm'"
                             />
                         </div>
@@ -281,15 +282,17 @@ const { categoryAnnouncements, getCategoryAnnouncements } =
     usecategoryAnnouncements();
 const { currencies, getCurrencies } = useCurrencies();
 const { universities, getAllUniversities } = useUniversities();
-
+const loadUniv = ref(false);
 onMounted(async () => {
+    loadUniv.value = true;
     await getAnnouncement(props.id);
-    let univId = announcement.value.university_id;
+    await getCurrencies();
     await getCategoryAnnouncements();
+    let univId = announcement.value.university_id;
     await getAllUniversities();
     announcement.value.university_id = "0";
     announcement.value.university_id = univId;
-    await getCurrencies();
+    loadUniv.value = false;
 });
 announcement.value.image = "";
 const saveAnnouncement = async () => {

@@ -1,15 +1,13 @@
 <template>
-    <div class="relative h-auto w-full xl:mt-0 xl:p-4">
+    <div class="relative min-h-screen w-full bg-white xl:mt-0 xl:p-4">
         <div class="z-0 w-full p-4">
-            <div
-                class="flex w-full justify-between bg-white px-8 py-5 shadow-lg"
-            >
+            <div class="flex w-full justify-between bg-white px-8 py-5">
                 <h1 class="text-4xl font-bold capitalize text-primary-blue">
                     Edit {{ type }}
                 </h1>
             </div>
 
-            <section class="mx-auto w-full bg-white p-6 shadow-md">
+            <section class="mx-auto w-full bg-white p-6">
                 <Error v-if="errors != ''">{{ errors }}</Error>
                 <h2 class="text-md font-light text-gray-700">
                     Add a new {{ type }}
@@ -165,16 +163,32 @@
                             >
                             <textarea
                                 required
-                                type="text"
-                                v-model="post.content"
-                                id="pt"
-                                class="dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 dark:focus:border-blue-300 mt-2 block h-32 w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-primary-blue focus:outline-none focus:ring focus:ring-primary-blue focus:ring-opacity-40"
+                                v-if="type == 'article'"
+                                ref="textarea"
+                                class="h-96 w-full"
                             >
                             </textarea>
+
+                            <div v-else>
+                                <textarea
+                                    required
+                                    v-if="post.content"
+                                    v-model="post.content"
+                                    maxlength="2000"
+                                    class="dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 dark:focus:border-blue-300 mt-2 block h-32 w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-primary-blue focus:outline-none focus:ring focus:ring-primary-blue focus:ring-opacity-40"
+                                >
+                                </textarea>
+                                <span
+                                    v-if="post.content"
+                                    class="text-xs font-light text-gray-400"
+                                    >{{ post.content.length }} of 2000
+                                    Characters</span
+                                >
+                            </div>
                         </div>
                     </div>
 
-                    <div class="mt-6 flex justify-end">
+                    <div class="mt-6 flex flex-col items-end justify-end">
                         <button
                             v-if="loading == 0"
                             type="submit"
@@ -209,6 +223,21 @@
                                 ></path>
                             </svg>
                         </button>
+                        <Transition
+                            enter-active-class=" transition-all  "
+                            enter-from-class=" opacity-0  -translate-y-10"
+                            enter-to-class="  opacity-1 translate-y-0"
+                            leave-active-class=""
+                            leave-from-class=""
+                            leave-to-class=""
+                        >
+                            <span
+                                v-if="msgClick != ''"
+                                class="text-xs font-light italic"
+                            >
+                                {{ msgClick }}
+                            </span>
+                        </Transition>
                     </div>
                 </form>
             </section>
@@ -260,9 +289,25 @@ const filteredCountry = () => {
     });
     post.value.country_id = "";
 };
+const textarea = ref("");
+const msgClick = ref("");
+const nbClick = ref(0);
 onMounted(async () => {
-    await getPost(props.id),
-        await getContinents(),
+    await getPost(props.id);
+
+    if (props.type == "article") {
+        textarea.value.value = post.value.content;
+        sceditor.create(textarea.value, {
+            format: "bbcode",
+            style: "https://cdn.jsdelivr.net/npm/sceditor@3/minified/themes/content/default.min.css",
+            height: 400,
+            toolbarExclude:
+                "indent,outdent,email,date,time,ltr,rtl,print,subscript,superscript,table,code,quote,emoticon",
+            icons: "material",
+        });
+    }
+    nbClick.value++;
+    await getContinents(),
         await getZones(),
         await getCountries(),
         await getMinistries();
@@ -275,6 +320,14 @@ onMounted(async () => {
 });
 
 const savePost = async () => {
+    if (props.type == "article") {
+        post.value.content = textarea.value.value;
+        if (nbClick.value == 1) {
+            nbClick.value++;
+            msgClick.value = "please click again";
+            return;
+        }
+    }
     let formData = new FormData();
     formData.append("image", post.value.image);
     formData.append("title", post.value.title);

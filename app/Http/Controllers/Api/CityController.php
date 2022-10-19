@@ -29,7 +29,7 @@ class CityController extends Controller
     public function store(CityRequest $request)
     {
         $city = City::create($request->validated());
-        
+
         return new CityResource($city);
     }
 
@@ -58,15 +58,13 @@ class CityController extends Controller
         return new CityResource($city);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\City  $city
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(City $city)
+
+    public function destroy($cities)
     {
-        $city->delete();
+        $cities = json_decode($cities);
+        foreach ($cities as  $city) {
+            City::where('id', $city)->delete();
+        }
 
         return response()->noContent();
     }

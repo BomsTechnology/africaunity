@@ -29,7 +29,7 @@ class CurrencyController extends Controller
     public function store(CurrencyRequest $request)
     {
         $currency = Currency::create($request->validated());
-        
+
         return new CurrencyResource($currency);
     }
 
@@ -58,15 +58,13 @@ class CurrencyController extends Controller
         return new CurrencyResource($currency);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Currency  $currency
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Currency $currency)
+
+    public function destroy($currencies)
     {
-        $currency->delete();
+        $currencies = json_decode($currencies);
+        foreach ($currencies as  $currency) {
+            Currency::where('id', $currency)->delete();
+        }
 
         return response()->noContent();
     }

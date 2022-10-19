@@ -9,13 +9,14 @@ use App\Http\Resources\UniversityResource2;
 use App\Models\University;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\File;
 
 class UniversityController extends Controller
 {
 
     public function index()
     {
-        return UniversityResource::collection(University::orderBy('id')->paginate(8));
+        return UniversityResource::collection(University::orderBy('id', 'desc')->paginate(8));
     }
     public function all()
     {
@@ -54,8 +55,8 @@ class UniversityController extends Controller
     {
         $universities = University::query();
 
-        if ($request->keywords != "") {
-            $keywords = $request->keywords;
+        if ($request->searchKey != "") {
+            $keywords = $request->searchKey;
             $universities = $universities->where('name', 'like', "%$keywords%");
         }
 
@@ -135,6 +136,9 @@ class UniversityController extends Controller
             ]);
             $filename = '/uploads/' . time() . '.' . $request->file('image')->extension();
             $request->file('image')->storePubliclyAs('public', $filename);
+            if (File::exists(public_path(substr($university->image, 1, null)))) {
+                File::delete(public_path(substr($university->image, 1, null)));
+            }
             $data['image'] = $filename;
         }
 
@@ -144,10 +148,16 @@ class UniversityController extends Controller
     }
 
 
-    public function destroy(University $university)
+    public function destroy($universities)
     {
-        $university->delete();
-
+        $universities = json_decode($universities);
+        foreach ($universities as  $university) {
+            $university = University::find($university);
+            if (File::exists(public_path(substr($university->image, 1, null)))) {
+                File::delete(public_path(substr($university->image, 1, null)));
+            }
+            $university->delete();
+        }
         return response()->noContent();
     }
 }

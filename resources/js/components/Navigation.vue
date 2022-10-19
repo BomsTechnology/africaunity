@@ -427,7 +427,7 @@
             </div>
         </nav>
 
-        <div class="relative">
+        <div class="relative" v-if="false">
             <button
                 type="button"
                 @click="open.search = !open.search"

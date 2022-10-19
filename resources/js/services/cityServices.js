@@ -74,11 +74,11 @@ export default function useCities() {
         }
     };
 
-    const destroyCity = async (id) => {
+    const destroyCity = async (data) => {
         errors.value = "";
         try {
             loading.value = true;
-            await axios.delete("/api/cities/" + id, {
+            await axios.delete("/api/cities/" + `${JSON.stringify(data)}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
                 },

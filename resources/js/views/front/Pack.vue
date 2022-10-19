@@ -148,7 +148,7 @@
                             </div>
 
                             <div class="flex items-center">
-                                <BanIcon class="h-5 w-5 text-red-500" />
+                                <NoSymbolIcon class="h-5 w-5 text-red-500" />
 
                                 <span class="mx-4 text-gray-700">{{
                                     $t("plan-desc2")
@@ -156,7 +156,7 @@
                             </div>
 
                             <div class="flex items-center">
-                                <BanIcon class="h-5 w-5 text-red-500" />
+                                <NoSymbolIcon class="h-5 w-5 text-red-500" />
 
                                 <span class="mx-4 text-gray-700">{{
                                     $t("plan-desc3")
@@ -174,7 +174,7 @@
                             </div>
 
                             <div class="flex items-center">
-                                <BanIcon class="h-5 w-5 text-red-500" />
+                                <NoSymbolIcon class="h-5 w-5 text-red-500" />
 
                                 <span class="mx-4 text-gray-700">{{
                                     $t("plan-desc8")
@@ -399,7 +399,7 @@
 </template>
 
 <script setup>
-import { CheckCircleIcon, BanIcon } from "@heroicons/vue/24/solid";
+import { CheckCircleIcon, NoSymbolIcon } from "@heroicons/vue/24/solid";
 import { StripeCheckout } from "@vue-stripe/vue-stripe";
 import axios from "axios";
 import { onMounted, ref } from "vue";

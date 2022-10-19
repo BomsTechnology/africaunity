@@ -74,11 +74,11 @@ export default function useContinents() {
         }
     };
 
-    const destroyContinent = async (id) => {
+    const destroyContinent = async (data) => {
         errors.value = "";
         try {
             loading.value = true;
-            await axios.delete("/api/continents/" + id, {
+            await axios.delete("/api/continents/" + `${JSON.stringify(data)}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
                 },

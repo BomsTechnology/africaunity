@@ -7,6 +7,7 @@ use App\Models\BusinessType;
 use App\Models\Country;
 use App\Models\Detail;
 use App\Models\LegalStatus;
+use App\Models\Status;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class DetailResource extends JsonResource
@@ -22,8 +23,8 @@ class DetailResource extends JsonResource
         // return parent::toArray($request);
 
         return [
-            'id' => $this->id, 
-            'status' => $this->status, 
+            'id' => $this->id,
+            'status' => $this->status,
             'social_object' => $this->social_object,
             'goal_attribution' => $this->goal_attribution,
             'presentation' => $this->presentation,
@@ -41,8 +42,10 @@ class DetailResource extends JsonResource
             'business_type_id' => $this->business_type_id,
             'business_size_id' => $this->business_size_id,
             'legal_status_id' => $this->legal_status_id,
+            'status_id' => $this->status_id,
             'native_country' => $this->native_country,
             'residence_country' => $this->residence_country,
+            'status' => new StatusResource(Status::find($this->status_id)),
             'business_type' => new BusinessTypeResource(BusinessType::find($this->business_type_id)),
             'business_size' => new BusinessSizeResource(BusinessSize::find($this->business_size_id)),
             'legal_status' => new LegalStatusResource(LegalStatus::find($this->legal_status_id)),

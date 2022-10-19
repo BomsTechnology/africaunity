@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Notifications\ApplyJobNotification;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class JobOfferController extends Controller
 {
@@ -22,6 +23,8 @@ class JobOfferController extends Controller
     {
         return JobOfferResource::collection(JobOffer::latest()->get());
     }
+
+
 
     public function filter(Request $request)
     {
@@ -335,6 +338,9 @@ class JobOfferController extends Controller
             ]);
             $filename = '/uploads/' . time() . '.' . $request->file('company_logo')->extension();
             $request->file('company_logo')->storePubliclyAs('public', $filename);
+            if (File::exists(public_path(substr($jobOffer->company_logo, 1, null)))) {
+                File::delete(public_path(substr($jobOffer->company_logo, 1, null)));
+            }
             $data['company_logo'] = $filename;
         }
 
@@ -352,9 +358,16 @@ class JobOfferController extends Controller
      * @param  \App\Models\JobOffer  $jobOffer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(JobOffer $jobOffer)
+    public function destroy($jobOffers)
     {
-        $jobOffer->delete();
+        $jobOffers = json_decode($jobOffers);
+        foreach ($jobOffers as  $jobOffer) {
+            $jobOffer = JobOffer::find($jobOffer);
+            if (File::exists(public_path(substr($jobOffer->company_logo, 1, null)))) {
+                File::delete(public_path(substr($jobOffer->company_logo, 1, null)));
+            }
+            $jobOffer->delete();
+        }
 
         return response()->noContent();
     }

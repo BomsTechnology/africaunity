@@ -271,11 +271,12 @@ export default function useUsers() {
         }
     };
 
-    const destroyUser = async (id) => {
+    const destroyUser = async (data) => {
         errors.value = "";
         try {
             loading.value = true;
-            await axios.delete("/api/users/" + id, {
+
+            await axios.delete(`/api/users/${JSON.stringify(data)}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
                 },

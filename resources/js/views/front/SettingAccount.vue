@@ -90,7 +90,7 @@
                         v-if="user.type == 'business1'"
                         class="lg:text-md flex items-center justify-center space-x-2 rounded bg-primary-blue px-2 py-1 text-xs text-white shadow"
                     >
-                        <ArrowCircleUpIcon class="h-6 w-6" />
+                        <ArrowUpCircleIcon class="h-6 w-6" />
                         <span class="hidden lg:block">UPGRADE PACK</span>
                     </button>
                 </div>
@@ -702,13 +702,13 @@ import Error from "../../components/Error.vue";
 import {
     UserCircleIcon,
     CheckCircleIcon,
-    ArrowCircleUpIcon,
+    ArrowUpCircleIcon,
     TrashIcon,
     KeyIcon,
     LockClosedIcon,
 } from "@heroicons/vue/24/solid";
 
-const props = {
+const props = defineProps({
     slug: {
         required: true,
         type: String,
@@ -717,7 +717,7 @@ const props = {
         required: true,
         type: String,
     },
-};
+});
 
 const {
     user,

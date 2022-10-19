@@ -64,15 +64,13 @@ class MinistryController extends Controller
         return new MinistryResource($ministry);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Ministry  $ministry
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Ministry $ministry)
+
+    public function destroy($ministries)
     {
-        $ministry->delete();
+        $ministries = json_decode($ministries);
+        foreach ($ministries as  $ministry) {
+            Ministry::where('id', $ministry)->delete();
+        }
 
         return response()->noContent();
     }

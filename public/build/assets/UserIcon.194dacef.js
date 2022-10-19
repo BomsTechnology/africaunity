@@ -1,1 +1,0 @@
-import{o as e,c as r,a as o}from"./app.4c9b42c1.js";function l(a,t){return e(),r("svg",{xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 20 20",fill:"currentColor","aria-hidden":"true"},[o("path",{"fill-rule":"evenodd",d:"M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z","clip-rule":"evenodd"})])}export{l as r};

@@ -30,7 +30,7 @@
                         <div
                             class="mx-auto flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:h-20 sm:w-20"
                         >
-                            <EmojiHappyIcon class="h-16 w-16 text-green-600" />
+                            <FaceSmileIcon class="h-16 w-16 text-green-600" />
                         </div>
                         <div
                             class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left"
@@ -62,7 +62,7 @@
 </template>
 
 <script setup>
-import { EmojiHappyIcon } from "@heroicons/vue/24/solid";
+import { FaceSmileIcon } from "@heroicons/vue/24/solid";
 const props = defineProps({
     open: Boolean,
     toogleModal: Function,

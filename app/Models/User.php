@@ -7,8 +7,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Contracts\Auth\CanResetPassword;
 
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -35,19 +36,23 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
 
-    public function posts(){
+    public function posts()
+    {
         return $this->hasMany(Post::class);
     }
 
-    public function comments(){
+    public function comments()
+    {
         return $this->hasMany(Comment::class);
     }
 
-    public function announcements(){
+    public function announcements()
+    {
         return $this->hasMany(Announcement::class);
     }
 
-    public function jobOffers(){
+    public function jobOffers()
+    {
         return $this->hasMany(JobOffer::class);
     }
 

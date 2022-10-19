@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Notifications\ReportNotification;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class PostController extends Controller
 {
@@ -259,6 +260,9 @@ class PostController extends Controller
             ]);
             $filename = '/uploads/' . time() . '.' . $request->file('image')->extension();
             $request->file('image')->storePubliclyAs('public', $filename);
+            if (File::exists(public_path(substr($post->image, 1, null)))) {
+                File::delete(public_path(substr($post->image, 1, null)));
+            }
             $data['image'] = $filename;
         }
 
@@ -273,10 +277,16 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy($posts)
     {
-        $post->delete();
-
+        $posts = json_decode($posts);
+        foreach ($posts as  $post) {
+            $post = Post::find($post);
+            if (File::exists(public_path(substr($post->image, 1, null)))) {
+                File::delete(public_path(substr($post->image, 1, null)));
+            }
+            $post->delete();
+        }
         return response()->noContent();
     }
 }

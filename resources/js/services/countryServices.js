@@ -74,11 +74,11 @@ export default function useCountries() {
         }
     };
 
-    const destroyCountry = async (id) => {
+    const destroyCountry = async (data) => {
         errors.value = "";
         try {
             loading.value = true;
-            await axios.delete("/api/countries/" + id, {
+            await axios.delete("/api/countries/" + `${JSON.stringify(data)}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
                 },

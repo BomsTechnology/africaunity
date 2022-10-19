@@ -24,7 +24,7 @@
                 <router-link
                     :to="{
                         name: 'setting.account',
-                        params: { slug: user.slug, id: user.id },
+                        params: { slug: loginUser.slug, id: loginUser.id },
                     }"
                     v-if="user.id == loginUser.id"
                     class="absolute mb-40 -mt-28 h-40 w-40 overflow-hidden rounded-full bg-white text-center shadow lg:left-4 lg:mt-0 lg:h-60 lg:w-60"
@@ -139,8 +139,8 @@
                                     :to="{
                                         name: 'setting.account',
                                         params: {
-                                            slug: user.firstname,
-                                            id: user.id,
+                                            slug: loginUser.slug,
+                                            id: loginUser.id,
                                         },
                                     }"
                                 >
@@ -309,8 +309,16 @@
                         $t("status")
                     }}</label>
                     <p class="mt-1 rounded-lg border p-2 shadow">
-                        <span v-if="detail.status == 1">{{ $t("actif") }}</span>
-                        <span v-else>{{ $t("no-actif") }}</span>
+                        <span v-if="$i18n.locale == 'en'">{{
+                            detail.status.name_en
+                        }}</span>
+                        <span v-else-if="$i18n.locale == 'fr'">{{
+                            detail.status.name_fr
+                        }}</span>
+                        <span v-else-if="$i18n.locale == 'es'">{{
+                            detail.status.name_es
+                        }}</span>
+                        <span v-else>{{ detail.status.name_pt }}</span>
                     </p>
                 </div>
                 <div
@@ -1503,6 +1511,7 @@
             <EditProfile
                 :user="user"
                 :detail="detail"
+                :status="status"
                 :legalStatuses="legalStatuses"
                 :languages="languages"
                 :countries="countries"
@@ -1546,6 +1555,7 @@ import {
     IdentificationIcon,
     UserCircleIcon,
 } from "@heroicons/vue/24/solid";
+import useStatus from "@/services/statusServices.js";
 
 const props = defineProps({
     slug: {
@@ -1561,7 +1571,7 @@ const props = defineProps({
         type: String,
     },
 });
-
+const { status, getStatus, errorsStatus } = useStatus();
 const loginUser = localStorage.user ? JSON.parse(localStorage.user) : "";
 const { articles, getPostsUser, propau, destroyPost } = usePosts();
 const { user, getUser } = useUsers();
@@ -1620,6 +1630,7 @@ onMounted(async () => {
         await getJobOffersUser(props.id);
         await getAnnouncementsUser(props.id);
         await getLanguages();
+        await getStatus();
         await getBusinessTypes();
         await getBusinessSizes();
         await getActivityAreas();
@@ -1673,36 +1684,41 @@ const toogleModal = () => {
 };
 
 const deletePost = async (id) => {
+    const deleteId = [id];
     if (confirm("I you Sure ?")) {
-        await destroyPost(id);
+        await destroyPost(deleteId);
         await getPostsUser(props.id);
     }
 };
 
 const deleteComment = async (id) => {
+    const deleteId = [id];
     if (confirm("I you Sure ?")) {
-        await destroyComment(id);
+        await destroyComment(deleteId);
         await getCommentsUser(props.id);
     }
 };
 
 const deleteAnnouncement = async (id) => {
+    const deleteId = [id];
     if (confirm("I you Sure ?")) {
-        await destroyAnnouncement(id);
+        await destroyAnnouncement(deleteId);
         await getAnnouncementsUser(props.id);
     }
 };
 
 const deleteJobOffer = async (id) => {
+    const deleteId = [id];
     if (confirm("I you Sure ?")) {
-        await destroyJobOffer(id);
+        await destroyJobOffer(deleteId);
         await getJobOffersUser(props.id);
     }
 };
 
 const mark = async (id) => {
+    const deleteId = [id];
     if (confirm("I you Sure ?")) {
-        await markFilled(id);
+        await markFilled(deleteId);
         await getJobOffersUser(props.id);
     }
 };

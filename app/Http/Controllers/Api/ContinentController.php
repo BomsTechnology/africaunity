@@ -17,7 +17,7 @@ class ContinentController extends Controller
      */
     public function index()
     {
-         return ContinentResource::collection(Continent::latest()->get());
+        return ContinentResource::collection(Continent::latest()->get());
         // return ContinentResource::collection(Continent::paginate(2));
     }
 
@@ -65,10 +65,12 @@ class ContinentController extends Controller
      * @param  \App\Models\Continent  $continent
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Continent $continent)
+    public function destroy($continents)
     {
-        $continent->delete();
-
+        $continents = json_decode($continents);
+        foreach ($continents as  $continent) {
+            Continent::where('id', $continent)->delete();
+        }
         return response()->noContent();
     }
 }

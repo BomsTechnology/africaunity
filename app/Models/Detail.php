@@ -10,7 +10,7 @@ class Detail extends Model
     use HasFactory;
 
     protected $fillable = [
-        'status',
+        'status_id',
         'social_object',
         'goal_attribution',
         'presentation',
@@ -32,35 +32,48 @@ class Detail extends Model
         'residence_country'
     ];
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function navtive_country(){
+    public function navtive_country()
+    {
         return $this->belongsTo(Country::class, "native_country");
     }
 
-    public function residence_country(){
+    public function residence_country()
+    {
         return $this->belongsTo(Country::class, "residence_country");
     }
 
-    public function legalStatus(){
+    public function legalStatus()
+    {
         return $this->belongsTo(LegalStatus::class);
     }
 
-    public function businessSize(){
+    public function businessSize()
+    {
         return $this->belongsTo(BusinessSize::class);
     }
 
-    public function businessType(){
+    public function businessType()
+    {
         return $this->belongsTo(BusinessType::class);
     }
 
-    public function activity_areas(){
+    public function activity_areas()
+    {
         return $this->belongsToMany(ActivityArea::class);
     }
 
-    public function languages(){
+    public function languages()
+    {
         return $this->belongsToMany(Language::class);
+    }
+
+    public function status()
+    {
+        return $this->belongsTo(Status::class);
     }
 }

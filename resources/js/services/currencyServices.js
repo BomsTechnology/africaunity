@@ -73,11 +73,11 @@ export default function useCurrencies() {
         }
     };
 
-    const destroyCurrency = async (id) => {
+    const destroyCurrency = async (data) => {
         errors.value = "";
         try {
             loading.value = true;
-            await axios.delete("/api/currencies/" + id, {
+            await axios.delete("/api/currencies/" + `${JSON.stringify(data)}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
                 },

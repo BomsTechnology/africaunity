@@ -99,15 +99,16 @@ export default function useComments() {
         }
     };
 
-    const destroyComment = async (id) => {
+    const destroyComment = async (data) => {
         errors.value = "";
         try {
             loading.value = true;
-            await axios.delete("/api/comments/" + id, {
+            await axios.delete("/api/comments/" + `${JSON.stringify(data)}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
                 },
             });
+            comments;
             loading.value = false;
             return true;
         } catch (e) {

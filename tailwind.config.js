@@ -13,7 +13,7 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                ubuntu: ["Ubuntu"],
+                sans: ['"Ubuntu"'],
             },
             colors: {
                 "primary-blue": "#289dcc",

@@ -13,6 +13,7 @@ use App\Http\Controllers\Api\ContactController;
 use App\Http\Controllers\Api\ContinentController;
 use App\Http\Controllers\Api\CountryController;
 use App\Http\Controllers\Api\CurrencyController;
+use App\Http\Controllers\Api\DashboardController;
 use App\Http\Controllers\Api\DetailController;
 use App\Http\Controllers\Api\EmailVerificationController;
 use App\Http\Controllers\Api\ForgotPasswordController;
@@ -24,6 +25,7 @@ use App\Http\Controllers\Api\MinistryController;
 use App\Http\Controllers\Api\OfferTypeController;
 use App\Http\Controllers\Api\PostController;
 use App\Http\Controllers\Api\SizeCompanyController;
+use App\Http\Controllers\Api\StatusController;
 use App\Http\Controllers\Api\UniversityController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\WorkDepartmentController;
@@ -44,9 +46,9 @@ Route::get("/posts-home/{lang}/{ministry}", [PostController::class, 'post_home']
 
 Route::get("/continents", [ContinentController::class, 'index']);
 
-Route::post("/send-reset-password", [ForgotPasswordController::class, 'index'])->name('password.request');
+Route::post('/forgot-password', [ForgotPasswordController::class, 'index'])->middleware('guest')->name('password.request');
 Route::get("/reset-password", [ForgotPasswordController::class, 'verif']);
-Route::post("/reset-password", [ForgotPasswordController::class, 'reset'])->name('password.reset');
+Route::post("/reset-password", [ForgotPasswordController::class, 'reset'])->middleware('guest')->name('password.update');
 
 Route::get("/zones", [ZoneController::class, 'index']);
 
@@ -63,6 +65,8 @@ Route::post('email/verification-notification', [EmailVerificationController::cla
 Route::post('send-contact', [ContactController::class, 'store'])->name('contact');
 
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
+
+    Route::get("/dash-data", [DashboardController::class, 'index']);
 
     Route::get("/posts-all/{type}", [PostController::class, 'index']);
     Route::get("/posts-type/{type}/{lang}", [PostController::class, 'post_type']);
@@ -92,6 +96,8 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::apiResource('currencies', CurrencyController::class);
 
     Route::apiResource('languages', LanguageController::class);
+
+    Route::apiResource('status', StatusController::class);
 
     Route::apiResource('businessSizes', BusinessSizeController::class);
 

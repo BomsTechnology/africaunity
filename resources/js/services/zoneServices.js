@@ -78,11 +78,11 @@ export default function useZones() {
         }
     };
 
-    const destroyZone = async (id) => {
+    const destroyZone = async (data) => {
         errors.value = "";
         try {
             loading.value = true;
-            await axios.delete("/api/zones/" + id, {
+            await axios.delete("/api/zones/" + `${JSON.stringify(data)}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
                 },

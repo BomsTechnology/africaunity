@@ -73,11 +73,11 @@ export default function useMinistries() {
         }
     };
 
-    const destroyMinistry = async (id) => {
+    const destroyMinistry = async (data) => {
         errors.value = "";
         try {
             loading.value = true;
-            await axios.delete("/api/ministries/" + id, {
+            await axios.delete("/api/ministries/" + `${JSON.stringify(data)}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
                 },

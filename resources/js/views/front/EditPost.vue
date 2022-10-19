@@ -389,17 +389,6 @@ onMounted(async () => {
         router.push({ name: "home" });
     }
 
-    await getContinents();
-    await getZones();
-    await getCountries();
-    await getMinistries();
-    zoneFiltered.value = zones.value.filter((zone) => {
-        return zone.continent_id == post.value.continent_id;
-    });
-    countryFiltered.value = countries.value.filter((country) => {
-        return country.zone_id == post.value.zone_id;
-    });
-
     if (props.type == "article") {
         textarea.value.value = post.value.content;
         sceditor.create(textarea.value, {
@@ -412,6 +401,17 @@ onMounted(async () => {
         });
     }
     nbClick.value++;
+
+    await getContinents();
+    await getZones();
+    await getCountries();
+    await getMinistries();
+    zoneFiltered.value = zones.value.filter((zone) => {
+        return zone.continent_id == post.value.continent_id;
+    });
+    countryFiltered.value = countries.value.filter((country) => {
+        return country.zone_id == post.value.zone_id;
+    });
 });
 
 const savePost = async () => {

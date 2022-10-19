@@ -51,8 +51,8 @@ class DetailController extends Controller
      */
     public function update(Request $request, Detail $detail)
     {
-         $detail->update([
-            'status' => $request->status, 
+        $detail->update([
+            'status_id' => $request->status_id,
             'social_object' => $request->social_object,
             'goal_attribution' => $request->goal_attribution,
             'presentation' => $request->presentation,
@@ -79,8 +79,8 @@ class DetailController extends Controller
 
         $user = User::find($detail->user_id);
         $user->hide_email = $request->hideEmail ? 1 : 0;
-        $user->save(); 
-        
+        $user->save();
+
         return new DetailResource($detail);
     }
 

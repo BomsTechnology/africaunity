@@ -64,10 +64,12 @@ class ZoneController extends Controller
      * @param  \App\Models\Zone  $zone
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Zone $zone)
+    public function destroy($zones)
     {
-        $zone->delete();
-
+        $zones = json_decode($zones);
+        foreach ($zones as  $zone) {
+            Zone::where('id', $zone)->delete();
+        }
         return response()->noContent();
     }
 }

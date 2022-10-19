@@ -189,20 +189,23 @@ export default function useUniversities() {
         }
     };
 
-    const destroyUniversity = async (id) => {
+    const destroyUniversity = async (data) => {
         errors.value = "";
         try {
             loading.value = true;
-            await axios.delete("/api/universities/" + id, {
-                headers: {
-                    Authorization: `Bearer ${localStorage.token}`,
-                },
-            });
+            await axios.delete(
+                "/api/universities/" + `${JSON.stringify(data)}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.token}`,
+                    },
+                }
+            );
             loading.value = false;
         } catch (e) {
             loading.value = 0;
             if (e.response.status == "500") {
-                errors.value = "Impossible de supprimer ce pays";
+                errors.value = "Impossible de supprimer cette université";
             }
         }
     };
