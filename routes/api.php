@@ -48,7 +48,7 @@ Route::get("/continents", [ContinentController::class, 'index']);
 
 Route::post('/forgot-password', [ForgotPasswordController::class, 'index'])->middleware('guest')->name('password.request');
 Route::get("/reset-password", [ForgotPasswordController::class, 'verif']);
-Route::post("/reset-password", [ForgotPasswordController::class, 'reset'])->middleware('guest')->name('password.update');
+Route::post("/reset-password", [ForgotPasswordController::class, 'reset'])->middleware('guest')->name('password.reset');
 
 Route::get("/zones", [ZoneController::class, 'index']);
 

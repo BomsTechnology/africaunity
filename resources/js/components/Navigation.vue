@@ -70,7 +70,7 @@
                 :to="{ name: 'ads' }"
                 class="px-3 py-2 uppercase text-white transition-colors duration-200 hover:bg-primary-blue"
             >
-                {{ $t("ads") }}
+                {{ $t("ads-s") }}
             </router-link>
 
             <router-link
@@ -150,7 +150,7 @@
                 :to="{ name: 'login' }"
                 class="mx-2 flex bg-primary-blue px-3 py-2 uppercase text-white transition-colors duration-200"
             >
-                {{ $t("login") }} / {{ $t("register") }}
+                {{ $t("login") }}
             </router-link>
 
             <div

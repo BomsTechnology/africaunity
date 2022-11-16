@@ -11,13 +11,13 @@ use Illuminate\Support\Facades\URL;
     Illuminate\Routing\UrlGenerator::forceSchema('https');
 }*/
 
-/*Route::get('/storage-link', function () {
-    $targetFolder = base_path() . '/storage/app/public/uploads';
+Route::get('/storage-link', function () {
+    $targetFolder = base_path() . '/storage/app/public/public/uploads';
     $linkFolder = $_SERVER['DOCUMENT_ROOT'] . '/uploads';
     if (symlink($targetFolder, $linkFolder)) {
         echo 'Symlink process successfully completed';
     }
-});*/
+});
 
 Route::get('/', function () {
     return view('welcome');

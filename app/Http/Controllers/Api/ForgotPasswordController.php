@@ -71,7 +71,7 @@ class ForgotPasswordController extends Controller
                     'password' => Hash::make($request->password),
                     'remember_token' => Str::random(60),
                 ])->save();
-
+                $user->markEmailAsVerified();
                 $user->tokens()->delete();
 
                 event(new PasswordReset($user));

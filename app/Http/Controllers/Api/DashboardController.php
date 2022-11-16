@@ -24,8 +24,8 @@ class DashboardController extends Controller
         $articles = Post::where('type', 'article')->count();
         $propau = Post::where('type', 'propau')->count();
 
-        $recents_posts = Post::orderBy('id', 'desc')->limit(5)->get();
-        $recents_users = User::orderBy('id', 'desc')->offset(10)->limit(5)->get();
+        $recents_posts = Post::latest()->limit(5)->get();
+        $recents_users = User::latest()->limit(5)->get();
 
         $response = [
             'status' => true,

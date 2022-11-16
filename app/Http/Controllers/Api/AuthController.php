@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Status;
 
 class AuthController extends Controller
 {
@@ -29,9 +30,12 @@ class AuthController extends Controller
             'email' => $fields['email'],
             'password' => Hash::make($fields['password']),
         ]);
+        
+        $status = Status::query()->orderBy('id', 'asc')->first();
 
         Detail::create([
-            'user_id' => $user->id
+            'user_id' => $user->id,
+            'status_id' => $status->id
         ]);
 
         event(new Registered($user));

@@ -21,34 +21,17 @@
                         :key="post.id"
                     >
                         <router-link
-                            v-if="!token"
                             :to="{
-                                name: 'login',
-                                params: { redirect: 'not-login' },
+                                name: 'show.post',
+                                params: { id: post.id, slug: post.slug },
                             }"
                             class="text-primary-blue"
                         >
-                            {{ post.title.substring(0, 19) + "..." }}
+                            {{ post.title.substring(0, 29) + "..." }}
                         </router-link>
-                        <a
-                            v-else
-                            :href="'/post/ ' + post.id"
-                            class="text-primary-blue"
-                        >
-                            {{ post.title.substring(0, 19) + "..." }}
-                        </a>
                     </SwiperSlide>
                 </Swiper>
             </h1>
-            <!-- </div> -->
-            <!-- <div>
-            <select name="" id="">
-                <option value="">yo</option>
-                <option value=""></option>
-                <option value=""></option>
-                <option value=""></option>
-            </select>
-        </div> -->
         </div>
         <div
             class="flex flex-col items-center justify-center space-y-2 p-4 md:justify-between lg:flex-row lg:space-y-0"
@@ -76,6 +59,7 @@ const download_app = ref(null);
 onMounted(async () => {
     let response = await axios.get("/api/posts-caroussel/" + localStorage.lang);
     posts.value = response.data.data;
+    console.log(posts.value);
 });
 
 const modules = [Autoplay];

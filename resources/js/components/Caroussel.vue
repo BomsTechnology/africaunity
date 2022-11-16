@@ -40,9 +40,9 @@
                         <div>
                             <a href="#" class="text-lg hover:text-primary-blue">
                                 {{
-                                    post.title.length <= 20
+                                    post.title.length <= 30
                                         ? post.title
-                                        : post.title.substring(0, 19) + "..."
+                                        : post.title.substring(0, 29) + "..."
                                 }}
                             </a>
                         </div>

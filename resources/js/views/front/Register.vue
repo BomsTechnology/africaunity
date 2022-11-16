@@ -70,7 +70,18 @@
         </div>
         <div class="p-6 lg:w-[40%]">
             <div class="border-t-8 border-primary-blue shadow">
-                <div class="px-6 py-6">
+                <div
+                    class="md:text-md h-16 p-4 text-center text-sm text-gray-500"
+                >
+                    {{ $t("already-signup") }}
+                    <router-link
+                        class="text-[#242A56] hover:underline"
+                        :to="{ name: 'login' }"
+                    >
+                        {{ $t("login") }}
+                    </router-link>
+                </div>
+                <div class="px-6 py-2">
                     <h1 class="text-center text-3xl font-bold text-[#242A56]">
                         {{ $t("register") }}
                     </h1>
@@ -162,12 +173,25 @@
                                     class="absolute mt-2 ml-2 h-6 w-6 text-gray-400"
                             /></span>
                             <input
-                                type="password"
+                                :type="showPassword1 ? 'text' : 'password'"
                                 required
                                 v-model="user.password"
                                 :placeholder="$t('password')"
                                 class="form-input mt-3 block w-full border-gray-400 px-3 pr-2 pl-10 placeholder:text-gray-400 focus:border-primary-blue focus:ring-primary-blue"
                             />
+                            <span
+                                @click="showPassword1 = !showPassword1"
+                                class="cursor-pointer"
+                            >
+                                <EyeIcon
+                                    v-if="!showPassword1"
+                                    class="absolute right-2 top-2 h-6 w-6 text-gray-400"
+                                />
+                                <EyeSlashIcon
+                                    v-else
+                                    class="absolute right-2 top-2 h-6 w-6 text-primary-blue"
+                                />
+                            </span>
                         </div>
 
                         <div class="relative">
@@ -176,12 +200,25 @@
                                     class="absolute mt-2 ml-2 h-6 w-6 text-gray-400"
                             /></span>
                             <input
-                                type="password"
+                                :type="showPassword2 ? 'text' : 'password'"
                                 required
                                 v-model="user.password_confirmation"
                                 :placeholder="$t('confirm-password')"
                                 class="form-input mt-3 block w-full border-gray-400 px-3 pr-2 pl-10 placeholder:text-gray-400 focus:border-primary-blue focus:ring-primary-blue"
                             />
+                            <span
+                                @click="showPassword2 = !showPassword2"
+                                class="cursor-pointer"
+                            >
+                                <EyeIcon
+                                    v-if="!showPassword2"
+                                    class="absolute right-2 top-2 h-6 w-6 text-gray-400"
+                                />
+                                <EyeSlashIcon
+                                    v-else
+                                    class="absolute right-2 top-2 h-6 w-6 text-primary-blue"
+                                />
+                            </span>
                         </div>
 
                         <div class="mt-10">
@@ -237,17 +274,6 @@
                         </div>
                     </form>
                 </div>
-                <div
-                    class="md:text-md h-16 bg-primary-blue p-4 text-center text-sm text-white"
-                >
-                    {{ $t("already-signup") }}
-                    <router-link
-                        class="text-[#242A56] hover:underline"
-                        :to="{ name: 'login' }"
-                    >
-                        {{ $t("login") }}
-                    </router-link>
-                </div>
             </div>
         </div>
     </div>
@@ -259,6 +285,8 @@ import {
     UserIcon,
     LockClosedIcon,
     EnvelopeIcon,
+    EyeIcon,
+    EyeSlashIcon,
 } from "@heroicons/vue/24/solid";
 import { reactive, ref, onMounted } from "vue";
 
@@ -271,7 +299,8 @@ const props = defineProps({
         type: String,
     },
 });
-
+const showPassword1 = ref(false);
+const showPassword2 = ref(false);
 const cuser = localStorage.user ? JSON.parse(localStorage.user) : "";
 onMounted(async () => {
     if (!types.includes(props.type)) {

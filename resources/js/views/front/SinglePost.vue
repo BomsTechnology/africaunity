@@ -86,7 +86,6 @@
                                 </div>
                             </div>
                             <p
-                                v-if="post.type == 'article'"
                                 class="dark:text-gray-400 my-4 mt-2 py-4 text-gray-600"
                                 v-html="post.content"
                             ></p>

@@ -57,7 +57,7 @@ class UniversityController extends Controller
 
         if ($request->searchKey != "") {
             $keywords = $request->searchKey;
-            $universities = $universities->where('name', 'like', "%$keywords%");
+            $universities = $universities->whereRaw('LOWER(`name`) LIKE ?', ['%'.trim(strtolower($keywords)).'%']);
         }
 
         if ($request->country != "") {
