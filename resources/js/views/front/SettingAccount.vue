@@ -881,6 +881,6 @@ const handelAvatarObject = () => {
     avatar.value = pavatar.value.files[0];
 };
 const handelCoverObject = () => {
-    user.cover = cover.value.files[0];
+    user.value.cover = cover.value.files[0];
 };
 </script>

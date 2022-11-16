@@ -115,8 +115,8 @@
                     v-show="open.logout"
                     class="absolute left-0 z-40 mt-2 flex w-48 flex-col bg-menu py-2"
                 >
-                    <a
-                        href="#"
+                    <button
+                        type="button"
                         @click.prevent="logout()"
                         class="flex items-center px-3 py-2 text-sm uppercase text-white transition-colors duration-200 hover:bg-primary-blue"
                     >
@@ -142,7 +142,7 @@
                                 d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                             ></path>
                         </svg>
-                    </a>
+                    </button>
                 </div>
             </router-link>
             <router-link

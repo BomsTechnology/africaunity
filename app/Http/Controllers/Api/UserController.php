@@ -9,6 +9,7 @@ use App\Models\Announcement;
 use App\Models\Detail;
 use App\Models\JobOffer;
 use App\Models\Post;
+use App\Models\Status;
 use App\Models\User;
 use App\Notifications\DeleteAccountNotification;
 use App\Notifications\DesactivationAccountNotification;
@@ -173,9 +174,10 @@ class UserController extends Controller
             'email' => $fields['email'],
             'password' => Hash::make($fields['password']),
         ]);
-
+        $status = Status::query()->orderBy('id', 'asc')->first();
         Detail::create([
-            'user_id' => $user->id
+            'user_id' => $user->id,
+            'status_id' => $status->id
         ]);
 
         $user->markEmailAsVerified();
