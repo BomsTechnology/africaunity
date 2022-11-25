@@ -53,13 +53,10 @@ import "swiper/css/effect-fade";
 
 const now = new Date().toUTCString().substr(0, 16);
 
-const token = localStorage.token;
 const posts = ref([]);
-const download_app = ref(null);
 onMounted(async () => {
     let response = await axios.get("/api/posts-caroussel/" + localStorage.lang);
     posts.value = response.data.data;
-    console.log(posts.value);
 });
 
 const modules = [Autoplay];

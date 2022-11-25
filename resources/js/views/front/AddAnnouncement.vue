@@ -2,14 +2,14 @@
     <div class="mx-auto min-h-screen w-full bg-white py-4 lg:px-20 xl:w-[90%]">
         <div class="w-full space-y-4 py-5 text-center">
             <h1 class="text-4xl font-bold capitalize text-primary-blue">
-                {{ $t("add") }} {{ $t("ads") }}
+                {{ $tc("add", 2) }} {{ $t("ads") }}
             </h1>
         </div>
 
         <section class="mx-auto w-full rounded-md bg-white p-6 shadow-xl">
             <Error v-if="errors != ''">{{ errors }}</Error>
             <h1 class="text-xl font-semibold">
-                {{ $t("add") }} {{ $t("ads") }}
+                {{ $tc("add", 2) }} {{ $t("ads") }}
             </h1>
             <h2 class="text-md font-light text-gray-700">
                 {{ $t("good-msg-post") }} !

@@ -32,7 +32,7 @@ class JobOfferController extends Controller
 
         if ($request->searchKey != "") {
             $searchKey = $request->searchKey;
-            $jobs = $jobs->where('title', 'like', "%$searchKey%");
+            $jobs = $jobs->whereRaw('LOWER(`title`) LIKE ?', ['%' . trim(strtolower($searchKey)) . '%']);
         }
 
         if ($request->min_price != "") {

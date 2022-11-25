@@ -44,7 +44,7 @@ class PostController extends Controller
 
         if ($request->keywords != "") {
             $keywords = $request->keywords;
-            $posts = $posts->where('title', 'like', "%$keywords%");
+            $posts = $posts->whereRaw('LOWER(`title`) LIKE ?', ['%' . trim(strtolower($keywords)) . '%']);
         }
 
         if ($request->zone != "") {

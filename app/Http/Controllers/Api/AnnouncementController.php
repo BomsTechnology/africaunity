@@ -40,7 +40,7 @@ class AnnouncementController extends Controller
 
         if ($request->searchKey != "") {
             $searchKey = $request->searchKey;
-            $announcements = $announcements->where('title', 'like', "%$searchKey%");
+            $announcements = $announcements->whereRaw('LOWER(`title`) LIKE ?', ['%' . trim(strtolower($searchKey)) . '%']);
         }
 
         if ($request->category != "") {

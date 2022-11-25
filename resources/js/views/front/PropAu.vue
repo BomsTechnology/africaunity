@@ -18,7 +18,9 @@
                     class="flex items-center justify-start space-x-3 rounded bg-primary-blue px-3 py-2 text-white"
                 >
                     <PlusCircleIcon class="h-6 w-6" />
-                    <p class="text-base leading-4">{{ $t("add") }} PropAU</p>
+                    <p class="text-base leading-4">
+                        {{ $tc("add", 2) }} PropAU
+                    </p>
                 </router-link>
             </div>
             <div v-if="loading == 3">

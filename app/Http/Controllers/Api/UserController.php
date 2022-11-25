@@ -48,6 +48,7 @@ class UserController extends Controller
 
     public function filter(Request $request)
     {
+
         if ($request->type == 'business') {
             $users = User::where('status', '<>', 3)->where(function ($query) {
                 $query->where('type', 'business1')->orWhere('type', 'business2');
@@ -57,6 +58,16 @@ class UserController extends Controller
                 ['type', $request->type],
                 ['status', '<>', 3]
             ]);
+        }
+
+        if ($request->searchKey != "") {
+            $searchKey = $request->searchKey;
+            $users =  $users->whereRaw('LOWER(`firstname`) LIKE ?', ['%' . trim(strtolower($searchKey)) . '%']);
+        }
+
+        if ($request->email != "") {
+            $email = $request->email;
+            $users = $users->where('email', 'like', "%$email%");
         }
 
         if ($request->status != "") {

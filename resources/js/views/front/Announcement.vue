@@ -358,7 +358,7 @@ const filteredZoneA = () => {
                 >
                     <PlusCircleIcon class="h-6 w-6" />
                     <p class="text-base leading-4">
-                        {{ $t("add") }} {{ $t("ads") }}
+                        {{ $tc("add", 2) }} {{ $t("ads") }}
                     </p>
                 </router-link>
             </div>
