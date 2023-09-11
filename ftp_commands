@@ -1,0 +1,3 @@
+set ftp:ssl-allow no
+open -u ftp@africaunity.net,/Tem)mmHe5mmee8me: node92-eu.n0c.com
+mirror --reverse --verbose --exclude vendor --exclude .git ./ AU_FILES

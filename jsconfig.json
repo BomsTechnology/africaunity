@@ -1,0 +1,15 @@
+{
+    "include": ["./resources/js/**/*"],
+
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "@/*": ["resources/js/*"]
+        }
+    },
+
+    "jsx": "preserve",
+    "vueCompilerOptions": {
+        "experimentalDisableTemplateSupport": true
+    }
+}
