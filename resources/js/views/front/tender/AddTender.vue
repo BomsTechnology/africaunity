@@ -2,7 +2,7 @@
     <div class="mx-auto min-h-screen w-full bg-white py-4 lg:px-20 xl:w-[90%]">
         <div class="w-full space-y-4 py-5 text-center">
             <h1 class="text-4xl font-bold capitalize text-primary-blue">
-                {{ $t("add") }} appel d'offre
+                {{ $t("add") }} appel d'Offre
             </h1>
         </div>
 
@@ -13,8 +13,8 @@
                 {{ $t("good-msg-post") }} !
             </h2>
             <form
-                @submit.prevent="storeTender()"
-                id="tenderform"
+                @submit.prevent="storeJobOffer()"
+                id="jobOfferform"
                 enctype="multipart/form-data"
             >
                 <div class="mt-4">
@@ -28,13 +28,13 @@
                             </label>
                             <input
                                 required
-                                v-model="tender.title"
+                                v-model="jobOffer.title"
                                 maxlength="50"
                                 type="text"
                                 class=" mt-2 block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"
                             />
                             <span class="text-xs font-light text-gray-400"
-                                >{{ tender.title ? tender.title.length : 0 }} of
+                                >{{ jobOffer.title ? jobOffer.title.length : 0 }} of
                                 50 Characters</span
                             >
                         </div>
@@ -46,13 +46,13 @@
                             </label>
                             <input
                                 required
-                                v-model="tender.reference"
+                                v-model="jobOffer.reference"
                                 maxlength="10"
                                 type="text"
                                 class=" mt-2 block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"
                             />
                             <span class="text-xs font-light text-gray-400"
-                                >{{ tender.reference ? tender.reference.length : 0 }} of
+                                >{{ jobOffer.reference ? jobOffer.reference.length : 0 }} of
                                 10 Characters</span
                             >
                         </div>
@@ -69,7 +69,7 @@
                             </label>
                             <select
                                 required
-                                v-model="tender.continent_id"
+                                v-model="jobOffer.continent_id"
                                 @change="filteredZone()"
                                 class="form-select mt-2 block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-primary-blue focus:outline-none focus:ring-primary-blue"
                             >
@@ -101,7 +101,7 @@
                             </label>
                             <select
                                 required
-                                v-model="tender.zone_id"
+                                v-model="jobOffer.zone_id"
                                 @change="filteredCountry()"
                                 class="form-select mt-2 block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-primary-blue focus:outline-none focus:ring-primary-blue"
                             >
@@ -138,7 +138,7 @@
                             <select
                                 required
                                 @change="filteredCity()"
-                                v-model="tender.country_id"
+                                v-model="jobOffer.country_id"
                                 class="form-select mt-2 block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-primary-blue focus:outline-none focus:ring-primary-blue"
                             >
                                 <option
@@ -173,7 +173,7 @@
                             </label>
                             <select
                                 required
-                                v-model="tender.city_id"
+                                v-model="jobOffer.city_id"
                                 class="form-select mt-2 block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-primary-blue focus:outline-none focus:ring-primary-blue"
                             >
                                 <option
@@ -209,7 +209,7 @@
                             </label>
                             <input
                                 required
-                                v-model="tender.location"
+                                v-model="jobOffer.location"
                                 type="text"
                                 class="mt-2 block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"
                             />
@@ -221,7 +221,7 @@
                             </label>
                             <input
                                 required
-                                v-model="tender.end_date"
+                                v-model="jobOffer.start_date"
                                 type="date"
                                 class="mt-2 block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"
                             />
@@ -237,7 +237,7 @@
                             </label>
                             <input
                                 required
-                                v-model="tender.company_name"
+                                v-model="jobOffer.company_name"
                                 type="text"
                                 class=" mt-2 block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"
                             />
@@ -250,7 +250,7 @@
                             </label>
                             <input
                                 required
-                                v-model="tender.company_email"
+                                v-model="jobOffer.company_email"
                                 type="email"
                                 class=" mt-2 block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"
                             />
@@ -261,7 +261,7 @@
                                 $t("company-website")
                             }}</label>
                             <input
-                                v-model="tender.company_website"
+                                v-model="jobOffer.company_website"
                                 type="text"
                                 class=" mt-2 block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"
                             />
@@ -273,21 +273,21 @@
                             }}</label>
                             <div class="mt-2 flex items-center space-x-4">
                                 <img
-                                    v-if="tender.company_logo"
+                                    v-if="jobOffer.company_logo"
                                     :src="
-                                        typeof tender.company_logo == 'string'
-                                            ? tender.company_logo
+                                        typeof jobOffer.company_logo == 'string'
+                                            ? jobOffer.company_logo
                                             : previewImage(
-                                                  tender.company_logo
+                                                  jobOffer.company_logo
                                               )
                                     "
                                     @load="
-                                        typeof tender.company_logo == 'string'
+                                        typeof jobOffer.company_logo == 'string'
                                             ? ''
-                                            : loadImage(tender.company_logo)
+                                            : loadImage(jobOffer.company_logo)
                                     "
                                     class="h-16 w-16 rounded-full"
-                                    :alt="tender.title"
+                                    :alt="jobOffer.title"
                                 />
                                 <input
                                     ref="file"
@@ -306,12 +306,12 @@
                     >
                         <div>
                             <label class=" text-gray-700"
-                                >{{ $t("salary") }} Min
+                                >{{ $t("Montant") }} Min
                                 <span class="text-red-500">*</span>
                             </label>
                             <input
                                 required
-                                v-model="tender.min_price"
+                                v-model="jobOffer.min_price"
                                 type="text"
                                 class=" mt-2 block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"
                             />
@@ -319,12 +319,12 @@
 
                         <div>
                             <label class=" text-gray-700"
-                                >{{ $t("salary") }} Max
+                                >{{ $t("Montant") }} Max
                                 <span class="text-red-500">*</span>
                             </label>
                             <input
                                 required
-                                v-model="tender.max_price"
+                                v-model="jobOffer.max_price"
                                 type="text"
                                 class=" mt-2 block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"
                             />
@@ -339,7 +339,7 @@
                             </label>
                             <select
                                 required
-                                v-model="tender.currency_id"
+                                v-model="jobOffer.currency_id"
                                 class="form-select mt-2 block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-primary-blue focus:outline-none focus:ring-primary-blue"
                             >
                                 <option
@@ -365,7 +365,7 @@
                         <select
                             required
                             multiple
-                            v-model="tender.languages"
+                            v-model="jobOffer.languages"
                             class="form-select mt-2 block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-primary-blue focus:outline-none focus:ring-primary-blue"
                         >
                             <option
@@ -389,7 +389,58 @@
                     <div
                         class="col-span-2 mt-4 grid grid-cols-1 gap-6 sm:grid-cols-2"
                     >
-                        
+                        <div>
+                            <label
+                                class=" text-gray-700"
+                                for="es"
+                                >{{ $t("size-company") }}
+                                <span class="text-red-500">*</span>
+                            </label>
+                            <select
+                                required
+                                v-model="jobOffer.size_company_id"
+                                class="form-select mt-2 block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-primary-blue focus:outline-none focus:ring-primary-blue"
+                            >
+                                <option
+                                    v-for="sizeCompany in sizeCompanies"
+                                    :key="sizeCompany.id"
+                                    :value="sizeCompany.id"
+                                >
+                                    {{ sizeCompany.name_en }}
+                                </option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label
+                                class=" text-gray-700"
+                                for="es"
+                                >{{ $t("level-study") }}
+                                <span class="text-red-500">*</span>
+                            </label>
+                            <select
+                                required
+                                v-model="jobOffer.level_study_id"
+                                class="form-select mt-2 block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-primary-blue focus:outline-none focus:ring-primary-blue"
+                            >
+                                <option
+                                    v-for="levelStudy in levelStudies"
+                                    :key="levelStudy.id"
+                                    :value="levelStudy.id"
+                                >
+                                    <span v-if="$i18n.locale == 'en'">{{
+                                        levelStudy.name_en
+                                    }}</span>
+                                    <span v-else-if="$i18n.locale == 'fr'">{{
+                                        levelStudy.name_fr
+                                    }}</span>
+                                    <span v-else-if="$i18n.locale == 'es'">{{
+                                        levelStudy.name_es
+                                    }}</span>
+                                    <span v-else>{{ levelStudy.name_pt }}</span>
+                                </option>
+                            </select>
+                        </div>
                     </div>
                     <div class="col-span-2 mt-4">
                         <label class=" text-gray-700" for="es"
@@ -403,7 +454,7 @@
                         <select
                             required
                             multiple
-                            v-model="tender.activityAreas"
+                            v-model="jobOffer.activityAreas"
                             class="mt-2 block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-primary-blue focus:outline-none focus:ring-primary-blue"
                         >
                             <option
@@ -425,7 +476,7 @@
                         </select>
                     </div>
                     <div
-                        class="col-span-2 mt-4 grid grid-cols-1 gap-6 sm:grid-cols-3"
+                        class="col-span-2 mt-4 grid grid-cols-1 gap-6 sm:grid-cols-2"
                     >
                         <div>
                             <label
@@ -436,7 +487,7 @@
                             </label>
                             <select
                                 required
-                                v-model="tender.work_department_id"
+                                v-model="jobOffer.work_department_id"
                                 class="form-select mt-2 block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-primary-blue focus:outline-none focus:ring-primary-blue"
                             >
                                 <option
@@ -469,7 +520,7 @@
                             </label>
                             <select
                                 required
-                                v-model="tender.work_mode_id"
+                                v-model="jobOffer.work_mode_id"
                                 class="form-select mt-2 block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-primary-blue focus:outline-none focus:ring-primary-blue"
                             >
                                 <option
@@ -491,30 +542,101 @@
                             </select>
                         </div>
 
-                        
                         <div>
                             <label
                                 class=" text-gray-700"
                                 for="es"
-                                >{{ $t("size-company") }}
+                                >{{ $t("offer-type") }}
                                 <span class="text-red-500">*</span>
                             </label>
                             <select
                                 required
-                                v-model="tender.size_company_id"
+                                v-model="jobOffer.offer_type_id"
                                 class="form-select mt-2 block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-primary-blue focus:outline-none focus:ring-primary-blue"
                             >
                                 <option
-                                    v-for="sizeCompany in sizeCompanies"
-                                    :key="sizeCompany.id"
-                                    :value="sizeCompany.id"
+                                    v-for="offerType in offerTypes"
+                                    :key="offerType.id"
+                                    :value="offerType.id"
                                 >
-                                    {{ sizeCompany.name_en }}
+                                    <span v-if="$i18n.locale == 'en'">{{
+                                        offerType.name_en
+                                    }}</span>
+                                    <span v-else-if="$i18n.locale == 'fr'">{{
+                                        offerType.name_fr
+                                    }}</span>
+                                    <span v-else-if="$i18n.locale == 'es'">{{
+                                        offerType.name_es
+                                    }}</span>
+                                    <span v-else>{{ offerType.name_pt }}</span>
                                 </option>
                             </select>
                         </div>
 
-                       
+
+                        <div >
+                            <label
+                                class=" text-gray-700"
+                                for="es"
+                                >{{ $t("contract-type") }}
+                                <span class="text-red-500">*</span>
+                            </label>
+                            <select
+                                required
+                                v-model="jobOffer.contract_type_id"
+                                class="form-select mt-2 block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-primary-blue focus:outline-none focus:ring-primary-blue"
+                            >
+                                <option
+                                    v-for="contractType in contractTypes"
+                                    :key="contractType.id"
+                                    :value="contractType.id"
+                                >
+                                    <span v-if="$i18n.locale == 'en'">{{
+                                        contractType.name_en
+                                    }}</span>
+                                    <span v-else-if="$i18n.locale == 'fr'">{{
+                                        contractType.name_fr
+                                    }}</span>
+                                    <span v-else-if="$i18n.locale == 'es'">{{
+                                        contractType.name_es
+                                    }}</span>
+                                    <span v-else>{{ contractType.name_pt }}</span>
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="sm:col-span-2 mt-4">
+                            <label
+                                class=" text-gray-700"
+                                for="es"
+                                >{{ $t("y-experience") }}
+                                <span class="text-red-500">*</span>
+                            </label>
+                            <select
+                                required
+                                v-model="jobOffer.year_experience_id"
+                                class="form-select mt-2 block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-primary-blue focus:outline-none focus:ring-primary-blue"
+                            >
+                                <option
+                                    v-for="yearExperience in yearExperiences"
+                                    :key="yearExperience.id"
+                                    :value="yearExperience.id"
+                                >
+                                    <span v-if="$i18n.locale == 'en'">{{
+                                        yearExperience.name_en
+                                    }}</span>
+                                    <span v-else-if="$i18n.locale == 'fr'">{{
+                                        yearExperience.name_fr
+                                    }}</span>
+                                    <span v-else-if="$i18n.locale == 'es'">{{
+                                        yearExperience.name_es
+                                    }}</span>
+                                    <span v-else>{{
+                                        yearExperience.name_pt
+                                    }}</span>
+                                </option>
+                            </select>
+                        </div>
                     </div>
 
                     <div class="col-span-2 mt-4">
@@ -522,7 +644,7 @@
                             >{{ $t("description") }}
                             <span class="text-red-500">*</span>
                         </label>
-                        <RichText :key="keyComponent" v-model="tender.description"/>
+                        <RichText :key="keyComponent" v-model="jobOffer.description"/>
                     </div>
                 </div>
 
@@ -551,7 +673,7 @@
 <script setup>
 import { reactive, ref, onMounted } from "vue";
 import Error from "@/components/Error.vue";
-import useTenders from "@/services/tenderServices.js";
+import useJobOffers from "@/services/jobOfferServices.js";
 import useCurrencies from "@/services/currencyServices.js";
 import useActivityAreas from "@/services/activityAreaServices.js";
 import useSizeCompanies from "@/services/sizeCompanyServices.js";
@@ -581,17 +703,21 @@ const { currencies, getCurrencies } = useCurrencies();
 const { languages, getLanguages } = useLanguages();
 const { activityAreas, getActivityAreas } = useActivityAreas();
 const { sizeCompanies, getSizeCompanies } = useSizeCompanies();
+const { levelStudies, getLevelStudies } = useLevelStudies();
+const { offerTypes, getOfferTypes } = useOfferTypes();
+const { contractTypes, getContractTypes } = useContractTypes();
 const { workDepartments, getWorkDepartments } = useWorkDepartments();
 const { workModes, getWorkModes } = useWorkModes();
+const { yearExperiences, getYearExperiences } = useYearExperiences();
 const { countries, getCountries } = useCountries();
 const { zones, getZones } = useZones();
 const { continents, getContinents } = useContinents();
 const { cities, getCities } = useCities();
-const { createTender, errors, loading } = useTenders();
+const { createJobOffer, errors, loading } = useJobOffers();
 const keyComponent = ref(0);
 
 
-const tender = reactive({
+const jobOffer = reactive({
     title: "",
     description: " ",
     location: "",
@@ -603,11 +729,14 @@ const tender = reactive({
     max_price: "",
     user_id: user.id,
     currency_id: "",
-    end_date: "",
+    start_date: "",
+    year_experience_id: "",
     work_department_id: "",
+    contract_type_id: "",
     work_mode_id: "",
     size_company_id: "",
-   
+    offer_type_id: "",
+    level_study_id: "",
     reference: "",
     city_id: "",
     zone_id: "",
@@ -625,35 +754,39 @@ const cityfiltered = ref([]);
 onMounted(async () => {
     if (props.duplicate) {
         try {
-            tender.title = route.query.title;
-            tender.description = route.query.description;
-            tender.end_date = route.query.end_date;
-            tender.location = route.query.location;
-            tender.reference = route.query.reference;
-            tender.company_name = route.query.company_name;
-            tender.company_email = route.query.company_email;
-            tender.company_logo = route.query.company_logo;
-            tender.min_price = route.query.min_price.trim().replaceAll(' ', '');
-            tender.max_price = route.query.max_price.trim().replaceAll(' ', '');
-            tender.currency_id = route.query.currency_id;
-            tender.work_department_id = route.query.work_department_id;
-            tender.work_mode_id = route.query.work_mode_id;
-            tender.size_company_id = route.query.size_company_id;
-            tender.city_id = route.query.city_id;
-            tender.zone_id = route.query.zone_id;
-            tender.continent_id = route.query.continent_id;
-            tender.country_id = route.query.country_id;
+            jobOffer.title = route.query.title;
+            jobOffer.description = route.query.description;
+            jobOffer.start_date = route.query.start_date;
+            jobOffer.location = route.query.location;
+            jobOffer.reference = route.query.reference;
+            jobOffer.company_name = route.query.company_name;
+            jobOffer.company_email = route.query.company_email;
+            jobOffer.company_logo = route.query.company_logo;
+            jobOffer.min_price = route.query.min_price.trim().replaceAll(' ', '');
+            jobOffer.max_price = route.query.max_price.trim().replaceAll(' ', '');
+            jobOffer.currency_id = route.query.currency_id;
+            jobOffer.year_experience_id = route.query.year_experience_id;
+            jobOffer.contract_type_id = route.query.contract_type_id;
+            jobOffer.work_department_id = route.query.work_department_id;
+            jobOffer.work_mode_id = route.query.work_mode_id;
+            jobOffer.size_company_id = route.query.size_company_id;
+            jobOffer.offer_type_id = route.query.offer_type_id;
+            jobOffer.level_study_id = route.query.level_study_id;
+            jobOffer.city_id = route.query.city_id;
+            jobOffer.zone_id = route.query.zone_id;
+            jobOffer.continent_id = route.query.continent_id;
+            jobOffer.country_id = route.query.country_id;
             keyComponent.value++;
 
             let activity_areas  = JSON.parse(route.query.activity_areas);
             let languages  = JSON.parse(route.query.languages);
 
            for (const item of activity_areas) {
-                tender.activityAreas.push(item.id);
+                jobOffer.activityAreas.push(item.id);
             }
 
             for (const item of languages) {
-                tender.languages.push(item.id);
+                jobOffer.languages.push(item.id);
             }
 
         } catch (e) {
@@ -662,7 +795,7 @@ onMounted(async () => {
 
     }
     
-    
+    await getCurrencies();
     await getContinents();
 
     await getZones();
@@ -674,10 +807,13 @@ onMounted(async () => {
     await getCities();
     filteredCity(false);
 
-    await getCurrencies();
+    await getYearExperiences();
     await getWorkModes();
     await getWorkDepartments();
+    await getLevelStudies();
     await getSizeCompanies();
+    await getOfferTypes();
+    await getContractTypes();
     await getActivityAreas();
     await getLanguages();
 
@@ -685,67 +821,71 @@ onMounted(async () => {
 
 const filteredCity = (reset = true) => {
     cityfiltered.value = cities.value.filter((city) => {
-        return city.country_id == tender.country_id;
+        return city.country_id == jobOffer.country_id;
     });
-    if(reset){tender.city_id = "";}
+    if(reset){jobOffer.city_id = "";}
 };
 
 const filteredCountry = (reset = true) => {
     countryFiltered.value = countries.value.filter((country) => {
-        return country.zone_id == tender.zone_id;
+        return country.zone_id == jobOffer.zone_id;
     });
-   if(reset){ tender.country_id = "";
-    tender.city_id = "";
+   if(reset){ jobOffer.country_id = "";
+    jobOffer.city_id = "";
     cityfiltered.value = [];}
 };
 
 const filteredZone = (reset = true) => {
     zoneFiltered.value = zones.value.filter((zone) => {
-        return zone.continent_id == tender.continent_id;
+        return zone.continent_id == jobOffer.continent_id;
     });
-    if(reset){tender.zone_id = "";
-    tender.country_id = "";
-    tender.city_id = "";
+    if(reset){jobOffer.zone_id = "";
+    jobOffer.country_id = "";
+    jobOffer.city_id = "";
     cityfiltered.value = [];
     countryFiltered.value = [];}
 };
 
-const storeTender = async () => {
+const storeJobOffer = async () => {
 
     let formData = new FormData();
-    formData.append("title", tender.title);
-    formData.append("description", tender.description);
-    formData.append("location", tender.location);
-    formData.append("reference", tender.reference);
-    formData.append("company_name", tender.company_name);
-    formData.append("company_email", tender.company_email);
-    formData.append("company_website", tender.company_website);
-    formData.append("end_date", tender.end_date);
-    formData.append("company_logo", tender.company_logo);
-    formData.append("min_price", tender.min_price.trim().replaceAll(' ', ''));
-    formData.append("max_price", tender.max_price.trim().replaceAll(' ', ''));
-    formData.append("user_id", tender.user_id);
-    formData.append("currency_id", tender.currency_id);
-    formData.append("work_department_id", tender.work_department_id);
-    formData.append("work_mode_id", tender.work_mode_id);
-    formData.append("size_company_id", tender.size_company_id);
-    formData.append("city_id", tender.city_id);
-    formData.append("zone_id", tender.zone_id);
-    formData.append("continent_id", tender.continent_id);
-    formData.append("country_id", tender.country_id);
-    formData.append("languages", tender.languages);
-    formData.append("activityAreas", tender.activityAreas);
+    formData.append("title", jobOffer.title);
+    formData.append("description", jobOffer.description);
+    formData.append("location", jobOffer.location);
+    formData.append("reference", jobOffer.reference);
+    formData.append("company_name", jobOffer.company_name);
+    formData.append("company_email", jobOffer.company_email);
+    formData.append("company_website", jobOffer.company_website);
+    formData.append("start_date", jobOffer.start_date);
+    formData.append("company_logo", jobOffer.company_logo);
+    formData.append("min_price", jobOffer.min_price.trim().replaceAll(' ', ''));
+    formData.append("max_price", jobOffer.max_price.trim().replaceAll(' ', ''));
+    formData.append("user_id", jobOffer.user_id);
+    formData.append("currency_id", jobOffer.currency_id);
+    formData.append("year_experience_id", jobOffer.year_experience_id);
+    formData.append("contract_type_id", jobOffer.contract_type_id);
+    formData.append("work_department_id", jobOffer.work_department_id);
+    formData.append("work_mode_id", jobOffer.work_mode_id);
+    formData.append("size_company_id", jobOffer.size_company_id);
+    formData.append("offer_type_id", jobOffer.offer_type_id);
+    formData.append("level_study_id", jobOffer.level_study_id);
+    formData.append("city_id", jobOffer.city_id);
+    formData.append("zone_id", jobOffer.zone_id);
+    formData.append("continent_id", jobOffer.continent_id);
+    formData.append("country_id", jobOffer.country_id);
+    formData.append("languages", jobOffer.languages);
+    formData.append("activityAreas", jobOffer.activityAreas);
 
-    await createTender(formData);
+    await createJobOffer(formData);
     if (errors.value == "") {
         router.push({
-            name: "tenders",
+            name: "jobs",
         });
     }
 };
 
 const handelFileObject = async () => {
-    tender.company_logo = file.value.files[0];
+    jobOffer.company_logo = file.value.files[0];
 };
 
 function previewImage(file) {

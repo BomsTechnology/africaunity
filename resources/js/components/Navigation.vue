@@ -118,7 +118,7 @@
             </div> -->
             <div class="relative px-3 py-2  uppercase text-white transition-colors duration-200 hover:bg-primary-blue " @mouseleave="open.universities = false" >
                 <router-link
-                :to="{ name: 'universities' }"
+                :to="{ name: 'home' }"
                 class="flex cursor-pointer items-center justify-center"
                 @mouseover="open.universities = true"
                 >
