@@ -1949,48 +1949,48 @@
       "_ministryServices.f9c2b5ee.js"
     ]
   },
-  "effect-fade.css": {
-    "file": "effect-fade.8b6e9104.css",
-    "src": "effect-fade.css"
-  },
   "resources/js/components/Header.css": {
     "file": "Header.e1bf22b8.css",
     "src": "resources/js/components/Header.css"
   },
-  "resources/js/views/front/post/SharedPost.css": {
-    "file": "SharedPost.57268e27.css",
-    "src": "resources/js/views/front/post/SharedPost.css"
-  },
-  "DropZone.css": {
-    "file": "DropZone.a6b1a83b.css",
-    "src": "DropZone.css"
-  },
-  "swiper.css": {
-    "file": "swiper.997cc8e5.css",
-    "src": "swiper.css"
-  },
-  "resources/js/views/front/demonstration/Demonstration.css": {
-    "file": "Demonstration.8216b339.css",
-    "src": "resources/js/views/front/demonstration/Demonstration.css"
-  },
-  "resources/js/components/Footer.css": {
-    "file": "Footer.9b9fdd11.css",
-    "src": "resources/js/components/Footer.css"
-  },
-  "resources/js/components/Sidebar.css": {
-    "file": "Sidebar.80c27034.css",
-    "src": "resources/js/components/Sidebar.css"
+  "effect-fade.css": {
+    "file": "effect-fade.8b6e9104.css",
+    "src": "effect-fade.css"
   },
   "RichText.css": {
     "file": "RichText.2181ddc5.css",
     "src": "RichText.css"
   },
-  "resources/js/views/front/announcement/SingleAnnouncement.css": {
-    "file": "SingleAnnouncement.5ed6ea1c.css",
-    "src": "resources/js/views/front/announcement/SingleAnnouncement.css"
+  "resources/js/views/front/post/SharedPost.css": {
+    "file": "SharedPost.57268e27.css",
+    "src": "resources/js/views/front/post/SharedPost.css"
+  },
+  "swiper.css": {
+    "file": "swiper.997cc8e5.css",
+    "src": "swiper.css"
+  },
+  "resources/js/components/Footer.css": {
+    "file": "Footer.9b9fdd11.css",
+    "src": "resources/js/components/Footer.css"
+  },
+  "DropZone.css": {
+    "file": "DropZone.a6b1a83b.css",
+    "src": "DropZone.css"
+  },
+  "resources/js/views/front/demonstration/Demonstration.css": {
+    "file": "Demonstration.8216b339.css",
+    "src": "resources/js/views/front/demonstration/Demonstration.css"
+  },
+  "resources/js/components/Sidebar.css": {
+    "file": "Sidebar.80c27034.css",
+    "src": "resources/js/components/Sidebar.css"
   },
   "resources/js/app.css": {
     "file": "app.05cd3140.css",
     "src": "resources/js/app.css"
+  },
+  "resources/js/views/front/announcement/SingleAnnouncement.css": {
+    "file": "SingleAnnouncement.5ed6ea1c.css",
+    "src": "resources/js/views/front/announcement/SingleAnnouncement.css"
   }
 }

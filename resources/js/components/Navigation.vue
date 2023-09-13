@@ -91,7 +91,7 @@
                 Evenements
             </a>
 
-            <div
+            <!-- <div
                 class="relative px-3 py-2 uppercase text-white transition-colors duration-200 hover:bg-primary-blue"
                 @mouseleave="open.event = false"
             >
@@ -115,8 +115,36 @@
                         <span class="">{{ $t("ads-s") }} </span>
                     </router-link>
                 </div>
-            </div>
+            </div> -->
+            <div class="relative px-3 py-2  uppercase text-white transition-colors duration-200 hover:bg-primary-blue " @mouseleave="open.universities = false" >
+                <router-link
+                :to="{ name: 'universities' }"
+                class="flex cursor-pointer items-center justify-center"
+                @mouseover="open.universities = true"
+                >
+                    <span class="">{{ $t("univerities") }} </span> <ChevronDownIcon class="ml-2 h-5 w-5" />
 
+                </router-link>
+                    <div
+                    v-show="open.universities"
+                    class="absolute left-0 z-40 mt-2 flex w-60 flex-col bg-menu py-2"
+                    >
+                    <a 
+                        :href="`/events?date=${currYear}-${currMonth + 1}-${currdate}&profile=&enterType=&continent=&country=&zone=&city=&ministry=&activityArea=&eventType=&eventMode=`" 
+                        class="px-3 py-2 text-sm uppercase text-white transition-colors duration-200 hover:bg-primary-blue"    
+                    >
+                        Listes
+                    </a>
+                    <router-link
+                        :to="{ name: 'blog' }"
+                        class="px-3 py-2 text-sm uppercase text-white transition-colors duration-200 hover:bg-primary-blue"
+                    >
+                    Annonces
+                    </router-link>
+                </div>
+                
+            
+            </div>
             <div
                 class="relative px-3 py-2 uppercase text-white transition-colors duration-200 hover:bg-primary-blue"
                 @mouseleave="open.jobs = false"
