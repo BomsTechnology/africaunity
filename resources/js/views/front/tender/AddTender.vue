@@ -269,7 +269,7 @@
 
                         <div>
                             <label class="text-gray-700">{{
-                                $t("company-logo")
+                                $t("Document joint")
                             }}</label>
                             <div class="mt-2 flex items-center space-x-4">
                                 <img
