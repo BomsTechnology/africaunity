@@ -95,19 +95,24 @@
                 class="relative px-3 py-2 uppercase text-white transition-colors duration-200 hover:bg-primary-blue"
                 @mouseleave="open.event = false"
             >
-                <router-link
-                    :to="{ name: 'universities' }"
+                <div
                     @mouseover="open.event = true"
                     class="flex cursor-pointer items-center justify-center"
                 >
                     <span>{{ $t("univerities") }}</span>
                     <ChevronDownIcon class="ml-2 h-5 w-5" />
-                </router-link>
+                </div>
 
                 <div
                     v-show="open.event"
                     class="absolute left-0 z-40 mt-2 flex w-60 flex-col bg-menu py-2"
                 >
+                    <router-link
+                        :to="{ name: 'universities' }"
+                        class="px-3 py-2 uppercase text-white transition-colors duration-200 hover:bg-primary-blue"
+                    >
+                        <span class="">Liste </span>
+                    </router-link>
                     <router-link
                         :to="{ name: 'ads' }"
                         class="px-3 py-2 uppercase text-white transition-colors duration-200 hover:bg-primary-blue"
@@ -374,15 +379,18 @@
                 </a>
 
                 <div class="relative py-2 px-3 uppercase text-menu">
-                    <a
-                        href="#"
-                        @click.prevent="changeRoute('universities')"
-                        class="flex cursor-pointer items-center"
-                    >
+                    <div class="flex cursor-pointer items-center">
                         {{ $t("universities") }}
                         <ChevronDownIcon class="ml-2 h-5 w-5" />
-                    </a>
+                    </div>
                     <div class="mt-2 flex flex-col py-2">
+                        <a
+                            href="#"
+                            @click.prevent="changeRoute('universities')"
+                            class="px-3 py-2 text-sm uppercase text-menu transition-colors duration-200 hover:bg-primary-blue hover:text-white"
+                        >
+                            List
+                        </a>
                         <a
                             href="#"
                             @click.prevent="changeRoute('ads')"

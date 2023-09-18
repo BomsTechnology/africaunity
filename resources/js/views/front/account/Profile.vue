@@ -19,44 +19,55 @@
                 />
             </div>
             <div
-                class="relative flex h-1/2 items-center justify-center bg-white lg:justify-end lg:space-x-3"
+                class="relative flex h-1/2 w-full flex-col items-center justify-center bg-white lg:flex-row lg:justify-between lg:space-x-3"
             >
-                <router-link
-                    :to="{
-                        name: 'setting.account',
-                        params: { slug: loginUser.slug, id: loginUser.id },
-                    }"
+                <div class="relative z-30 -mt-28 lg:-mt-60 lg:ml-8">
+                    <button
                     v-if="user.id == loginUser.id"
-                    class="absolute mb-40 -mt-28 h-40 w-40 overflow-hidden rounded-full bg-white text-center shadow lg:left-4 lg:mt-0 lg:h-60 lg:w-60"
-                >
-                    <img
-                        :src="user.avatar"
-                        class="h-full w-full bg-cover object-cover"
-                        alt=""
-                        v-if="user.avatar"
-                    />
-                    <UserCircleIcon
+                        type="button"
+                        @click="changeTab('chat')"
+                        class="group absolute bottom-0 right-10 flex items-center space-x-2 rounded-full bg-primary-blue p-2 text-white hover:right-5"
+                    >
+                        <ChatBubbleLeftRightIcon class="h-6 w-6" />
+                        <span class="hidden group-hover:block">Chat</span>
+                    </button>
+                    <router-link
+                        :to="{
+                            name: 'setting.account',
+                            params: { slug: loginUser.slug, id: loginUser.id },
+                        }"
+                        v-if="user.id == loginUser.id"
+                        class="block h-40 w-40 overflow-hidden rounded-full shadow lg:h-60 lg:w-60"
+                    >
+                        <img
+                            :src="user.avatar"
+                            class="h-full w-full bg-cover object-cover"
+                            alt=""
+                            v-if="user.avatar"
+                        />
+                        <UserCircleIcon
+                            v-else
+                            class="h-full w-full text-gray-500"
+                        />
+                    </router-link>
+                    <div
                         v-else
-                        class="h-full w-full text-gray-500"
-                    />
-                </router-link>
-                <div
-                    v-else
-                    class="absolute mb-40 -mt-28 h-40 w-40 overflow-hidden rounded-full bg-white text-center shadow lg:left-4 lg:mt-0 lg:h-60 lg:w-60"
-                >
-                    <img
-                        :src="user.avatar"
-                        class="h-full w-full bg-cover object-cover"
-                        alt=""
-                        v-if="user.avatar"
-                    />
-                    <UserCircleIcon
-                        v-else
-                        class="h-full w-full text-gray-500"
-                    />
+                        class="block h-40 w-40 overflow-hidden rounded-full shadow lg:h-60 lg:w-60"
+                    >
+                        <img
+                            :src="user.avatar"
+                            class="h-full w-full bg-cover object-cover"
+                            alt=""
+                            v-if="user.avatar"
+                        />
+                        <UserCircleIcon
+                            v-else
+                            class="h-full w-full text-gray-500"
+                        />
+                    </div>
                 </div>
                 <div
-                    class="no-scrollbar mt-20 h-full w-full overflow-y-auto px-8 py-2 lg:mt-0 lg:w-[65%] xl:w-[75%]"
+                    class="no-scrollbar h-full w-full overflow-y-auto px-8 py-2 lg:w-[65%] xl:w-[75%]"
                 >
                     <div v-if="loading == 1" class="mt-4">
                         <Spin />
@@ -293,9 +304,7 @@
                     ]"
                 >
                     <DocumentTextIcon class="h-5 w-5" />
-                    <span class="hidden whitespace-nowrap lg:block">
-                        Tender
-                    </span>
+                    <span class="hidden whitespace-nowrap lg:block"> AO </span>
                 </button>
                 <button
                     v-if="user.type == 'particular' || user.type == 'admin'"
@@ -371,6 +380,9 @@
                     <span class="hidden lg:block">{{ $t("report") }}</span>
                 </button>
             </div>
+        </div>
+        <div class="py-8 lg:px-16" v-else-if="open.chat && loading == 0">
+            <Chat :user="user" />
         </div>
         <div class="py-8 lg:px-16" v-else-if="open.article && loading == 0">
             <Article :user="user" />
@@ -454,6 +466,7 @@ import useCountries from "@/services/countryServices.js";
 import useStatus from "@/services/statusServices.js";
 import {
     CalendarDaysIcon,
+    ChatBubbleLeftRightIcon,
     ChevronLeftIcon,
     ChevronRightIcon,
     DocumentTextIcon,
@@ -475,6 +488,7 @@ import {
     ClipboardIcon,
 } from "@heroicons/vue/24/solid";
 import Tender from "@/components/profile/Tender.vue";
+import Chat from "@/components/profile/Chat.vue";
 
 const props = defineProps({
     slug: {
@@ -523,6 +537,7 @@ const open = reactive({
     personalBlog: false,
     event: false,
     tender: false,
+    chat: false,
 });
 
 onMounted(async () => {
@@ -641,6 +656,7 @@ const changeTab = (type) => {
             open.event = false;
             open.profil = true;
             open.tender = false;
+            open.chat = false;
             break;
         case "tender":
             open.ads = false;
@@ -653,6 +669,7 @@ const changeTab = (type) => {
             open.personalBlog = false;
             open.event = false;
             open.profil = false;
+            open.chat = false;
             open.tender = true;
             break;
         case "article":
@@ -667,6 +684,7 @@ const changeTab = (type) => {
             open.event = false;
             open.article = true;
             open.tender = false;
+            open.chat = false;
             break;
         case "propau":
             open.ads = false;
@@ -680,6 +698,7 @@ const changeTab = (type) => {
             open.event = false;
             open.propau = true;
             open.tender = false;
+            open.chat = false;
             break;
         case "comment":
             open.ads = false;
@@ -693,6 +712,7 @@ const changeTab = (type) => {
             open.event = false;
             open.comment = true;
             open.tender = false;
+            open.chat = false;
             break;
         case "job":
             open.ads = false;
@@ -706,6 +726,7 @@ const changeTab = (type) => {
             open.event = false;
             open.job = true;
             open.tender = false;
+            open.chat = false;
             break;
         case "ads":
             open.job = false;
@@ -719,6 +740,7 @@ const changeTab = (type) => {
             open.event = false;
             open.ads = true;
             open.tender = false;
+            open.chat = false;
             break;
         case "edit":
             open.job = false;
@@ -733,6 +755,7 @@ const changeTab = (type) => {
             open.event = false;
             open.edit = true;
             open.tender = false;
+            open.chat = false;
             break;
         case "subscriber":
             open.job = false;
@@ -747,6 +770,7 @@ const changeTab = (type) => {
             open.event = false;
             open.subscriber = true;
             open.tender = false;
+            open.chat = false;
             break;
         case "subscription":
             open.job = false;
@@ -761,6 +785,7 @@ const changeTab = (type) => {
             open.event = false;
             open.subscription = true;
             open.tender = false;
+            open.chat = false;
             break;
         case "personalBlog":
             open.job = false;
@@ -775,6 +800,7 @@ const changeTab = (type) => {
             open.subscription = false;
             open.personalBlog = true;
             open.tender = false;
+            open.chat = false;
             break;
         case "event":
             open.job = false;
@@ -785,11 +811,26 @@ const changeTab = (type) => {
             open.ads = false;
             open.edit = false;
             open.subscriber = false;
-
+            open.chat = false;
             open.subscription = false;
             open.personalBlog = false;
             open.tender = false;
             open.event = true;
+            break;
+        case "chat":
+            open.job = false;
+            open.comment = false;
+            open.propau = false;
+            open.article = false;
+            open.profil = false;
+            open.ads = false;
+            open.edit = false;
+            open.subscriber = false;
+            open.chat = true;
+            open.subscription = false;
+            open.personalBlog = false;
+            open.tender = false;
+            open.event = false;
             break;
     }
 };

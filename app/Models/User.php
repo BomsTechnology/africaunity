@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Contracts\Auth\CanResetPassword;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
 {
@@ -89,6 +90,16 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
     public function subscriptions()
     {
         return $this->hasMany(Follower::class, 'subscription');
+    }
+
+    public function conversations(): BelongsToMany
+    {
+        return $this->belongsToMany(Conversation::class);
+    }
+
+    public function messages()
+    {
+        return $this->hasMany(Message::class);
     }
     
     // public function getImageAttribute($path) 

@@ -1,8 +1,8 @@
 <template>
     <div class="mx-auto min-h-screen w-full bg-white py-4 lg:px-20 xl:w-[90%]">
         <div class="w-full space-y-4 py-5 text-center">
-            <h1 class="text-4xl font-bold capitalize text-primary-blue">
-                {{ $t("add") }} appel d'offre
+            <h1 class="text-4xl font-bold text-primary-blue">
+                {{ $t("add") }} Appel d'offre
             </h1>
         </div>
 
@@ -306,7 +306,7 @@
                     >
                         <div>
                             <label class=" text-gray-700"
-                                >{{ $t("salary") }} Min
+                                >{{ $tc("salary", 2) }} Min
                                 <span class="text-red-500">*</span>
                             </label>
                             <input
@@ -319,7 +319,7 @@
 
                         <div>
                             <label class=" text-gray-700"
-                                >{{ $t("salary") }} Max
+                                >{{ $tc("salary", 2) }} Max
                                 <span class="text-red-500">*</span>
                             </label>
                             <input

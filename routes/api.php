@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\BusinessSizeController;
 use App\Http\Controllers\Api\BusinessTypeController;
 use App\Http\Controllers\Api\CategoryAnnouncementController;
 use App\Http\Controllers\Api\CategoryPersonalPostController;
+use App\Http\Controllers\Api\ChatController;
 use App\Http\Controllers\Api\CityController;
 use App\Http\Controllers\Api\CommentController;
 use App\Http\Controllers\Api\ContactController;
@@ -86,6 +87,12 @@ Route::get("/post-shared/{post}", [PostController::class, 'post_shared']);
 
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
 
+    Route::get("/chat/conversations/user/{user}", [ChatController::class, 'getConversationByUser']);
+    Route::post("/chat/conversations", [ChatController::class, 'createConversation']);
+    Route::post("/chat/messages", [ChatController::class, 'createMessage']);
+    Route::post("/chat/messages/is-read", [ChatController::class, 'isRead']);
+    Route::delete("/chat/conversations/{conversation}", [ChatController::class, 'deleteConversation']);
+
     Route::get("/dash-data", [DashboardController::class, 'index']);
 
     Route::post("/report", [ReportController::class, 'index']);
@@ -119,6 +126,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::post("/users-delete-data", [UserController::class, 'deleteData']);
     Route::post("/users-delete-user", [UserController::class, 'deleteUser']);
     Route::post("/users-filter", [UserController::class, 'filter']);
+    Route::get("/users-filter/conversation/{keywords}", [UserController::class, 'filterByWords']);
     Route::post("/users-report", [UserController::class, 'user_report']);
 
     Route::apiResource('universities', UniversityController::class);

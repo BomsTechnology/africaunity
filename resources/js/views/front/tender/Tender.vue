@@ -234,22 +234,7 @@
                                 </option>
                             </select>
                         </div>
-                        <div class="flex items-end justify-center py-3">
-                            <div>
-                                <input
-                                    type="checkbox"
-                                    id="recruitment-agency"
-                                    class="mr-3"
-                                    @change="tendersFilter()"
-                                    v-model="filterTender.recruitment_agency"
-                                />
-                                <label
-                                    class="text-sm text-gray-700"
-                                    for="recruitment-agency"
-                                    >{{ $t("recruitment-agency") }}
-                                </label>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
             </Transition>
@@ -265,7 +250,7 @@
                     class="flex items-center justify-start space-x-3 rounded bg-primary-blue px-3 py-2 text-white"
                 >
                     <PlusCircleIcon class="h-6 w-6" />
-                    <p class="text-base leading-4">{{ $t("add") }} Appel </p>
+                    <p class="text-base leading-4">{{ $t("add") }} AO </p>
                 </router-link>
             </div>
             <Tender v-if="loading == 3" />

@@ -34,7 +34,7 @@
 
 
     <link rel="icon" type="image/x-icon" href="{{ asset('/img/ico.png') }}">
-    @vite(['resources/js/app.js'])
+    
 
 
 </head>
@@ -45,6 +45,7 @@
 
     </div>
 
+    @vite(['resources/js/app.js'])
     <script src="https://cdn.jsdelivr.net/npm/sceditor@3/minified/sceditor.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sceditor@3/minified/formats/xhtml.min.js"></script>
 

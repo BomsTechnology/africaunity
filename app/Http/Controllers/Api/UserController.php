@@ -46,6 +46,16 @@ class UserController extends Controller
         return UserResource2::collection($users->orderBy('id', 'desc')->orderBy('avatar', 'desc')->paginate(9));
     }
 
+    public function filterByWords(Request $request, string $searchKey)
+    {
+        return UserResource2::collection(
+            User::where('status', '<>', 3)
+            ->whereRaw('LOWER(`firstname`) LIKE ?', ['%' . trim(strtolower($searchKey)) . '%'])
+            ->orWhereRaw('LOWER(`lastname`) LIKE ?', ['%' . trim(strtolower($searchKey)) . '%'])
+            ->orWhereRaw('LOWER(`email`) LIKE ?', ['%' . trim(strtolower($searchKey)) . '%'])
+            ->get());
+    }
+
     public function filter(Request $request)
     {
 
@@ -135,7 +145,7 @@ class UserController extends Controller
 
         return UserResource2::collection($users->get());
     }
-   
+
 
     /**
      * Store a newly created resource in storage.
@@ -336,7 +346,7 @@ class UserController extends Controller
             // $request->file('avatar')->storePubliclyAs('public', $filename);
             $filename = time() . '.' . $request->avatar->extension();
             $path = $request->image->storeAs('images/users', $filename, 'public');
-            
+
             if (File::exists(public_path(substr($user->avatar, 1, null)))) {
                 File::delete(public_path(substr($user->avatar, 1, null)));
             }

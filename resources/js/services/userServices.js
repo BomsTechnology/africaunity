@@ -289,7 +289,34 @@ export default function useUsers() {
         }
     };
 
+    const filterUserConversation = async (keywords) => {
+        errors.value = "";
+        try {
+            loading.value = true;
+            let response = await axios.get("/api/users-filter/conversation/" + keywords 
+            , {
+                headers: {
+                    Authorization: `Bearer ${localStorage.token}`,
+                },
+            });
+            users.value = response.data.data;
+            loading.value = false;
+        } catch (e) {
+            if (e.response.status == 401) {
+                router.push({
+                    name: "login",
+                    params: {
+                        redirect: "not-login",
+                    },
+                });
+                window.localStorage.removeItem("token");
+                window.localStorage.removeItem("user");
+            }
+        }
+    };
+
     return {
+        filterUserConversation,
         isAll,
         page,
         users,
