@@ -2,7 +2,7 @@
     <div
         class="text-md relative z-10 flex w-full justify-between border-t-4 border-primary-blue bg-menu px-4 pb-2 font-semibold"
     >
-        <nav class="hidden lg:flex">
+        <nav class="hidden lg:flex w-full">
             <router-link
                 :to="{ name: 'home' }"
                 class="flex items-start justify-center px-3 py-2 text-white transition-colors duration-200 hover:bg-primary-blue"
@@ -11,35 +11,30 @@
             </router-link>
 
             <div
-                class="relative px-3 py-2 uppercase text-white transition-colors duration-200 hover:bg-primary-blue"
-                @mouseleave="open.post = false"
+                class="group relative px-3 py-2 uppercase text-white transition-colors duration-200 hover:bg-primary-blue"
             >
-                <div
-                    class="flex cursor-pointer items-center justify-center"
-                    @mouseover="open.post = true"
-                >
+                <div class="flex cursor-pointer items-center justify-center">
                     <span class="">Publication </span>
                     <ChevronDownIcon class="ml-2 h-5 w-5" />
                 </div>
                 <div
-                    v-show="open.post"
-                    class="absolute left-0 z-40 mt-2 flex w-60 flex-col bg-menu py-2"
+                    class="absolute left-0 z-40 mt-2 hidden w-60 flex-col bg-menu py-2 group-hover:flex"
                 >
                     <router-link
                         :to="{ name: 'articles' }"
-                        class="px-3 py-2 uppercase text-white transition-colors duration-200 hover:bg-primary-blue"
+                        class="block px-3 py-2 text-sm uppercase text-white transition-colors duration-200 hover:bg-primary-blue"
                     >
                         {{ $t("articles") }}
                     </router-link>
                     <router-link
                         :to="{ name: 'propau' }"
-                        class="px-3 py-2 uppercase text-white transition-colors duration-200 hover:bg-primary-blue"
+                        class="block px-3 py-2 text-sm uppercase text-white transition-colors duration-200 hover:bg-primary-blue"
                     >
                         {{ $t("propau") }}
                     </router-link>
                     <router-link
                         :to="{ name: 'blog' }"
-                        class="px-3 py-2 text-sm uppercase text-white transition-colors duration-200 hover:bg-primary-blue"
+                        class="block px-3 py-2 text-sm uppercase text-white transition-colors duration-200 hover:bg-primary-blue"
                     >
                         Blog
                     </router-link>
@@ -47,35 +42,30 @@
             </div>
 
             <div
-                @mouseleave="open.profile = false"
-                class="relative px-3 py-2 uppercase text-white transition-colors duration-200 hover:bg-primary-blue"
+                class="group relative px-3 py-2 uppercase text-white transition-colors duration-200 hover:bg-primary-blue"
             >
-                <span
-                    @mouseover="open.profile = true"
-                    class="flex cursor-pointer items-center justify-center"
-                >
+                <span class="flex cursor-pointer items-center justify-center">
                     {{ $t("profile") }}
                     <ChevronDownIcon class="ml-2 h-5 w-5" />
                 </span>
                 <div
-                    v-show="open.profile"
-                    class="absolute left-0 z-40 mt-2 flex w-60 flex-col bg-menu py-2"
+                    class="absolute left-0 z-40 mt-2 hidden w-60 flex-col bg-menu py-2 group-hover:flex"
                 >
                     <router-link
                         :to="{ name: 'particular' }"
-                        class="px-3 py-2 text-sm uppercase text-white transition-colors duration-200 hover:bg-primary-blue"
+                        class="block px-3 py-2 text-sm uppercase text-white transition-colors duration-200 hover:bg-primary-blue"
                     >
                         {{ $t("particular") }}
                     </router-link>
                     <router-link
                         :to="{ name: 'establishment' }"
-                        class="px-3 py-2 text-sm uppercase text-white transition-colors duration-200 hover:bg-primary-blue"
+                        class="block px-3 py-2 text-sm uppercase text-white transition-colors duration-200 hover:bg-primary-blue"
                     >
                         {{ $t("establishment") }}
                     </router-link>
                     <router-link
                         :to="{ name: 'ip' }"
-                        class="px-3 py-2 text-sm uppercase text-white transition-colors duration-200 hover:bg-primary-blue"
+                        class="block px-3 py-2 text-sm uppercase text-white transition-colors duration-200 hover:bg-primary-blue"
                     >
                         {{ $t("ip") }}
                     </router-link>
@@ -92,30 +82,25 @@
             </a>
 
             <div
-                class="relative px-3 py-2 uppercase text-white transition-colors duration-200 hover:bg-primary-blue"
-                @mouseleave="open.event = false"
+                class="group relative px-3 py-2 uppercase text-white transition-colors duration-200 hover:bg-primary-blue"
             >
-                <div
-                    @mouseover="open.event = true"
-                    class="flex cursor-pointer items-center justify-center"
-                >
+                <div class="flex cursor-pointer items-center justify-center">
                     <span>{{ $t("univerities") }}</span>
                     <ChevronDownIcon class="ml-2 h-5 w-5" />
                 </div>
 
                 <div
-                    v-show="open.event"
-                    class="absolute left-0 z-40 mt-2 flex w-60 flex-col bg-menu py-2"
+                    class="absolute left-0 z-40 mt-2 hidden w-60 flex-col bg-menu py-2 group-hover:flex"
                 >
                     <router-link
                         :to="{ name: 'universities' }"
-                        class="px-3 py-2 uppercase text-white transition-colors duration-200 hover:bg-primary-blue"
+                        class="block px-3 py-2 text-sm uppercase text-white transition-colors duration-200 hover:bg-primary-blue"
                     >
                         <span class="">Liste </span>
                     </router-link>
                     <router-link
                         :to="{ name: 'ads' }"
-                        class="px-3 py-2 uppercase text-white transition-colors duration-200 hover:bg-primary-blue"
+                        class="block px-3 py-2 text-sm uppercase text-white transition-colors duration-200 hover:bg-primary-blue"
                     >
                         <span class="">{{ $t("ads-s") }} </span>
                     </router-link>
@@ -123,36 +108,40 @@
             </div>
 
             <div
-                class="relative px-3 py-2 uppercase text-white transition-colors duration-200 hover:bg-primary-blue"
-                @mouseleave="open.jobs = false"
+                class="group relative px-3 py-2 uppercase text-white transition-colors duration-200 hover:bg-primary-blue"
             >
-                <div
-                    @mouseover="open.jobs = true"
-                    class="flex cursor-pointer items-center justify-center"
-                >
+                <div class="flex cursor-pointer items-center justify-center">
                     <span>{{ $t("jobs") }}</span>
                     <ChevronDownIcon class="ml-2 h-5 w-5" />
                 </div>
 
                 <div
-                    v-show="open.jobs"
-                    class="absolute left-0 z-40 mt-2 flex w-60 flex-col bg-menu py-2"
+                    class="absolute left-0 z-40 mt-2 hidden w-60 flex-col bg-menu py-2 group-hover:flex"
                 >
                     <router-link
                         :to="{ name: 'jobs' }"
-                        class="px-3 py-2 uppercase text-white transition-colors duration-200 hover:bg-primary-blue"
+                        class="block px-3 py-2 text-sm uppercase text-white transition-colors duration-200 hover:bg-primary-blue"
                     >
                         <span class="">Offre d'emploi </span>
                     </router-link>
                     <router-link
                         :to="{ name: 'tenders' }"
-                        class="px-3 py-2 uppercase text-white transition-colors duration-200 hover:bg-primary-blue"
+                        class="block px-3 py-2 text-sm uppercase text-white transition-colors duration-200 hover:bg-primary-blue"
                     >
                         <span class="">Appel d'offre </span>
                     </router-link>
                 </div>
             </div>
-
+            <router-link
+                :to="{ name: 'chat' }"
+                class="px-3 py-2 uppercase flex items-center text-white transition-colors duration-200 hover:bg-primary-blue"
+            >
+                <span>Messagerie</span>
+                <span class="h-6 w-6 ml-2 bg-red-500 flex justify-center items-center text-white rounded-full">
+                        <span>0</span>
+                    </span>
+            </router-link>
+            
             <router-link
                 :to="{ name: 'contact' }"
                 class="px-3 py-2 uppercase text-white transition-colors duration-200 hover:bg-primary-blue"
@@ -161,18 +150,14 @@
             </router-link>
 
             <router-link
-                @mouseleave="open.logout = false"
                 v-if="token"
                 :to="{
                     name: 'compte',
                     params: { slug: user.slug, id: user.id },
                 }"
-                class="relative mx-2 bg-primary-blue px-3 py-2 uppercase text-white transition-colors duration-200"
+                class="group relative mx-2 block bg-primary-blue px-3 py-2 uppercase text-white transition-colors duration-200"
             >
-                <div
-                    @mouseover="open.logout = true"
-                    class="flex items-start space-x-2"
-                >
+                <div class="flex items-start space-x-2">
                     <span v-if="user.avatar">
                         <img
                             :src="user.avatar"
@@ -185,8 +170,7 @@
                     <span><ChevronDownIcon class="h-5 w-5" /></span>
                 </div>
                 <div
-                    v-show="open.logout"
-                    class="absolute left-0 z-40 mt-2 flex w-48 flex-col bg-menu py-2"
+                    class="absolute left-0 z-40 mt-2 hidden w-48 flex-col bg-menu py-2 group-hover:flex"
                 >
                     <button
                         type="button"
@@ -227,13 +211,9 @@
             </a>
 
             <div
-                @mouseleave="open.lang = false"
-                class="relative px-3 py-2 uppercase text-white transition-colors duration-200 hover:bg-primary-blue"
+                class="group relative px-3 py-2 uppercase text-white transition-colors duration-200 hover:bg-primary-blue"
             >
-                <label
-                    @mouseover="open.lang = true"
-                    class="flex cursor-pointer items-center justify-center"
-                >
+                <div class="flex cursor-pointer items-center justify-center">
                     <span v-if="$i18n.locale == 'fr'">
                         {{ $t("fr") }}
                     </span>
@@ -247,43 +227,38 @@
                         {{ $t("pt") }}
                     </span>
                     <ChevronDownIcon class="ml-2 h-5 w-5" />
-                </label>
+                </div>
                 <div
-                    v-show="open.lang"
-                    class="absolute left-0 z-40 mt-2 flex w-48 flex-col bg-menu py-2"
+                    class="absolute left-0 -z-10 mt-2 w-48 flex-col bg-menu py-2 hidden group-hover:flex "
                 >
-                    <a
-                        href="#"
+                    <span
                         v-if="$i18n.locale != 'fr'"
                         @click.prevent="changeLocale('fr')"
-                        class="px-3 py-2 text-sm uppercase text-white transition-colors duration-200 hover:bg-primary-blue"
+                        class="block px-3 py-2 text-sm uppercase text-white transition-colors duration-200 hover:bg-primary-blue"
                     >
                         {{ $t("fr") }}
-                    </a>
-                    <a
-                        href="#"
+                    </span>
+                    <span
                         v-if="$i18n.locale != 'en'"
                         @click.prevent="changeLocale('en')"
-                        class="px-3 py-2 text-sm uppercase text-white transition-colors duration-200 hover:bg-primary-blue"
+                        class="block px-3 py-2 text-sm uppercase text-white transition-colors duration-200 hover:bg-primary-blue"
                     >
                         {{ $t("en") }}
-                    </a>
-                    <a
-                        href="#"
+                    </span>
+                    <span
                         v-if="$i18n.locale != 'es'"
                         @click.prevent="changeLocale('es')"
-                        class="px-3 py-2 text-sm uppercase text-white transition-colors duration-200 hover:bg-primary-blue"
+                        class="block px-3 py-2 text-sm uppercase text-white transition-colors duration-200 hover:bg-primary-blue"
                     >
                         {{ $t("es") }}
-                    </a>
-                    <a
-                        href="#"
+                    </span>
+                    <span
                         v-if="$i18n.locale != 'pt'"
                         @click.prevent="changeLocale('pt')"
-                        class="px-3 py-2 text-sm uppercase text-white transition-colors duration-200 hover:bg-primary-blue"
+                        class="block px-3 py-2 text-sm uppercase text-white transition-colors duration-200 hover:bg-primary-blue"
                     >
                         {{ $t("pt") }}
-                    </a>
+                    </span>
                 </div>
             </div>
         </nav>
@@ -304,15 +279,27 @@
                 <Bars3Icon class="h-6 w-6" />
             </button>
             <div
-                v-show="open.menu"
-                class="absolute mx-auto mt-12 flex w-[90%] flex-col justify-center border border-menu bg-white shadow-md"
+                class="absolute top-full left-0 mx-auto flex w-full flex-col justify-center border bg-white shadow-md transition-transform duration-1000"
+                :class="[open.menu ? 'translate-x-0' : '-translate-x-full']"
             >
                 <div class="relative py-2 px-3 uppercase text-menu">
-                    <span class="flex cursor-pointer items-center">
-                        <span>Publication</span>
-                        <ChevronDownIcon class="ml-2 h-5 w-5" />
+                    <span
+                        class="flex cursor-pointer items-center justify-between"
+                        @click="open.post = !open.post"
+                    >
+                        <span class="text-sm">Publication</span>
+                        <span
+                            class="transition-all duration-500"
+                            :class="[
+                                open.post ? ' rotate-[180deg]' : 'rotate-0',
+                            ]"
+                            ><ChevronDownIcon class="ml-2 h-5 w-5"
+                        /></span>
                     </span>
-                    <div class="mt-2 flex flex-col py-2">
+                    <div
+                        class="flex flex-col overflow-hidden transition-all duration-700"
+                        :class="[open.post ? 'max-h-[500px]' : 'max-h-0']"
+                    >
                         <a
                             href="#"
                             @click.prevent="changeRoute('articles')"
@@ -339,11 +326,23 @@
                 </div>
 
                 <div class="relative py-2 px-3 uppercase text-menu">
-                    <span class="flex cursor-pointer items-center">
-                        {{ $t("profile") }}
-                        <ChevronDownIcon class="ml-2 h-5 w-5" />
+                    <span
+                        class="flex cursor-pointer items-center justify-between"
+                        @click="open.profile = !open.profile"
+                    >
+                        <span class="text-sm"> {{ $t("profile") }} </span>
+                        <span
+                            class="transition-all duration-500"
+                            :class="[
+                                open.profile ? ' rotate-[180deg]' : 'rotate-0',
+                            ]"
+                            ><ChevronDownIcon class="ml-2 h-5 w-5"
+                        /></span>
                     </span>
-                    <div class="mt-2 flex flex-col py-2">
+                    <div
+                        class="flex flex-col overflow-hidden transition-all duration-700"
+                        :class="[open.profile ? 'max-h-[500px]' : 'max-h-0']"
+                    >
                         <a
                             href="#"
                             @click.prevent="changeRoute('particular')"
@@ -379,11 +378,24 @@
                 </a>
 
                 <div class="relative py-2 px-3 uppercase text-menu">
-                    <div class="flex cursor-pointer items-center">
-                        {{ $t("universities") }}
-                        <ChevronDownIcon class="ml-2 h-5 w-5" />
+                    <div
+                        class="flex cursor-pointer items-center justify-between"
+                        @click="open.event = !open.event"
+                    >
+                        <span class="text-sm"> {{ $t("universities") }} </span>
+                        <span
+                            class="transition-all duration-500"
+                            :class="[
+                                open.event ? ' rotate-[180deg]' : 'rotate-0',
+                            ]"
+                        >
+                            <ChevronDownIcon class="ml-2 h-5 w-5" />
+                        </span>
                     </div>
-                    <div class="mt-2 flex flex-col py-2">
+                    <div
+                        class="flex flex-col overflow-hidden transition-all duration-700"
+                        :class="[open.event ? 'max-h-[500px]' : 'max-h-0']"
+                    >
                         <a
                             href="#"
                             @click.prevent="changeRoute('universities')"
@@ -402,11 +414,24 @@
                 </div>
 
                 <div class="relative py-2 px-3 uppercase text-menu">
-                    <div class="flex cursor-pointer items-center">
-                        {{ $t("jobs") }}
-                        <ChevronDownIcon class="ml-2 h-5 w-5" />
+                    <div
+                        class="flex cursor-pointer items-center justify-between"
+                        @click="open.jobs = !open.jobs"
+                    >
+                        <span class="text-sm"> {{ $t("jobs") }}</span>
+                        <span
+                            class="transition-all duration-500"
+                            :class="[
+                                open.jobs ? ' rotate-[180deg]' : 'rotate-0',
+                            ]"
+                        >
+                            <ChevronDownIcon class="ml-2 h-5 w-5"
+                        /></span>
                     </div>
-                    <div class="mt-2 flex flex-col py-2">
+                    <div
+                        class="flex flex-col overflow-hidden transition-all duration-700"
+                        :class="[open.jobs ? 'max-h-[500px]' : 'max-h-0']"
+                    >
                         <a
                             href="#"
                             @click.prevent="changeRoute('jobs')"
@@ -423,11 +448,20 @@
                         </a>
                     </div>
                 </div>
-
+                <a
+                    href="#"
+                    @click.prevent="changeRoute('chat')"
+                    class="flex justify-between px-3 py-2 text-sm uppercase text-menu transition-colors duration-200 hover:bg-primary-blue hover:text-white"
+                >
+                    <span>Messagerie</span>
+                    <span class="h-6 w-6 bg-red-500 flex justify-center items-center text-white rounded-full">
+                        <span>0</span>
+                    </span>
+                </a>
                 <a
                     href="#"
                     @click.prevent="changeRoute('contact')"
-                    class="px-3 py-2 uppercase text-menu transition-colors duration-200 hover:bg-primary-blue hover:text-white"
+                    class="px-3 py-2 text-sm uppercase text-menu transition-colors duration-200 hover:bg-primary-blue hover:text-white"
                 >
                     {{ $t("contact") }}
                 </a>
@@ -445,7 +479,7 @@
                         <span v-if="user.avatar">
                             <img
                                 :src="user.avatar"
-                                class="h-16 w-16 rounded-full border shadow"
+                                class="h-8 w-8 rounded-full border shadow"
                                 alt=""
                             />
                         </span>
@@ -456,7 +490,7 @@
                         <a
                             href="#"
                             @click.prevent="logout()"
-                            class="flex items-center px-3 py-2 text-sm uppercase text-menu transition-colors duration-200 hover:bg-primary-blue hover:text-white"
+                            class="flex items-center px-8 py-2 text-sm uppercase text-menu transition-colors duration-200 hover:bg-primary-blue hover:text-white"
                         >
                             {{ $t("logout") }}
                             <svg
@@ -486,13 +520,16 @@
                 <a
                     href="/login"
                     v-else
-                    class="bg-primary-blue px-3 py-2 uppercase text-white transition-colors duration-200"
+                    class="bg-primary-blue px-3 py-2 text-sm uppercase text-white transition-colors duration-200"
                 >
                     {{ $t("login") }}
                 </a>
 
                 <div class="relative py-2 px-3 uppercase text-menu">
-                    <label class="flex cursor-pointer items-center">
+                    <label
+                        class="flex cursor-pointer items-center justify-between text-sm"
+                        @click="open.lang = !open.lang"
+                    >
                         <span v-if="$i18n.locale == 'fr'">
                             {{ $t("fr") }}
                         </span>
@@ -505,41 +542,47 @@
                         <span v-else>
                             {{ $t("pt") }}
                         </span>
-                        <ChevronDownIcon class="ml-2 h-5 w-5" />
+                        <span
+                            class="transition-all duration-500"
+                            :class="[
+                                open.lang ? ' rotate-[180deg]' : 'rotate-0',
+                            ]"
+                        >
+                            <ChevronDownIcon class="ml-2 h-5 w-5"
+                        /></span>
                     </label>
-                    <div class="mt-2 flex flex-col py-2">
-                        <a
-                            href="#"
+                    <div
+                        class="flex flex-col overflow-hidden transition-all duration-700"
+                        :class="[open.lang ? 'max-h-[500px]' : 'max-h-0']"
+                    >
+                        <span
                             v-if="$i18n.locale != 'fr'"
                             @click.prevent="changeLocale('fr')"
                             class="px-3 py-2 text-sm uppercase text-menu transition-colors duration-200 hover:bg-primary-blue hover:text-white"
                         >
                             {{ $t("fr") }}
-                        </a>
-                        <a
-                            href="#"
+                        </span>
+                        <span
                             v-if="$i18n.locale != 'en'"
                             @click.prevent="changeLocale('en')"
                             class="px-3 py-2 text-sm uppercase text-menu transition-colors duration-200 hover:bg-primary-blue hover:text-white"
                         >
                             {{ $t("en") }}
-                        </a>
-                        <a
-                            href="#"
+                        </span>
+                        <span
                             v-if="$i18n.locale != 'es'"
                             @click.prevent="changeLocale('es')"
                             class="px-3 py-2 text-sm uppercase text-menu transition-colors duration-200 hover:bg-primary-blue hover:text-white"
                         >
                             {{ $t("es") }}
-                        </a>
-                        <a
-                            href="#"
+                        </span>
+                        <span
                             v-if="$i18n.locale != 'pt'"
                             @click.prevent="changeLocale('pt')"
                             class="duration-200hover:text-white px-3 py-2 text-sm uppercase text-menu transition-colors hover:bg-primary-blue"
                         >
                             {{ $t("pt") }}
-                        </a>
+                        </span>
                     </div>
                 </div>
             </div>

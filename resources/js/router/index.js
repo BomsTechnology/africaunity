@@ -20,6 +20,19 @@ const routes = [
         },
     },
     {
+        path: "/chat",
+        name: "chat",
+        components: {
+            default: () => import("@/views/front/Chat.vue"),
+            header: Header,
+            footer: Footer,
+        },
+        meta: {
+            title: siteName + " - Chat",
+            requiresAuth: true,
+        },
+    },
+    {
         path: "/blog",
         name: "blog",
         components: {

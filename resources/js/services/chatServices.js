@@ -37,12 +37,30 @@ export default function useChats() {
         errors.value = "";
         try {
             loading.value = true;
-            let response = await axios.get("/api/chat/conversations/user/" + id, {
-                headers: {
-                    Authorization: `Bearer ${localStorage.token}`,
-                },
+            let response = await axios.get(
+                "/api/chat/conversations/user/" + id,
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.token}`,
+                    },
+                }
+            );
+            let conWithMessages = response.data.data.filter(
+                (conv) => conv.messages.length > 0
+            );
+            let conWithOutMessages = response.data.data.filter(
+                (conv) => conv.messages.length == 0
+            );
+            conWithMessages.sort((a, b) => {
+                let date2 = new Date(
+                    b.messages[b.messages.length - 1].date
+                ).getTime();
+                let date1 = new Date(
+                    a.messages[a.messages.length - 1].date
+                ).getTime();
+                return date2 - date1;
             });
-            conversations.value = response.data.data;
+            conversations.value = [...conWithMessages, ...conWithOutMessages];
 
             loading.value = false;
         } catch (e) {
@@ -102,11 +120,15 @@ export default function useChats() {
     const isRead = async (data) => {
         errors.value = "";
         try {
-            let response = await axios.post("/api/chat/messages/is-read", data, {
-                headers: {
-                    Authorization: `Bearer ${localStorage.token}`,
-                },
-            });
+            let response = await axios.post(
+                "/api/chat/messages/is-read",
+                data,
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.token}`,
+                    },
+                }
+            );
         } catch (e) {
             if (e.response.status == 422) {
                 loading.value = 0;
@@ -212,6 +234,5 @@ export default function useChats() {
         destroyCoversation,
         getConversationsUser,
         createConversation,
-        
     };
 }

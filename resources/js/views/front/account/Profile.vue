@@ -22,7 +22,7 @@
                 class="relative flex h-1/2 w-full flex-col items-center justify-center bg-white lg:flex-row lg:justify-between lg:space-x-3"
             >
                 <div class="relative z-30 -mt-28 lg:-mt-60 lg:ml-8">
-                    <button
+                    <!-- <button
                     v-if="user.id == loginUser.id"
                         type="button"
                         @click="changeTab('chat')"
@@ -30,7 +30,7 @@
                     >
                         <ChatBubbleLeftRightIcon class="h-6 w-6" />
                         <span class="hidden group-hover:block">Chat</span>
-                    </button>
+                    </button> -->
                     <router-link
                         :to="{
                             name: 'setting.account',
@@ -606,7 +606,7 @@ const getDetail = async (id) => {
 const setLoginUser = async () => {
     loginUser.value = localStorage.user ? JSON.parse(localStorage.user) : "";
     if (loginUser.value) {
-        isFollow.value = loginUser.value.subscriptions.filter(
+        isFollow.value = loginUser.user.value = localStorage.user ? JSON.parse(localStorage.user) : "";value.subscriptions.filter(
             (u) => u.subscription == props.id
         );
     }

@@ -13,7 +13,11 @@ export default defineConfig({
                     base: null,
                     includeAbsolute: false,
                 },
+                compilerOptions: {
+                    isCustomElement: (tag) => tag.startsWith('emoji-')
+                },
             },
+            
         }),
     ],
     resolve: {

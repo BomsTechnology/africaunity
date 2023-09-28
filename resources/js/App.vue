@@ -12,17 +12,17 @@ watch(route, (nR, oR) => {
 </script>
 
 <template>
-    <div class="flex h-full">
+    <div class="flex h-full ">
         <div class="h-full">
             <router-view name="sidebar"></router-view>
         </div>
 
-        <div class="h-full w-full">
-            <div>
+        <div class="h-full w-full ">
+            <div class="">
                 <router-view name="header"></router-view>
             </div>
             <!-- <div class="w-full overflow-x-auto"> -->
-            <div>
+            <div class="">
                 <router-view v-slot="{ Component, route }">
                     <template v-if="Component">
                         <KeepAlive>
