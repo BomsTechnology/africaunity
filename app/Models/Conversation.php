@@ -10,11 +10,16 @@ class Conversation extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'type', 'image'];
+    protected $fillable = ['name', 'type', 'image', 'deleted_users', 'description'];
 
     public function users(): BelongsToMany
     {
         return $this->belongsToMany(User::class);
+    }
+
+    public function folders(): BelongsToMany
+    {
+        return $this->belongsToMany(ConversationFolder::class);
     }
 
     public function messages()

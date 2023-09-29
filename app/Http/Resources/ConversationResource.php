@@ -22,8 +22,10 @@ class ConversationResource extends JsonResource
             'name' => $this->name,
             'type' => $this->type,
             'image' => $this->image,
+            'description' => $this->description,
             'users' => UserResource2::collection(Conversation::find($this->id)->users),
             'messages' => MessageResource::collection(Conversation::find($this->id)->messages),
+            'deleted_users' => $this->deleted_users ? explode(',', $this->deleted_users) : [],
             'nbUnRead' => Conversation::find($this->id)->messages->where('is_read', 0)->where('user_id', '!=', Auth::user()->id)->count()
         ];
     }

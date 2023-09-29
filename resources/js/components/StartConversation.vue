@@ -12,6 +12,7 @@
             <div
                 class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
                 aria-hidden="true"
+                style=" backdrop-filter: blur(5px);"
                 @click="toogleModal"
             ></div>
 
@@ -21,7 +22,7 @@
                 >&#8203;</span
             >
             <div
-                class="inline-block transform overflow-hidden rounded-lg bg-white text-left align-bottom shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:align-middle"
+                class="inline-block transform overflow-hidden rounded-lg bg-white text-left  shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg align-middle"
             >
                 <!-- Modal content -->
                 <div class="relative rounded-lg bg-white py-4 shadow">

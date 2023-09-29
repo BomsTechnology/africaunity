@@ -17,8 +17,14 @@ class Message extends Model
         'attachement_path', 
         'attachement_size', 
         'type', 
-        'deleted_users'
+        'deleted_users',
+        'is_edit',
     ];
+
+    protected $casts = [
+        'is_edit' => 'boolean',
+    ];
+
 
     public function user()
     {

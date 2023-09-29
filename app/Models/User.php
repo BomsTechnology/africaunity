@@ -97,6 +97,11 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
         return $this->belongsToMany(Conversation::class);
     }
 
+    public function conversationFolders()
+    {
+        return $this->hasMany(ConversationFolder::class);
+    }
+
     public function messages()
     {
         return $this->hasMany(Message::class);

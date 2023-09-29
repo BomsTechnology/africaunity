@@ -4,20 +4,25 @@ import router from "../router/index.js";
 
 export default function useChats() {
     const conversations = ref([]);
+    const folders = ref([]);
     const conversation = ref([]);
     const errors = ref("");
     const loading = ref(0);
 
-    const getChats = async () => {
+    const getConversationsUser = async (id) => {
         errors.value = "";
         try {
             loading.value = true;
-            let response = await axios.get("/api/chats/", {
-                headers: {
-                    Authorization: `Bearer ${localStorage.token}`,
-                },
-            });
-            chats.value = response.data.data;
+            let response = await axios.get(
+                "/api/chat/conversations/user/" + id,
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.token}`,
+                    },
+                }
+            );
+            conversations.value = await orderyConversation(response.data.data);
+
             loading.value = false;
         } catch (e) {
             if (e.response.status == 401) {
@@ -33,35 +38,23 @@ export default function useChats() {
         }
     };
 
-    const getConversationsUser = async (id) => {
+    const getConversationsFolderUser = async (id) => {
         errors.value = "";
         try {
             loading.value = true;
             let response = await axios.get(
-                "/api/chat/conversations/user/" + id,
+                "/api/chat/folders/user/" + id,
                 {
                     headers: {
                         Authorization: `Bearer ${localStorage.token}`,
                     },
                 }
             );
-            let conWithMessages = response.data.data.filter(
-                (conv) => conv.messages.length > 0
-            );
-            let conWithOutMessages = response.data.data.filter(
-                (conv) => conv.messages.length == 0
-            );
-            conWithMessages.sort((a, b) => {
-                let date2 = new Date(
-                    b.messages[b.messages.length - 1].date
-                ).getTime();
-                let date1 = new Date(
-                    a.messages[a.messages.length - 1].date
-                ).getTime();
-                return date2 - date1;
-            });
-            conversations.value = [...conWithMessages, ...conWithOutMessages];
-
+            let res = response.data.data;
+            for (let i = 0; i < res.length; i++) {
+                res[i].conversations = await orderyConversation(res[i].conversations);
+            }
+            folders.value = res;
             loading.value = false;
         } catch (e) {
             if (e.response.status == 401) {
@@ -93,6 +86,43 @@ export default function useChats() {
                 loading.value = 0;
                 for (const key in e.response.data.errors)
                     errors.value += e.response.data.errors[key][0] + "\n";
+            }
+        }
+    };
+
+    const createConversationFolder = async (data) => {
+        errors.value = "";
+        try {
+            loading.value = true;
+            let response = await axios.post("/api/chat/folders", data, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.token}`,
+                },
+            });
+            loading.value = false;
+        } catch (e) {
+            if (e.response.status == 422) {
+                loading.value = 0;
+                for (const key in e.response.data.errors)
+                    errors.value += e.response.data.errors[key][0] + "\n";
+            }
+        }
+    };
+
+    const addConversationToFolder = async (data) => {
+        errors.value = "";
+        try {
+            loading.value = true;
+            await axios.post("/api/chat/folders/conversations" , data, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.token}`,
+                },
+            });
+            loading.value = false;
+        } catch (e) {
+            loading.value = 0;
+            if (e.response.status == "500") {
+                errors.value = "Impossible de supprimer ce chat";
             }
         }
     };
@@ -129,36 +159,12 @@ export default function useChats() {
                     },
                 }
             );
+            conversations.value = await orderyConversation(response.data.data);
         } catch (e) {
             if (e.response.status == 422) {
                 loading.value = 0;
                 for (const key in e.response.data.errors)
                     errors.value += e.response.data.errors[key][0] + "\n";
-            }
-        }
-    };
-
-    const getChat = async (keywords) => {
-        errors.value = "";
-        try {
-            loading.value = true;
-            let response = await axios.get("/api/chat/user/search" + keywords, {
-                headers: {
-                    Authorization: `Bearer ${localStorage.token}`,
-                },
-            });
-            loading.value = 0;
-            chat.value = response.data.data;
-        } catch (e) {
-            if (e.response.status == 401) {
-                router.push({
-                    name: "login",
-                    params: {
-                        redirect: "not-login",
-                    },
-                });
-                window.localStorage.removeItem("token");
-                window.localStorage.removeItem("user");
             }
         }
     };
@@ -201,11 +207,11 @@ export default function useChats() {
         }
     };
 
-    const markFilled = async (id) => {
+    const destroyCoversationFolder = async (id) => {
         errors.value = "";
         try {
             loading.value = true;
-            await axios.get("/api/chats-mark-filled/" + id, {
+            await axios.delete("/api/chat/folders/" + id, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
                 },
@@ -219,20 +225,63 @@ export default function useChats() {
         }
     };
 
+    const removeCoversationToFolder = async (folder_id, conversation_id) => {
+        errors.value = "";
+        try {
+            loading.value = true;
+            await axios.post("/api/chat/folders/conversations/" + folder_id, {
+                conversation_id: conversation_id,
+            }, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.token}`,
+                },
+            });
+            loading.value = false;
+        } catch (e) {
+            loading.value = 0;
+            if (e.response.status == "500") {
+                errors.value = "Impossible de supprimer ce chat";
+            }
+        }
+    };
+
+
+    const orderyConversation = async (data) => {
+        let conWithMessages = data.filter(
+            (conv) => conv.messages.length > 0
+        );
+        let conWithOutMessages = data.filter(
+            (conv) => conv.messages.length == 0
+        );
+        conWithMessages.sort((a, b) => {
+            let date2 = new Date(
+                b.messages[b.messages.length - 1].date
+            ).getTime();
+            let date1 = new Date(
+                a.messages[a.messages.length - 1].date
+            ).getTime();
+            return date2 - date1;
+        });
+        const res = conWithMessages.concat(conWithOutMessages);
+        return res;
+    }
+
     return {
         conversations,
         conversation,
         errors,
         loading,
-        //getChats,
-        //getChat,
-        //markFilled,
-        //getChatsFront,
         //updateChat,
+        removeCoversationToFolder,
+        destroyCoversationFolder,
+        addConversationToFolder,
+        folders,
         isRead,
         createMessage,
         destroyCoversation,
         getConversationsUser,
         createConversation,
+        getConversationsFolderUser,
+        createConversationFolder,
     };
 }

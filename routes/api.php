@@ -89,6 +89,11 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
 
     Route::get("/chat/conversations/user/{user}", [ChatController::class, 'getConversationByUser']);
     Route::post("/chat/conversations", [ChatController::class, 'createConversation']);
+    Route::get("/chat/folders/user/{user}", [ChatController::class, 'getConversationFolderByUser']);
+    Route::post("/chat/folders", [ChatController::class, 'createConversationFolder']);
+    Route::delete("/chat/folders/{folder}", [ChatController::class, 'deleteConversationFolder']);
+    Route::post("/chat/folders/conversations", [ChatController::class, 'addConversationToFolder']);
+    Route::post("/chat/folders/conversations/{folder}", [ChatController::class, 'deleteConversationToFolder']);
     Route::post("/chat/messages", [ChatController::class, 'createMessage']);
     Route::post("/chat/messages/is-read", [ChatController::class, 'isRead']);
     Route::delete("/chat/conversations/{conversation}", [ChatController::class, 'deleteConversation']);

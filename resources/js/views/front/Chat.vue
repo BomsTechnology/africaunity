@@ -5,6 +5,18 @@
             :toogleModal="toogleModal"
             :conversationSelect="startConversation"
         />
+        <AddConversationToFolder
+            :open="openAddConvToFolderModal"
+            :toogleModal="toogleAddConvToFolderModal"
+            :folders="folders"
+            :conversation="selectedConversation"
+            @conversationAdded="conversationAdded"
+        />
+        <CreateConversationFolder
+            :open="openAddFolderModal"
+            :toogleModal="toogleAddFolderModal"
+            @folderCreated="folderCreated"
+        />
         <Error v-if="errors != ''">{{ errors }}</Error>
         <section class="relative h-full w-full overflow-x-auto sm:rounded-lg">
             <div
@@ -259,7 +271,7 @@
 
                 <!-- start conversation pc view -->
                 <div
-                    class="relative hidden w-[40%] flex-col border-x py-4 lg:flex"
+                    class="relative hidden w-full max-w-[30%] flex-col border-x py-4 lg:flex"
                 >
                     <div class="relative mx-2">
                         <div
@@ -286,18 +298,57 @@
                     </button>
                     <div class="mt-2 w-full px-2 py-2">
                         <div
-                            class="no-scrollbar flex cursor-pointer items-center justify-start overflow-x-auto overflow-y-hidden border-b"
+                            :onWheel="onWheelFolder"
+                            class="no-scrollbar overflow-x-auto overflow-y-hidden"
                         >
                             <div
-                                class="flex-shrink-0 border-b-2 border-primary-blue py-2 px-4 text-center font-bold text-primary-blue"
+                                class="content items-scretch flex justify-start border-b"
                             >
-                                <span>Tous</span>
+                                <button
+                                    type="button"
+                                    @click="
+                                        () => {
+                                            selectedConversationList =
+                                                conversations;
+                                            selectedFolder = null;
+                                        }
+                                    "
+                                    class="flex-shrink-0 cursor-pointer rounded-t-md py-2 px-4 text-center font-bold"
+                                    :class="[
+                                        !selectedFolder
+                                            ? 'border-b-2 border-primary-blue text-primary-blue hover:bg-blue-100'
+                                            : 'border-gray-500 text-gray-500 hover:bg-gray-50',
+                                    ]"
+                                >
+                                    <span>Tous</span>
+                                </button>
+                                <button
+                                    type="button"
+                                    v-for="folder in folders"
+                                    :key="folder.id"
+                                    @click="selectFolder(folder)"
+                                    class="flex-shrink-0 cursor-pointer rounded-t-md py-2 px-4 text-center font-bold"
+                                    :class="[
+                                        selectedFolder &&
+                                        selectedFolder.id == folder.id
+                                            ? 'border-b-2 border-primary-blue text-primary-blue hover:bg-blue-100'
+                                            : 'border-gray-500 text-gray-500 hover:bg-gray-50',
+                                    ]"
+                                >
+                                    <span>{{ folder.name }}</span>
+                                </button>
+                                <div
+                                    class="flex flex-shrink-0 items-center justify-center"
+                                >
+                                    <button
+                                        type="button"
+                                        @click="toogleAddFolderModal"
+                                        class="flex h-5 w-5 cursor-pointer items-center justify-center rounded-full bg-primary-blue p-0.5 text-white shadow-lg"
+                                    >
+                                        <PlusIcon class="h-full w-full" />
+                                    </button>
+                                </div>
                             </div>
-                            <!--<div
-                                class="flex-shrink-0 rounded-t-md border-gray-500 py-2 px-4 text-center font-bold text-gray-500 hover:bg-gray-50"
-                            >
-                                <span>Personnel</span>
-                            </div>-->
                         </div>
                     </div>
                     <div class="grow overflow-y-auto">
@@ -317,7 +368,7 @@
                         >
                             <div
                                 v-if="conversation.type == 'conversation'"
-                                class="flex h-24 w-full cursor-pointer items-center space-x-2 border-b p-3"
+                                class="relative group flex h-24 w-full cursor-pointer items-center space-x-2 border-b p-3"
                             >
                                 <div
                                     class="h-12 w-12 overflow-hidden rounded lg:h-16 lg:w-16"
@@ -454,10 +505,15 @@
                                         </span>
                                     </div>
                                 </div>
+                                <button @click="deleteConversationToFolder(conversation)" type="button" v-if="selectedFolder" class="text-red-300 h-6 w-6 rounded-full hover:bg-red-100 hover:text-red-500 justify-center items-center  hidden group-hover:flex">
+                                    <span>
+                                        <FolderMinusIcon class="h-4 w-4" />
+                                    </span>
+                                </button>
                             </div>
                             <div
                                 v-else
-                                class="flex h-24 w-full cursor-pointer items-center space-x-2 border-b p-3 hover:bg-gray-50"
+                                class="flex h-24 w-full group cursor-pointer items-center space-x-2 border-b p-3 hover:bg-gray-50"
                             >
                                 <div
                                     class="h-12 w-12 overflow-hidden rounded lg:h-16 lg:w-16"
@@ -581,8 +637,24 @@
                                         </span>
                                     </div>
                                 </div>
+                                <button @click="deleteConversationToFolder(conversation)" type="button" v-if="selectedFolder" class="text-red-300 h-6 w-6 rounded-full hover:bg-red-100 hover:text-red-500 justify-center items-center  hidden group-hover:flex">
+                                    <span>
+                                        <FolderMinusIcon class="h-4 w-4" />
+                                    </span>
+                                </button>
                             </div>
                         </div>
+                        <button
+                            type="button"
+                            v-if="selectedFolder"
+                            @click="deleteFolderConversation"
+                            class="flex w-full items-center justify-center gap-1 p-2 text-red-500 opacity-25 hover:bg-red-100 hover:opacity-100"
+                        >
+                            <span>
+                                <TrashIcon class="h-4 w-4" />
+                            </span>
+                            <p class="text-sm">Supprimer ce dossier</p>
+                        </button>
                     </div>
                 </div>
                 <!-- end conversation pc view -->
@@ -597,43 +669,34 @@
                         class="relative flex h-24 w-full items-center justify-between space-x-2 border-b bg-white p-3"
                     >
                         <div class="flex items-center gap-2">
-                            <template
-                                v-if="
-                                    selectedConversation.type == 'conversation'
-                                "
+                            <div
+                                class="h-12 w-12 overflow-hidden rounded-full drop-shadow-md"
                             >
-                                <div
-                                    class="h-12 w-12 overflow-hidden rounded-full drop-shadow-md"
+                                <template
+                                    v-if="
+                                        selectedConversation.type ==
+                                        'conversation'
+                                    "
                                 >
                                     <template
                                         v-for="user in selectedConversation.users"
                                     >
                                         <img
-                                            v-if="user.image"
+                                            v-if="
+                                                user.id != loginUser.id &&
+                                                user.image
+                                            "
                                             :src="user.image"
                                             class="h-full w-full bg-cover object-cover"
                                             alt=""
                                         />
                                         <UserCircleIcon
                                             v-else
-                                            class="h-full w-full text-gray-500"
+                                            class="h-full w-full text-gray-800"
                                         />
                                     </template>
-                                </div>
-                                <h1 class="whitespace-normal text-sm font-bold">
-                                    <template
-                                        v-for="user in selectedConversation.users"
-                                    >
-                                        <span v-if="user.id != loginUser.id">{{
-                                            user.firstname
-                                        }}</span>
-                                    </template>
-                                </h1>
-                            </template>
-                            <template v-else>
-                                <div
-                                    class="h-12 w-12 overflow-hidden rounded-full drop-shadow-md"
-                                >
+                                </template>
+                                <template v-else>
                                     <img
                                         v-if="selectedConversation.image"
                                         :src="selectedConversation.image"
@@ -642,20 +705,71 @@
                                     />
                                     <UserGroupIcon
                                         v-else
-                                        class="h-full w-full text-gray-500"
+                                        class="h-full w-full text-gray-800"
                                     />
-                                </div>
+                                </template>
+                            </div>
+                            <div>
                                 <h1 class="whitespace-normal text-sm font-bold">
-                                    <span v-if="selectedConversation.name">{{
-                                        selectedConversation.name
-                                    }}</span>
-                                    <span v-else>Sans nom</span>
+                                    <template
+                                        v-if="
+                                            selectedConversation.type ==
+                                            'conversation'
+                                        "
+                                    >
+                                        <template
+                                            v-for="user in selectedConversation.users"
+                                        >
+                                            <span
+                                                v-if="user.id != loginUser.id"
+                                                >{{ user.firstname }}</span
+                                            >
+                                        </template>
+                                    </template>
+                                    <template v-else>
+                                        <span
+                                            v-if="selectedConversation.name"
+                                            >{{
+                                                selectedConversation.name
+                                            }}</span
+                                        >
+                                        <span v-else>Sans nom</span>
+                                    </template>
                                 </h1>
-                            </template>
+                                <p class="text-[11px]">
+                                    <template
+                                        v-if="
+                                            selectedConversation.type ==
+                                            'conversation'
+                                        "
+                                    >
+                                        <template
+                                            v-for="user in selectedConversation.users"
+                                        >
+                                            <span
+                                                v-if="user.id != loginUser.id"
+                                                >{{ user.email }}</span
+                                            >
+                                        </template>
+                                    </template>
+                                    <template v-else>
+                                        <template
+                                            v-for="user in selectedConversation.users"
+                                        >
+                                            <span>{{ user.firstname }},</span>
+                                        </template>
+                                    </template>
+                                </p>
+                            </div>
                         </div>
                         <button
                             type="button"
-                            @click="() => {if(!open.editMessage) open.option = !open.option}"
+                            @click="
+                                () => {
+                                    if (!open.editMessage)
+                                        open.option = !open.option;
+                                }
+                            "
                             class="rounded p-0.5 hover:bg-gray-100"
                         >
                             <EllipsisVerticalIcon
@@ -671,10 +785,10 @@
                                 v-if="selectedConversation.type != 'group'"
                                 @click="addConversationToFolder"
                                 type="button"
-                                class="flex items-center gap-1 p-2 text-block hover:bg-gray-100"
+                                class="text-block flex items-center gap-1 p-2 hover:bg-gray-100"
                             >
                                 <span>
-                                    <FolderIcon class="h-4 w-4" />
+                                    <FolderPlusIcon class="h-4 w-4" />
                                 </span>
                                 <p class="text-sm">Ajouter à un dossier</p>
                             </button>
@@ -703,8 +817,7 @@
 
                     <div
                         ref="chatDiv"
-                        
-                        class="no-scrollbar mx-auto flex w-full grow overflow-scroll flex-col-reverse items-center justify-center p-4 md:max-w-[70%]"
+                        class="no-scrollbar mx-auto flex w-full grow flex-col-reverse items-center justify-center overflow-scroll p-4 md:max-w-[70%]"
                     >
                         <div
                             class="flex min-h-0 w-full flex-col items-end justify-end"
@@ -720,9 +833,7 @@
                             >
                                 <div
                                     class="sticky top-0 my-4 flex items-center justify-center"
-                                    :class="[
-                            open.editMessage ? 'opacity-50' : 'opacity-100'
-                        ]"
+                                    :class="[open.editMessage ? 'blur' : '']"
                                 >
                                     <span
                                         class="rounded bg-white px-2 py-1 text-center text-xs uppercase text-gray-700 shadow"
@@ -747,87 +858,121 @@
                                         "
                                         class="relative block max-w-[90%] whitespace-pre-line break-all p-2 text-xs leading-normal tracking-wider shadow"
                                         :class="[
-                                            message.user.id == loginUser.id && open.editMessage && selectedMessage && selectedMessage.id != message.id
-                                                ? 'rounded-l-lg rounded-tr-lg bg-primary-blue text-white opacity-50'
-                                                : message.user.id != loginUser.id && open.editMessage ? 'rounded-r-lg rounded-bl-lg bg-white text-black opacity-50' : 
-                                                message.user.id == loginUser.id ?
-                                                'rounded-l-lg rounded-tr-lg bg-primary-blue text-white':
-                                                'rounded-r-lg rounded-bl-lg bg-white text-black'
+                                            message.user.id == loginUser.id &&
+                                            open.editMessage &&
+                                            selectedMessage &&
+                                            selectedMessage.id != message.id
+                                                ? 'rounded-l-lg rounded-tr-lg bg-primary-blue text-white blur'
+                                                : message.user.id !=
+                                                      loginUser.id &&
+                                                  open.editMessage
+                                                ? 'rounded-r-lg rounded-bl-lg bg-white text-black blur'
+                                                : message.user.id ==
+                                                  loginUser.id
+                                                ? 'rounded-l-lg rounded-tr-lg bg-primary-blue text-white'
+                                                : 'rounded-r-lg rounded-bl-lg bg-white text-black',
                                         ]"
-                                     
                                     >
-                                    <div ref="optionMessageBlock">
-                                        <div
-                                            v-if="
-                                                open.optionMessage &&
-                                                selectedMessage &&
-                                                selectedMessage.id == message.id &&
-                                                !open.editMessage
-                                            "
-                                            class="items-scretch absolute z-20 flex min-w-[100px] flex-col justify-start overflow-hidden rounded bg-white shadow"
-                                            :class="[
-                                            message.user.id != loginUser.id
-                                            && selectedConversation.messages[
-                                                selectedConversation.messages.length - 1
-                                                ].id == message.id 
-                                                ? 'left-[90%] bottom-[10px]'
-                                                : 
-                                                message.user.id != loginUser.id
-                                            && selectedConversation.messages[
-                                                selectedConversation.messages.length - 1
-                                                ].id != message.id ?
-                                                'left-[90%] top-[10px]'
-                                                :
-                                                message.user.id == loginUser.id
-                                            && selectedConversation.messages[
-                                                selectedConversation.messages.length - 1
-                                                ].id == message.id ?
-                                                'right-[90%] bottom-[10px]' :  'right-[90%] top-[10px]'
-                                            ]"
-                                            
-                                        >
-                                            <button
+                                        <div ref="optionMessageBlock">
+                                            <div
                                                 v-if="
-                                                    message.user.id ==
-                                                    loginUser.id
+                                                    open.optionMessage &&
+                                                    selectedMessage &&
+                                                    selectedMessage.id ==
+                                                        message.id &&
+                                                    !open.editMessage
                                                 "
-                                                type="button"
-                                                @click="openEditMessage(selectedMessage)"
-                                                class="flex items-center gap-1 p-2 text-black hover:bg-gray-100"
+                                                class="items-scretch absolute z-20 flex min-w-[100px] flex-col justify-start overflow-hidden rounded bg-white shadow"
+                                                :class="[
+                                                    message.user.id !=
+                                                        loginUser.id &&
+                                                    selectedConversation
+                                                        .messages[
+                                                        selectedConversation
+                                                            .messages.length - 1
+                                                    ].id == message.id
+                                                        ? 'left-[90%] bottom-[10px]'
+                                                        : message.user.id !=
+                                                              loginUser.id &&
+                                                          selectedConversation
+                                                              .messages[
+                                                              selectedConversation
+                                                                  .messages
+                                                                  .length - 1
+                                                          ].id != message.id
+                                                        ? 'left-[90%] top-[10px]'
+                                                        : message.user.id ==
+                                                              loginUser.id &&
+                                                          selectedConversation
+                                                              .messages[
+                                                              selectedConversation
+                                                                  .messages
+                                                                  .length - 1
+                                                          ].id == message.id
+                                                        ? 'right-[90%] bottom-[10px]'
+                                                        : 'right-[90%] top-[10px]',
+                                                ]"
                                             >
-                                                <span>
-                                                    <PencilSquareIcon
-                                                        class="h-4 w-4"
-                                                    />
-                                                </span>
-                                                <p class="text-xs">Editer</p>
-                                            </button>
-                                            <button
-                                                type="button"
-                                                @click="signalMessage(selectedMessage)"
-                                                class="flex items-center gap-1 p-2 text-black hover:bg-gray-100"
-                                            >
-                                                <span>
-                                                    <ExclamationTriangleIcon
-                                                        class="h-4 w-4"
-                                                    />
-                                                </span>
-                                                <p class="text-xs">Signaler</p>
-                                            </button>
-                                            <button
-                                                type="button"
-                                                @click="deleteMessage(selectedMessage)"
-                                                class="flex items-center gap-1 p-2 text-red-500 hover:bg-gray-100"
-                                            >
-                                                <span>
-                                                    <TrashIcon
-                                                        class="h-4 w-4"
-                                                    />
-                                                </span>
-                                                <p class="text-xs">Supprimer</p>
-                                            </button>
+                                                <button
+                                                    v-if="
+                                                        message.user.id ==
+                                                        loginUser.id
+                                                    "
+                                                    type="button"
+                                                    @click="
+                                                        openEditMessage(
+                                                            selectedMessage
+                                                        )
+                                                    "
+                                                    class="flex items-center gap-1 p-2 text-black hover:bg-gray-100"
+                                                >
+                                                    <span>
+                                                        <PencilSquareIcon
+                                                            class="h-4 w-4"
+                                                        />
+                                                    </span>
+                                                    <p class="text-xs">
+                                                        Editer
+                                                    </p>
+                                                </button>
+                                                <button
+                                                    type="button"
+                                                    @click="
+                                                        signalMessage(
+                                                            selectedMessage
+                                                        )
+                                                    "
+                                                    class="flex items-center gap-1 p-2 text-black hover:bg-gray-100"
+                                                >
+                                                    <span>
+                                                        <ExclamationTriangleIcon
+                                                            class="h-4 w-4"
+                                                        />
+                                                    </span>
+                                                    <p class="text-xs">
+                                                        Signaler
+                                                    </p>
+                                                </button>
+                                                <button
+                                                    type="button"
+                                                    @click="
+                                                        deleteMessage(
+                                                            selectedMessage
+                                                        )
+                                                    "
+                                                    class="flex items-center gap-1 p-2 text-red-500 hover:bg-gray-100"
+                                                >
+                                                    <span>
+                                                        <TrashIcon
+                                                            class="h-4 w-4"
+                                                        />
+                                                    </span>
+                                                    <p class="text-xs">
+                                                        Supprimer
+                                                    </p>
+                                                </button>
+                                            </div>
                                         </div>
-                                    </div>
                                         <span>
                                             {{ message.message }}
                                         </span>
@@ -847,13 +992,62 @@
                                             <span class="block">{{
                                                 showDate(message.date, false)
                                             }}</span>
+                                            <span
+                                                class="block italic"
+                                                v-if="message.is_edit"
+                                                >Modifié</span
+                                            >
                                         </span>
                                     </div>
-                                    <div v-if="
-                                                selectedMessage &&
-                                                selectedMessage.id == message.id &&
-                                                open.editMessage
-                                            "></div>
+
+                                    <div
+                                        v-if="
+                                            selectedMessage &&
+                                            selectedMessage.id == message.id &&
+                                            open.editMessage
+                                        "
+                                        class="relative mt-2"
+                                    >
+                                        <FaceSmileIcon
+                                            @click="
+                                                () => {
+                                                    open.emoji = !open.emoji;
+                                                }
+                                            "
+                                            class="absolute bottom-2 left-1 h-6 w-6 cursor-pointer text-gray-700"
+                                        />
+                                        <textarea
+                                            ref="textareaEdit"
+                                            placeholder="Your message..."
+                                            v-model="selectedMessage.message"
+                                            @input="
+                                                (e) =>
+                                                    handleInputEdit(
+                                                        e.target.value
+                                                    )
+                                            "
+                                            @keydown.enter="
+                                                (e) => handleEnterEdit(e)
+                                            "
+                                            :rows="nbRowsEdit"
+                                            class="w-full resize-none rounded-xl border border-gray-300 bg-white px-8 py-2 text-xs text-gray-900 shadow transition-all focus:border-primary-blue focus:ring-primary-blue"
+                                            cols="50"
+                                        ></textarea>
+                                        <button
+                                            type="button"
+                                            @click="editMessage()"
+                                            class="absolute right-1 bottom-2 rounded-full bg-primary-blue p-1 text-white"
+                                        >
+                                            <span v-if="loading == 1">
+                                                <Spin size="small" />
+                                            </span>
+                                            <span v-else>
+                                                <PaperAirplaneIcon
+                                                    class="h-4 w-4"
+                                                />
+                                            </span>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -861,9 +1055,6 @@
                     <div
                         v-show="selectedConversation != null"
                         class="mx-auto w-full md:max-w-[70%]"
-                        :class="[
-                            open.editMessage ? 'opacity-50' : 'opacity-100'
-                        ]"
                     >
                         <div
                             class="relative flex items-end gap-2 rounded-lg py-2 px-3"
@@ -886,6 +1077,7 @@
                             <label
                                 for="pickimage"
                                 class="mb-1 cursor-pointer rounded-full bg-white p-2 shadow"
+                                :class="[open.editMessage ? 'blur' : '']"
                             >
                                 <span
                                     ><PhotoIcon class="h-5 w-5 text-gray-500"
@@ -894,6 +1086,7 @@
                             <label
                                 for="pickfile"
                                 class="mb-1 cursor-pointer rounded-full bg-white p-2 shadow"
+                                :class="[open.editMessage ? 'blur' : '']"
                             >
                                 <span
                                     ><PaperClipIcon
@@ -905,6 +1098,7 @@
                                 <div
                                     v-if="message.attachement"
                                     class="mb-0.5 flex w-full items-stretch overflow-hidden rounded bg-white/60"
+                                    :class="[open.editMessage ? 'blur' : '']"
                                 >
                                     <div class="h-20 w-32">
                                         <img
@@ -948,8 +1142,14 @@
                                     <emoji-picker></emoji-picker>
                                 </div>
                                 <FaceSmileIcon
-                                    @click="() => {if(!open.editMessage)open.emoji = !open.emoji}"
+                                    @click="
+                                        () => {
+                                            if (!open.editMessage)
+                                                open.emoji = !open.emoji;
+                                        }
+                                    "
                                     class="absolute bottom-3 left-2 h-5 w-5 cursor-pointer text-gray-500"
+                                    :class="[open.editMessage ? 'blur' : '']"
                                 />
                                 <textarea
                                     ref="textarea"
@@ -960,9 +1160,11 @@
                                     :disabled="open.editMessage"
                                     class="mr-2 block w-full resize-none rounded-lg border border-gray-300 bg-white py-2.5 pr-2.5 pl-8 text-sm text-gray-900 shadow transition-all focus:border-primary-blue focus:ring-primary-blue"
                                     placeholder="Your message..."
+                                    :class="[open.editMessage ? 'blur' : '']"
                                 ></textarea>
                             </div>
                             <button
+                                :class="[open.editMessage ? 'blur' : '']"
                                 type="button"
                                 @click="sendMessage()"
                                 :disabled="open.editMessage"
@@ -1000,6 +1202,8 @@ import {
     XMarkIcon,
     NoSymbolIcon,
     FolderIcon,
+    FolderMinusIcon,
+    FolderPlusIcon,
     ExclamationTriangleIcon,
     PencilSquareIcon,
 } from "@heroicons/vue/24/solid";
@@ -1009,6 +1213,8 @@ import StartConversation from "@/components/StartConversation.vue";
 import useChats from "@/services/chatServices";
 import Error from "@/components/Error.vue";
 import { onClickOutside } from "@vueuse/core";
+import CreateConversationFolder from "@/components/CreateConversationFolder.vue";
+import AddConversationToFolder from "@/components/AddConversationToFolder.vue";
 
 const {
     createConversation,
@@ -1020,16 +1226,26 @@ const {
     getConversationsUser,
     conversations,
     isRead,
+    folders,
+    getConversationsFolderUser,
+    removeCoversationToFolder,
+    destroyCoversationFolder,
 } = useChats();
 
 const chatDiv = ref(null);
 const textarea = ref(null);
+const textareaEdit = ref(null);
+const selectedFolder = ref(null);
+const selectedConversationList = ref(null);
 const emojiBlock = ref(null);
 const optionBlock = ref(null);
 const optionMessageBlock = ref(null);
 const nbRows = ref(1);
+const nbRowsEdit = ref(1);
 const search = ref("");
 const openModal = ref(false);
+const openAddConvToFolderModal = ref(false);
+const openAddFolderModal = ref(false);
 const selectedConversation = ref(null);
 const selectedMessage = ref(null);
 const loginUser = ref(null);
@@ -1054,31 +1270,38 @@ const message = reactive({
     attachement_size: "",
     type: "text",
 });
-
 onMounted(async () => {
     await getConversationsUser(loginUser.value.id);
+    selectedConversationList.value = conversations.value;
+    await getConversationsFolderUser(loginUser.value.id);
     document.onkeydown = function (evt) {
         evt = evt || window.event;
         if (evt.keyCode == 27) {
-             if (open.editMessage) {
+            if (open.emoji) {
+                open.emoji = false;
+            } else if (open.editMessage) {
                 open.editMessage = false;
                 open.optionMessage = false;
-            }else if (selectedMessage) {
+            } else if (open.optionMessage) {
                 open.optionMessage = false;
             } else if (open.option) {
                 open.option = false;
-            } else if (open.emoji) {
-                open.emoji = false;
-            } else {
+            } else if (selectedConversation.value) {
                 selectedConversation.value = null;
                 clearMessage();
+            } else {
+                selectedFolder.value = null;
             }
         }
     };
     emojiBlock.value
         .querySelector("emoji-picker")
         .addEventListener("emoji-click", (event) => {
-            message.message = message.message + `${event.detail.unicode} `;
+            if (open.editMessage) {
+                selectedMessage.value.message += `${event.detail.unicode} `;
+            } else {
+                message.message += `${event.detail.unicode} `;
+            }
         });
 });
 
@@ -1092,6 +1315,7 @@ watch(selectedConversation, async (newConv, oldConv) => {
             ".new-message",
             async (e) => {
                 await getConversationsUser(loginUser.value.id);
+                getConversationsFolderUser(loginUser.value.id);
                 console.log(conversations.value);
                 if (selectedConversation.value) {
                     selectedConversation.value = conversations.value.filter(
@@ -1102,7 +1326,6 @@ watch(selectedConversation, async (newConv, oldConv) => {
         );
         message.conversation_id = newConv.id;
         isRead({ ...message });
-        getConversationsUser(loginUser.value.id);
         scrollToEnd();
     }
 });
@@ -1151,6 +1374,37 @@ const toogleModal = () => {
     openModal.value = !openModal.value;
 };
 
+const toogleAddFolderModal = () => {
+    openAddFolderModal.value = !openAddFolderModal.value;
+};
+
+const toogleAddConvToFolderModal = () => {
+    openAddConvToFolderModal.value = !openAddConvToFolderModal.value;
+};
+
+const folderCreated = async () => {
+    await getConversationsFolderUser(loginUser.value.id);
+    openAddFolderModal.value = false;
+};
+
+const conversationAdded = async (res) => {
+    open.option = false;
+    if (!res.isExist) {
+        await getConversationsFolderUser(loginUser.value.id).then((data) => {
+            let currFolder = folders.value.filter(
+                (folder) => folder.id == res.folder.id
+            )[0];
+            selectedConversationList.value = currFolder.conversations;
+            selectedFolder.value = currFolder;
+            openAddConvToFolderModal.value = false;
+        });
+    } else {
+        selectedConversationList.value = res.folder.conversations;
+        selectedFolder.value = res.folder;
+        openAddConvToFolderModal.value = false;
+    }
+};
+
 const startConversation = async (userSelect) => {
     toogleModal();
     let isStartCov = conversations.value.filter((conv) => {
@@ -1171,31 +1425,59 @@ const startConversation = async (userSelect) => {
 };
 
 const openEditMessage = (message) => {
-    console.log(message);
-    console.log('openeditmessage');
     selectedMessage.value = message;
     open.editMessage = true;
+    setTimeout(() => {
+        handleInputEdit(textareaEdit.value[0].value);
+    }, 100);
+};
+
+const editMessage = async () => {
+    open.editMessage = false;
 };
 
 const signalMessage = async (message) => {
-    console.log('signalmessage');
+    console.log("signalmessage");
     //selectedMessage.value = null;
-}
+};
 const deleteMessage = async (message) => {
     if (confirm("Are you sure you want to delete this message?")) {
-    //selectedMessage.value = null;
+        //selectedMessage.value = null;
     }
-}
+};
 
 const addConversationToFolder = async () => {
+    toogleAddConvToFolderModal();
     open.option = false;
-}
+};
+
+const deleteConversationToFolder = async (conv) => {
+    if (confirm("Are you sure you want to remove this conversation in folder?")) {
+
+    const index = selectedFolder.value.conversations.indexOf(conv);
+    if(index >= 0) {
+        selectedFolder.value.conversations.splice(index, 1);
+        await removeCoversationToFolder(selectedFolder.value.id, conv.id);
+        await getConversationsFolderUser(loginUser.value.id);
+    };
+    }
+};
 
 const blockConversation = async () => {
     if (confirm("Are you sure you want to block this conversation?")) {
         open.option = false;
     }
-}
+};
+
+const deleteFolderConversation = async () => {
+    if (confirm("Are you sure you want to delete this folder?")) {
+        await destroyCoversationFolder(selectedFolder.value.id);
+        selectedConversationList.value = conversations.value;
+        selectedFolder.value = null;
+        await getConversationsFolderUser(loginUser.value.id);
+    }
+};
+
 
 const deleteConversation = async () => {
     if (confirm("Are you sure you want to delete this conversation?")) {
@@ -1207,7 +1489,9 @@ const deleteConversation = async () => {
 };
 
 const filteredConversation = computed(() => {
-    return conversations.value.filter((conv) => true);
+    return selectedConversationList.value
+        ? selectedConversationList.value.filter((conv) => true)
+        : [];
 });
 
 const groupMessages = computed(() => {
@@ -1221,6 +1505,11 @@ const groupMessages = computed(() => {
     return groups;
 });
 
+const selectFolder = (folder) => {
+    selectedConversationList.value = folder.conversations;
+    selectedFolder.value = folder;
+};
+
 function selectConversation(conversation) {
     selectedConversation.value = conversation;
     clearMessage();
@@ -1228,7 +1517,7 @@ function selectConversation(conversation) {
 }
 
 async function sendMessage() {
-    if (selectedConversation.value && message.message && !loading.value) {
+    if (selectedConversation.value && !loading.value && (message.message || message.attachement)) {
         message.conversation_id = selectedConversation.value.id;
         const currMessage = {
             id: new Date().getTime(),
@@ -1248,7 +1537,16 @@ async function sendMessage() {
             .filter((conv) => conv.id === selectedConversation.value.id)[0]
             .messages.push(currMessage);
 
-        createMessage({ ...message });
+        let formData = new FormData();
+        formData.append("user_id", loginUser.value.id);
+        formData.append("conversation_id", message.conversation_id);
+        formData.append("attachement", message.attachement);
+        formData.append("attachement_path", message.attachement_path);
+        formData.append("attachement_name", message.attachement_name);
+        formData.append("attachement_size", message.attachement_size);
+        formData.append("type", message.type);
+        formData.append("message", message.message);
+        createMessage(formData);
         clearMessage();
     }
 }
@@ -1319,6 +1617,13 @@ function showDate(date, grouped, min = false) {
     }
 }
 
+const onWheelFolder = (event) => {
+    event.preventDefault();
+    const container = event.currentTarget;
+    const delta = event.deltaY;
+    container.scrollLeft += delta;
+};
+
 const handleEnter = (event) => {
     if (event.shiftKey && event.key === "Enter") {
         event.preventDefault();
@@ -1341,12 +1646,35 @@ const handleInput = () => {
     nbRows.value = numberOfLines < 10 ? numberOfLines : 10;
 };
 
+const handleEnterEdit = (event) => {
+    if (event.shiftKey && event.key === "Enter") {
+        event.preventDefault();
+        const textarea = event.target;
+        const start = textarea.selectionStart;
+        const end = textarea.selectionEnd;
+        const value = textarea.value;
+        textarea.value =
+            value.substring(0, start) + "\n" + value.substring(end);
+        textarea.selectionStart = textarea.selectionEnd = start + 1;
+    } else {
+        event.preventDefault();
+        editMessage();
+    }
+};
+
+const handleInputEdit = (value) => {
+    const numberOfLines = (value.match(/\n/g) || []).length + 1;
+    nbRowsEdit.value = numberOfLines < 10 ? numberOfLines : 10;
+};
+
 const handleContextMenu = (event, message) => {
     event.preventDefault();
-    if(!open.editMessage){open.option = false;
-    open.emoji = false;
-    selectedMessage.value = message;
-    open.optionMessage = true;}
+    if (!open.editMessage) {
+        open.option = false;
+        open.emoji = false;
+        selectedMessage.value = message;
+        open.optionMessage = true;
+    }
 };
 
 const handlePickImage = async (e) => {
