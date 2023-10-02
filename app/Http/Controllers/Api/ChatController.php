@@ -39,6 +39,9 @@ class ChatController extends Controller
 
     public function createMessage(Request $request)
     {
+        $conversation = Conversation::find($request->conversation_id);
+        $conversation->deleted_users = NULL;
+        $conversation->save();
         $data = [
             'attachement_path' => '',
             'message' => $request->message,
@@ -138,7 +141,7 @@ class ChatController extends Controller
                 array_push($dusers, $request->user_id);
             }
             $uindex = array_search("", $dusers);
-            if ($index !== false) {
+            if ($uindex !== false) {
                 unset($dusers[$uindex]);
             }
             $dusers = implode(",", $dusers);
@@ -157,7 +160,7 @@ class ChatController extends Controller
             ['is_read', 0]
         ])->update(['is_read' => 1]);
         $user = User::find($request->user_id);
-        //broadcast(new ChatMessageEvent($request->received_id))->toOthers();
+        broadcast(new ChatMessageEvent($request->received_id))->toOthers();
         broadcast(new ChatMessageEvent(Auth::user()->id))->toOthers();
         return ConversationResource::collection($user->conversations()->orderByDesc('created_at')->get());
     }

@@ -20,7 +20,7 @@
         <Error v-if="errors != ''">{{ errors }}</Error>
         <section class="relative h-full w-full overflow-x-auto sm:rounded-lg">
             <div
-                class="relative flex md:h-[700px] h-[500px] w-full rounded-lg bg-white shadow-lg"
+                class="relative flex h-[500px] w-full rounded-lg bg-white shadow-lg md:h-[700px]"
             >
                 <!-- start  mobile button change view -->
                 <button
@@ -445,7 +445,7 @@
                                     "
                                     type="button"
                                     v-if="selectedFolder"
-                                    class="h-6 w-6 items-center justify-center rounded-full  bg-red-100 text-red-500 flex"
+                                    class="flex h-6 w-6 items-center justify-center rounded-full bg-red-100 text-red-500"
                                 >
                                     <span>
                                         <FolderMinusIcon class="h-4 w-4" />
@@ -1357,7 +1357,8 @@
                                 :class="[open.editMessage ? 'blur' : '']"
                             >
                                 <span
-                                    ><PhotoIcon class="md:h-5 w-4 md:w-5 h-4 text-gray-500"
+                                    ><PhotoIcon
+                                        class="h-4 w-4 text-gray-500 md:h-5 md:w-5"
                                 /></span>
                             </label>
                             <label
@@ -1367,7 +1368,7 @@
                             >
                                 <span
                                     ><PaperClipIcon
-                                        class="md:h-5 w-4 md:w-5 h-4 text-gray-500"
+                                        class="h-4 w-4 text-gray-500 md:h-5 md:w-5"
                                 /></span>
                             </label>
 
@@ -1414,7 +1415,7 @@
                                 <div
                                     v-show="open.emoji"
                                     ref="emojiBlock"
-                                    class="emojiBlock absolute bottom-[110%] z-40 min-h-[100px] min-w-[100px]  overflow-hidden rounded-xl bg-white shadow"
+                                    class="emojiBlock absolute bottom-[110%] z-40 min-h-[100px] min-w-[100px] overflow-hidden rounded-xl bg-white shadow"
                                 >
                                     <emoji-picker locale="fr"></emoji-picker>
                                 </div>
@@ -1445,13 +1446,15 @@
                                 type="button"
                                 @click="sendMessage()"
                                 :disabled="open.editMessage"
-                                class="mb-0.5 flex md:h-10 w-8 md:w-10 h-8 flex-shrink-0 cursor-pointer items-center justify-center rounded-full bg-primary-blue text-white shadow"
+                                class="mb-0.5 flex h-8 w-8 flex-shrink-0 cursor-pointer items-center justify-center rounded-full bg-primary-blue text-white shadow md:h-10 md:w-10"
                             >
                                 <span v-if="loading == 1">
                                     <Spin size="small" />
                                 </span>
                                 <span v-else>
-                                    <PaperAirplaneIcon class="md:h-6 w-5 md:w-6 h-5" />
+                                    <PaperAirplaneIcon
+                                        class="h-5 w-5 md:h-6 md:w-6"
+                                    />
                                 </span>
                             </button>
                         </div>
@@ -1884,6 +1887,7 @@ async function sendMessage() {
         !loading.value &&
         (message.message || message.attachement)
     ) {
+        
         message.conversation_id = selectedConversation.value.id;
         const currMessage = {
             id: new Date().getTime(),
@@ -1901,6 +1905,7 @@ async function sendMessage() {
         conversations.value
             .filter((conv) => conv.id === selectedConversation.value.id)[0]
             .messages.push(currMessage);
+        
         if (selectFolder.value)
             selectedConversation.value.messages.push(currMessage);
         const received = selectedConversation.value.users.filter(
@@ -1917,8 +1922,8 @@ async function sendMessage() {
         formData.append("attachement_size", message.attachement_size);
         formData.append("type", message.type);
         formData.append("message", message.message);
-        createMessage(formData);
         clearMessage();
+        await createMessage(formData);
         refreshList();
     }
 }
@@ -2120,12 +2125,11 @@ function bytesToSize(bytes) {
 @media screen and (max-width: 460px) {
     .emojiBlock {
         left: -30%;
-        
     }
-    emoji-picker{
+    emoji-picker {
         --num-columns: 5 !important;
-        --emoji-padding: 0.20rem !important;
-        --input-padding: 0.100rem !important;
+        --emoji-padding: 0.2rem !important;
+        --input-padding: 0.1rem !important;
     }
 }
 </style>

@@ -703,7 +703,6 @@ const unRead = computed(() => {
             return conversations.value[0].nbUnRead;
         } else {
             return conversations.value.reduce((convA, convB) => {
-                console.log(convB.nbUnRead);
                 return convA.nbUnRead + convB.nbUnRead;
             }, 0);
         }
