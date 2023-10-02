@@ -20,7 +20,7 @@
         <Error v-if="errors != ''">{{ errors }}</Error>
         <section class="relative h-full w-full overflow-x-auto sm:rounded-lg">
             <div
-                class="relative flex h-[700px] w-full rounded-lg bg-white shadow-lg"
+                class="relative flex md:h-[700px] h-[500px] w-full rounded-lg bg-white shadow-lg"
             >
                 <!-- start  mobile button change view -->
                 <button
@@ -55,7 +55,68 @@
                             required
                         />
                     </div>
-                    <div class="no-scrollbar relative mt-4 overflow-y-auto">
+                    <button
+                        type="button"
+                        @click="toogleModal"
+                        class="absolute bottom-10 right-5 flex h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-primary-blue p-2 text-white shadow-lg"
+                    >
+                        <PlusIcon class="h-10 w-10" />
+                    </button>
+                    <div class="mt-2 w-full px-2 py-2">
+                        <div
+                            class="no-scrollbar overflow-x-auto overflow-y-hidden"
+                        >
+                            <div
+                                class="content items-scretch flex justify-start border-b"
+                            >
+                                <button
+                                    type="button"
+                                    @click="
+                                        () => {
+                                            selectedConversationList =
+                                                conversations;
+                                            selectedFolder = null;
+                                        }
+                                    "
+                                    class="flex-shrink-0 cursor-pointer rounded-t-md py-2 px-4 text-center font-bold"
+                                    :class="[
+                                        !selectedFolder
+                                            ? 'border-b-2 border-primary-blue text-primary-blue hover:bg-blue-100'
+                                            : 'border-gray-500 text-gray-500 hover:bg-gray-50',
+                                    ]"
+                                >
+                                    <span>Tous</span>
+                                </button>
+                                <button
+                                    type="button"
+                                    v-for="folder in folders"
+                                    :key="folder.id"
+                                    @click="selectFolder(folder)"
+                                    class="flex-shrink-0 cursor-pointer rounded-t-md py-2 px-4 text-center font-bold"
+                                    :class="[
+                                        selectedFolder &&
+                                        selectedFolder.id == folder.id
+                                            ? 'border-b-2 border-primary-blue text-primary-blue hover:bg-blue-100'
+                                            : 'border-gray-500 text-gray-500 hover:bg-gray-50',
+                                    ]"
+                                >
+                                    <span>{{ folder.name }}</span>
+                                </button>
+                                <div
+                                    class="flex flex-shrink-0 items-center justify-center"
+                                >
+                                    <button
+                                        type="button"
+                                        @click="toogleAddFolderModal"
+                                        class="flex h-5 w-5 cursor-pointer items-center justify-center rounded-full bg-primary-blue p-0.5 text-white shadow-lg"
+                                    >
+                                        <PlusIcon class="h-full w-full" />
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grow overflow-y-auto">
                         <div
                             v-if="filteredConversation.length != []"
                             v-for="(
@@ -63,10 +124,16 @@
                             ) in filteredConversation"
                             :key="conversation.id"
                             @click="selectConversation(conversation)"
+                            :class="[
+                                selectedConversation &&
+                                selectedConversation.id == conversation.id
+                                    ? 'bg-primary-blue text-white'
+                                    : 'text-gray-800 hover:bg-gray-100',
+                            ]"
                         >
                             <div
                                 v-if="conversation.type == 'conversation'"
-                                class="flex h-24 w-full cursor-pointer items-center space-x-2 border-b p-3 hover:bg-gray-50"
+                                class="group relative flex h-24 w-full cursor-pointer items-center space-x-2 border-b p-3"
                             >
                                 <div
                                     class="h-12 w-12 overflow-hidden rounded lg:h-16 lg:w-16"
@@ -85,28 +152,48 @@
                                         />
                                         <UserCircleIcon
                                             v-else
-                                            class="h-full w-full text-gray-500"
+                                            class="h-full w-full"
                                         />
                                     </template>
                                 </div>
                                 <div class="flex-grow">
-                                    <h1
-                                        class="whitespace-normal break-words text-base font-bold"
-                                    >
-                                        <template
-                                            v-for="user in conversation.users"
+                                    <div class="flex w-full justify-between">
+                                        <h1
+                                            class="whitespace-normal break-words text-base font-bold"
                                         >
-                                            <span
-                                                v-if="user.id != loginUser.id"
-                                                >{{ user.firstname }}</span
+                                            <template
+                                                v-for="user in conversation.users"
                                             >
-                                        </template>
-                                    </h1>
+                                                <span
+                                                    v-if="
+                                                        user.id != loginUser.id
+                                                    "
+                                                    >{{ user.firstname }}</span
+                                                >
+                                            </template>
+                                        </h1>
+                                        <span
+                                            v-if="
+                                                conversation.messages.length > 0
+                                            "
+                                            class="text-xs"
+                                            >{{
+                                                showDate(
+                                                    conversation.messages[
+                                                        conversation.messages
+                                                            .length - 1
+                                                    ].date,
+                                                    false,
+                                                    true
+                                                )
+                                            }}</span
+                                        >
+                                    </div>
                                     <div
                                         class="flex w-full items-center justify-between"
                                     >
                                         <h6
-                                            class="whitespace-normal text-sm font-light text-gray-800"
+                                            class="flex items-center gap-1 whitespace-normal text-sm font-light"
                                         >
                                             <template
                                                 v-if="
@@ -115,47 +202,81 @@
                                                 "
                                             >
                                                 <span
-                                                    class="block h-2 w-2 rounded-full"
+                                                    class="block h-2 w-2 flex-shrink-0 rounded-full"
                                                     :class="[
-                                                        conversation.messages[
+                                                        !conversation.messages[
                                                             conversation
                                                                 .messages
                                                                 .length - 1
-                                                        ].is_read == 1
-                                                            ? 'bg-green-500'
-                                                            : 'bg-gray-400  ',
-                                                    ]"
-                                                ></span>
-                                                <span
-                                                    class="w-full overflow-hidden overflow-ellipsis"
-                                                    style="
-                                                        word-wrap: normal;
-                                                        word-break: keep-all;
-                                                    "
-                                                    >{{
-                                                        conversation.messages[
-                                                            conversation
-                                                                .messages
-                                                                .length - 1
-                                                        ].message.length > 20
-                                                            ? conversation.messages[
-                                                                  conversation
-                                                                      .messages
-                                                                      .length -
-                                                                      1
-                                                              ].message.substring(
-                                                                  0,
-                                                                  20
-                                                              ) + "..."
+                                                        ].is_send
+                                                            ? 'bg-red-500'
                                                             : conversation
                                                                   .messages[
                                                                   conversation
                                                                       .messages
                                                                       .length -
                                                                       1
-                                                              ].message
-                                                    }}</span
+                                                              ].is_read
+                                                            ? 'bg-green-500'
+                                                            : 'bg-gray-400  ',
+                                                    ]"
+                                                ></span>
+                                                <span
+                                                    class="flex w-full items-center justify-start gap-0.5 overflow-hidden overflow-ellipsis"
                                                 >
+                                                    <span
+                                                        v-if="
+                                                            conversation
+                                                                .messages[
+                                                                conversation
+                                                                    .messages
+                                                                    .length - 1
+                                                            ].type == 'file'
+                                                        "
+                                                        ><PaperClipIcon
+                                                            class="h-4 w-4"
+                                                    /></span>
+                                                    <span
+                                                        v-else-if="
+                                                            conversation
+                                                                .messages[
+                                                                conversation
+                                                                    .messages
+                                                                    .length - 1
+                                                            ].type == 'image'
+                                                        "
+                                                    >
+                                                        <PhotoIcon
+                                                            class="h-4 w-4"
+                                                    /></span>
+                                                    <span
+                                                        >{{
+                                                            conversation
+                                                                .messages[
+                                                                conversation
+                                                                    .messages
+                                                                    .length - 1
+                                                            ].message.length >
+                                                            35
+                                                                ? conversation.messages[
+                                                                      conversation
+                                                                          .messages
+                                                                          .length -
+                                                                          1
+                                                                  ].message.substring(
+                                                                      0,
+                                                                      35
+                                                                  ) + "..."
+                                                                : conversation
+                                                                      .messages[
+                                                                      conversation
+                                                                          .messages
+                                                                          .length -
+                                                                          1
+                                                                  ].message
+                                                        }}
+                                                    </span>
+                                                </span>
                                             </template>
                                             <template
                                                 v-else
@@ -179,10 +300,22 @@
                                         </span>
                                     </div>
                                 </div>
+                                <button
+                                    @click="
+                                        deleteConversationToFolder(conversation)
+                                    "
+                                    type="button"
+                                    v-if="selectedFolder"
+                                    class="hidden h-6 w-6 items-center justify-center rounded-full text-red-300 hover:bg-red-100 hover:text-red-500 group-hover:flex"
+                                >
+                                    <span>
+                                        <FolderMinusIcon class="h-4 w-4" />
+                                    </span>
+                                </button>
                             </div>
                             <div
                                 v-else
-                                class="flex h-24 w-full cursor-pointer items-center space-x-2 border-b p-3 hover:bg-gray-50"
+                                class="group flex h-24 w-full cursor-pointer items-center space-x-2 border-b p-3 hover:bg-gray-50"
                             >
                                 <div
                                     class="h-12 w-12 overflow-hidden rounded lg:h-16 lg:w-16"
@@ -199,14 +332,33 @@
                                     />
                                 </div>
                                 <div class="flex-grow">
-                                    <h1
-                                        class="whitespace-normal break-words text-base font-bold"
-                                    >
-                                        <span v-if="conversation.name">{{
-                                            conversation.name
-                                        }}</span>
-                                        <span v-else>Sans nom</span>
-                                    </h1>
+                                    <div class="flex w-full justify-between">
+                                        <h1
+                                            class="whitespace-normal break-words text-base font-bold"
+                                        >
+                                            <span v-if="conversation.name">{{
+                                                conversation.name
+                                            }}</span>
+                                            <span v-else>Sans nom</span>
+                                        </h1>
+                                        <span
+                                            class="text-xs"
+                                            v-if="
+                                                conversation.messages.length > 0
+                                            "
+                                            >{{
+                                                showDate(
+                                                    conversation.messages[
+                                                        conversation.messages
+                                                            .length - 1
+                                                    ].date,
+                                                    true,
+                                                    true
+                                                )
+                                            }}</span
+                                        >
+                                    </div>
+
                                     <div
                                         class="flex w-full items-center justify-between"
                                     >
@@ -220,13 +372,21 @@
                                                 "
                                             >
                                                 <span
-                                                    class="block h-2 w-2 rounded-full"
+                                                    class="block h-2 w-2 flex-shrink-0 rounded-full"
                                                     :class="[
-                                                        conversation.messages[
+                                                        !conversation.messages[
                                                             conversation
                                                                 .messages
                                                                 .length - 1
-                                                        ].is_read
+                                                        ].is_send
+                                                            ? 'bg-red-500'
+                                                            : conversation
+                                                                  .messages[
+                                                                  conversation
+                                                                      .messages
+                                                                      .length -
+                                                                      1
+                                                              ].is_read
                                                             ? 'bg-green-500'
                                                             : 'bg-gray-400  ',
                                                     ]"
@@ -238,7 +398,23 @@
                                                             conversation
                                                                 .messages
                                                                 .length - 1
-                                                        ].message
+                                                        ].message.length > 35
+                                                            ? conversation.messages[
+                                                                  conversation
+                                                                      .messages
+                                                                      .length -
+                                                                      1
+                                                              ].message.substring(
+                                                                  0,
+                                                                  35
+                                                              ) + "..."
+                                                            : conversation
+                                                                  .messages[
+                                                                  conversation
+                                                                      .messages
+                                                                      .length -
+                                                                      1
+                                                              ].message
                                                     }}</span
                                                 >
                                             </template>
@@ -263,8 +439,31 @@
                                         </span>
                                     </div>
                                 </div>
+                                <button
+                                    @click="
+                                        deleteConversationToFolder(conversation)
+                                    "
+                                    type="button"
+                                    v-if="selectedFolder"
+                                    class="h-6 w-6 items-center justify-center rounded-full  bg-red-100 text-red-500 flex"
+                                >
+                                    <span>
+                                        <FolderMinusIcon class="h-4 w-4" />
+                                    </span>
+                                </button>
                             </div>
                         </div>
+                        <button
+                            type="button"
+                            v-if="selectedFolder"
+                            @click="deleteFolderConversation"
+                            class="flex w-full items-center justify-center gap-1 p-2 text-red-500 opacity-25 hover:bg-red-100 hover:opacity-100"
+                        >
+                            <span>
+                                <TrashIcon class="h-4 w-4" />
+                            </span>
+                            <p class="text-sm">Supprimer ce dossier</p>
+                        </button>
                     </div>
                 </div>
                 <!-- end conversation mobile view -->
@@ -1158,7 +1357,7 @@
                                 :class="[open.editMessage ? 'blur' : '']"
                             >
                                 <span
-                                    ><PhotoIcon class="h-5 w-5 text-gray-500"
+                                    ><PhotoIcon class="md:h-5 w-4 md:w-5 h-4 text-gray-500"
                                 /></span>
                             </label>
                             <label
@@ -1168,7 +1367,7 @@
                             >
                                 <span
                                     ><PaperClipIcon
-                                        class="h-5 w-5 text-gray-500"
+                                        class="md:h-5 w-4 md:w-5 h-4 text-gray-500"
                                 /></span>
                             </label>
 
@@ -1215,9 +1414,9 @@
                                 <div
                                     v-show="open.emoji"
                                     ref="emojiBlock"
-                                    class="emojiBlock absolute bottom-[110%] left-0 z-40 min-h-[100px] min-w-[100px] rounded-md bg-white shadow"
+                                    class="emojiBlock absolute bottom-[110%] z-40 min-h-[100px] min-w-[100px]  overflow-hidden rounded-xl bg-white shadow"
                                 >
-                                    <emoji-picker></emoji-picker>
+                                    <emoji-picker locale="fr"></emoji-picker>
                                 </div>
                                 <FaceSmileIcon
                                     @click="
@@ -1246,13 +1445,13 @@
                                 type="button"
                                 @click="sendMessage()"
                                 :disabled="open.editMessage"
-                                class="mb-0.5 flex h-10 w-10 flex-shrink-0 cursor-pointer items-center justify-center rounded-full bg-primary-blue text-white shadow"
+                                class="mb-0.5 flex md:h-10 w-8 md:w-10 h-8 flex-shrink-0 cursor-pointer items-center justify-center rounded-full bg-primary-blue text-white shadow"
                             >
                                 <span v-if="loading == 1">
                                     <Spin size="small" />
                                 </span>
                                 <span v-else>
-                                    <PaperAirplaneIcon class="h-6 w-6" />
+                                    <PaperAirplaneIcon class="md:h-6 w-5 md:w-6 h-5" />
                                 </span>
                             </button>
                         </div>
@@ -1915,20 +2114,18 @@ function bytesToSize(bytes) {
     background-color: #dfdbe5;
     background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%239C92AC' fill-opacity='0.4' fill-rule='evenodd'/%3E%3C/svg%3E");
 }
-@media screen and (max-width: 375px) {
-    emoji-picker.has-custom {
-        --num-columns: 6;
-        --emoji-padding: 0.25rem;
-        --input-padding: 0.125rem;
-    }
+.emojiBlock {
+    left: 0;
 }
-
-/* Nexus 5 */
-@media screen and (max-width: 360px) {
-    emoji-picker {
-        --num-columns: 6;
-        --emoji-padding: 0.25rem;
-        --input-padding: 0.125rem;
+@media screen and (max-width: 460px) {
+    .emojiBlock {
+        left: -30%;
+        
+    }
+    emoji-picker{
+        --num-columns: 5 !important;
+        --emoji-padding: 0.20rem !important;
+        --input-padding: 0.100rem !important;
     }
 }
 </style>
