@@ -368,7 +368,7 @@
                         >
                             <div
                                 v-if="conversation.type == 'conversation'"
-                                class="relative group flex h-24 w-full cursor-pointer items-center space-x-2 border-b p-3"
+                                class="group relative flex h-24 w-full cursor-pointer items-center space-x-2 border-b p-3"
                             >
                                 <div
                                     class="h-12 w-12 overflow-hidden rounded lg:h-16 lg:w-16"
@@ -457,31 +457,61 @@
                                                     ]"
                                                 ></span>
                                                 <span
-                                                    class="w-full overflow-hidden overflow-ellipsis"
-                                                    >{{
-                                                        conversation.messages[
-                                                            conversation
-                                                                .messages
-                                                                .length - 1
-                                                        ].message.length > 35
-                                                            ? conversation.messages[
-                                                                  conversation
-                                                                      .messages
-                                                                      .length -
-                                                                      1
-                                                              ].message.substring(
-                                                                  0,
-                                                                  35
-                                                              ) + "..."
-                                                            : conversation
-                                                                  .messages[
-                                                                  conversation
-                                                                      .messages
-                                                                      .length -
-                                                                      1
-                                                              ].message
-                                                    }}</span
+                                                    class="flex w-full items-center justify-start gap-0.5 overflow-hidden overflow-ellipsis"
                                                 >
+                                                    <span
+                                                        v-if="
+                                                            conversation
+                                                                .messages[
+                                                                conversation
+                                                                    .messages
+                                                                    .length - 1
+                                                            ].type == 'file'
+                                                        "
+                                                        ><PaperClipIcon
+                                                            class="h-4 w-4"
+                                                    /></span>
+                                                    <span
+                                                        v-else-if="
+                                                            conversation
+                                                                .messages[
+                                                                conversation
+                                                                    .messages
+                                                                    .length - 1
+                                                            ].type == 'image'
+                                                        "
+                                                    >
+                                                        <PhotoIcon
+                                                            class="h-4 w-4"
+                                                    /></span>
+                                                    <span
+                                                        >{{
+                                                            conversation
+                                                                .messages[
+                                                                conversation
+                                                                    .messages
+                                                                    .length - 1
+                                                            ].message.length >
+                                                            35
+                                                                ? conversation.messages[
+                                                                      conversation
+                                                                          .messages
+                                                                          .length -
+                                                                          1
+                                                                  ].message.substring(
+                                                                      0,
+                                                                      35
+                                                                  ) + "..."
+                                                                : conversation
+                                                                      .messages[
+                                                                      conversation
+                                                                          .messages
+                                                                          .length -
+                                                                          1
+                                                                  ].message
+                                                        }}
+                                                    </span>
+                                                </span>
                                             </template>
                                             <template
                                                 v-else
@@ -505,7 +535,14 @@
                                         </span>
                                     </div>
                                 </div>
-                                <button @click="deleteConversationToFolder(conversation)" type="button" v-if="selectedFolder" class="text-red-300 h-6 w-6 rounded-full hover:bg-red-100 hover:text-red-500 justify-center items-center  hidden group-hover:flex">
+                                <button
+                                    @click="
+                                        deleteConversationToFolder(conversation)
+                                    "
+                                    type="button"
+                                    v-if="selectedFolder"
+                                    class="hidden h-6 w-6 items-center justify-center rounded-full text-red-300 hover:bg-red-100 hover:text-red-500 group-hover:flex"
+                                >
                                     <span>
                                         <FolderMinusIcon class="h-4 w-4" />
                                     </span>
@@ -513,7 +550,7 @@
                             </div>
                             <div
                                 v-else
-                                class="flex h-24 w-full group cursor-pointer items-center space-x-2 border-b p-3 hover:bg-gray-50"
+                                class="group flex h-24 w-full cursor-pointer items-center space-x-2 border-b p-3 hover:bg-gray-50"
                             >
                                 <div
                                     class="h-12 w-12 overflow-hidden rounded lg:h-16 lg:w-16"
@@ -637,7 +674,14 @@
                                         </span>
                                     </div>
                                 </div>
-                                <button @click="deleteConversationToFolder(conversation)" type="button" v-if="selectedFolder" class="text-red-300 h-6 w-6 rounded-full hover:bg-red-100 hover:text-red-500 justify-center items-center  hidden group-hover:flex">
+                                <button
+                                    @click="
+                                        deleteConversationToFolder(conversation)
+                                    "
+                                    type="button"
+                                    v-if="selectedFolder"
+                                    class="hidden h-6 w-6 items-center justify-center rounded-full text-red-300 hover:bg-red-100 hover:text-red-500 group-hover:flex"
+                                >
                                     <span>
                                         <FolderMinusIcon class="h-4 w-4" />
                                     </span>
@@ -795,6 +839,7 @@
                             <button
                                 type="button"
                                 @click="blockConversation"
+                                v-if="false"
                                 class="flex items-center gap-1 p-2 text-black hover:bg-gray-100"
                             >
                                 <span>
@@ -822,6 +867,49 @@
                         <div
                             class="flex min-h-0 w-full flex-col items-end justify-end"
                         >
+                            <div
+                                v-show="open.optionMessage && !open.editMessage"
+                                ref="optionMessageBlock"
+                                class="items-scretch fixed z-50 flex min-w-[100px] flex-col justify-start overflow-hidden rounded bg-white shadow"
+                            >
+                                <button
+                                    v-if="
+                                        selectedMessage &&
+                                        selectedMessage.user.id == loginUser.id
+                                    "
+                                    type="button"
+                                    @click="openEditMessage"
+                                    class="flex items-center gap-1 p-2 text-black hover:bg-gray-100"
+                                >
+                                    <span>
+                                        <PencilSquareIcon class="h-4 w-4" />
+                                    </span>
+                                    <p class="text-xs">Editer</p>
+                                </button>
+                                <button
+                                    type="button"
+                                    @click="signalMessage"
+                                    class="flex items-center gap-1 p-2 text-black hover:bg-gray-100"
+                                >
+                                    <span>
+                                        <ExclamationTriangleIcon
+                                            class="h-4 w-4"
+                                        />
+                                    </span>
+                                    <p class="text-xs">Signaler</p>
+                                </button>
+                                <button
+                                    type="button"
+                                    @click="openDeleteMessage"
+                                    class="flex items-center gap-1 p-2 text-red-500 hover:bg-gray-100"
+                                >
+                                    <span>
+                                        <TrashIcon class="h-4 w-4" />
+                                    </span>
+                                    <p class="text-xs">Supprimer</p>
+                                </button>
+                            </div>
+
                             <div
                                 v-if="
                                     selectedConversation &&
@@ -873,107 +961,97 @@
                                                 : 'rounded-r-lg rounded-bl-lg bg-white text-black',
                                         ]"
                                     >
-                                        <div ref="optionMessageBlock">
-                                            <div
-                                                v-if="
-                                                    open.optionMessage &&
-                                                    selectedMessage &&
-                                                    selectedMessage.id ==
-                                                        message.id &&
-                                                    !open.editMessage
+                                        <a
+                                            :href="message.attachement_path"
+                                            :download="message.attachement_name"
+                                            v-if="message.type == 'image'"
+                                            class="group relative mb-2 block min-h-[150px] min-w-[150px] overflow-hidden rounded"
+                                        >
+                                            <span
+                                                style="
+                                                    backdrop-filter: blur(5px);
                                                 "
-                                                class="items-scretch absolute z-20 flex min-w-[100px] flex-col justify-start overflow-hidden rounded bg-white shadow"
-                                                :class="[
-                                                    message.user.id !=
-                                                        loginUser.id &&
-                                                    selectedConversation
-                                                        .messages[
-                                                        selectedConversation
-                                                            .messages.length - 1
-                                                    ].id == message.id
-                                                        ? 'left-[90%] bottom-[10px]'
-                                                        : message.user.id !=
-                                                              loginUser.id &&
-                                                          selectedConversation
-                                                              .messages[
-                                                              selectedConversation
-                                                                  .messages
-                                                                  .length - 1
-                                                          ].id != message.id
-                                                        ? 'left-[90%] top-[10px]'
-                                                        : message.user.id ==
-                                                              loginUser.id &&
-                                                          selectedConversation
-                                                              .messages[
-                                                              selectedConversation
-                                                                  .messages
-                                                                  .length - 1
-                                                          ].id == message.id
-                                                        ? 'right-[90%] bottom-[10px]'
-                                                        : 'right-[90%] top-[10px]',
-                                                ]"
+                                                class="absolute right-0 top-0 hidden items-center bg-white/50 p-2 text-primary-blue hover:bg-primary-blue/50 hover:text-black group-hover:flex"
                                             >
-                                                <button
-                                                    v-if="
-                                                        message.user.id ==
-                                                        loginUser.id
-                                                    "
-                                                    type="button"
-                                                    @click="
-                                                        openEditMessage(
-                                                            selectedMessage
-                                                        )
-                                                    "
-                                                    class="flex items-center gap-1 p-2 text-black hover:bg-gray-100"
+                                                <span class="block"
+                                                    ><ArrowDownTrayIcon
+                                                        class="h-5 w-5"
+                                                /></span>
+                                                <span class="block"
+                                                    >Telecharger</span
                                                 >
-                                                    <span>
-                                                        <PencilSquareIcon
-                                                            class="h-4 w-4"
-                                                        />
-                                                    </span>
-                                                    <p class="text-xs">
-                                                        Editer
-                                                    </p>
-                                                </button>
-                                                <button
-                                                    type="button"
-                                                    @click="
-                                                        signalMessage(
-                                                            selectedMessage
-                                                        )
-                                                    "
-                                                    class="flex items-center gap-1 p-2 text-black hover:bg-gray-100"
+                                            </span>
+                                            <img
+                                                :src="message.attachement_path"
+                                                class="max-h-[300px]"
+                                                alt=""
+                                            />
+                                            <span
+                                                class="absolute bottom-0 w-full bg-white/50 p-2 text-xs"
+                                            >
+                                                <span
+                                                    class="block break-words text-xs font-medium"
+                                                    >{{
+                                                        message.attachement_name
+                                                    }}</span
                                                 >
-                                                    <span>
-                                                        <ExclamationTriangleIcon
-                                                            class="h-4 w-4"
-                                                        />
-                                                    </span>
-                                                    <p class="text-xs">
-                                                        Signaler
-                                                    </p>
-                                                </button>
-                                                <button
-                                                    type="button"
-                                                    @click="
-                                                        deleteMessage(
-                                                            selectedMessage
-                                                        )
-                                                    "
-                                                    class="flex items-center gap-1 p-2 text-red-500 hover:bg-gray-100"
+                                                <span
+                                                    class="mt-1 block break-words text-[11px]"
+                                                    >{{
+                                                        message.attachement_size
+                                                    }}</span
                                                 >
-                                                    <span>
-                                                        <TrashIcon
-                                                            class="h-4 w-4"
-                                                        />
-                                                    </span>
-                                                    <p class="text-xs">
-                                                        Supprimer
-                                                    </p>
-                                                </button>
+                                            </span>
+                                        </a>
+                                        <a
+                                            :href="message.attachement_path"
+                                            :download="message.attachement_name"
+                                            v-if="message.type == 'file'"
+                                            class="group relative mb-2 flex w-[300px] items-stretch justify-start overflow-hidden rounded bg-white/25"
+                                        >
+                                            <span
+                                                style="
+                                                    backdrop-filter: blur(5px);
+                                                "
+                                                class="absolute right-0 top-0 hidden items-center bg-white/50 p-2 text-primary-blue hover:bg-primary-blue/50 hover:text-black group-hover:flex"
+                                            >
+                                                <span class="block"
+                                                    ><ArrowDownTrayIcon
+                                                        class="h-5 w-5"
+                                                /></span>
+                                                <span class="block"
+                                                    >Telecharger</span
+                                                >
+                                            </span>
+                                            <div
+                                                class="flex h-20 w-32 items-center justify-center bg-gray-500 font-bold uppercase text-white"
+                                            >
+                                                <span>{{
+                                                    message.attachement_name
+                                                        .split(".")
+                                                        .pop()
+                                                }}</span>
                                             </div>
-                                        </div>
-                                        <span>
+                                            <div
+                                                class="flex grow flex-col items-start justify-start p-2"
+                                            >
+                                                <span
+                                                    class="break-words text-xs"
+                                                >
+                                                    {{
+                                                        message.attachement_name
+                                                    }}
+                                                </span>
+                                                <span
+                                                    class="break-words text-[11px]"
+                                                >
+                                                    {{
+                                                        message.attachement_size
+                                                    }}
+                                                </span>
+                                            </div>
+                                        </a>
+                                        <span class="text-md">
                                             {{ message.message }}
                                         </span>
                                         <span
@@ -1183,6 +1261,42 @@
                 <!-- end chat  view -->
             </div>
         </section>
+        <div
+            v-show="open.deleteMessage"
+            class="fixed top-0 left-0 z-20 flex h-screen w-screen items-center justify-center"
+            style="backdrop-filter: blur(5px)"
+        >
+            <div class="min-w-[300px] rounded bg-white p-4 shadow">
+                <p class="">Supprimer le message ?</p>
+                <div class="mt-5 flex flex-col items-end justify-end gap-3">
+                    <button
+                        v-if="
+                            selectedMessage &&
+                            selectedMessage.user.id == loginUser.id
+                        "
+                        @click="destroyMessage(true)"
+                        type="button"
+                        class="rounded-full border border-gray-400 bg-white px-2 py-1 text-sm hover:bg-gray-100"
+                    >
+                        Supprimer pour tout le monde
+                    </button>
+                    <button
+                        @click="destroyMessage(false)"
+                        type="button"
+                        class="rounded-full border border-gray-400 bg-white px-2 py-1 text-sm hover:bg-gray-100"
+                    >
+                        Supprimer pour moi
+                    </button>
+                    <button
+                        @click="open.deleteMessage = false"
+                        type="button"
+                        class="rounded-full border border-gray-400 bg-white px-2 py-1 text-sm hover:bg-gray-100"
+                    >
+                        Annuler
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -1206,6 +1320,7 @@ import {
     FolderPlusIcon,
     ExclamationTriangleIcon,
     PencilSquareIcon,
+    ArrowDownTrayIcon,
 } from "@heroicons/vue/24/solid";
 import { reactive, onMounted, ref, computed, onUnmounted, watch } from "vue";
 import Spin from "@/components/utils/Spin.vue";
@@ -1222,7 +1337,8 @@ const {
     errors,
     conversation,
     createMessage,
-    destroyCoversation,
+    destroyConversation,
+    updateMessage,
     getConversationsUser,
     conversations,
     isRead,
@@ -1230,6 +1346,8 @@ const {
     getConversationsFolderUser,
     removeCoversationToFolder,
     destroyCoversationFolder,
+    deleteMessage,
+    reportMessage,
 } = useChats();
 
 const chatDiv = ref(null);
@@ -1258,6 +1376,7 @@ const open = reactive({
     option: false,
     optionMessage: false,
     editMessage: false,
+    deleteMessage: false,
 });
 
 const message = reactive({
@@ -1303,31 +1422,13 @@ onMounted(async () => {
                 message.message += `${event.detail.unicode} `;
             }
         });
-});
-
-watch(selectedConversation, async (newConv, oldConv) => {
-    if (oldConv && newConv && newConv.id != oldConv.id) {
-        window.Echo.leave(`chat.${oldConv.id}`);
-    }
-
-    if (newConv) {
-        window.Echo.channel(`chat.${newConv.id}`).listen(
-            ".new-message",
-            async (e) => {
-                await getConversationsUser(loginUser.value.id);
-                getConversationsFolderUser(loginUser.value.id);
-                console.log(conversations.value);
-                if (selectedConversation.value) {
-                    selectedConversation.value = conversations.value.filter(
-                        (conv) => conv.id === selectedConversation.value.id
-                    )[0];
-                }
-            }
-        );
-        message.conversation_id = newConv.id;
-        isRead({ ...message });
-        scrollToEnd();
-    }
+    window.Echo.channel(`chat.${loginUser.value.id}`).listen(
+        ".chat-update",
+        async (e) => {
+            refreshList();
+            scrollToEnd();
+        }
+    );
 });
 
 onClickOutside(emojiBlock, () => {
@@ -1389,6 +1490,9 @@ const folderCreated = async () => {
 
 const conversationAdded = async (res) => {
     open.option = false;
+    selectedConversationList.value = res.folder.conversations;
+    selectedFolder.value = res.folder;
+    openAddConvToFolderModal.value = false;
     if (!res.isExist) {
         await getConversationsFolderUser(loginUser.value.id).then((data) => {
             let currFolder = folders.value.filter(
@@ -1396,12 +1500,7 @@ const conversationAdded = async (res) => {
             )[0];
             selectedConversationList.value = currFolder.conversations;
             selectedFolder.value = currFolder;
-            openAddConvToFolderModal.value = false;
         });
-    } else {
-        selectedConversationList.value = res.folder.conversations;
-        selectedFolder.value = res.folder;
-        openAddConvToFolderModal.value = false;
     }
 };
 
@@ -1417,15 +1516,14 @@ const startConversation = async (userSelect) => {
             users: [loginUser.value.id, userSelect.id],
         });
         await getConversationsUser(loginUser.value.id);
-        selectedConversation.value = conversations.value[0];
+        refreshList();
     } else {
         selectedConversation.value = isStartCov;
     }
     clearMessage();
 };
 
-const openEditMessage = (message) => {
-    selectedMessage.value = message;
+const openEditMessage = () => {
     open.editMessage = true;
     setTimeout(() => {
         handleInputEdit(textareaEdit.value[0].value);
@@ -1433,17 +1531,47 @@ const openEditMessage = (message) => {
 };
 
 const editMessage = async () => {
+    const received = selectedConversation.value.users.filter(
+        (user) => user.id != loginUser.value.id
+    )[0];
+    selectedMessage.value.is_edit = true;
     open.editMessage = false;
+    updateMessage(selectedMessage.value.id, {
+        text: selectedMessage.value.message,
+        received_id: received.id,
+    });
 };
 
-const signalMessage = async (message) => {
-    console.log("signalmessage");
-    //selectedMessage.value = null;
-};
-const deleteMessage = async (message) => {
-    if (confirm("Are you sure you want to delete this message?")) {
-        //selectedMessage.value = null;
+const destroyMessage = async (f) => {
+    open.deleteMessage = false;
+    const index = selectedConversation.value.messages.indexOf(
+        selectedMessage.value
+    );
+    if (index >= 0) {
+        const received = selectedConversation.value.users.filter(
+            (user) => user.id != loginUser.value.id
+        )[0];
+        selectedConversation.value.messages.splice(index, 1);
+        await deleteMessage(selectedMessage.value.id, {
+            for: f,
+            user_id: loginUser.value.id,
+            received_id: received.id,
+        });
     }
+};
+
+const signalMessage = async () => {
+    open.optionMessage = false;
+    await reportMessage({
+        conversation_id: selectedConversation.value.id,
+        message_id: selectedMessage.value.id,
+    });
+    alert("Report sucess");
+};
+
+const openDeleteMessage = async () => {
+    open.optionMessage = false;
+    open.deleteMessage = true;
 };
 
 const addConversationToFolder = async () => {
@@ -1452,14 +1580,15 @@ const addConversationToFolder = async () => {
 };
 
 const deleteConversationToFolder = async (conv) => {
-    if (confirm("Are you sure you want to remove this conversation in folder?")) {
-
-    const index = selectedFolder.value.conversations.indexOf(conv);
-    if(index >= 0) {
-        selectedFolder.value.conversations.splice(index, 1);
-        await removeCoversationToFolder(selectedFolder.value.id, conv.id);
-        await getConversationsFolderUser(loginUser.value.id);
-    };
+    if (
+        confirm("Are you sure you want to remove this conversation in folder?")
+    ) {
+        const index = selectedFolder.value.conversations.indexOf(conv);
+        if (index >= 0) {
+            selectedFolder.value.conversations.splice(index, 1);
+            await removeCoversationToFolder(selectedFolder.value.id, conv.id);
+            await getConversationsFolderUser(loginUser.value.id);
+        }
     }
 };
 
@@ -1478,19 +1607,43 @@ const deleteFolderConversation = async () => {
     }
 };
 
-
 const deleteConversation = async () => {
     if (confirm("Are you sure you want to delete this conversation?")) {
-        //await destroyCoversation(id);
-        //await getConversationsUser(loginUser.value.id);
         open.option = false;
+        await destroyConversation(selectedConversation.value.id, {
+            user_id: loginUser.value.id,
+        });
         selectedConversation.value = null;
+        await getConversationsUser(loginUser.value.id);
+        await getConversationsFolderUser(loginUser.value.id);
+        if (selectedFolder.value == null) {
+            selectedConversationList.value = conversations.value;
+        } else {
+            selectedFolder.value = folders.value.filter(
+                (folder) => folder.id === selectedFolder.value.id
+            )[0];
+            selectedConversationList.value = selectedFolder.value.conversations;
+        }
     }
 };
 
 const filteredConversation = computed(() => {
     return selectedConversationList.value
-        ? selectedConversationList.value.filter((conv) => true)
+        ? selectedConversationList.value.filter((conv) =>
+              conv.users.some(
+                  (user) =>
+                      user.id != loginUser.value.id &&
+                      (user.firstname
+                          .toLowerCase()
+                          .includes(search.value.toLowerCase()) ||
+                          user.lastname
+                              .toLowerCase()
+                              .includes(search.value.toLowerCase()) ||
+                          user.email
+                              .toLowerCase()
+                              .includes(search.value.toLowerCase()))
+              )
+          )
         : [];
 });
 
@@ -1512,12 +1665,26 @@ const selectFolder = (folder) => {
 
 function selectConversation(conversation) {
     selectedConversation.value = conversation;
+    message.conversation_id = conversation.id;
     clearMessage();
+    const received = selectedConversation.value.users.filter(
+        (user) => user.id != loginUser.value.id
+    )[0];
+
+    isRead({
+        conversation_id: selectedConversation.value.id,
+        user_id: loginUser.value.id,
+        received_id: received.id,
+    });
     changeView("chat");
 }
 
 async function sendMessage() {
-    if (selectedConversation.value && !loading.value && (message.message || message.attachement)) {
+    if (
+        selectedConversation.value &&
+        !loading.value &&
+        (message.message || message.attachement)
+    ) {
         message.conversation_id = selectedConversation.value.id;
         const currMessage = {
             id: new Date().getTime(),
@@ -1532,12 +1699,17 @@ async function sendMessage() {
             type: message.type,
             conversation_id: message.conversation_id,
         };
-        selectedConversation.value.messages.push(currMessage);
         conversations.value
             .filter((conv) => conv.id === selectedConversation.value.id)[0]
             .messages.push(currMessage);
+        if (selectFolder.value)
+            selectedConversation.value.messages.push(currMessage);
+        const received = selectedConversation.value.users.filter(
+            (user) => user.id != loginUser.value.id
+        )[0];
 
         let formData = new FormData();
+        formData.append("received_id", received.id);
         formData.append("user_id", loginUser.value.id);
         formData.append("conversation_id", message.conversation_id);
         formData.append("attachement", message.attachement);
@@ -1548,6 +1720,7 @@ async function sendMessage() {
         formData.append("message", message.message);
         createMessage(formData);
         clearMessage();
+        refreshList();
     }
 }
 
@@ -1670,6 +1843,8 @@ const handleInputEdit = (value) => {
 const handleContextMenu = (event, message) => {
     event.preventDefault();
     if (!open.editMessage) {
+        optionMessageBlock.value.style.left = `${event.clientX + 10}px`;
+        optionMessageBlock.value.style.top = `${event.clientY + 10}px`;
         open.option = false;
         open.emoji = false;
         selectedMessage.value = message;
@@ -1696,10 +1871,30 @@ const handlePickFile = async (e) => {
 };
 
 const scrollToEnd = () => {
-    chatDiv.value.scroll({
-        top: chatDiv.value.scrollHeight,
-        behavior: "smooth",
-    });
+    if (chatDiv.value != null) {
+        chatDiv.value.scroll({
+            top: chatDiv.value.scrollHeight,
+            behavior: "smooth",
+        });
+    }
+};
+
+const refreshList = async () => {
+    await getConversationsUser(loginUser.value.id);
+    if (selectedConversation.value) {
+        selectedConversation.value = conversations.value.filter(
+            (conv) => conv.id === selectedConversation.value.id
+        )[0];
+    }
+    await getConversationsFolderUser(loginUser.value.id);
+    if (selectedFolder.value == null) {
+        selectedConversationList.value = conversations.value;
+    } else {
+        selectedFolder.value = folders.value.filter(
+            (folder) => folder.id === selectedFolder.value.id
+        )[0];
+        selectedConversationList.value = selectedFolder.value.conversations;
+    }
 };
 
 function previewImage(file) {

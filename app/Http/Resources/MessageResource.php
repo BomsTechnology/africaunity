@@ -27,7 +27,7 @@ class MessageResource extends JsonResource
             'date' => $this->created_at,
             'type' => $this->type,
             'attachement_path' => $this->attachement_path,
-            'attachement_name' => $this->attachement_path,
+            'attachement_name' => $this->attachement_name,
             'attachement_size' => $this->attachement_size,
             'is_edit' => $this->is_edit,
             'deleted_users' => $this->deleted_users ? explode(',', $this->deleted_users) : [],

@@ -278,7 +278,6 @@ class PostController extends Controller
             'zone_id' => $fileds['zone_id'],
             'city_id' => $fileds['city_id'],
             'country_id' => $fileds['country_id'],
-
         ];
         if ($request->file('image')) {
             $request->validate([

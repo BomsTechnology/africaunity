@@ -5,6 +5,7 @@ namespace App\Http\Resources;
 use App\Models\ConversationFolder;
 use App\Models\User;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Auth;
 
 class ConversationFolderResource extends JsonResource
 {
@@ -21,7 +22,7 @@ class ConversationFolderResource extends JsonResource
             'name' => $this->name,
             'user_id' => $this->user_id,
             'user' => new UserResource2(User::find($this->user_id)),
-            'conversations' => ConversationResource::collection(ConversationFolder::find($this->id)->conversations),
+            'conversations' => ConversationResource::collection(ConversationFolder::find($this->id)->conversations->whereNotIn('deleted_users', [Auth::user()->id])),
         ];
     }
 }

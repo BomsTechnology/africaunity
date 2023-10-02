@@ -2,7 +2,7 @@
     <div
         class="text-md relative z-10 flex w-full justify-between border-t-4 border-primary-blue bg-menu px-4 pb-2 font-semibold"
     >
-        <nav class="hidden lg:flex w-full">
+        <nav class="hidden w-full lg:flex">
             <router-link
                 :to="{ name: 'home' }"
                 class="flex items-start justify-center px-3 py-2 text-white transition-colors duration-200 hover:bg-primary-blue"
@@ -134,14 +134,17 @@
             </div>
             <router-link
                 :to="{ name: 'chat' }"
-                class="px-3 py-2 uppercase flex items-center text-white transition-colors duration-200 hover:bg-primary-blue"
+                class="flex items-center px-3 py-2 uppercase text-white transition-colors duration-200 hover:bg-primary-blue"
             >
                 <span>Messagerie</span>
-                <span class="h-6 w-6 ml-2 bg-red-500 flex justify-center items-center text-white rounded-full">
-                        <span>0</span>
-                    </span>
+                <span
+                    v-if="unRead > 0"
+                    class="ml-2 flex h-6 w-6 items-center justify-center rounded-full bg-red-500 text-white"
+                >
+                    <span>{{ unRead }}</span>
+                </span>
             </router-link>
-            
+
             <router-link
                 :to="{ name: 'contact' }"
                 class="px-3 py-2 uppercase text-white transition-colors duration-200 hover:bg-primary-blue"
@@ -229,7 +232,7 @@
                     <ChevronDownIcon class="ml-2 h-5 w-5" />
                 </div>
                 <div
-                    class="absolute left-0 -z-10 mt-2 w-48 flex-col bg-menu py-2 hidden group-hover:flex "
+                    class="absolute left-0 -z-10 mt-2 hidden w-48 flex-col bg-menu py-2 group-hover:flex"
                 >
                     <span
                         v-if="$i18n.locale != 'fr'"
@@ -454,8 +457,11 @@
                     class="flex justify-between px-3 py-2 text-sm uppercase text-menu transition-colors duration-200 hover:bg-primary-blue hover:text-white"
                 >
                     <span>Messagerie</span>
-                    <span class="h-6 w-6 bg-red-500 flex justify-center items-center text-white rounded-full">
-                        <span>0</span>
+                    <span
+                        v-if="unRead > 0"
+                        class="flex h-6 w-6 items-center justify-center rounded-full bg-red-500 text-white"
+                    >
+                        <span>{{ unRead }}</span>
                     </span>
                 </a>
                 <a
@@ -598,7 +604,8 @@ import {
     Bars3Icon,
     UserCircleIcon,
 } from "@heroicons/vue/24/solid";
-import { reactive, ref, onMounted, watch } from "vue";
+import useChats from "@/services/chatServices";
+import { reactive, ref, onMounted, watch, computed } from "vue";
 import axios from "axios";
 import router from "../router";
 import { useI18n } from "vue-i18n";
@@ -609,14 +616,28 @@ const errors = ref("");
 const loading = ref(0);
 const url = window.location.origin;
 
+const { getConversationsUser, conversations } = useChats();
+
 let date = new Date(),
     currYear = date.getFullYear(),
     currdate = date.getDate(),
     currMonth = date.getMonth();
 onMounted(async () => {
+    if (localStorage.lang) {
+        locale.value = localStorage.lang;
+    } else {
+        localStorage.lang = locale.value;
+    }
     if (localStorage.token) {
         user.value = JSON.parse(localStorage.user);
         token.value = localStorage.token;
+        await getConversationsUser(user.value.id);
+        window.Echo.channel(`chat.${user.value.id}`).listen(
+            ".chat-update",
+            async (e) => {
+                await getConversationsUser(user.value.id);
+            }
+        );
     }
 });
 const open = reactive({
@@ -675,11 +696,19 @@ const changeLocale = async (lang) => {
     localStorage.lang = locale.value;
     location.reload();
 };
-onMounted(async () => {
-    if (localStorage.lang) {
-        locale.value = localStorage.lang;
+
+const unRead = computed(() => {
+    if (conversations.value) {
+        if (conversations.value.length == 1) {
+            return conversations.value[0].nbUnRead;
+        } else {
+            return conversations.value.reduce((convA, convB) => {
+                console.log(convB.nbUnRead);
+                return convA.nbUnRead + convB.nbUnRead;
+            }, 0);
+        }
     } else {
-        localStorage.lang = locale.value;
+        return 0;
     }
 });
 </script>
