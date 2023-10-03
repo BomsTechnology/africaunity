@@ -7,7 +7,7 @@
 
     <title>AfricaUnity | The profesional and social network</title>
 
-    @laravelPWA
+    
 
     <meta name="title" content="{{ isset($meta_title) ? $meta_title : 'AfricaUnity' }}">
     <meta name="description" content="{{ isset($meta_description) ? $meta_description : 'AfricaUnity the professional and social network' }}">
@@ -35,8 +35,8 @@
 
     <link rel="icon" type="image/x-icon" href="{{ asset('/img/ico.png') }}">
     
-
-
+    
+    @laravelPWA
 </head>
 
 <body class="bg-white" style="background-image:url('/img/random-shapes.svg')">
@@ -45,7 +45,7 @@
 
     </div>
 
-    @vite(['resources/js/app.js'])
+    @vite('resources/js/app.js')
     <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sceditor@3/minified/sceditor.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sceditor@3/minified/formats/xhtml.min.js"></script>
