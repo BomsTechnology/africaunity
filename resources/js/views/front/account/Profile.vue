@@ -606,7 +606,7 @@ const getDetail = async (id) => {
 const setLoginUser = async () => {
     loginUser.value = localStorage.user ? JSON.parse(localStorage.user) : "";
     if (loginUser.value) {
-        isFollow.value = loginUser.user.value = localStorage.user ? JSON.parse(localStorage.user) : "";value.subscriptions.filter(
+        isFollow.value = loginUser.value.subscriptions.filter(
             (u) => u.subscription == props.id
         );
     }

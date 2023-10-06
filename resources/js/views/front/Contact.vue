@@ -1,10 +1,10 @@
 <template>
-    <div class="mx-auto min-h-screen w-full bg-white xl:w-[90%]">
+    <div class="mx-auto min-h-screen w-full bg-white xl:w-[90%] py-8">
         <h1 class="text-center text-5xl font-bold capitalize text-primary-blue">
             {{ $t("contact") }}
         </h1>
         <div class="py-8 lg:px-36">
-            <section class="mx-auto w-full rounded-md bg-white p-6 shadow-xl">
+            <section class="mx-auto w-full rounded-md bg-white p-6 max-w-[800px] ">
                 <Error v-if="errors != ''">{{ errors }}</Error>
                 <div
                     v-if="loading == 2"

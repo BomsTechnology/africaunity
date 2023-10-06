@@ -8,6 +8,7 @@ use App\Models\Tender;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Notifications\ApplyJobNotification;
+use App\Notifications\ContactAnnouncementNotification;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\File;
 
@@ -21,6 +22,26 @@ class TenderController extends Controller
     public function index()
     {
         return TenderResource::collection(Tender::latest()->get());
+    }
+
+    public function contact(Request $request)
+    {
+        $fileds = $request->validate([
+            'user' => 'required',
+            'tender' => 'required',
+            'content' => 'required|string',
+        ]);
+
+        $contactUser = User::find($fileds['user']);
+        $tender = Tender::find($fileds['tender']);
+        $authorUser = User::find($tender->user_id);
+        $authorUser->notify(new ContactAnnouncementNotification($tender, $contactUser, $fileds['content']));
+
+        $response = [
+            'status' => true,
+            'message' => 'Contact Send successfully!',
+        ];
+        return response($response, 201);
     }
 
     public function filter(Request $request)
@@ -179,7 +200,7 @@ class TenderController extends Controller
             'work_department_id' => 'integer|required',
             'work_mode_id' => 'integer|required',
             'size_company_id' => 'integer|required',
-            'city_id' => 'integer|required',
+            'city_id' => 'nullable',
             'zone_id' => 'integer|required',
             'end_date' => 'date|required',
             'continent_id' => 'integer|required',
@@ -218,10 +239,19 @@ class TenderController extends Controller
             $data['company_logo'] = $filename;
         }
 
+        if ($request->file('attachement')) {
+            $request->validate([
+                'attachement' => 'required|mimes:pdf'
+            ]);
+            $filename = '/uploads/tenders/attachement/' . time() . '.' . $request->file('attachement')->extension();
+            $request->file('attachement')->storePubliclyAs('public', $filename);
+            $data['attachement'] = $filename;
+        }
+
         $tender = Tender::create($data);
 
-        $tender->activity_areas()->toggle($request->activityAreas);
-        $tender->languages()->toggle($request->languages);
+        $tender->activity_areas()->attach(explode(',', $request->activityAreas));
+        $tender->languages()->attach(explode(',', $request->languages));
 
         return new TenderResource($tender);
     }
@@ -251,7 +281,7 @@ class TenderController extends Controller
             'work_department_id' => 'integer|required',
             'work_mode_id' => 'integer|required',
             'size_company_id' => 'integer|required',
-            'city_id' => 'integer|required',
+            'city_id' => 'nullable',
             'zone_id' => 'integer|required',
             'continent_id' => 'integer|required',
             'country_id' => 'integer|required',
@@ -284,13 +314,26 @@ class TenderController extends Controller
             $request->validate([
                 'company_logo' => 'required|mimes:png,jpg,jpeng,gif|dimensions:max_width=2048,max_height=2048'
             ]);
-            $filename = '/uploads/tenders/cv' . time() . '.' . $request->file('company_logo')->extension();
+            $filename = '/uploads/tenders/logo/' . time() . '.' . $request->file('company_logo')->extension();
             $request->file('company_logo')->storePubliclyAs('public', $filename);
 
             if (File::exists(public_path(substr($tender->company_logo, 1, null)))) {
                 File::delete(public_path(substr($tender->company_logo, 1, null)));
             }
             $data['company_logo'] = $filename;
+        }
+
+        if ($request->file('attachement')) {
+            $request->validate([
+                'attachement' => 'required|mimes:pdf'
+            ]);
+            $filename = '/uploads/tenders/attachement/' . time() . '.' . $request->file('attachement')->extension();
+            $request->file('attachement')->storePubliclyAs('public', $filename);
+
+            if (File::exists(public_path(substr($tender->attachement, 1, null)))) {
+                File::delete(public_path(substr($tender->attachement, 1, null)));
+            }
+            $data['attachement'] = $filename;
         }
 
         $tender->update($data);

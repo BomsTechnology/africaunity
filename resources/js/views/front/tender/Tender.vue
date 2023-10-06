@@ -5,31 +5,13 @@
         >
             {{ $t("appel d'offre") }}
         </h1>
-        <div class="py-8 px-6 lg:px-16">
-            <div class="flex justify-end px-6 py-4">
-                <button
-                    @click="toogleFilter()"
-                    class="flex items-center justify-start text-sm text-primary-blue hover:underline"
-                >
-                    <ChevronUpIcon v-if="showFilter" class="h-5 w-5" />
-                    <span v-if="showFilter">{{ $t("hide-filter") }}</span>
-                    <ChevronDownIcon v-if="!showFilter" class="h-5 w-5" />
-                    <span v-if="!showFilter">{{ $t("show-filter") }}</span>
-                </button>
-            </div>
-            <Transition
-                enter-active-class=" transition-all  "
-                enter-from-class=" opacity-0  -translate-y-full"
-                enter-to-class="  opacity-1 translate-y-0"
-                leave-active-class=""
-                leave-from-class=""
-                leave-to-class=""
-            >
+        <div class="py-8 px-6 lg:px-16 flex lg:flex-row flex-col-reverse gap-5">
+            <div class="lg:max-w-[30%] w-full max-w-full">
                 <div
-                    class="space-y-3 bg-gray-100 px-10 pb-8 pt-4 text-xs shadow lg:text-sm"
-                    v-if="showFilter"
+                    class="space-y-3 px-10 pb-8 pt-4 text-xs lg:border-r lg:text-sm"
+                    
                 >
-                    <div class="grid grid-cols-1 gap-2 lg:grid-cols-2">
+                  
                         <div>
                             <label class="dark:text-gray-200 text-gray-700">{{
                                 $t("key-words")
@@ -69,10 +51,8 @@
                                 </option>
                             </select>
                         </div>
-                    </div>
                     
                     
-                    <div class="grid grid-cols-1 gap-2 lg:grid-cols-4">
                         <div class="">
                             <label class="text-gray-700" for="es">{{
                                 $t("continent")
@@ -197,8 +177,7 @@
                                 </option>
                             </select>
                         </div>
-                    </div>
-                    <div class="grid grid-cols-1 gap-2 lg:grid-cols-3">
+                   
                         <div>
                             <label
                                 class="dark:text-gray-200 text-gray-700"
@@ -235,10 +214,10 @@
                             </select>
                         </div>
                         
-                    </div>
+                   
                 </div>
-            </Transition>
-            <div class="bg-primary-blue p-2 shadow" v-if="showFilter"></div>
+        </div>
+        <div class="lg:max-w-[70%] w-full max-w-full">
             <div
                 class="flex justify-end px-6 py-4"
                 v-if="user.type != 'particular' && user.type != 'business1'"
@@ -338,6 +317,7 @@
             <Tender v-if="loading == 1" />
             <NoContent v-if="tenders.length == 0 && loading != 1" />
         </div>
+    </div>
     </div>
 </template>
 

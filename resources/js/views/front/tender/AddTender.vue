@@ -6,7 +6,7 @@
             </h1>
         </div>
 
-        <section class="mx-auto w-full rounded-md bg-white p-6 shadow-xl">
+        <section class="mx-auto w-full rounded-md bg-white p-6">
             <Error v-if="errors != ''">{{ errors }}</Error>
             <h1 class="text-xl font-semibold">{{ $t("add") }} Appel d'offre</h1>
             <h2 class="text-md font-light text-gray-700">
@@ -169,7 +169,6 @@
                                 class="d text-gray-700"
                                 for="es"
                                 >{{ $t("city") }}
-                                <span class="text-red-500">*</span>
                             </label>
                             <select
                                 v-model="tender.city_id"
@@ -289,8 +288,7 @@
                                     :alt="tender.title"
                                 />
                                 <input
-                                    ref="file"
-                                    @change="handelFileObject()"
+                                    @change="(e) => handelFileObject(e)"
                                     type="file"
                                     class=" block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"
                                 />
@@ -515,7 +513,19 @@
 
                        
                     </div>
-
+                    <div class="mt-4">
+                            <label class="text-gray-700">Document joint</label>
+                            <div class="mt-2 ">
+                                <input
+                                    @change="(e) => handelFile(e)"
+                                    type="file"
+                                    class=" block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"
+                                />
+                            </div>
+                            <span class="text-xs font-light text-gray-500"
+                                    >(Format: pdf)</span
+                                >
+                        </div>
                     <div class="col-span-2 mt-4">
                         <label class=" text-gray-700 mb-2" for="pt"
                             >{{ $t("description") }}
@@ -606,7 +616,7 @@ const tender = reactive({
     work_department_id: "",
     work_mode_id: "",
     size_company_id: "",
-   
+   attachement: "",
     reference: "",
     city_id: "",
     zone_id: "",
@@ -710,7 +720,6 @@ const filteredZone = (reset = true) => {
 };
 
 const storeTender = async () => {
-
     let formData = new FormData();
     formData.append("title", tender.title);
     formData.append("description", tender.description);
@@ -721,6 +730,7 @@ const storeTender = async () => {
     formData.append("company_website", tender.company_website);
     formData.append("end_date", tender.end_date);
     formData.append("company_logo", tender.company_logo);
+    formData.append("attachement", tender.attachement);
     formData.append("min_price", tender.min_price.trim().replaceAll(' ', ''));
     formData.append("max_price", tender.max_price.trim().replaceAll(' ', ''));
     formData.append("user_id", tender.user_id);
@@ -743,8 +753,12 @@ const storeTender = async () => {
     }
 };
 
-const handelFileObject = async () => {
-    tender.company_logo = file.value.files[0];
+const handelFileObject = async (e) => {
+    tender.company_logo = e.target.files[0];
+};
+
+const handelFile = async (e) => {
+    tender.attachement = e.target.files[0];
 };
 
 function previewImage(file) {

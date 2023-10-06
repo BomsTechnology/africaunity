@@ -1104,9 +1104,7 @@ const router = createRouter({
     },
 });
 
-// router.afterEach((to) => {
-//     document.title = to.meta.title;
-// });
+
 
 router.beforeEach((to, from, next) => {
     if (to.params.slug && to.params.slug != "") {
@@ -1119,6 +1117,7 @@ router.beforeEach((to, from, next) => {
     } else {
         document.title = to.meta.title;
     }
+
     if (
         to.meta.isAdmin &&
         to.meta.requiresAuth &&

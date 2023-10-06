@@ -103,12 +103,12 @@ const filteredJob = computed(() => {
                     <router-link
                         v-if="user.id == loginUser.id"
                             :to="{
-                                name: 'add.job',
+                                name: 'add.tender',
                             }"
                             class="mb-2 flex items-center justify-start space-x-3 rounded bg-primary-blue px-3 py-2 text-white lg:mb-0"
                         >
                         <PlusCircleIcon class="h-6 w-6" />
-                        <p class="text-base leading-4">{{ $tc("add") }} Job</p>
+                        <p class="text-base leading-4">{{ $tc("add") }} AO</p>
                     </router-link>
                 </div>
             </div>

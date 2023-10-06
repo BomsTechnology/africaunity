@@ -340,28 +340,31 @@ class UserController extends Controller
 
         if ($request->file('avatar')) {
             $request->validate([
-                'avatar' => 'required|mimes:png,jpg,jpeg,gif|dimensions:max_width=2048,max_height=2048'
+                'avatar' => 'required|mimes:png,jpg,jpeg,gif,webp|dimensions:max_width=2048,max_height=2048'
             ]);
-            // $filename = '/uploads/' . time() . '.' . $request->file('avatar')->extension();
-            // $request->file('avatar')->storePubliclyAs('public', $filename);
-            $filename = time() . '.' . $request->avatar->extension();
-            $path = $request->image->storeAs('images/users', $filename, 'public');
+            $filename = '/uploads/user/avatar/' . time() . '.' . $request->file('avatar')->extension();
+            $request->file('avatar')->storePubliclyAs('public', $filename);
+            //$filename = time() . '.' . $request->avatar->extension();
+            //$path = $request->image->storeAs('images/users', $filename, 'public');
 
             if (File::exists(public_path(substr($user->avatar, 1, null)))) {
                 File::delete(public_path(substr($user->avatar, 1, null)));
             }
-            $data['avatar'] = $path;
+            $data['avatar'] = $filename;
         }
 
         if ($request->file('cover')) {
             $request->validate([
-                'cover' => 'required|mimes:png,jpg,jpeng,gif|dimensions:max_width=2048,max_height=2048'
+                'cover' => 'required|mimes:png,jpg,jpeg,gif,webp|dimensions:max_width=2048,max_height=2048'
             ]);
-            // $filename = '/uploads/' . time() . '.' . $request->file('cover')->extension();
-            // $request->file('cover')->storePubliclyAs('public', $filename);
-            $filename = time() . '.' . $request->cover->extension();
-            $path = $request->image->storeAs('images/users', $filename, 'public');
-            $data['cover'] = $path;
+            $filename = '/uploads/users/cover/' . time() . '.' . $request->file('cover')->extension();
+            $request->file('cover')->storePubliclyAs('public', $filename);
+            //$filename = time() . '.' . $request->cover->extension();
+            //$path = $request->image->storeAs('images/users', $filename, 'public');
+            if (File::exists(public_path(substr($user->cover, 1, null)))) {
+                File::delete(public_path(substr($user->cover, 1, null)));
+            }
+            $data['cover'] = $filename;
         }
 
         $user->update($data);

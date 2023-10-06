@@ -193,7 +193,7 @@ class ChatController extends Controller
             'type' => 'Chat',
             'content' => $message->message,
             'url' => ' ',
-            'reported' => 'Chat Message',
+            'reported' => 'Message by : '. $message->user->firstname . ' ' . $message->user->email,
             'reported_id' => $message->user_id,
         ]);
         return response()->noContent();

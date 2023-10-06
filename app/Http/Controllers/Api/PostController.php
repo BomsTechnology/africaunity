@@ -166,7 +166,7 @@ class PostController extends Controller
                 'continent_id' => 'integer|required',
                 'zone_id' => 'integer|required',
                 'country_id' => 'integer|required',
-                'city_id' => 'nullable|integer',
+                'city_id' => 'nullable',
                 'ministries' => 'required',
             ]);
 
@@ -194,7 +194,7 @@ class PostController extends Controller
                 'zone_id' => 'integer|required',
                 'country_id' => 'integer|required',
                 'ministries' => 'required',
-                'city_id' => 'nullable|integer',
+                'city_id' => 'nullable',
                 'image' => 'required|mimes:png,jpg,jpeg,gif,webp|dimensions:min_width=100,min_height=200'
             ]);
              $filename = '/uploads/posts/' . time() . '.' . $request->file('image')->extension();
@@ -266,7 +266,7 @@ class PostController extends Controller
             'zone_id' => 'integer|required',
             'country_id' => 'integer|required',
             'ministries' => 'required',
-            'city_id' => 'nullable|integer',
+            'city_id' => 'nullable',
         ]);
         $data = [
             'title' => $fileds['title'],

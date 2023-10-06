@@ -301,7 +301,7 @@
         <div class="bg-white py-5 lg:w-[35%]">
             <div class="space-y-3 rounded-md py-5 px-10 shadow">
                 <h1 class="text-2xl font-bold text-primary-blue">
-                    Job {{ $t("details") }}
+                     {{ $t("details") }}
                 </h1>
                 <div class="flex items-center space-x-2 text-sm text-gray-500">
                     <EnvelopeIcon class="h-6 w-6" />
@@ -509,15 +509,85 @@
                         }}</span
                     >
                 </div>
-                <div v-if="user.type == 'particular' || user.type == 'admin'">
-                    <!-- <button
-                        type="button"
-                        @click="toogleModal()"
-                        class="w-full rounded bg-primary-blue px-3 py-2 text-white"
-                    >
-                        {{ $t("apply") }}
-                    </button> -->
+                <a :href="tender.attachement" target="_blank" v-if="tender.attachement" class="flex items-center space-x-2 text-sm text-primary-blue">
+                    <span>
+                        <DocumentTextIcon class="h-6 w-6" />
+                    </span>
+                    <span>
+                        Document Joint
+                    </span>
+                    <span>
+                        <ArrowUpRightIcon class="h-4 w-4" />
+                    </span>
+                </a>
+            </div>
+            <div class="mt-4 rounded-md py-5 shadow">
+                <Error v-if="errors != ''">{{ errors }}</Error>
+                <div
+                    v-if="loadingC == 2"
+                    class="bg-green-50 py-4 px-2 text-green-700"
+                >
+                    <p>
+                        {{ $t("msg-contact-sucess") }}
+                    </p>
                 </div>
+                <form v-else @submit.prevent="sendContact()">
+                    <div class="px-8">
+                        <label
+                            class="text-xl font-bold text-primary-blue"
+                            for="pt"
+                            >{{ $t("contact-ads") }}
+                            <span class="text-red-500">*</span></label
+                        >
+                        <textarea
+                            v-model="contact.content"
+                            required
+                            type="text"
+                            id="pt"
+                            class="mt-2 block h-60 w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-primary-blue focus:outline-none focus:ring focus:ring-primary-blue focus:ring-opacity-40"
+                        >
+                        </textarea>
+
+                        <div class="mt-6">
+                            <input type="hidden" />
+                            <button
+                                v-if="loadingC == 0"
+                                type="submit"
+                                class="text-md w-full rounded bg-primary-blue px-6 py-4 leading-5 text-white focus:outline-none"
+                            >
+                                {{ $t("send") }}
+                            </button>
+                            <button
+                                v-if="loadingC == 1"
+                                type="submit"
+                                disabled
+                                class="text-md flex w-full items-center justify-center rounded bg-blue-300 px-6 py-4 leading-5 text-white focus:outline-none"
+                            >
+                                {{ $t("send") }}...
+                                <svg
+                                    class="h-5 w-5 animate-spin text-white"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <circle
+                                        class="opacity-25"
+                                        cx="12"
+                                        cy="12"
+                                        r="10"
+                                        stroke="currentColor"
+                                        stroke-width="4"
+                                    ></circle>
+                                    <path
+                                        class="opacity-75"
+                                        fill="currentColor"
+                                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                                    ></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -531,11 +601,11 @@ import {
     ComputerDesktopIcon,
     GlobeAltIcon,
     Squares2X2Icon,
-    AcademicCapIcon,
+    DocumentTextIcon,
     LanguageIcon,
     MapIcon,
     FlagIcon,
-    PlusCircleIcon,
+    ArrowUpRightIcon,
     CalendarIcon,
     UserCircleIcon,
     FaceFrownIcon,
@@ -582,6 +652,12 @@ const props = defineProps({
         type: String,
     },
 });
+
+const contact = reactive({
+    user: user.id,
+    tender: props.id,
+    content: "",
+});
 onBeforeMount(async () => {
     await getTender(props.id);
     await getTenderCommentsPost(props.id);
@@ -594,6 +670,25 @@ const storeComment = async () => {
     loadingC.value = 0;
     comment.content = "";
     await getTenderCommentsPost(props.id);
+};
+
+const sendContact = async () => {
+    errors.value = "";
+    try {
+        loadingC.value = 1;
+        await axios.post("/api/tenders/contact", contact, {
+            headers: {
+                Authorization: `Bearer ${localStorage.token}`,
+            },
+        });
+        loadingC.value = 2;
+    } catch (e) {
+        if (e.response.status == 422) {
+            loadingC.value = 0;
+            for (const key in e.response.data.errors)
+                errors.value += e.response.data.errors[key][0] + "\n";
+        }
+    }
 };
 
 const toogleModal = () => {

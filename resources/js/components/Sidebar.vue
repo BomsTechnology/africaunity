@@ -585,10 +585,10 @@
                         <div class="flex items-center justify-center space-x-2">
                             <div>
                                 <img
-                                    v-if="user.value.avatar"
+                                    v-if="user.avatar"
                                     class="rounded-full"
-                                    :src="user.value.avatar"
-                                    :alt="user.value.firstname"
+                                    :src="user.avatar"
+                                    :alt="user.firstname"
                                 />
                                 <UserCircleIcon
                                     v-else
@@ -601,13 +601,13 @@
                                 <p
                                     class="cursor-pointer text-sm leading-5 text-white"
                                 >
-                                    {{ user.value.firstname }}
-                                    {{ user.value.lastname }}
+                                    {{ user.firstname }}
+                                    {{ user.lastname }}
                                 </p>
                                 <p
                                     class="cursor-pointer text-xs leading-3 text-gray-300"
                                 >
-                                    {{ user.value.email }}
+                                    {{ user.email }}
                                 </p>
                             </div>
                         </div>
@@ -682,10 +682,10 @@ import axios from "axios";
 import { reactive, ref, onMounted } from "vue";
 import { ExclamationCircleIcon } from '@heroicons/vue/24/solid';
 
-const user = reactive({});
+const user = ref(null);
+user.value = JSON.parse(localStorage.user);
 const verifAdmin = async () => {
     if (localStorage.token && localStorage.token != "") {
-        user.value = JSON.parse(localStorage.user);
 
         try {
             let response = await axios.post(
@@ -710,7 +710,9 @@ const verifAdmin = async () => {
         window.localStorage.removeItem("user");
     }
 };
-onMounted(verifAdmin());
+onMounted(async () => {
+    await verifAdmin();
+});
 const open = reactive({
     menu: true,
     article: false,

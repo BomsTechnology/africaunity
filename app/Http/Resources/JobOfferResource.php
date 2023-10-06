@@ -60,7 +60,20 @@ class JobOfferResource extends JsonResource
             'date' => $this->created_at->format('Y-m-d'),
             'activity_areas' => ActivityAreaResource::collection(JobOffer::find($this->id)->activity_areas()->orderBy('id')->get()),
             'languages' => LanguageResource::collection(JobOffer::find($this->id)->languages()->orderBy('id')->get()),
-            'slug' => Str::slug($this->title)
+            'slug' => Str::slug($this->title),
+            'city_id' => $this->city_id,
+            'zone_id' => $this->zone_id,
+            'continent_id' => $this->continent_id,
+            'country_id' => $this->country_id,
+            'currency_id' => $this->currency_id,
+            'work_department_id' => $this->work_department_id,
+            'work_mode_id' => $this->work_mode_id,
+            'size_company_id' => $this->size_company_id,
+            'contract_type_id' => $this->contract_type_id,
+            'size_company_id' => $this->size_company_id,
+            'year_experience_id' => $this->year_experience_id,
+            'level_study_id' => $this->level_study_id,
+            'user_id' => $this->user_id,
         ];
     }
 }

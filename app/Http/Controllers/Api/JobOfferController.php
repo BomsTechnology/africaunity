@@ -281,8 +281,8 @@ class JobOfferController extends Controller
 
         $jobOffer = JobOffer::create($data);
 
-        $jobOffer->activity_areas()->toggle($request->activityAreas);
-        $jobOffer->languages()->toggle($request->languages);
+        $jobOffer->activity_areas()->toggle(explode(",", $request->activityAreas));
+        $jobOffer->languages()->toggle(explode(",", $request->languages));
 
         return new JobOfferResource($jobOffer);
     }

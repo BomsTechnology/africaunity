@@ -32,6 +32,7 @@ class Tender extends Model
         'end_date',
         'country_id',
         'city_id',
+        'attachement'
     ];
 
     protected $casts = [

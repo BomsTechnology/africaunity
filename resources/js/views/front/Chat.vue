@@ -39,6 +39,13 @@
 
                 <!-- start conversation mobile view -->
                 <div v-if="open.conversation" class="w-full py-4">
+                    <div class="flex justify-end items-center mb-4 px-2">
+                    <button type="button" @click="toogleModal" class="text-primary-blue" title="Nouvelle conversation">
+                        <span>
+                            <svg viewBox="0 0 24 24" height="25" fill="currentColor" width="25" preserveAspectRatio="xMidYMid meet"><path fill-rule="evenodd" clip-rule="evenodd" d="M5.16667 3.75C3.69391 3.75 2.5 4.94391 2.5 6.41667V17.5833C2.5 19.0561 3.69391 20.25 5.16667 20.25H18.8333C20.3061 20.25 21.5 19.0561 21.5 17.5833V8.75L23.7458 5.29499C24.1782 4.62974 23.7008 3.75 22.9073 3.75H5.16667ZM14.9672 12.9911H12.9914V14.9671C12.9914 15.3999 12.7366 15.8175 12.3238 15.9488C11.6391 16.1661 11.009 15.6613 11.009 15.009V12.9911H9.03279C8.59949 12.9911 8.1819 12.7358 8.05099 12.3226C7.83412 11.6381 8.33942 11.0089 8.99134 11.0089H11.009V9.03332C11.009 8.60007 11.2639 8.18252 11.6767 8.05119C12.3609 7.83391 12.9914 8.33872 12.9914 8.991V11.0089H15.0091C15.6606 11.0089 16.1659 11.6381 15.949 12.3226C15.8185 12.7358 15.4005 12.9911 14.9672 12.9911Z" fill="currentColor"></path></svg>
+                        </span>
+                    </button>
+                </div>
                     <div class="relative mx-2">
                         <div
                             class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"
@@ -51,14 +58,14 @@
                             type="text"
                             v-model="search"
                             class="block w-full border border-gray-300 bg-gray-50 p-2.5 pl-10 text-sm text-gray-900 focus:border-primary-blue focus:ring-primary-blue"
-                            placeholder="Rechercher..."
+                            placeholder="Rechercher une Personne ou un établissement..."
                             required
                         />
                     </div>
                     <button
                         type="button"
                         @click="toogleModal"
-                        class="absolute bottom-10 right-5 flex h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-primary-blue p-2 text-white shadow-lg"
+                        class="absolute bottom-10 right-5 hidden h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-primary-blue p-2 text-white shadow-lg"
                     >
                         <PlusIcon class="h-10 w-10" />
                     </button>
@@ -78,7 +85,7 @@
                                             selectedFolder = null;
                                         }
                                     "
-                                    class="flex-shrink-0 cursor-pointer rounded-t-md py-2 px-4 text-center font-bold"
+                                    class="flex-shrink-0 cursor-pointer rounded-t-md px-4 py-2 text-center font-bold"
                                     :class="[
                                         !selectedFolder
                                             ? 'border-b-2 border-primary-blue text-primary-blue hover:bg-blue-100'
@@ -92,7 +99,7 @@
                                     v-for="folder in folders"
                                     :key="folder.id"
                                     @click="selectFolder(folder)"
-                                    class="flex-shrink-0 cursor-pointer rounded-t-md py-2 px-4 text-center font-bold"
+                                    class="flex-shrink-0 cursor-pointer rounded-t-md px-4 py-2 text-center font-bold"
                                     :class="[
                                         selectedFolder &&
                                         selectedFolder.id == folder.id
@@ -136,24 +143,25 @@
                                 class="group relative flex h-24 w-full cursor-pointer items-center space-x-2 border-b p-3"
                             >
                                 <div
-                                    class="h-12 w-12 overflow-hidden rounded lg:h-16 lg:w-16"
+                                    class="h-12 w-12 overflow-hidden rounded-full lg:h-16 lg:w-16"
                                 >
-                                    <template
+                                <template
                                         v-for="user in conversation.users"
                                     >
-                                        <img
-                                            v-if="
-                                                user.avatar &&
-                                                user.id != loginUser.id
-                                            "
-                                            :src="user.avatar"
-                                            class="h-full w-full bg-cover object-cover"
-                                            alt=""
-                                        />
-                                        <UserCircleIcon
-                                            v-else
-                                            class="h-full w-full"
-                                        />
+                                        <template
+                                            v-if="user.id != loginUser.id"
+                                        >
+                                            <img
+                                                v-if="user.avatar"
+                                                :src="user.avatar"
+                                                class="h-full w-full bg-cover object-cover"
+                                                alt=""
+                                            />
+                                            <UserCircleIcon
+                                                v-else
+                                                class="h-full w-full"
+                                            />
+                                        </template>
                                     </template>
                                 </div>
                                 <div class="flex-grow">
@@ -472,6 +480,13 @@
                 <div
                     class="relative hidden w-full max-w-[30%] flex-col border-x py-4 lg:flex"
                 >
+                <div class="flex justify-end items-center mb-4 px-2">
+                    <button type="button" @click="toogleModal" class="text-primary-blue" title="Nouvelle conversation">
+                        <span>
+                            <svg viewBox="0 0 24 24" height="25" fill="currentColor" width="25" preserveAspectRatio="xMidYMid meet"><path fill-rule="evenodd" clip-rule="evenodd" d="M5.16667 3.75C3.69391 3.75 2.5 4.94391 2.5 6.41667V17.5833C2.5 19.0561 3.69391 20.25 5.16667 20.25H18.8333C20.3061 20.25 21.5 19.0561 21.5 17.5833V8.75L23.7458 5.29499C24.1782 4.62974 23.7008 3.75 22.9073 3.75H5.16667ZM14.9672 12.9911H12.9914V14.9671C12.9914 15.3999 12.7366 15.8175 12.3238 15.9488C11.6391 16.1661 11.009 15.6613 11.009 15.009V12.9911H9.03279C8.59949 12.9911 8.1819 12.7358 8.05099 12.3226C7.83412 11.6381 8.33942 11.0089 8.99134 11.0089H11.009V9.03332C11.009 8.60007 11.2639 8.18252 11.6767 8.05119C12.3609 7.83391 12.9914 8.33872 12.9914 8.991V11.0089H15.0091C15.6606 11.0089 16.1659 11.6381 15.949 12.3226C15.8185 12.7358 15.4005 12.9911 14.9672 12.9911Z" fill="currentColor"></path></svg>
+                        </span>
+                    </button>
+                </div>
                     <div class="relative mx-2">
                         <div
                             class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"
@@ -484,14 +499,14 @@
                             type="text"
                             v-model="search"
                             class="block w-full border border-gray-300 bg-gray-50 p-2.5 pl-10 text-sm text-gray-900 focus:border-primary-blue focus:ring-primary-blue"
-                            placeholder="Rechercher..."
+                            placeholder="Rechercher une Personne ou un établissement..."
                             required
                         />
                     </div>
                     <button
                         type="button"
                         @click="toogleModal"
-                        class="absolute bottom-10 right-5 flex h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-primary-blue p-2 text-white shadow-lg"
+                        class="absolute hidden bottom-10 right-5  h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-primary-blue p-2 text-white shadow-lg"
                     >
                         <PlusIcon class="h-10 w-10" />
                     </button>
@@ -512,7 +527,7 @@
                                             selectedFolder = null;
                                         }
                                     "
-                                    class="flex-shrink-0 cursor-pointer rounded-t-md py-2 px-4 text-center font-bold"
+                                    class="flex-shrink-0 cursor-pointer rounded-t-md px-4 py-2 text-center font-bold"
                                     :class="[
                                         !selectedFolder
                                             ? 'border-b-2 border-primary-blue text-primary-blue hover:bg-blue-100'
@@ -526,7 +541,7 @@
                                     v-for="folder in folders"
                                     :key="folder.id"
                                     @click="selectFolder(folder)"
-                                    class="flex-shrink-0 cursor-pointer rounded-t-md py-2 px-4 text-center font-bold"
+                                    class="flex-shrink-0 cursor-pointer rounded-t-md px-4 py-2 text-center font-bold"
                                     :class="[
                                         selectedFolder &&
                                         selectedFolder.id == folder.id
@@ -570,24 +585,25 @@
                                 class="group relative flex h-24 w-full cursor-pointer items-center space-x-2 border-b p-3"
                             >
                                 <div
-                                    class="h-12 w-12 overflow-hidden rounded lg:h-16 lg:w-16"
+                                    class="h-12 w-12 overflow-hidden rounded-full lg:h-16 lg:w-16"
                                 >
                                     <template
                                         v-for="user in conversation.users"
                                     >
-                                        <img
-                                            v-if="
-                                                user.avatar &&
-                                                user.id != loginUser.id
-                                            "
-                                            :src="user.avatar"
-                                            class="h-full w-full bg-cover object-cover"
-                                            alt=""
-                                        />
-                                        <UserCircleIcon
-                                            v-else
-                                            class="h-full w-full"
-                                        />
+                                        <template
+                                            v-if="user.id != loginUser.id"
+                                        >
+                                            <img
+                                                v-if="user.avatar"
+                                                :src="user.avatar"
+                                                class="h-full w-full bg-cover object-cover"
+                                                alt=""
+                                            />
+                                            <UserCircleIcon
+                                                v-else
+                                                class="h-full w-full"
+                                            />
+                                        </template>
                                     </template>
                                 </div>
                                 <div class="flex-grow">
@@ -752,7 +768,7 @@
                                 class="group flex h-24 w-full cursor-pointer items-center space-x-2 border-b p-3 hover:bg-gray-50"
                             >
                                 <div
-                                    class="h-12 w-12 overflow-hidden rounded lg:h-16 lg:w-16"
+                                    class="h-12 w-12 overflow-hidden rounded-full lg:h-16 lg:w-16"
                                 >
                                     <img
                                         v-if="conversation.image"
@@ -1022,7 +1038,7 @@
                         <div
                             v-show="open.option"
                             ref="optionBlock"
-                            class="items-scretch absolute top-[80%] right-5 z-20 flex min-w-[80px] flex-col justify-start overflow-hidden rounded bg-white shadow"
+                            class="items-scretch absolute right-5 top-[80%] z-20 flex min-w-[80px] flex-col justify-start overflow-hidden rounded bg-white shadow"
                         >
                             <button
                                 v-if="selectedConversation.type != 'group'"
@@ -1313,7 +1329,7 @@
                                         <button
                                             type="button"
                                             @click="editMessage()"
-                                            class="absolute right-1 bottom-2 rounded-full bg-primary-blue p-1 text-white"
+                                            class="absolute bottom-2 right-1 rounded-full bg-primary-blue p-1 text-white"
                                         >
                                             <span v-if="loading == 1">
                                                 <Spin size="small" />
@@ -1334,7 +1350,7 @@
                         class="mx-auto w-full md:max-w-[70%]"
                     >
                         <div
-                            class="relative flex items-end gap-2 rounded-lg py-2 px-3"
+                            class="relative flex items-end gap-2 rounded-lg px-3 py-2"
                         >
                             <input
                                 type="file"
@@ -1436,7 +1452,7 @@
                                     v-model="message.message"
                                     @input="handleInput"
                                     :disabled="open.editMessage"
-                                    class="mr-2 block w-full resize-none rounded-lg border border-gray-300 bg-white py-2.5 pr-2.5 pl-8 text-sm text-gray-900 shadow transition-all focus:border-primary-blue focus:ring-primary-blue"
+                                    class="mr-2 block w-full resize-none rounded-lg border border-gray-300 bg-white py-2.5 pl-8 pr-2.5 text-sm text-gray-900 shadow transition-all focus:border-primary-blue focus:ring-primary-blue"
                                     placeholder="Your message..."
                                     :class="[open.editMessage ? 'blur' : '']"
                                 ></textarea>
@@ -1465,7 +1481,7 @@
         </section>
         <div
             v-show="open.deleteMessage"
-            class="fixed top-0 left-0 z-20 flex h-screen w-screen items-center justify-center"
+            class="fixed left-0 top-0 z-20 flex h-screen w-screen items-center justify-center"
             style="backdrop-filter: blur(5px)"
         >
             <div class="min-w-[300px] rounded bg-white p-4 shadow">
@@ -1594,6 +1610,7 @@ const message = reactive({
 onMounted(async () => {
     await getConversationsUser(loginUser.value.id);
     selectedConversationList.value = conversations.value;
+    console.log(conversations.value);
     await getConversationsFolderUser(loginUser.value.id);
     document.onkeydown = function (evt) {
         evt = evt || window.event;
@@ -1834,14 +1851,15 @@ const filteredConversation = computed(() => {
         ? selectedConversationList.value.filter((conv) =>
               conv.users.some(
                   (user) =>
-                      user.id != loginUser.value.id &&
-                      (user.firstname
-                          .toLowerCase()
-                          .includes(search.value.toLowerCase()) ||
-                          user.lastname
+                      (user.id != loginUser.value.id &&
+                          (user.firstname
                               .toLowerCase()
                               .includes(search.value.toLowerCase()) ||
-                          user.email
+                              user.email
+                                  .toLowerCase()
+                                  .includes(search.value.toLowerCase()))) ||
+                      (user.lastname &&
+                          user.lastname
                               .toLowerCase()
                               .includes(search.value.toLowerCase()))
               )
@@ -1887,7 +1905,6 @@ async function sendMessage() {
         !loading.value &&
         (message.message || message.attachement)
     ) {
-        
         message.conversation_id = selectedConversation.value.id;
         const currMessage = {
             id: new Date().getTime(),
@@ -1905,7 +1922,7 @@ async function sendMessage() {
         conversations.value
             .filter((conv) => conv.id === selectedConversation.value.id)[0]
             .messages.push(currMessage);
-        
+
         if (selectFolder.value)
             selectedConversation.value.messages.push(currMessage);
         const received = selectedConversation.value.users.filter(

@@ -314,11 +314,11 @@ onMounted(async () => {
                                 <h3 class="text-sm">
                                     {{ post.user.firstname }}
                                 </h3>
-                                <h4 class="text-xs text-primary-blue">
+                                <h4 v-if="post.ministry" class="text-xs text-primary-blue">
                                     {{ post.ministry.name_en }}
                                 </h4>
                             </div> </router-link
-                        >>
+                        >
                     </div>
                 </div>
             </div>

@@ -221,6 +221,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::get('tenders-front', [TenderController::class, 'tenders_front']);
     Route::post("/tenders-apply", [TenderController::class, 'tenders_apply']);
     Route::post("/tenders-filter", [TenderController::class, 'filter']);
+    Route::post("/tenders/contact", [TenderController::class, 'contact']);
 
     Route::apiResource('announcements', AnnouncementController::class);
     Route::get('announcements-university/{id}', [AnnouncementController::class, 'announcements_university']);

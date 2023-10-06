@@ -20,7 +20,7 @@ class JobOfferCommentController extends Controller
         return JobOfferCommentResource::collection(JobOfferComment::all());
     }
 
-    public function comment_tender($id)
+    public function comment_jobOffer($id)
     {
         return JobOfferCommentResource::collection(JobOfferComment::where([
             ['status', 1],

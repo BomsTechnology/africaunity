@@ -173,12 +173,9 @@
                                 class=" text-gray-700"
                                 for="es"
                                 >{{ $t("city") }}
-                                <span class="text-red-500">*</span>
                             </label>
                             <select
-                                required
-                                v-if="tender.city"
-                                v-model="tender.city.id"
+                                v-model="tender.city_id"
                                 class="form-select mt-2 block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-primary-blue focus:outline-none focus:ring-primary-blue"
                             >
                                 <option
@@ -297,7 +294,7 @@
                                 />
                                 <input
                                     ref="file"
-                                    @change="handelFileObject()"
+                                    @change="(e) => handelFileObject(e)"
                                     type="file"
                                     class=" mt-2 block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"
                                 />
@@ -520,7 +517,19 @@
 
                         
                     </div>
-
+                    <div class="mt-4">
+                            <label class="text-gray-700">Document joint</label>
+                            <div class="mt-2 ">
+                                <input
+                                    @change="(e) => handelFile(e)"
+                                    type="file"
+                                    class=" block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"
+                                />
+                            </div>
+                            <span class="text-xs font-light text-gray-500"
+                                    >(Format: pdf)</span
+                                >
+                        </div>
                     <div class="col-span-2 mt-4">
                         <label class=" text-gray-700 mb-2" for="pt"
                             >{{ $t("description") }}
@@ -673,6 +682,7 @@ const saveTender = async () => {
     formData.append("company_email", tender.value.company_email);
     formData.append("company_website", tender.value.company_website);
     formData.append("company_logo", tender.value.company_logo);
+    formData.append("attachement", tender.value.attachement);
     formData.append("min_price", tender.value.min_price);
     formData.append("max_price", tender.value.max_price);
     formData.append("end_date", tender.value.end_date);
@@ -681,7 +691,7 @@ const saveTender = async () => {
     formData.append("work_department_id", tender.value.work_department.id);
     formData.append("work_mode_id", tender.value.work_mode.id);
     formData.append("size_company_id", tender.value.size_company.id);
-    formData.append("city_id", tender.value.city.id);
+    formData.append("city_id", tender.value.city_id ? tender.value.city_id : '');
     formData.append("zone_id", tender.value.zone.id);
     formData.append("continent_id", tender.value.continent.id);
     formData.append("country_id", tender.value.country.id);
@@ -698,8 +708,12 @@ const saveTender = async () => {
     }
 };
 
-const handelFileObject = () => {
-    tender.value.company_logo = file.value.files[0];
+const handelFileObject = (e) => {
+    tender.value.company_logo = e.target.files[0];
+};
+
+const handelFile = async (e) => {
+    tender.value.attachement = e.target.files[0];
 };
 function previewImage(file) {
     return URL.createObjectURL(file);
