@@ -192,7 +192,6 @@
                             >{{ $t("city") }}
                         </label>
                         <select
-                            required
                             v-model="post.city_id"
                             class="form-select mt-2 block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-primary-blue focus:outline-none focus:ring-primary-blue"
                         >
@@ -407,7 +406,7 @@ const savePost = async () => {
     formData.append("continent_id", post.value.continent_id);
     formData.append("zone_id", post.value.zone_id);
     formData.append("country_id", post.value.country_id);
-    formData.append("city_id", post.city_id);
+    formData.append("city_id", post.city_id ? post.city_id : null);
     formData.append("ministries", selectedMinistries.value);
     formData.append("_method", "PUT");
 

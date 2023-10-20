@@ -342,7 +342,7 @@ class UserController extends Controller
             $request->validate([
                 'avatar' => 'required|mimes:png,jpg,jpeg,gif,webp|dimensions:max_width=2048,max_height=2048'
             ]);
-            $filename = '/uploads/user/avatar/' . time() . '.' . $request->file('avatar')->extension();
+            $filename = '/uploads/users/avatar/' . time() . '.' . $request->file('avatar')->extension();
             $request->file('avatar')->storePubliclyAs('public', $filename);
             //$filename = time() . '.' . $request->avatar->extension();
             //$path = $request->image->storeAs('images/users', $filename, 'public');

@@ -231,7 +231,7 @@ const filteredJob = computed(() => {
                                                work_department_id: tender.work_department.id, 
                                                work_mode_id: tender.work_mode.id, 
                                                size_company_id: tender.size_company.id, 
-                                               city_id: tender.city.id, 
+                                               city_id: tender.city ? tender.city.id : null, 
                                                zone_id: tender.zone.id, 
                                                continent_id: tender.continent.id, 
                                                country_id: tender.country.id, 

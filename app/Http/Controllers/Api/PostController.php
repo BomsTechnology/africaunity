@@ -276,7 +276,7 @@ class PostController extends Controller
             'user_id' => $fileds['user_id'],
             'continent_id' => $fileds['continent_id'],
             'zone_id' => $fileds['zone_id'],
-            'city_id' => $fileds['city_id'],
+            'city_id' => $fileds['city_id'] != null && $fileds['city_id'] != 'null'  ? $fileds['city_id']  : NULL,
             'country_id' => $fileds['country_id'],
         ];
         if ($request->file('image')) {

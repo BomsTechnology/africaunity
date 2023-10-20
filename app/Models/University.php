@@ -16,7 +16,15 @@ class University extends Model
         'continent_id',
         'country_id',
         'city_id',
-        'zone_id'
+        'zone_id',
+        'legal_status_id',
+        'level_study_id',
+        'university_sector_id',
+        'schooling_type_id',
+        'required_level',
+        'registration_period',
+        "firstday_university",
+        'type',
     ];
     public function zone()
     {
@@ -41,13 +49,30 @@ class University extends Model
     {
         return $this->hasMany(Announcement::class);
     }
-    
-    // public function getImageAttribute($path) 
-    // {
-    //      if (!$path || Str::startsWith($path, 'http')) {
-    //         return $path;
-    //     }
 
-    //     return url(Storage::url($path));
-    // }
+    public function legalStatus()
+    {
+        return $this->belongsTo(LegalStatus::class);
+    }
+
+    public function levelStudy()
+    {
+        return $this->belongsTo(LevelStudy::class);
+    }
+
+    public function requiredLevel()
+    {
+        return $this->belongsTo(LevelStudy::class);
+    }
+
+    public function universitySector()
+    {
+        return $this->belongsTo(UniversitySector::class);
+    }
+
+    public function schoolingType()
+    {
+        return $this->belongsTo(SchoolingType::class);
+    }
+    
 }

@@ -10,12 +10,12 @@ export default function useUniversities() {
     const isAll = ref(false);
     const page = ref(1);
 
-    const getAllUniversities = async () => {
+    const getAllUniversities = async (type) => {
         errors.value = "";
         try {
             universities.value = [];
             loading.value = true;
-            let response = await axios.get("/api/university/all", {
+            let response = await axios.get("/api/university/all/" + type, {
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
                 },
@@ -37,12 +37,12 @@ export default function useUniversities() {
         }
     };
 
-    const getUniversities = async () => {
+    const getUniversities = async (type) => {
         errors.value = "";
         try {
             loading.value = true;
             let response = await axios.get(
-                "/api/universities?page=" + page.value,
+                "/api/universities/" + type + "?page=" + page.value,
                 {
                     headers: {
                         Authorization: `Bearer ${localStorage.token}`,

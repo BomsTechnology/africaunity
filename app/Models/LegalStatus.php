@@ -19,4 +19,8 @@ class LegalStatus extends Model
     public function details(){
         return $this->hasMany(Detail::class);
     }
+
+    public function universities(){
+        return $this->hasMany(University::class);
+    }
 }

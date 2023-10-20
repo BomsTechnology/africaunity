@@ -343,11 +343,18 @@
                         class="flex w-full flex-col items-start justify-start pb-1 md:w-auto"
                     >
                         <router-link
-                            :to="{ name: 'admin.university.index' }"
+                            :to="{ name: 'admin.university.index', params: { type: 'university' } }"
                             class="flex w-full items-center justify-start space-x-6 rounded px-3 py-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:text-white md:w-52"
                         >
                             <QueueListIcon class="h-6 w-6" />
                             <p class="text-base leading-4">All Universities</p>
+                        </router-link>
+                        <router-link
+                            :to="{ name: 'admin.university.index', params: { type: 'training' } }"
+                            class="flex w-full items-center justify-start space-x-6 rounded px-3 py-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:text-white md:w-52"
+                        >
+                            <QueueListIcon class="h-6 w-6" />
+                            <p class="text-base leading-4">All Training</p>
                         </router-link>
                         <router-link
                             :to="{ name: 'admin.continent.index' }"
@@ -545,7 +552,7 @@
                                 </p>
                             </router-link>
                             <router-link
-                                :to="{ name: 'admin.university.index' }"
+                                :to="{ name: 'admin.university.index', params: { type: 'university' }  }"
                                 class="flex w-full items-center justify-start space-x-6 rounded px-3 py-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:text-white md:w-52"
                             >
                                 <BuildingLibraryIcon class="h-6 w-6" />

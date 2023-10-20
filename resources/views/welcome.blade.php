@@ -35,8 +35,6 @@
 
     <link rel="icon" type="image/x-icon" href="{{ asset('/img/ico.png') }}">
     
-    
-    @laravelPWA
 </head>
 
 <body class="bg-white" style="background-image:url('/img/random-shapes.svg')">
@@ -45,6 +43,7 @@
 
     </div>
 
+    
     @vite('resources/js/app.js')
     <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sceditor@3/minified/sceditor.min.js"></script>

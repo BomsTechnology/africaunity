@@ -1028,7 +1028,8 @@ const routes = [
                 },
             },
             {
-                path: "university",
+                path: "university/:type",
+                props: true,
                 component: () =>
                     import("@/views/back/university/UniversityIndex.vue"),
                 name: "admin.university.index",
@@ -1037,10 +1038,11 @@ const routes = [
                 },
             },
             {
-                path: "university/create",
+                path: "university/create/:type",
                 component: () =>
                     import("@/views/back/university/UniversityCreate.vue"),
                 name: "admin.university.create",
+                props: true,
                 meta: {
                     title: siteName + " - Create University",
                 },

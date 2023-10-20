@@ -19,4 +19,8 @@ class LevelStudy extends Model
     public function jobOffers(){
         return $this->hasMany(JobOffer::class);
     }
+
+    public function universities(){
+        return $this->hasMany(University::class);
+    }
 }

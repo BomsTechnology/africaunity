@@ -3,14 +3,14 @@
         <div class="z-0 w-full p-4">
             <div class="flex w-full justify-between bg-white px-8 py-5">
                 <h1 class="text-4xl font-bold capitalize text-primary-blue">
-                    Add University
+                    Add {{ type }}
                 </h1>
             </div>
 
             <section class="mx-auto w-full bg-white p-6">
                 <Error v-if="errors != ''">{{ errors }}</Error>
                 <h2 class="text-md font-light text-gray-700">
-                    Add a new University
+                    Add a new {{ type }}
                 </h2>
                 <form
                     @submit.prevent="storeUniversity()"
@@ -128,7 +128,155 @@
                             </select>
                         </div>
 
-                        <div class="col-span-2">
+                        <div class="">
+                            <label
+                                class="dark:text-gray-200 text-gray-700"
+                                >Etablishment Type</label
+                            >
+                            <select
+                                required
+                                v-model="university.legal_status_id"
+                                class="form-select mt-2 block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-primary-blue focus:outline-none focus:ring-primary-blue"
+                            >
+                                <option
+                                    v-for="legalStatus in legalStatuses"
+                                    :key="legalStatus.id"
+                                    :value="legalStatus.id"
+                                >
+                                    {{ legalStatus.name_en }}
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="">
+                            <label
+                                class="dark:text-gray-200 text-gray-700"
+                                >Sector</label
+                            >
+                            <select
+                                required
+                                v-model="university.university_sector_id"
+                                class="form-select mt-2 block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-primary-blue focus:outline-none focus:ring-primary-blue"
+                            >
+                                <option
+                                    v-for="universitySector in universitySectors"
+                                    :key="universitySector.id"
+                                    :value="universitySector.id"
+                                >
+                                    {{ universitySector.name_en }}
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="">
+                            <label
+                                class="dark:text-gray-200 text-gray-700"
+                                >Level Study</label
+                            >
+                            <select
+                                required
+                                v-model="university.level_study_id"
+                                class="form-select mt-2 block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-primary-blue focus:outline-none focus:ring-primary-blue"
+                            >
+                            <option
+                                    v-for="levelStudy in levelStudies"
+                                    :key="levelStudy.id"
+                                    :value="levelStudy.id"
+                                >
+                                    {{ levelStudy.name_en }}
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="">
+                            <label
+                                class="dark:text-gray-200 text-gray-700"
+                                >Required Level</label
+                            >
+                            <select
+                                required
+                                v-model="university.required_level"
+                                class="form-select mt-2 block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-primary-blue focus:outline-none focus:ring-primary-blue"
+                            >
+                                <option
+                                    v-for="levelStudy in levelStudies"
+                                    :key="levelStudy.id"
+                                    :value="levelStudy.id"
+                                >
+                                    {{ levelStudy.name_en }}
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="">
+                            <label
+                                class="dark:text-gray-200 text-gray-700"
+                                >Registration Period</label
+                            >
+                            <select
+                                required
+                                v-model="university.registration_period"
+                                class="form-select mt-2 block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-primary-blue focus:outline-none focus:ring-primary-blue"
+                            >
+                                <option value="january">January</option>
+                                <option value="february">February</option>
+                                <option value="march">March</option>
+                                <option value="april">April</option>
+                                <option value="june">June</option>
+                                <option value="july">July </option>
+                                <option value="august">August</option>
+                                <option value="september">September</option>
+                                <option value="october">October</option>
+                                <option value="november">November</option>
+                                <option value="december">December</option>
+                            </select>
+                        </div>
+
+                        <div class="">
+                            <label
+                                class="dark:text-gray-200 text-gray-700"
+                                >Firstday of School</label
+                            >
+                            <select
+                                required
+                                v-model="university.firstday_university"
+                                class="form-select mt-2 block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-primary-blue focus:outline-none focus:ring-primary-blue"
+                            >
+                            <option value="january">January</option>
+                                <option value="february">February</option>
+                                <option value="march">March</option>
+                                <option value="april">April</option>
+                                <option value="june">June</option>
+                                <option value="july">July </option>
+                                <option value="august">August</option>
+                                <option value="september">September</option>
+                                <option value="october">October</option>
+                                <option value="november">November</option>
+                                <option value="december">December</option>
+                            </select>
+                        </div>
+
+                        <div class="">
+                            <label
+                                class="dark:text-gray-200 text-gray-700"
+                                >Schooling Type</label
+                            >
+                            <select
+                                required
+                                v-model="university.schooling_type_id"
+                                class="form-select mt-2 block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-primary-blue focus:outline-none focus:ring-primary-blue"
+                            >
+                                <option
+                                    v-for="schoolingType in schoolingTypes"
+                                    :key="schoolingType.id"
+                                    :value="schoolingType.id"
+                                >
+                                    {{ schoolingType.name_en }}
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="">
                             <label
                                 class="dark:text-gray-200 text-gray-700"
                                 for="fr"
@@ -149,12 +297,9 @@
                                 for="pt"
                                 >Description</label
                             >
-                            <textarea
-                                required
-                                ref="textarea"
-                                class="h-96 w-full"
-                            >
-                            </textarea>
+                            <RichText
+                            v-model="university.description"
+                        />
                         </div>
                     </div>
 
@@ -202,32 +347,50 @@ import useUniversities from "@/services/universityServices.js";
 import useContinents from "@/services/continentServices.js";
 import useCountries from "@/services/countryServices.js";
 import useCities from "@/services/cityServices.js";
+import useLegalStatuses from "@/services/legalStatusServices.js";
+import useUniversitySectors from "@/services/universitySectorServices.js";
+import useSchoolingTypes from "@/services/schoolingTypeServices.js";
+import useLevelStudies from "@/services/levelStudyServices.js";
 
 import useZones from "@/services/zoneServices.js";
 import { useRouter } from "vue-router";
+import RichText from '@/components/RichText.vue';
 const router = useRouter();
 const { continents, getContinents } = useContinents();
 const { countries, getCountries } = useCountries();
 const { cities, getCities } = useCities();
 const { zones, getZones } = useZones();
-const textarea = ref("");
+const { legalStatuses, getLegalStatuses } = useLegalStatuses();
+const {
+    levelStudies,
+    getLevelStudies
+} = useLevelStudies();
+const {
+    universitySectors,
+    getUniversitySectors
+} = useUniversitySectors();
+const {
+    schoolingTypes,
+    getSchoolingTypes
+} = useSchoolingTypes();
+
 const msgClick = ref("");
-const nbClick = ref(0);
+const props = defineProps({
+    type: {
+        required: true,
+        type: String,
+    },
+})
+
 onMounted(async () => {
-    sceditor.create(textarea.value, {
-        format: "xhtml",
-        style: "https://cdn.jsdelivr.net/npm/sceditor@3/minified/themes/content/default.min.css",
-        height: 400,
-        toolbarExclude:
-            "indent,outdent,email,date,time,ltr,rtl,print,subscript,superscript,table,code,quote,emoticon",
-        icons: "material",
-    });
-    textarea.value.value == "";
-    nbClick.value++;
     await getZones();
     await getContinents();
     await getCountries();
     await getCities();
+    await getLegalStatuses();
+    await getUniversitySectors();
+    await getSchoolingTypes();
+    await getLevelStudies();
 });
 const university = reactive({
     name: "",
@@ -237,6 +400,14 @@ const university = reactive({
     country_id: "",
     city_id: "",
     zone_id: "",
+    legal_status_id: "",
+    schooling_type_id: "",
+    university_sector_id: "",
+    level_study_id: "",
+    required_level: "",
+    firstday_university: "",
+    registration_period: "",
+
 });
 
 const zoneFiltered = ref([]);
@@ -273,14 +444,8 @@ const filteredZone = () => {
 const { createUniversity, errors, loading } = useUniversities();
 
 const storeUniversity = async () => {
-    university.description = textarea.value.value;
-    if (nbClick.value == 1) {
-        nbClick.value++;
-        msgClick.value = "please click again";
-        return;
-    }
-
     let formData = new FormData();
+    formData.append("type", props.type);
     formData.append("image", university.image);
     formData.append("name", university.name);
     formData.append("description", university.description);
@@ -288,7 +453,14 @@ const storeUniversity = async () => {
     formData.append("country_id", university.country_id);
     formData.append("city_id", university.city_id);
     formData.append("zone_id", university.zone_id);
-
+    formData.append("legal_status_id", university.legal_status_id);
+    formData.append("schooling_type_id", university.schooling_type_id);
+    formData.append("university_sector_id", university.university_sector_id);
+    formData.append("level_study_id", university.level_study_id);
+    formData.append("required_level", university.required_level);
+    formData.append("firstday_university", university.firstday_university);
+    formData.append("registration_period", university.registration_period);
+   
     await createUniversity(formData);
     if (errors.value == "") {
         router.push({

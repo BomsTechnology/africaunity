@@ -49,6 +49,8 @@ use App\Http\Controllers\Api\YearExperienceController;
 use App\Http\Controllers\Api\ZoneController;
 use App\Http\Controllers\StripeController;
 use App\Http\Controllers\Api\TenderController;
+use App\Http\Controllers\Api\UniversitySectorController;
+use App\Http\Controllers\Api\SchoolingTypeController;
 
 Route::get('/getSession', [StripeController::class, 'getSession']);
 Route::post("/register", [AuthController::class, 'register']);
@@ -137,8 +139,13 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::get("/users-filter/conversation/{keywords}", [UserController::class, 'filterByWords']);
     Route::post("/users-report", [UserController::class, 'user_report']);
 
-    Route::apiResource('universities', UniversityController::class);
-    Route::get('/university/all', [UniversityController::class, 'all']);
+    //Route::apiResource('universities', UniversityController::class);
+    Route::get("/universities/{type}", [UniversityController::class, 'index']);
+    Route::post("/universities", [UniversityController::class, 'store']);
+    Route::get("/universities/{university}", [UniversityController::class, 'show']);
+    Route::put("/universities/{university}", [UniversityController::class, 'update']);
+    Route::delete("/universities/{university}", [UniversityController::class, 'destroy']);
+    Route::get('/university/all/{type}', [UniversityController::class, 'all']);
     Route::get("/universities2/{university}", [UniversityController::class, 'show2']);
     Route::post("/universities-filter", [UniversityController::class, 'filter']);
 
@@ -167,6 +174,10 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::apiResource('activityAreas', ActivityAreaController::class);
 
     Route::apiResource("levelStudies", LevelStudyController::class);
+
+    Route::apiResource("universitySectors", UniversitySectorController::class);
+
+    Route::apiResource("schoolingTypes", SchoolingTypeController::class);
 
     Route::apiResource("sizeCompanies", SizeCompanyController::class);
 

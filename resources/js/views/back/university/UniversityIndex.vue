@@ -3,16 +3,19 @@
         <div class="z-0 h-full w-full p-4">
             <div class="flex justify-between bg-white px-8 py-5">
                 <h1 class="text-4xl font-bold capitalize text-primary-blue">
-                    University
+                    {{ type }}
                 </h1>
                 <router-link
                     :to="{
                         name: 'admin.university.create',
+                        params: {
+                            type: type,
+                        }
                     }"
                     class="flex items-center justify-start space-x-3 rounded bg-primary-blue px-3 py-2 text-white"
                 >
                     <PlusCircleIcon class="h-6 w-6" />
-                    <p class="text-base leading-4">Add University</p>
+                    <p class="text-base leading-4">Add {{ type }}</p>
                 </router-link>
             </div>
 
@@ -132,7 +135,7 @@
 </template>
 
 <script setup>
-import { onMounted, ref, computed } from "vue";
+import { onMounted, ref, computed, watch } from "vue";
 import { PlusCircleIcon, TrashIcon } from "@heroicons/vue/24/solid";
 import useUniversities from "@/services/universityServices.js";
 import Error from "@/components/Error.vue";
@@ -141,8 +144,14 @@ const { universities, getAllUniversities, destroyUniversity, loading, errors } =
     useUniversities();
 const searchKey = ref("");
 const itemsSelected = ref([]);
+const props = defineProps({
+    type: {
+        required: true,
+        type: String,
+    },
+})
 onMounted(async () => {
-    await getAllUniversities();
+    await getAllUniversities(props.type);
 });
 
 const deleteUniversities = async (id) => {
@@ -154,17 +163,22 @@ const deleteUniversities = async (id) => {
         if (confirm("I you Sure ?")) {
             await destroyUniversity(deleteIds.value);
             if (errors.value == "") {
-                await getAllUniversities();
+                await getAllUniversities(props.type);
                 itemsSelected.value = [];
             }
         }
     }
 };
 
+watch(props, async (currentValue, oldValue) => {
+    await getAllUniversities(currentValue.type);
+});
+
 const searchField = ref("name");
 const searchValue = ref("");
 const headers = [
     { text: "Image", value: "image" },
+    { text: "Type", value: "type" },
     { text: "Name", value: "name" },
     { text: "Continent", value: "continent.name_en" },
     { text: "Country", value: "country.name_en" },

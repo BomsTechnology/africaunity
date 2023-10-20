@@ -6,23 +6,10 @@
             {{ $t("univerities") }}
         </h1>
         
-        <div class="py-8 lg:px-16">
-            <div class="flex justify-end py-4">
-                <router-link
-                    :to="{
-                        name: 'add.ads',
-                    }"
-                    v-if="user.type == 'particular' || user.type == 'admin'"
-                    class="flex items-center justify-start space-x-3 rounded bg-primary-blue px-3 py-2 text-white"
-                >
-                    <PlusCircleIcon class="h-6 w-6" />
-                    <p class="text-base leading-4">
-                        {{ $tc("add", 2) }} {{ $t("ads") }}
-                    </p>
-                </router-link>
-            </div>
+        <div class="py-8 px-6 lg:px-16 flex lg:flex-row flex-col-reverse gap-5">
+            <div class="lg:max-w-[30%] w-full max-w-full sticky top-0">
             <div
-                class="grid grid-cols-1 gap-2 bg-gray-50 px-10 pb-8 pt-4 shadow lg:grid-cols-4"
+                class="space-y-3 px-10 pb-8 pt-4 text-xs lg:border-r lg:text-sm"
             >
                 <div class="text-xs lg:text-sm">
                     <label class="dark:text-gray-200 text-gray-700">{{
@@ -30,6 +17,7 @@
                     }}</label>
                     <input
                         type="text"
+                        @change="universitiesFilter()"
                         v-model="filterUniversity.searchKey"
                         class="form-input mt-2 block w-full rounded-md border border-gray-200 bg-white px-3 pr-2 text-gray-700 placeholder:text-gray-400 focus:border-primary-blue focus:ring-primary-blue"
                     />
@@ -132,6 +120,7 @@
                     }}</label>
                     <select
                         v-model="filterUniversity.city"
+                        @change="universitiesFilter()"
                         class="form-select mt-1 block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-primary-blue focus:outline-none focus:ring-primary-blue"
                     >
                         <option value="">--------------</option>
@@ -157,6 +146,178 @@
                         </option>
                     </select>
                 </div>
+                <div class="text-xs lg:text-sm">
+                    <label class="text-gray-700" for="es">Etablishment Type</label>
+                    <select
+                        v-model="filterUniversity.legal_status"
+                        @change="universitiesFilter()"
+                        class="form-select mt-1 block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-primary-blue focus:outline-none focus:ring-primary-blue"
+                    >
+                        <option value="">--------------</option>
+                        <option
+                            v-for="legalStatus in legalStatuses"
+                            :key="legalStatus.id"
+                            :value="legalStatus.id"
+                        >
+                            <span v-if="$i18n.locale == 'en'">{{
+                                legalStatus.name_en
+                            }}</span>
+                            <span v-else-if="$i18n.locale == 'fr'">{{
+                                legalStatus.name_fr
+                            }}</span>
+                            <span v-else-if="$i18n.locale == 'es'">{{
+                                legalStatus.name_es
+                            }}</span>
+                            <span v-else>{{ legalStatus.name_pt }}</span>
+                        </option>
+                    </select>
+                </div>
+                <div class="text-xs lg:text-sm">
+                    <label class="text-gray-700" for="es">Sector</label>
+                    <select
+                        v-model="filterUniversity.university_sector"
+                        @change="universitiesFilter()"
+                        class="form-select mt-1 block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-primary-blue focus:outline-none focus:ring-primary-blue"
+                    >
+                        <option value="">--------------</option>
+                        <option
+                            v-for="universitySector in universitySectors"
+                            :key="universitySector.id"
+                            :value="universitySector.id"
+                        >
+                            <span v-if="$i18n.locale == 'en'">{{
+                                universitySector.name_en
+                            }}</span>
+                            <span v-else-if="$i18n.locale == 'fr'">{{
+                                universitySector.name_fr
+                            }}</span>
+                            <span v-else-if="$i18n.locale == 'es'">{{
+                                universitySector.name_es
+                            }}</span>
+                            <span v-else>{{ universitySector.name_pt }}</span>
+                        </option>
+                    </select>
+                </div>
+                <div class="text-xs lg:text-sm">
+                    <label class="text-gray-700" for="es">Level Study</label>
+                    <select
+                        v-model="filterUniversity.level_study"
+                        @change="universitiesFilter()"
+                        class="form-select mt-1 block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-primary-blue focus:outline-none focus:ring-primary-blue"
+                    >
+                        <option value="">--------------</option>
+                        <option
+                            v-for="levelStudy in levelStudies"
+                            :key="levelStudy.id"
+                            :value="levelStudy.id"
+                        >
+                            <span v-if="$i18n.locale == 'en'">{{
+                                levelStudy.name_en
+                            }}</span>
+                            <span v-else-if="$i18n.locale == 'fr'">{{
+                                levelStudy.name_fr
+                            }}</span>
+                            <span v-else-if="$i18n.locale == 'es'">{{
+                                levelStudy.name_es
+                            }}</span>
+                            <span v-else>{{ levelStudy.name_pt }}</span>
+                        </option>
+                    </select>
+                </div>
+                <div class="text-xs lg:text-sm">
+                    <label class="text-gray-700" for="es">Required Level</label>
+                    <select
+                        v-model="filterUniversity.required_level"
+                        @change="universitiesFilter()"
+                        class="form-select mt-1 block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-primary-blue focus:outline-none focus:ring-primary-blue"
+                    >
+                        <option value="">--------------</option>
+                        <option
+                            v-for="levelStudy in levelStudies"
+                            :key="levelStudy.id"
+                            :value="levelStudy.id"
+                        >
+                            <span v-if="$i18n.locale == 'en'">{{
+                                levelStudy.name_en
+                            }}</span>
+                            <span v-else-if="$i18n.locale == 'fr'">{{
+                                levelStudy.name_fr
+                            }}</span>
+                            <span v-else-if="$i18n.locale == 'es'">{{
+                                levelStudy.name_es
+                            }}</span>
+                            <span v-else>{{ levelStudy.name_pt }}</span>
+                        </option>
+                    </select>
+                </div>
+                <div class="text-xs lg:text-sm">
+                    <label class="text-gray-700" for="es">Schooling Type</label>
+                    <select
+                        v-model="filterUniversity.schooling_type"
+                        @change="universitiesFilter()"
+                        class="form-select mt-1 block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-primary-blue focus:outline-none focus:ring-primary-blue"
+                    >
+                        <option value="">--------------</option>
+                        <option
+                            v-for="schoolingType in schoolingTypes"
+                            :key="schoolingType.id"
+                            :value="schoolingType.id"
+                        >
+                            <span v-if="$i18n.locale == 'en'">{{
+                                schoolingType.name_en
+                            }}</span>
+                            <span v-else-if="$i18n.locale == 'fr'">{{
+                                schoolingType.name_fr
+                            }}</span>
+                            <span v-else-if="$i18n.locale == 'es'">{{
+                                schoolingType.name_es
+                            }}</span>
+                            <span v-else>{{ schoolingType.name_pt }}</span>
+                        </option>
+                    </select>
+                </div>
+                <div class="text-xs lg:text-sm">
+                    <label class="text-gray-700" for="es">First Day of school</label>
+                    <select
+                        v-model="filterUniversity.firstday_university"
+                        @change="universitiesFilter()"
+                        class="form-select mt-1 block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-primary-blue focus:outline-none focus:ring-primary-blue"
+                    >
+                        <option value="">--------------</option>
+                        <option value="january">January</option>
+                                <option value="february">February</option>
+                                <option value="march">March</option>
+                                <option value="april">April</option>
+                                <option value="june">June</option>
+                                <option value="july">July </option>
+                                <option value="august">August</option>
+                                <option value="september">September</option>
+                                <option value="october">October</option>
+                                <option value="november">November</option>
+                                <option value="december">December</option>
+                    </select>
+                </div>
+                <div class="text-xs lg:text-sm">
+                    <label class="text-gray-700" for="es">Registration Period</label>
+                    <select
+                        v-model="filterUniversity.registration_period"
+                        @change="universitiesFilter()"
+                        class="form-select mt-1 block w-full rounded-md border border-gray-200 bg-white px-4 py-2 text-gray-700 focus:border-primary-blue focus:outline-none focus:ring-primary-blue"
+                    >
+                        <option value="">--------------</option>
+                        <option value="january">January</option>
+                                <option value="february">February</option>
+                                <option value="march">March</option>
+                                <option value="april">April</option>
+                                <option value="june">June</option>
+                                <option value="july">July </option>
+                                <option value="august">August</option>
+                                <option value="september">September</option>
+                                <option value="october">October</option>
+                                <option value="november">November</option>
+                                <option value="december">December</option>
+                    </select>
+                </div>
                 <div class="flex items-end text-xs lg:text-sm">
                     <button
                         type="button"
@@ -167,17 +328,34 @@
                     </button>
                 </div>
             </div>
-            <div class="bg-primary-blue p-2 shadow"></div>
-            <div v-if="loading == 3">
-                <University />
+        </div>
+            <div class="lg:max-w-[70%] w-full max-w-full">
+            <div class="flex justify-center py-4">
+                <div class="flex items-center p-2 rounded-full shadow-lg bg-white">
+                    <button class=" rounded-full lg:p-4 p-2  uppercase text-sm lg:text-lg font-semibold"
+                        :class="[
+                            filterUniversity.type == 'university' ?
+                            'bg-primary-blue text-white' : 'bg-white text-black'
+                        ]"
+                        @click="toogleType('university')"
+                        type="button"
+                        >{{ $t("univerities") }}</button>
+                    <button :class="[
+                            filterUniversity.type == 'training' ?
+                            'bg-primary-blue text-white' : 'bg-white text-black'
+                        ]"
+                        @click="toogleType('training')"
+                        type="button" class=" rounded-full lg:p-4 p-2 uppercase text-sm lg:text-lg font-semibold">Traning</button>
+                </div>
             </div>
+            
             <div
-                class="grid grid-cols-1 gap-8 px-10 py-8 md:grid-cols-2 lg:grid-cols-4"
+                class="grid grid-cols-1 gap-8 px-10 py-8 md:grid-cols-2 lg:grid-cols-3"
                 ref="universityContainer"
-                v-else-if="universities.length != 0"
+                v-if="universities.length != 0"
             >
                 <div
-                    class="dark:bg-gray-800 overflow-hidden rounded-lg bg-white shadow-md"
+                    class="dark:bg-gray-800  rounded-lg bg-white shadow-md"
                     v-for="university in universities"
                     :key="university.id"
                 >
@@ -196,8 +374,8 @@
                             alt=""
                         />
                     </router-link>
-                    <div class="p-6">
-                        <div>
+                    <div class="p-6 flex flex-col">
+                        <div class=" flex flex-col items-start flex-grow-0">
                             <a
                                 href="#"
                                 v-if="university.city"
@@ -232,12 +410,9 @@
                                         slug: university.slug,
                                     },
                                 }"
-                                class="dark:text-white mt-2 block transform text-2xl font-semibold text-gray-800 transition-colors duration-200 hover:text-gray-600 hover:underline"
+                                class="dark:text-white mt-2 flex-grow block transform text-2xl font-semibold text-gray-800 transition-colors duration-200 hover:text-gray-600 hover:underline"
                                 >{{
-                                    university.name.length <= 30
-                                        ? university.name
-                                        : university.name.substring(0, 27) +
-                                          "..."
+                                    university.name
                                 }}</router-link
                             >
                         </div>
@@ -264,6 +439,7 @@
                 <University />
             </div>
             <NoContent v-if="universities.length == 0 && loading != 1" />
+            </div>
         </div>
     </div>
 </template>
@@ -276,7 +452,25 @@ import useContinents from "@/services/continentServices.js";
 import useCountries from "@/services/countryServices.js";
 import useCities from "@/services/cityServices.js";
 import useZones from "@/services/zoneServices.js";
+import useLegalStatuses from "@/services/legalStatusServices.js";
+import useUniversitySectors from "@/services/universitySectorServices.js";
+import useSchoolingTypes from "@/services/schoolingTypeServices.js";
+import useLevelStudies from "@/services/levelStudyServices.js";
+
 import University from "../../../components/skeleton/University.vue";
+const { legalStatuses, getLegalStatuses } = useLegalStatuses();
+const {
+    levelStudies,
+    getLevelStudies
+} = useLevelStudies();
+const {
+    universitySectors,
+    getUniversitySectors
+} = useUniversitySectors();
+const {
+    schoolingTypes,
+    getSchoolingTypes
+} = useSchoolingTypes();
 const {
     universities,
     getUniversities,
@@ -297,11 +491,15 @@ const toGet = ref(true);
 const user = localStorage.user ? JSON.parse(localStorage.user) : "";
 onMounted(async () => {
     window.addEventListener("scroll", handleScroll);
-    await getUniversities();
+    await getUniversities('university');
     await getContinents();
     await getZones();
     await getCountries();
     await getCities();
+    await getLegalStatuses();
+    await getUniversitySectors();
+    await getSchoolingTypes();
+    await getLevelStudies();
 });
 
 onUnmounted(async () => {
@@ -320,11 +518,18 @@ const handleScroll = async (e) => {
             filterUniversity.continent == "" &&
             filterUniversity.city == "" &&
             filterUniversity.zone == "" &&
+            filterUniversity.legal_status == "" &&
+            filterUniversity.schooling_type == "" &&
+            filterUniversity.university_sector == "" &&
+            filterUniversity.level_study == "" &&
+            filterUniversity.required_level == "" &&
+            filterUniversity.firstday_university == "" &&
+            filterUniversity.registration_period == "" &&
             filterUniversity.searchKey == ""
         ) {
             toGet.value = false;
             page.value++;
-            await getUniversities();
+            await getUniversities(filterUniversity.type);
             toGet.value = true;
         }
     }
@@ -332,6 +537,13 @@ const handleScroll = async (e) => {
 
 const universitiesFilter = async () => {
     if (
+        filterUniversity.legal_status != "" ||
+        filterUniversity.schooling_type != "" ||
+        filterUniversity.university_sector != "" ||
+        filterUniversity.level_study != "" ||
+        filterUniversity.required_level != "" ||
+        filterUniversity.firstday_university != "" ||
+        filterUniversity.registration_period != "" ||
         filterUniversity.country != "" ||
         filterUniversity.continent != "" ||
         filterUniversity.city != "" ||
@@ -344,16 +556,24 @@ const universitiesFilter = async () => {
     } else {
         page.value = 1;
         isAll.value = false;
-        await getUniversities();
+        await getUniversities(filterUniversity.type);
     }
 };
 
 const filterUniversity = reactive({
+    type: "university",
     country: "",
     continent: "",
     city: "",
     zone: "",
     searchKey: "",
+    legal_status: "",
+    schooling_type: "",
+    university_sector: "",
+    level_study: "",
+    required_level: "",
+    firstday_university: "",
+    registration_period: "",
 });
 
 const filteredCityU = async () => {
@@ -361,6 +581,7 @@ const filteredCityU = async () => {
         return city.country_id == filterUniversity.country;
     });
     filterUniversity.city = "";
+    await universitiesFilter();
 };
 
 const filteredCountryU = async () => {
@@ -370,6 +591,7 @@ const filteredCountryU = async () => {
     filterUniversity.country = "";
     filterUniversity.city = "";
     cityfilteredU.value = [];
+    await universitiesFilter();
 };
 
 const filteredZoneU = async () => {
@@ -382,5 +604,14 @@ const filteredZoneU = async () => {
     filterUniversity.city = "";
     cityfilteredU.value = [];
     countryFilteredU.value = [];
+    await universitiesFilter();
 };
+
+const toogleType = async (type) => {
+    filterUniversity.type = type;
+    page.value = 1;
+        isAll.value = false;
+        universities.value = [];
+        await getUniversities(filterUniversity.type);
+}
 </script>

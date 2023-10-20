@@ -691,7 +691,7 @@ const saveTender = async () => {
     formData.append("work_department_id", tender.value.work_department.id);
     formData.append("work_mode_id", tender.value.work_mode.id);
     formData.append("size_company_id", tender.value.size_company.id);
-    formData.append("city_id", tender.value.city_id ? tender.value.city_id : '');
+    formData.append("city_id", tender.value.city_id ? tender.value.city_id : null);
     formData.append("zone_id", tender.value.zone.id);
     formData.append("continent_id", tender.value.continent.id);
     formData.append("country_id", tender.value.country.id);

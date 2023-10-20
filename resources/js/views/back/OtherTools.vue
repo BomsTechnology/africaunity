@@ -360,7 +360,25 @@ import useWorkDepartments from "@/services/workDepartmentServices.js";
 import useWorkModes from "@/services/workModeServices.js";
 import useYearExperiences from "@/services/yearExperienceServices.js";
 import useLegalStatuses from "@/services/legalStatusServices.js";
+import useUniversitySectors from "@/services/universitySectorServices.js";
+import useSchoolingTypes from "@/services/schoolingTypeServices.js";
 
+const {
+    universitySectors,
+    getUniversitySectors,
+    createUniversitySector,
+    destroyUniversitySector,
+    updateUniversitySector,
+    errorsUS,
+} = useUniversitySectors();
+const {
+    schoolingTypes,
+    getSchoolingTypes,
+    createSchoolingType,
+    destroySchoolingType,
+    updateSchoolingType,
+    errorsST,
+} = useSchoolingTypes();
 const {
     languages,
     getLanguages,
@@ -486,6 +504,8 @@ const others = [
     "Contract Type",
     "Size Company",
     "Status",
+    "Schooling Type",
+    "University Sector",
 ];
 const item = reactive({
     name_fr: "",
@@ -609,6 +629,22 @@ const storeItem = async () => {
                 items.value = status.value;
             }
             break;
+        case 13:
+            await createSchoolingType({ ...item });
+            errors.value = errorsST.value;
+            if (errors.value == "") {
+                await getSchoolingTypes();
+                items.value = schoolingTypes.value;
+            }
+            break;
+        case 14:
+            await createUniversitySector({ ...item });
+            errors.value = errorsUS.value;
+            if (errors.value == "") {
+                await getUniversitySectors();
+                items.value = universitySectors.value;
+            }
+            break;
     }
     item.name_fr = "";
     item.name_en = "";
@@ -722,6 +758,22 @@ const saveItem = async () => {
             if (errors.value == "") {
                 await getStatus();
                 items.value = status.value;
+            }
+            break;
+        case 13:
+            await updateSchoolingType(id.value, item);
+            errors.value = errorsST.value;
+            if (errors.value == "") {
+                await getSchoolingTypes();
+                items.value = schoolingTypes.value;
+            }
+            break;
+        case 14:
+            await updateUniversitySector(id.value, item);
+            errors.value = errorsUS.value;
+            if (errors.value == "") {
+                await getUniversitySectors();
+                items.value = universitySectors.value;
             }
             break;
     }
@@ -842,6 +894,22 @@ const deleteItem = async (id) => {
                     items.value = status.value;
                 }
                 break;
+            case 13:
+                await destroySchoolingType(id);
+                errors.value = errorsST.value;
+                if (errors.value == "") {
+                    await getSchoolingTypes();
+                    items.value = schoolingTypes.value;
+                }
+                break;
+            case 14:
+                await destroyUniversitySector(id);
+                errors.value = errorsUS.value;
+                if (errors.value == "") {
+                    await getUniversitySectors();
+                    items.value = universitySectors.value;
+                }
+                break;
         }
         loading.value = 0;
     }
@@ -939,6 +1007,20 @@ const changeOther = async () => {
             errors.value = errorsStatus.value;
             if (errors.value == "") {
                 items.value = status.value;
+            }
+            break;
+        case 13:
+            await getSchoolingTypes();
+            errors.value = errorsST.value;
+            if (errors.value == "") {
+                items.value = schoolingTypes.value;
+            }
+            break;
+        case 14:
+            await getUniversitySectors();
+            errors.value = errorsUS.value;
+            if (errors.value == "") {
+                items.value = universitySectors.value;
             }
             break;
     }

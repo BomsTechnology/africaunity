@@ -303,7 +303,7 @@ class TenderController extends Controller
             'work_department_id' => $fileds['work_department_id'],
             'work_mode_id' => $fileds['work_mode_id'],
             'size_company_id' => $fileds['size_company_id'],
-            'city_id' => $fileds['city_id'],
+            'city_id' => $fileds['city_id'] != null && $fileds['city_id'] != 'null'  ? $fileds['city_id']  : NULL,
             'zone_id' => $fileds['zone_id'],
             'continent_id' => $fileds['continent_id'],
             'country_id' => $fileds['country_id'],

@@ -940,12 +940,12 @@
                                     <template
                                         v-for="user in selectedConversation.users"
                                     >
+                                    <template v-if="user.id != loginUser.id">
                                         <img
                                             v-if="
-                                                user.id != loginUser.id &&
-                                                user.image
+                                                user.avatar
                                             "
-                                            :src="user.image"
+                                            :src="user.avatar"
                                             class="h-full w-full bg-cover object-cover"
                                             alt=""
                                         />
@@ -953,6 +953,7 @@
                                             v-else
                                             class="h-full w-full text-gray-800"
                                         />
+                                    </template>
                                     </template>
                                 </template>
                                 <template v-else>
@@ -1405,7 +1406,11 @@
                                             v-else
                                             class="flex h-full w-full items-center justify-center bg-gray-500 text-white"
                                         >
-                                            <span>File</span>
+                                            <span>{{
+                                                    message.attachement_name
+                                                        .split(".")
+                                                        .pop()
+                                                }}</span>
                                         </div>
                                     </div>
                                     <div
@@ -1610,7 +1615,6 @@ const message = reactive({
 onMounted(async () => {
     await getConversationsUser(loginUser.value.id);
     selectedConversationList.value = conversations.value;
-    console.log(conversations.value);
     await getConversationsFolderUser(loginUser.value.id);
     document.onkeydown = function (evt) {
         evt = evt || window.event;
@@ -1734,8 +1738,8 @@ const startConversation = async (userSelect) => {
         await createConversation({
             users: [loginUser.value.id, userSelect.id],
         });
-        await getConversationsUser(loginUser.value.id);
         refreshList();
+        selectedConversation.value = conversation.value
     } else {
         selectedConversation.value = isStartCov;
     }

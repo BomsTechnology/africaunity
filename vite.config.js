@@ -37,17 +37,15 @@ export default defineConfig({
         manifest: true,
         rollupOptions: {
             output: {
-                entryFileNames: `[name].js`,
-                chunkFileNames: `[name].js`,
-                assetFileNames: `[name].[ext]`,
-                // Ajoutez la version actuelle de l'application à la sortie
-              //  banner: `// @vite <%= hash %>`,
+                entryFileNames: `[name].[hash].js`,
+                chunkFileNames: `[name].[hash].js`,
+                assetFileNames: `[name].[hash].[ext]`,
+                banner: `// @vite <%= hash %>`,
             },
         },
         define: {
             global: {},
-            // Définissez la valeur de `@vite` en tant que version actuelle de l'application
-           // "@vite": JSON.stringify(Date.now()),
+            "@vite": JSON.stringify(Date.now()),
         } 
       /*  commonjsOptions: {
             esmExternals: true,

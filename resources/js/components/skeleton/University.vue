@@ -7,7 +7,7 @@ const items = [1, 2, 3, 4, 5, 6];
 <template>
     <div class="animate-pulse">
         <div
-            class="grid grid-cols-1 gap-4 py-8 px-10 md:grid-cols-2 lg:grid-cols-4"
+            class="grid grid-cols-1 gap-4 py-8 px-10 md:grid-cols-2 lg:grid-cols-3"
         >
             <div
                 v-for="item in items"
